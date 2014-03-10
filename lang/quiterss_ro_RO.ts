@@ -2,79 +2,79 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="44"/>
+        <location filename="../src/aboutdialog.cpp" line="33"/>
         <source>About</source>
         <translation>Despre</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="55"/>
+        <location filename="../src/aboutdialog.cpp" line="44"/>
         <source>Revision</source>
         <translation>Revizie</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="63"/>
-        <location filename="../src/aboutdialog.cpp" line="134"/>
-        <location filename="../src/aboutdialog.cpp" line="166"/>
+        <location filename="../src/aboutdialog.cpp" line="52"/>
+        <location filename="../src/aboutdialog.cpp" line="123"/>
+        <location filename="../src/aboutdialog.cpp" line="155"/>
         <source>Version</source>
         <translation>Versiune</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="67"/>
+        <location filename="../src/aboutdialog.cpp" line="56"/>
         <source>QuiteRSS is a open-source cross-platform RSS/Atom news reader</source>
         <translation>QuiteRSS este un program sursă-deschisă, multi-platformă, cititor RSS/Atom news</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="68"/>
+        <location filename="../src/aboutdialog.cpp" line="57"/>
         <source>Includes:</source>
         <translation>Include:</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="137"/>
+        <location filename="../src/aboutdialog.cpp" line="126"/>
         <source>Application directory:</source>
         <translation>Folder aplicaţie:</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="140"/>
+        <location filename="../src/aboutdialog.cpp" line="129"/>
         <source>Resource directory:</source>
         <translation>Folder resurse:</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="143"/>
+        <location filename="../src/aboutdialog.cpp" line="132"/>
         <source>Data directory:</source>
         <translation>Folder date:</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="146"/>
+        <location filename="../src/aboutdialog.cpp" line="135"/>
         <source>Database file:</source>
         <translation>Fişier bază de date:</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="149"/>
+        <location filename="../src/aboutdialog.cpp" line="138"/>
         <source>Settings file:</source>
         <translation>Fişier setări:</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="152"/>
+        <location filename="../src/aboutdialog.cpp" line="141"/>
         <source>Log file:</source>
         <translation>Fişier jurnal:</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="167"/>
+        <location filename="../src/aboutdialog.cpp" line="156"/>
         <source>Authors</source>
         <translation>Autori</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="168"/>
+        <location filename="../src/aboutdialog.cpp" line="157"/>
         <source>History</source>
         <translation>Istoric</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="169"/>
+        <location filename="../src/aboutdialog.cpp" line="158"/>
         <source>License</source>
         <translation>Licenţă</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="170"/>
+        <location filename="../src/aboutdialog.cpp" line="159"/>
         <source>Information</source>
         <translation>Informaţie</translation>
     </message>
@@ -105,7 +105,7 @@
 <context>
     <name>AdBlockCustomList</name>
     <message>
-        <location filename="../src/adblock/adblocksubscription.cpp" line="476"/>
+        <location filename="../src/adblock/adblocksubscription.cpp" line="484"/>
         <source>Custom Rules</source>
         <translation>Reguli personalizate</translation>
     </message>
@@ -176,48 +176,48 @@
 <context>
     <name>AdBlockIcon</name>
     <message>
-        <location filename="../src/adblock/adblockicon.cpp" line="53"/>
+        <location filename="../src/adblock/adblockicon.cpp" line="61"/>
         <source>AdBlock lets you block unwanted content on web pages</source>
         <translation>AdBlock vă permite să blocaţi conţinutul nedorit de pe paginile web</translation>
     </message>
     <message>
-        <location filename="../src/adblock/adblockicon.cpp" line="98"/>
+        <location filename="../src/adblock/adblockicon.cpp" line="102"/>
         <source>AdBlock</source>
         <translation>AdBlock</translation>
     </message>
     <message>
-        <location filename="../src/adblock/adblockicon.cpp" line="125"/>
+        <location filename="../src/adblock/adblockicon.cpp" line="129"/>
         <source>Show AdBlock &amp;Settings</source>
         <translation>Arată &amp;setările AdBlock</translation>
     </message>
     <message>
-        <location filename="../src/adblock/adblockicon.cpp" line="133"/>
+        <location filename="../src/adblock/adblockicon.cpp" line="137"/>
         <source>Disable on %1</source>
         <translation>Dezactivează pe %1</translation>
     </message>
     <message>
-        <location filename="../src/adblock/adblockicon.cpp" line="139"/>
+        <location filename="../src/adblock/adblockicon.cpp" line="143"/>
         <source>Disable only on this page</source>
         <translation>Dezactivează pe această pagină</translation>
     </message>
     <message>
-        <location filename="../src/adblock/adblockicon.cpp" line="149"/>
+        <location filename="../src/adblock/adblockicon.cpp" line="153"/>
         <source>Blocked Popup Windows</source>
         <translation>Ferestre popup blocate</translation>
     </message>
     <message>
-        <location filename="../src/adblock/adblockicon.cpp" line="154"/>
-        <location filename="../src/adblock/adblockicon.cpp" line="171"/>
+        <location filename="../src/adblock/adblockicon.cpp" line="158"/>
+        <location filename="../src/adblock/adblockicon.cpp" line="175"/>
         <source>%1 with (%2)</source>
         <translation>%1 cu (%2)</translation>
     </message>
     <message>
-        <location filename="../src/adblock/adblockicon.cpp" line="165"/>
+        <location filename="../src/adblock/adblockicon.cpp" line="169"/>
         <source>No content blocked</source>
         <translation>Fără conţinut blocat</translation>
     </message>
     <message>
-        <location filename="../src/adblock/adblockicon.cpp" line="168"/>
+        <location filename="../src/adblock/adblockicon.cpp" line="172"/>
         <source>Blocked URL (AdBlock Rule) - click to edit rule</source>
         <translation>URL blocat (Regulă AdBlock) - clic pentru editare regulă</translation>
     </message>
@@ -241,32 +241,32 @@
 <context>
     <name>AdBlockTreeWidget</name>
     <message>
-        <location filename="../src/adblock/adblocktreewidget.cpp" line="96"/>
+        <location filename="../src/adblock/adblocktreewidget.cpp" line="97"/>
         <source>Add Rule</source>
         <translation>Adaugă regulă</translation>
     </message>
     <message>
-        <location filename="../src/adblock/adblocktreewidget.cpp" line="98"/>
+        <location filename="../src/adblock/adblocktreewidget.cpp" line="99"/>
         <source>Remove Rule</source>
         <translation>Înlătură regulă</translation>
     </message>
     <message>
-        <location filename="../src/adblock/adblocktreewidget.cpp" line="157"/>
+        <location filename="../src/adblock/adblocktreewidget.cpp" line="160"/>
         <source>Add Custom Rule</source>
         <translation>Adaugă regulă personalizată</translation>
     </message>
     <message>
-        <location filename="../src/adblock/adblocktreewidget.cpp" line="157"/>
+        <location filename="../src/adblock/adblocktreewidget.cpp" line="160"/>
         <source>Please write your rule here:</source>
         <translation>Scrieţi regula dvs. aici:</translation>
     </message>
     <message>
-        <location filename="../src/adblock/adblocktreewidget.cpp" line="195"/>
+        <location filename="../src/adblock/adblocktreewidget.cpp" line="198"/>
         <source>%1 (recently updated)</source>
         <translation>%1 (recent actualizat)</translation>
     </message>
     <message>
-        <location filename="../src/adblock/adblocktreewidget.cpp" line="204"/>
+        <location filename="../src/adblock/adblocktreewidget.cpp" line="207"/>
         <source>%1 (Error: %2)</source>
         <translation>%1 (Eroare: %2)</translation>
     </message>
@@ -660,108 +660,104 @@ Ancient news could reappear</source>
         <translation>Eroare:</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="239"/>
-        <source>Done - %1</source>
-        <translation>Gata - %1</translation>
-    </message>
-    <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="258"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="264"/>
         <source>few seconds</source>
         <translation>cîteva secunde</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="260"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="266"/>
         <source>seconds</source>
         <translation>secunde</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="262"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="268"/>
         <source>minutes</source>
         <translation>minute</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="264"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="270"/>
         <source>hours</source>
         <translation>ore</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="271"/>
-        <location filename="../src/downloads/downloaditem.cpp" line="315"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="241"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="277"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="321"/>
         <source>Unknown size</source>
         <translation>Mărime necunoscută</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="288"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="294"/>
         <source>Unknown speed</source>
         <translation>Viteză necunoscută</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="316"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="322"/>
         <source>%2 - unknown size (%3)</source>
         <translation>%2 - mărime necunoscută (%3)</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="318"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="324"/>
         <source>Remaining %1 - %2 of %3 (%4)</source>
         <translation>Rămas %1 - %2 of %3 (%4)</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="337"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="343"/>
         <source>Cancelled - %1</source>
         <translation>Anulat - %1</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="348"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="354"/>
         <source>Delete file</source>
         <translation>Şterge fişier</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="349"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="355"/>
         <source>Do you want to also delete dowloaded file?</source>
         <translation>Doriţi să ştergeţi, de asemenea,şi fişierul descărcat?</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="366"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="372"/>
         <source>Open File</source>
         <translation>Deschide fişier</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="368"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="374"/>
         <source>Open Folder</source>
         <translation>Deschide folder</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="370"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="376"/>
         <source>Copy Download Link</source>
         <translation>Copiază legătură desacărcare</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="372"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="378"/>
         <source>Cancel Downloading</source>
         <translation>Anulare descărcare</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="373"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="379"/>
         <source>Remove</source>
         <translation>Înlătură</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="375"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="381"/>
         <source>Cancelled</source>
         <translation>Anulat</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="375"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="381"/>
         <source>Error</source>
         <translation>Eroare</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="401"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="407"/>
         <source>Not found</source>
         <translation>Negăsit</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="402"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="408"/>
         <source>Sorry, the file 
  %1 
  was not found!</source>
@@ -1135,7 +1131,7 @@ Ancient news could reappear</source>
 <context>
     <name>FtpDownloader</name>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="467"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="473"/>
         <source>Canceled!</source>
         <translation>Anulat!</translation>
     </message>
@@ -1366,1013 +1362,993 @@ Ancient news could reappear</source>
     </message>
 </context>
 <context>
-    <name>MainApplication</name>
-    <message>
-        <location filename="../src/app/mainapplication.cpp" line="223"/>
-        <source>Error</source>
-        <translation>Eroare</translation>
-    </message>
-    <message>
-        <location filename="../src/app/mainapplication.cpp" line="223"/>
-        <source>SQLite driver not loaded!</source>
-        <translation>Driver-ul SQLite nu a fost încărcat!</translation>
-    </message>
-    <message>
-        <location filename="../src/app/mainapplication.cpp" line="274"/>
-        <source>Save data</source>
-        <translation>Salvează date</translation>
-    </message>
-    <message>
-        <location filename="../src/app/mainapplication.cpp" line="275"/>
-        <source>Attention! Need to save data.
-Save?</source>
-        <translation>Atenţie! Trebuiesc salvate datele.
-Salvare?</translation>
-    </message>
-</context>
-<context>
     <name>MainWindow</name>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="1714"/>
+        <location filename="../src/app/mainwindow.cpp" line="1713"/>
         <source>&amp;AdBlock</source>
         <translation>&amp;AdBlock</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="2069"/>
-        <location filename="../src/app/mainwindow.cpp" line="4626"/>
-        <location filename="../src/app/mainwindow.cpp" line="6890"/>
-        <location filename="../src/app/mainwindow.cpp" line="6912"/>
+        <location filename="../src/app/mainwindow.cpp" line="2111"/>
+        <location filename="../src/app/mainwindow.cpp" line="4676"/>
+        <location filename="../src/app/mainwindow.cpp" line="6949"/>
+        <location filename="../src/app/mainwindow.cpp" line="6971"/>
         <source>Hide Categories</source>
         <translation>Ascunde categorii</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="2073"/>
-        <location filename="../src/app/mainwindow.cpp" line="4624"/>
-        <location filename="../src/app/mainwindow.cpp" line="6896"/>
+        <location filename="../src/app/mainwindow.cpp" line="2115"/>
+        <location filename="../src/app/mainwindow.cpp" line="4674"/>
+        <location filename="../src/app/mainwindow.cpp" line="6955"/>
         <source>Show Categories</source>
         <translation>Arată categorii</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="2411"/>
+        <location filename="../src/app/mainwindow.cpp" line="2458"/>
         <source>Delete Folder</source>
         <translation>Şterge folder</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="2412"/>
+        <location filename="../src/app/mainwindow.cpp" line="2459"/>
         <source>Are you sure to delete the folder &apos;%1&apos;?</source>
         <translation>Sigur doriţi ştergerea folderului &apos;%1&apos;?</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="2415"/>
+        <location filename="../src/app/mainwindow.cpp" line="2462"/>
         <source>Delete Feed</source>
         <translation>Şterge flux</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="2416"/>
+        <location filename="../src/app/mainwindow.cpp" line="2463"/>
         <source>Are you sure to delete the feed &apos;%1&apos;?</source>
         <translation>Sigur doriţi ştergerea fluxului &apos;%1&apos;?</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="2489"/>
-        <location filename="../src/app/mainwindow.cpp" line="2518"/>
+        <location filename="../src/app/mainwindow.cpp" line="2536"/>
+        <location filename="../src/app/mainwindow.cpp" line="2565"/>
         <source>Select OPML-File</source>
         <translation>Selectare fişier OPML</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="2491"/>
+        <location filename="../src/app/mainwindow.cpp" line="2538"/>
         <source>OPML-Files (*.%1 *.%2)</source>
         <translation>Fişiere OPML (*.%1 *.%2)</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="2495"/>
+        <location filename="../src/app/mainwindow.cpp" line="2542"/>
         <source>Import canceled</source>
         <translation>Import anulat</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="2503"/>
+        <location filename="../src/app/mainwindow.cpp" line="2550"/>
         <source>Import: can&apos;t open a file</source>
         <translation>Import: Nu se poate deschide fişierul!</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="2520"/>
+        <location filename="../src/app/mainwindow.cpp" line="2567"/>
         <source>OPML-Files (*.%1)</source>
         <translation>Fişiere OPML (*.%1)</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="2524"/>
+        <location filename="../src/app/mainwindow.cpp" line="2571"/>
         <source>Export canceled</source>
         <translation>Export anulat</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="2530"/>
+        <location filename="../src/app/mainwindow.cpp" line="2577"/>
         <source>Export: can&apos;t open a file</source>
         <translation>Export: Nu se poate deschide fişierul!</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="2781"/>
-        <location filename="../src/app/mainwindow.cpp" line="3828"/>
-        <location filename="../src/app/mainwindow.cpp" line="4415"/>
-        <location filename="../src/app/mainwindow.cpp" line="5786"/>
-        <location filename="../src/app/mainwindow.cpp" line="6861"/>
+        <location filename="../src/app/mainwindow.cpp" line="2828"/>
+        <location filename="../src/app/mainwindow.cpp" line="3879"/>
+        <location filename="../src/app/mainwindow.cpp" line="4464"/>
+        <location filename="../src/app/mainwindow.cpp" line="5842"/>
+        <location filename="../src/app/mainwindow.cpp" line="6920"/>
         <source>Unread: %1</source>
         <translation>Necitite: %1</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="2782"/>
-        <location filename="../src/app/mainwindow.cpp" line="3829"/>
-        <location filename="../src/app/mainwindow.cpp" line="4418"/>
-        <location filename="../src/app/mainwindow.cpp" line="5787"/>
-        <location filename="../src/app/mainwindow.cpp" line="6862"/>
+        <location filename="../src/app/mainwindow.cpp" line="2829"/>
+        <location filename="../src/app/mainwindow.cpp" line="3880"/>
+        <location filename="../src/app/mainwindow.cpp" line="4467"/>
+        <location filename="../src/app/mainwindow.cpp" line="5843"/>
+        <location filename="../src/app/mainwindow.cpp" line="6921"/>
         <source>All: %1</source>
         <translation>Toate: %1</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="3301"/>
-        <location filename="../src/app/mainwindow.cpp" line="3306"/>
-        <location filename="../src/app/mainwindow.cpp" line="3311"/>
+        <location filename="../src/app/mainwindow.cpp" line="3352"/>
+        <location filename="../src/app/mainwindow.cpp" line="3357"/>
+        <location filename="../src/app/mainwindow.cpp" line="3362"/>
         <source>(Browser)</source>
         <translation>(Browser)</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4423"/>
-        <location filename="../src/app/mainwindow.cpp" line="5238"/>
+        <location filename="../src/app/mainwindow.cpp" line="4472"/>
+        <location filename="../src/app/mainwindow.cpp" line="5289"/>
         <source>New News: %1</source>
         <translation>Noutăţi noi: %1</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4425"/>
-        <location filename="../src/app/mainwindow.cpp" line="5240"/>
+        <location filename="../src/app/mainwindow.cpp" line="4474"/>
+        <location filename="../src/app/mainwindow.cpp" line="5291"/>
         <source>Unread News: %1</source>
         <translation>Noutăţi necitite: %1</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4428"/>
+        <location filename="../src/app/mainwindow.cpp" line="4477"/>
         <source>&amp;Add</source>
         <translation>&amp;Adaugă</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4429"/>
-        <location filename="../src/app/mainwindow.cpp" line="4432"/>
+        <location filename="../src/app/mainwindow.cpp" line="4478"/>
+        <location filename="../src/app/mainwindow.cpp" line="4481"/>
         <source>Add New Feed</source>
         <translation>Adaugă flux nou</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4431"/>
+        <location filename="../src/app/mainwindow.cpp" line="4480"/>
         <source>&amp;Feed...</source>
         <translation>&amp;Flux...</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4434"/>
+        <location filename="../src/app/mainwindow.cpp" line="4483"/>
         <source>F&amp;older...</source>
         <translation>F&amp;older...</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4435"/>
+        <location filename="../src/app/mainwindow.cpp" line="4484"/>
         <source>Add New Folder</source>
         <translation>Adaugă folder nou</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4437"/>
-        <location filename="../src/app/mainwindow.cpp" line="4502"/>
+        <location filename="../src/app/mainwindow.cpp" line="4486"/>
+        <location filename="../src/app/mainwindow.cpp" line="4553"/>
         <source>Open in New Tab</source>
         <translation>Deschide în tab nou</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4439"/>
+        <location filename="../src/app/mainwindow.cpp" line="4488"/>
         <source>&amp;Delete...</source>
         <translation>&amp;Şterge...</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4440"/>
+        <location filename="../src/app/mainwindow.cpp" line="4489"/>
         <source>Delete Selected Feed</source>
         <translation>Şterge fluxurile selectate</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4442"/>
+        <location filename="../src/app/mainwindow.cpp" line="4491"/>
         <source>&amp;Import Feeds...</source>
         <translation>&amp;Import fluxuri...</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4443"/>
+        <location filename="../src/app/mainwindow.cpp" line="4492"/>
         <source>Import Feeds from OPML File</source>
         <translation>Import fluxuri din fişier OPML</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4445"/>
+        <location filename="../src/app/mainwindow.cpp" line="4494"/>
         <source>&amp;Export Feeds...</source>
         <translation>&amp;Export fluxuri...</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4446"/>
+        <location filename="../src/app/mainwindow.cpp" line="4495"/>
         <source>Export Feeds to OPML File</source>
         <translation>Export fluxuri în fişier OPML</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4448"/>
+        <location filename="../src/app/mainwindow.cpp" line="4499"/>
         <source>E&amp;xit</source>
         <translation>Ieşire</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4450"/>
+        <location filename="../src/app/mainwindow.cpp" line="4501"/>
         <source>Update Feed</source>
         <translation>Actualizează flux</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4451"/>
+        <location filename="../src/app/mainwindow.cpp" line="4502"/>
         <source>Update Current Feed</source>
         <translation>Actualizează flux curent</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4453"/>
+        <location filename="../src/app/mainwindow.cpp" line="4504"/>
         <source>Update All</source>
         <translation>Actualizează toate</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4454"/>
+        <location filename="../src/app/mainwindow.cpp" line="4505"/>
         <source>Update All Feeds</source>
         <translation>Actualizează toate fluxurile</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4456"/>
+        <location filename="../src/app/mainwindow.cpp" line="4507"/>
         <source>Mark All Feeds Read</source>
         <translation>Marchează toate fluxurile ca citite</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4458"/>
+        <location filename="../src/app/mainwindow.cpp" line="4509"/>
         <source>Mark Read/Unread</source>
         <translation>Marcare Citit/Necitit</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4459"/>
+        <location filename="../src/app/mainwindow.cpp" line="4510"/>
         <source>Mark Current News Read/Unread</source>
         <translation>Marchează noutatea curentă ca citită/necitită</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4461"/>
-        <location filename="../src/app/mainwindow.cpp" line="4462"/>
+        <location filename="../src/app/mainwindow.cpp" line="4512"/>
+        <location filename="../src/app/mainwindow.cpp" line="4513"/>
         <source>Mark All News Read</source>
         <translation>Marchează toate noutăţile ca citite</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4464"/>
-        <location filename="../src/app/mainwindow.cpp" line="7467"/>
-        <location filename="../src/app/mainwindow.cpp" line="7473"/>
-        <location filename="../src/app/mainwindow.cpp" line="7483"/>
+        <location filename="../src/app/mainwindow.cpp" line="4515"/>
+        <location filename="../src/app/mainwindow.cpp" line="7524"/>
+        <location filename="../src/app/mainwindow.cpp" line="7530"/>
+        <location filename="../src/app/mainwindow.cpp" line="7540"/>
         <source>Downloads</source>
         <translation>Descărcări</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4466"/>
+        <location filename="../src/app/mainwindow.cpp" line="4517"/>
         <source>Clean Up...</source>
         <translation>Pune în ordine...</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4468"/>
+        <location filename="../src/app/mainwindow.cpp" line="4519"/>
         <source>News Filters...</source>
         <translation>Filtru noutăţi...</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4469"/>
+        <location filename="../src/app/mainwindow.cpp" line="4520"/>
         <source>Filter News...</source>
         <translation>Filtrare noutăţi...</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4471"/>
+        <location filename="../src/app/mainwindow.cpp" line="4522"/>
         <source>Options...</source>
         <translation>Opţiuni...</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4472"/>
+        <location filename="../src/app/mainwindow.cpp" line="4523"/>
         <source>Open Options Dialog</source>
         <translation>Deschide dialog Opţiuni</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4474"/>
+        <location filename="../src/app/mainwindow.cpp" line="4525"/>
         <source>Filter Feeds</source>
         <translation>Filtrare fluxuri</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4475"/>
-        <location filename="../src/app/mainwindow.cpp" line="4482"/>
+        <location filename="../src/app/mainwindow.cpp" line="4526"/>
+        <location filename="../src/app/mainwindow.cpp" line="4533"/>
         <source>Show All</source>
         <translation>Arată toate</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4476"/>
-        <location filename="../src/app/mainwindow.cpp" line="4483"/>
+        <location filename="../src/app/mainwindow.cpp" line="4527"/>
+        <location filename="../src/app/mainwindow.cpp" line="4534"/>
         <source>Show New</source>
         <translation>Arată noutăţi</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4477"/>
-        <location filename="../src/app/mainwindow.cpp" line="4484"/>
+        <location filename="../src/app/mainwindow.cpp" line="4528"/>
+        <location filename="../src/app/mainwindow.cpp" line="4535"/>
         <source>Show Unread</source>
         <translation>Arată necitite</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4478"/>
+        <location filename="../src/app/mainwindow.cpp" line="4529"/>
         <source>Show Starred Feeds</source>
         <translation>Arată fluxuri cu stea</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4479"/>
+        <location filename="../src/app/mainwindow.cpp" line="4530"/>
         <source>Show Not Working Feeds</source>
         <translation>Arată fluxuri care nu funcţionează</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4481"/>
+        <location filename="../src/app/mainwindow.cpp" line="4532"/>
         <source>Filter News</source>
         <translation>Filtrare noutăţi</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4485"/>
+        <location filename="../src/app/mainwindow.cpp" line="4536"/>
         <source>Show Starred</source>
         <translation>Arată pe cele cu stea</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4486"/>
+        <location filename="../src/app/mainwindow.cpp" line="4537"/>
         <source>Show Not Starred</source>
         <translation>Arată pe cele fără stea</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4487"/>
+        <location filename="../src/app/mainwindow.cpp" line="4538"/>
         <source>Show Unread or Starred</source>
         <translation>Arată pe cele necitite sau cu stea</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4488"/>
+        <location filename="../src/app/mainwindow.cpp" line="4539"/>
         <source>Show Last Day</source>
         <translation>Arată din ultima zi</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4489"/>
+        <location filename="../src/app/mainwindow.cpp" line="4540"/>
         <source>Show Last 7 Days</source>
         <translation>Arată din ultimele 7 zile</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4491"/>
+        <location filename="../src/app/mainwindow.cpp" line="4542"/>
         <source>About...</source>
         <translation>Despre...</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4492"/>
+        <location filename="../src/app/mainwindow.cpp" line="4543"/>
         <source>Show &apos;About&apos; Dialog</source>
         <translation>Arată dialog &apos;Despre&apos;</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4494"/>
+        <location filename="../src/app/mainwindow.cpp" line="4545"/>
         <source>Check for Updates...</source>
         <translation>Verificare actualizări...</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4495"/>
+        <location filename="../src/app/mainwindow.cpp" line="4546"/>
         <source>Report a Problem...</source>
         <translation>Raportaţi o problemă...</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4497"/>
+        <location filename="../src/app/mainwindow.cpp" line="4548"/>
         <source>Open News</source>
         <translation>Deschide noutăţi</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4498"/>
+        <location filename="../src/app/mainwindow.cpp" line="4549"/>
         <source>Open Description News</source>
         <translation>Deschidere descriere noutăţi</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4499"/>
+        <location filename="../src/app/mainwindow.cpp" line="4550"/>
         <source>Open in Browser</source>
         <translation>Deschide în browser</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4500"/>
+        <location filename="../src/app/mainwindow.cpp" line="4551"/>
         <source>Open in External Browser</source>
         <translation>Deschide în browser extern</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4501"/>
+        <location filename="../src/app/mainwindow.cpp" line="4552"/>
         <source>Open News in External Browser</source>
         <translation>Deschide noutate în browser extern</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4503"/>
+        <location filename="../src/app/mainwindow.cpp" line="4554"/>
         <source>Open News in New Tab</source>
         <translation>Deschide noutăţile în tab nou</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4504"/>
+        <location filename="../src/app/mainwindow.cpp" line="4555"/>
         <source>Open in Background Tab</source>
         <translation>Deschide în tab în fundal</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4505"/>
+        <location filename="../src/app/mainwindow.cpp" line="4556"/>
         <source>Open News in Background Tab</source>
         <translation>Deschide noutăţi în tab în fundal</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4506"/>
+        <location filename="../src/app/mainwindow.cpp" line="4557"/>
         <source>Star</source>
         <translation>Stea</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4507"/>
+        <location filename="../src/app/mainwindow.cpp" line="4558"/>
         <source>Mark News Star</source>
         <translation>Marchează noutăţile cu stea</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4508"/>
+        <location filename="../src/app/mainwindow.cpp" line="4559"/>
         <source>Delete</source>
         <translation>Şterge</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4509"/>
+        <location filename="../src/app/mainwindow.cpp" line="4560"/>
         <source>Delete Selected News</source>
         <translation>Şterge noutăţile selectate</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4510"/>
+        <location filename="../src/app/mainwindow.cpp" line="4561"/>
         <source>Delete All News</source>
         <translation>Şterge toate noutăţile</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4511"/>
+        <location filename="../src/app/mainwindow.cpp" line="4562"/>
         <source>Delete All News from List</source>
         <translation>Şterge toate noutăţile din listă</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4512"/>
+        <location filename="../src/app/mainwindow.cpp" line="4563"/>
         <source>Restore</source>
         <translation>Restaurare</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4513"/>
+        <location filename="../src/app/mainwindow.cpp" line="4564"/>
         <source>Restore News</source>
         <translation>Restaurare noutăţi</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4514"/>
+        <location filename="../src/app/mainwindow.cpp" line="4565"/>
         <source>Copy Link</source>
         <translation>Copiază legătură</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4515"/>
+        <location filename="../src/app/mainwindow.cpp" line="4566"/>
         <source>Copy Link News</source>
         <translation>Copiază legătură noutăţi</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4517"/>
+        <location filename="../src/app/mainwindow.cpp" line="4568"/>
         <source>Restore last deleted news</source>
         <translation>Restaurare ultimele noutăţi şterse</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4519"/>
+        <location filename="../src/app/mainwindow.cpp" line="4570"/>
         <source>Mark Read</source>
         <translation>Marchează ca citită</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4520"/>
+        <location filename="../src/app/mainwindow.cpp" line="4571"/>
         <source>Mark Feed Read</source>
         <translation>Marchează fluxul ca citit</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4521"/>
-        <location filename="../src/app/mainwindow.cpp" line="4522"/>
+        <location filename="../src/app/mainwindow.cpp" line="4572"/>
+        <location filename="../src/app/mainwindow.cpp" line="4573"/>
         <source>Properties</source>
         <translation>Proprietăţi</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4524"/>
+        <location filename="../src/app/mainwindow.cpp" line="4575"/>
         <source>&amp;File</source>
         <translation>&amp;Fişier</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4525"/>
-        <source>&amp;Edit</source>
-        <translation>&amp;Editare</translation>
+        <location filename="../src/app/mainwindow.cpp" line="158"/>
+        <source>Saving data...</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4526"/>
+        <location filename="../src/app/mainwindow.cpp" line="4497"/>
+        <source>S&amp;how Menu Bar</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/mainwindow.cpp" line="4576"/>
         <source>&amp;View</source>
         <translation>&amp;Vizualizare</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4527"/>
+        <location filename="../src/app/mainwindow.cpp" line="4577"/>
         <source>Fee&amp;ds</source>
         <translation>Fluxuri</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4528"/>
+        <location filename="../src/app/mainwindow.cpp" line="4578"/>
         <source>&amp;News</source>
         <translation>&amp;Noutăţi</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4529"/>
+        <location filename="../src/app/mainwindow.cpp" line="4579"/>
         <source>&amp;Browser</source>
         <translation>&amp;Browser</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4530"/>
+        <location filename="../src/app/mainwindow.cpp" line="4580"/>
         <source>&amp;Tools</source>
         <translation>Unel&amp;te</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4531"/>
+        <location filename="../src/app/mainwindow.cpp" line="4581"/>
         <source>&amp;Help</source>
         <translation>&amp;Ajutor</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4533"/>
-        <location filename="../src/app/mainwindow.cpp" line="4610"/>
+        <location filename="../src/app/mainwindow.cpp" line="4583"/>
+        <location filename="../src/app/mainwindow.cpp" line="4660"/>
         <source>Main Toolbar</source>
         <translation>Bară intrumente principală</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4534"/>
+        <location filename="../src/app/mainwindow.cpp" line="4584"/>
         <source>Customize Toolbar</source>
         <translation>Personalizare bară intrumente</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4535"/>
+        <location filename="../src/app/mainwindow.cpp" line="4585"/>
         <source>Main Toolbar...</source>
         <translation>Bară intrumente principală...</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4536"/>
+        <location filename="../src/app/mainwindow.cpp" line="4586"/>
         <source>Customize Toolbar...</source>
         <translation>Personalizare bară intrumente...</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4537"/>
+        <location filename="../src/app/mainwindow.cpp" line="4587"/>
         <source>Feeds Toolbar...</source>
         <translation>Bară intrumente fluxuri...</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4538"/>
+        <location filename="../src/app/mainwindow.cpp" line="4588"/>
         <source>News Toolbar...</source>
         <translation>Bară intrumente noutăţi...</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4540"/>
+        <location filename="../src/app/mainwindow.cpp" line="4590"/>
         <source>Lock Toolbar</source>
         <translation>Blocare bară intrumente</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4541"/>
+        <location filename="../src/app/mainwindow.cpp" line="4591"/>
         <source>Hide Toolbar</source>
         <translation>Ascunde bară intrumente</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4543"/>
+        <location filename="../src/app/mainwindow.cpp" line="4593"/>
         <source>Application Style</source>
         <translation>Stil aplicaţie</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4544"/>
+        <location filename="../src/app/mainwindow.cpp" line="4594"/>
         <source>System</source>
         <translation>Sistem</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4545"/>
+        <location filename="../src/app/mainwindow.cpp" line="4595"/>
         <source>System2</source>
         <translation>Sistem2</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4546"/>
+        <location filename="../src/app/mainwindow.cpp" line="4596"/>
         <source>Green</source>
         <translation>Verde</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4547"/>
+        <location filename="../src/app/mainwindow.cpp" line="4597"/>
         <source>Orange</source>
         <translation>Portocaliu</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4548"/>
+        <location filename="../src/app/mainwindow.cpp" line="4598"/>
         <source>Purple</source>
         <translation>Purpuriu</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4549"/>
+        <location filename="../src/app/mainwindow.cpp" line="4599"/>
         <source>Pink</source>
         <translation>Roz</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4550"/>
+        <location filename="../src/app/mainwindow.cpp" line="4600"/>
         <source>Gray</source>
         <translation>Gri</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4552"/>
+        <location filename="../src/app/mainwindow.cpp" line="4602"/>
         <source>Browser Position</source>
         <translation>Poziţie browser</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4553"/>
+        <location filename="../src/app/mainwindow.cpp" line="4603"/>
         <source>Top</source>
         <translation>Sus</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4554"/>
+        <location filename="../src/app/mainwindow.cpp" line="4604"/>
         <source>Bottom</source>
         <translation>Jos</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4555"/>
+        <location filename="../src/app/mainwindow.cpp" line="4605"/>
         <source>Right</source>
         <translation>Dreapta</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4556"/>
+        <location filename="../src/app/mainwindow.cpp" line="4606"/>
         <source>Left</source>
         <translation>Stînga</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4558"/>
+        <location filename="../src/app/mainwindow.cpp" line="4608"/>
         <source>Show Window</source>
         <translation>Arată fereastră</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4560"/>
+        <location filename="../src/app/mainwindow.cpp" line="4610"/>
         <source>Previous Feed</source>
         <translation>Fluxul anterior</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4561"/>
+        <location filename="../src/app/mainwindow.cpp" line="4611"/>
         <source>Next Feed</source>
         <translation>Fluxul următor</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4562"/>
+        <location filename="../src/app/mainwindow.cpp" line="4612"/>
         <source>Previous News</source>
         <translation>Noutăţi anterioare</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4563"/>
+        <location filename="../src/app/mainwindow.cpp" line="4613"/>
         <source>Next News</source>
         <translation>Noutăţi următoare</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4564"/>
+        <location filename="../src/app/mainwindow.cpp" line="4614"/>
         <source>News Page Up</source>
         <translation>Pagină în sus noutăţi</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4565"/>
+        <location filename="../src/app/mainwindow.cpp" line="4615"/>
         <source>News Page Down</source>
         <translation>Pagină în jos noutăţi</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4567"/>
+        <location filename="../src/app/mainwindow.cpp" line="4617"/>
         <source>Next Unread News</source>
         <translation>Următoarele noutăţi necitite</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4568"/>
+        <location filename="../src/app/mainwindow.cpp" line="4618"/>
         <source>Previous Unread News</source>
         <translation>Noutăţi necitite anterioare</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4570"/>
+        <location filename="../src/app/mainwindow.cpp" line="4620"/>
         <source>Switch Focus to Next Panel</source>
         <translation>Comutare focalizare la următorul panou</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4572"/>
+        <location filename="../src/app/mainwindow.cpp" line="4622"/>
         <source>Switch Focus to Next Panel (Tree Feeds, List News, Browser)</source>
         <translation>Comutare focalizare la următorul panou (Arbore fluxuri, liste noutăţi, browser)</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4573"/>
+        <location filename="../src/app/mainwindow.cpp" line="4623"/>
         <source>Switch Focus to Previous Panel</source>
         <translation>Comutare focalizare la panoul anterior</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4575"/>
+        <location filename="../src/app/mainwindow.cpp" line="4625"/>
         <source>Switch Focus to Previous Panel (Tree Feeds, Browser, List News)</source>
         <translation>Comutare focalizare la panoul anterior (Arbore fluxuri, liste noutăţi, browser)</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4577"/>
+        <location filename="../src/app/mainwindow.cpp" line="4627"/>
         <source>Show/Hide Tree Feeds</source>
         <translation>Arată / Ascunde arbore fluxuri</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4579"/>
+        <location filename="../src/app/mainwindow.cpp" line="4629"/>
         <source>Minimize to Tray</source>
         <translation>Minimizare în bară</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4581"/>
+        <location filename="../src/app/mainwindow.cpp" line="4631"/>
         <source>Minimize Application to Tray</source>
         <translation>Minimizare aplicaţie în bară</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4583"/>
+        <location filename="../src/app/mainwindow.cpp" line="4633"/>
         <source>Columns</source>
         <translation>Coloane</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4584"/>
+        <location filename="../src/app/mainwindow.cpp" line="4634"/>
         <source>Count News Unread</source>
         <translation>Numără noutăţi necitite</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4585"/>
+        <location filename="../src/app/mainwindow.cpp" line="4635"/>
         <source>Count News All</source>
         <translation>Numără toate noutăţile</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4586"/>
+        <location filename="../src/app/mainwindow.cpp" line="4636"/>
         <source>Last Updated</source>
         <translation>Ultimele actualizate</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4588"/>
+        <location filename="../src/app/mainwindow.cpp" line="4638"/>
         <source>Show Indentation</source>
         <translation>Arată indentare</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4590"/>
-        <location filename="../src/app/mainwindow.cpp" line="4591"/>
+        <location filename="../src/app/mainwindow.cpp" line="4640"/>
+        <location filename="../src/app/mainwindow.cpp" line="4641"/>
         <source>Search Feed</source>
         <translation>Căutare fluxuri</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4593"/>
+        <location filename="../src/app/mainwindow.cpp" line="4643"/>
         <source>Zoom</source>
         <translation>Zoom</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4594"/>
+        <location filename="../src/app/mainwindow.cpp" line="4644"/>
         <source>Zoom In</source>
         <translation>Mărire</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4595"/>
+        <location filename="../src/app/mainwindow.cpp" line="4645"/>
         <source>Zoom in in browser</source>
         <translation>Mărire în browser</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4596"/>
+        <location filename="../src/app/mainwindow.cpp" line="4646"/>
         <source>Zoom Out</source>
         <translation>Micşorare</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4597"/>
+        <location filename="../src/app/mainwindow.cpp" line="4647"/>
         <source>Zoom out in browser</source>
         <translation>Micşorare în browser</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4598"/>
+        <location filename="../src/app/mainwindow.cpp" line="4648"/>
         <source>100%</source>
         <translation>100%</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4599"/>
+        <location filename="../src/app/mainwindow.cpp" line="4649"/>
         <source>Reset zoom in browser</source>
         <translation>Resetare zoom în browser</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4601"/>
+        <location filename="../src/app/mainwindow.cpp" line="4651"/>
         <source>Print...</source>
         <translation>Imprimare...</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4602"/>
+        <location filename="../src/app/mainwindow.cpp" line="4652"/>
         <source>Print Web page</source>
         <translation>Imprimare pagină web</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4603"/>
+        <location filename="../src/app/mainwindow.cpp" line="4653"/>
         <source>Print Preview...</source>
         <translation>Previzualizare imprimare...</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4604"/>
+        <location filename="../src/app/mainwindow.cpp" line="4654"/>
         <source>Preview Web page</source>
         <translation>Previzualizare pagină web</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4606"/>
+        <location filename="../src/app/mainwindow.cpp" line="4656"/>
         <source>Save As...</source>
         <translation>Salvează ca...</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4607"/>
+        <location filename="../src/app/mainwindow.cpp" line="4657"/>
         <source>Save Page As...</source>
         <translation>Salvează pagină ca...</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4609"/>
+        <location filename="../src/app/mainwindow.cpp" line="4659"/>
         <source>Show/Hide</source>
         <translation>Arată / Ascunde</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4611"/>
+        <location filename="../src/app/mainwindow.cpp" line="4661"/>
         <source>Feeds Toolbar</source>
         <translation>Bară intrumente fluxuri</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4612"/>
+        <location filename="../src/app/mainwindow.cpp" line="4662"/>
         <source>News Toolbar</source>
         <translation>Bară intrumente noutăţi</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4613"/>
+        <location filename="../src/app/mainwindow.cpp" line="4663"/>
         <source>Browser Toolbar</source>
         <translation>Bară intrumente browser</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4614"/>
+        <location filename="../src/app/mainwindow.cpp" line="4664"/>
         <source>Panel Categories</source>
         <translation>Panou categorii</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4616"/>
-        <location filename="../src/app/mainwindow.cpp" line="4617"/>
+        <location filename="../src/app/mainwindow.cpp" line="4666"/>
+        <location filename="../src/app/mainwindow.cpp" line="4667"/>
         <source>Full Screen</source>
         <translation>Tot ecranul</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4619"/>
-        <location filename="../src/app/mainwindow.cpp" line="4620"/>
+        <location filename="../src/app/mainwindow.cpp" line="4669"/>
+        <location filename="../src/app/mainwindow.cpp" line="4670"/>
         <source>Stay On Top</source>
         <translation>Stă deasupra</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4622"/>
+        <location filename="../src/app/mainwindow.cpp" line="4672"/>
         <source>Categories</source>
         <translation>Categorii</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4628"/>
-        <location filename="../src/app/mainwindow.cpp" line="4629"/>
+        <location filename="../src/app/mainwindow.cpp" line="4678"/>
+        <location filename="../src/app/mainwindow.cpp" line="4679"/>
         <source>Label</source>
         <translation>Etichetă</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4630"/>
+        <location filename="../src/app/mainwindow.cpp" line="4680"/>
         <source>Show labels menu</source>
         <translation>Arată etichete meniu</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4632"/>
+        <location filename="../src/app/mainwindow.cpp" line="4682"/>
         <source>Close Tab</source>
         <translation>Închide tab</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4633"/>
+        <location filename="../src/app/mainwindow.cpp" line="4683"/>
         <source>Close Other Tabs</source>
         <translation>Închide celelalte tab-uri</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4634"/>
+        <location filename="../src/app/mainwindow.cpp" line="4684"/>
         <source>Close All Tabs</source>
         <translation>Închide toate tab-urile</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4635"/>
+        <location filename="../src/app/mainwindow.cpp" line="4685"/>
         <source>Switch to next tab</source>
         <translation>Comutare la următorul tab</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4636"/>
+        <location filename="../src/app/mainwindow.cpp" line="4686"/>
         <source>Switch to previous tab</source>
         <translation>Comutare la tab anterior</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4638"/>
+        <location filename="../src/app/mainwindow.cpp" line="4688"/>
         <source>Unread</source>
         <translation>Necitit</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4639"/>
+        <location filename="../src/app/mainwindow.cpp" line="4689"/>
         <source>Starred</source>
         <translation>Cu stea</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4640"/>
+        <location filename="../src/app/mainwindow.cpp" line="4690"/>
         <source>Deleted</source>
         <translation>Şters</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4641"/>
+        <location filename="../src/app/mainwindow.cpp" line="4691"/>
         <source>Labels</source>
         <translation>Etichete</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4643"/>
+        <location filename="../src/app/mainwindow.cpp" line="4693"/>
         <source>Decrease news list/increase browser</source>
         <translation>Micşorare listă noutăţi/mărire browser</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4644"/>
+        <location filename="../src/app/mainwindow.cpp" line="4694"/>
         <source>Increase news list/decrease browser</source>
         <translation>Mărire listă noutăţi/micşorare browser</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4646"/>
+        <location filename="../src/app/mainwindow.cpp" line="4696"/>
         <source>Find</source>
         <translation>Căutare</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4648"/>
+        <location filename="../src/app/mainwindow.cpp" line="4698"/>
         <source>Open Homepage Feed</source>
         <translation>Deschide flux pagină de start</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4649"/>
+        <location filename="../src/app/mainwindow.cpp" line="4699"/>
         <source>Sorted by Name</source>
         <translation>Sortare după nume</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4650"/>
+        <location filename="../src/app/mainwindow.cpp" line="4700"/>
         <source>Collapse All Folders</source>
         <translation>Restrînge toate folderele</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4651"/>
+        <location filename="../src/app/mainwindow.cpp" line="4701"/>
         <source>Expand All Folders</source>
         <translation>Extinde toate folderele</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4652"/>
+        <location filename="../src/app/mainwindow.cpp" line="4702"/>
         <source>Next Folder</source>
         <translation>Folderul următor</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4653"/>
+        <location filename="../src/app/mainwindow.cpp" line="4703"/>
         <source>Previous Folder</source>
         <translation>Folderul anterior</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4654"/>
+        <location filename="../src/app/mainwindow.cpp" line="4704"/>
         <source>Expand Folder</source>
         <translation>Extinde folder</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4656"/>
+        <location filename="../src/app/mainwindow.cpp" line="4706"/>
         <source>Setting Page: Labels</source>
         <translation>Setare pagină: Etichete</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4658"/>
+        <location filename="../src/app/mainwindow.cpp" line="4708"/>
         <source>Share</source>
         <translation>Distribuie</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4660"/>
+        <location filename="../src/app/mainwindow.cpp" line="4710"/>
         <source>Sort By</source>
         <translation>Sortare după</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4661"/>
+        <location filename="../src/app/mainwindow.cpp" line="4711"/>
         <source>Ascending</source>
         <translation>Crescător</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4662"/>
+        <location filename="../src/app/mainwindow.cpp" line="4712"/>
         <source>Descending</source>
         <translation>Descrescător</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="5484"/>
+        <location filename="../src/app/mainwindow.cpp" line="5535"/>
         <source>Check for updates</source>
         <translation>Verificare actualizări</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="5485"/>
+        <location filename="../src/app/mainwindow.cpp" line="5536"/>
         <source>A new version of QuiteRSS...</source>
         <translation>O nouă versiune a QuiteRSS...</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="5837"/>
+        <location filename="../src/app/mainwindow.cpp" line="5884"/>
         <source>Loading...</source>
         <translation>Încărcare...</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="6538"/>
-        <location filename="../src/app/mainwindow.cpp" line="6552"/>
+        <location filename="../src/app/mainwindow.cpp" line="6585"/>
+        <location filename="../src/app/mainwindow.cpp" line="6599"/>
         <source>Web Page</source>
         <translation>Pagină web</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="7054"/>
+        <location filename="../src/app/mainwindow.cpp" line="7111"/>
         <source>Save As</source>
         <translation>Salvează ca</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="7056"/>
+        <location filename="../src/app/mainwindow.cpp" line="7113"/>
         <source>HTML-Files (*.%1)</source>
         <translation>Fişiere HTML (*.%1)</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="7056"/>
+        <location filename="../src/app/mainwindow.cpp" line="7113"/>
         <source>Text files (*.%2)</source>
         <translation>Fişiere text (*.%2)</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="7062"/>
+        <location filename="../src/app/mainwindow.cpp" line="7119"/>
         <source>Save As: can&apos;t open a file</source>
         <translation>Salvare ca: Nu se poate deschide fişierul!</translation>
     </message>
@@ -2722,8 +2698,8 @@ Salvare?</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="65"/>
-        <location filename="../src/optionsdialog.cpp" line="727"/>
-        <location filename="../src/optionsdialog.cpp" line="966"/>
+        <location filename="../src/optionsdialog.cpp" line="725"/>
+        <location filename="../src/optionsdialog.cpp" line="964"/>
         <source>General</source>
         <translation>General</translation>
     </message>
@@ -2749,13 +2725,13 @@ Salvare?</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="80"/>
-        <location filename="../src/optionsdialog.cpp" line="1764"/>
+        <location filename="../src/optionsdialog.cpp" line="1762"/>
         <source>Labels</source>
         <translation>Etichete</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="83"/>
-        <location filename="../src/optionsdialog.cpp" line="1766"/>
+        <location filename="../src/optionsdialog.cpp" line="1764"/>
         <source>Notifications</source>
         <translation>Notificări</translation>
     </message>
@@ -2766,7 +2742,7 @@ Salvare?</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="89"/>
-        <location filename="../src/optionsdialog.cpp" line="1219"/>
+        <location filename="../src/optionsdialog.cpp" line="1217"/>
         <source>Language</source>
         <translation>Limbă</translation>
     </message>
@@ -2782,7 +2758,7 @@ Salvare?</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="265"/>
-        <location filename="../src/optionsdialog.cpp" line="2084"/>
+        <location filename="../src/optionsdialog.cpp" line="2082"/>
         <source>Warning: key is already assigned to</source>
         <translation>Atenţionare: tasta este deja atribuită către</translation>
     </message>
@@ -2823,1014 +2799,1009 @@ Salvare?</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="296"/>
-        <source>Hide tab bar if only have one tab open</source>
-        <translation>Ascunde bara tab dacă aveţi un singur tab deschis</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="297"/>
         <source>Show close button on tab</source>
         <translation>Arată buton închidere în tab</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="299"/>
+        <location filename="../src/optionsdialog.cpp" line="298"/>
         <source>Automatically check for updates</source>
         <translation>Verificare actualizări atomată</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="300"/>
+        <location filename="../src/optionsdialog.cpp" line="299"/>
         <source>Store a DB in memory (requires program restart)</source>
         <translation>Stochează o BD în memorie (necesită repornire program)</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="307"/>
+        <location filename="../src/optionsdialog.cpp" line="306"/>
         <source>Save DB stored in memory to file every</source>
         <translation>Salvează BD stocată în memorie în fişier la fiecare</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="309"/>
-        <location filename="../src/optionsdialog.cpp" line="751"/>
+        <location filename="../src/optionsdialog.cpp" line="308"/>
+        <location filename="../src/optionsdialog.cpp" line="749"/>
         <source>minutes</source>
         <translation>minute</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="332"/>
+        <location filename="../src/optionsdialog.cpp" line="330"/>
         <source>Run QuiteRSS at Windows startup</source>
         <translation>Pornire QuiteRSS la încărcare Windows</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="353"/>
+        <location filename="../src/optionsdialog.cpp" line="351"/>
         <source>Show system tray icon</source>
         <translation>Arată icon sistem în bară</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="356"/>
+        <location filename="../src/optionsdialog.cpp" line="354"/>
         <source>starting QuiteRSS</source>
         <translation>pornire QuiteRSS</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="357"/>
+        <location filename="../src/optionsdialog.cpp" line="355"/>
         <source>minimizing QuiteRSS</source>
         <translation>minimizare QuiteRSS</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="358"/>
+        <location filename="../src/optionsdialog.cpp" line="356"/>
         <source>closing QuiteRSS</source>
         <translation>închidere QuiteRSS</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="365"/>
+        <location filename="../src/optionsdialog.cpp" line="363"/>
         <source>Show static icon</source>
         <translation>Arată icon static</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="366"/>
+        <location filename="../src/optionsdialog.cpp" line="364"/>
         <source>Change icon for incoming new news</source>
         <translation>Schimbă icon pentru sosire noutăţi noi</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="367"/>
+        <location filename="../src/optionsdialog.cpp" line="365"/>
         <source>Show count of new news</source>
         <translation>Arată nr. de noutăţi noi</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="368"/>
+        <location filename="../src/optionsdialog.cpp" line="366"/>
         <source>Show count of unread news</source>
         <translation>Arată nr. de noutăţi necitite</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="377"/>
+        <location filename="../src/optionsdialog.cpp" line="375"/>
         <source>Single click instead of double click for show window</source>
         <translation>Clic singular în loc de dublu-clic pentru a arăta fereastra</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="378"/>
+        <location filename="../src/optionsdialog.cpp" line="376"/>
         <source>Clear status new on minimize to tray</source>
         <translation>Ştergere statut nou la minimizare în bară</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="379"/>
+        <location filename="../src/optionsdialog.cpp" line="377"/>
         <source>Empty working set on minimize to tray</source>
         <translation>Golire set de lucru la minimizare în bară</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="382"/>
+        <location filename="../src/optionsdialog.cpp" line="380"/>
         <source>Move to the system tray when:</source>
         <translation>Mutare în bară la:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="384"/>
+        <location filename="../src/optionsdialog.cpp" line="382"/>
         <source>Tray icon behavior:</source>
         <translation>Comportament icon din bară:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="406"/>
+        <location filename="../src/optionsdialog.cpp" line="404"/>
         <source>Direct connection to the Internet</source>
         <translation>Conexiune directă la internet</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="408"/>
+        <location filename="../src/optionsdialog.cpp" line="406"/>
         <source>System proxy configuration (if available)</source>
         <translation>Configuraţie proxy sistem (dacă este disponibilă)</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="409"/>
+        <location filename="../src/optionsdialog.cpp" line="407"/>
         <source>Manual proxy configuration:</source>
         <translation>Configuraţie proxy manuală:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="425"/>
+        <location filename="../src/optionsdialog.cpp" line="423"/>
         <source>Proxy server:</source>
         <translation>Server proxy:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="427"/>
+        <location filename="../src/optionsdialog.cpp" line="425"/>
         <source>Port:</source>
         <translation>Port:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="435"/>
+        <location filename="../src/optionsdialog.cpp" line="433"/>
         <source>Username:</source>
         <translation>Nume utilizator:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="437"/>
+        <location filename="../src/optionsdialog.cpp" line="435"/>
         <source>Password:</source>
         <translation>Parolă:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="466"/>
+        <location filename="../src/optionsdialog.cpp" line="464"/>
         <source>Request timeout:</source>
         <translation>Expirare cerere:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="468"/>
+        <location filename="../src/optionsdialog.cpp" line="466"/>
         <source>Number of requests:</source>
         <translation>Număr de cereri:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="470"/>
+        <location filename="../src/optionsdialog.cpp" line="468"/>
         <source>Number of retries:</source>
         <translation>Număr de reîncercări:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="473"/>
+        <location filename="../src/optionsdialog.cpp" line="471"/>
         <source>Options network requests when updating feeds (requires program restart):</source>
         <translation>Opţiuni cerere reţea la actualizare fluxuri (necesită restart program):</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="489"/>
+        <location filename="../src/optionsdialog.cpp" line="487"/>
         <source>Use embedded browser</source>
         <translation>Foloseşte browser încorporat</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="490"/>
+        <location filename="../src/optionsdialog.cpp" line="488"/>
         <source>Use external browser</source>
         <translation>Foloseşte browser extern</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="491"/>
+        <location filename="../src/optionsdialog.cpp" line="489"/>
         <source>Default external browser</source>
         <translation>Foloseşte browser implicit</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="492"/>
+        <location filename="../src/optionsdialog.cpp" line="490"/>
         <source>Following external browser:</source>
         <translation>Urmărire browser extern:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="495"/>
-        <location filename="../src/optionsdialog.cpp" line="509"/>
-        <location filename="../src/optionsdialog.cpp" line="589"/>
-        <location filename="../src/optionsdialog.cpp" line="706"/>
-        <location filename="../src/optionsdialog.cpp" line="1033"/>
+        <location filename="../src/optionsdialog.cpp" line="493"/>
+        <location filename="../src/optionsdialog.cpp" line="507"/>
+        <location filename="../src/optionsdialog.cpp" line="587"/>
+        <location filename="../src/optionsdialog.cpp" line="704"/>
+        <location filename="../src/optionsdialog.cpp" line="1031"/>
         <source>Browse...</source>
         <translation>Răsfoire...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="497"/>
-        <location filename="../src/optionsdialog.cpp" line="1970"/>
+        <location filename="../src/optionsdialog.cpp" line="495"/>
+        <location filename="../src/optionsdialog.cpp" line="1968"/>
         <source>Load images</source>
         <translation>Încărcare imagini</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="498"/>
+        <location filename="../src/optionsdialog.cpp" line="496"/>
         <source>Enable JavaScript</source>
         <translation>Activare JavaScript</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="499"/>
+        <location filename="../src/optionsdialog.cpp" line="497"/>
         <source>Enable plug-ins</source>
         <translation>Activare plug-in-uri</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="505"/>
+        <location filename="../src/optionsdialog.cpp" line="503"/>
         <source>Open links in embedded browser in background</source>
         <translation>Deschide legături în browser încorporat în fundal</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="506"/>
+        <location filename="../src/optionsdialog.cpp" line="504"/>
         <source>Open links in external browser in background (experimental)</source>
         <translation>Deschide legături în browser extern în fundal (experimental)</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="532"/>
+        <location filename="../src/optionsdialog.cpp" line="530"/>
         <source>Default zoom on pages:</source>
         <translation>Zoom iniţial la pagini:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="549"/>
+        <location filename="../src/optionsdialog.cpp" line="547"/>
         <source>Browser selection:</source>
         <translation>Selectare browser:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="551"/>
+        <location filename="../src/optionsdialog.cpp" line="549"/>
         <source>External browser:</source>
         <translation>Browser extern:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="553"/>
+        <location filename="../src/optionsdialog.cpp" line="551"/>
         <source>Content:</source>
         <translation>Conţinut:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="555"/>
+        <location filename="../src/optionsdialog.cpp" line="553"/>
         <source>User style sheet:</source>
         <translation>Stil foaie utilizator:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="584"/>
+        <location filename="../src/optionsdialog.cpp" line="582"/>
         <source>Maximum pages in cache</source>
         <translation>Pagini maxim în cache</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="595"/>
+        <location filename="../src/optionsdialog.cpp" line="593"/>
         <source>Store cache in:</source>
         <translation>Stocare cache în:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="603"/>
+        <location filename="../src/optionsdialog.cpp" line="601"/>
         <source>Maximum size of disk cache</source>
         <translation>Mărime maximă cache a discului</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="605"/>
+        <location filename="../src/optionsdialog.cpp" line="603"/>
         <source>MB</source>
         <translation>MB</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="611"/>
+        <location filename="../src/optionsdialog.cpp" line="609"/>
         <source>Use disk cache</source>
         <translation>Folosire cache disc</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="625"/>
+        <location filename="../src/optionsdialog.cpp" line="623"/>
         <source>Allow local data to be set</source>
         <translation>Permite trimitere date locale</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="626"/>
+        <location filename="../src/optionsdialog.cpp" line="624"/>
         <source>Keep local data only until quit application</source>
         <translation>Păstrare date locale doar pînă la închiderea aplicaţiei</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="627"/>
+        <location filename="../src/optionsdialog.cpp" line="625"/>
         <source>Block sites from setting any data</source>
         <translation>Blocare site-uri pentru trimitere orice date</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="628"/>
+        <location filename="../src/optionsdialog.cpp" line="626"/>
         <source>Clear</source>
         <translation>Golire</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="643"/>
+        <location filename="../src/optionsdialog.cpp" line="641"/>
         <source>Cookies:</source>
         <translation>Cookies:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="651"/>
+        <location filename="../src/optionsdialog.cpp" line="649"/>
         <source>Click To Flash is a plugin which blocks auto loading of Flash content at page. You can always load it manually by clicking on the Flash play icon.</source>
         <translation>Click To Flash este un plugin care blochează încărcarea automată a conţinutului Flash în pagină. Puteți întotdeauna încărca manual, făcînd clic pe pictograma redare Flash.</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="656"/>
+        <location filename="../src/optionsdialog.cpp" line="654"/>
         <source>Use Click to Flash</source>
         <translation>Folosire Click to Flash</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="668"/>
+        <location filename="../src/optionsdialog.cpp" line="666"/>
         <source>Add...</source>
         <translation>Adaugă...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="670"/>
+        <location filename="../src/optionsdialog.cpp" line="668"/>
         <source>Remove...</source>
         <translation>Înlătură...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="710"/>
+        <location filename="../src/optionsdialog.cpp" line="708"/>
         <source>Ask where to save each file before downloading</source>
         <translation>Întreabă unde salvează fiecare fişier înainte de descărcare</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="719"/>
+        <location filename="../src/optionsdialog.cpp" line="717"/>
         <source>Download location:</source>
         <translation>Locaţie descărcare:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="728"/>
+        <location filename="../src/optionsdialog.cpp" line="726"/>
         <source>History</source>
         <translation>Istoric</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="729"/>
+        <location filename="../src/optionsdialog.cpp" line="727"/>
         <source>Privacy</source>
         <translation>Intimitate</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="730"/>
+        <location filename="../src/optionsdialog.cpp" line="728"/>
         <source>Click to Flash</source>
         <translation>Click to Flash</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="731"/>
+        <location filename="../src/optionsdialog.cpp" line="729"/>
         <source>Downloads</source>
         <translation>Descărcări</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="740"/>
+        <location filename="../src/optionsdialog.cpp" line="738"/>
         <source>Automatically update the feeds on startup</source>
         <translation>Actualizare atomată fluxuri la pornire</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="741"/>
+        <location filename="../src/optionsdialog.cpp" line="739"/>
         <source>Automatically update the feeds every</source>
         <translation>Actualizare atomată fluxuri la fiecare</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="751"/>
-        <location filename="../src/optionsdialog.cpp" line="883"/>
-        <location filename="../src/optionsdialog.cpp" line="1095"/>
+        <location filename="../src/optionsdialog.cpp" line="749"/>
+        <location filename="../src/optionsdialog.cpp" line="881"/>
+        <location filename="../src/optionsdialog.cpp" line="1093"/>
         <source>seconds</source>
         <translation>secunde</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="751"/>
+        <location filename="../src/optionsdialog.cpp" line="749"/>
         <source>hours</source>
         <translation>ore</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="763"/>
+        <location filename="../src/optionsdialog.cpp" line="761"/>
         <source>Position on last opened news</source>
         <translation>Poziţia la ultimele noutăţi deschise</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="764"/>
+        <location filename="../src/optionsdialog.cpp" line="762"/>
         <source>Position at top of list news</source>
         <translation>Poziţia la partea de sus a listei noutăţilor</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="765"/>
+        <location filename="../src/optionsdialog.cpp" line="763"/>
         <source>Position on unread news</source>
         <translation>Poziţia la noutăţi necitite</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="766"/>
+        <location filename="../src/optionsdialog.cpp" line="764"/>
         <source>Open news</source>
         <translation>Deschide noutăţi</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="767"/>
+        <location filename="../src/optionsdialog.cpp" line="765"/>
         <source>Nothing to do</source>
         <translation>Nimic de făcut</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="782"/>
+        <location filename="../src/optionsdialog.cpp" line="780"/>
         <source>Dec</source>
         <translation>Dec</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="783"/>
+        <location filename="../src/optionsdialog.cpp" line="781"/>
         <source>December</source>
         <translation>Decembrie</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="806"/>
+        <location filename="../src/optionsdialog.cpp" line="804"/>
         <source>Display format for date:</source>
         <translation>Format afişare dată:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="809"/>
+        <location filename="../src/optionsdialog.cpp" line="807"/>
         <source>time:</source>
         <translation>timp:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="813"/>
+        <location filename="../src/optionsdialog.cpp" line="811"/>
         <source>Alternating row background colors</source>
         <translation>Culoare alternativă rînd fundal </translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="814"/>
+        <location filename="../src/optionsdialog.cpp" line="812"/>
         <source>Simplified representation of date and time</source>
         <translation>Reprezentare simplificată a datei şi timpului</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="817"/>
+        <location filename="../src/optionsdialog.cpp" line="815"/>
         <source>Show All</source>
         <translation>Arată toate</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="817"/>
+        <location filename="../src/optionsdialog.cpp" line="815"/>
         <source>Show New</source>
         <translation>Arată noutăţi</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="817"/>
+        <location filename="../src/optionsdialog.cpp" line="815"/>
         <source>Show Unread</source>
         <translation>Arată necitite</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="818"/>
+        <location filename="../src/optionsdialog.cpp" line="816"/>
         <source>Show Starred</source>
         <translation>Arată pe cele cu stea</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="818"/>
+        <location filename="../src/optionsdialog.cpp" line="816"/>
         <source>Show Not Starred</source>
         <translation>Arată pe cele fără stea</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="819"/>
+        <location filename="../src/optionsdialog.cpp" line="817"/>
         <source>Show Unread or Starred</source>
         <translation>Arată pe cele necitite sau cu stea</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="819"/>
+        <location filename="../src/optionsdialog.cpp" line="817"/>
         <source>Show Last Day</source>
         <translation>Arată din ultima zi</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="820"/>
+        <location filename="../src/optionsdialog.cpp" line="818"/>
         <source>Show Last 7 Days</source>
         <translation>Arată din ultimele 7 zile</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="834"/>
+        <location filename="../src/optionsdialog.cpp" line="832"/>
         <source>Main news filter:</source>
         <translation>Filtru principal noutăţi:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="842"/>
+        <location filename="../src/optionsdialog.cpp" line="840"/>
         <source>Opening feed:</source>
         <translation>Deschidere flux:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="856"/>
+        <location filename="../src/optionsdialog.cpp" line="854"/>
         <source>Mark news as read:</source>
         <translation>Marchează noutăţile ca citită:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="858"/>
+        <location filename="../src/optionsdialog.cpp" line="856"/>
         <source>on selecting. With timeout</source>
         <translation>la selectare. Cu întîrziere</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="859"/>
+        <location filename="../src/optionsdialog.cpp" line="857"/>
         <source>after switching to another news</source>
         <translation>după comutarea la altă noutate</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="865"/>
+        <location filename="../src/optionsdialog.cpp" line="863"/>
         <source>Mark displayed news as read when switching feeds</source>
         <translation>Marcare noutăţi afişate ca citite la comutare fluxuri</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="866"/>
+        <location filename="../src/optionsdialog.cpp" line="864"/>
         <source>Mark displayed news as read when closing tab</source>
         <translation>Marcare noutăţi afişate ca citite la închidere tab</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="867"/>
+        <location filename="../src/optionsdialog.cpp" line="865"/>
         <source>Mark displayed news as read on minimize</source>
         <translation>Marcare noutăţi afişate ca citite la minimizare</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="870"/>
+        <location filename="../src/optionsdialog.cpp" line="868"/>
         <source>Show news&apos; description instead of loading web page</source>
         <translation>Arată descriere noutăţi în loc de încărcarea paginii web</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="872"/>
+        <location filename="../src/optionsdialog.cpp" line="870"/>
         <source>Change behavior of action &apos;Next Unread News&apos;</source>
         <translation>Schimbă comportamentul acţiunii &apos;Următoarele noutăţi necitite&apos;</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="874"/>
+        <location filename="../src/optionsdialog.cpp" line="872"/>
         <source>starred news</source>
         <translation>noutăţi cu stea</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="875"/>
+        <location filename="../src/optionsdialog.cpp" line="873"/>
         <source>labeled news</source>
         <translation>noutăţi cu etichetă</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="877"/>
+        <location filename="../src/optionsdialog.cpp" line="875"/>
         <source>Automatically mark identical news as read</source>
         <translation>Marcare automată ca citite a noutăţilor identice</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="904"/>
+        <location filename="../src/optionsdialog.cpp" line="902"/>
         <source>Prevent accidental deletion of:</source>
         <translation>Previne ştergerea accidentală a:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="916"/>
+        <location filename="../src/optionsdialog.cpp" line="914"/>
         <source>Enable cleanup on shutdown</source>
         <translation>Activare punere în ordine la închidere</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="919"/>
+        <location filename="../src/optionsdialog.cpp" line="917"/>
         <source>Maximum age of news in days to keep:</source>
         <translation>Vîrstă maximă a noutăţilor de păstrat:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="926"/>
+        <location filename="../src/optionsdialog.cpp" line="924"/>
         <source>Maximum number of news to keep:</source>
         <translation>Nr. maxim de fluxuri de păstrat:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="933"/>
+        <location filename="../src/optionsdialog.cpp" line="931"/>
         <source>Delete read news</source>
         <translation>Şterge noutăţile citite</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="934"/>
+        <location filename="../src/optionsdialog.cpp" line="932"/>
         <source>Never delete unread news</source>
         <translation>Nu şterge niciodată noutăţile citite</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="935"/>
+        <location filename="../src/optionsdialog.cpp" line="933"/>
         <source>Never delete starred news</source>
         <translation>Nu şterge niciodată noutăţile cu stea</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="936"/>
+        <location filename="../src/optionsdialog.cpp" line="934"/>
         <source>Never delete labeled news</source>
         <translation>Nu şterge niciodată noutăţile cu etichetă</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="938"/>
+        <location filename="../src/optionsdialog.cpp" line="936"/>
         <source>Clean up &apos;Deleted&apos;</source>
         <translation>Pune în ordine &apos;Şterse&apos;</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="939"/>
+        <location filename="../src/optionsdialog.cpp" line="937"/>
         <source>Enable DB optimization (slower shutdown)</source>
         <translation>Activare optimizare BD (închidere lentă)</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="967"/>
+        <location filename="../src/optionsdialog.cpp" line="965"/>
         <source>Reading</source>
         <translation>Citire</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="968"/>
+        <location filename="../src/optionsdialog.cpp" line="966"/>
         <source>Clean Up</source>
         <translation>Pune în ordine</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="985"/>
+        <location filename="../src/optionsdialog.cpp" line="983"/>
         <source>New...</source>
         <translation>Nou...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="987"/>
+        <location filename="../src/optionsdialog.cpp" line="985"/>
         <source>Edit...</source>
         <translation>Editare...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="990"/>
+        <location filename="../src/optionsdialog.cpp" line="988"/>
         <source>Delete...</source>
         <translation>Şterge...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="994"/>
+        <location filename="../src/optionsdialog.cpp" line="992"/>
         <source>Move up</source>
         <translation>Mutare în sus</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="997"/>
+        <location filename="../src/optionsdialog.cpp" line="995"/>
         <source>Move down</source>
         <translation>Mutare în jos</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1030"/>
+        <location filename="../src/optionsdialog.cpp" line="1028"/>
         <source>Play sound for incoming new news</source>
         <translation>Redă sunet la sosire noutăţi noi</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1034"/>
+        <location filename="../src/optionsdialog.cpp" line="1032"/>
         <source>Play</source>
         <translation>Redare</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1056"/>
+        <location filename="../src/optionsdialog.cpp" line="1054"/>
         <source>Display notification for incoming news</source>
         <translation>Afişare notificare pentru sosire noutăţi</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1062"/>
+        <location filename="../src/optionsdialog.cpp" line="1060"/>
         <source>Top Left</source>
         <translation>Stînga-sus</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1062"/>
+        <location filename="../src/optionsdialog.cpp" line="1060"/>
         <source>Top Right</source>
         <translation>Dreapta-sus</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1063"/>
+        <location filename="../src/optionsdialog.cpp" line="1061"/>
         <source>Bottom Left</source>
         <translation>Stînga-jos</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1063"/>
+        <location filename="../src/optionsdialog.cpp" line="1061"/>
         <source>Bottom Right</source>
         <translation>Dreapta-jos</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1073"/>
+        <location filename="../src/optionsdialog.cpp" line="1071"/>
         <source>Review</source>
         <translation>Revizuire</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1077"/>
+        <location filename="../src/optionsdialog.cpp" line="1075"/>
         <source>Position</source>
         <translation>Poziţie</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1083"/>
+        <location filename="../src/optionsdialog.cpp" line="1081"/>
         <source>Show maximum of</source>
         <translation>Arată maxim</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1085"/>
+        <location filename="../src/optionsdialog.cpp" line="1083"/>
         <source>item on page notification</source>
         <translation>element pe pagina notificărilor</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1088"/>
+        <location filename="../src/optionsdialog.cpp" line="1086"/>
         <source>Width list items</source>
         <translation>Lăţime listă elemente</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1090"/>
+        <location filename="../src/optionsdialog.cpp" line="1088"/>
         <source>pixels</source>
         <translation>pixeli</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1093"/>
+        <location filename="../src/optionsdialog.cpp" line="1091"/>
         <source>Close notification after</source>
         <translation>Închide notificare după</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1097"/>
+        <location filename="../src/optionsdialog.cpp" line="1095"/>
         <source>Do not show notification in fullscreen mode</source>
         <translation>Nu arată notificăr în mod tot ecranul</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1102"/>
+        <location filename="../src/optionsdialog.cpp" line="1100"/>
         <source>Only show selected feeds:</source>
         <translation>Afişare doar fluxuri selectate:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1118"/>
+        <location filename="../src/optionsdialog.cpp" line="1116"/>
         <source>All Feeds</source>
         <translation>Toate fluxurile</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1166"/>
+        <location filename="../src/optionsdialog.cpp" line="1164"/>
         <source>Site</source>
         <translation>Site</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1166"/>
+        <location filename="../src/optionsdialog.cpp" line="1164"/>
         <source>User</source>
         <translation>Utilizator</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1166"/>
+        <location filename="../src/optionsdialog.cpp" line="1164"/>
         <source>Password</source>
         <translation>Parolă</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1183"/>
+        <location filename="../src/optionsdialog.cpp" line="1181"/>
         <source>Delete</source>
         <translation>Şterge</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1185"/>
+        <location filename="../src/optionsdialog.cpp" line="1183"/>
         <source>Delete All</source>
         <translation>Şterge toate</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1187"/>
+        <location filename="../src/optionsdialog.cpp" line="1185"/>
         <source>Show Passwords</source>
         <translation>Arată parole</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1219"/>
+        <location filename="../src/optionsdialog.cpp" line="1217"/>
         <source>Version</source>
         <translation>Versiune</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1220"/>
+        <location filename="../src/optionsdialog.cpp" line="1218"/>
         <source>Author</source>
         <translation>Autor</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1220"/>
+        <location filename="../src/optionsdialog.cpp" line="1218"/>
         <source>Contact</source>
         <translation>Contact</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1470"/>
+        <location filename="../src/optionsdialog.cpp" line="1468"/>
         <source>Choose language:</source>
         <translation>Selectare limbă:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1491"/>
+        <location filename="../src/optionsdialog.cpp" line="1489"/>
         <source>Type</source>
         <translation>Tip</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1491"/>
+        <location filename="../src/optionsdialog.cpp" line="1489"/>
         <source>Font</source>
         <translation>Font</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1495"/>
+        <location filename="../src/optionsdialog.cpp" line="1493"/>
         <source>Feeds list font</source>
         <translation>Font listă fluxuri</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1498"/>
+        <location filename="../src/optionsdialog.cpp" line="1496"/>
         <source>News list font</source>
         <translation>Font listă noutăţi</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1501"/>
+        <location filename="../src/optionsdialog.cpp" line="1499"/>
         <source>News title font</source>
         <translation>Font titlu noutăţi</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1504"/>
+        <location filename="../src/optionsdialog.cpp" line="1502"/>
         <source>News text font</source>
         <translation>Font text noutăţi</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1507"/>
+        <location filename="../src/optionsdialog.cpp" line="1505"/>
         <source>Notification font</source>
         <translation>Font notificări</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1514"/>
-        <location filename="../src/optionsdialog.cpp" line="1603"/>
+        <location filename="../src/optionsdialog.cpp" line="1512"/>
+        <location filename="../src/optionsdialog.cpp" line="1601"/>
         <source>Change...</source>
         <translation>Schimbă...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1516"/>
-        <location filename="../src/optionsdialog.cpp" line="1605"/>
-        <location filename="../src/optionsdialog.cpp" line="1717"/>
+        <location filename="../src/optionsdialog.cpp" line="1514"/>
+        <location filename="../src/optionsdialog.cpp" line="1603"/>
+        <location filename="../src/optionsdialog.cpp" line="1715"/>
         <source>Reset</source>
         <translation>Reset</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1541"/>
+        <location filename="../src/optionsdialog.cpp" line="1539"/>
         <source>Feeds list color</source>
         <translation>Culoare listă fluxuri</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1544"/>
+        <location filename="../src/optionsdialog.cpp" line="1542"/>
         <source>Feeds list background</source>
         <translation>Fundal listă fluxuri</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1547"/>
+        <location filename="../src/optionsdialog.cpp" line="1545"/>
         <source>News list color</source>
         <translation>Culoare listă noutăţi</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1550"/>
+        <location filename="../src/optionsdialog.cpp" line="1548"/>
         <source>News list background</source>
         <translation>Fundal listă noutăţi</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1553"/>
+        <location filename="../src/optionsdialog.cpp" line="1551"/>
         <source>Focused news color</source>
         <translation>Culoare noutate focalizată</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1556"/>
+        <location filename="../src/optionsdialog.cpp" line="1554"/>
         <source>Focused news background color</source>
         <translation>Culoare fundal noutate focalizată</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1559"/>
+        <location filename="../src/optionsdialog.cpp" line="1557"/>
         <source>Link color</source>
         <translation>Culoare legătură</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1562"/>
+        <location filename="../src/optionsdialog.cpp" line="1560"/>
         <source>Title color</source>
         <translation>Culoare titlu</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1565"/>
+        <location filename="../src/optionsdialog.cpp" line="1563"/>
         <source>Date color</source>
         <translation>Culoare dată</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1568"/>
+        <location filename="../src/optionsdialog.cpp" line="1566"/>
         <source>Author color</source>
         <translation>Culoare autor</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1571"/>
+        <location filename="../src/optionsdialog.cpp" line="1569"/>
         <source>News text color</source>
         <translation>Culoare text noutăţi</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1574"/>
+        <location filename="../src/optionsdialog.cpp" line="1572"/>
         <source>News title background</source>
         <translation>Fundal titlu noutăţi</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1577"/>
+        <location filename="../src/optionsdialog.cpp" line="1575"/>
         <source>News background</source>
         <translation>Fundal noutăţi</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1580"/>
+        <location filename="../src/optionsdialog.cpp" line="1578"/>
         <source>Feed with new news</source>
         <translation>Flux cu noutăţi noi</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1583"/>
+        <location filename="../src/optionsdialog.cpp" line="1581"/>
         <source>Count of news unread in feeds tree</source>
         <translation>Nr. noutăţi necitite în arbore fluxuri</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1586"/>
+        <location filename="../src/optionsdialog.cpp" line="1584"/>
         <source>Text color of new news</source>
         <translation>Culoarea textului noutăţilor</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1589"/>
+        <location filename="../src/optionsdialog.cpp" line="1587"/>
         <source>Text color of unread news</source>
         <translation>Culoarea textului noutăţilor necitite</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1592"/>
+        <location filename="../src/optionsdialog.cpp" line="1590"/>
         <source>Focused feed color</source>
         <translation>Culoare flux focalizat</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1595"/>
+        <location filename="../src/optionsdialog.cpp" line="1593"/>
         <source>Focused feed background color</source>
         <translation>Culoare fundal flux focalizat</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1631"/>
+        <location filename="../src/optionsdialog.cpp" line="1629"/>
         <source>Standard</source>
         <translation>Standard</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1633"/>
+        <location filename="../src/optionsdialog.cpp" line="1631"/>
         <source>Fixed</source>
         <translation>Fix</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1635"/>
+        <location filename="../src/optionsdialog.cpp" line="1633"/>
         <source>Serif</source>
         <translation>Serif</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1637"/>
+        <location filename="../src/optionsdialog.cpp" line="1635"/>
         <source>Sans Serif</source>
         <translation>Sans Serif</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1639"/>
+        <location filename="../src/optionsdialog.cpp" line="1637"/>
         <source>Cursive</source>
         <translation>Cursiv</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1641"/>
+        <location filename="../src/optionsdialog.cpp" line="1639"/>
         <source>Fantasy</source>
         <translation>Fantezie</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1656"/>
+        <location filename="../src/optionsdialog.cpp" line="1654"/>
         <source>Default font size</source>
         <translation>Mărime font iniţială</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1658"/>
+        <location filename="../src/optionsdialog.cpp" line="1656"/>
         <source>Fixed font size</source>
         <translation>Mărime font fixă</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1660"/>
+        <location filename="../src/optionsdialog.cpp" line="1658"/>
         <source>Minimum font size</source>
         <translation>Mărime minimă font</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1662"/>
+        <location filename="../src/optionsdialog.cpp" line="1660"/>
         <source>Minimum logical font size</source>
         <translation>Mărime minim logică a font-ului</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1666"/>
+        <location filename="../src/optionsdialog.cpp" line="1664"/>
         <source>Font families:</source>
         <translation>Familii font:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1668"/>
+        <location filename="../src/optionsdialog.cpp" line="1666"/>
         <source>Font sizes:</source>
         <translation>Mărimi font:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1677"/>
+        <location filename="../src/optionsdialog.cpp" line="1675"/>
         <source>Fonts</source>
         <translation>Font-uri</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1678"/>
+        <location filename="../src/optionsdialog.cpp" line="1676"/>
         <source>Fonts Browser</source>
         <translation>Font-uri browser</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1679"/>
+        <location filename="../src/optionsdialog.cpp" line="1677"/>
         <source>Colors</source>
         <translation>Culori</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1686"/>
+        <location filename="../src/optionsdialog.cpp" line="1684"/>
         <source>Filter</source>
         <translation>Filtru</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1712"/>
+        <location filename="../src/optionsdialog.cpp" line="1710"/>
         <source>Action</source>
         <translation>Acţiune</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1712"/>
+        <location filename="../src/optionsdialog.cpp" line="1710"/>
         <source>Description</source>
         <translation>Descriere</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1712"/>
+        <location filename="../src/optionsdialog.cpp" line="1710"/>
         <source>Shortcut</source>
         <translation>Scurtătură</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1720"/>
+        <location filename="../src/optionsdialog.cpp" line="1718"/>
         <source>Shortcut:</source>
         <translation>Scurtătură:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1975"/>
+        <location filename="../src/optionsdialog.cpp" line="1973"/>
         <source>Auto load images to news view</source>
         <translation>Auto încărcare imagini pentru vizualizare noutăţi</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2139"/>
-        <location filename="../src/optionsdialog.cpp" line="2164"/>
+        <location filename="../src/optionsdialog.cpp" line="2137"/>
+        <location filename="../src/optionsdialog.cpp" line="2162"/>
         <source>Open File...</source>
         <translation>Deschide fişier...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2661"/>
+        <location filename="../src/optionsdialog.cpp" line="2659"/>
         <source>Select Style Sheet File</source>
         <translation>Selectare fişier stil foaie</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2670"/>
-        <location filename="../src/optionsdialog.cpp" line="2699"/>
+        <location filename="../src/optionsdialog.cpp" line="2668"/>
+        <location filename="../src/optionsdialog.cpp" line="2697"/>
         <source>Open Directory...</source>
         <translation>Deschide folder...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2680"/>
+        <location filename="../src/optionsdialog.cpp" line="2678"/>
         <source>Add site to whitelist</source>
         <translation>Adaugă site la lista albă</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2681"/>
+        <location filename="../src/optionsdialog.cpp" line="2679"/>
         <source>Site without &apos;http://&apos; (ex. youtube.com)</source>
         <translation>Site fără &apos;http://&apos; (ex. youtube.com)</translation>
     </message>
@@ -3838,17 +3809,17 @@ Salvare?</translation>
 <context>
     <name>QAbstractSpinBox</name>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4686"/>
+        <location filename="../src/app/mainwindow.cpp" line="4736"/>
         <source>&amp;Step up</source>
         <translation>Mărire</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4687"/>
+        <location filename="../src/app/mainwindow.cpp" line="4737"/>
         <source>Step &amp;down</source>
         <translation>Micşorare</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4688"/>
+        <location filename="../src/app/mainwindow.cpp" line="4738"/>
         <source>&amp;Select All</source>
         <translation>&amp;Selectare tot</translation>
     </message>
@@ -3856,22 +3827,22 @@ Salvare?</translation>
 <context>
     <name>QDialogButtonBox</name>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4664"/>
+        <location filename="../src/app/mainwindow.cpp" line="4714"/>
         <source>Close</source>
         <translation>Închidere</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4665"/>
+        <location filename="../src/app/mainwindow.cpp" line="4715"/>
         <source>Cancel</source>
         <translation>Anulare</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4666"/>
+        <location filename="../src/app/mainwindow.cpp" line="4716"/>
         <source>&amp;Yes</source>
         <translation>&amp;Da</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4667"/>
+        <location filename="../src/app/mainwindow.cpp" line="4717"/>
         <source>&amp;No</source>
         <translation>&amp;Nu</translation>
     </message>
@@ -3985,37 +3956,37 @@ Salvare?</translation>
 <context>
     <name>QLineEdit</name>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4669"/>
+        <location filename="../src/app/mainwindow.cpp" line="4719"/>
         <source>&amp;Undo</source>
         <translation>An&amp;ulează</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4670"/>
+        <location filename="../src/app/mainwindow.cpp" line="4720"/>
         <source>&amp;Redo</source>
         <translation>&amp;Reface</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4671"/>
+        <location filename="../src/app/mainwindow.cpp" line="4721"/>
         <source>Cu&amp;t</source>
         <translation>&amp;Taie</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4672"/>
+        <location filename="../src/app/mainwindow.cpp" line="4722"/>
         <source>&amp;Copy</source>
         <translation>&amp;Copiază</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4673"/>
+        <location filename="../src/app/mainwindow.cpp" line="4723"/>
         <source>&amp;Paste</source>
         <translation>Li&amp;pire</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4674"/>
+        <location filename="../src/app/mainwindow.cpp" line="4724"/>
         <source>Delete</source>
         <translation>Şterge</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4675"/>
+        <location filename="../src/app/mainwindow.cpp" line="4725"/>
         <source>Select All</source>
         <translation>Selectare tot</translation>
     </message>
@@ -4023,7 +3994,7 @@ Salvare?</translation>
 <context>
     <name>QMultiInputContext</name>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4690"/>
+        <location filename="../src/app/mainwindow.cpp" line="4740"/>
         <source>Select IM</source>
         <translation>Selectare IM</translation>
     </message>
@@ -4040,46 +4011,51 @@ Salvare?</translation>
         <source>Cannot start external program! %1</source>
         <translation>Nu se poate porni programul extern! %1</translation>
     </message>
+    <message>
+        <location filename="../src/database/database.cpp" line="218"/>
+        <source>Error</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>QTextControl</name>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4677"/>
+        <location filename="../src/app/mainwindow.cpp" line="4727"/>
         <source>&amp;Undo</source>
         <translation>An&amp;ulează</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4678"/>
+        <location filename="../src/app/mainwindow.cpp" line="4728"/>
         <source>&amp;Redo</source>
         <translation>&amp;Reface</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4679"/>
+        <location filename="../src/app/mainwindow.cpp" line="4729"/>
         <source>Cu&amp;t</source>
         <translation>&amp;Taie</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4680"/>
+        <location filename="../src/app/mainwindow.cpp" line="4730"/>
         <source>&amp;Copy</source>
         <translation>&amp;Copiază</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4681"/>
+        <location filename="../src/app/mainwindow.cpp" line="4731"/>
         <source>&amp;Paste</source>
         <translation>Li&amp;pire</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4682"/>
+        <location filename="../src/app/mainwindow.cpp" line="4732"/>
         <source>Delete</source>
         <translation>Şterge</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4683"/>
+        <location filename="../src/app/mainwindow.cpp" line="4733"/>
         <source>Select All</source>
         <translation>Selectare tot</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4684"/>
+        <location filename="../src/app/mainwindow.cpp" line="4734"/>
         <source>Copy &amp;Link Location</source>
         <translation>Copiază locaţie &amp;legătură</translation>
     </message>
@@ -4087,22 +4063,22 @@ Salvare?</translation>
 <context>
     <name>QWizard</name>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4692"/>
+        <location filename="../src/app/mainwindow.cpp" line="4742"/>
         <source>Cancel</source>
         <translation>Anulare</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4693"/>
+        <location filename="../src/app/mainwindow.cpp" line="4743"/>
         <source>&lt; &amp;Back</source>
         <translation>&lt; Înapoi</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4694"/>
+        <location filename="../src/app/mainwindow.cpp" line="4744"/>
         <source>&amp;Finish</source>
         <translation>&amp;Finalizează</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4695"/>
+        <location filename="../src/app/mainwindow.cpp" line="4745"/>
         <source>&amp;Next &gt;</source>
         <translation>Î&amp;nainte &gt;</translation>
     </message>

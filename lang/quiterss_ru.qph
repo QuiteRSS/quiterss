@@ -2759,4 +2759,12 @@ Save?</source>
     <source>Blocked URL (AdBlock Rule) - click to edit rule</source>
     <target>Список заблокированного. Кликните, чтобы редактировать правило</target>
 </phrase>
+<phrase>
+    <source>Saving data...</source>
+    <target>Сохранение данных...</target>
+</phrase>
+<phrase>
+    <source>S&amp;how Menu Bar</source>
+    <target>Показ&amp;ывать меню</target>
+</phrase>
 </QPH>
