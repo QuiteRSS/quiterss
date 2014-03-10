@@ -176,7 +176,7 @@ void MainApplication::checkDir()
   }
 
 #if defined(Q_OS_WIN) || defined(Q_OS_OS2)
-  resourcesDir_ = ".";
+  resourcesDir_ = QCoreApplication::applicationDirPath();
 #else
 #if defined(Q_OS_MAC)
   resourcesDir_ = QCoreApplication::applicationDirPath() + "/../Resources";
