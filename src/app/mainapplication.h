@@ -52,6 +52,7 @@ public:
 
   QString resourcesDir() const;
   QString dataDir() const;
+  QString absolutePath(const QString &path) const;
   QString dbFileName() const;
   QString cacheDefaultDir() const;
 

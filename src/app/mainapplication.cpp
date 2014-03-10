@@ -186,7 +186,7 @@ void MainApplication::checkDir()
 #endif
 
   if (isPortable_) {
-    cacheDir_ = dataDir_ + "/cache";
+    cacheDir_ = "cache";
   } else {
 #ifdef HAVE_QT5
     cacheDir_ = QStandardPaths::writableLocation(QStandardPaths::CacheLocation);
@@ -273,6 +273,17 @@ QString MainApplication::resourcesDir() const
 QString MainApplication::dataDir() const
 {
   return dataDir_;
+}
+
+QString MainApplication::absolutePath(const QString &path) const
+{
+  QString absolutePath = path;
+  if (isPortable_) {
+    if (!QDir::isAbsolutePath(path)) {
+      absolutePath = dataDir_ % "/" % path;
+    }
+  }
+  return absolutePath;
 }
 
 QString MainApplication::dbFileName() const
@@ -386,6 +397,7 @@ void MainApplication::setDiskCache()
 
     QString diskCacheDirPath = settings.value("dirDiskCache", cacheDir_).toString();
     if (diskCacheDirPath.isEmpty()) diskCacheDirPath = cacheDir_;
+    diskCacheDirPath = absolutePath(diskCacheDirPath);
 
     bool cleanDiskCache = settings.value("cleanDiskCache", true).toBool();
     if (cleanDiskCache) {
