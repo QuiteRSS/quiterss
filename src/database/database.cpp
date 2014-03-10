@@ -223,6 +223,7 @@ void Database::initialization()
         dbFile.setDatabaseName(mainApp->dbFileName());
         dbFile.open();
         createTables(dbFile);
+        createLabels(dbFile);
         dbFile.close();
       }
       QSqlDatabase::removeDatabase("initialization");
@@ -296,7 +297,7 @@ void Database::createTables(QSqlDatabase &db)
           "value text"          // parameter value
           ")");
   // Create labels table
-  createLabelsTable(db);
+  db.exec(kCreateLabelsTable);
   // Create password table
   db.exec(kCreatePasswordsTable);
   //
@@ -374,10 +375,9 @@ void Database::prepareDatabase()
   QSqlDatabase::removeDatabase("initialization");
 }
 
-void Database::createLabelsTable(QSqlDatabase &db)
+void Database::createLabels(QSqlDatabase &db)
 {
   QSqlQuery q(db);
-  q.exec(kCreateLabelsTable);
   for (int i = 0; i < 6; i++) {
     q.prepare("INSERT INTO labels(name, image) "
               "VALUES (:name, :image)");
