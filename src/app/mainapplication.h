@@ -55,6 +55,7 @@ public:
   QString absolutePath(const QString &path) const;
   QString dbFileName() const;
   QString cacheDefaultDir() const;
+  QString soundNotifyDefaultFile() const;
 
   bool storeDBMemory() const;
   bool dbFileExists() const { return dbFileExists_; }
@@ -106,6 +107,7 @@ private:
   QString resourcesDir_;
   QString dataDir_;
   QString cacheDir_;
+  QString soundNotifyDir_;
 
   bool storeDBMemory_;
   bool dbFileExists_;

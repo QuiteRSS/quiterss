@@ -263,7 +263,7 @@ public slots:
   void slotSetValue(int value);
   void showMessageStatusBar(QString message, int timeout = 0);
   void slotCountsStatusBar(int unreadCount, int allCount);
-  void slotPlaySound(const QString &soundPath);
+  void slotPlaySound(const QString &path);
   void slotAddColorList(int id, const QString &color);
   void showOptionDlg(int index = -1);
   void slotPlaceToTray();

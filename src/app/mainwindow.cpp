@@ -1948,8 +1948,7 @@ void MainWindow::loadSettings()
   QWebSettings::globalSettings()->setMaximumPagesInCache(maxPagesInCache_);
 
   soundNewNews_ = settings.value("soundNewNews", true).toBool();
-  QString soundNotifyPathStr(mainApp->resourcesDir() + "/sound/notification.wav");
-  soundNotifyPath_ = settings.value("soundNotifyPath", soundNotifyPathStr).toString();
+  soundNotifyPath_ = settings.value("soundNotifyPath", mainApp->soundNotifyDefaultFile()).toString();
   showNotifyOn_ = settings.value("showNotifyOn", true).toBool();
   positionNotify_ = settings.value("positionNotify", 3).toInt();
   countShowNewsNotify_ = settings.value("countShowNewsNotify", 10).toInt();
@@ -5392,8 +5391,10 @@ void MainWindow::slotIconFeedUpdate(int feedId, QByteArray faviconData)
     currentNewsTab->newsView_->viewport()->update();
 }
 // ----------------------------------------------------------------------------
-void MainWindow::slotPlaySound(const QString &soundPath)
+void MainWindow::slotPlaySound(const QString &path)
 {
+  QString soundPath = mainApp->absolutePath(path);
+
   if (!QFile::exists(soundPath)) {
     qWarning() << QString("Error playing sound: %1").arg(soundPath);
     return;

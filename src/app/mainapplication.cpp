@@ -163,18 +163,6 @@ void MainApplication::checkPortable()
 
 void MainApplication::checkDir()
 {
-  if (isPortable_) {
-    dataDir_ = QCoreApplication::applicationDirPath();
-  } else {
-#ifdef HAVE_QT5
-    dataDir_ = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
-#else
-    dataDir_ = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
-#endif
-    QDir dir(dataDir_);
-    dir.mkpath(dataDir_);
-  }
-
 #if defined(Q_OS_WIN) || defined(Q_OS_OS2)
   resourcesDir_ = QCoreApplication::applicationDirPath();
 #else
@@ -186,13 +174,21 @@ void MainApplication::checkDir()
 #endif
 
   if (isPortable_) {
+    dataDir_ = QCoreApplication::applicationDirPath();
     cacheDir_ = "cache";
+    soundNotifyDir_ = "sound";
   } else {
 #ifdef HAVE_QT5
+    dataDir_ = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
     cacheDir_ = QStandardPaths::writableLocation(QStandardPaths::CacheLocation);
 #else
+    dataDir_ = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
     cacheDir_ = QDesktopServices::storageLocation(QDesktopServices::CacheLocation);
 #endif
+    soundNotifyDir_ = resourcesDir_ % "/sound";
+
+    QDir dir(dataDir_);
+    dir.mkpath(dataDir_);
   }
 }
 
@@ -423,6 +419,11 @@ void MainApplication::setDiskCache()
 QString MainApplication::cacheDefaultDir() const
 {
   return cacheDir_;
+}
+
+QString MainApplication::soundNotifyDefaultFile() const
+{
+  return soundNotifyDir_ % "/notification.wav";
 }
 
 UpdateFeeds *MainApplication::updateFeeds()
