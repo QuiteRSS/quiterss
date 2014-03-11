@@ -68,9 +68,7 @@ DownloadItem::DownloadItem(QListWidgetItem *item,
   outputFile_.setFileName(fileName);
 
   qint64 total = reply->header(QNetworkRequest::ContentLengthHeader).toLongLong();
-  if (total > 0) {
-    total_ = total;
-  }
+  if (total > 0) total_ = total;
 
   fileNameLabel_ = new QLabel();
   QFileInfo info(fileName);
@@ -200,12 +198,12 @@ void DownloadItem::downloadProgress(qint64 received, qint64 total)
   if (total > 0) {
     currentValue = received * 100 / total;
     totalValue = 100;
+    total_ = total;
   }
   progressBar_->setValue(currentValue);
   progressBar_->setMaximum(totalValue);
   curSpeed_ = received * 1000.0 / downloadTimer_.elapsed();
   received_ = received;
-  total_ = total;
 
   if (reply_->isFinished())
     finished();
