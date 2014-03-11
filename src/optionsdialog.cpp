@@ -159,12 +159,11 @@ OptionsDialog::OptionsDialog(QWidget *parent)
 
   categoriesTree_->installEventFilter(this);
 
+  setMinimumSize(500, 400);
   resize(700, 560);
 
   Settings settings;
   restoreGeometry(settings.value("options/geometry").toByteArray());
-
-  qWarning() << "Create 'Options Dialog'";
 }
 
 void OptionsDialog::showEvent(QShowEvent*event)
@@ -174,15 +173,6 @@ void OptionsDialog::showEvent(QShowEvent*event)
   int maxWidth = desktopWidth - (frameSize().width() - width());
   int maxHeight = desktopHeight - (frameSize().height() - height());
 
-  qWarning() << "DesktopHeight: " << desktopHeight
-             << "| Height: " << height()
-             << "| FrameHeight: " << frameSize().height();
-
-  if (frameSize().height() >= desktopHeight) {
-    setMinimumSize(700, 500);
-  } else {
-    scrollArea_->setMinimumSize(contentStack_->sizeHint().width()+10, contentStack_->sizeHint().height()+10);
-  }
   setMaximumSize(maxWidth, maxHeight);
 
   if (frameSize().height() >= desktopHeight) {
