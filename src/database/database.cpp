@@ -436,6 +436,10 @@ void Database::saveMemoryDatabase()
   q.exec("DETACH 'storage'");
   q.finish();
 
-  QFile::remove(mainApp->dbFileName());
-  QFile::rename(fileName, mainApp->dbFileName());
+  QString sourceFileName = QFile::symLinkTarget(mainApp->dbFileName());
+  if (sourceFileName.isEmpty()) {
+    sourceFileName = mainApp->dbFileName();
+  }
+  QFile::remove(sourceFileName);
+  QFile::rename(fileName, sourceFileName);
 }
