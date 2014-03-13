@@ -31,32 +31,32 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="126"/>
         <source>Application directory:</source>
-        <translation type="unfinished"/>
+        <translation>Κατάλογος Εφαρμογών</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="129"/>
         <source>Resource directory:</source>
-        <translation type="unfinished"/>
+        <translation>Κατάλογος πηγών:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="132"/>
         <source>Data directory:</source>
-        <translation type="unfinished"/>
+        <translation>Κατάλογος δεδομένων:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="135"/>
         <source>Database file:</source>
-        <translation type="unfinished"/>
+        <translation>Αρχείο βάσης δεδομένων:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="138"/>
         <source>Settings file:</source>
-        <translation type="unfinished"/>
+        <translation>Αρχείο ρυθμίσεων:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="141"/>
         <source>Log file:</source>
-        <translation type="unfinished"/>
+        <translation>Αρχείο καταγραφών:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="156"/>
@@ -76,7 +76,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="159"/>
         <source>Information</source>
-        <translation type="unfinished"/>
+        <translation>Πληροφορίες</translation>
     </message>
 </context>
 <context>
@@ -84,7 +84,7 @@
     <message>
         <location filename="../src/adblock/adblockaddsubscriptiondialog.ui" line="14"/>
         <source>Add Subscription</source>
-        <translation type="unfinished"/>
+        <translation>Προσθήκη συνδρομής</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockaddsubscriptiondialog.ui" line="23"/>
@@ -94,12 +94,12 @@
     <message>
         <location filename="../src/adblock/adblockaddsubscriptiondialog.ui" line="33"/>
         <source>Address:</source>
-        <translation type="unfinished"/>
+        <translation>Διεύθυνση:</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockaddsubscriptiondialog.ui" line="53"/>
         <source>Add new subscription to AdBlock:</source>
-        <translation type="unfinished"/>
+        <translation>Προσθήκη νέας συνδρομής στο AdBlock:</translation>
     </message>
 </context>
 <context>
@@ -107,7 +107,7 @@
     <message>
         <location filename="../src/adblock/adblocksubscription.cpp" line="484"/>
         <source>Custom Rules</source>
-        <translation type="unfinished"/>
+        <translation>Προσαρμοσμένοι Κανόνες</translation>
     </message>
 </context>
 <context>
@@ -115,17 +115,17 @@
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="14"/>
         <source>AdBlock Configuration</source>
-        <translation type="unfinished"/>
+        <translation>Ρύθμιση AdBlock</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="20"/>
         <source>Enable AdBlock</source>
-        <translation type="unfinished"/>
+        <translation>Ενεργοποίηση του AdBlock</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="32"/>
         <source>Search...</source>
-        <translation type="unfinished"/>
+        <translation>Αναζήτηση...</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="68"/>
@@ -135,42 +135,42 @@
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="98"/>
         <source>AdBlock</source>
-        <translation type="unfinished"/>
+        <translation>AdBlock</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="122"/>
         <source>Use only essential part of EasyList (for performance reasons)</source>
-        <translation type="unfinished"/>
+        <translation>Χρήση μόνων των απαραίτητων στοιχείων του EasyList</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="70"/>
         <source>Add Rule</source>
-        <translation type="unfinished"/>
+        <translation>Προσθήκη κανόνα</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="71"/>
         <source>Remove Rule</source>
-        <translation type="unfinished"/>
+        <translation>Αφαίρεση κανόνα</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="73"/>
         <source>Add Subscription</source>
-        <translation type="unfinished"/>
+        <translation>Προσθήκη συνδρομής</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="74"/>
         <source>Remove Subscription</source>
-        <translation type="unfinished"/>
+        <translation>Αφαίρεση συνδρομής</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="75"/>
         <source>Update Subscriptions</source>
-        <translation type="unfinished"/>
+        <translation>Ενημέρωση συνδρομών</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="77"/>
         <source>Learn about writing rules...</source>
-        <translation type="unfinished"/>
+        <translation>Μάθετε περισσότερα...</translation>
     </message>
 </context>
 <context>
@@ -178,48 +178,48 @@
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="61"/>
         <source>AdBlock lets you block unwanted content on web pages</source>
-        <translation type="unfinished"/>
+        <translation>Το AdBlock σας επιτρέπει να μπλοκάρετε τις διαφημήσεις</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="102"/>
         <source>AdBlock</source>
-        <translation type="unfinished"/>
+        <translation>AdBlock</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="129"/>
         <source>Show AdBlock &amp;Settings</source>
-        <translation type="unfinished"/>
+        <translation>Εμφάνιση Ρυθμίσεων AdBlock</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="137"/>
         <source>Disable on %1</source>
-        <translation type="unfinished"/>
+        <translation>Απενεργοποίηση στο %1</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="143"/>
         <source>Disable only on this page</source>
-        <translation type="unfinished"/>
+        <translation>Απενεργοποιήση στη σελίδα</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="153"/>
         <source>Blocked Popup Windows</source>
-        <translation type="unfinished"/>
+        <translation>Αποκλεισμένα αναδυόμενα παράθυρα</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="158"/>
         <location filename="../src/adblock/adblockicon.cpp" line="175"/>
         <source>%1 with (%2)</source>
-        <translation type="unfinished"/>
+        <translation>%1 με (%2)</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="169"/>
         <source>No content blocked</source>
-        <translation type="unfinished"/>
+        <translation>Δεν έχει μπλοκαριστεί τίποτα</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="172"/>
         <source>Blocked URL (AdBlock Rule) - click to edit rule</source>
-        <translation type="unfinished"/>
+        <translation>Μπλοκαρισμένη URL (Κανόνας AdBlock) - κάντε κλίκ για επεξεργασία</translation>
     </message>
 </context>
 <context>
@@ -227,7 +227,7 @@
     <message>
         <location filename="../src/adblock/adblockmanager.cpp" line="277"/>
         <source>EasyList</source>
-        <translation type="unfinished"/>
+        <translation>EasyList</translation>
     </message>
 </context>
 <context>
@@ -235,7 +235,7 @@
     <message>
         <location filename="../src/adblock/adblocksubscription.cpp" line="190"/>
         <source>Cannot load subscription!</source>
-        <translation type="unfinished"/>
+        <translation>Αδυναμία φόρτωσης συνδρομής!</translation>
     </message>
 </context>
 <context>
@@ -243,32 +243,32 @@
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="97"/>
         <source>Add Rule</source>
-        <translation type="unfinished"/>
+        <translation>Προσθήκη κανόνα</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="99"/>
         <source>Remove Rule</source>
-        <translation type="unfinished"/>
+        <translation>Αφαίρεση Κανόνα</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="160"/>
         <source>Add Custom Rule</source>
-        <translation type="unfinished"/>
+        <translation>Προσθήκη προσαρμοσμένου κανόνα</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="160"/>
         <source>Please write your rule here:</source>
-        <translation type="unfinished"/>
+        <translation>Εισάγετε τον κανόνα εδώ:</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="198"/>
         <source>%1 (recently updated)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (ενημερώθηκε πρόσφατα)</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="207"/>
         <source>%1 (Error: %2)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (Σφάλμα: %2)</translation>
     </message>
 </context>
 <context>
@@ -307,7 +307,7 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="150"/>
         <source>Feed URL or website address:</source>
-        <translation>Διεύθυνση ιστοσελίδας ή URL:</translation>
+        <translation>Διεύθυνση ιστοσελίδας ή feed:</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="183"/>
@@ -337,7 +337,7 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="329"/>
         <source>URL error!</source>
-        <translation>Σφάλμα URL</translation>
+        <translation>Σφάλμα URL!</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="343"/>
@@ -990,7 +990,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="312"/>
         <source>News count:</source>
-        <translation>Πλήθος:</translation>
+        <translation>Πλήθος νέων:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="374"/>
@@ -1366,7 +1366,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="1713"/>
         <source>&amp;AdBlock</source>
-        <translation type="unfinished"/>
+        <translation>&amp;AdBlock</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="2111"/>
@@ -1462,7 +1462,7 @@ Ancient news could reappear</source>
         <location filename="../src/app/mainwindow.cpp" line="3357"/>
         <location filename="../src/app/mainwindow.cpp" line="3362"/>
         <source>(Browser)</source>
-        <translation type="unfinished"/>
+        <translation>(Browser)</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4472"/>
@@ -1506,7 +1506,7 @@ Ancient news could reappear</source>
         <location filename="../src/app/mainwindow.cpp" line="4486"/>
         <location filename="../src/app/mainwindow.cpp" line="4553"/>
         <source>Open in New Tab</source>
-        <translation type="unfinished"/>
+        <translation>Άνοιγμα σε Νέα Καρτέλα</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4488"/>
@@ -1626,13 +1626,13 @@ Ancient news could reappear</source>
         <location filename="../src/app/mainwindow.cpp" line="4526"/>
         <location filename="../src/app/mainwindow.cpp" line="4533"/>
         <source>Show All</source>
-        <translation type="unfinished"/>
+        <translation>Εμφάνιση όλων</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4527"/>
         <location filename="../src/app/mainwindow.cpp" line="4534"/>
         <source>Show New</source>
-        <translation type="unfinished"/>
+        <translation>Εμφάνιση νέων</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4528"/>
@@ -1658,22 +1658,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4536"/>
         <source>Show Starred</source>
-        <translation type="unfinished"/>
+        <translation>Εμφάνιση μαρκαρισμένων</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4537"/>
         <source>Show Not Starred</source>
-        <translation type="unfinished"/>
+        <translation>Εμφάνιση μη μαρκαρισμένων</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4538"/>
         <source>Show Unread or Starred</source>
-        <translation type="unfinished"/>
+        <translation>Εμφάνιση μη αναγνωσμένων η μαρκαρισμένων</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4539"/>
         <source>Show Last Day</source>
-        <translation type="unfinished"/>
+        <translation>Εμφάνιση Τελευταίας Ημέρας</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4540"/>
@@ -1743,7 +1743,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4557"/>
         <source>Star</source>
-        <translation type="unfinished"/>
+        <translation>Μαρκαρισμένο</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4558"/>
@@ -1819,12 +1819,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="158"/>
         <source>Saving data...</source>
-        <translation type="unfinished"/>
+        <translation>Αποθήκευση δεδομένων...</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4497"/>
         <source>S&amp;how Menu Bar</source>
-        <translation type="unfinished"/>
+        <translation>Εμφάνιση Μπάρας Μενού</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4576"/>
@@ -2509,7 +2509,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/notifications/notificationsnewsitem.cpp" line="43"/>
         <source>Delete News</source>
-        <translation type="unfinished"/>
+        <translation>Διαγραφή Νέων</translation>
     </message>
 </context>
 <context>
@@ -2669,12 +2669,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/notifications/notificationswidget.cpp" line="99"/>
         <source>Previous Page</source>
-        <translation type="unfinished"/>
+        <translation>Προηγούμενη Σελίδα</translation>
     </message>
     <message>
         <location filename="../src/notifications/notificationswidget.cpp" line="104"/>
         <source>Next Page</source>
-        <translation type="unfinished"/>
+        <translation>Επόμενη Σελίδα</translation>
     </message>
     <message>
         <location filename="../src/notifications/notificationswidget.cpp" line="146"/>
@@ -2800,7 +2800,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="296"/>
         <source>Show close button on tab</source>
-        <translation type="unfinished"/>
+        <translation>Εμφάνιση κουμπιού κλεισίματος στην καρτέλα</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="298"/>
@@ -2931,17 +2931,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="464"/>
         <source>Request timeout:</source>
-        <translation type="unfinished"/>
+        <translation>Η αίτηση έγινε timeout:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="466"/>
         <source>Number of requests:</source>
-        <translation type="unfinished"/>
+        <translation>Αριθμός αιτήσεων:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="468"/>
         <source>Number of retries:</source>
-        <translation type="unfinished"/>
+        <translation>Αριθμός επαναλήψεων:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="471"/>
@@ -3448,12 +3448,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1083"/>
         <source>item on page notification</source>
-        <translation type="unfinished"/>
+        <translation>αντικείμενο στη σελίδα ειδοποιήσεων</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1086"/>
         <source>Width list items</source>
-        <translation type="unfinished"/>
+        <translation>Πλάτος λίστας αντικειμένων</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1088"/>
@@ -4014,7 +4014,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/database/database.cpp" line="218"/>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>Σφάλμα</translation>
     </message>
 </context>
 <context>
@@ -4088,7 +4088,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/webview/rssdetectionwidget.cpp" line="56"/>
         <source>Untitled feed</source>
-        <translation type="unfinished"/>
+        <translation>Feed χωρίς όνομα</translation>
     </message>
 </context>
 <context>

@@ -1819,12 +1819,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="158"/>
         <source>Saving data...</source>
-        <translation type="unfinished"/>
+        <translation>Salvare date...</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4497"/>
         <source>S&amp;how Menu Bar</source>
-        <translation type="unfinished"/>
+        <translation>Arată bara de meniu</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4576"/>
@@ -4014,7 +4014,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/database/database.cpp" line="218"/>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>Eroare</translation>
     </message>
 </context>
 <context>
