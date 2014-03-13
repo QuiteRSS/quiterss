@@ -1,3 +1,21 @@
+Version 0.15.2 (13 Mar 2014)
+  * Changed: Main toolbar (View->Show/hide->Main toolbar)
+  * Changed: Relative path to cache (portable version)
+  * Changed: Relative path to notification sound (portable version)
+  * Fixed: Some links contains "amp;" instead of "&"
+  * Fixed: Options dialog haven't fit monitors with low resolutions
+  * Fixed: Application shutdown while OS shutdowns
+  * Fixed: Application autostart (Windows)
+  * Fixed: Default labels are created on every application startup
+  * Fixed: Download manager. Incorrect size of downloaded file
+  * Fixed: Removing symbolic link to file feeds.db
+
+Version 0.15.1 (07 Mar 2014)
+  * Changed: Download manager. Displays size and time after downloading file
+  * Fixed: Incorrect application startup if path to database contains a "'"
+  * Fixed: Displays a menu bar after exit from full screen mode
+  * Fixed: Saving toolbar feeds
+
 Version 0.15.0 (06 Mar 2014)
   * Main: Adblock integrated
   * Added: Support for feeds with local path (file://)
