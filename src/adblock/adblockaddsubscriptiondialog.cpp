@@ -63,7 +63,8 @@ AdBlockAddSubscriptionDialog::AdBlockAddSubscriptionDialog(QWidget* parent)
                        << Subscription("RuAdList+EasyList (Russian, Ukrainian)", "https://easylist-downloads.adblockplus.org/ruadlist+easylist.txt")
                        << Subscription("RU AdList (Russian, Ukrainian)", "https://easylist-downloads.adblockplus.org/advblock.txt")
                        << Subscription("ABPindo (Indonesian)", "https://indonesianadblockrules.googlecode.com/hg/subscriptions/abpindo.txt")
-                       << Subscription("ChinaList (Chinese)", "http://adblock-chinalist.googlecode.com/svn/trunk/adblock.txt");
+                       << Subscription("ChinaList (Chinese)", "http://adblock-chinalist.googlecode.com/svn/trunk/adblock.txt")
+                       << Subscription("Malware Domains list", "https://easylist-downloads.adblockplus.org/malwaredomains_full.txt");
 
   foreach (const Subscription &subscription, m_knownSubscriptions) {
     ui->comboBox->addItem(subscription.title);
