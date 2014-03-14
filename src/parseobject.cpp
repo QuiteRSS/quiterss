@@ -311,10 +311,19 @@ void ParseObject::parseAtom(const QString &feedUrl, const QDomDocument &doc)
         if (linksList.at(j).toElement().attribute("rel") == "replies")
           newsItem.comments = linksList.at(j).toElement().attribute("href");
       } else if (newsItem.linkAlternate.isEmpty()) {
-        if (!(linksList.at(j).toElement().attribute("rel") == "self"))
+        if (linksList.at(j).toElement().attribute("rel") == "alternate")
           newsItem.linkAlternate = linksList.at(j).toElement().attribute("href");
       }
     }
+    for (int j = 0; j < linksList.size(); j++) {
+      if (newsItem.linkAlternate.isEmpty()) {
+        if (!(linksList.at(j).toElement().attribute("rel") == "self")) {
+          newsItem.linkAlternate = linksList.at(j).toElement().attribute("href");
+          break;
+        }
+      }
+    }
+
     if (!newsItem.link.isEmpty() && QUrl(newsItem.link).host().isEmpty())
       newsItem.link = feedItem.linkBase + newsItem.link;
     newsItem.link = toPlainText(newsItem.link);
