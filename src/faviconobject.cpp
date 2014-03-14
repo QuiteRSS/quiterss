@@ -93,8 +93,8 @@ void FaviconObject::getQueuedUrl()
     QUrl url = QUrl::fromEncoded(urlString.toUtf8());
     if (!url.isValid()) {
       url = QUrl::fromEncoded(feedUrl.toUtf8());
+      url.setUrl(QString("%1://%2").arg(url.scheme()).arg(url.host()));
     }
-    url.setUrl(QString("%1://%2").arg(url.scheme()).arg(url.host()));
     emit signalGet(url, feedUrl, 0);
   }
 }
@@ -130,12 +130,12 @@ void FaviconObject::finished(QNetworkReply *reply)
     QString feedUrl = currentFeeds_.takeAt(currentReplyIndex);
     int cntRequests = currentCntRequests_.takeAt(currentReplyIndex);
 
-    if(reply->error() == QNetworkReply::NoError) {
+    if((reply->error() == QNetworkReply::NoError) || (reply->error() == QNetworkReply::UnknownContentError)) {
       QUrl redirectionTarget = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
       if (redirectionTarget.isValid()) {
         if ((cntRequests == 0) || (cntRequests == 1)) {
           if (redirectionTarget.host().isNull())
-            redirectionTarget.setUrl("http://"+url.host()+redirectionTarget.toString());
+            redirectionTarget.setUrl("http://"+url.host()+"/"+redirectionTarget.toString());
           emit signalGet(redirectionTarget, feedUrl, cntRequests+2);
         }
       } else {
@@ -201,7 +201,7 @@ void FaviconObject::finished(QNetworkReply *reply)
         }
       }
 
-      if (cntRequests == 0) {
+      if ((cntRequests == 0) || (cntRequests == 1)) {
         QString link = QString("%1://%2").arg(url.scheme()).arg(url.host());
         emit signalGet(link, feedUrl, 2);
         qDebug() << "Request Url error: " << reply->url().toString() << reply->errorString();
