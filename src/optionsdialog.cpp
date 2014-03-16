@@ -168,16 +168,16 @@ OptionsDialog::OptionsDialog(QWidget *parent)
 
 void OptionsDialog::showEvent(QShowEvent*event)
 {
-  int desktopWidth = QApplication::desktop()->availableGeometry(0).width();
-  int desktopHeight = QApplication::desktop()->availableGeometry(0).height();
+  int desktopWidth = QApplication::desktop()->availableGeometry().width();
+  int desktopHeight = QApplication::desktop()->availableGeometry().height();
   int maxWidth = desktopWidth - (frameSize().width() - width());
   int maxHeight = desktopHeight - (frameSize().height() - height());
 
   setMaximumSize(maxWidth, maxHeight);
 
   if (frameSize().height() >= desktopHeight) {
-    QPoint point = QPoint(QApplication::desktop()->availableGeometry(0).topLeft().x(),
-                          QApplication::desktop()->availableGeometry(0).topLeft().y());
+    QPoint point = QPoint(QApplication::desktop()->availableGeometry().topLeft().x(),
+                          QApplication::desktop()->availableGeometry().topLeft().y());
     move(point);
   }
 

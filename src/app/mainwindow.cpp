@@ -158,8 +158,8 @@ void MainWindow::quitApp()
   layout->addWidget(new QLabel(tr("Saving data...")));
   widget->resize(150, 20);
   widget->show();
-  widget->move(QApplication::desktop()->availableGeometry(0).width() - widget->frameSize().width(),
-               QApplication::desktop()->availableGeometry(0).height() - widget->frameSize().height());
+  widget->move(QApplication::desktop()->availableGeometry().width() - widget->frameSize().width(),
+               QApplication::desktop()->availableGeometry().height() - widget->frameSize().height());
   qApp->processEvents();
 
   traySystem->hide();
