@@ -1536,8 +1536,10 @@ void MainWindow::createMenu()
   fileMenu_->addAction(importFeedsAct_);
   fileMenu_->addAction(exportFeedsAct_);
   fileMenu_->addSeparator();
+#ifndef Q_OS_MAC
   fileMenu_->addAction(showMenuBarAct_);
   fileMenu_->addSeparator();
+#endif
   fileMenu_->addAction(exitAct_);
 
   mainMenu_->addAction(addAct_);
@@ -1731,8 +1733,10 @@ void MainWindow::createMenu()
   mainMenu_->addSeparator();
   mainMenu_->addMenu(helpMenu_);
   mainMenu_->addSeparator();
+#ifndef Q_OS_MAC
   mainMenu_->addAction(showMenuBarAct_);
   mainMenu_->addSeparator();
+#endif
   mainMenu_->addAction(exitAct_);
 
 
@@ -2060,7 +2064,11 @@ void MainWindow::loadSettings()
   feedsTreeView_->autocollapseFolder_ =
       settings.value("autocollapseFolder", false).toBool();
 
+#ifndef Q_OS_MAC
   showMenuBarAct_->setChecked(settings.value("showMenuBar", false).toBool());
+#else
+  showMenuBarAct_->setChecked(true);
+#endif
 
   settings.endGroup();
 

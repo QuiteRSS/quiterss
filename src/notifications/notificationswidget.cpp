@@ -28,7 +28,7 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
                                        QStringList colorList,
                                        QWidget *parentWidget,
                                        QWidget *parent)
-  : QWidget(parent,  Qt::Tool | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint)
+  : QWidget(parent,  Qt::Window | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint)
   , idFeedList_(idFeedList)
   , cntAllNews_(0)
   , cntReadNews_(0)
