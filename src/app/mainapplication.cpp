@@ -211,7 +211,7 @@ void MainApplication::connectDatabase()
   if (QFile(dbFileName()).exists()) {
     dbFileExists_ = true;
   } else {
-    QString fileName(mainApp->dbFileName() % ".tmp");
+    QString fileName(mainApp->dbFileName() % ".sm");
     if (QFile(fileName).exists()) {
       QFile::rename(fileName, mainApp->dbFileName());
       if (QFile(dbFileName()).exists())

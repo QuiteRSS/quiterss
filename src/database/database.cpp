@@ -415,7 +415,7 @@ QSqlDatabase Database::connection(const QString &connectionName)
 
 void Database::saveMemoryDatabase()
 {
-  QString fileName(mainApp->dbFileName() % ".tmp");
+  QString fileName(mainApp->dbFileName() % ".sm");
   {
     QSqlDatabase dbFile = QSqlDatabase::addDatabase("QSQLITE", "saveMemory");
     dbFile.setDatabaseName(fileName);
