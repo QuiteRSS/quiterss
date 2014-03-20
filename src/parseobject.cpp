@@ -507,6 +507,14 @@ void ParseObject::parseRss(const QString &feedUrl, const QDomDocument &doc)
     newsItem.eType = enclosureElem.attribute("type");
     newsItem.eLength = enclosureElem.attribute("length");
 
+    if (newsItem.title.isEmpty()) {
+      newsItem.title = toPlainText(newsItem.description);
+      if (newsItem.title.size() > 50) {
+        newsItem.title.resize(50);
+        newsItem.title = newsItem.title % "...";
+      }
+    }
+
     addRssNewsIntoBase(newsItem);
   }
 }
