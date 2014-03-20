@@ -625,7 +625,7 @@ void ParseObject::addRssNewsIntoBase(NewsItemStruct &newsItem)
 
 QString ParseObject::toPlainText(const QString &text)
 {
-  return QTextDocumentFragment::fromHtml(text.simplified()).toPlainText();
+  return QTextDocumentFragment::fromHtml(text).toPlainText().simplified();
 }
 
 /** @brief Date/time string parsing
