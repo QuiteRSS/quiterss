@@ -486,7 +486,6 @@ private:
   void loadSettingsFeeds();
   void appInstallTranslator();
   void retranslateStrings();
-  void recountFeedCounts(int feedId, bool update = true);
   void recountFeedCategories(const QList<int> &categoriesList);
   void creatFeedTab(int feedId, int feedParId);
   void initUpdateFeeds();

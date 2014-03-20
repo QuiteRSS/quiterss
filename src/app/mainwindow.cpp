@@ -2665,12 +2665,18 @@ void MainWindow::slotFeedCountsUpdate(FeedCountStruct counts)
 {
   QModelIndex index = feedsTreeModel_->getIndexById(counts.feedId);
   if (index.isValid()) {
-    QModelIndex indexUnread   = feedsTreeModel_->indexSibling(index, "unread");
-    QModelIndex indexNew      = feedsTreeModel_->indexSibling(index, "newCount");
-    QModelIndex indexUndelete = feedsTreeModel_->indexSibling(index, "undeleteCount");
-    feedsTreeModel_->setData(indexUnread, counts.unreadCount);
-    feedsTreeModel_->setData(indexNew, counts.newCount);
-    feedsTreeModel_->setData(indexUndelete, counts.undeleteCount);
+    if (counts.unreadCount) {
+      QModelIndex indexUnread = feedsTreeModel_->indexSibling(index, "unread");
+      feedsTreeModel_->setData(indexUnread, counts.unreadCount);
+    }
+    if (counts.newCount) {
+      QModelIndex indexNew = feedsTreeModel_->indexSibling(index, "newCount");
+      feedsTreeModel_->setData(indexNew, counts.newCount);
+    }
+    if (counts.undeleteCount) {
+      QModelIndex indexUndelete = feedsTreeModel_->indexSibling(index, "undeleteCount");
+      feedsTreeModel_->setData(indexUndelete, counts.undeleteCount);
+    }
 
     if (!counts.updated.isEmpty()) {
       QModelIndex indexUpdated  = feedsTreeModel_->indexSibling(index, "updated");

@@ -112,7 +112,7 @@ void ParseObject::slotParse(const QByteArray &xmlData, const int &feedId,
 
   // id not found (ex. feed deleted while updating)
   if (feedUrl.isEmpty()) {
-    qCritical() << QString("Feed with id = '%1' not found").arg(parseFeedId_);
+    qWarning() << QString("Feed with id = '%1' not found").arg(parseFeedId_);
     emit signalFinishUpdate(parseFeedId_, false, 0, "0");
     db_.commit();
     return;
@@ -420,8 +420,8 @@ void ParseObject::addAtomNewsIntoBase(NewsItemStruct &newsItem)
       q.addBindValue(read ? 0 : 1);
       q.addBindValue(read ? 2 : 0);
       if (!q.exec()) {
-        qCritical() << __PRETTY_FUNCTION__ << __LINE__
-                    << "q.lastError(): " << q.lastError().text();
+        qWarning() << __PRETTY_FUNCTION__ << __LINE__
+                   << "q.lastError(): " << q.lastError().text();
       }
       qDebug() << "q.exec(" << q.lastQuery() << ")";
       qDebug() << "       " << parseFeedId_;
@@ -590,8 +590,8 @@ void ParseObject::addRssNewsIntoBase(NewsItemStruct &newsItem)
       q.addBindValue(read ? 0 : 1);
       q.addBindValue(read ? 2 : 0);
       if (!q.exec()) {
-        qCritical() << __PRETTY_FUNCTION__ << __LINE__
-                    << "q.lastError(): " << q.lastError().text();
+        qWarning() << __PRETTY_FUNCTION__ << __LINE__
+                   << "q.lastError(): " << q.lastError().text();
       }
       qDebug() << "q.exec(" << q.lastQuery() << ")";
       qDebug() << "       " << parseFeedId_;
@@ -750,7 +750,7 @@ void ParseObject::runUserFilter(int feedId, int filterId)
         if (!qStr1.isNull()) qStr1.append(",");
         qStr1.append(" new=0, read=2, deleted=1, ");
         qStr1.append(QString("deleteDate='%1'").
-            arg(QDateTime::currentDateTime().toString(Qt::ISODate)));
+                     arg(QDateTime::currentDateTime().toString(Qt::ISODate)));
         break;
       case 3: // action -> Add Label
         qStr2.append(QString("%1,").arg(q1.value(1).toInt()));
@@ -906,8 +906,8 @@ void ParseObject::runUserFilter(int feedId, int filterId)
     if (!qStr.isEmpty()) {
       qStr.append(whereStr);
       if (!q1.exec(qStr)) {
-        qCritical() << __PRETTY_FUNCTION__ << __LINE__
-                    << "q.lastError(): " << q1.lastError().text();
+        qWarning() << __PRETTY_FUNCTION__ << __LINE__
+                   << "q.lastError(): " << q1.lastError().text();
       }
     }
 
@@ -919,8 +919,8 @@ void ParseObject::runUserFilter(int feedId, int filterId)
           emit signalPlaySound(soundList.at(0));
         }
       } else {
-        qCritical() << __PRETTY_FUNCTION__ << __LINE__
-                    << "q.lastError(): " << q1.lastError().text();
+        qWarning() << __PRETTY_FUNCTION__ << __LINE__
+                   << "q.lastError(): " << q1.lastError().text();
       }
     }
 
@@ -932,8 +932,8 @@ void ParseObject::runUserFilter(int feedId, int filterId)
           emit signalAddColorList(q1.value(0).toInt(), colorList.at(0));
         }
       } else {
-        qCritical() << __PRETTY_FUNCTION__ << __LINE__
-                    << "q.lastError(): " << q1.lastError().text();
+        qWarning() << __PRETTY_FUNCTION__ << __LINE__
+                   << "q.lastError(): " << q1.lastError().text();
       }
     }
 
@@ -965,6 +965,7 @@ int ParseObject::recountFeedCounts(int feedId, const QString &feedUrl,
     title = q.value(2).toString();
   }
 
+  FeedCountStruct counts;
   int undeleteCount = 0;
   int unreadCount = 0;
   int newNewsCount = 0;
@@ -1001,7 +1002,11 @@ int ParseObject::recountFeedCounts(int feedId, const QString &feedUrl,
 
   if ((unreadCount == unreadCountOld) && (newNewsCount == newCountOld) &&
       (undeleteCount == undeleteCountOld)) {
-    qCritical() << "Error count: " << feedId << unreadCount << newNewsCount << undeleteCount;
+    counts.feedId = feedId;
+    counts.updated = updated;
+    counts.lastBuildDate = lastBuildDate;
+
+    emit feedCountsUpdate(counts);
     return 0;
   }
 
@@ -1011,7 +1016,6 @@ int ParseObject::recountFeedCounts(int feedId, const QString &feedUrl,
       arg(unreadCount).arg(newNewsCount).arg(undeleteCount).arg(feedId);
   q.exec(qStr);
 
-  FeedCountStruct counts;
   counts.feedId = feedId;
   counts.unreadCount = unreadCount;
   counts.newCount = newNewsCount;
