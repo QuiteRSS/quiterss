@@ -230,7 +230,7 @@ void MainApplication::loadSettings()
 {
 
   c2fLoadSettings();
-  reloadUserStyleSheet();
+  reloadUserStyleBrowser();
 }
 
 void MainApplication::quitApplication()
@@ -499,11 +499,11 @@ DownloadManager *MainApplication::downloadManager()
   return downloadManager_;
 }
 
-void MainApplication::reloadUserStyleSheet()
+void MainApplication::reloadUserStyleBrowser()
 {
   Settings settings;
   settings.beginGroup("Settings");
-  QString userStyleBrowser = settings.value("userStyleSheet", QString()).toString();
+  QString userStyleBrowser = settings.value("userStyleBrowser", QString()).toString();
   QWebSettings::globalSettings()->setUserStyleSheetUrl(userStyleSheet(userStyleBrowser));
   settings.endGroup();
 }

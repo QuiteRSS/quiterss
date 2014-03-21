@@ -82,7 +82,7 @@ public:
 public slots:
   void receiveMessage(const QString &message);
   void quitApplication();
-  void reloadUserStyleSheet();
+  void reloadUserStyleBrowser();
 
 signals:
   void signalSqlQueryExec(const QString &query);

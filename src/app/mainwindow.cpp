@@ -3149,7 +3149,7 @@ void MainWindow::showOptionDlg(int index)
 
   settings.beginGroup("Settings");
 
-  QString userStyleBrowser = settings.value("userStyleSheet", QString()).toString();
+  QString userStyleBrowser = settings.value("userStyleBrowser", QString()).toString();
   optionsDialog_->userStyleBrowserEdit_->setText(userStyleBrowser);
 
   bool useDiskCache = settings.value("useDiskCache", true).toBool();
@@ -3733,7 +3733,7 @@ void MainWindow::showOptionDlg(int index)
 
   saveSettings();
   saveActionShortcuts();
-  mainApp->reloadUserStyleSheet();
+  mainApp->reloadUserStyleBrowser();
 
   if (currentNewsTab != NULL) {
     if (currentNewsTab->type_ < NewsTabWidget::TabTypeWeb)

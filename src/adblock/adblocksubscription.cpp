@@ -347,7 +347,7 @@ const AdBlockRule* AdBlockSubscription::enableRule(int offset)
 
   if (rule->isCssRule()) {
     populateCache();
-    mainApp->reloadUserStyleSheet();
+    mainApp->reloadUserStyleBrowser();
   }
 
   return rule;
@@ -365,7 +365,7 @@ const AdBlockRule* AdBlockSubscription::disableRule(int offset)
 
   if (rule->isCssRule()) {
     populateCache();
-    mainApp->reloadUserStyleSheet();
+    mainApp->reloadUserStyleBrowser();
   }
 
   return rule;

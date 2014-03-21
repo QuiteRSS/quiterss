@@ -267,7 +267,7 @@ void AdBlockManager::load()
     AdBlockSubscription* subscription = new AdBlockSubscription(title, this);
     subscription->setUrl(url);
     subscription->setFilePath(absolutePath);
-    connect(subscription, SIGNAL(subscriptionUpdated()), mainApp, SLOT(reloadUserStyleSheet()));
+    connect(subscription, SIGNAL(subscriptionUpdated()), mainApp, SLOT(reloadUserStyleBrowser()));
 
     m_subscriptions.append(subscription);
   }
@@ -277,7 +277,7 @@ void AdBlockManager::load()
     AdBlockSubscription* easyList = new AdBlockSubscription(tr("EasyList"), this);
     easyList->setUrl(QUrl(ADBLOCK_EASYLIST_URL));
     easyList->setFilePath(mainApp->dataDir() + "/adblock/easylist.txt");
-    connect(easyList, SIGNAL(subscriptionUpdated()), mainApp, SLOT(reloadUserStyleSheet()));
+    connect(easyList, SIGNAL(subscriptionUpdated()), mainApp, SLOT(reloadUserStyleBrowser()));
 
     m_subscriptions.prepend(easyList);
   }
@@ -285,7 +285,7 @@ void AdBlockManager::load()
   // Append CustomList
   AdBlockCustomList* customList = new AdBlockCustomList(this);
   m_subscriptions.append(customList);
-  connect(customList, SIGNAL(subscriptionEdited()), mainApp, SLOT(reloadUserStyleSheet()));
+  connect(customList, SIGNAL(subscriptionEdited()), mainApp, SLOT(reloadUserStyleBrowser()));
 
   // Load all subscriptions
   foreach (AdBlockSubscription* subscription, m_subscriptions) {
