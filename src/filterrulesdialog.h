@@ -20,6 +20,7 @@
 
 #include "dialog.h"
 #include "lineedit.h"
+#include "toolbutton.h"
 
 class ItemCondition : public QWidget
 {
@@ -45,11 +46,11 @@ public:
 
     currentIndexChanged(tr("Title"));
 
-    addButton_ = new QToolButton(this);
+    addButton_ = new ToolButton(this);
     addButton_->setIcon(QIcon(":/images/addT"));
     addButton_->setToolTip(tr("Add Condition"));
     addButton_->setAutoRaise(true);
-    deleteButton_ = new QToolButton(this);
+    deleteButton_ = new ToolButton(this);
     deleteButton_->setIcon(QIcon(":/images/deleteT"));
     deleteButton_->setToolTip(tr("Delete Condition"));
     deleteButton_->setAutoRaise(true);
@@ -77,7 +78,7 @@ public:
   QComboBox *comboBox3_;
   LineEdit *lineEdit_;
 
-  QToolButton *addButton_;
+  ToolButton *addButton_;
 
 signals:
   void signalDeleteCondition(ItemCondition *item);
@@ -129,7 +130,7 @@ private slots:
   }
 
 private:
-  QToolButton *deleteButton_;
+  ToolButton *deleteButton_;
 
 };
 
@@ -152,11 +153,11 @@ public:
     comboBox2_->setVisible(false);
 
     soundPathEdit_ = new QLineEdit(this);
-    selectionSound_ = new QToolButton(this);
+    selectionSound_ = new ToolButton(this);
     selectionSound_->setText("...");
     selectionSound_->setToolTip(tr("Browse"));
     selectionSound_->setAutoRaise(true);
-    playSound_ = new QToolButton(this);
+    playSound_ = new ToolButton(this);
     playSound_->setIcon(QIcon(":/images/play"));
     playSound_->setToolTip(tr("Play"));
     playSound_->setAutoRaise(true);
@@ -170,7 +171,7 @@ public:
     soundWidget_->setLayout(soundLayout);
     soundWidget_->setVisible(false);
 
-    colorButton_ = new QToolButton(this);
+    colorButton_ = new ToolButton(this);
     colorButton_->setIconSize(QSize(16, 16));
     colorButton_->setToolTip("#000000");
     QPixmap pixmap(14, 14);
@@ -178,11 +179,11 @@ public:
     colorButton_->setIcon(pixmap);
     colorButton_->setVisible(false);
 
-    addButton_ = new QToolButton(this);
+    addButton_ = new ToolButton(this);
     addButton_->setIcon(QIcon(":/images/addT"));
     addButton_->setToolTip(tr("Add Action"));
     addButton_->setAutoRaise(true);
-    deleteButton_ = new QToolButton(this);
+    deleteButton_ = new ToolButton(this);
     deleteButton_->setIcon(QIcon(":/images/deleteT"));
     deleteButton_->setToolTip(tr("Delete Action"));
     deleteButton_->setAutoRaise(true);
@@ -213,11 +214,11 @@ public:
   QComboBox *comboBox2_;
   QWidget *soundWidget_;
   QLineEdit *soundPathEdit_;
-  QToolButton *selectionSound_;
-  QToolButton *playSound_;
-  QToolButton *colorButton_;
+  ToolButton *selectionSound_;
+  ToolButton *playSound_;
+  ToolButton *colorButton_;
 
-  QToolButton *addButton_;
+  ToolButton *addButton_;
 
 signals:
   void signalDeleteAction(ItemAction *item);
@@ -279,7 +280,7 @@ private slots:
   }
 
 private:
-  QToolButton *deleteButton_;
+  ToolButton *deleteButton_;
 
 };
 

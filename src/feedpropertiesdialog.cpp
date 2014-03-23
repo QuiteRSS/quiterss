@@ -59,7 +59,7 @@ QWidget *FeedPropertiesDialog::CreateGeneralTab()
 
   QHBoxLayout *layoutGeneralTitle = new QHBoxLayout();
   editTitle = new LineEdit();
-  QToolButton *loadTitleButton = new QToolButton();
+  ToolButton *loadTitleButton = new ToolButton();
   loadTitleButton->setIcon(QIcon(":/images/updateFeed"));
   loadTitleButton->setIconSize(QSize(16, 16));
   loadTitleButton->setToolTip(tr("Load Title"));

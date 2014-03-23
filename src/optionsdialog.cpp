@@ -534,6 +534,7 @@ void OptionsDialog::createBrowserWidget()
   userStyleBrowserLayout->addWidget(userStyleBrowserButton, 0, 1, Qt::AlignRight);
 
   QVBoxLayout *browserLayoutV = new QVBoxLayout();
+  browserLayoutV->setMargin(10);
   browserLayoutV->addWidget(new QLabel(tr("Browser selection:")));
   browserLayoutV->addLayout(browserSelectionLayout);
   browserLayoutV->addWidget(new QLabel(tr("External browser:")));
@@ -602,6 +603,7 @@ void OptionsDialog::createBrowserWidget()
   diskCacheOn_->setLayout(historyLayout4);
 
   QVBoxLayout *historyMainLayout = new QVBoxLayout();
+  historyMainLayout->setMargin(10);
   historyMainLayout->addLayout(historyLayout1);
   historyMainLayout->addWidget(diskCacheOn_);
   historyMainLayout->addStretch();
@@ -628,6 +630,7 @@ void OptionsDialog::createBrowserWidget()
   cookiesBox->addButton(blockCookies_);
 
   QVBoxLayout *privacyMainLayout = new QVBoxLayout();
+  privacyMainLayout->setMargin(10);
   privacyMainLayout->addWidget(new QLabel(tr("Cookies:")));
   privacyMainLayout->addLayout(cookiesLayout);
   privacyMainLayout->addStretch();
@@ -676,6 +679,7 @@ void OptionsDialog::createBrowserWidget()
           c2fWhitelistWidget, SLOT(setEnabled(bool)));
 
   QVBoxLayout *click2FlashLayout = new QVBoxLayout();
+  click2FlashLayout->setMargin(10);
   click2FlashLayout->addWidget(c2fInfo);
   click2FlashLayout->addWidget(c2fEnabled_);
   click2FlashLayout->addWidget(c2fWhitelistWidget, 1);
@@ -704,6 +708,7 @@ void OptionsDialog::createBrowserWidget()
   downLocationLayout->addWidget(askDownloadLocation_, 1, 0);
 
   QVBoxLayout *downloadsLayout = new QVBoxLayout();
+  downloadsLayout->setMargin(10);
   downloadsLayout->addWidget(new QLabel(tr("Download location:")));
   downloadsLayout->addLayout(downLocationLayout);
   downloadsLayout->addStretch();

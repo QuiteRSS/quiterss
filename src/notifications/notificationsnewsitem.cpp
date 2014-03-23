@@ -29,16 +29,16 @@ NewsItem::NewsItem(int idFeed, int idNews, int width, QWidget * parent)
   textLabel_->setFixedWidth(width);
   textLabel_->setStyleSheet("QLabel:hover {color: #1155CC;}");
 
-  readButton_ = new QToolButton(this);
+  readButton_ = new ToolButton(this);
   readButton_->setIcon(QIcon(":/images/bulletUnread"));
   readButton_->setToolTip(tr("Mark Read/Unread"));
   readButton_->setAutoRaise(true);
 
-  QToolButton *openExternalBrowserButton = new QToolButton(this);
+  ToolButton *openExternalBrowserButton = new ToolButton(this);
   openExternalBrowserButton->setIcon(QIcon(":/images/openBrowser"));
   openExternalBrowserButton->setAutoRaise(true);
 
-  QToolButton *deleteButton = new QToolButton(this);
+  ToolButton *deleteButton = new ToolButton(this);
   deleteButton->setIcon(QIcon(":/images/editClear"));
   deleteButton->setToolTip(tr("Delete News"));
   deleteButton->setAutoRaise(true);

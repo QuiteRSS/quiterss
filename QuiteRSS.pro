@@ -131,7 +131,8 @@ HEADERS += \
     src/webview/webpage.h \
     src/webview/webview.h \
     src/database/database.h \
-    src/database/dbmemfilethread.h
+    src/database/dbmemfilethread.h \
+    src/toolbutton.h
 
 SOURCES += \
     src/parseobject.cpp \
@@ -194,7 +195,8 @@ SOURCES += \
     src/webview/webpage.cpp \
     src/webview/webview.cpp \
     src/database/database.cpp \
-    src/database/dbmemfilethread.cpp
+    src/database/dbmemfilethread.cpp \
+    src/toolbutton.cpp
 
 INCLUDEPATH +=  $$PWD/src \
                 $$PWD/src/app \

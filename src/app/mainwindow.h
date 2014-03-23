@@ -51,6 +51,7 @@
 #include "updateappdialog.h"
 #include "webview.h"
 #include "parseobject.h"
+#include "toolbutton.h"
 
 #define NEW_TAB_FOREGROUND 1
 #define NEW_TAB_BACKGROUND 2
@@ -495,7 +496,7 @@ private:
 
   NewsModel *newsModel_;
   QMenu *mainMenu_;
-  QToolButton *mainMenuButton_;
+  ToolButton *mainMenuButton_;
   TabBar *tabBar_;
   QWidget *tabBarWidget_;
   QSplitter *mainSplitter_;
@@ -715,7 +716,7 @@ private:
 
   QWidget *categoriesPanel_;
   QLabel *categoriesLabel_;
-  QToolButton *showCategoriesButton_;
+  ToolButton *showCategoriesButton_;
   QWidget *categoriesWidget_;
   QSplitter *feedsSplitter_;
   QByteArray feedsWidgetSplitterState_;

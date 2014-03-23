@@ -25,6 +25,8 @@
 #endif
 #include <QtSql>
 
+#include "toolbutton.h"
+
 class NewsItem : public QWidget
 {
   Q_OBJECT
@@ -55,7 +57,7 @@ private:
   int newsId_;
   bool read_;
   QLabel *textLabel_;
-  QToolButton *readButton_;
+  ToolButton *readButton_;
 
 };
 

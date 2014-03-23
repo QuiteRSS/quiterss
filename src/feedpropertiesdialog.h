@@ -20,6 +20,7 @@
 
 #include "dialog.h"
 #include "lineedit.h"
+#include "toolbutton.h"
 
 //! Feed properties structure
 typedef struct {

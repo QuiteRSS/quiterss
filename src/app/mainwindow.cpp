@@ -441,7 +441,7 @@ void MainWindow::createFeedsWidget()
   categoriesLabel_ = new QLabel(this);
   categoriesLabel_->setObjectName("categoriesLabel_");
 
-  showCategoriesButton_ = new QToolButton(this);
+  showCategoriesButton_ = new ToolButton(this);
   showCategoriesButton_->setFocusPolicy(Qt::NoFocus);
   showCategoriesButton_->setMaximumSize(16, 16);
   showCategoriesButton_->setAutoRaise(true);
@@ -610,9 +610,9 @@ void MainWindow::createTray()
  *---------------------------------------------------------------------------*/
 void MainWindow::createTabBarWidget()
 {
-  mainMenuButton_ = new QToolButton(this);
+  mainMenuButton_ = new ToolButton(this);
   mainMenuButton_->setObjectName("mainMenuButton");
-  mainMenuButton_->setStyleSheet("QToolButton { border: none; padding: 0px 5px 0px 0px; }");
+  mainMenuButton_->setStyleSheet("#mainMenuButton { border: none; padding: 0px 5px 0px 0px; }");
   mainMenuButton_->setIcon(QIcon(":/images/menu"));
 
   tabBar_ = new TabBar();

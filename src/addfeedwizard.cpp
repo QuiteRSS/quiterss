@@ -20,6 +20,7 @@
 #include "mainapplication.h"
 #include "addfolderdialog.h"
 #include "authenticationdialog.h"
+#include "toolbutton.h"
 #include "settings.h"
 
 #include <QDomDocument>
@@ -222,7 +223,7 @@ QWizardPage *AddFeedWizard::createNameFeedPage()
   foldersTree_->expandAll();
   foldersTree_->sortByColumn(0, Qt::AscendingOrder);
 
-  QToolButton *newFolderButton = new QToolButton(this);
+  ToolButton *newFolderButton = new ToolButton(this);
   newFolderButton->setIcon(QIcon(":/images/addT"));
   newFolderButton->setToolTip(tr("New Folder..."));
   newFolderButton->setAutoRaise(true);

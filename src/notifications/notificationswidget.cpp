@@ -90,16 +90,16 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
 
   numPage_ = new QLabel(this);
 
-  QToolButton *markAllReadButton_ = new QToolButton(this);
+  ToolButton *markAllReadButton_ = new ToolButton(this);
   markAllReadButton_->setToolTip(tr("Mark All News Read"));
   markAllReadButton_->setIcon(QIcon(":/images/markReadAll"));
   markAllReadButton_->setAutoRaise(true);
-  prevButton_ = new QToolButton(this);
+  prevButton_ = new ToolButton(this);
   prevButton_->setIcon(QIcon(":/images/moveLeft"));
   prevButton_->setToolTip(tr("Previous Page"));
   prevButton_->setEnabled(false);
   prevButton_->setAutoRaise(true);
-  nextButton_ = new QToolButton(this);
+  nextButton_ = new ToolButton(this);
   nextButton_->setIcon(QIcon(":/images/moveRight"));
   nextButton_->setToolTip(tr("Next Page"));
   nextButton_->setAutoRaise(true);

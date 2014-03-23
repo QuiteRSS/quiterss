@@ -25,6 +25,8 @@
 #endif
 #include <QtSql>
 
+#include "toolbutton.h"
+
 class NotificationWidget : public QWidget
 {
   Q_OBJECT
@@ -71,8 +73,8 @@ private:
   QStackedWidget *stackedWidget_;
   QVBoxLayout *pageLayout_;
   QLabel *numPage_;
-  QToolButton *prevButton_;
-  QToolButton *nextButton_;
+  ToolButton *prevButton_;
+  ToolButton *nextButton_;
 
   QList<int> idFeedList_;
   QList<int> idNewsList_;
