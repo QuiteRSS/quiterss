@@ -54,6 +54,7 @@ void DBMemFileThread::startSaveMemoryDB(QThread::Priority priority)
 
   if (priority == QThread::NormalPriority) {
     while(isRunning()) {
+      qApp->processEvents();
       int ms = 100;
 #if defined(Q_OS_WIN)
       Sleep(DWORD(ms));
