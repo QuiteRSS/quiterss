@@ -518,13 +518,15 @@ void FeedsTreeView::dragMoveEvent(QDragMoveEvent *event)
   if (isFolder(dragIndex)) {
     if (dragIndex == currentIndex().parent())
       event->ignore();  // drag-to-category is parent already dragged one
-    else if (dragIndex == currentIndex())
+    else if ((dragIndex.row() == currentIndex().row()) &&
+             (dragIndex.parent() == currentIndex().parent()))
       event->ignore();  // don't move category to itself
     else {
       bool ignore = false;
       QModelIndex child = dragIndex.parent();
       while (child.isValid()) {
-        if (child == currentIndex()) {
+        if ((child.row() == currentIndex().row()) &&
+            (child.parent() == currentIndex().parent())) {
           event->ignore();  // don't move category inside itself
           ignore = true;
           break;
@@ -536,7 +538,8 @@ void FeedsTreeView::dragMoveEvent(QDragMoveEvent *event)
   }
   // Process feeds
   else {
-    if (dragIndex == currentIndex())
+    if ((dragIndex.row() == currentIndex().row()) &&
+        (dragIndex.parent() == currentIndex().parent()))
       event->ignore();  // don't move feed to itseelf
     else if (dragIndex.parent() == currentIndex())
       event->ignore();  // don't move feed to same parent
@@ -544,7 +547,8 @@ void FeedsTreeView::dragMoveEvent(QDragMoveEvent *event)
       bool ignore = false;
       QModelIndex child = dragIndex.parent();
       while (child.isValid()) {
-        if (child == currentIndex()) {
+        if ((child.row() == currentIndex().row()) &&
+            (child.parent() == currentIndex().parent())) {
           event->ignore();  // don't move feed inside itself
           ignore = true;
           break;
@@ -596,23 +600,29 @@ void FeedsTreeView::paintEvent(QPaintEvent *event)
   // Process folders
   if (isFolder(dragIndex)) {
     if ((dragIndex == currentIndex().parent()) ||
-        (dragIndex == currentIndex()))
+        ((dragIndex.row() == currentIndex().row()) &&
+         (dragIndex.parent() == currentIndex().parent())))
       return;
 
     QModelIndex child = dragIndex.parent();
     while (child.isValid()) {
-      if (child == currentIndex()) return;
+      if ((child.row() == currentIndex().row()) &&
+          (child.parent() == currentIndex().parent()))
+        return;
       child = child.parent();
     }
   }
   // Process feeds
   else {
-    if ((dragIndex == currentIndex()) ||
-        (dragIndex.parent() == currentIndex()))
+    if ((dragIndex.parent() == currentIndex()) ||
+        ((dragIndex.row() == currentIndex().row()) &&
+         (dragIndex.parent() == currentIndex().parent())))
       return;
     QModelIndex child = dragIndex.parent();
     while (child.isValid()) {
-      if (child == currentIndex()) return;
+      if ((child.row() == currentIndex().row()) &&
+          (child.parent() == currentIndex().parent()))
+        return;
       child = child.parent();
     }
   }
@@ -622,7 +632,7 @@ void FeedsTreeView::paintEvent(QPaintEvent *event)
                                          dragIndex.parent());
 
   QRect rectText = visualRect(indexText);
-  rectText.setWidth(rectText.width()-1);
+  rectText.setRight(viewport()->width()-2);
   QBrush brush = qApp->palette().brush(QPalette::Highlight);
 
   QPainter painter;
