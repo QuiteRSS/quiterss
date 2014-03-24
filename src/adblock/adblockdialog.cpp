@@ -66,6 +66,8 @@ tabWidget->setDocumentMode(false);
 #endif
   adblockCheckBox->setChecked(m_manager->isEnabled());
 
+  buttonOptions->setText(buttonOptions->text() % "   ");
+
   QMenu* menu = new QMenu(buttonOptions);
   m_actionAddRule = menu->addAction(tr("Add Rule"), this, SLOT(addRule()));
   m_actionRemoveRule = menu->addAction(tr("Remove Rule"), this, SLOT(removeRule()));
