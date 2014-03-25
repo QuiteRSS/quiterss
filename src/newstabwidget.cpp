@@ -1601,6 +1601,14 @@ void NewsTabWidget::openInExternalBrowserNews()
 
     for (int i = cnt-1; i >= 0; --i) {
       QUrl url = QUrl::fromEncoded(getLinkNews(indexes.at(i).row()).toUtf8());
+      if (url.host().isEmpty()) {
+        QString feedId = newsModel_->dataField(indexes.at(i).row(), "feedId").toString();
+        QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId.toInt());
+        QUrl hostUrl = feedsTreeModel_->dataField(feedIndex, "htmlUrl").toString();
+
+        url.setScheme(hostUrl.scheme());
+        url.setHost(hostUrl.host());
+      }
       openUrl(url);
     }
   } else {
