@@ -92,7 +92,6 @@ MainWindow::MainWindow(QWidget *parent)
   initUpdateFeeds();
 
 
-
   QTimer::singleShot(10000, this, SLOT(slotUpdateAppCheck()));
 
   connect(this, SIGNAL(signalShowNotification()),
@@ -153,7 +152,7 @@ void MainWindow::quitApp()
   mainApp->setClosing();
   isMinimizeToTray_ = true;
 
-  QWidget *widget = new QWidget(0, Qt::WindowTitleHint);
+  QWidget *widget = new QWidget(0, Qt::WindowTitleHint | Qt::WindowStaysOnTopHint);
   QVBoxLayout *layout = new QVBoxLayout(widget);
   layout->addWidget(new QLabel(tr("Saving data...")));
   widget->resize(150, 20);
@@ -162,8 +161,8 @@ void MainWindow::quitApp()
                QApplication::desktop()->availableGeometry().height() - widget->frameSize().height());
   qApp->processEvents();
 
-  traySystem->hide();
   hide();
+  traySystem->hide();
 
   saveSettings();
 
@@ -175,7 +174,7 @@ void MainWindow::quitApp()
 
   if (mainApp->storeDBMemory()) {
     mainApp->dbMemFileThread()->startSaveMemoryDB(QThread::NormalPriority);
-    delete mainApp->dbMemFileThread();
+    mainApp->dbMemFileThread()->deleteLater();
   }
 
   QTimer::singleShot(0, mainApp, SLOT(quitApplication()));
