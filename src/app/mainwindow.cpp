@@ -562,7 +562,11 @@ void MainWindow::createStatusBar()
   progressBar_->setValue(0);
   progressBar_->setVisible(false);
 
+#ifndef Q_OS_MAC
   statusBar()->setMinimumHeight(22);
+#else
+  statusBar()->setMinimumHeight(26);
+#endif
 
   adblockIcon_ = new AdBlockIcon(this);
 
@@ -597,11 +601,15 @@ void MainWindow::createTray()
 #else
   traySystem = new QSystemTrayIcon(QIcon(":/images/quiterssDebug"), this);
 #endif
+  traySystem->setToolTip("QuiteRSS");
+
+#ifndef Q_OS_MAC
   connect(traySystem,SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
           this, SLOT(slotActivationTray(QSystemTrayIcon::ActivationReason)));
   connect(this, SIGNAL(signalPlaceToTray()),
           this, SLOT(slotPlaceToTray()), Qt::QueuedConnection);
-  traySystem->setToolTip("QuiteRSS");
+#endif
+
   createTrayMenu();
 }
 
@@ -1801,9 +1809,15 @@ void MainWindow::loadSettings()
   openNewTabNextToActive_ = settings.value("openNewTabNextToActive", false).toBool();
 
   showTrayIcon_ = settings.value("showTrayIcon", true).toBool();
+#ifndef Q_OS_MAC
   startingTray_ = settings.value("startingTray", false).toBool();
   minimizingTray_ = settings.value("minimizingTray", true).toBool();
   closingTray_ = settings.value("closingTray", false).toBool();
+#else
+  startingTray_ = false;
+  minimizingTray_ = false;
+  closingTray_ = false;
+#endif
   singleClickTray_ = settings.value("singleClickTray", false).toBool();
   clearStatusNew_ = settings.value("clearStatusNew", true).toBool();
   emptyWorking_ = settings.value("emptyWorking", true).toBool();
@@ -1836,18 +1850,18 @@ void MainWindow::loadSettings()
   langFileName_ = settings.value("langFileName", strLang).toString();
 
   QString fontFamily = settings.value("feedsFontFamily", qApp->font().family()).toString();
-  int fontSize = settings.value("feedsFontSize", 8).toInt();
+  int fontSize = settings.value("feedsFontSize", qApp->font().pixelSize()).toInt();
   feedsTreeView_->setFont(QFont(fontFamily, fontSize));
   feedsTreeModel_->font_ = feedsTreeView_->font();
 
   newsListFontFamily_ = settings.value("newsFontFamily", qApp->font().family()).toString();
-  newsListFontSize_ = settings.value("newsFontSize", 8).toInt();
+  newsListFontSize_ = settings.value("newsFontSize", qApp->font().pixelSize()).toInt();
   newsTitleFontFamily_ = settings.value("newsTitleFontFamily", qApp->font().family()).toString();
-  newsTitleFontSize_ = settings.value("newsTitleFontSize", 10).toInt();
+  newsTitleFontSize_ = settings.value("newsTitleFontSize", qApp->font().pixelSize()).toInt();
   newsTextFontFamily_ = settings.value("newsTextFontFamily", qApp->font().family()).toString();
-  newsTextFontSize_ = settings.value("newsTextFontSize", 10).toInt();
+  newsTextFontSize_ = settings.value("newsTextFontSize", qApp->font().pixelSize()).toInt();
   notificationFontFamily_ = settings.value("notificationFontFamily", qApp->font().family()).toString();
-  notificationFontSize_ = settings.value("notificationFontSize", 8).toInt();
+  notificationFontSize_ = settings.value("notificationFontSize", qApp->font().pixelSize()).toInt();
 
   QString browserStandardFont = settings.value(
         "browserStandardFont", QWebSettings::globalSettings()->fontFamily(QWebSettings::StandardFont)).toString();

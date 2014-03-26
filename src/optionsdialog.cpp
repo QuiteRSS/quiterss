@@ -367,12 +367,16 @@ void OptionsDialog::createTraySystemWidget()
   emptyWorking_ = new QCheckBox(tr("Empty working set on minimize to tray"));
 
   QVBoxLayout *trayLayout = new QVBoxLayout(showTrayIconBox_);
+#ifndef Q_OS_MAC
   trayLayout->addWidget(new QLabel(tr("Move to the system tray when:")));
   trayLayout->addLayout(moveTrayLayout);
+#endif
   trayLayout->addWidget(new QLabel(tr("Tray icon behavior:")));
   trayLayout->addLayout(behaviorLayout);
+#ifndef Q_OS_MAC
   trayLayout->addWidget(singleClickTray_);
   trayLayout->addWidget(clearStatusNew_);
+#endif
 #if defined(Q_OS_WIN)
   trayLayout->addWidget(emptyWorking_);
 #endif
