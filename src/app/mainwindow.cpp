@@ -152,7 +152,7 @@ void MainWindow::quitApp()
   mainApp->setClosing();
   isMinimizeToTray_ = true;
 
-  QWidget *widget = new QWidget(0, Qt::WindowTitleHint | Qt::WindowStaysOnTopHint);
+  QWidget *widget = new QWidget(0, Qt::Tool | Qt::WindowTitleHint | Qt::WindowStaysOnTopHint);
   QVBoxLayout *layout = new QVBoxLayout(widget);
   layout->addWidget(new QLabel(tr("Saving data...")));
   widget->resize(150, 20);
