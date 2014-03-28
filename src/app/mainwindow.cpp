@@ -5488,7 +5488,10 @@ void RSSListing::mediaStatusChanged(const QMediaPlayer::MediaStatus &status)
 void MainWindow::mediaStateChanged(Phonon::State newstate, Phonon::State)
 {
   if (newstate == Phonon::ErrorState) {
-    qCritical() << QString("Error Phonon: %1 - %2").arg(mediaPlayer_->errorType()).arg(mediaPlayer_->errorString());
+    QTextCodec *codec = QTextCodec::codecForLocale();
+    qCritical() << QString("Error Phonon: %1 - %2").
+                   arg(mediaPlayer_->errorType()).
+                   arg(codec->toUnicode(mediaPlayer_->errorString().toUtf8()));
   }
 }
 #endif
