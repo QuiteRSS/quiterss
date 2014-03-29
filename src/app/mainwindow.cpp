@@ -153,6 +153,7 @@ void MainWindow::quitApp()
   isMinimizeToTray_ = true;
 
   QWidget *widget = new QWidget(0, Qt::Tool | Qt::WindowTitleHint | Qt::WindowStaysOnTopHint);
+  widget->setFocusPolicy(Qt::NoFocus);
   QVBoxLayout *layout = new QVBoxLayout(widget);
   layout->addWidget(new QLabel(tr("Saving data...")));
   widget->resize(150, 20);
