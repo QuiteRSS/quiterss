@@ -208,15 +208,22 @@ void MainApplication::createSettings()
 
 void MainApplication::connectDatabase()
 {
+  QString fileName(dbFileName() % ".bak");
+  if (QFile(fileName).exists()) {
+    QString sourceFileName = QFile::symLinkTarget(dbFileName());
+    if (sourceFileName.isEmpty()) {
+      sourceFileName = dbFileName();
+    }
+    if (QFile::remove(sourceFileName)) {
+      if (!QFile::rename(fileName, sourceFileName))
+        qCritical() << "Failed to rename new database file!";
+    } else {
+      qCritical() << "Failed to delete old database file!";
+    }
+  }
+
   if (QFile(dbFileName()).exists()) {
     dbFileExists_ = true;
-  } else {
-    QString fileName(mainApp->dbFileName() % ".sm");
-    if (QFile(fileName).exists()) {
-      QFile::rename(fileName, mainApp->dbFileName());
-      if (QFile(dbFileName()).exists())
-        dbFileExists_ = true;
-    }
   }
 
   Database::initialization();

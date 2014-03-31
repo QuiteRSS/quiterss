@@ -415,30 +415,30 @@ QSqlDatabase Database::connection(const QString &connectionName)
 
 void Database::saveMemoryDatabase()
 {
-  bool errorQuery;
+  bool errorQuery = false;
   qWarning() << "Save memory database: start...";
 
-  QString fileName(mainApp->dbFileName() % ".sm");
-  {
-    QSqlDatabase dbFile = QSqlDatabase::addDatabase("QSQLITE", "saveMemory");
-    dbFile.setDatabaseName(fileName);
-    dbFile.open();
-    createTables(dbFile);
-    dbFile.close();
-  }
-  QSqlDatabase::removeDatabase("saveMemory");
+  QString fileName(mainApp->dbFileName() % ".bak");
+  if (!QFile::copy(mainApp->dbFileName(), fileName))
+    qCritical() << "Failed to copy backup database file!";
 
   QSqlDatabase db = QSqlDatabase::database();
   QSqlQuery q(db);
   q.prepare("ATTACH DATABASE :file AS 'storage';");
-  q.bindValue(":file", fileName);
+  q.bindValue(":file", mainApp->dbFileName());
   errorQuery = q.exec();
   if (!errorQuery) {
     qCritical() << __PRETTY_FUNCTION__ << __LINE__
                 << "q.lastError(): " << q.lastError().text();
   }
   foreach (const QString &table, tablesList()) {
-    errorQuery = q.exec(QString("INSERT OR REPLACE INTO storage.%1 SELECT * FROM main.%1;").arg(table));
+    errorQuery = q.exec(QString("DELETE FROM storage.%1;").arg(table));
+    if (!errorQuery) {
+      qCritical() << __PRETTY_FUNCTION__ << __LINE__
+                  << "q.lastError(): " << q.lastError().text();
+    }
+
+    errorQuery = q.exec(QString("INSERT INTO storage.%1 SELECT * FROM main.%1;").arg(table));
     if (!errorQuery) {
       qCritical() << __PRETTY_FUNCTION__ << __LINE__
                   << "q.lastError(): " << q.lastError().text();
@@ -451,16 +451,26 @@ void Database::saveMemoryDatabase()
   }
   q.finish();
 
-  QString sourceFileName = QFile::symLinkTarget(mainApp->dbFileName());
-  if (sourceFileName.isEmpty()) {
-    sourceFileName = mainApp->dbFileName();
-  }
-  if (QFile::remove(sourceFileName)) {
-    if (!QFile::rename(fileName, sourceFileName))
-      qCritical() << "Failed to rename new database file!";
-  } else {
-    qCritical() << "Failed to delete old database file!";
+  if (!errorQuery) {
+    if (!QFile::remove(fileName)) {
+      qCritical() << "Failed to delete old database file (0)!";
+      errorQuery = true;
+    }
   }
 
-  qWarning() << "Save memory database: completed!";
+  if (!errorQuery) {
+    qWarning() << "Save memory database: completed!";
+  } else {
+    QString sourceFileName = QFile::symLinkTarget(mainApp->dbFileName());
+    if (sourceFileName.isEmpty()) {
+      sourceFileName = mainApp->dbFileName();
+    }
+    if (QFile::remove(sourceFileName)) {
+      if (!QFile::rename(fileName, sourceFileName))
+        qCritical() << "Failed to rename new database file!";
+    } else {
+      qCritical() << "Failed to delete old database file (1)!";
+    }
+    qCritical() << "Failed to save database!";
+  }
 }
