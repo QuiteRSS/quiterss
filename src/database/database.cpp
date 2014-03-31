@@ -415,7 +415,7 @@ QSqlDatabase Database::connection(const QString &connectionName)
 
 void Database::saveMemoryDatabase()
 {
-  bool errorQuery = false;
+  bool okQuery;
   qWarning() << "Save memory database: start...";
 
   QString fileName(mainApp->dbFileName() % ".bak");
@@ -426,39 +426,39 @@ void Database::saveMemoryDatabase()
   QSqlQuery q(db);
   q.prepare("ATTACH DATABASE :file AS 'storage';");
   q.bindValue(":file", mainApp->dbFileName());
-  errorQuery = q.exec();
-  if (!errorQuery) {
+  okQuery = q.exec();
+  if (!okQuery) {
     qCritical() << __PRETTY_FUNCTION__ << __LINE__
                 << "q.lastError(): " << q.lastError().text();
   }
   foreach (const QString &table, tablesList()) {
-    errorQuery = q.exec(QString("DELETE FROM storage.%1;").arg(table));
-    if (!errorQuery) {
+    okQuery = q.exec(QString("DELETE FROM storage.%1;").arg(table));
+    if (!okQuery) {
       qCritical() << __PRETTY_FUNCTION__ << __LINE__
                   << "q.lastError(): " << q.lastError().text();
     }
 
-    errorQuery = q.exec(QString("INSERT INTO storage.%1 SELECT * FROM main.%1;").arg(table));
-    if (!errorQuery) {
+    okQuery = q.exec(QString("INSERT INTO storage.%1 SELECT * FROM main.%1;").arg(table));
+    if (!okQuery) {
       qCritical() << __PRETTY_FUNCTION__ << __LINE__
                   << "q.lastError(): " << q.lastError().text();
     }
   }
-  errorQuery = q.exec("DETACH 'storage'");
-  if (!errorQuery) {
+  okQuery = q.exec("DETACH 'storage'");
+  if (!okQuery) {
     qCritical() << __PRETTY_FUNCTION__ << __LINE__
                 << "q.lastError(): " << q.lastError().text();
   }
   q.finish();
 
-  if (!errorQuery) {
+  if (okQuery) {
     if (!QFile::remove(fileName)) {
       qCritical() << "Failed to delete old database file (0)!";
-      errorQuery = true;
+      okQuery = false;
     }
   }
 
-  if (!errorQuery) {
+  if (okQuery) {
     qWarning() << "Save memory database: completed!";
   } else {
     QString sourceFileName = QFile::symLinkTarget(mainApp->dbFileName());
