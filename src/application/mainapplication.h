@@ -46,7 +46,7 @@ public:
 
   static MainApplication *getInstance();
 
-  bool isPoratble() const;
+  bool isPortable() const;
   void setClosing();
   bool isClosing() const;
 

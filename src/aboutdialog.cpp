@@ -115,7 +115,7 @@ AboutDialog::AboutDialog(const QString &lang, QWidget *parent) :
   licenseWidget->setLayout(licenseLayout);
 
   QString portable;
-  if (mainApp->isPoratble())
+  if (mainApp->isPortable())
     portable = QString("(Portable)");
   Settings settings;
   QString information =

@@ -19,7 +19,7 @@ exists(.hg) {
   } else {
     VERSION_REV = 0
   }
-  message(VCS revision: $$VERSION_REV)
+  !build_pass:message(VCS revision: $$VERSION_REV)
 
   os2|win32 {
     system(echo $${LITERAL_HASH}define VCS_REVISION $$VERSION_REV > $$REVFILE)
@@ -33,7 +33,7 @@ exists(.hg) {
   } else {
     VERSION_REV = 0
   }
-  message(VCS revision: $$VERSION_REV)
+  !build_pass:message(VCS revision: $$VERSION_REV)
 
   os2|win32 {
     system(echo $${LITERAL_HASH}define VCS_REVISION $$VERSION_REV > $$REVFILE)
@@ -42,7 +42,7 @@ exists(.hg) {
   }
 } else:!exists($$REVFILE) {
   VERSION_REV = 0
-  message(VCS revision: $$VERSION_REV)
+  !build_pass:message(VCS revision: $$VERSION_REV)
 
   os2|win32 {
     system(echo $${LITERAL_HASH}define VCS_REVISION $$VERSION_REV > $$REVFILE)
@@ -76,13 +76,11 @@ HEADERS += \
     src/newsview.h \
     src/newsmodel.h \
     src/newsheader.h \
-    src/delegatewithoutfocus.h \
     src/aboutdialog.h \
     src/updateappdialog.h \
     src/feedpropertiesdialog.h \
     src/newsfiltersdialog.h \
     src/filterrulesdialog.h \
-    src/lineedit.h \
     src/addfeedwizard.h \
     src/newstabwidget.h \
     src/findtext.h \
@@ -92,7 +90,6 @@ HEADERS += \
     src/VersionRev.h \
     src/addfolderdialog.h \
     src/labeldialog.h \
-    src/dialog.h \
     src/faviconobject.h \
     src/customizetoolbardialog.h \
     src/plugins/webpluginfactory.h \
@@ -107,10 +104,10 @@ HEADERS += \
     src/notifications/notificationsfeeditem.h \
     src/notifications/notificationsnewsitem.h \
     src/notifications/notificationswidget.h \
-    src/app/mainapplication.h \
-    src/app/settings.h \
-    src/app/logfile.h \
-    src/app/mainwindow.h \
+    src/application/mainapplication.h \
+    src/application/settings.h \
+    src/application/logfile.h \
+    src/application/mainwindow.h \
     src/adblock/adblocktreewidget.h \
     src/adblock/adblocksubscription.h \
     src/adblock/adblocksearchtree.h \
@@ -121,8 +118,7 @@ HEADERS += \
     src/adblock/adblockblockednetworkreply.h \
     src/adblock/adblockaddsubscriptiondialog.h \
     src/adblock/followredirectreply.h \
-    src/app/common.h \
-    src/app/splashscreen.h \
+    src/application/splashscreen.h \
     src/network/authenticationdialog.h \
     src/network/cookiejar.h \
     src/network/networkmanager.h \
@@ -132,7 +128,11 @@ HEADERS += \
     src/webview/webview.h \
     src/database/database.h \
     src/database/dbmemfilethread.h \
-    src/toolbutton.h
+    src/common/common.h \
+    src/common/delegatewithoutfocus.h \
+    src/common/dialog.h \
+    src/common/lineedit.h \
+    src/common/toolbutton.h
 
 SOURCES += \
     src/parseobject.cpp \
@@ -140,13 +140,11 @@ SOURCES += \
     src/newsview.cpp \
     src/newsmodel.cpp \
     src/newsheader.cpp \
-    src/delegatewithoutfocus.cpp \
     src/aboutdialog.cpp \
     src/updateappdialog.cpp \
     src/feedpropertiesdialog.cpp \
     src/newsfiltersdialog.cpp \
     src/filterrulesdialog.cpp \
-    src/lineedit.cpp \
     src/addfeedwizard.cpp \
     src/newstabwidget.cpp \
     src/findtext.cpp \
@@ -155,7 +153,6 @@ SOURCES += \
     src/feedstreemodel.cpp \
     src/addfolderdialog.cpp \
     src/labeldialog.cpp \
-    src/dialog.cpp \
     src/faviconobject.cpp \
     src/customizetoolbardialog.cpp \
     src/plugins/webpluginfactory.cpp \
@@ -170,10 +167,10 @@ SOURCES += \
     src/notifications/notificationsfeeditem.cpp \
     src/notifications/notificationsnewsitem.cpp \
     src/notifications/notificationswidget.cpp \
-    src/app/mainapplication.cpp \
-    src/app/settings.cpp \
-    src/app/logfile.cpp \
-    src/app/mainwindow.cpp \
+    src/application/mainapplication.cpp \
+    src/application/settings.cpp \
+    src/application/logfile.cpp \
+    src/application/mainwindow.cpp \
     src/main/main.cpp \
     src/adblock/adblocktreewidget.cpp \
     src/adblock/adblocksubscription.cpp \
@@ -185,8 +182,7 @@ SOURCES += \
     src/adblock/adblockblockednetworkreply.cpp \
     src/adblock/adblockaddsubscriptiondialog.cpp \
     src/adblock/followredirectreply.cpp \
-    src/app/common.cpp \
-    src/app/splashscreen.cpp \
+    src/application/splashscreen.cpp \
     src/network/authenticationdialog.cpp \
     src/network/cookiejar.cpp \
     src/network/networkmanager.cpp \
@@ -196,10 +192,15 @@ SOURCES += \
     src/webview/webview.cpp \
     src/database/database.cpp \
     src/database/dbmemfilethread.cpp \
-    src/toolbutton.cpp
+    src/common/common.cpp \
+    src/common/delegatewithoutfocus.cpp \
+    src/common/dialog.cpp \
+    src/common/lineedit.cpp \
+    src/common/toolbutton.cpp
 
 INCLUDEPATH +=  $$PWD/src \
-                $$PWD/src/app \
+                $$PWD/src/application \
+                $$PWD/src/common \
                 $$PWD/src/main \
                 $$PWD/src/database \
                 $$PWD/src/downloads \

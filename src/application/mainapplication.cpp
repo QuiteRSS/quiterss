@@ -194,7 +194,10 @@ void MainApplication::checkDir()
 
 void MainApplication::createSettings()
 {
-  Settings::createSettings();
+  QString fileName;
+  if (isPortable_)
+    fileName = mainApp->dataDir() % "/" % QCoreApplication::applicationName() % ".ini";
+  Settings::createSettings(fileName);
 
   Settings settings;
   settings.beginGroup("Settings");
@@ -253,7 +256,7 @@ void MainApplication::commitData(QSessionManager &manager)
   mainWindow_->quitApp();
 }
 
-bool MainApplication::isPoratble() const
+bool MainApplication::isPortable() const
 {
   return isPortable_;
 }

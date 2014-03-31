@@ -17,8 +17,6 @@
 * ============================================================ */
 #include "settings.h"
 
-#include "mainapplication.h"
-
 #include <QCoreApplication>
 
 QSettings *Settings::settings_ = 0;
@@ -35,10 +33,9 @@ Settings::~Settings()
     settings_->endGroup();
 }
 
-void Settings::createSettings()
+void Settings::createSettings(const QString &fileName)
 {
-  if (mainApp->isPoratble()) {
-    QString fileName(mainApp->dataDir() + "/" + QCoreApplication::applicationName() + ".ini");
+  if (!fileName.isEmpty()) {
     settings_ = new QSettings(fileName, QSettings::IniFormat);
   } else {
     settings_ = new QSettings(QSettings::IniFormat,
