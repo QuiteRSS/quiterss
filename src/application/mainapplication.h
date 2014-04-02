@@ -29,7 +29,6 @@
 #include <QNetworkDiskCache>
 
 #include "cookiejar.h"
-#include "dbmemfilethread.h"
 #include "downloadmanager.h"
 #include "mainwindow.h"
 
@@ -67,8 +66,7 @@ public:
   CookieJar *cookieJar();
   void setDiskCache();
   UpdateFeeds *updateFeeds();
-  void runUserFilter(int feedId, int filterId);
-  DBMemFileThread *dbMemFileThread();
+  void runUserFilter(int feedId, int filterId);;
   DownloadManager *downloadManager();
 
   void c2fLoadSettings();
@@ -121,7 +119,6 @@ private:
   NetworkManager *networkManager_;
   CookieJar *cookieJar_;
   QNetworkDiskCache *diskCache_;
-  DBMemFileThread *dbMemFileThread_;
   UpdateFeeds *updateFeeds_;
   DownloadManager *downloadManager_;
 

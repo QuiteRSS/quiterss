@@ -36,7 +36,6 @@ MainApplication::MainApplication(int &argc, char **argv)
   , networkManager_(0)
   , cookieJar_(0)
   , diskCache_(0)
-  , dbMemFileThread_(0)
   , downloadManager_(0)
 {
   QString message = arguments().value(1);
@@ -230,10 +229,6 @@ void MainApplication::connectDatabase()
   }
 
   Database::initialization();
-  if (storeDBMemory_) {
-    dbMemFileThread_ = new DBMemFileThread(this);
-    dbMemFileThread_->startSaveTimer();
-  }
 }
 
 void MainApplication::loadSettings()
@@ -494,11 +489,6 @@ void MainApplication::c2fSetWhitelist(QStringList whitelist)
 void MainApplication::c2fAddWhitelist(const QString &site)
 {
   c2fWhitelist_.append(site);
-}
-
-DBMemFileThread *MainApplication::dbMemFileThread()
-{
-  return dbMemFileThread_;
 }
 
 DownloadManager *MainApplication::downloadManager()

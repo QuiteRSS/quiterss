@@ -151,6 +151,7 @@ void MainWindow::quitApp()
 {
   mainApp->setClosing();
   isMinimizeToTray_ = true;
+  disconnect(this);
 
   QWidget *widget = new QWidget(0, Qt::Tool | Qt::WindowTitleHint | Qt::WindowStaysOnTopHint);
   widget->setFocusPolicy(Qt::NoFocus);
@@ -168,15 +169,13 @@ void MainWindow::quitApp()
   saveSettings();
 
   mainApp->networkManager()->disconnect(mainApp->networkManager());
-  delete mainApp->updateFeeds();
+  mainApp->updateFeeds()->disconnectObjects();
   delete mainApp->downloadManager();
 
   cleanUpShutdown();
 
-  if (mainApp->storeDBMemory()) {
-    mainApp->dbMemFileThread()->startSaveMemoryDB(QThread::NormalPriority);
-    mainApp->dbMemFileThread()->deleteLater();
-  }
+  mainApp->updateFeeds()->saveMemoryDatabase();
+  delete mainApp->updateFeeds();
 
   QTimer::singleShot(0, mainApp, SLOT(quitApplication()));
 }
@@ -317,8 +316,7 @@ void MainWindow::slotPlaceToTray()
 
   saveSettings();
 
-  if (mainApp->storeDBMemory())
-    mainApp->dbMemFileThread()->startSaveMemoryDB();
+  mainApp->updateFeeds()->saveMemoryDatabase();
 
   isMinimizeToTray_ = false;
 }
@@ -3490,8 +3488,7 @@ void MainWindow::showOptionDlg(int index)
   if (saveDBMemFileInterval != optionsDialog_->saveDBMemFileInterval_->value()) {
     saveDBMemFileInterval = optionsDialog_->saveDBMemFileInterval_->value();
     settings.setValue("Settings/saveDBMemFileInterval", saveDBMemFileInterval);
-    if (mainApp->storeDBMemory())
-      mainApp->dbMemFileThread()->startSaveTimer();
+    mainApp->updateFeeds()->startSaveTimer();
   }
 
   showTrayIcon_ = optionsDialog_->showTrayIconBox_->isChecked();

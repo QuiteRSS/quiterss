@@ -35,6 +35,7 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool addFeed)
   , updateFeedThread_(NULL)
   , getFaviconThread_(NULL)
   , addFeed_(addFeed)
+  , saveMemoryDBTimer_(NULL)
 {
   getFeedThread_ = new QThread();
   getFeedThread_->setObjectName("getFeedThread_");
@@ -175,6 +176,8 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool addFeed)
     faviconObject_->moveToThread(getFaviconThread_);
 
     getFaviconThread_->start(QThread::LowPriority);
+
+    startSaveTimer();
   }
 
   connect(requestFeed_, SIGNAL(authenticationRequired(QNetworkReply*,QAuthenticator*)),
@@ -214,9 +217,40 @@ UpdateFeeds::~UpdateFeeds()
   }
 }
 
+void UpdateFeeds::disconnectObjects()
+{
+  updateObject_->disconnect(updateObject_);
+  requestFeed_->disconnect(requestFeed_);
+  parseObject_->disconnect(parseObject_);
+  faviconObject_->disconnect(faviconObject_);
+}
+
+void UpdateFeeds::startSaveTimer()
+{
+  if (!mainApp->storeDBMemory()) return;
+
+  if (!saveMemoryDBTimer_) {
+    saveMemoryDBTimer_ = new QTimer(this);
+    connect(saveMemoryDBTimer_, SIGNAL(timeout()), this, SLOT(saveMemoryDatabase()));
+  }
+
+  Settings settings;
+  int saveInterval = settings.value("Settings/saveDBMemFileInterval", 30).toInt();
+  saveMemoryDBTimer_->start(saveInterval*60*1000);
+}
+
+void UpdateFeeds::saveMemoryDatabase()
+{
+  if (!mainApp->storeDBMemory()) return;
+  if (updateObject_->isSaveMemoryDatabase) return;
+
+  QTimer::singleShot(0, updateObject_, SLOT(saveMemoryDatabase()));
+}
+
 //------------------------------------------------------------------------------
 UpdateObject::UpdateObject(QObject *parent)
   : QObject(parent)
+  , isSaveMemoryDatabase(false)
   , updateFeedsCount_(0)
 {
   setObjectName("updateObject_");
@@ -1082,4 +1116,11 @@ void UpdateObject::slotRefreshInfoTray()
   }
 
   emit signalRefreshInfoTray(newCount, unreadCount);
+}
+
+void UpdateObject::saveMemoryDatabase()
+{
+  isSaveMemoryDatabase = true;
+  Database::saveMemoryDatabase();
+  isSaveMemoryDatabase = false;
 }

@@ -127,7 +127,6 @@ HEADERS += \
     src/webview/webpage.h \
     src/webview/webview.h \
     src/database/database.h \
-    src/database/dbmemfilethread.h \
     src/common/common.h \
     src/common/delegatewithoutfocus.h \
     src/common/dialog.h \
@@ -191,7 +190,6 @@ SOURCES += \
     src/webview/webpage.cpp \
     src/webview/webview.cpp \
     src/database/database.cpp \
-    src/database/dbmemfilethread.cpp \
     src/common/common.cpp \
     src/common/delegatewithoutfocus.cpp \
     src/common/dialog.cpp \

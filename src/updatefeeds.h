@@ -36,6 +36,9 @@ public:
   explicit UpdateFeeds(QObject *parent, bool addFeed = false);
   ~UpdateFeeds();
 
+  void disconnectObjects();
+  void startSaveTimer();
+
   UpdateObject *updateObject_;
   RequestFeed *requestFeed_;
   ParseObject *parseObject_;
@@ -44,8 +47,12 @@ public:
   QThread *updateFeedThread_;
   QThread *getFaviconThread_;
 
+public slots:
+  void saveMemoryDatabase();
+
 private:
   bool addFeed_;
+  QTimer *saveMemoryDBTimer_;
 
 };
 
@@ -57,6 +64,8 @@ public:
 
   static QList<int> getIdFeedsInList(int idFolder);
   static QString getIdFeedsString(int idFolder, int idException = -1);
+
+  bool isSaveMemoryDatabase;
 
 public slots:
   void slotGetFeedTimer(int feedId);
@@ -80,6 +89,7 @@ public slots:
   void slotSqlQueryExec(QString query);
   void slotMarkAllFeedsOld();
   void slotRefreshInfoTray();
+  void saveMemoryDatabase();
 
 signals:
   void showProgressBar(int value);

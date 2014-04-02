@@ -438,7 +438,7 @@ void Database::saveMemoryDatabase()
                   << "q.lastError(): " << q.lastError().text();
     }
 
-    okQuery = q.exec(QString("INSERT INTO storage.%1 SELECT * FROM main.%1;").arg(table));
+    okQuery = q.exec(QString("INSERT OR REPLACE INTO storage.%1 SELECT * FROM main.%1;").arg(table));
     if (!okQuery) {
       qCritical() << __PRETTY_FUNCTION__ << __LINE__
                   << "q.lastError(): " << q.lastError().text();
