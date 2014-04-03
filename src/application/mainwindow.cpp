@@ -4492,6 +4492,8 @@ void MainWindow::retranslateStrings()
       QString(tr("Unread News: %1")).arg(str.section(": ", 2));
   traySystem->setToolTip(info);
 
+  mainMenuButton_->setToolTip(tr("Menu"));
+
   addAct_->setText(tr("&Add"));
   addAct_->setToolTip(tr("Add New Feed"));
 
