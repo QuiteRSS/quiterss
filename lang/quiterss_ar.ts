@@ -31,32 +31,32 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="126"/>
         <source>Application directory:</source>
-        <translation type="unfinished"/>
+        <translation>وجهة التطبيق:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="129"/>
         <source>Resource directory:</source>
-        <translation type="unfinished"/>
+        <translation>وجهة المصدر:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="132"/>
         <source>Data directory:</source>
-        <translation type="unfinished"/>
+        <translation>وجهة البيانات:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="135"/>
         <source>Database file:</source>
-        <translation type="unfinished"/>
+        <translation>ملف قاعدة البيانات:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="138"/>
         <source>Settings file:</source>
-        <translation type="unfinished"/>
+        <translation>ملف الاعدادات:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="141"/>
         <source>Log file:</source>
-        <translation type="unfinished"/>
+        <translation>ملف السجل:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="156"/>
@@ -76,7 +76,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="159"/>
         <source>Information</source>
-        <translation type="unfinished"/>
+        <translation>معلومات</translation>
     </message>
 </context>
 <context>
@@ -84,7 +84,7 @@
     <message>
         <location filename="../src/adblock/adblockaddsubscriptiondialog.ui" line="14"/>
         <source>Add Subscription</source>
-        <translation type="unfinished"/>
+        <translation>اضافة اشتراك</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockaddsubscriptiondialog.ui" line="23"/>
@@ -94,12 +94,12 @@
     <message>
         <location filename="../src/adblock/adblockaddsubscriptiondialog.ui" line="33"/>
         <source>Address:</source>
-        <translation type="unfinished"/>
+        <translation>العنوان:</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockaddsubscriptiondialog.ui" line="53"/>
         <source>Add new subscription to AdBlock:</source>
-        <translation type="unfinished"/>
+        <translation>اضافة اشتراك جديد ل ادبلوك:</translation>
     </message>
 </context>
 <context>
@@ -107,7 +107,7 @@
     <message>
         <location filename="../src/adblock/adblocksubscription.cpp" line="484"/>
         <source>Custom Rules</source>
-        <translation type="unfinished"/>
+        <translation>قواعد محددة</translation>
     </message>
 </context>
 <context>
@@ -115,17 +115,17 @@
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="14"/>
         <source>AdBlock Configuration</source>
-        <translation type="unfinished"/>
+        <translation>اعدادات ادبلوك</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="20"/>
         <source>Enable AdBlock</source>
-        <translation type="unfinished"/>
+        <translation>تفعيل ادبلوك</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="32"/>
         <source>Search...</source>
-        <translation type="unfinished"/>
+        <translation>بحث...</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="68"/>
@@ -135,42 +135,42 @@
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="98"/>
         <source>AdBlock</source>
-        <translation type="unfinished"/>
+        <translation>ادبلوك</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="122"/>
         <source>Use only essential part of EasyList (for performance reasons)</source>
-        <translation type="unfinished"/>
+        <translation>استخدم الاجزاء الاساسية فقط من ايزيلست (لاغراض الاداء)</translation>
     </message>
     <message>
-        <location filename="../src/adblock/adblockdialog.cpp" line="70"/>
+        <location filename="../src/adblock/adblockdialog.cpp" line="72"/>
         <source>Add Rule</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/adblock/adblockdialog.cpp" line="71"/>
-        <source>Remove Rule</source>
-        <translation type="unfinished"/>
+        <translation>اضافة قاعدة</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="73"/>
-        <source>Add Subscription</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/adblock/adblockdialog.cpp" line="74"/>
-        <source>Remove Subscription</source>
-        <translation type="unfinished"/>
+        <source>Remove Rule</source>
+        <translation>حذف قاعدة</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="75"/>
-        <source>Update Subscriptions</source>
-        <translation type="unfinished"/>
+        <source>Add Subscription</source>
+        <translation>اضافة اشتراك</translation>
+    </message>
+    <message>
+        <location filename="../src/adblock/adblockdialog.cpp" line="76"/>
+        <source>Remove Subscription</source>
+        <translation>حذف اشتراك</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="77"/>
+        <source>Update Subscriptions</source>
+        <translation>تحديث الاشتراكات</translation>
+    </message>
+    <message>
+        <location filename="../src/adblock/adblockdialog.cpp" line="79"/>
         <source>Learn about writing rules...</source>
-        <translation type="unfinished"/>
+        <translation>تعلم حول كتابة القواعد...</translation>
     </message>
 </context>
 <context>
@@ -178,48 +178,48 @@
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="61"/>
         <source>AdBlock lets you block unwanted content on web pages</source>
-        <translation type="unfinished"/>
+        <translation>يسمح لك ادبلوك بايقاف المحتوى غير المرغوب به على صفحات الويب</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="102"/>
         <source>AdBlock</source>
-        <translation type="unfinished"/>
+        <translation>ادبلوك</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="129"/>
         <source>Show AdBlock &amp;Settings</source>
-        <translation type="unfinished"/>
+        <translation>اظهار اعدادات &amp;ادبلوك</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="137"/>
         <source>Disable on %1</source>
-        <translation type="unfinished"/>
+        <translation>الغاء تفعيل في %1</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="143"/>
         <source>Disable only on this page</source>
-        <translation type="unfinished"/>
+        <translation>الغاء التفعيل فقط في هذة الصفحة</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="153"/>
         <source>Blocked Popup Windows</source>
-        <translation type="unfinished"/>
+        <translation>حجب النوافذ المنبثقة</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="158"/>
         <location filename="../src/adblock/adblockicon.cpp" line="175"/>
         <source>%1 with (%2)</source>
-        <translation type="unfinished"/>
+        <translation>%1 مع (%2)</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="169"/>
         <source>No content blocked</source>
-        <translation type="unfinished"/>
+        <translation>لم يتم حجب محتويات</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="172"/>
         <source>Blocked URL (AdBlock Rule) - click to edit rule</source>
-        <translation type="unfinished"/>
+        <translation>عنوان محجوب (قاعدة ادبلوك) - انقر لتحرير القاعدة</translation>
     </message>
 </context>
 <context>
@@ -227,7 +227,7 @@
     <message>
         <location filename="../src/adblock/adblockmanager.cpp" line="277"/>
         <source>EasyList</source>
-        <translation type="unfinished"/>
+        <translation>ايزي لست</translation>
     </message>
 </context>
 <context>
@@ -235,7 +235,7 @@
     <message>
         <location filename="../src/adblock/adblocksubscription.cpp" line="190"/>
         <source>Cannot load subscription!</source>
-        <translation type="unfinished"/>
+        <translation>لا يمكن تحميل الاشتراك!</translation>
     </message>
 </context>
 <context>
@@ -243,116 +243,116 @@
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="97"/>
         <source>Add Rule</source>
-        <translation type="unfinished"/>
+        <translation>اضافة قاعدة</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="99"/>
         <source>Remove Rule</source>
-        <translation type="unfinished"/>
+        <translation>حذف قاعدة</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="160"/>
         <source>Add Custom Rule</source>
-        <translation type="unfinished"/>
+        <translation>اضافة قاعدة معدلة</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="160"/>
         <source>Please write your rule here:</source>
-        <translation type="unfinished"/>
+        <translation>الرجاء كتابة قواعدك هنا:</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="198"/>
         <source>%1 (recently updated)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (تم تحديثة مؤخرا)</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="207"/>
         <source>%1 (Error: %2)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (خطاء: %2 )</translation>
     </message>
 </context>
 <context>
     <name>AddFeedWizard</name>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="34"/>
+        <location filename="../src/addfeedwizard.cpp" line="35"/>
         <source>Add Feed</source>
         <translation>اضافة حقل</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="97"/>
-        <location filename="../src/addfeedwizard.cpp" line="171"/>
+        <location filename="../src/addfeedwizard.cpp" line="98"/>
+        <location filename="../src/addfeedwizard.cpp" line="172"/>
         <source>Create New Feed</source>
         <translation>انشاء حقل جديد</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="106"/>
+        <location filename="../src/addfeedwizard.cpp" line="107"/>
         <source>Use title of the feed as displayed name</source>
         <translation>استخدم عنوان الحقل كما الاسم المعروض</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="110"/>
+        <location filename="../src/addfeedwizard.cpp" line="111"/>
         <source>Server requires authentication:</source>
         <translation>الخادم يحتاج الى مصادقة:</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="119"/>
+        <location filename="../src/addfeedwizard.cpp" line="120"/>
         <source>Username:</source>
         <translation>اسم المستخدم:</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="121"/>
+        <location filename="../src/addfeedwizard.cpp" line="122"/>
         <source>Password:</source>
         <translation>كلمة المرور:</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="150"/>
+        <location filename="../src/addfeedwizard.cpp" line="151"/>
         <source>Feed URL or website address:</source>
         <translation>حقل URL عنوان الموقع:</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="183"/>
+        <location filename="../src/addfeedwizard.cpp" line="184"/>
         <source>Feeds</source>
         <translation>الحقول</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="187"/>
+        <location filename="../src/addfeedwizard.cpp" line="188"/>
         <source>All Feeds</source>
         <translation>جميع الحقول</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="227"/>
+        <location filename="../src/addfeedwizard.cpp" line="228"/>
         <source>New Folder...</source>
         <translation>مجلد جديد...</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="242"/>
+        <location filename="../src/addfeedwizard.cpp" line="243"/>
         <source>Displayed name:</source>
         <translation>الاسم المعروض:</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="244"/>
+        <location filename="../src/addfeedwizard.cpp" line="245"/>
         <source>Location:</source>
         <translation>الموقع:</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="329"/>
+        <location filename="../src/addfeedwizard.cpp" line="330"/>
         <source>URL error!</source>
         <translation>URL خطاء!</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="343"/>
-        <location filename="../src/addfeedwizard.cpp" line="505"/>
+        <location filename="../src/addfeedwizard.cpp" line="344"/>
+        <location filename="../src/addfeedwizard.cpp" line="506"/>
         <source>Duplicate feed!</source>
         <translation>حقل مكرر!</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="507"/>
-        <location filename="../src/addfeedwizard.cpp" line="529"/>
+        <location filename="../src/addfeedwizard.cpp" line="508"/>
+        <location filename="../src/addfeedwizard.cpp" line="530"/>
         <source>Can&apos;t find feed URL!</source>
         <translation>لايمكن ايجاد الحقل URL!</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="548"/>
+        <location filename="../src/addfeedwizard.cpp" line="549"/>
         <source>Request failed!</source>
         <translation>فشل الطلب!</translation>
     </message>
@@ -644,120 +644,120 @@ Ancient news could reappear</source>
 <context>
     <name>DownloadItem</name>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="100"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="98"/>
         <source>Remaining time unavailable</source>
         <translation>الوقت المتبقي غير معروف</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="163"/>
-        <location filename="../src/downloads/downloaditem.cpp" line="190"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="161"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="188"/>
         <source>Error: Cannot write to file!</source>
         <translation>خطاء: لايمكن الكتابة على الملف!</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="230"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="228"/>
         <source>Error: </source>
         <translation>خطاء: </translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="264"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="262"/>
         <source>few seconds</source>
         <translation>ثوان معدودة</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="266"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="264"/>
         <source>seconds</source>
         <translation>ثواني</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="268"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="266"/>
         <source>minutes</source>
         <translation>دقائق</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="270"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="268"/>
         <source>hours</source>
         <translation>ساعات</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="241"/>
-        <location filename="../src/downloads/downloaditem.cpp" line="277"/>
-        <location filename="../src/downloads/downloaditem.cpp" line="321"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="239"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="275"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="319"/>
         <source>Unknown size</source>
         <translation>حجم غير معروف</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="294"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="292"/>
         <source>Unknown speed</source>
         <translation>سرعة غير معروفة</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="322"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="320"/>
         <source>%2 - unknown size (%3)</source>
         <translation>%2 - حجم غير معروف (%3)</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="324"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="322"/>
         <source>Remaining %1 - %2 of %3 (%4)</source>
         <translation>متبقي %1 - %2 من %3 (%4)</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="343"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="341"/>
         <source>Cancelled - %1</source>
         <translation>تم الالغاء - %1</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="354"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="352"/>
         <source>Delete file</source>
         <translation>حذف الملف</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="355"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="353"/>
         <source>Do you want to also delete dowloaded file?</source>
         <translation>هل تريد ايضا حذف الملفات المحمله؟</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="372"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="370"/>
         <source>Open File</source>
         <translation>فتح ملف</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="374"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="372"/>
         <source>Open Folder</source>
         <translation>فتح مجلد</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="376"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="374"/>
         <source>Copy Download Link</source>
         <translation>نسخ رابط التحميل</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="378"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="376"/>
         <source>Cancel Downloading</source>
         <translation>الغاء التحميل</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="379"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="377"/>
         <source>Remove</source>
         <translation>حذف</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="381"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="379"/>
         <source>Cancelled</source>
         <translation>تم الالغاء</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="381"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="379"/>
         <source>Error</source>
         <translation>خطاء</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="407"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="405"/>
         <source>Not found</source>
         <translation>غير موجود</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="408"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="406"/>
         <source>Sorry, the file 
  %1 
  was not found!</source>
@@ -1131,7 +1131,7 @@ Ancient news could reappear</source>
 <context>
     <name>FtpDownloader</name>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="473"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="471"/>
         <source>Canceled!</source>
         <translation>تم الالغاء</translation>
     </message>
@@ -1139,57 +1139,57 @@ Ancient news could reappear</source>
 <context>
     <name>ItemAction</name>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="146"/>
+        <location filename="../src/filterrulesdialog.h" line="147"/>
         <source>Mark News as Read</source>
         <translation>تعليم الخبر كـ مقروء</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="146"/>
+        <location filename="../src/filterrulesdialog.h" line="147"/>
         <source>Add Star</source>
         <translation>اضافة نجمة</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="147"/>
+        <location filename="../src/filterrulesdialog.h" line="148"/>
         <source>Delete</source>
         <translation>حذف</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="147"/>
+        <location filename="../src/filterrulesdialog.h" line="148"/>
         <source>Add Label</source>
         <translation>اضافة ملصق</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="148"/>
+        <location filename="../src/filterrulesdialog.h" line="149"/>
         <source>Play a Sound</source>
         <translation>تشغيل صوت</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="148"/>
+        <location filename="../src/filterrulesdialog.h" line="149"/>
         <source>Show News in Notifier</source>
         <translation>عرض الأخبار في التنبيهات</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="157"/>
+        <location filename="../src/filterrulesdialog.h" line="158"/>
         <source>Browse</source>
         <translation>استعراض</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="161"/>
+        <location filename="../src/filterrulesdialog.h" line="162"/>
         <source>Play</source>
         <translation>تشغيل</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="183"/>
+        <location filename="../src/filterrulesdialog.h" line="184"/>
         <source>Add Action</source>
         <translation>اضافة إجراء</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="187"/>
+        <location filename="../src/filterrulesdialog.h" line="188"/>
         <source>Delete Action</source>
         <translation>حذف إجراء</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="251"/>
+        <location filename="../src/filterrulesdialog.h" line="252"/>
         <source>Open File...</source>
         <translation>فتح ملف...</translation>
     </message>
@@ -1197,106 +1197,106 @@ Ancient news could reappear</source>
 <context>
     <name>ItemCondition</name>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="37"/>
-        <location filename="../src/filterrulesdialog.h" line="46"/>
-        <location filename="../src/filterrulesdialog.h" line="98"/>
+        <location filename="../src/filterrulesdialog.h" line="38"/>
+        <location filename="../src/filterrulesdialog.h" line="47"/>
+        <location filename="../src/filterrulesdialog.h" line="99"/>
         <source>Title</source>
         <translation>عنوان</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="37"/>
-        <location filename="../src/filterrulesdialog.h" line="103"/>
+        <location filename="../src/filterrulesdialog.h" line="38"/>
+        <location filename="../src/filterrulesdialog.h" line="104"/>
         <source>Description</source>
         <translation>وصف</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="38"/>
-        <location filename="../src/filterrulesdialog.h" line="106"/>
+        <location filename="../src/filterrulesdialog.h" line="39"/>
+        <location filename="../src/filterrulesdialog.h" line="107"/>
         <source>Author</source>
         <translation>مؤلف</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="38"/>
-        <location filename="../src/filterrulesdialog.h" line="110"/>
+        <location filename="../src/filterrulesdialog.h" line="39"/>
+        <location filename="../src/filterrulesdialog.h" line="111"/>
         <source>Category</source>
         <translation>تصنيف</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="38"/>
+        <location filename="../src/filterrulesdialog.h" line="39"/>
         <source>State</source>
         <translation>حالة</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="43"/>
+        <location filename="../src/filterrulesdialog.h" line="44"/>
         <source>New</source>
         <translation>جديد</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="43"/>
+        <location filename="../src/filterrulesdialog.h" line="44"/>
         <source>Read</source>
         <translation>مقروء</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="43"/>
+        <location filename="../src/filterrulesdialog.h" line="44"/>
         <source>Starred</source>
         <translation>معلم بنجمة</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="50"/>
+        <location filename="../src/filterrulesdialog.h" line="51"/>
         <source>Add Condition</source>
         <translation>اضافة شرط</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="54"/>
+        <location filename="../src/filterrulesdialog.h" line="55"/>
         <source>Delete Condition</source>
         <translation>حذف شرط</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="99"/>
-        <location filename="../src/filterrulesdialog.h" line="104"/>
-        <location filename="../src/filterrulesdialog.h" line="107"/>
-        <location filename="../src/filterrulesdialog.h" line="111"/>
+        <location filename="../src/filterrulesdialog.h" line="100"/>
+        <location filename="../src/filterrulesdialog.h" line="105"/>
+        <location filename="../src/filterrulesdialog.h" line="108"/>
+        <location filename="../src/filterrulesdialog.h" line="112"/>
         <source>contains</source>
         <translation>يحتوي</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="99"/>
-        <location filename="../src/filterrulesdialog.h" line="104"/>
-        <location filename="../src/filterrulesdialog.h" line="107"/>
-        <location filename="../src/filterrulesdialog.h" line="111"/>
+        <location filename="../src/filterrulesdialog.h" line="100"/>
+        <location filename="../src/filterrulesdialog.h" line="105"/>
+        <location filename="../src/filterrulesdialog.h" line="108"/>
+        <location filename="../src/filterrulesdialog.h" line="112"/>
         <source>doesn&apos;t contains</source>
         <translation>لا يحتوي</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="100"/>
-        <location filename="../src/filterrulesdialog.h" line="108"/>
-        <location filename="../src/filterrulesdialog.h" line="112"/>
-        <location filename="../src/filterrulesdialog.h" line="116"/>
+        <location filename="../src/filterrulesdialog.h" line="101"/>
+        <location filename="../src/filterrulesdialog.h" line="109"/>
+        <location filename="../src/filterrulesdialog.h" line="113"/>
+        <location filename="../src/filterrulesdialog.h" line="117"/>
         <source>is</source>
         <translation>هو</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="100"/>
-        <location filename="../src/filterrulesdialog.h" line="108"/>
-        <location filename="../src/filterrulesdialog.h" line="112"/>
-        <location filename="../src/filterrulesdialog.h" line="116"/>
+        <location filename="../src/filterrulesdialog.h" line="101"/>
+        <location filename="../src/filterrulesdialog.h" line="109"/>
+        <location filename="../src/filterrulesdialog.h" line="113"/>
+        <location filename="../src/filterrulesdialog.h" line="117"/>
         <source>isn&apos;t</source>
         <translation>غير</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="101"/>
-        <location filename="../src/filterrulesdialog.h" line="113"/>
+        <location filename="../src/filterrulesdialog.h" line="102"/>
+        <location filename="../src/filterrulesdialog.h" line="114"/>
         <source>begins with</source>
         <translation>البدء بي</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="101"/>
-        <location filename="../src/filterrulesdialog.h" line="113"/>
+        <location filename="../src/filterrulesdialog.h" line="102"/>
+        <location filename="../src/filterrulesdialog.h" line="114"/>
         <source>ends with</source>
         <translation>الانتهاء بي</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="115"/>
+        <location filename="../src/filterrulesdialog.h" line="116"/>
         <source>Status</source>
         <translation>الحالة</translation>
     </message>
@@ -1364,1021 +1364,1026 @@ Ancient news could reappear</source>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="1713"/>
+        <location filename="../src/application/mainwindow.cpp" line="1721"/>
         <source>&amp;AdBlock</source>
-        <translation type="unfinished"/>
+        <translation>&amp;ادبلوك</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="2111"/>
-        <location filename="../src/app/mainwindow.cpp" line="4676"/>
-        <location filename="../src/app/mainwindow.cpp" line="6949"/>
-        <location filename="../src/app/mainwindow.cpp" line="6971"/>
+        <location filename="../src/application/mainwindow.cpp" line="2130"/>
+        <location filename="../src/application/mainwindow.cpp" line="4696"/>
+        <location filename="../src/application/mainwindow.cpp" line="6974"/>
+        <location filename="../src/application/mainwindow.cpp" line="6996"/>
         <source>Hide Categories</source>
         <translation>اخفاء التصنيفات</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="2115"/>
-        <location filename="../src/app/mainwindow.cpp" line="4674"/>
-        <location filename="../src/app/mainwindow.cpp" line="6955"/>
+        <location filename="../src/application/mainwindow.cpp" line="2134"/>
+        <location filename="../src/application/mainwindow.cpp" line="4694"/>
+        <location filename="../src/application/mainwindow.cpp" line="6980"/>
         <source>Show Categories</source>
         <translation>اظهار التصنيفات</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="2458"/>
+        <location filename="../src/application/mainwindow.cpp" line="2477"/>
         <source>Delete Folder</source>
         <translation>حذف مجلد</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="2459"/>
+        <location filename="../src/application/mainwindow.cpp" line="2478"/>
         <source>Are you sure to delete the folder &apos;%1&apos;?</source>
         <translation>هل انت متاكد من حذف المجلد &apos;%1&apos;؟</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="2462"/>
+        <location filename="../src/application/mainwindow.cpp" line="2481"/>
         <source>Delete Feed</source>
         <translation>حذف حقل</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="2463"/>
+        <location filename="../src/application/mainwindow.cpp" line="2482"/>
         <source>Are you sure to delete the feed &apos;%1&apos;?</source>
         <translation>هل انت متاكد من حذف الحقل&apos;%1&apos;؟</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="2536"/>
-        <location filename="../src/app/mainwindow.cpp" line="2565"/>
+        <location filename="../src/application/mainwindow.cpp" line="2555"/>
+        <location filename="../src/application/mainwindow.cpp" line="2584"/>
         <source>Select OPML-File</source>
         <translation>اختر OPML-ملف</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="2538"/>
+        <location filename="../src/application/mainwindow.cpp" line="2557"/>
         <source>OPML-Files (*.%1 *.%2)</source>
         <translation>ملفات-OPML (*.1% *.2%(</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="2542"/>
+        <location filename="../src/application/mainwindow.cpp" line="2561"/>
         <source>Import canceled</source>
         <translation>الغاء الاستيراد</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="2550"/>
+        <location filename="../src/application/mainwindow.cpp" line="2569"/>
         <source>Import: can&apos;t open a file</source>
         <translation>استيراد: لا يمكن فتح الملف</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="2567"/>
+        <location filename="../src/application/mainwindow.cpp" line="2586"/>
         <source>OPML-Files (*.%1)</source>
         <translation>OPML-ملفات </translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="2571"/>
+        <location filename="../src/application/mainwindow.cpp" line="2590"/>
         <source>Export canceled</source>
         <translation>تم الغاء التصدير</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="2577"/>
+        <location filename="../src/application/mainwindow.cpp" line="2596"/>
         <source>Export: can&apos;t open a file</source>
         <translation>تصدير: لا يمكن فتح الملف</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="2828"/>
-        <location filename="../src/app/mainwindow.cpp" line="3879"/>
-        <location filename="../src/app/mainwindow.cpp" line="4464"/>
-        <location filename="../src/app/mainwindow.cpp" line="5842"/>
-        <location filename="../src/app/mainwindow.cpp" line="6920"/>
+        <location filename="../src/application/mainwindow.cpp" line="2847"/>
+        <location filename="../src/application/mainwindow.cpp" line="3897"/>
+        <location filename="../src/application/mainwindow.cpp" line="4482"/>
+        <location filename="../src/application/mainwindow.cpp" line="5867"/>
+        <location filename="../src/application/mainwindow.cpp" line="6945"/>
         <source>Unread: %1</source>
         <translation>غير مقروء: %1</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="2829"/>
-        <location filename="../src/app/mainwindow.cpp" line="3880"/>
-        <location filename="../src/app/mainwindow.cpp" line="4467"/>
-        <location filename="../src/app/mainwindow.cpp" line="5843"/>
-        <location filename="../src/app/mainwindow.cpp" line="6921"/>
+        <location filename="../src/application/mainwindow.cpp" line="2848"/>
+        <location filename="../src/application/mainwindow.cpp" line="3898"/>
+        <location filename="../src/application/mainwindow.cpp" line="4485"/>
+        <location filename="../src/application/mainwindow.cpp" line="5868"/>
+        <location filename="../src/application/mainwindow.cpp" line="6946"/>
         <source>All: %1</source>
         <translation>الجميع: %1</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="3352"/>
-        <location filename="../src/app/mainwindow.cpp" line="3357"/>
-        <location filename="../src/app/mainwindow.cpp" line="3362"/>
+        <location filename="../src/application/mainwindow.cpp" line="3371"/>
+        <location filename="../src/application/mainwindow.cpp" line="3376"/>
+        <location filename="../src/application/mainwindow.cpp" line="3381"/>
         <source>(Browser)</source>
-        <translation type="unfinished"/>
+        <translation>(متصفح)</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4472"/>
-        <location filename="../src/app/mainwindow.cpp" line="5289"/>
+        <location filename="../src/application/mainwindow.cpp" line="4490"/>
+        <location filename="../src/application/mainwindow.cpp" line="5309"/>
         <source>New News: %1</source>
         <translation>اخبار جديدة: %1</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4474"/>
-        <location filename="../src/app/mainwindow.cpp" line="5291"/>
+        <location filename="../src/application/mainwindow.cpp" line="4492"/>
+        <location filename="../src/application/mainwindow.cpp" line="5311"/>
         <source>Unread News: %1</source>
         <translation>اخبار غير مقروئة: %1</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4477"/>
+        <location filename="../src/application/mainwindow.cpp" line="4497"/>
         <source>&amp;Add</source>
         <translation>&amp;اضافة</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4478"/>
-        <location filename="../src/app/mainwindow.cpp" line="4481"/>
+        <location filename="../src/application/mainwindow.cpp" line="4498"/>
+        <location filename="../src/application/mainwindow.cpp" line="4501"/>
         <source>Add New Feed</source>
         <translation>اضافة حقل جديد</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4480"/>
+        <location filename="../src/application/mainwindow.cpp" line="4500"/>
         <source>&amp;Feed...</source>
         <translation>&amp;حقل...</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4483"/>
+        <location filename="../src/application/mainwindow.cpp" line="4503"/>
         <source>F&amp;older...</source>
         <translation>&amp;مجلد...</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4484"/>
+        <location filename="../src/application/mainwindow.cpp" line="4504"/>
         <source>Add New Folder</source>
         <translation>اضافة مجلد جديد</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4486"/>
-        <location filename="../src/app/mainwindow.cpp" line="4553"/>
+        <location filename="../src/application/mainwindow.cpp" line="4506"/>
+        <location filename="../src/application/mainwindow.cpp" line="4573"/>
         <source>Open in New Tab</source>
         <translation>فتح في تبويب جديد</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4488"/>
+        <location filename="../src/application/mainwindow.cpp" line="4508"/>
         <source>&amp;Delete...</source>
         <translation>&amp;حذف...</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4489"/>
+        <location filename="../src/application/mainwindow.cpp" line="4509"/>
         <source>Delete Selected Feed</source>
         <translation>حذف الحقل المحدد</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4491"/>
+        <location filename="../src/application/mainwindow.cpp" line="4511"/>
         <source>&amp;Import Feeds...</source>
         <translation>&amp;استيراد حقول...</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4492"/>
+        <location filename="../src/application/mainwindow.cpp" line="4512"/>
         <source>Import Feeds from OPML File</source>
         <translation>استيراد حقول من ملف OPML</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4494"/>
+        <location filename="../src/application/mainwindow.cpp" line="4514"/>
         <source>&amp;Export Feeds...</source>
         <translation>&amp;تصدير حقول...</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4495"/>
+        <location filename="../src/application/mainwindow.cpp" line="4515"/>
         <source>Export Feeds to OPML File</source>
         <translation>تصدير حقول الى ملف OPML</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4499"/>
+        <location filename="../src/application/mainwindow.cpp" line="4519"/>
         <source>E&amp;xit</source>
         <translation>اغلاق</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4501"/>
+        <location filename="../src/application/mainwindow.cpp" line="4521"/>
         <source>Update Feed</source>
         <translation>تحديث الحقول</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4502"/>
+        <location filename="../src/application/mainwindow.cpp" line="4522"/>
         <source>Update Current Feed</source>
         <translation>تحديث الحقل الحالي</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4504"/>
+        <location filename="../src/application/mainwindow.cpp" line="4524"/>
         <source>Update All</source>
         <translation>تحديث الكل</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4505"/>
+        <location filename="../src/application/mainwindow.cpp" line="4525"/>
         <source>Update All Feeds</source>
         <translation>تحديث جميع الحقول</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4507"/>
+        <location filename="../src/application/mainwindow.cpp" line="4527"/>
         <source>Mark All Feeds Read</source>
         <translation>تعليم جميع الحقول كـ مقروء</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4509"/>
+        <location filename="../src/application/mainwindow.cpp" line="4529"/>
         <source>Mark Read/Unread</source>
-        <translation type="unfinished"/>
+        <translation>وضع علامة مقروء /غير مقروء</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4510"/>
+        <location filename="../src/application/mainwindow.cpp" line="4530"/>
         <source>Mark Current News Read/Unread</source>
         <translation>تعليم الخبر الحالي كـ مقروء/غير مفروء</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4512"/>
-        <location filename="../src/app/mainwindow.cpp" line="4513"/>
+        <location filename="../src/application/mainwindow.cpp" line="4532"/>
+        <location filename="../src/application/mainwindow.cpp" line="4533"/>
         <source>Mark All News Read</source>
         <translation>تعليم جميع الاخبار كـ مقروء</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4515"/>
-        <location filename="../src/app/mainwindow.cpp" line="7524"/>
-        <location filename="../src/app/mainwindow.cpp" line="7530"/>
-        <location filename="../src/app/mainwindow.cpp" line="7540"/>
+        <location filename="../src/application/mainwindow.cpp" line="4535"/>
+        <location filename="../src/application/mainwindow.cpp" line="7549"/>
+        <location filename="../src/application/mainwindow.cpp" line="7555"/>
+        <location filename="../src/application/mainwindow.cpp" line="7565"/>
         <source>Downloads</source>
-        <translation type="unfinished"/>
+        <translation>التنزيلات</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4517"/>
+        <location filename="../src/application/mainwindow.cpp" line="4537"/>
         <source>Clean Up...</source>
         <translation>تنظيف</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4519"/>
+        <location filename="../src/application/mainwindow.cpp" line="4539"/>
         <source>News Filters...</source>
         <translation>مرشحات الاخبار...</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4520"/>
+        <location filename="../src/application/mainwindow.cpp" line="4540"/>
         <source>Filter News...</source>
         <translation>الاخبار المرشحة...</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4522"/>
+        <location filename="../src/application/mainwindow.cpp" line="4542"/>
         <source>Options...</source>
         <translation>خيارات...</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4523"/>
+        <location filename="../src/application/mainwindow.cpp" line="4543"/>
         <source>Open Options Dialog</source>
         <translation>فتح خصائص مربع الحوار</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4525"/>
+        <location filename="../src/application/mainwindow.cpp" line="4545"/>
         <source>Filter Feeds</source>
         <translation>مرشح الحقول</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4526"/>
-        <location filename="../src/app/mainwindow.cpp" line="4533"/>
+        <location filename="../src/application/mainwindow.cpp" line="4546"/>
+        <location filename="../src/application/mainwindow.cpp" line="4553"/>
         <source>Show All</source>
         <translation>عرض الكل</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4527"/>
-        <location filename="../src/app/mainwindow.cpp" line="4534"/>
+        <location filename="../src/application/mainwindow.cpp" line="4547"/>
+        <location filename="../src/application/mainwindow.cpp" line="4554"/>
         <source>Show New</source>
         <translation>عرض الجديد</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4528"/>
-        <location filename="../src/app/mainwindow.cpp" line="4535"/>
+        <location filename="../src/application/mainwindow.cpp" line="4548"/>
+        <location filename="../src/application/mainwindow.cpp" line="4555"/>
         <source>Show Unread</source>
         <translation>عرض الغير مقروء</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4529"/>
+        <location filename="../src/application/mainwindow.cpp" line="4549"/>
         <source>Show Starred Feeds</source>
         <translation>اظهار الحقول المعلمة بنجمة</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4530"/>
+        <location filename="../src/application/mainwindow.cpp" line="4550"/>
         <source>Show Not Working Feeds</source>
         <translation>اظهار الحقول اللتي لا تعمل</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4532"/>
+        <location filename="../src/application/mainwindow.cpp" line="4552"/>
         <source>Filter News</source>
         <translation>مرشح الاخبار</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4536"/>
+        <location filename="../src/application/mainwindow.cpp" line="4556"/>
         <source>Show Starred</source>
         <translation>اظهار المعلم بنجمة</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4537"/>
+        <location filename="../src/application/mainwindow.cpp" line="4557"/>
         <source>Show Not Starred</source>
         <translation>اظهار غير المعلم بنجمة</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4538"/>
+        <location filename="../src/application/mainwindow.cpp" line="4558"/>
         <source>Show Unread or Starred</source>
         <translation>اظهار غير المقروء او المعلم بنجمة</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4539"/>
+        <location filename="../src/application/mainwindow.cpp" line="4559"/>
         <source>Show Last Day</source>
         <translation>اظهار اخر يوم</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4540"/>
+        <location filename="../src/application/mainwindow.cpp" line="4560"/>
         <source>Show Last 7 Days</source>
         <translation>اظهار اخر 7 ايام</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4542"/>
+        <location filename="../src/application/mainwindow.cpp" line="4562"/>
         <source>About...</source>
         <translation>حول...</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4543"/>
+        <location filename="../src/application/mainwindow.cpp" line="4563"/>
         <source>Show &apos;About&apos; Dialog</source>
         <translation>اظهار مربع حوار &apos;حول&apos;</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4545"/>
+        <location filename="../src/application/mainwindow.cpp" line="4565"/>
         <source>Check for Updates...</source>
         <translation>البحث عن التحديثات...</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4546"/>
+        <location filename="../src/application/mainwindow.cpp" line="4566"/>
         <source>Report a Problem...</source>
         <translation>الابلاغ عن مشكلة...</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4548"/>
+        <location filename="../src/application/mainwindow.cpp" line="4568"/>
         <source>Open News</source>
         <translation>فتح الاخبار</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4549"/>
+        <location filename="../src/application/mainwindow.cpp" line="4569"/>
         <source>Open Description News</source>
         <translation>فتح وصف الخبر</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4550"/>
+        <location filename="../src/application/mainwindow.cpp" line="4570"/>
         <source>Open in Browser</source>
         <translation>فتح في المتصفح</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4551"/>
+        <location filename="../src/application/mainwindow.cpp" line="4571"/>
         <source>Open in External Browser</source>
         <translation>فتح في المتصفح الخارجي</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4552"/>
+        <location filename="../src/application/mainwindow.cpp" line="4572"/>
         <source>Open News in External Browser</source>
         <translation>فتح الخبر في متصفح خارجي</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4554"/>
+        <location filename="../src/application/mainwindow.cpp" line="4574"/>
         <source>Open News in New Tab</source>
         <translation>فتح الخبر في تبويب جديد</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4555"/>
+        <location filename="../src/application/mainwindow.cpp" line="4575"/>
         <source>Open in Background Tab</source>
         <translation>فتح في تبويب في الخلفية</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4556"/>
+        <location filename="../src/application/mainwindow.cpp" line="4576"/>
         <source>Open News in Background Tab</source>
         <translation>فتح الخبر في تبويب في الخلفية</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4557"/>
+        <location filename="../src/application/mainwindow.cpp" line="4577"/>
         <source>Star</source>
-        <translation type="unfinished"/>
+        <translation>تعليم</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4558"/>
+        <location filename="../src/application/mainwindow.cpp" line="4578"/>
         <source>Mark News Star</source>
         <translation>تعليم الخبر بنجمة</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4559"/>
+        <location filename="../src/application/mainwindow.cpp" line="4579"/>
         <source>Delete</source>
         <translation>حذف</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4560"/>
+        <location filename="../src/application/mainwindow.cpp" line="4580"/>
         <source>Delete Selected News</source>
         <translation>حذف الاخبار المحددة</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4561"/>
+        <location filename="../src/application/mainwindow.cpp" line="4581"/>
         <source>Delete All News</source>
         <translation>حذف جميع الاخبار</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4562"/>
+        <location filename="../src/application/mainwindow.cpp" line="4582"/>
         <source>Delete All News from List</source>
         <translation>حذف جميع الاخبار من القائمة</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4563"/>
+        <location filename="../src/application/mainwindow.cpp" line="4583"/>
         <source>Restore</source>
         <translation>استعادة</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4564"/>
+        <location filename="../src/application/mainwindow.cpp" line="4584"/>
         <source>Restore News</source>
         <translation>استعادة الاخبار</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4565"/>
+        <location filename="../src/application/mainwindow.cpp" line="4585"/>
         <source>Copy Link</source>
-        <translation type="unfinished"/>
+        <translation>نسخ الرابط</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4566"/>
+        <location filename="../src/application/mainwindow.cpp" line="4586"/>
         <source>Copy Link News</source>
         <translation>نسخ رابط الخبر</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4568"/>
+        <location filename="../src/application/mainwindow.cpp" line="4588"/>
         <source>Restore last deleted news</source>
         <translation>استعادة اخر الاخبار المحذوفة</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4570"/>
+        <location filename="../src/application/mainwindow.cpp" line="4590"/>
         <source>Mark Read</source>
         <translation>وضع اشارة مقروء</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4571"/>
+        <location filename="../src/application/mainwindow.cpp" line="4591"/>
         <source>Mark Feed Read</source>
         <translation>تعليم الحقل كـ مقروء</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4572"/>
-        <location filename="../src/app/mainwindow.cpp" line="4573"/>
+        <location filename="../src/application/mainwindow.cpp" line="4592"/>
+        <location filename="../src/application/mainwindow.cpp" line="4593"/>
         <source>Properties</source>
         <translation>خصائص</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4575"/>
+        <location filename="../src/application/mainwindow.cpp" line="4595"/>
         <source>&amp;File</source>
         <translation>&amp;ملف</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="158"/>
+        <location filename="../src/application/mainwindow.cpp" line="159"/>
         <source>Saving data...</source>
+        <translation>خفظ البيانات...</translation>
+    </message>
+    <message>
+        <location filename="../src/application/mainwindow.cpp" line="4495"/>
+        <source>Menu</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4497"/>
+        <location filename="../src/application/mainwindow.cpp" line="4517"/>
         <source>S&amp;how Menu Bar</source>
-        <translation type="unfinished"/>
+        <translation>عرض شريط القائمة</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4576"/>
+        <location filename="../src/application/mainwindow.cpp" line="4596"/>
         <source>&amp;View</source>
         <translation>&amp;عرض</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4577"/>
+        <location filename="../src/application/mainwindow.cpp" line="4597"/>
         <source>Fee&amp;ds</source>
         <translation>حقول</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4578"/>
+        <location filename="../src/application/mainwindow.cpp" line="4598"/>
         <source>&amp;News</source>
         <translation>&amp;اخبار</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4579"/>
+        <location filename="../src/application/mainwindow.cpp" line="4599"/>
         <source>&amp;Browser</source>
         <translation>&amp;متصفح</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4580"/>
+        <location filename="../src/application/mainwindow.cpp" line="4600"/>
         <source>&amp;Tools</source>
         <translation>&amp;ادوات</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4581"/>
+        <location filename="../src/application/mainwindow.cpp" line="4601"/>
         <source>&amp;Help</source>
         <translation>&amp;مساعدة</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4583"/>
-        <location filename="../src/app/mainwindow.cpp" line="4660"/>
+        <location filename="../src/application/mainwindow.cpp" line="4603"/>
+        <location filename="../src/application/mainwindow.cpp" line="4680"/>
         <source>Main Toolbar</source>
         <translation>شريط الادوات الرئيسي</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4584"/>
+        <location filename="../src/application/mainwindow.cpp" line="4604"/>
         <source>Customize Toolbar</source>
         <translation>تخصيص شريط الادوات</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4585"/>
+        <location filename="../src/application/mainwindow.cpp" line="4605"/>
         <source>Main Toolbar...</source>
         <translation>شريط الادوات الرئيسي...</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4586"/>
+        <location filename="../src/application/mainwindow.cpp" line="4606"/>
         <source>Customize Toolbar...</source>
         <translation>تخصيص شريط الادوات...</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4587"/>
+        <location filename="../src/application/mainwindow.cpp" line="4607"/>
         <source>Feeds Toolbar...</source>
         <translation>شريط ادوات الحقول...</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4588"/>
+        <location filename="../src/application/mainwindow.cpp" line="4608"/>
         <source>News Toolbar...</source>
         <translation>شريط ادوات الاخبار...</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4590"/>
+        <location filename="../src/application/mainwindow.cpp" line="4610"/>
         <source>Lock Toolbar</source>
         <translation>اقفال شريط الادوات</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4591"/>
+        <location filename="../src/application/mainwindow.cpp" line="4611"/>
         <source>Hide Toolbar</source>
         <translation>اخفاء شريط الادوات</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4593"/>
+        <location filename="../src/application/mainwindow.cpp" line="4613"/>
         <source>Application Style</source>
         <translation>نمط التطبيق</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4594"/>
+        <location filename="../src/application/mainwindow.cpp" line="4614"/>
         <source>System</source>
         <translation>نظام</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4595"/>
+        <location filename="../src/application/mainwindow.cpp" line="4615"/>
         <source>System2</source>
         <translation>نظام2</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4596"/>
+        <location filename="../src/application/mainwindow.cpp" line="4616"/>
         <source>Green</source>
         <translation>اخضر</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4597"/>
+        <location filename="../src/application/mainwindow.cpp" line="4617"/>
         <source>Orange</source>
         <translation>برتقالي</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4598"/>
+        <location filename="../src/application/mainwindow.cpp" line="4618"/>
         <source>Purple</source>
         <translation>بنفسجي</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4599"/>
+        <location filename="../src/application/mainwindow.cpp" line="4619"/>
         <source>Pink</source>
         <translation>زهري</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4600"/>
+        <location filename="../src/application/mainwindow.cpp" line="4620"/>
         <source>Gray</source>
         <translation>رمادي</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4602"/>
+        <location filename="../src/application/mainwindow.cpp" line="4622"/>
         <source>Browser Position</source>
         <translation>موقع المتصفح</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4603"/>
+        <location filename="../src/application/mainwindow.cpp" line="4623"/>
         <source>Top</source>
         <translation>القمة</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4604"/>
+        <location filename="../src/application/mainwindow.cpp" line="4624"/>
         <source>Bottom</source>
         <translation>القاع</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4605"/>
+        <location filename="../src/application/mainwindow.cpp" line="4625"/>
         <source>Right</source>
         <translation>اليمين</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4606"/>
+        <location filename="../src/application/mainwindow.cpp" line="4626"/>
         <source>Left</source>
         <translation>اليسار</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4608"/>
+        <location filename="../src/application/mainwindow.cpp" line="4628"/>
         <source>Show Window</source>
         <translation>عرض النافذة</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4610"/>
+        <location filename="../src/application/mainwindow.cpp" line="4630"/>
         <source>Previous Feed</source>
         <translation>الحقل السابق</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4611"/>
+        <location filename="../src/application/mainwindow.cpp" line="4631"/>
         <source>Next Feed</source>
         <translation>الحقل التالي</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4612"/>
+        <location filename="../src/application/mainwindow.cpp" line="4632"/>
         <source>Previous News</source>
         <translation>الخبر السابق</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4613"/>
+        <location filename="../src/application/mainwindow.cpp" line="4633"/>
         <source>Next News</source>
         <translation>الخبر اللاحق</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4614"/>
+        <location filename="../src/application/mainwindow.cpp" line="4634"/>
         <source>News Page Up</source>
         <translation>صفحة اخبار للاعلى</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4615"/>
+        <location filename="../src/application/mainwindow.cpp" line="4635"/>
         <source>News Page Down</source>
         <translation>صفحة اخبار للاسفل</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4617"/>
+        <location filename="../src/application/mainwindow.cpp" line="4637"/>
         <source>Next Unread News</source>
         <translation>الخبر الغير مقروء التالي</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4618"/>
+        <location filename="../src/application/mainwindow.cpp" line="4638"/>
         <source>Previous Unread News</source>
         <translation>الخبر الغير مقروء السابق</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4620"/>
+        <location filename="../src/application/mainwindow.cpp" line="4640"/>
         <source>Switch Focus to Next Panel</source>
         <translation>نقل التركيز للوحة التالية</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4622"/>
+        <location filename="../src/application/mainwindow.cpp" line="4642"/>
         <source>Switch Focus to Next Panel (Tree Feeds, List News, Browser)</source>
         <translation>نقل التركيز للوحة التالية (شجرة حقول, قائمة اخبار, متصفح)</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4623"/>
+        <location filename="../src/application/mainwindow.cpp" line="4643"/>
         <source>Switch Focus to Previous Panel</source>
         <translation>نقل التركيز للوحة السابقة</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4625"/>
+        <location filename="../src/application/mainwindow.cpp" line="4645"/>
         <source>Switch Focus to Previous Panel (Tree Feeds, Browser, List News)</source>
         <translation>نقل التركيز للوحة السابقة (شجرة الحقول, متصفح, قائمة الاخبار)</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4627"/>
+        <location filename="../src/application/mainwindow.cpp" line="4647"/>
         <source>Show/Hide Tree Feeds</source>
         <translation>عرض/اخفاء شجرة الحقول</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4629"/>
+        <location filename="../src/application/mainwindow.cpp" line="4649"/>
         <source>Minimize to Tray</source>
         <translation>تصغير لدرج النظام</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4631"/>
+        <location filename="../src/application/mainwindow.cpp" line="4651"/>
         <source>Minimize Application to Tray</source>
         <translation>تصغير التطبيق لدرج النظام</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4633"/>
+        <location filename="../src/application/mainwindow.cpp" line="4653"/>
         <source>Columns</source>
         <translation>الأعمدة</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4634"/>
+        <location filename="../src/application/mainwindow.cpp" line="4654"/>
         <source>Count News Unread</source>
         <translation>عداد الاخبار الغير مقروئة</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4635"/>
+        <location filename="../src/application/mainwindow.cpp" line="4655"/>
         <source>Count News All</source>
         <translation>عداد جميع الاخبار</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4636"/>
+        <location filename="../src/application/mainwindow.cpp" line="4656"/>
         <source>Last Updated</source>
         <translation>آخر تحديث</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4638"/>
+        <location filename="../src/application/mainwindow.cpp" line="4658"/>
         <source>Show Indentation</source>
         <translation>اظهار البادئة</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4640"/>
-        <location filename="../src/app/mainwindow.cpp" line="4641"/>
+        <location filename="../src/application/mainwindow.cpp" line="4660"/>
+        <location filename="../src/application/mainwindow.cpp" line="4661"/>
         <source>Search Feed</source>
         <translation>بحث عن حقل</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4643"/>
+        <location filename="../src/application/mainwindow.cpp" line="4663"/>
         <source>Zoom</source>
         <translation>تكبير</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4644"/>
+        <location filename="../src/application/mainwindow.cpp" line="4664"/>
         <source>Zoom In</source>
         <translation>تقريب</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4645"/>
+        <location filename="../src/application/mainwindow.cpp" line="4665"/>
         <source>Zoom in in browser</source>
         <translation>تكبير في المتصفح</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4646"/>
+        <location filename="../src/application/mainwindow.cpp" line="4666"/>
         <source>Zoom Out</source>
         <translation>تصغير</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4647"/>
+        <location filename="../src/application/mainwindow.cpp" line="4667"/>
         <source>Zoom out in browser</source>
         <translation>تصغير في المتصفح</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4648"/>
+        <location filename="../src/application/mainwindow.cpp" line="4668"/>
         <source>100%</source>
         <translation>100%</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4649"/>
+        <location filename="../src/application/mainwindow.cpp" line="4669"/>
         <source>Reset zoom in browser</source>
         <translation>إعادة ضبط التقريب في المتصفح</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4651"/>
+        <location filename="../src/application/mainwindow.cpp" line="4671"/>
         <source>Print...</source>
         <translation>طباعة...</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4652"/>
+        <location filename="../src/application/mainwindow.cpp" line="4672"/>
         <source>Print Web page</source>
         <translation>طباعة صفحة الويب</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4653"/>
+        <location filename="../src/application/mainwindow.cpp" line="4673"/>
         <source>Print Preview...</source>
         <translation>عرض قبل الطباعه...</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4654"/>
+        <location filename="../src/application/mainwindow.cpp" line="4674"/>
         <source>Preview Web page</source>
         <translation>عرض قبل طباعة صفحة الويب</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4656"/>
+        <location filename="../src/application/mainwindow.cpp" line="4676"/>
         <source>Save As...</source>
-        <translation type="unfinished"/>
+        <translation>حفظ باسم...</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4657"/>
+        <location filename="../src/application/mainwindow.cpp" line="4677"/>
         <source>Save Page As...</source>
         <translation>حفظ الصفحة بأسم...</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4659"/>
+        <location filename="../src/application/mainwindow.cpp" line="4679"/>
         <source>Show/Hide</source>
         <translation>اظهار/اخفاء</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4661"/>
+        <location filename="../src/application/mainwindow.cpp" line="4681"/>
         <source>Feeds Toolbar</source>
         <translation>شريط ادوات الحقول</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4662"/>
+        <location filename="../src/application/mainwindow.cpp" line="4682"/>
         <source>News Toolbar</source>
         <translation>شريط ادوات الاخبار</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4663"/>
+        <location filename="../src/application/mainwindow.cpp" line="4683"/>
         <source>Browser Toolbar</source>
         <translation>شريط ادوات المتصفح</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4664"/>
+        <location filename="../src/application/mainwindow.cpp" line="4684"/>
         <source>Panel Categories</source>
         <translation>لوحة التصنيفات</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4666"/>
-        <location filename="../src/app/mainwindow.cpp" line="4667"/>
+        <location filename="../src/application/mainwindow.cpp" line="4686"/>
+        <location filename="../src/application/mainwindow.cpp" line="4687"/>
         <source>Full Screen</source>
         <translation>ملئ الشاشة</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4669"/>
-        <location filename="../src/app/mainwindow.cpp" line="4670"/>
+        <location filename="../src/application/mainwindow.cpp" line="4689"/>
+        <location filename="../src/application/mainwindow.cpp" line="4690"/>
         <source>Stay On Top</source>
         <translation>البقاء في الواجهة</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4672"/>
+        <location filename="../src/application/mainwindow.cpp" line="4692"/>
         <source>Categories</source>
         <translation>تصنيفات</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4678"/>
-        <location filename="../src/app/mainwindow.cpp" line="4679"/>
+        <location filename="../src/application/mainwindow.cpp" line="4698"/>
+        <location filename="../src/application/mainwindow.cpp" line="4699"/>
         <source>Label</source>
         <translation>ملصق</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4680"/>
+        <location filename="../src/application/mainwindow.cpp" line="4700"/>
         <source>Show labels menu</source>
         <translation>اظهار قائمة الملصقات</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4682"/>
+        <location filename="../src/application/mainwindow.cpp" line="4702"/>
         <source>Close Tab</source>
         <translation>اغلاق التبويب</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4683"/>
+        <location filename="../src/application/mainwindow.cpp" line="4703"/>
         <source>Close Other Tabs</source>
         <translation>اغلاق التبويبات الاخرى</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4684"/>
+        <location filename="../src/application/mainwindow.cpp" line="4704"/>
         <source>Close All Tabs</source>
         <translation>اغلاق جميع التبويبات</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4685"/>
+        <location filename="../src/application/mainwindow.cpp" line="4705"/>
         <source>Switch to next tab</source>
         <translation>التبديل للتبويب التالي</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4686"/>
+        <location filename="../src/application/mainwindow.cpp" line="4706"/>
         <source>Switch to previous tab</source>
         <translation>التبديل للتبويب السابق</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4688"/>
+        <location filename="../src/application/mainwindow.cpp" line="4708"/>
         <source>Unread</source>
-        <translation type="unfinished"/>
+        <translation>غير المقروء</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4689"/>
+        <location filename="../src/application/mainwindow.cpp" line="4709"/>
         <source>Starred</source>
-        <translation type="unfinished"/>
+        <translation>معلم بنجمه</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4690"/>
+        <location filename="../src/application/mainwindow.cpp" line="4710"/>
         <source>Deleted</source>
         <translation>تم المسح</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4691"/>
+        <location filename="../src/application/mainwindow.cpp" line="4711"/>
         <source>Labels</source>
         <translation>ملصقات</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4693"/>
+        <location filename="../src/application/mainwindow.cpp" line="4713"/>
         <source>Decrease news list/increase browser</source>
         <translation>تقليل قائمة الاخبار/زيادة المتصفح</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4694"/>
+        <location filename="../src/application/mainwindow.cpp" line="4714"/>
         <source>Increase news list/decrease browser</source>
         <translation>زيادة قائمة الاخبار/تقليل المتصفح</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4696"/>
+        <location filename="../src/application/mainwindow.cpp" line="4716"/>
         <source>Find</source>
         <translation>ايجاد</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4698"/>
+        <location filename="../src/application/mainwindow.cpp" line="4718"/>
         <source>Open Homepage Feed</source>
         <translation>فتح حقل الصفحة الرئيسية</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4699"/>
+        <location filename="../src/application/mainwindow.cpp" line="4719"/>
         <source>Sorted by Name</source>
         <translation>ترتيب بواسطة الاسم</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4700"/>
+        <location filename="../src/application/mainwindow.cpp" line="4720"/>
         <source>Collapse All Folders</source>
         <translation>تصغير جميع المجلدات</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4701"/>
+        <location filename="../src/application/mainwindow.cpp" line="4721"/>
         <source>Expand All Folders</source>
         <translation>تكبير جميع المجلدات</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4702"/>
+        <location filename="../src/application/mainwindow.cpp" line="4722"/>
         <source>Next Folder</source>
         <translation>المجلد التالي</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4703"/>
+        <location filename="../src/application/mainwindow.cpp" line="4723"/>
         <source>Previous Folder</source>
         <translation>المجلد السابق</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4704"/>
+        <location filename="../src/application/mainwindow.cpp" line="4724"/>
         <source>Expand Folder</source>
         <translation>تكبير المجلد</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4706"/>
+        <location filename="../src/application/mainwindow.cpp" line="4726"/>
         <source>Setting Page: Labels</source>
         <translation>اعداد الصفحة: الملصقات</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4708"/>
+        <location filename="../src/application/mainwindow.cpp" line="4728"/>
         <source>Share</source>
         <translation>مشاركة</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4710"/>
+        <location filename="../src/application/mainwindow.cpp" line="4730"/>
         <source>Sort By</source>
         <translation>ترتيب بواسطة</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4711"/>
+        <location filename="../src/application/mainwindow.cpp" line="4731"/>
         <source>Ascending</source>
         <translation>تصاعدي</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4712"/>
+        <location filename="../src/application/mainwindow.cpp" line="4732"/>
         <source>Descending</source>
         <translation>تنازلي</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="5535"/>
+        <location filename="../src/application/mainwindow.cpp" line="5560"/>
         <source>Check for updates</source>
         <translation>البحث عن تحديثات</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="5536"/>
+        <location filename="../src/application/mainwindow.cpp" line="5561"/>
         <source>A new version of QuiteRSS...</source>
         <translation>نسخه جديدة من QuiteRSS...</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="5884"/>
+        <location filename="../src/application/mainwindow.cpp" line="5909"/>
         <source>Loading...</source>
         <translation>تحميل...</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="6585"/>
-        <location filename="../src/app/mainwindow.cpp" line="6599"/>
+        <location filename="../src/application/mainwindow.cpp" line="6610"/>
+        <location filename="../src/application/mainwindow.cpp" line="6624"/>
         <source>Web Page</source>
         <translation>صفحة انترنت</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="7111"/>
+        <location filename="../src/application/mainwindow.cpp" line="7136"/>
         <source>Save As</source>
         <translation>حفظ باسم</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="7113"/>
+        <location filename="../src/application/mainwindow.cpp" line="7138"/>
         <source>HTML-Files (*.%1)</source>
         <translation>HTML-ملفات </translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="7113"/>
+        <location filename="../src/application/mainwindow.cpp" line="7138"/>
         <source>Text files (*.%2)</source>
         <translation>ملفات نصية </translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="7119"/>
+        <location filename="../src/application/mainwindow.cpp" line="7144"/>
         <source>Save As: can&apos;t open a file</source>
         <translation>حفظ باسم: لا يمكن فتح الملف</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.h" line="100"/>
+        <location filename="../src/application/mainwindow.h" line="101"/>
         <source>Important</source>
         <translation>مهم</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.h" line="100"/>
+        <location filename="../src/application/mainwindow.h" line="101"/>
         <source>Work</source>
         <translation>عمل</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.h" line="100"/>
+        <location filename="../src/application/mainwindow.h" line="101"/>
         <source>Personal</source>
         <translation>شخصي</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.h" line="101"/>
+        <location filename="../src/application/mainwindow.h" line="102"/>
         <source>To Do</source>
         <translation>للقيام بها</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.h" line="101"/>
+        <location filename="../src/application/mainwindow.h" line="102"/>
         <source>Later</source>
         <translation>في ما بعد</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.h" line="101"/>
+        <location filename="../src/application/mainwindow.h" line="102"/>
         <source>Amusingly</source>
         <translation>بطريقة مسلية</translation>
     </message>
@@ -2509,7 +2514,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/notifications/notificationsnewsitem.cpp" line="43"/>
         <source>Delete News</source>
-        <translation type="unfinished"/>
+        <translation>من اليمين لليسار</translation>
     </message>
 </context>
 <context>
@@ -2669,12 +2674,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/notifications/notificationswidget.cpp" line="99"/>
         <source>Previous Page</source>
-        <translation type="unfinished"/>
+        <translation>الصفحة السابقة</translation>
     </message>
     <message>
         <location filename="../src/notifications/notificationswidget.cpp" line="104"/>
         <source>Next Page</source>
-        <translation type="unfinished"/>
+        <translation>الصفحة اللاحقة</translation>
     </message>
     <message>
         <location filename="../src/notifications/notificationswidget.cpp" line="146"/>
@@ -2698,8 +2703,8 @@ Ancient news could reappear</source>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="65"/>
-        <location filename="../src/optionsdialog.cpp" line="725"/>
-        <location filename="../src/optionsdialog.cpp" line="964"/>
+        <location filename="../src/optionsdialog.cpp" line="724"/>
+        <location filename="../src/optionsdialog.cpp" line="963"/>
         <source>General</source>
         <translation>عام</translation>
     </message>
@@ -2725,13 +2730,13 @@ Ancient news could reappear</source>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="80"/>
-        <location filename="../src/optionsdialog.cpp" line="1762"/>
+        <location filename="../src/optionsdialog.cpp" line="1761"/>
         <source>Labels</source>
         <translation>ملصقات</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="83"/>
-        <location filename="../src/optionsdialog.cpp" line="1764"/>
+        <location filename="../src/optionsdialog.cpp" line="1763"/>
         <source>Notifications</source>
         <translation>تنبيهات</translation>
     </message>
@@ -2742,7 +2747,7 @@ Ancient news could reappear</source>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="89"/>
-        <location filename="../src/optionsdialog.cpp" line="1217"/>
+        <location filename="../src/optionsdialog.cpp" line="1216"/>
         <source>Language</source>
         <translation>لغة</translation>
     </message>
@@ -2757,1051 +2762,1051 @@ Ancient news could reappear</source>
         <translation>اختصارات لوحة المفاتيح</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="265"/>
-        <location filename="../src/optionsdialog.cpp" line="2082"/>
+        <location filename="../src/optionsdialog.cpp" line="255"/>
+        <location filename="../src/optionsdialog.cpp" line="2081"/>
         <source>Warning: key is already assigned to</source>
         <translation>تحذير: المفتاح معين مسبقا الى</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="289"/>
+        <location filename="../src/optionsdialog.cpp" line="279"/>
         <source>Show splash screen on startup</source>
         <translation>عرض شاشة البداية عند التشغيل</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="290"/>
+        <location filename="../src/optionsdialog.cpp" line="280"/>
         <source>Reopen last opened feeds on startup</source>
         <translation>اعادة فتح الحقول المفتوحه سابقا عند بدء التشغيل</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="291"/>
+        <location filename="../src/optionsdialog.cpp" line="281"/>
         <source>Open new tab next to active</source>
         <translation>فتح تبويب جديد بجانب التبويب الفعال</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="292"/>
+        <location filename="../src/optionsdialog.cpp" line="282"/>
         <source>Hide feeds tree when opening tabs</source>
         <translation>اخفاء شجرة الحقول عند فتح تبويبات</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="293"/>
+        <location filename="../src/optionsdialog.cpp" line="283"/>
         <source>Show feeds tree toggle at edge of window</source>
         <translation>اظهار شجره تبديل الحقول عند طرف النافذة</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="294"/>
+        <location filename="../src/optionsdialog.cpp" line="284"/>
         <source>Show default rss-icon instead of favourite one</source>
         <translation>عرض ايقونة rss الافتراضية بدلا من المفضلة</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="295"/>
+        <location filename="../src/optionsdialog.cpp" line="285"/>
         <source>Automatically collapse folders</source>
         <translation>تصغير المجلدات بشكل تلقائي</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="296"/>
+        <location filename="../src/optionsdialog.cpp" line="286"/>
         <source>Show close button on tab</source>
-        <translation type="unfinished"/>
+        <translation>اظهاز زر الاغلاق في التبويب</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="298"/>
+        <location filename="../src/optionsdialog.cpp" line="288"/>
         <source>Automatically check for updates</source>
         <translation>البحث عن تحديثات بشكل تلقائي</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="299"/>
+        <location filename="../src/optionsdialog.cpp" line="289"/>
         <source>Store a DB in memory (requires program restart)</source>
         <translation>تخزين DB في الذاكرة(يحتاج لاعادة تشغيل البرنامج)</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="306"/>
+        <location filename="../src/optionsdialog.cpp" line="296"/>
         <source>Save DB stored in memory to file every</source>
         <translation>حفظ قاعدة البيانات المخزنة في الذاكرة الى ملف كل</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="308"/>
-        <location filename="../src/optionsdialog.cpp" line="749"/>
+        <location filename="../src/optionsdialog.cpp" line="298"/>
+        <location filename="../src/optionsdialog.cpp" line="748"/>
         <source>minutes</source>
         <translation>دقائق</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="330"/>
+        <location filename="../src/optionsdialog.cpp" line="320"/>
         <source>Run QuiteRSS at Windows startup</source>
         <translation>تشغيل QuiteRSS عند بدء تشغيل النظام</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="351"/>
+        <location filename="../src/optionsdialog.cpp" line="341"/>
         <source>Show system tray icon</source>
         <translation>عرض ايقونة درج النظام</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="354"/>
+        <location filename="../src/optionsdialog.cpp" line="344"/>
         <source>starting QuiteRSS</source>
         <translation>تشغيل QuiteRSS</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="355"/>
+        <location filename="../src/optionsdialog.cpp" line="345"/>
         <source>minimizing QuiteRSS</source>
         <translation>تصغير QuiteRSS</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="356"/>
+        <location filename="../src/optionsdialog.cpp" line="346"/>
         <source>closing QuiteRSS</source>
         <translation>اغلاق QuiteRSS</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="363"/>
+        <location filename="../src/optionsdialog.cpp" line="353"/>
         <source>Show static icon</source>
         <translation>عرض ايقونة ثابتة</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="364"/>
+        <location filename="../src/optionsdialog.cpp" line="354"/>
         <source>Change icon for incoming new news</source>
         <translation>تغيير الايقونة للاخبار الجديدة القادمة</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="365"/>
+        <location filename="../src/optionsdialog.cpp" line="355"/>
         <source>Show count of new news</source>
         <translation>اظهار عداد للاخبار الجديدة</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="366"/>
+        <location filename="../src/optionsdialog.cpp" line="356"/>
         <source>Show count of unread news</source>
         <translation>اظهار عداد للاخبار العير مقروئة</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="375"/>
+        <location filename="../src/optionsdialog.cpp" line="365"/>
         <source>Single click instead of double click for show window</source>
         <translation>نقرة واحدة بدلا من النقر المزدوج لعرض النافذة</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="376"/>
+        <location filename="../src/optionsdialog.cpp" line="366"/>
         <source>Clear status new on minimize to tray</source>
         <translation>مسح جديد الحالة عند التصغير</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="377"/>
+        <location filename="../src/optionsdialog.cpp" line="367"/>
         <source>Empty working set on minimize to tray</source>
         <translation>تفريغ مجموعة العمل عند التصغير لدرج النظام</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="380"/>
+        <location filename="../src/optionsdialog.cpp" line="371"/>
         <source>Move to the system tray when:</source>
         <translation>نقل الى درج النظام عند:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="382"/>
+        <location filename="../src/optionsdialog.cpp" line="374"/>
         <source>Tray icon behavior:</source>
         <translation>سلوك ايقونة النظام:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="404"/>
+        <location filename="../src/optionsdialog.cpp" line="398"/>
         <source>Direct connection to the Internet</source>
         <translation>اتصال مباشر للانترنت</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="406"/>
+        <location filename="../src/optionsdialog.cpp" line="400"/>
         <source>System proxy configuration (if available)</source>
         <translation>اعدادات بروكسي النظام (ان كان متوفر)</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="407"/>
+        <location filename="../src/optionsdialog.cpp" line="401"/>
         <source>Manual proxy configuration:</source>
         <translation>اعداد البروكسي يدويا:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="423"/>
+        <location filename="../src/optionsdialog.cpp" line="417"/>
         <source>Proxy server:</source>
         <translation>خادم البروكسي:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="425"/>
+        <location filename="../src/optionsdialog.cpp" line="419"/>
         <source>Port:</source>
         <translation>المنفذ:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="433"/>
+        <location filename="../src/optionsdialog.cpp" line="427"/>
         <source>Username:</source>
         <translation>اسم المستخدم:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="435"/>
+        <location filename="../src/optionsdialog.cpp" line="429"/>
         <source>Password:</source>
         <translation>كلمة المرور:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="464"/>
+        <location filename="../src/optionsdialog.cpp" line="458"/>
         <source>Request timeout:</source>
-        <translation type="unfinished"/>
+        <translation>انتهاء وقت الطلب:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="466"/>
+        <location filename="../src/optionsdialog.cpp" line="460"/>
         <source>Number of requests:</source>
-        <translation type="unfinished"/>
+        <translation>عدد مرات الطلب:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="468"/>
+        <location filename="../src/optionsdialog.cpp" line="462"/>
         <source>Number of retries:</source>
-        <translation type="unfinished"/>
+        <translation>عدد مرات اعادة المحاولة:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="471"/>
+        <location filename="../src/optionsdialog.cpp" line="465"/>
         <source>Options network requests when updating feeds (requires program restart):</source>
         <translation>خيارات طلبات الشبكة عند تحديث الحقول (تحتاج لاعادة تشغيل البرنامج):</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="487"/>
+        <location filename="../src/optionsdialog.cpp" line="481"/>
         <source>Use embedded browser</source>
         <translation>استخدم المتصفح المضمن</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="488"/>
+        <location filename="../src/optionsdialog.cpp" line="482"/>
         <source>Use external browser</source>
         <translation>استخدم متصفح خارجي</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="489"/>
+        <location filename="../src/optionsdialog.cpp" line="483"/>
         <source>Default external browser</source>
         <translation>المتصفح الخارجي الافتراضي</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="490"/>
+        <location filename="../src/optionsdialog.cpp" line="484"/>
         <source>Following external browser:</source>
         <translation>تتبع المتصفح الخارجي:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="493"/>
-        <location filename="../src/optionsdialog.cpp" line="507"/>
-        <location filename="../src/optionsdialog.cpp" line="587"/>
-        <location filename="../src/optionsdialog.cpp" line="704"/>
-        <location filename="../src/optionsdialog.cpp" line="1031"/>
+        <location filename="../src/optionsdialog.cpp" line="487"/>
+        <location filename="../src/optionsdialog.cpp" line="501"/>
+        <location filename="../src/optionsdialog.cpp" line="582"/>
+        <location filename="../src/optionsdialog.cpp" line="702"/>
+        <location filename="../src/optionsdialog.cpp" line="1030"/>
         <source>Browse...</source>
         <translation>استعراض...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="495"/>
-        <location filename="../src/optionsdialog.cpp" line="1968"/>
+        <location filename="../src/optionsdialog.cpp" line="489"/>
+        <location filename="../src/optionsdialog.cpp" line="1967"/>
         <source>Load images</source>
         <translation>تحميل الصور</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="496"/>
+        <location filename="../src/optionsdialog.cpp" line="490"/>
         <source>Enable JavaScript</source>
         <translation>تفعيل JavaScript</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="497"/>
+        <location filename="../src/optionsdialog.cpp" line="491"/>
         <source>Enable plug-ins</source>
         <translation>تفعيل الاضافات</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="503"/>
+        <location filename="../src/optionsdialog.cpp" line="497"/>
         <source>Open links in embedded browser in background</source>
         <translation>فتح الروابط في المتصفح المضمن بالخلفية</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="504"/>
+        <location filename="../src/optionsdialog.cpp" line="498"/>
         <source>Open links in external browser in background (experimental)</source>
         <translation>فتح الروابط في متصفح خارجي في الخلفيه (تجريبي)</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="530"/>
+        <location filename="../src/optionsdialog.cpp" line="524"/>
         <source>Default zoom on pages:</source>
         <translation>التقريب الافتراضي في الصفحات:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="547"/>
+        <location filename="../src/optionsdialog.cpp" line="542"/>
         <source>Browser selection:</source>
         <translation>اختيار المتصفح:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="549"/>
+        <location filename="../src/optionsdialog.cpp" line="544"/>
         <source>External browser:</source>
         <translation>متصفح خارجي:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="551"/>
+        <location filename="../src/optionsdialog.cpp" line="546"/>
         <source>Content:</source>
         <translation>المحتويات:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="553"/>
+        <location filename="../src/optionsdialog.cpp" line="548"/>
         <source>User style sheet:</source>
         <translation>نمط صفحة المستخدم:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="582"/>
+        <location filename="../src/optionsdialog.cpp" line="577"/>
         <source>Maximum pages in cache</source>
         <translation>العدد الاقصى للصفحات في ذاكرة التخزين المؤقت</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="593"/>
+        <location filename="../src/optionsdialog.cpp" line="588"/>
         <source>Store cache in:</source>
         <translation>التخزين المؤقت في:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="601"/>
+        <location filename="../src/optionsdialog.cpp" line="596"/>
         <source>Maximum size of disk cache</source>
         <translation>الحجم الاقصى لذاكرة التخزين المؤقت</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="603"/>
+        <location filename="../src/optionsdialog.cpp" line="598"/>
         <source>MB</source>
         <translation>م.ب</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="609"/>
+        <location filename="../src/optionsdialog.cpp" line="604"/>
         <source>Use disk cache</source>
         <translation>استخدم ذاكرة التخزين المؤقت في القرص</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="623"/>
+        <location filename="../src/optionsdialog.cpp" line="619"/>
         <source>Allow local data to be set</source>
         <translation>السماح بتحديد البيانات المحليه</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="624"/>
+        <location filename="../src/optionsdialog.cpp" line="620"/>
         <source>Keep local data only until quit application</source>
         <translation>ابقاء البيانات المحلية حتى اغلاق التطبيق</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="625"/>
+        <location filename="../src/optionsdialog.cpp" line="621"/>
         <source>Block sites from setting any data</source>
         <translation>منع المواقع من تعديل اي بيانات</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="626"/>
+        <location filename="../src/optionsdialog.cpp" line="622"/>
         <source>Clear</source>
         <translation>مسح</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="641"/>
+        <location filename="../src/optionsdialog.cpp" line="638"/>
         <source>Cookies:</source>
         <translation>الكعكات</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="649"/>
+        <location filename="../src/optionsdialog.cpp" line="646"/>
         <source>Click To Flash is a plugin which blocks auto loading of Flash content at page. You can always load it manually by clicking on the Flash play icon.</source>
         <translation>اضغط لتشغيل الفلاش هي اضافة تقوم بايقاف التحميل التلقائي لمحتويات الفلاش في الصفحة. تستطيع دائما تحميل محتويات الفلاش يدويا بالضغط على ايقونة تشغيل الفلاش.</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="654"/>
+        <location filename="../src/optionsdialog.cpp" line="651"/>
         <source>Use Click to Flash</source>
         <translation>استخدم اضغط لتشغيل الفلاش</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="666"/>
+        <location filename="../src/optionsdialog.cpp" line="663"/>
         <source>Add...</source>
         <translation>اضافة...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="668"/>
+        <location filename="../src/optionsdialog.cpp" line="665"/>
         <source>Remove...</source>
         <translation>حذف...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="708"/>
+        <location filename="../src/optionsdialog.cpp" line="706"/>
         <source>Ask where to save each file before downloading</source>
         <translation>اسال اين تحفظ كل ملف قبل التحميل</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="717"/>
+        <location filename="../src/optionsdialog.cpp" line="716"/>
         <source>Download location:</source>
         <translation>موقع التحميل:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="726"/>
+        <location filename="../src/optionsdialog.cpp" line="725"/>
         <source>History</source>
         <translation>تاريخ</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="727"/>
+        <location filename="../src/optionsdialog.cpp" line="726"/>
         <source>Privacy</source>
         <translation>الخصوصية</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="728"/>
+        <location filename="../src/optionsdialog.cpp" line="727"/>
         <source>Click to Flash</source>
         <translation>اضغط لتشغيل الفلاش</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="729"/>
+        <location filename="../src/optionsdialog.cpp" line="728"/>
         <source>Downloads</source>
         <translation>التحميلات</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="738"/>
+        <location filename="../src/optionsdialog.cpp" line="737"/>
         <source>Automatically update the feeds on startup</source>
         <translation>تحديث الحقول تلقائيا عند التشغيل</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="739"/>
+        <location filename="../src/optionsdialog.cpp" line="738"/>
         <source>Automatically update the feeds every</source>
         <translation>تحديث تلقائي للحقول كل</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="749"/>
-        <location filename="../src/optionsdialog.cpp" line="881"/>
-        <location filename="../src/optionsdialog.cpp" line="1093"/>
+        <location filename="../src/optionsdialog.cpp" line="748"/>
+        <location filename="../src/optionsdialog.cpp" line="880"/>
+        <location filename="../src/optionsdialog.cpp" line="1092"/>
         <source>seconds</source>
         <translation>ثواني</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="749"/>
+        <location filename="../src/optionsdialog.cpp" line="748"/>
         <source>hours</source>
         <translation>ساعات</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="761"/>
+        <location filename="../src/optionsdialog.cpp" line="760"/>
         <source>Position on last opened news</source>
         <translation>موضوع على اخر خبر تم فتحة</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="762"/>
+        <location filename="../src/optionsdialog.cpp" line="761"/>
         <source>Position at top of list news</source>
         <translation>موضوع على اول قائمة الاخبار</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="763"/>
+        <location filename="../src/optionsdialog.cpp" line="762"/>
         <source>Position on unread news</source>
         <translation>الوقوف على الاخبار الغير مقروئة</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="764"/>
+        <location filename="../src/optionsdialog.cpp" line="763"/>
         <source>Open news</source>
         <translation>فتح الاخبار</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="765"/>
+        <location filename="../src/optionsdialog.cpp" line="764"/>
         <source>Nothing to do</source>
         <translation>لاشيء ليتم عملة</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="780"/>
+        <location filename="../src/optionsdialog.cpp" line="779"/>
         <source>Dec</source>
         <translation>ديسمبر</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="781"/>
+        <location filename="../src/optionsdialog.cpp" line="780"/>
         <source>December</source>
         <translation>ديسمبر</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="804"/>
+        <location filename="../src/optionsdialog.cpp" line="803"/>
         <source>Display format for date:</source>
         <translation>عرض تهيئة التاريخ:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="807"/>
+        <location filename="../src/optionsdialog.cpp" line="806"/>
         <source>time:</source>
         <translation>الوقت:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="811"/>
+        <location filename="../src/optionsdialog.cpp" line="810"/>
         <source>Alternating row background colors</source>
         <translation>صف الوان الخلفية بالتناوب</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="812"/>
+        <location filename="../src/optionsdialog.cpp" line="811"/>
         <source>Simplified representation of date and time</source>
         <translation>تقديم مبسط للتاريخ و الوقت</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="815"/>
+        <location filename="../src/optionsdialog.cpp" line="814"/>
         <source>Show All</source>
         <translation>عرض الكل</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="815"/>
+        <location filename="../src/optionsdialog.cpp" line="814"/>
         <source>Show New</source>
         <translation>عرض الجديد</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="815"/>
+        <location filename="../src/optionsdialog.cpp" line="814"/>
         <source>Show Unread</source>
         <translation>عرض الغير مقروء</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="816"/>
+        <location filename="../src/optionsdialog.cpp" line="815"/>
         <source>Show Starred</source>
         <translation>اظهار المعلم بنجمة</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="816"/>
+        <location filename="../src/optionsdialog.cpp" line="815"/>
         <source>Show Not Starred</source>
         <translation>اظهار غير المعلم بنجمة</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="817"/>
+        <location filename="../src/optionsdialog.cpp" line="816"/>
         <source>Show Unread or Starred</source>
         <translation>اظهار غير المقروء او المعلم بنجمة</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="817"/>
+        <location filename="../src/optionsdialog.cpp" line="816"/>
         <source>Show Last Day</source>
         <translation>اظهار اخر يوم</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="818"/>
+        <location filename="../src/optionsdialog.cpp" line="817"/>
         <source>Show Last 7 Days</source>
         <translation>اظهار اخر 7 ايام</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="832"/>
+        <location filename="../src/optionsdialog.cpp" line="831"/>
         <source>Main news filter:</source>
         <translation>مرشحات الاخبار الرئيسية</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="840"/>
+        <location filename="../src/optionsdialog.cpp" line="839"/>
         <source>Opening feed:</source>
         <translation>فتح الحقل:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="854"/>
+        <location filename="../src/optionsdialog.cpp" line="853"/>
         <source>Mark news as read:</source>
         <translation>تعليم الخبر كـ مقروء:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="856"/>
+        <location filename="../src/optionsdialog.cpp" line="855"/>
         <source>on selecting. With timeout</source>
         <translation>تفعيل التحديد. بوقت محدد</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="857"/>
+        <location filename="../src/optionsdialog.cpp" line="856"/>
         <source>after switching to another news</source>
         <translation>بعد الانتقال لخبر اخر</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="863"/>
+        <location filename="../src/optionsdialog.cpp" line="862"/>
         <source>Mark displayed news as read when switching feeds</source>
         <translation>تعليم الخبر المعروض ب مقروء عند تبديل الحقول</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="864"/>
+        <location filename="../src/optionsdialog.cpp" line="863"/>
         <source>Mark displayed news as read when closing tab</source>
         <translation>تعليم الخبر المعروض ب مقروء عند اغلاق التبويب</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="865"/>
+        <location filename="../src/optionsdialog.cpp" line="864"/>
         <source>Mark displayed news as read on minimize</source>
         <translation>تعليم الخبر المعروض ب مقروء عند التصغير</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="868"/>
+        <location filename="../src/optionsdialog.cpp" line="867"/>
         <source>Show news&apos; description instead of loading web page</source>
         <translation>عرض وصف&apos; الخبر بدلا من تحميل صفحة الانترنت</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="870"/>
+        <location filename="../src/optionsdialog.cpp" line="869"/>
         <source>Change behavior of action &apos;Next Unread News&apos;</source>
         <translation>تغيير سلوك الاجراء &apos;الخبر التالي الغير مقروء&apos;</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="872"/>
+        <location filename="../src/optionsdialog.cpp" line="871"/>
         <source>starred news</source>
         <translation>الاخبار المعلمة بنجمة</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="873"/>
+        <location filename="../src/optionsdialog.cpp" line="872"/>
         <source>labeled news</source>
         <translation>الاخبار الملصقة</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="875"/>
+        <location filename="../src/optionsdialog.cpp" line="874"/>
         <source>Automatically mark identical news as read</source>
         <translation>اشر تلقائيا على الرسائل المتطابقة كـ مقروئة</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="902"/>
+        <location filename="../src/optionsdialog.cpp" line="901"/>
         <source>Prevent accidental deletion of:</source>
         <translation>منع الحذف عن طريق الخطاء:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="914"/>
+        <location filename="../src/optionsdialog.cpp" line="913"/>
         <source>Enable cleanup on shutdown</source>
         <translation>تفعيل التنظيف عند الاغلاق</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="917"/>
+        <location filename="../src/optionsdialog.cpp" line="916"/>
         <source>Maximum age of news in days to keep:</source>
         <translation>اقصى فترة للاخبار المحفوظه بالايام:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="924"/>
+        <location filename="../src/optionsdialog.cpp" line="923"/>
         <source>Maximum number of news to keep:</source>
         <translation>اقصى عدد من الاخبار ليتم حفظها:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="931"/>
+        <location filename="../src/optionsdialog.cpp" line="930"/>
         <source>Delete read news</source>
         <translation>حذف الاخبار المقروئة</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="932"/>
+        <location filename="../src/optionsdialog.cpp" line="931"/>
         <source>Never delete unread news</source>
         <translation>لا تحذف ابدا الاخبار الغير مقروئة</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="933"/>
+        <location filename="../src/optionsdialog.cpp" line="932"/>
         <source>Never delete starred news</source>
         <translation>لاتحذف الاخبار المعلمة بنجمة ابدا</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="934"/>
+        <location filename="../src/optionsdialog.cpp" line="933"/>
         <source>Never delete labeled news</source>
         <translation>لا تحذف الاخبار الملصقة ابدا</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="936"/>
+        <location filename="../src/optionsdialog.cpp" line="935"/>
         <source>Clean up &apos;Deleted&apos;</source>
         <translation>تنظيف &apos;محذوف&apos;</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="937"/>
+        <location filename="../src/optionsdialog.cpp" line="936"/>
         <source>Enable DB optimization (slower shutdown)</source>
         <translation>تفعيل تحسين DB (اغلاق ابطاء)</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="965"/>
+        <location filename="../src/optionsdialog.cpp" line="964"/>
         <source>Reading</source>
         <translation>جاري القرائة</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="966"/>
+        <location filename="../src/optionsdialog.cpp" line="965"/>
         <source>Clean Up</source>
         <translation>تنظيف</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="983"/>
+        <location filename="../src/optionsdialog.cpp" line="982"/>
         <source>New...</source>
         <translation>جديد...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="985"/>
+        <location filename="../src/optionsdialog.cpp" line="984"/>
         <source>Edit...</source>
         <translation>تحرير...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="988"/>
+        <location filename="../src/optionsdialog.cpp" line="987"/>
         <source>Delete...</source>
         <translation>حذف...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="992"/>
+        <location filename="../src/optionsdialog.cpp" line="991"/>
         <source>Move up</source>
         <translation>تحريك للاعلى</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="995"/>
+        <location filename="../src/optionsdialog.cpp" line="994"/>
         <source>Move down</source>
         <translation>تحريك للاسفل</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1028"/>
+        <location filename="../src/optionsdialog.cpp" line="1027"/>
         <source>Play sound for incoming new news</source>
         <translation>تشغيل صوت للاخبار الجديدة القادمة</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1032"/>
+        <location filename="../src/optionsdialog.cpp" line="1031"/>
         <source>Play</source>
         <translation>تشغيل</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1054"/>
+        <location filename="../src/optionsdialog.cpp" line="1053"/>
         <source>Display notification for incoming news</source>
         <translation>عرض تنبيه للاخبار القادمة</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1060"/>
+        <location filename="../src/optionsdialog.cpp" line="1059"/>
         <source>Top Left</source>
         <translation>اعلى اليسار</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1060"/>
+        <location filename="../src/optionsdialog.cpp" line="1059"/>
         <source>Top Right</source>
         <translation>اعلى اليمين</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1061"/>
+        <location filename="../src/optionsdialog.cpp" line="1060"/>
         <source>Bottom Left</source>
         <translation>اسفل اليسار</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1061"/>
+        <location filename="../src/optionsdialog.cpp" line="1060"/>
         <source>Bottom Right</source>
         <translation>اسفل اليمين</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1071"/>
+        <location filename="../src/optionsdialog.cpp" line="1070"/>
         <source>Review</source>
         <translation>مراجعة</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1075"/>
+        <location filename="../src/optionsdialog.cpp" line="1074"/>
         <source>Position</source>
         <translation>موقع</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1081"/>
+        <location filename="../src/optionsdialog.cpp" line="1080"/>
         <source>Show maximum of</source>
         <translation>عرض العدد الاقصى من</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1083"/>
+        <location filename="../src/optionsdialog.cpp" line="1082"/>
         <source>item on page notification</source>
-        <translation type="unfinished"/>
+        <translation>نقطة على صفحة التنبية</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1086"/>
+        <location filename="../src/optionsdialog.cpp" line="1085"/>
         <source>Width list items</source>
-        <translation type="unfinished"/>
+        <translation>عرض قائمة النقاط</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1088"/>
+        <location filename="../src/optionsdialog.cpp" line="1087"/>
         <source>pixels</source>
         <translation>بكسلات</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1091"/>
+        <location filename="../src/optionsdialog.cpp" line="1090"/>
         <source>Close notification after</source>
         <translation>اغلاق التنبيهات بعد</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1095"/>
+        <location filename="../src/optionsdialog.cpp" line="1094"/>
         <source>Do not show notification in fullscreen mode</source>
         <translation>لا تظهر التنبيهات في وضع ملى الشاشة</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1100"/>
+        <location filename="../src/optionsdialog.cpp" line="1099"/>
         <source>Only show selected feeds:</source>
         <translation>عرض الحقول المحددة فقط:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1116"/>
+        <location filename="../src/optionsdialog.cpp" line="1115"/>
         <source>All Feeds</source>
         <translation>جميع الحقول</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1164"/>
+        <location filename="../src/optionsdialog.cpp" line="1163"/>
         <source>Site</source>
         <translation>موقع</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1164"/>
+        <location filename="../src/optionsdialog.cpp" line="1163"/>
         <source>User</source>
         <translation>مستخدم</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1164"/>
+        <location filename="../src/optionsdialog.cpp" line="1163"/>
         <source>Password</source>
         <translation>كلمة مرور</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1181"/>
+        <location filename="../src/optionsdialog.cpp" line="1180"/>
         <source>Delete</source>
         <translation>حذف</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1183"/>
+        <location filename="../src/optionsdialog.cpp" line="1182"/>
         <source>Delete All</source>
         <translation>حذف الكل</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1185"/>
+        <location filename="../src/optionsdialog.cpp" line="1184"/>
         <source>Show Passwords</source>
         <translation>اظهار كلمات المرور</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1217"/>
+        <location filename="../src/optionsdialog.cpp" line="1216"/>
         <source>Version</source>
         <translation>النسخة</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1218"/>
+        <location filename="../src/optionsdialog.cpp" line="1217"/>
         <source>Author</source>
         <translation>المؤلف</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1218"/>
+        <location filename="../src/optionsdialog.cpp" line="1217"/>
         <source>Contact</source>
         <translation>اتصال</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1468"/>
+        <location filename="../src/optionsdialog.cpp" line="1467"/>
         <source>Choose language:</source>
         <translation>اختيار اللغة:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1489"/>
+        <location filename="../src/optionsdialog.cpp" line="1488"/>
         <source>Type</source>
         <translation>نوع</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1489"/>
+        <location filename="../src/optionsdialog.cpp" line="1488"/>
         <source>Font</source>
         <translation>خط</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1493"/>
+        <location filename="../src/optionsdialog.cpp" line="1492"/>
         <source>Feeds list font</source>
         <translation>خط قائمة الحقول</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1496"/>
+        <location filename="../src/optionsdialog.cpp" line="1495"/>
         <source>News list font</source>
         <translation>خط قائمة الاخبار</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1499"/>
+        <location filename="../src/optionsdialog.cpp" line="1498"/>
         <source>News title font</source>
         <translation>خط عنوان الاخبار</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1502"/>
+        <location filename="../src/optionsdialog.cpp" line="1501"/>
         <source>News text font</source>
         <translation>خط نص الاخبار</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1505"/>
+        <location filename="../src/optionsdialog.cpp" line="1504"/>
         <source>Notification font</source>
         <translation>خط التنبيهات</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1512"/>
-        <location filename="../src/optionsdialog.cpp" line="1601"/>
+        <location filename="../src/optionsdialog.cpp" line="1511"/>
+        <location filename="../src/optionsdialog.cpp" line="1600"/>
         <source>Change...</source>
         <translation>تغيير...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1514"/>
-        <location filename="../src/optionsdialog.cpp" line="1603"/>
-        <location filename="../src/optionsdialog.cpp" line="1715"/>
+        <location filename="../src/optionsdialog.cpp" line="1513"/>
+        <location filename="../src/optionsdialog.cpp" line="1602"/>
+        <location filename="../src/optionsdialog.cpp" line="1714"/>
         <source>Reset</source>
         <translation>اعادة تعيين</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1539"/>
+        <location filename="../src/optionsdialog.cpp" line="1538"/>
         <source>Feeds list color</source>
         <translation>لون قائمة الحقول</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1542"/>
+        <location filename="../src/optionsdialog.cpp" line="1541"/>
         <source>Feeds list background</source>
         <translation>خلفية قائمة الحقول</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1545"/>
+        <location filename="../src/optionsdialog.cpp" line="1544"/>
         <source>News list color</source>
         <translation>لون قائمة الاخبار</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1548"/>
+        <location filename="../src/optionsdialog.cpp" line="1547"/>
         <source>News list background</source>
         <translation>خلفية قائمة الاخبار</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1551"/>
+        <location filename="../src/optionsdialog.cpp" line="1550"/>
         <source>Focused news color</source>
         <translation>لون الخبر المحدد</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1554"/>
+        <location filename="../src/optionsdialog.cpp" line="1553"/>
         <source>Focused news background color</source>
         <translation>لون خلفية الخبر المحدد</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1557"/>
+        <location filename="../src/optionsdialog.cpp" line="1556"/>
         <source>Link color</source>
         <translation>لون الرابط</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1560"/>
+        <location filename="../src/optionsdialog.cpp" line="1559"/>
         <source>Title color</source>
         <translation>لون العنوان</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1563"/>
+        <location filename="../src/optionsdialog.cpp" line="1562"/>
         <source>Date color</source>
         <translation>لون التاريخ</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1566"/>
+        <location filename="../src/optionsdialog.cpp" line="1565"/>
         <source>Author color</source>
         <translation>لون المؤلف</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1569"/>
+        <location filename="../src/optionsdialog.cpp" line="1568"/>
         <source>News text color</source>
         <translation>لون خط الخبر</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1572"/>
+        <location filename="../src/optionsdialog.cpp" line="1571"/>
         <source>News title background</source>
         <translation>خلفية عنوان الخبر</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1575"/>
+        <location filename="../src/optionsdialog.cpp" line="1574"/>
         <source>News background</source>
         <translation>خلفية الخبر</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1578"/>
+        <location filename="../src/optionsdialog.cpp" line="1577"/>
         <source>Feed with new news</source>
         <translation>حقل بأخبار جديدة</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1581"/>
+        <location filename="../src/optionsdialog.cpp" line="1580"/>
         <source>Count of news unread in feeds tree</source>
         <translation>عدد الاخبار الغير مقروئة في شجرة الحقول</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1584"/>
+        <location filename="../src/optionsdialog.cpp" line="1583"/>
         <source>Text color of new news</source>
         <translation>لون النص للخبر الجديد</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1587"/>
+        <location filename="../src/optionsdialog.cpp" line="1586"/>
         <source>Text color of unread news</source>
         <translation>لون الخط للأخبار الغير مقروئه</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1590"/>
+        <location filename="../src/optionsdialog.cpp" line="1589"/>
         <source>Focused feed color</source>
         <translation>لون الحقل المحدد</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1593"/>
+        <location filename="../src/optionsdialog.cpp" line="1592"/>
         <source>Focused feed background color</source>
         <translation>لون خلفية الحقل المحدد</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1629"/>
+        <location filename="../src/optionsdialog.cpp" line="1628"/>
         <source>Standard</source>
         <translation>قياسي</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1631"/>
+        <location filename="../src/optionsdialog.cpp" line="1630"/>
         <source>Fixed</source>
         <translation>ثابت</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1633"/>
+        <location filename="../src/optionsdialog.cpp" line="1632"/>
         <source>Serif</source>
         <translation>Serif</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1635"/>
+        <location filename="../src/optionsdialog.cpp" line="1634"/>
         <source>Sans Serif</source>
         <translation>Sans Serif</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1637"/>
+        <location filename="../src/optionsdialog.cpp" line="1636"/>
         <source>Cursive</source>
         <translation>نسخية</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1639"/>
+        <location filename="../src/optionsdialog.cpp" line="1638"/>
         <source>Fantasy</source>
         <translation>خيالي</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1654"/>
+        <location filename="../src/optionsdialog.cpp" line="1653"/>
         <source>Default font size</source>
         <translation>حجم الخط الافتراضي</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1656"/>
+        <location filename="../src/optionsdialog.cpp" line="1655"/>
         <source>Fixed font size</source>
         <translation>حجم الخط الثابت</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1658"/>
+        <location filename="../src/optionsdialog.cpp" line="1657"/>
         <source>Minimum font size</source>
         <translation>اقل حجم للخط</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1660"/>
+        <location filename="../src/optionsdialog.cpp" line="1659"/>
         <source>Minimum logical font size</source>
         <translation>اقل حجم معقول للخط</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1664"/>
+        <location filename="../src/optionsdialog.cpp" line="1663"/>
         <source>Font families:</source>
         <translation>فصائل الخطوط:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1666"/>
+        <location filename="../src/optionsdialog.cpp" line="1665"/>
         <source>Font sizes:</source>
         <translation>احجام الخطوط:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1675"/>
+        <location filename="../src/optionsdialog.cpp" line="1674"/>
         <source>Fonts</source>
         <translation>خطوط</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1676"/>
+        <location filename="../src/optionsdialog.cpp" line="1675"/>
         <source>Fonts Browser</source>
         <translation>خطوط المتصفح</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1677"/>
+        <location filename="../src/optionsdialog.cpp" line="1676"/>
         <source>Colors</source>
         <translation>الالوان</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1684"/>
+        <location filename="../src/optionsdialog.cpp" line="1683"/>
         <source>Filter</source>
         <translation>المرشح</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1710"/>
+        <location filename="../src/optionsdialog.cpp" line="1709"/>
         <source>Action</source>
         <translation>الاجراء</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1710"/>
+        <location filename="../src/optionsdialog.cpp" line="1709"/>
         <source>Description</source>
         <translation>الوصف</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1710"/>
+        <location filename="../src/optionsdialog.cpp" line="1709"/>
         <source>Shortcut</source>
         <translation>اختصار</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1718"/>
+        <location filename="../src/optionsdialog.cpp" line="1717"/>
         <source>Shortcut:</source>
         <translation>اختصار:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1973"/>
+        <location filename="../src/optionsdialog.cpp" line="1972"/>
         <source>Auto load images to news view</source>
         <translation>تحميل تلقائي للصور لعرض الاخبار</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2137"/>
-        <location filename="../src/optionsdialog.cpp" line="2162"/>
+        <location filename="../src/optionsdialog.cpp" line="2136"/>
+        <location filename="../src/optionsdialog.cpp" line="2161"/>
         <source>Open File...</source>
         <translation>فتح ملف...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2659"/>
+        <location filename="../src/optionsdialog.cpp" line="2658"/>
         <source>Select Style Sheet File</source>
         <translation>اختيار نمط الملف</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2668"/>
-        <location filename="../src/optionsdialog.cpp" line="2697"/>
+        <location filename="../src/optionsdialog.cpp" line="2667"/>
+        <location filename="../src/optionsdialog.cpp" line="2696"/>
         <source>Open Directory...</source>
         <translation>فتح مجلد...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2678"/>
+        <location filename="../src/optionsdialog.cpp" line="2677"/>
         <source>Add site to whitelist</source>
         <translation>اضافة الموقع للقائمة البيضاء</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2679"/>
+        <location filename="../src/optionsdialog.cpp" line="2678"/>
         <source>Site without &apos;http://&apos; (ex. youtube.com)</source>
         <translation>الموقع بدون &apos;http://&apos; (مثل. youtube.com)</translation>
     </message>
@@ -3809,17 +3814,17 @@ Ancient news could reappear</source>
 <context>
     <name>QAbstractSpinBox</name>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4736"/>
+        <location filename="../src/application/mainwindow.cpp" line="4756"/>
         <source>&amp;Step up</source>
         <translation>&amp;درجة للاعلى</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4737"/>
+        <location filename="../src/application/mainwindow.cpp" line="4757"/>
         <source>Step &amp;down</source>
         <translation>درجة &amp;للاسفل</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4738"/>
+        <location filename="../src/application/mainwindow.cpp" line="4758"/>
         <source>&amp;Select All</source>
         <translation>&amp;تحديد الكل</translation>
     </message>
@@ -3827,22 +3832,22 @@ Ancient news could reappear</source>
 <context>
     <name>QDialogButtonBox</name>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4714"/>
+        <location filename="../src/application/mainwindow.cpp" line="4734"/>
         <source>Close</source>
         <translation>اغلاق</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4715"/>
+        <location filename="../src/application/mainwindow.cpp" line="4735"/>
         <source>Cancel</source>
         <translation>الغاء</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4716"/>
+        <location filename="../src/application/mainwindow.cpp" line="4736"/>
         <source>&amp;Yes</source>
         <translation>&amp;نعم</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4717"/>
+        <location filename="../src/application/mainwindow.cpp" line="4737"/>
         <source>&amp;No</source>
         <translation>&amp;لا</translation>
     </message>
@@ -3954,37 +3959,37 @@ Ancient news could reappear</source>
 <context>
     <name>QLineEdit</name>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4719"/>
+        <location filename="../src/application/mainwindow.cpp" line="4739"/>
         <source>&amp;Undo</source>
         <translation>&amp;تراجع</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4720"/>
+        <location filename="../src/application/mainwindow.cpp" line="4740"/>
         <source>&amp;Redo</source>
         <translation>&amp;أعاد عمل</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4721"/>
+        <location filename="../src/application/mainwindow.cpp" line="4741"/>
         <source>Cu&amp;t</source>
         <translation>&amp;قص</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4722"/>
+        <location filename="../src/application/mainwindow.cpp" line="4742"/>
         <source>&amp;Copy</source>
         <translation>&amp;نسخ</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4723"/>
+        <location filename="../src/application/mainwindow.cpp" line="4743"/>
         <source>&amp;Paste</source>
         <translation>&amp;لصق</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4724"/>
+        <location filename="../src/application/mainwindow.cpp" line="4744"/>
         <source>Delete</source>
         <translation>حذف</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4725"/>
+        <location filename="../src/application/mainwindow.cpp" line="4745"/>
         <source>Select All</source>
         <translation>تحديد الكل</translation>
     </message>
@@ -3992,7 +3997,7 @@ Ancient news could reappear</source>
 <context>
     <name>QMultiInputContext</name>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4740"/>
+        <location filename="../src/application/mainwindow.cpp" line="4760"/>
         <source>Select IM</source>
         <translation>اختيار IM</translation>
     </message>
@@ -4012,48 +4017,48 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/database/database.cpp" line="218"/>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>خطاء</translation>
     </message>
 </context>
 <context>
     <name>QTextControl</name>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4727"/>
+        <location filename="../src/application/mainwindow.cpp" line="4747"/>
         <source>&amp;Undo</source>
         <translation>&amp;تراجع</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4728"/>
+        <location filename="../src/application/mainwindow.cpp" line="4748"/>
         <source>&amp;Redo</source>
         <translation>&amp;اعادة فعل</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4729"/>
+        <location filename="../src/application/mainwindow.cpp" line="4749"/>
         <source>Cu&amp;t</source>
         <translation>&amp;قص</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4730"/>
+        <location filename="../src/application/mainwindow.cpp" line="4750"/>
         <source>&amp;Copy</source>
         <translation>&amp;نسخ</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4731"/>
+        <location filename="../src/application/mainwindow.cpp" line="4751"/>
         <source>&amp;Paste</source>
         <translation>&amp;لصق</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4732"/>
+        <location filename="../src/application/mainwindow.cpp" line="4752"/>
         <source>Delete</source>
         <translation>حذف</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4733"/>
+        <location filename="../src/application/mainwindow.cpp" line="4753"/>
         <source>Select All</source>
         <translation>اختيار الكل</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4734"/>
+        <location filename="../src/application/mainwindow.cpp" line="4754"/>
         <source>Copy &amp;Link Location</source>
         <translation>نسخ &amp;موقع الرابط</translation>
     </message>
@@ -4061,22 +4066,22 @@ Ancient news could reappear</source>
 <context>
     <name>QWizard</name>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4742"/>
+        <location filename="../src/application/mainwindow.cpp" line="4762"/>
         <source>Cancel</source>
         <translation>الغاء</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4743"/>
+        <location filename="../src/application/mainwindow.cpp" line="4763"/>
         <source>&lt; &amp;Back</source>
         <translation>&lt; &amp;للخلف</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4744"/>
+        <location filename="../src/application/mainwindow.cpp" line="4764"/>
         <source>&amp;Finish</source>
         <translation>&amp;انهاء</translation>
     </message>
     <message>
-        <location filename="../src/app/mainwindow.cpp" line="4745"/>
+        <location filename="../src/application/mainwindow.cpp" line="4765"/>
         <source>&amp;Next &gt;</source>
         <translation>&amp;التالي &gt;</translation>
     </message>
@@ -4086,7 +4091,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/webview/rssdetectionwidget.cpp" line="56"/>
         <source>Untitled feed</source>
-        <translation type="unfinished"/>
+        <translation>حقل من دون عنوان</translation>
     </message>
 </context>
 <context>
