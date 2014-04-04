@@ -2,6 +2,21 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
+<p><b>Version 0.15.2+</b> (xx Apr 2014)
+<ul>
+<li>Changed: GUI. Some visual tweaks</li>
+<li>Changed: Adblock. Subscribe added</li>
+<li>Changed: Empty news title is substituted by part of the news description</li>
+
+<li>Fixed: Saving DB from memory to file</li>
+<li>Fixed: Generation of the news URL</li>
+<li>Fixed: Opening news URL without host with external browser</li>
+<li>Fixed: Some feeds have no news URL</li>
+<li>Fixed: Notification is displayed on primary monitor</li>
+<li>Fixed: The path of the user style table for embedded browser doesn't save</li>
+<li>Fixed: Moving feed to itself</li>
+</ul>
+<!---------------------------------------------------------------------------->
 <p><b>Version 0.15.2</b> (13 Mar 2014)
 <ul>
 <li>Changed: Main toolbar (View->Show/hide->Main toolbar)</li>
