@@ -214,12 +214,12 @@
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="169"/>
         <source>No content blocked</source>
-        <translation>Nenhum conteúdo bloqueadp</translation>
+        <translation>Nenhum conteúdo bloqueado</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="172"/>
         <source>Blocked URL (AdBlock Rule) - click to edit rule</source>
-        <translation>URL bloqueado (Regra AdBlock -  clique para editar</translation>
+        <translation>URL bloqueado (Regra AdBlock) -  clique para editar</translation>
     </message>
 </context>
 <context>
@@ -263,7 +263,7 @@
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="198"/>
         <source>%1 (recently updated)</source>
-        <translation>%1 (atualizado recentemente)</translation>
+        <translation>%1 (atualizada recentemente)</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="207"/>
@@ -1526,7 +1526,7 @@ não existe!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4512"/>
         <source>Import Feeds from OPML File</source>
-        <translation>Importar fontes de ficheiro OPML</translation>
+        <translation>Importar fontes de um ficheiro OPML</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4514"/>
@@ -1536,7 +1536,7 @@ não existe!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4515"/>
         <source>Export Feeds to OPML File</source>
-        <translation>Exportar fontes para ficheiro OPML</translation>
+        <translation>Exportar fontes para um ficheiro OPML</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4519"/>
@@ -1824,7 +1824,7 @@ não existe!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4495"/>
         <source>Menu</source>
-        <translation type="unfinished"/>
+        <translation>Menu</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4517"/>

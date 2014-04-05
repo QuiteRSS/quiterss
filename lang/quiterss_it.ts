@@ -1824,7 +1824,7 @@ Le notizie vecchie potrebbero riapparire.</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4495"/>
         <source>Menu</source>
-        <translation type="unfinished"/>
+        <translation>Menu</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4517"/>

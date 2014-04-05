@@ -1824,7 +1824,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4495"/>
         <source>Menu</source>
-        <translation type="unfinished"/>
+        <translation>Меню</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4517"/>
