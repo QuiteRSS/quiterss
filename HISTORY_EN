@@ -2,13 +2,16 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
-<p><b>Version 0.15.2+</b> (xx Apr 2014)
+<p><b>Version 0.15.3</b> (06 Apr 2014)
 <ul>
+<li>Main: Support for Mac OS X platform</li>
+
 <li>Changed: GUI. Some visual tweaks</li>
 <li>Changed: Adblock. Subscribe added</li>
 <li>Changed: Empty news title is substituted by part of the news description</li>
 
 <li>Fixed: Saving DB from memory to file</li>
+<li>Fixed: Update application (Windows)</li>
 <li>Fixed: Generation of the news URL</li>
 <li>Fixed: Opening news URL without host with external browser</li>
 <li>Fixed: Some feeds have no news URL</li>

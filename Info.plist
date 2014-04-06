@@ -21,7 +21,7 @@
     <key>CFBundleDisplayName</key>
     <string>@EXECUTABLE@</string>
     <key>CFBundleShortVersionString</key>
-    <string>0.14.3</string>
+    <string>0.15.3</string>
     <key>NSHumanReadableCopyright</key>
     <string>(C) 2011-2014 QuiteRSS Team</string>
 </dict>

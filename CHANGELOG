@@ -1,3 +1,17 @@
+Version 0.15.3 (06 Apr 2014)
+  * Main: Support for Mac OS X platform
+  * Changed: GUI. Some visual tweaks
+  * Changed: Adblock. Subscribe added
+  * Changed: Empty news title is substituted by part of the news description
+  * Fixed: Saving DB from memory to file
+  * Fixed: Update application (Windows)
+  * Fixed: Generation of the news URL
+  * Fixed: Opening news URL without host with external browser
+  * Fixed: Some feeds have no news URL
+  * Fixed: Notification is displayed on primary monitor
+  * Fixed: The path of the user style table for embedded browser doesn't save
+  * Fixed: Moving feed to itself
+
 Version 0.15.2 (13 Mar 2014)
   * Changed: Main toolbar (View->Show/hide->Main toolbar)
   * Changed: Relative path to cache (portable version)
