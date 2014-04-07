@@ -5476,7 +5476,7 @@ void MainWindow::slotPlaySound(const QString &path)
 }
 
 #ifdef HAVE_QT5
-void RSSListing::mediaStatusChanged(const QMediaPlayer::MediaStatus &status)
+void MainWindow::mediaStatusChanged(const QMediaPlayer::MediaStatus &status)
 {
   if (status == QMediaPlayer::EndOfMedia) {
     playlist_->removeMedia(0);
