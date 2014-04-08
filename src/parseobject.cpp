@@ -1015,6 +1015,9 @@ int ParseObject::recountFeedCounts(int feedId, const QString &feedUrl,
   if ((unreadCount == unreadCountOld) && (newNewsCount == newCountOld) &&
       (undeleteCount == undeleteCountOld)) {
     counts.feedId = feedId;
+    counts.unreadCount = unreadCount;
+    counts.newCount = newNewsCount;
+    counts.undeleteCount = undeleteCount;
     counts.updated = updated;
     counts.lastBuildDate = lastBuildDate;
 
