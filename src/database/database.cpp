@@ -337,8 +337,8 @@ void Database::prepareDatabase()
 
     // Create backups for DB and Settings
     if (appVersion != STRPRODUCTVER) {
-      Common::createFileBackup(mainApp->dbFileName(), STRPRODUCTVER);
-      Common::createFileBackup(settings.fileName(), STRPRODUCTVER);
+      Common::createFileBackup(mainApp->dbFileName(), appVersion);
+      Common::createFileBackup(settings.fileName(), appVersion);
     }
 
     if (dbVersion < 14) {
