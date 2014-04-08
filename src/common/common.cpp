@@ -119,7 +119,7 @@ void Common::createFileBackup(const QString &oldFilename, const QString &oldVers
   int count = 0;
   foreach (QString fileName, fileNameList) {
     count++;
-    if (count >= 3) {
+    if (count >= 4) {
       QFile::remove(backupDir.absolutePath() + '/' + fileName);
     }
   }
