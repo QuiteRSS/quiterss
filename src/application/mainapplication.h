@@ -66,7 +66,7 @@ public:
   CookieJar *cookieJar();
   void setDiskCache();
   UpdateFeeds *updateFeeds();
-  void runUserFilter(int feedId, int filterId);;
+  void runUserFilter(int feedId, int filterId);
   DownloadManager *downloadManager();
 
   void c2fLoadSettings();

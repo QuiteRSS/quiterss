@@ -224,20 +224,24 @@ void Database::initialization()
         dbFile.open();
         createTables(dbFile);
         createLabels(dbFile);
+        QSqlQuery q(dbFile);
+        q.prepare("INSERT INTO info(name, value) VALUES ('version', :version)");
+        q.bindValue(":version", version());
+        q.exec();
+        q.prepare("INSERT INTO info(name, value) VALUES('appVersion', :appVersion)");
+        q.bindValue(":appVersion", STRPRODUCTVER);
+        q.exec();
+        q.finish();
         dbFile.close();
       }
       QSqlDatabase::removeDatabase("initialization");
-    }
-
-    if (mainApp->dbFileExists()) {
+    } else {
       prepareDatabase();
     }
 
     if (mainApp->storeDBMemory()) {
       createTables(db);
-    }
 
-    if (mainApp->storeDBMemory()) {
       QSqlQuery q(db);
       q.prepare("ATTACH DATABASE :file AS 'storage';");
       q.bindValue(":file", mainApp->dbFileName());
@@ -255,11 +259,12 @@ void Database::setPragma(QSqlDatabase &db)
 {
   QSqlQuery q(db);
   q.setForwardOnly(true);
-  q.exec("PRAGMA synchronous = NORMAL");
-  q.exec("PRAGMA journal_mode = MEMORY");
+//  q.exec("PRAGMA synchronous = FULL");
+//  q.exec("PRAGMA journal_mode = MEMORY");
   q.exec("PRAGMA page_size = 4096");
   q.exec("PRAGMA cache_size = 16384");
   q.exec("PRAGMA temp_store = MEMORY");
+  q.finish();
 }
 
 void Database::createTables(QSqlDatabase &db)
@@ -302,14 +307,6 @@ void Database::createTables(QSqlDatabase &db)
   db.exec(kCreatePasswordsTable);
   //
   db.exec("CREATE TABLE info(id integer primary key, name varchar, value varchar)");
-  QSqlQuery q(db);
-  q.prepare("INSERT INTO info(name, value) VALUES ('version', :version)");
-  q.bindValue(":version", version());
-  q.exec();
-  q.prepare("INSERT INTO info(name, value) VALUES('appVersion', :appVersion)");
-  q.bindValue(":appVersion", STRPRODUCTVER);
-  q.exec();
-  q.finish();
 
   db.commit();
 }
