@@ -1849,18 +1849,18 @@ void MainWindow::loadSettings()
   langFileName_ = settings.value("langFileName", strLang).toString();
 
   QString fontFamily = settings.value("feedsFontFamily", qApp->font().family()).toString();
-  int fontSize = settings.value("feedsFontSize", qApp->font().pixelSize()).toInt();
+  int fontSize = settings.value("feedsFontSize", qApp->font().pointSize()).toInt();
   feedsTreeView_->setFont(QFont(fontFamily, fontSize));
   feedsTreeModel_->font_ = feedsTreeView_->font();
 
   newsListFontFamily_ = settings.value("newsFontFamily", qApp->font().family()).toString();
-  newsListFontSize_ = settings.value("newsFontSize", qApp->font().pixelSize()).toInt();
+  newsListFontSize_ = settings.value("newsFontSize", qApp->font().pointSize()).toInt();
   newsTitleFontFamily_ = settings.value("newsTitleFontFamily", qApp->font().family()).toString();
-  newsTitleFontSize_ = settings.value("newsTitleFontSize", qApp->font().pixelSize()).toInt();
+  newsTitleFontSize_ = settings.value("newsTitleFontSize", qApp->font().pointSize()+2).toInt();
   newsTextFontFamily_ = settings.value("newsTextFontFamily", qApp->font().family()).toString();
-  newsTextFontSize_ = settings.value("newsTextFontSize", qApp->font().pixelSize()).toInt();
+  newsTextFontSize_ = settings.value("newsTextFontSize", qApp->font().pointSize()+2).toInt();
   notificationFontFamily_ = settings.value("notificationFontFamily", qApp->font().family()).toString();
-  notificationFontSize_ = settings.value("notificationFontSize", qApp->font().pixelSize()).toInt();
+  notificationFontSize_ = settings.value("notificationFontSize", qApp->font().pointSize()).toInt();
 
   QString browserStandardFont = settings.value(
         "browserStandardFont", QWebSettings::globalSettings()->fontFamily(QWebSettings::StandardFont)).toString();

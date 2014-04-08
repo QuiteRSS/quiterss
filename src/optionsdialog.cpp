@@ -1866,10 +1866,10 @@ void OptionsDialog::slotFontReset()
 {
   switch (fontsTree_->currentItem()->text(0).toInt()) {
   case 2: case 3: fontsTree_->currentItem()->setText(
-          2, QString("%1, 10").arg(qApp->font().family()));
+          2, QString("%1, %2").arg(qApp->font().family()).arg(qApp->font().pointSize()+2));
     break;
   default: fontsTree_->currentItem()->setText(
-          2, QString("%1, 8").arg(qApp->font().family()));
+          2, QString("%1, %2").arg(qApp->font().family()).arg(qApp->font().pointSize()));
   }
 }
 //----------------------------------------------------------------------------
