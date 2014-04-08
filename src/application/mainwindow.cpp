@@ -2777,6 +2777,7 @@ void MainWindow::slotRecountCategoryCounts(QList<int> deletedList, QList<int> st
   QMap<int,int> unreadCountList;
   int allLabelCount = 0;
   int unreadLabelCount = 0;
+  QFont font;
 
   QTreeWidgetItem *labelTreeItem = categoriesTree_->topLevelItem(3);
   for (int i = 0; i < labelTreeItem->childCount(); i++) {
@@ -2817,6 +2818,12 @@ void MainWindow::slotRecountCategoryCounts(QList<int> deletedList, QList<int> st
     else
       countStr = QString("(%1/%2)").arg(unreadCountList[id]).arg(allCountList[id]);
     labelTreeItem->child(i)->setText(4, countStr);
+    font = labelTreeItem->child(i)->font(0);
+    if (unreadCountList[id])
+      font.setBold(true);
+    else
+      font.setBold(false);
+    labelTreeItem->child(i)->setFont(0, font);
 
     unreadLabelCount = unreadLabelCount + unreadCountList[id];
     allLabelCount = allLabelCount + allCountList[id];
@@ -2828,16 +2835,30 @@ void MainWindow::slotRecountCategoryCounts(QList<int> deletedList, QList<int> st
   else
     countStr = QString("(%1/%2)").arg(unreadStarredCount).arg(allStarredCount);
   categoriesTree_->topLevelItem(1)->setText(4, countStr);
+  font = categoriesTree_->topLevelItem(1)->font(0);
+  if (unreadStarredCount)
+    font.setBold(true);
+  else
+    font.setBold(false);
+  categoriesTree_->topLevelItem(1)->setFont(0, font);
+
   if (!deletedCount)
     countStr = "";
   else
     countStr = QString("(%1)").arg(deletedCount);
   categoriesTree_->topLevelItem(2)->setText(4, countStr);
+
   if (!unreadLabelCount && !allLabelCount)
     countStr = "";
   else
     countStr = QString("(%1/%2)").arg(unreadLabelCount).arg(allLabelCount);
   categoriesTree_->topLevelItem(3)->setText(4, countStr);
+  font = categoriesTree_->topLevelItem(3)->font(0);
+  if (unreadLabelCount)
+    font.setBold(true);
+  else
+    font.setBold(false);
+  categoriesTree_->topLevelItem(3)->setFont(0, font);
 
   NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(stackedWidget_->currentIndex());
   if ((widget->type_ > NewsTabWidget::TabTypeFeed) && (widget->type_ < NewsTabWidget::TabTypeWeb)
@@ -5302,6 +5323,12 @@ void MainWindow::slotRefreshInfoTray(int newCount, int unreadCount)
     categoriesTree_->topLevelItem(0)->setText(4, "");
   else
     categoriesTree_->topLevelItem(0)->setText(4, QString("(%1)").arg(unreadCount));
+  QFont font = categoriesTree_->topLevelItem(0)->font(0);
+  if (unreadCount)
+    font.setBold(true);
+  else
+    font.setBold(false);
+  categoriesTree_->topLevelItem(0)->setFont(0, font);
 
   // Setting tooltip text
   QString info =
