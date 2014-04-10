@@ -1152,6 +1152,8 @@ void UpdateObject::cleanUpShutdown()
   QSqlQuery q;
   QString qStr;
 
+  if (!mainApp->storeDBMemory())
+    db_ = QSqlDatabase::database();
   db_.transaction();
 
   q.exec("UPDATE news SET new=0 WHERE new==1");
@@ -1284,7 +1286,7 @@ void UpdateObject::cleanUpShutdown()
   q.finish();
   db_.commit();
 
-  if (cleanupOnShutdown && optimizeDB) {
+  if (cleanupOnShutdown && optimizeDB && !mainApp->storeDBMemory()) {
     db_.exec("VACUUM");
   }
 }
@@ -1292,7 +1294,19 @@ void UpdateObject::cleanUpShutdown()
 void UpdateObject::quitApp()
 {
   cleanUpShutdown();
-  saveMemoryDatabase();
+
+  if (mainApp->storeDBMemory()) {
+    saveMemoryDatabase();
+
+    Settings settings;
+    settings.beginGroup("Settings");
+    bool cleanupOnShutdown = settings.value("cleanupOnShutdown", true).toBool();
+    bool optimizeDB = settings.value("optimizeDB", false).toBool();
+    settings.endGroup();
+    if (cleanupOnShutdown && optimizeDB) {
+      Database::setVacuum();
+    }
+  }
 
   QTimer::singleShot(0, mainApp, SLOT(quitApplication()));
 }

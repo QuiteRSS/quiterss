@@ -29,6 +29,7 @@ public:
   static void initialization();
   static QSqlDatabase connection(const QString &connectionName = QString());
   static void saveMemoryDatabase();
+  static void setVacuum();
 
 private:
   static void setPragma(QSqlDatabase &db);

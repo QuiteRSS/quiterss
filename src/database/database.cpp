@@ -479,3 +479,16 @@ void Database::saveMemoryDatabase()
     qCritical() << "Failed to save database!";
   }
 }
+
+void Database::setVacuum()
+{
+  {
+    QSqlDatabase dbFile = QSqlDatabase::addDatabase("QSQLITE", "vacuum");
+    dbFile.setDatabaseName(mainApp->dbFileName());
+    dbFile.open();
+    setPragma(dbFile);
+    dbFile.exec("VACUUM");
+    dbFile.close();
+  }
+  QSqlDatabase::removeDatabase("vacuum");
+}

@@ -18,6 +18,7 @@
 #include "cleanupwizard.h"
 
 #include "mainapplication.h"
+#include "database.h"
 #include "settings.h"
 
 #if defined(Q_OS_WIN)
@@ -184,7 +185,12 @@ CleanUpThread::~CleanUpThread()
   q.finish();
   db.commit();
 
-  db.exec("VACUUM");
+  if (!mainApp->storeDBMemory()) {
+    db.exec("VACUUM");
+  } else {
+    Database::saveMemoryDatabase();
+    Database::setVacuum();
+  }
 }
 
 CleanUpWizard::CleanUpWizard(QWidget *parent)
