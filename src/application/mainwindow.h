@@ -458,7 +458,6 @@ private slots:
   void updateInfoDownloads(const QString &text);
 
   void cleanUp();
-  void cleanUpShutdown();
 
   void showSettingPageLabels();
 

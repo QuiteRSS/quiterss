@@ -247,6 +247,11 @@ void UpdateFeeds::saveMemoryDatabase()
   QTimer::singleShot(0, updateObject_, SLOT(saveMemoryDatabase()));
 }
 
+void UpdateFeeds::quitApp()
+{
+  QTimer::singleShot(0, updateObject_, SLOT(quitApp()));
+}
+
 //------------------------------------------------------------------------------
 UpdateObject::UpdateObject(QObject *parent)
   : QObject(parent)
@@ -1123,4 +1128,171 @@ void UpdateObject::saveMemoryDatabase()
   isSaveMemoryDatabase = true;
   Database::saveMemoryDatabase();
   isSaveMemoryDatabase = false;
+}
+
+/** @brief Delete news from the feed by criteria
+ *---------------------------------------------------------------------------*/
+void UpdateObject::cleanUpShutdown()
+{
+  Settings settings;
+  settings.beginGroup("Settings");
+  bool cleanupOnShutdown = settings.value("cleanupOnShutdown", true).toBool();
+  int maxDayCleanUp = settings.value("maxDayClearUp", 30).toInt();
+  int maxNewsCleanUp = settings.value("maxNewsClearUp", 200).toInt();
+  bool dayCleanUpOn = settings.value("dayClearUpOn", true).toBool();
+  bool newsCleanUpOn = settings.value("newsClearUpOn", true).toBool();
+  bool readCleanUp = settings.value("readClearUp", false).toBool();
+  bool neverUnreadCleanUp = settings.value("neverUnreadClearUp", true).toBool();
+  bool neverStarCleanUp = settings.value("neverStarClearUp", true).toBool();
+  bool neverLabelCleanUp = settings.value("neverLabelClearUp", true).toBool();
+  bool cleanUpDeleted = settings.value("cleanUpDeleted", false).toBool();
+  bool optimizeDB = settings.value("optimizeDB", false).toBool();
+  settings.endGroup();
+
+  QSqlQuery q;
+  QString qStr;
+
+  db_.transaction();
+
+  q.exec("UPDATE news SET new=0 WHERE new==1");
+  q.exec("UPDATE news SET read=2 WHERE read==1");
+  q.exec("UPDATE feeds SET newCount=0 WHERE newCount!=0");
+
+  if (cleanupOnShutdown) {
+    QList<int> feedsIdList;
+    QList<int> foldersIdList;
+    q.exec("SELECT id, xmlUrl FROM feeds");
+    while (q.next()) {
+      if (q.value(1).toString().isEmpty()) {
+        foldersIdList << q.value(0).toInt();
+      }
+      else {
+        feedsIdList << q.value(0).toInt();
+      }
+    }
+
+    // Run Cleanup for all feeds, except categories
+    foreach (int feedId, feedsIdList) {
+      int countDelNews = 0;
+      int countAllNews = 0;
+
+      qStr = QString("SELECT undeleteCount FROM feeds WHERE id=='%1'").arg(feedId);
+      q.exec(qStr);
+      if (q.next()) countAllNews = q.value(0).toInt();
+
+      QString qStr1 = QString("UPDATE news SET description='', content='', received='', "
+                              "author_name='', author_uri='', author_email='', "
+                              "category='', new='', read='', starred='', label='', "
+                              "deleteDate='', feedParentId='', deleted=2");
+
+      qStr = QString("SELECT id, received FROM news WHERE feedId=='%1' AND deleted == 0").
+          arg(feedId);
+      if (neverUnreadCleanUp) qStr.append(" AND read!=0");
+      if (neverStarCleanUp) qStr.append(" AND starred==0");
+      if (neverLabelCleanUp) qStr.append(" AND (label=='' OR label==',' OR label IS NULL)");
+      qStr.append(" ORDER BY published");
+      q.exec(qStr);
+      while (q.next()) {
+        int newsId = q.value(0).toInt();
+
+        if (newsCleanUpOn && (countDelNews < (countAllNews - maxNewsCleanUp))) {
+          qStr = QString("%1 WHERE id=='%2'").arg(qStr1).arg(newsId);
+          QSqlQuery qt;
+          qt.exec(qStr);
+          countDelNews++;
+          continue;
+        }
+
+        QDateTime dateTime = QDateTime::fromString(
+              q.value(1).toString(),
+              Qt::ISODate);
+        if (dayCleanUpOn &&
+            (dateTime.daysTo(QDateTime::currentDateTime()) > maxDayCleanUp)) {
+          qStr = QString("%1 WHERE id=='%2'").arg(qStr1).arg(newsId);
+          QSqlQuery qt;
+          qt.exec(qStr);
+          countDelNews++;
+          continue;
+        }
+
+        if (readCleanUp) {
+          qStr = QString("%1 WHERE read!=0 AND id=='%2'").arg(qStr1).arg(newsId);
+          QSqlQuery qt;
+          qt.exec(qStr);
+          countDelNews++;
+        }
+      }
+
+      int undeleteCount = 0;
+      qStr = QString("SELECT count(id) FROM news WHERE feedId=='%1' AND deleted==0").
+          arg(feedId);
+      q.exec(qStr);
+      if (q.next()) undeleteCount = q.value(0).toInt();
+
+      int unreadCount = 0;
+      qStr = QString("SELECT count(read) FROM news WHERE feedId=='%1' AND read==0 AND deleted==0").
+          arg(feedId);
+      q.exec(qStr);
+      if (q.next()) unreadCount = q.value(0).toInt();
+
+      qStr = QString("UPDATE feeds SET unread='%1', undeleteCount='%2' WHERE id=='%3'").
+          arg(unreadCount).arg(undeleteCount).arg(feedId);
+      q.exec(qStr);
+    }
+
+    // Run categories recount, because cleanup may change counts
+    foreach (int folderIdStart, foldersIdList) {
+      if (folderIdStart < 1) continue;
+
+      int folderId = folderIdStart;
+      // Process all parents
+      while (0 < folderId) {
+        int unreadCount = -1;
+        int undeleteCount = -1;
+
+        // Calculate sum of all feeds with same parent
+        qStr = QString("SELECT sum(unread), sum(undeleteCount) FROM feeds "
+                       "WHERE parentId=='%1'").arg(folderId);
+        q.exec(qStr);
+        if (q.next()) {
+          unreadCount   = q.value(0).toInt();
+          undeleteCount = q.value(1).toInt();
+        }
+
+        if (unreadCount != -1) {
+          qStr = QString("UPDATE feeds SET unread='%1', undeleteCount='%2' WHERE id=='%3'").
+              arg(unreadCount).arg(undeleteCount).arg(folderId);
+          q.exec(qStr);
+        }
+
+        // go to next parent's parent
+        qStr = QString("SELECT parentId FROM feeds WHERE id=='%1'").arg(folderId);
+        folderId = 0;
+        q.exec(qStr);
+        if (q.next()) folderId = q.value(0).toInt();
+      }
+    }
+
+    if (cleanUpDeleted) {
+      q.exec("UPDATE news SET description='', content='', received='', "
+             "author_name='', author_uri='', author_email='', "
+             "category='', new='', read='', starred='', label='', "
+             "deleteDate='', feedParentId='', deleted=2 WHERE deleted==1");
+    }
+  }
+
+  q.finish();
+  db_.commit();
+
+  if (cleanupOnShutdown && optimizeDB) {
+    db_.exec("VACUUM");
+  }
+}
+
+void UpdateObject::quitApp()
+{
+  cleanUpShutdown();
+  saveMemoryDatabase();
+
+  QTimer::singleShot(0, mainApp, SLOT(quitApplication()));
 }

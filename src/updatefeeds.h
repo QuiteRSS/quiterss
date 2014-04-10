@@ -49,6 +49,7 @@ public:
 
 public slots:
   void saveMemoryDatabase();
+  void quitApp();
 
 private:
   bool addFeed_;
@@ -90,6 +91,8 @@ public slots:
   void slotMarkAllFeedsOld();
   void slotRefreshInfoTray();
   void saveMemoryDatabase();
+  void cleanUpShutdown();
+  void quitApp();
 
 signals:
   void showProgressBar(int value);
