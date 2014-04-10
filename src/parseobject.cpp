@@ -209,15 +209,12 @@ void ParseObject::slotParse(const QByteArray &xmlData, const int &feedId,
 
   int newCount = 0;
   if (feedChanged_) {
-    qApp->processEvents();
     runUserFilter(parseFeedId_);
-    qApp->processEvents();
     newCount = recountFeedCounts(parseFeedId_, feedUrl, updated, lastBuildDate);
   }
 
   q.finish();
   db_.commit();
-  qApp->processEvents();
 
   emit signalFinishUpdate(parseFeedId_, feedChanged_, newCount, "0");
   qDebug() << "=================== parseXml:finish ===========================";
@@ -445,7 +442,6 @@ void ParseObject::addAtomNewsIntoBase(NewsItemStruct &newsItem)
     }
   }
   q.finish();
-  qApp->processEvents();
 }
 
 void ParseObject::parseRss(const QString &feedUrl, const QDomDocument &doc)
@@ -624,7 +620,6 @@ void ParseObject::addRssNewsIntoBase(NewsItemStruct &newsItem)
     }
   }
   q.finish();
-  qApp->processEvents();
 }
 
 QString ParseObject::toPlainText(const QString &text)

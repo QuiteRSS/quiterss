@@ -427,6 +427,14 @@ void Database::saveMemoryDatabase()
   if (!okQuery) {
     qCritical() << __PRETTY_FUNCTION__ << __LINE__
                 << "q.lastError(): " << q.lastError().text();
+    okQuery = q.exec("DETACH 'storage'");
+    if (!okQuery) {
+      qCritical() << __PRETTY_FUNCTION__ << __LINE__
+                  << "q.lastError(): " << q.lastError().text();
+    }
+    if (!QFile::remove(fileName))
+      qCritical() << "Failed to delete old database file (0)!";
+    return;
   }
   foreach (const QString &table, tablesList()) {
     okQuery = q.exec(QString("DELETE FROM storage.%1;").arg(table));
@@ -450,7 +458,7 @@ void Database::saveMemoryDatabase()
 
   if (okQuery) {
     if (!QFile::remove(fileName)) {
-      qCritical() << "Failed to delete old database file (0)!";
+      qCritical() << "Failed to delete old database file (1)!";
       okQuery = false;
     }
   }
@@ -466,7 +474,7 @@ void Database::saveMemoryDatabase()
       if (!QFile::rename(fileName, sourceFileName))
         qCritical() << "Failed to rename new database file!";
     } else {
-      qCritical() << "Failed to delete old database file (1)!";
+      qCritical() << "Failed to delete old database file (2)!";
     }
     qCritical() << "Failed to save database!";
   }
