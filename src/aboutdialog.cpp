@@ -115,8 +115,12 @@ AboutDialog::AboutDialog(const QString &lang, QWidget *parent) :
   licenseWidget->setLayout(licenseLayout);
 
   QString portable;
-  if (mainApp->isPortable())
-    portable = QString("(Portable)");
+  if (mainApp->isPortable()) {
+    if (!mainApp->isPortableAppsCom())
+      portable = "(Portable)";
+    else
+      portable = "(PortableApps)";
+  }
   Settings settings;
   QString information =
       "<table border=\"0\"><tr>"

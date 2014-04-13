@@ -30,6 +30,7 @@
 MainApplication::MainApplication(int &argc, char **argv)
   : QtSingleApplication(argc, argv)
   , isPortable_(false)
+  , isPortableAppsCom_(false)
   , isClosing_(false)
   , dbFileExists_(false)
   , mainWindow_(0)
@@ -157,6 +158,13 @@ void MainApplication::checkPortable()
     if (!QFile::exists(fileName))
       isPortable_ = false;
   }
+  if (isPortable_) {
+    fileName = QCoreApplication::applicationDirPath() + "/../../QuiteRSSPortable.exe";
+    if (QFile::exists(fileName)) {
+      isPortableAppsCom_ = true;
+      QFile::remove(QCoreApplication::applicationDirPath() + "/Updater.exe");
+    }
+  }
 #endif
 }
 
@@ -257,6 +265,11 @@ void MainApplication::commitData(QSessionManager &manager)
 bool MainApplication::isPortable() const
 {
   return isPortable_;
+}
+
+bool MainApplication::isPortableAppsCom() const
+{
+  return isPortableAppsCom_;
 }
 
 void MainApplication::setClosing()

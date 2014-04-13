@@ -165,7 +165,7 @@ void UpdateAppDialog::finishUpdatesChecking()
 
 #if defined(Q_OS_WIN)
     if (QFile::exists(QCoreApplication::applicationDirPath() + "/Updater.exe") &&
-        !newVersion.isEmpty())
+        !newVersion.isEmpty() && !mainApp->isPortableAppsCom())
       installButton_->show();
 #endif
 

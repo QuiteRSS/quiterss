@@ -46,6 +46,7 @@ public:
   static MainApplication *getInstance();
 
   bool isPortable() const;
+  bool isPortableAppsCom() const;
   void setClosing();
   bool isClosing() const;
 
@@ -100,6 +101,7 @@ private:
   void setProgressSplashScreen(int value);
 
   bool isPortable_;
+  bool isPortableAppsCom_;
   bool isClosing_;
 
   QString resourcesDir_;
