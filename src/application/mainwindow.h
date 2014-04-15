@@ -461,6 +461,8 @@ private slots:
 
   void showSettingPageLabels();
 
+  void createBackup();
+
 private:
   void closeEvent(QCloseEvent *event);
   bool eventFilter(QObject *obj, QEvent *event);
@@ -606,6 +608,7 @@ private:
   QAction *reduceNewsListAct_;
   QAction *increaseNewsListAct_;
 
+  QAction *createBackupAct_;
   QAction *showMenuBarAct_;
 
   QMenu *fileMenu_;

@@ -732,6 +732,11 @@ void MainWindow::createActions()
   this->addAction(exportFeedsAct_);
   connect(exportFeedsAct_, SIGNAL(triggered()), this, SLOT(slotExportFeeds()));
 
+  createBackupAct_ = new QAction(this);
+  createBackupAct_->setObjectName("createBackupAct");
+  this->addAction(createBackupAct_);
+  connect(createBackupAct_, SIGNAL(triggered()), this, SLOT(createBackup()));
+
   showMenuBarAct_ = new QAction(this);
   showMenuBarAct_->setCheckable(true);
   connect(showMenuBarAct_, SIGNAL(triggered()), this, SLOT(showMenuBar()));
@@ -1356,6 +1361,7 @@ void MainWindow::createShortcut()
   addFolderAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_N));
   listActions_.append(addFolderAct_);
   listActions_.append(deleteFeedAct_);
+  listActions_.append(createBackupAct_);
   exitAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Q));  // standart on other OS
   listActions_.append(exitAct_);
   updateFeedAct_->setShortcut(QKeySequence(Qt::Key_F5));
@@ -1535,6 +1541,8 @@ void MainWindow::createMenu()
   fileMenu_->addAction(importFeedsAct_);
   fileMenu_->addAction(exportFeedsAct_);
   fileMenu_->addSeparator();
+  fileMenu_->addAction(createBackupAct_);
+  fileMenu_->addSeparator();
 #ifndef Q_OS_MAC
   fileMenu_->addAction(showMenuBarAct_);
   fileMenu_->addSeparator();
@@ -1545,6 +1553,8 @@ void MainWindow::createMenu()
   mainMenu_->addSeparator();
   mainMenu_->addAction(importFeedsAct_);
   mainMenu_->addAction(exportFeedsAct_);
+  mainMenu_->addSeparator();
+  mainMenu_->addAction(createBackupAct_);
   mainMenu_->addSeparator();
 
   toolbarsMenu_ = new QMenu(this);
@@ -4528,6 +4538,7 @@ void MainWindow::retranslateStrings()
   exportFeedsAct_->setText(tr("&Export Feeds..."));
   exportFeedsAct_->setToolTip(tr("Export Feeds to OPML File"));
 
+  createBackupAct_->setText(tr("&Create Backup..."));
   showMenuBarAct_->setText(tr("S&how Menu Bar"));
 
   exitAct_->setText(tr("E&xit"));
@@ -7483,4 +7494,32 @@ void MainWindow::addOurFeed()
   q.exec();
 
   feedsModelReload();
+}
+
+void MainWindow::createBackup()
+{
+  QString backupDir = QFileDialog::getExistingDirectory(this, tr("Choose Directory"),
+                                                        QDir::currentPath(),
+                                                        QFileDialog::ShowDirsOnly |
+                                                        QFileDialog::DontResolveSymlinks);
+  if (!backupDir.isEmpty()) {
+    QFileInfo fileInfo;
+    QString backupFileName;
+    Settings settings;
+    QString timeStr(QDateTime::currentDateTime().toString("yyyy-MM-dd_hh-mm-ss"));
+
+    fileInfo.setFile(mainApp->dbFileName());
+    backupFileName = QString("%1/%2_%3.bak").
+        arg(backupDir).
+        arg(fileInfo.fileName()).
+        arg(timeStr);
+    QFile::copy(mainApp->dbFileName(), backupFileName);
+
+    fileInfo.setFile(settings.fileName());
+    backupFileName = QString("%1/%2_%3.bak").
+        arg(backupDir).
+        arg(fileInfo.fileName()).
+        arg(timeStr);
+    QFile::copy(settings.fileName(), backupFileName);
+  }
 }
