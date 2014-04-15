@@ -21,7 +21,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="56"/>
         <source>QuiteRSS is a open-source cross-platform RSS/Atom news reader</source>
-        <translation>QuiteRSS é um software de código aberto multi-plataforma leitor de notícias RSS/Atom</translation>
+        <translation>O QuiteRSS é um software de código aberto multi-plataforma leitor de notícias RSS/Atom</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="57"/>
@@ -31,17 +31,17 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="126"/>
         <source>Application directory:</source>
-        <translation>Diretório da aplicação:</translation>
+        <translation>Pasta da aplicação:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="129"/>
         <source>Resource directory:</source>
-        <translation>Diretório de recursos:</translation>
+        <translation>Pasta de recursos:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="132"/>
         <source>Data directory:</source>
-        <translation>Diretório de dados:</translation>
+        <translation>Pasta de dados:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="135"/>
@@ -120,7 +120,7 @@
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="20"/>
         <source>Enable AdBlock</source>
-        <translation>Habilitar o AdBlock</translation>
+        <translation>Ativar o AdBlock</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="32"/>
@@ -165,12 +165,12 @@
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="77"/>
         <source>Update Subscriptions</source>
-        <translation>Atualizar Assinaturas</translation>
+        <translation>Atualizar as Assinaturas</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="79"/>
         <source>Learn about writing rules...</source>
-        <translation>Saber sobre escrever regras...</translation>
+        <translation>Aprender a gravar regras...</translation>
     </message>
 </context>
 <context>
@@ -178,7 +178,7 @@
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="61"/>
         <source>AdBlock lets you block unwanted content on web pages</source>
-        <translation>O AdBlock permite bloquear conteúdo indesejado em páginas da web</translation>
+        <translation>O AdBlock deixa bloquear o conteúdo indesejado em páginas da web</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="102"/>
@@ -188,7 +188,7 @@
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="129"/>
         <source>Show AdBlock &amp;Settings</source>
-        <translation>Exibir &amp;Configurações do AdBlock</translation>
+        <translation>Mostrar as &amp;Opções do AdBlock</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="137"/>
@@ -287,12 +287,12 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="107"/>
         <source>Use title of the feed as displayed name</source>
-        <translation>Utilize título do feed como nome de exibição</translation>
+        <translation>Usar o título do feed como nome de exibição</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="111"/>
         <source>Server requires authentication:</source>
-        <translation>Servidor requer autenticação:</translation>
+        <translation>O servidor requer autenticação:</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="120"/>
@@ -307,7 +307,7 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="151"/>
         <source>Feed URL or website address:</source>
-        <translation>URL do Feed ou endereço do website:</translation>
+        <translation>URL do Feed ou endereço do site:</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="184"/>
@@ -327,7 +327,7 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="243"/>
         <source>Displayed name:</source>
-        <translation>Nome de exibição:</translation>
+        <translation>Nome a exibir:</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="245"/>
@@ -349,12 +349,12 @@
         <location filename="../src/addfeedwizard.cpp" line="508"/>
         <location filename="../src/addfeedwizard.cpp" line="530"/>
         <source>Can&apos;t find feed URL!</source>
-        <translation>Não é possível encontrar URL do feed!</translation>
+        <translation>Não é possível encontrar a URL do feed!</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="549"/>
         <source>Request failed!</source>
-        <translation>Falha na solicitação!</translation>
+        <translation>Falha ao solicitar!</translation>
     </message>
 </context>
 <context>
@@ -390,7 +390,7 @@
     <message>
         <location filename="../src/network/authenticationdialog.cpp" line="28"/>
         <source>Save password</source>
-        <translation>Salvar senha</translation>
+        <translation>Salvar a senha</translation>
     </message>
     <message>
         <location filename="../src/network/authenticationdialog.cpp" line="46"/>
@@ -423,7 +423,7 @@
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="57"/>
         <source>Unread</source>
-        <translation>Não lida</translation>
+        <translation>Não Lida</translation>
     </message>
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="62"/>
@@ -461,7 +461,7 @@
     <message>
         <location filename="../src/cleanupwizard.cpp" line="230"/>
         <source>Choose Feeds</source>
-        <translation>Escolha Feeds</translation>
+        <translation>Escolher os Feeds</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="243"/>
@@ -476,7 +476,7 @@
     <message>
         <location filename="../src/cleanupwizard.cpp" line="315"/>
         <source>Maximum age of news in days to keep:</source>
-        <translation>Idade máxima das notícias em dias, a manter:</translation>
+        <translation>Idade máx. de notícias em dias, a manter:</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="322"/>
@@ -486,38 +486,38 @@
     <message>
         <location filename="../src/cleanupwizard.cpp" line="329"/>
         <source>Delete read news</source>
-        <translation>Apagar notícias lidas</translation>
+        <translation>Apagar as notícias lidas</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="330"/>
         <source>Never delete unread news</source>
-        <translation>Nunca apagar notícias não lidas</translation>
+        <translation>Nunca apagar as notícias não lidas</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="331"/>
         <source>Never delete starred news</source>
-        <translation>Não apagar notícias favoritas</translation>
+        <translation>Não apagar as notícias favoritas</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="332"/>
         <source>Never delete labeled news</source>
-        <translation>Nunca apagar notícias etiquetadas</translation>
+        <translation>Nunca apagar as notícias etiquetadas</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="345"/>
         <source>Clean up &apos;Deleted&apos;</source>
-        <translation>Limpe &apos;Excluídos&apos;</translation>
+        <translation>Limpar &apos;Excluídos&apos;</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="346"/>
         <source>Purge DB</source>
-        <translation>Limpar Banco de Dados</translation>
+        <translation>Limpar o Banco de Dados</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="350"/>
         <source>Totally remove records that had marked 'deleted' from DB.
 Ancient news could reappear</source>
-        <translation>Remover totalmente do Banco de Dados registros que haviam sido marcados como &apos;apagado&apos;.⏎
+        <translation>Remover totalmente do Banco de Dados registros que haviam sido marcados como &apos;apagados&apos;.
 Notícias antigas podem reaparecer</translation>
     </message>
 </context>
@@ -531,12 +531,12 @@ Notícias antigas podem reaparecer</translation>
     <message>
         <location filename="../src/plugins/clicktoflash.cpp" line="132"/>
         <source>Hide object</source>
-        <translation>Ocultar objeto</translation>
+        <translation>Ocultar o objeto</translation>
     </message>
     <message>
         <location filename="../src/plugins/clicktoflash.cpp" line="133"/>
         <source>Add &apos;%1&apos; to whitelist</source>
-        <translation>Adicionar &apos;%1&apos; para lista branca</translation>
+        <translation>Adicionar &apos;%1&apos; à lista branca</translation>
     </message>
 </context>
 <context>
@@ -544,24 +544,24 @@ Notícias antigas podem reaparecer</translation>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="32"/>
         <source>Customize Main Toolbar</source>
-        <translation>Personalizar Barra de Ferramentas Principal</translation>
+        <translation>Personalizar a Barra de Ferramentas Principal</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="34"/>
         <source>Customize Feeds Toolbar</source>
-        <translation>Personalizar Barra de Feeds</translation>
+        <translation>Personalizar a Barra de Ferramentas de Feeds</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="36"/>
         <source>Customize News Toolbar</source>
-        <translation>Personalizar Barra de Notícias</translation>
+        <translation>Personalizar a Barra de Ferramentas de Notícias</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="73"/>
         <location filename="../src/customizetoolbardialog.cpp" line="352"/>
         <location filename="../src/customizetoolbardialog.cpp" line="454"/>
         <source>Load images</source>
-        <translation>Carregar imagens</translation>
+        <translation>Carregar as imagens</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="81"/>
@@ -588,7 +588,7 @@ Notícias antigas podem reaparecer</translation>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="91"/>
         <source>Text Under Icon</source>
-        <translation>Texto Sobe o Ícone</translation>
+        <translation>Texto Sob o Ícone</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="107"/>
@@ -628,12 +628,12 @@ Notícias antigas podem reaparecer</translation>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="150"/>
         <source>Move up</source>
-        <translation>Mover para cima</translation>
+        <translation>Mover acima</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="153"/>
         <source>Move down</source>
-        <translation>Mover para baixo</translation>
+        <translation>Mover abaixo</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="157"/>
@@ -652,7 +652,7 @@ Notícias antigas podem reaparecer</translation>
         <location filename="../src/downloads/downloaditem.cpp" line="161"/>
         <location filename="../src/downloads/downloaditem.cpp" line="188"/>
         <source>Error: Cannot write to file!</source>
-        <translation>Erro: Impossível escrever no arquivo!</translation>
+        <translation>Erro: Não é possível gravar no arquivo!</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="228"/>
@@ -699,7 +699,7 @@ Notícias antigas podem reaparecer</translation>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="322"/>
         <source>Remaining %1 - %2 of %3 (%4)</source>
-        <translation>Restante %1 - %2 de %3 (%4)</translation>
+        <translation>Restando %1 - %2 de %3 (%4)</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="341"/>
@@ -714,7 +714,7 @@ Notícias antigas podem reaparecer</translation>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="353"/>
         <source>Do you want to also delete dowloaded file?</source>
-        <translation>Você quer deletar o arquivo baixado também?</translation>
+        <translation>Deseja apagar o arquivo baixado também?</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="370"/>
@@ -734,7 +734,7 @@ Notícias antigas podem reaparecer</translation>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="376"/>
         <source>Cancel Downloading</source>
-        <translation>Cancelar Download</translation>
+        <translation>Cancelar o Download</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="377"/>
@@ -782,7 +782,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="85"/>
         <source>All Files (*.*)</source>
-        <translation>Todos os arquivos (*.*)</translation>
+        <translation>Todos os Arquivos (*.*)</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="89"/>
@@ -845,32 +845,32 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="65"/>
         <source>Load Title</source>
-        <translation>Carregar Título</translation>
+        <translation>Carregar o Título</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="69"/>
         <source>Load Favicon</source>
-        <translation>Carregar Favicon</translation>
+        <translation>Carregar o Favicon</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="71"/>
         <source>Select Icon...</source>
-        <translation>Selecionar Ícone...</translation>
+        <translation>Selecionar o Ícone...</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="74"/>
         <source>Select Icon</source>
-        <translation>Selecionar Ícone</translation>
+        <translation>Selecionar o Ícone</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="84"/>
         <source>Disable update</source>
-        <translation>Desativar atualização</translation>
+        <translation>Desativar a atualização</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="87"/>
         <source>Automatically update every</source>
-        <translation>Atualizar todos automaticamente</translation>
+        <translation>Auto-atualizar a cada</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="97"/>
@@ -895,7 +895,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="117"/>
         <source>Load images</source>
-        <translation>Carregar imagens</translation>
+        <translation>Carregar as imagens</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="119"/>
@@ -905,27 +905,27 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="120"/>
         <source>Show news&apos; description instead of loading web page</source>
-        <translation>Mostrar descrição das notícias, em vez de carregar a página da web</translation>
+        <translation>Mostrar a descrição das notícias, em vez de carregar a página da web</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="121"/>
         <source>Automatically delete duplicate news</source>
-        <translation>Apagar automaticamente notícias duplicadas</translation>
+        <translation>Auto-apagar as notícias duplicadas</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="197"/>
         <source>Ascending</source>
-        <translation>Ascendente</translation>
+        <translation>Crescente</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="197"/>
         <source>Descending</source>
-        <translation>Descendente</translation>
+        <translation>Decrescente</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="202"/>
         <source>Sort by:</source>
-        <translation>Ordenar por:</translation>
+        <translation>Organizar por:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="216"/>
@@ -940,12 +940,12 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="227"/>
         <source>Move up</source>
-        <translation>Mover para cima</translation>
+        <translation>Mover acima</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="230"/>
         <source>Move down</source>
-        <translation>Mover para baixo</translation>
+        <translation>Mover abaixo</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="234"/>
@@ -955,7 +955,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="264"/>
         <source>Server requires authentication:</source>
-        <translation>Servidor requer autenticação:</translation>
+        <translation>O servidor requer autenticação:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="273"/>
@@ -980,7 +980,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="308"/>
         <source>Created:</source>
-        <translation>Incluído:</translation>
+        <translation>Criado em:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="310"/>
@@ -990,7 +990,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="312"/>
         <source>News count:</source>
-        <translation>Contagem de Notícias:</translation>
+        <translation>Contagem de notícias:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="374"/>
@@ -1000,7 +1000,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="382"/>
         <source>Long ago ;-)</source>
-        <translation>Há muitas ;-)</translation>
+        <translation>Há muito tempo ;-)</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="393"/>
@@ -1010,7 +1010,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="395"/>
         <source>unread</source>
-        <translation>não lido</translation>
+        <translation>não lida</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="415"/>
@@ -1020,12 +1020,12 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="417"/>
         <source>Select Image</source>
-        <translation>Selecionar Imagem</translation>
+        <translation>Selecionar a Imagem</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="424"/>
         <source>Load icon: can&apos;t open a file!</source>
-        <translation>Carregar ícone: arquivo não pôde ser aberto!</translation>
+        <translation>Carregar o ícone: o arquivo não pôde ser aberto!</translation>
     </message>
 </context>
 <context>
@@ -1073,12 +1073,12 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/filterrulesdialog.cpp" line="313"/>
         <source>Please enter name for the filter.</source>
-        <translation>Por favor entre com o nome para filtrar.</translation>
+        <translation>Por favor, digite o nome para o filtro.</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.cpp" line="325"/>
         <source>Please enter search condition for the news filter.</source>
-        <translation>Por favor insira condição de pesquisa para o filtro de notícias.</translation>
+        <translation>Por favor, digite a condição de pesquisa para o filtro de notícias.</translation>
     </message>
 </context>
 <context>
@@ -1086,7 +1086,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/findfeed.cpp" line="79"/>
         <source>Find Name</source>
-        <translation>Buscar por nome</translation>
+        <translation>Buscar por Nome</translation>
     </message>
     <message>
         <location filename="../src/findfeed.cpp" line="80"/>
@@ -1141,7 +1141,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/filterrulesdialog.h" line="147"/>
         <source>Mark News as Read</source>
-        <translation>Marcar Notícias como Lidas</translation>
+        <translation>Marcar as Notícias como Lidas</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="147"/>
@@ -1166,7 +1166,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/filterrulesdialog.h" line="149"/>
         <source>Show News in Notifier</source>
-        <translation>Exibir Notícias no Notificador</translation>
+        <translation>Mostrar as Notícias no Notificador</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="158"/>
@@ -1224,7 +1224,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/filterrulesdialog.h" line="39"/>
         <source>State</source>
-        <translation>Situação</translation>
+        <translation>Estado</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="44"/>
@@ -1311,7 +1311,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/labeldialog.cpp" line="35"/>
         <source>Load icon...</source>
-        <translation>Carregar ícone...</translation>
+        <translation>Carregar o ícone...</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="44"/>
@@ -1323,7 +1323,7 @@ não foi encontrado!</translation>
         <location filename="../src/labeldialog.cpp" line="46"/>
         <location filename="../src/labeldialog.cpp" line="56"/>
         <source>Select color...</source>
-        <translation>Selecionar cor...</translation>
+        <translation>Selecionar a cor...</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="64"/>
@@ -1353,12 +1353,12 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/labeldialog.cpp" line="146"/>
         <source>Select Image</source>
-        <translation>Selecionar Imagem</translation>
+        <translation>Selecionar a Imagem</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="153"/>
         <source>Load icon: can&apos;t open a file!</source>
-        <translation>Carregar ícone: arquivo não pôde ser aberto!</translation>
+        <translation>Carregar o ícone: o arquivo não pôde ser aberto!</translation>
     </message>
 </context>
 <context>
@@ -1374,14 +1374,14 @@ não foi encontrado!</translation>
         <location filename="../src/application/mainwindow.cpp" line="6974"/>
         <location filename="../src/application/mainwindow.cpp" line="6996"/>
         <source>Hide Categories</source>
-        <translation>Ocultar Categorias</translation>
+        <translation>Ocultar as Categorias</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2134"/>
         <location filename="../src/application/mainwindow.cpp" line="4694"/>
         <location filename="../src/application/mainwindow.cpp" line="6980"/>
         <source>Show Categories</source>
-        <translation>Mostrar Categorias</translation>
+        <translation>Mostrar as Categorias</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2477"/>
@@ -1391,7 +1391,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2478"/>
         <source>Are you sure to delete the folder &apos;%1&apos;?</source>
-        <translation>Tem certeza que deseja apagar a pasta &apos;%1&apos;?</translation>
+        <translation>Deseja mesmo apagar a pasta &apos;%1&apos;?</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2481"/>
@@ -1401,13 +1401,13 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2482"/>
         <source>Are you sure to delete the feed &apos;%1&apos;?</source>
-        <translation>Tem certeza que deseja apagar o feed &apos;%1&apos;?</translation>
+        <translation>Deseja mesmo apagar o feed &apos;%1&apos;?</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2555"/>
         <location filename="../src/application/mainwindow.cpp" line="2584"/>
         <source>Select OPML-File</source>
-        <translation>Selecionar Arquivo OPML</translation>
+        <translation>Selecionar o Arquivo OPML</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2557"/>
@@ -1437,7 +1437,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2596"/>
         <source>Export: can&apos;t open a file</source>
-        <translation>Exportação: arquivo não pôde ser aberto</translation>
+        <translation>Exportação: o arquivo não pôde ser aberto</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2847"/>
@@ -1455,7 +1455,7 @@ não foi encontrado!</translation>
         <location filename="../src/application/mainwindow.cpp" line="5868"/>
         <location filename="../src/application/mainwindow.cpp" line="6946"/>
         <source>All: %1</source>
-        <translation>Todas: %1</translation>
+        <translation>Tudo: %1</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="3371"/>
@@ -1516,27 +1516,27 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4509"/>
         <source>Delete Selected Feed</source>
-        <translation>Apagar Feed Selecionado</translation>
+        <translation>Apagar o Feed Selecionado</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4511"/>
         <source>&amp;Import Feeds...</source>
-        <translation>&amp;Importar Feeds...</translation>
+        <translation>&amp;Importar os Feeds...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4512"/>
         <source>Import Feeds from OPML File</source>
-        <translation>Importar Feeds de Arquivo OPML</translation>
+        <translation>Importar os Feeds do Arquivo OPML</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4514"/>
         <source>&amp;Export Feeds...</source>
-        <translation>&amp;Exportar Feeds...</translation>
+        <translation>&amp;Exportar os Feeds...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4515"/>
         <source>Export Feeds to OPML File</source>
-        <translation>Exportar Feeds para Arquivo OPML</translation>
+        <translation>Exportar os Feeds para o Arquivo OPML</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4519"/>
@@ -1546,17 +1546,17 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4521"/>
         <source>Update Feed</source>
-        <translation>Atualizar Feed</translation>
+        <translation>Atualizar o Feed</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4522"/>
         <source>Update Current Feed</source>
-        <translation>Atualizar Feed Atual</translation>
+        <translation>Atualizar o Feed Atual</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4524"/>
         <source>Update All</source>
-        <translation>Atualizar Todos</translation>
+        <translation>Atualizar Tudo</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4525"/>
@@ -1576,7 +1576,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4530"/>
         <source>Mark Current News Read/Unread</source>
-        <translation>Marcar Notícia Atual como Lida/Não Lida</translation>
+        <translation>Marcar a Notícia Atual como Lida/Não Lida</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4532"/>
@@ -1605,7 +1605,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4540"/>
         <source>Filter News...</source>
-        <translation>Filtrar Notícias...</translation>
+        <translation>Filtrar as Notícias...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4542"/>
@@ -1615,70 +1615,70 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4543"/>
         <source>Open Options Dialog</source>
-        <translation>Abrir Caixa de Diálogo Opções</translation>
+        <translation>Abrir a Janela Opções</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4545"/>
         <source>Filter Feeds</source>
-        <translation>Filtrar Feeds</translation>
+        <translation>Filtrar os Feeds</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4546"/>
         <location filename="../src/application/mainwindow.cpp" line="4553"/>
         <source>Show All</source>
-        <translation>Mostrar Todas</translation>
+        <translation>Mostrar Tudo</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4547"/>
         <location filename="../src/application/mainwindow.cpp" line="4554"/>
         <source>Show New</source>
-        <translation>Mostrar Novas</translation>
+        <translation>Mostrar os Novos</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4548"/>
         <location filename="../src/application/mainwindow.cpp" line="4555"/>
         <source>Show Unread</source>
-        <translation>Mostrar Não Lidas</translation>
+        <translation>Mostrar os Não Lidos</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4549"/>
         <source>Show Starred Feeds</source>
-        <translation>Mostrar Feeds Favoritos</translation>
+        <translation>Mostrar os Feeds Favoritos</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4550"/>
         <source>Show Not Working Feeds</source>
-        <translation>Exibir Feeds Sem Funcionamento</translation>
+        <translation>Exibir os Feeds Sem Funcionamento</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4552"/>
         <source>Filter News</source>
-        <translation>Filtrar Notícias</translation>
+        <translation>Filtrar as Notícias</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4556"/>
         <source>Show Starred</source>
-        <translation>Mostrar Favoritas</translation>
+        <translation>Mostrar os Favoritos</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4557"/>
         <source>Show Not Starred</source>
-        <translation>Mostrar Não Favoritas</translation>
+        <translation>Mostrar os Não Favoritos</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4558"/>
         <source>Show Unread or Starred</source>
-        <translation>Exibir Não Lidas ou Favoritas</translation>
+        <translation>Exibir os Não Lidos ou Favoritos</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4559"/>
         <source>Show Last Day</source>
-        <translation>Mostrar Dia Anterior</translation>
+        <translation>Mostrar no Dia Anterior</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4560"/>
         <source>Show Last 7 Days</source>
-        <translation>Mostrar Últimos 7 Dias</translation>
+        <translation>Mostrar nos Últimos 7 Dias</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4562"/>
@@ -1688,12 +1688,12 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4563"/>
         <source>Show &apos;About&apos; Dialog</source>
-        <translation>Mostrar Caixa de Diálogo &apos;Sobre&apos;</translation>
+        <translation>Mostrar a Janela &apos;Sobre&apos;</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4565"/>
         <source>Check for Updates...</source>
-        <translation>Verificar atualizações ...</translation>
+        <translation>Verificar as atualizações ...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4566"/>
@@ -1703,12 +1703,12 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4568"/>
         <source>Open News</source>
-        <translation>Abrir Notícias</translation>
+        <translation>Abrir as Notícias</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4569"/>
         <source>Open Description News</source>
-        <translation>Abrir Descrição de Notícias</translation>
+        <translation>Abrir a Descrição de Notícias</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4570"/>
@@ -1723,12 +1723,12 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4572"/>
         <source>Open News in External Browser</source>
-        <translation>Abrir Notícias em um Navegador Externo</translation>
+        <translation>Abrir as Notícias em um Navegador Externo</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4574"/>
         <source>Open News in New Tab</source>
-        <translation>Abrir Notícias em uma Nova Aba</translation>
+        <translation>Abrir as Notícias em uma Nova Aba</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4575"/>
@@ -1738,17 +1738,17 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4576"/>
         <source>Open News in Background Tab</source>
-        <translation>Abrir Notícias em uma Aba de Plano de Fundo</translation>
+        <translation>Abrir as Notícias em uma Aba de Plano de Fundo</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4577"/>
         <source>Star</source>
-        <translation>Favorita</translation>
+        <translation>Favorito</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4578"/>
         <source>Mark News Star</source>
-        <translation>Marcar Notícia como Favorita</translation>
+        <translation>Marcar as Notícia como Favoritas</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4579"/>
@@ -1758,7 +1758,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4580"/>
         <source>Delete Selected News</source>
-        <translation>Apagar Notícias Selecionadas</translation>
+        <translation>Apagar as Notícias Selecionadas</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4581"/>
@@ -1778,27 +1778,27 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4584"/>
         <source>Restore News</source>
-        <translation>Restaurar Notícias</translation>
+        <translation>Restaurar as Notícias</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4585"/>
         <source>Copy Link</source>
-        <translation>Copiar Link</translation>
+        <translation>Copiar o Link</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4586"/>
         <source>Copy Link News</source>
-        <translation>Copiar Link da Notícia</translation>
+        <translation>Copiar o Link da Notícia</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4588"/>
         <source>Restore last deleted news</source>
-        <translation>Restaurar últimas notícias apagadas</translation>
+        <translation>Restaurar as últimas notícias apagadas</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4590"/>
         <source>Mark Read</source>
-        <translation>Marcar como lido</translation>
+        <translation>Marcar como Lido</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4591"/>
@@ -1819,12 +1819,12 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="159"/>
         <source>Saving data...</source>
-        <translation>Salvando dados...</translation>
+        <translation>Salvando os dados...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4495"/>
         <source>Menu</source>
-        <translation type="unfinished"/>
+        <translation>Menu</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4517"/>
@@ -1870,7 +1870,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4604"/>
         <source>Customize Toolbar</source>
-        <translation>Personalizar Barra de Ferramentas</translation>
+        <translation>Personalizar a Barra de Ferramentas</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4605"/>
@@ -1880,27 +1880,27 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4606"/>
         <source>Customize Toolbar...</source>
-        <translation>Personalizar Barra de Ferramentas...</translation>
+        <translation>Personalizar a Barra de Ferramentas...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4607"/>
         <source>Feeds Toolbar...</source>
-        <translation>Barra de Feeds...</translation>
+        <translation>Barra de Ferramentas de Feeds...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4608"/>
         <source>News Toolbar...</source>
-        <translation>Barra de Notícias...</translation>
+        <translation>Barra de Ferramentas de Notícias...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4610"/>
         <source>Lock Toolbar</source>
-        <translation>Bloquear Barra de Ferramentas</translation>
+        <translation>Bloquear a Barra de Ferramentas</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4611"/>
         <source>Hide Toolbar</source>
-        <translation>Ocultar Barra de Ferramentas</translation>
+        <translation>Ocultar a Barra de Ferramentas</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4613"/>
@@ -1950,7 +1950,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4623"/>
         <source>Top</source>
-        <translation>Topo</translation>
+        <translation>No Topo</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4624"/>
@@ -1960,17 +1960,17 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4625"/>
         <source>Right</source>
-        <translation>Direita</translation>
+        <translation>À Direita</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4626"/>
         <source>Left</source>
-        <translation>Esquerda</translation>
+        <translation>À Esquerda</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4628"/>
         <source>Show Window</source>
-        <translation>Mostrar Janela</translation>
+        <translation>Mostrar a Janela</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4630"/>
@@ -2035,7 +2035,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4647"/>
         <source>Show/Hide Tree Feeds</source>
-        <translation>Mostrar/Esconder Árvore de Feeds</translation>
+        <translation>Mostrar/Ocultar a Árvore de Feeds</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4649"/>
@@ -2045,7 +2045,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4651"/>
         <source>Minimize Application to Tray</source>
-        <translation>Minimizar Aplicação para Bandeja do Sistema</translation>
+        <translation>Minimizar a Aplicação para Bandeja do Sistema</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4653"/>
@@ -2055,7 +2055,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4654"/>
         <source>Count News Unread</source>
-        <translation>Contar Notícias Não Lidas</translation>
+        <translation>Contagem de Notícias Não Lidas</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4655"/>
@@ -2070,7 +2070,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4658"/>
         <source>Show Indentation</source>
-        <translation>Mostrar Recuo</translation>
+        <translation>Mostrar o Recuo</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4660"/>
@@ -2086,22 +2086,22 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4664"/>
         <source>Zoom In</source>
-        <translation>Aumentar Zoom</translation>
+        <translation>Ampliar</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4665"/>
         <source>Zoom in in browser</source>
-        <translation>Aumentar Zoom no Navegador</translation>
+        <translation>Ampliar no Navegador</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4666"/>
         <source>Zoom Out</source>
-        <translation>Diminuir Zoom</translation>
+        <translation>Reduzir</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4667"/>
         <source>Zoom out in browser</source>
-        <translation>Diminuir Zoom no Navegador</translation>
+        <translation>Reduzir no Navegador</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4668"/>
@@ -2111,7 +2111,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4669"/>
         <source>Reset zoom in browser</source>
-        <translation>Restaurar Zoom no Navegador</translation>
+        <translation>Restaurar o zoom no navegador</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4671"/>
@@ -2126,12 +2126,12 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4673"/>
         <source>Print Preview...</source>
-        <translation>Visualizar Impressão...</translation>
+        <translation>Visualizar a Impressão...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4674"/>
         <source>Preview Web page</source>
-        <translation>Visualizar Página Web</translation>
+        <translation>Visualizar a Página Web</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4676"/>
@@ -2141,7 +2141,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4677"/>
         <source>Save Page As...</source>
-        <translation>Salvar Página Como...</translation>
+        <translation>Salvar a Página Como...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4679"/>
@@ -2151,34 +2151,34 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4681"/>
         <source>Feeds Toolbar</source>
-        <translation>Barra de Feeds</translation>
+        <translation>Barra de Ferramentas de Feeds</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4682"/>
         <source>News Toolbar</source>
-        <translation>Barra de Notícias</translation>
+        <translation>Barra de Ferramentas de Notícias</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4683"/>
         <source>Browser Toolbar</source>
-        <translation>Barra do Navegador</translation>
+        <translation>Barra de Ferramentas do Navegador</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4684"/>
         <source>Panel Categories</source>
-        <translation>Painel de Categorias</translation>
+        <translation>Painel das Categorias</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4686"/>
         <location filename="../src/application/mainwindow.cpp" line="4687"/>
         <source>Full Screen</source>
-        <translation>Modo Tela Cheia</translation>
+        <translation>Tela Cheia</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4689"/>
         <location filename="../src/application/mainwindow.cpp" line="4690"/>
         <source>Stay On Top</source>
-        <translation>Deixar Por Cima</translation>
+        <translation>Manter no Topo</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4692"/>
@@ -2194,17 +2194,17 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4700"/>
         <source>Show labels menu</source>
-        <translation>Exibir menu de etiquetas</translation>
+        <translation>Exibir o menu das etiquetas</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4702"/>
         <source>Close Tab</source>
-        <translation>Fechar Aba</translation>
+        <translation>Fechar a Aba</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4703"/>
         <source>Close Other Tabs</source>
-        <translation>Fechar Outras Abas</translation>
+        <translation>Fechar as Outras Abas</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4704"/>
@@ -2214,7 +2214,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4705"/>
         <source>Switch to next tab</source>
-        <translation>Alternar para aba seguinte</translation>
+        <translation>Alternar para a próxima aba</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4706"/>
@@ -2244,12 +2244,12 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4713"/>
         <source>Decrease news list/increase browser</source>
-        <translation>Diminuir lista de notícias/aumentar navegador</translation>
+        <translation>Diminuir a lista de notícias/aumentar navegador</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4714"/>
         <source>Increase news list/decrease browser</source>
-        <translation>Aumentar lista de notícias/diminuir navegador</translation>
+        <translation>Aumentar a lista de notícias/diminuir navegador</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4716"/>
@@ -2259,12 +2259,12 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4718"/>
         <source>Open Homepage Feed</source>
-        <translation>Abrir Página do Feed</translation>
+        <translation>Abrir a Página do Feed</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4719"/>
         <source>Sorted by Name</source>
-        <translation>Ordenadas por Nome</translation>
+        <translation>Organizadas por Nome</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4720"/>
@@ -2279,7 +2279,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4722"/>
         <source>Next Folder</source>
-        <translation>Próxima pasta</translation>
+        <translation>Próxima Pasta</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4723"/>
@@ -2289,7 +2289,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4724"/>
         <source>Expand Folder</source>
-        <translation>Expandir Pasta</translation>
+        <translation>Expandir a Pasta</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4726"/>
@@ -2304,22 +2304,22 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4730"/>
         <source>Sort By</source>
-        <translation>Ordenar por</translation>
+        <translation>Organizar Por</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4731"/>
         <source>Ascending</source>
-        <translation>Ascendente</translation>
+        <translation>Crescente</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4732"/>
         <source>Descending</source>
-        <translation>Descendente</translation>
+        <translation>Decrescente</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5560"/>
         <source>Check for updates</source>
-        <translation>Verificar Atualizações</translation>
+        <translation>Verificar as Atualizações</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5561"/>
@@ -2350,7 +2350,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="7138"/>
         <source>Text files (*.%2)</source>
-        <translation>Arquivos de Texto (*.%2)</translation>
+        <translation>Arquivos de texto (*.%2)</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="7144"/>
@@ -2423,27 +2423,27 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="101"/>
         <source>Move up</source>
-        <translation>Mover para cima</translation>
+        <translation>Mover acima</translation>
     </message>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="104"/>
         <source>Move down</source>
-        <translation>Mover para baixo</translation>
+        <translation>Mover abaixo</translation>
     </message>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="108"/>
         <source>Run Filter</source>
-        <translation>Executar Filtro</translation>
+        <translation>Executar o Filtro</translation>
     </message>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="260"/>
         <source>Delete Filter</source>
-        <translation>Apagar Filtro</translation>
+        <translation>Apagar o Filtro</translation>
     </message>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="261"/>
         <source>Are you sure to delete the filter &apos;%1&apos;?</source>
-        <translation>Tem certeza que deseja apagar o filtro &apos;%1&apos;?</translation>
+        <translation>Deseja mesmo apagar o filtro &apos;%1&apos;?</translation>
     </message>
 </context>
 <context>
@@ -2461,12 +2461,12 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/newsheader.cpp" line="402"/>
         <source>Published</source>
-        <translation>Publicado</translation>
+        <translation>Publicado em</translation>
     </message>
     <message>
         <location filename="../src/newsheader.cpp" line="403"/>
         <source>Received</source>
-        <translation>Recebido</translation>
+        <translation>Recebido em</translation>
     </message>
     <message>
         <location filename="../src/newsheader.cpp" line="404"/>
@@ -2509,12 +2509,12 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/notifications/notificationsnewsitem.cpp" line="34"/>
         <source>Mark Read/Unread</source>
-        <translation>Marcar como lido/não lido</translation>
+        <translation>Marcar como Lido/Não Lido</translation>
     </message>
     <message>
         <location filename="../src/notifications/notificationsnewsitem.cpp" line="43"/>
         <source>Delete News</source>
-        <translation>Apagar Notícias</translation>
+        <translation>Apagar as Notícias</translation>
     </message>
 </context>
 <context>
@@ -2532,17 +2532,17 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/newstabwidget.cpp" line="534"/>
         <source>Open Page in External Browser</source>
-        <translation>Abrir Página em um Navegador Externo</translation>
+        <translation>Abrir a Página em um Navegador Externo</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="535"/>
         <source>Open Link in External Browser</source>
-        <translation>Abrir Link em um Navegador Externo</translation>
+        <translation>Abrir o Link em um Navegador Externo</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="537"/>
         <source>Open Link</source>
-        <translation>Abrir Link</translation>
+        <translation>Abrir o Link</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="538"/>
@@ -2552,17 +2552,17 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/newstabwidget.cpp" line="539"/>
         <source>Save Link...</source>
-        <translation>Salvar Link...</translation>
+        <translation>Salvar o Link...</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="540"/>
         <source>Save Image...</source>
-        <translation>Salvar Imagem</translation>
+        <translation>Salvar a Imagem</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="541"/>
         <source>Copy Link</source>
-        <translation>Copiar Link</translation>
+        <translation>Copiar o Link</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="542"/>
@@ -2587,46 +2587,46 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/newstabwidget.cpp" line="546"/>
         <source>Reload</source>
-        <translation>Atualizar</translation>
+        <translation>Recarregar</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="547"/>
         <source>Copy Image</source>
-        <translation>Copiar Imagem</translation>
+        <translation>Copiar a Imagem</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="549"/>
         <source>Copy Image Address</source>
-        <translation>Copiar Endereço da Imagem</translation>
+        <translation>Copiar o Endereço da Imagem</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="559"/>
         <location filename="../src/newstabwidget.cpp" line="580"/>
         <source>Load Images</source>
-        <translation>Carregar Imagens</translation>
+        <translation>Carregar as Imagens</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="560"/>
         <location filename="../src/newstabwidget.cpp" line="581"/>
         <source>Auto Load Images to News View</source>
-        <translation>Carregar Imagens Automaticamente ao Exibir Notícias</translation>
+        <translation>Carregar as Imagens Automaticamente ao Exibir as Notícias</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="562"/>
         <location filename="../src/newstabwidget.cpp" line="584"/>
         <source>No Load Images</source>
-        <translation>Não Carregar Imagens</translation>
+        <translation>Não Carregar as Imagens</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="563"/>
         <location filename="../src/newstabwidget.cpp" line="585"/>
         <source>No Load Images to News View</source>
-        <translation>Não Carregar Imagens ao Exibir Notícias</translation>
+        <translation>Não Carregar as Imagens ao Exibir as Notícias</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="568"/>
         <source>Close Tab</source>
-        <translation>Fechar Aba</translation>
+        <translation>Fechar a Aba</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1361"/>
@@ -2721,7 +2721,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="74"/>
         <source>Browser</source>
-        <translation>Visualizar</translation>
+        <translation>Navegador</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="77"/>
@@ -2749,7 +2749,7 @@ não foi encontrado!</translation>
         <location filename="../src/optionsdialog.cpp" line="89"/>
         <location filename="../src/optionsdialog.cpp" line="1216"/>
         <source>Language</source>
-        <translation>Linguagem</translation>
+        <translation>Idioma</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="92"/>
@@ -2770,32 +2770,32 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="279"/>
         <source>Show splash screen on startup</source>
-        <translation>Mostrar tela inicial ao iniciar</translation>
+        <translation>Mostrar a tela inicial ao iniciar</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="280"/>
         <source>Reopen last opened feeds on startup</source>
-        <translation>Reabrir últimos feeds abertos quando inicializar</translation>
+        <translation>Reabrir os últimos feeds abertos ao inicializar</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="281"/>
         <source>Open new tab next to active</source>
-        <translation>Abrir nova aba ao lado da ativa</translation>
+        <translation>Abrir a nova aba próxima da ativa</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="282"/>
         <source>Hide feeds tree when opening tabs</source>
-        <translation>Ocultar árvore de feeds ao abrir abas</translation>
+        <translation>Ocultar a árvore de feeds ao abrir as abas</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="283"/>
         <source>Show feeds tree toggle at edge of window</source>
-        <translation>Mostrar árvore de feeds ao alterar na borda da janela</translation>
+        <translation>Mostrar a árvore de feeds ao alterar na borda da janela</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="284"/>
         <source>Show default rss-icon instead of favourite one</source>
-        <translation>Mostrar o ícone padrão de rss, em vez do ícone favorito do website</translation>
+        <translation>Mostrar o ícone padrão de RSS, em vez do ícone favorito do website</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="285"/>
@@ -2810,7 +2810,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="288"/>
         <source>Automatically check for updates</source>
-        <translation>Verificar automaticamente autlizações</translation>
+        <translation>Verificar automaticamente as atualizações</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="289"/>
@@ -2820,7 +2820,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="296"/>
         <source>Save DB stored in memory to file every</source>
-        <translation>Salvar DB armazenados na memória para arquivar todos os</translation>
+        <translation>Salvar o BD armazenado na memória p/ o arquivo a cada</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="298"/>
@@ -2831,62 +2831,62 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="320"/>
         <source>Run QuiteRSS at Windows startup</source>
-        <translation>Executar QuiteRSS na inicialização do Windows</translation>
+        <translation>Executar o QuiteRSS na inicialização do Windows</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="341"/>
         <source>Show system tray icon</source>
-        <translation>Mostrar ícone na bandeja do sistema</translation>
+        <translation>Mostrar o ícone na bandeja do sistema</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="344"/>
         <source>starting QuiteRSS</source>
-        <translation>iniciar QuiteRSS</translation>
+        <translation>Iniciar o QuiteRSS</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="345"/>
         <source>minimizing QuiteRSS</source>
-        <translation>minimizar QuiteRSS</translation>
+        <translation>Minimizar o QuiteRSS</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="346"/>
         <source>closing QuiteRSS</source>
-        <translation>fechar QuiteRSS</translation>
+        <translation>Fechar o QuiteRSS</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="353"/>
         <source>Show static icon</source>
-        <translation>Mostrar ícone estático</translation>
+        <translation>Mostrar o ícone estático</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="354"/>
         <source>Change icon for incoming new news</source>
-        <translation>Mudar ícone na entrada de novas notícias</translation>
+        <translation>Mudar o ícone ao entrar novas notícias</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="355"/>
         <source>Show count of new news</source>
-        <translation>Mostrar contagem de novas notícias</translation>
+        <translation>Mostrar a contagem de novas notícias</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="356"/>
         <source>Show count of unread news</source>
-        <translation>Mostrar contagem de notícias não lidas</translation>
+        <translation>Mostrar a contagem de notícias não lidas</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="365"/>
         <source>Single click instead of double click for show window</source>
-        <translation>Único clique em vez de duplo clique para mostrar janela</translation>
+        <translation>Único clique em vez de duplo clique para mostrar a janela</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="366"/>
         <source>Clear status new on minimize to tray</source>
-        <translation>Limpar status novo ao minimizar para bandeja</translation>
+        <translation>Limpar o status novo ao minimizar para bandeja</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="367"/>
         <source>Empty working set on minimize to tray</source>
-        <translation>Esvaziar conjunto de trabalho ao minimizar para bandeja</translation>
+        <translation>Esvaziar o conjunto de trabalho ao minimizar para bandeja</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="371"/>
@@ -2896,7 +2896,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="374"/>
         <source>Tray icon behavior:</source>
-        <translation>Comportamento do ícone de bandeja:</translation>
+        <translation>Comportamento do ícone da bandeja:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="398"/>
@@ -2936,7 +2936,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="458"/>
         <source>Request timeout:</source>
-        <translation>Tempo limite de solicitação:</translation>
+        <translation>Intervalo para solicitação:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="460"/>
@@ -2951,17 +2951,17 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="465"/>
         <source>Options network requests when updating feeds (requires program restart):</source>
-        <translation>Opções de solicitações de rede ao atualizar feeds (requer reiniciar o programa):</translation>
+        <translation>Opções de solicitações de rede ao atualizar os feeds (requer reiniciar o programa):</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="481"/>
         <source>Use embedded browser</source>
-        <translation>Use o navegador embutido</translation>
+        <translation>Usar o navegador embutido</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="482"/>
         <source>Use external browser</source>
-        <translation>Usar navegador externo</translation>
+        <translation>Usar um navegador externo</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="483"/>
@@ -2986,27 +2986,27 @@ não foi encontrado!</translation>
         <location filename="../src/optionsdialog.cpp" line="489"/>
         <location filename="../src/optionsdialog.cpp" line="1967"/>
         <source>Load images</source>
-        <translation>Carregar imagens</translation>
+        <translation>Carregar as imagens</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="490"/>
         <source>Enable JavaScript</source>
-        <translation>Habilitar JavaScript</translation>
+        <translation>Ativar o JavaScript</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="491"/>
         <source>Enable plug-ins</source>
-        <translation>Habilitar plug-ins</translation>
+        <translation>Ativar os plug-ins</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="497"/>
         <source>Open links in embedded browser in background</source>
-        <translation>Abrir links no navegador embutido no plano de fundo</translation>
+        <translation>Abrir os links no navegador embutido no plano de fundo</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="498"/>
         <source>Open links in external browser in background (experimental)</source>
-        <translation>Abrir links em um navegador externo em segundo plano (experimental)</translation>
+        <translation>Abrir os links em um navegador externo em segundo plano (experimental)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="524"/>
@@ -3016,12 +3016,12 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="542"/>
         <source>Browser selection:</source>
-        <translation>Seleção de navegador:</translation>
+        <translation>Selecionar o navegador:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="544"/>
         <source>External browser:</source>
-        <translation>Navegador Externo:</translation>
+        <translation>Navegador externo:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="546"/>
@@ -3041,7 +3041,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="588"/>
         <source>Store cache in:</source>
-        <translation>Armazenamento de cache em:</translation>
+        <translation>Armazenar o cache em:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="596"/>
@@ -3056,22 +3056,22 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="604"/>
         <source>Use disk cache</source>
-        <translation>Usar cache de disco</translation>
+        <translation>Usar o cache de disco</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="619"/>
         <source>Allow local data to be set</source>
-        <translation>Permitir que os dados locais sejam definido</translation>
+        <translation>Permitir que os dados locais sejam definidos</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="620"/>
         <source>Keep local data only until quit application</source>
-        <translation>Manter dados locais somente até sair do aplicativo</translation>
+        <translation>Manter os dados locais somente até sair do aplicativo</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="621"/>
         <source>Block sites from setting any data</source>
-        <translation>Bloquear sites de fixar quaisquer dados</translation>
+        <translation>Bloquear os sites de fixar quaisquer dados</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="622"/>
@@ -3086,12 +3086,12 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="646"/>
         <source>Click To Flash is a plugin which blocks auto loading of Flash content at page. You can always load it manually by clicking on the Flash play icon.</source>
-        <translation>Click To Flash é um plugin que bloqueia carregamento automático de conteúdo em Flash na página. Você sempre pode carregá-lo manualmente clicando no ícone de reprodução Flash.</translation>
+        <translation>O Click To Flash é um plugin que bloqueia o carregamento automático de conteúdo em Flash na página. Você sempre pode carregá-lo manualmente clicando no ícone de reprodução Flash.</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="651"/>
         <source>Use Click to Flash</source>
-        <translation>Usar Click to Flash</translation>
+        <translation>Usar o Click to Flash</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="663"/>
@@ -3106,7 +3106,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="706"/>
         <source>Ask where to save each file before downloading</source>
-        <translation>Perguntar o local para salvar cada arquivo antes de fazer o download </translation>
+        <translation>Perguntar o local para salvar cada arquivo antes de baixar</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="716"/>
@@ -3136,12 +3136,12 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="737"/>
         <source>Automatically update the feeds on startup</source>
-        <translation>Atualizar automaticamente feeds ao iniciar</translation>
+        <translation>Atualizar automaticamente os feeds ao iniciar</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="738"/>
         <source>Automatically update the feeds every</source>
-        <translation>Atualizar automaticamente todos os feeds</translation>
+        <translation>Auto-atualizar todos os feeds a cada</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="748"/>
@@ -3158,27 +3158,27 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="760"/>
         <source>Position on last opened news</source>
-        <translation>Últimas notícias</translation>
+        <translation>Posicionar nas últimas notícias abertas</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="761"/>
         <source>Position at top of list news</source>
-        <translation>Abrir notícia do topo da lista de notícias</translation>
+        <translation>Posicionar no topo da lista de notícias</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="762"/>
         <source>Position on unread news</source>
-        <translation>Lista de notícias não lidas</translation>
+        <translation>Posicionar nas notícias não lidas</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="763"/>
         <source>Open news</source>
-        <translation>Abrir notícias</translation>
+        <translation>Abrir as notícias</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="764"/>
         <source>Nothing to do</source>
-        <translation>Nada a fazer</translation>
+        <translation>Não fazer nada</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="779"/>
@@ -3203,7 +3203,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="810"/>
         <source>Alternating row background colors</source>
-        <translation>Alternar cores de fundo das linhas</translation>
+        <translation>Alternar as cores de fundo das linhas</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="811"/>
@@ -3213,42 +3213,42 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="814"/>
         <source>Show All</source>
-        <translation>Mostrar Todas</translation>
+        <translation>Mostrar Tudo</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="814"/>
         <source>Show New</source>
-        <translation>Mostrar Novas</translation>
+        <translation>Mostrar as Novas</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="814"/>
         <source>Show Unread</source>
-        <translation>Mostrar Não Lidas</translation>
+        <translation>Mostrar as Não Lidas</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="815"/>
         <source>Show Starred</source>
-        <translation>Mostrar Favoritas</translation>
+        <translation>Mostrar as Favoritas</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="815"/>
         <source>Show Not Starred</source>
-        <translation>Mostrar Não Favoritas</translation>
+        <translation>Mostrar as Não Favoritas</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="816"/>
         <source>Show Unread or Starred</source>
-        <translation>Mostrar Não Lidas ou Favoritas</translation>
+        <translation>Mostrar as Não Lidas ou Favoritas</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="816"/>
         <source>Show Last Day</source>
-        <translation>Mostrar Dia Anterior</translation>
+        <translation>Mostrar no Dia Anterior</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="817"/>
         <source>Show Last 7 Days</source>
-        <translation>Mostrar Últimos 7 Dias</translation>
+        <translation>Mostrar nos Últimos 7 Dias</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="831"/>
@@ -3258,32 +3258,32 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="839"/>
         <source>Opening feed:</source>
-        <translation>Abertura de Feed:</translation>
+        <translation>Ao abrir os feeds:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="853"/>
         <source>Mark news as read:</source>
-        <translation>Marcar notícias como lidas:</translation>
+        <translation>Marcar as notícias como lidas:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="855"/>
         <source>on selecting. With timeout</source>
-        <translation>na seleção. Com tempo limite de</translation>
+        <translation>Ao selecionar. Com intervalo de</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="856"/>
         <source>after switching to another news</source>
-        <translation>depois de mudar para outra notícia</translation>
+        <translation>Após mudar para outra notícia</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="862"/>
         <source>Mark displayed news as read when switching feeds</source>
-        <translation>Marcar como lidas as notícias exibidas, quando mudar de Feed</translation>
+        <translation>Marcar como lidas as notícias exibidas, ao mudar de Feed</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="863"/>
         <source>Mark displayed news as read when closing tab</source>
-        <translation>Marcar como lidas as notícias exibidas, quando fechar aba</translation>
+        <translation>Marcar como lidas as notícias exibidas, ao fechar a aba</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="864"/>
@@ -3293,42 +3293,42 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="867"/>
         <source>Show news&apos; description instead of loading web page</source>
-        <translation>Mostrar descrição de notícias, ao invés de carregar a página da web</translation>
+        <translation>Mostrar a descrição das notícias, ao invés de carregar a página da web</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="869"/>
         <source>Change behavior of action &apos;Next Unread News&apos;</source>
-        <translation>Alterar o comportamento da ação &apos;Próximas Notícias Não Lidas&apos;</translation>
+        <translation>Mudar o comportamento da ação &apos;Próximas Notícias Não Lidas&apos;</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="871"/>
         <source>starred news</source>
-        <translation>notícias favoritas</translation>
+        <translation>Notícias favoritas</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="872"/>
         <source>labeled news</source>
-        <translation>notícias etiquetadas</translation>
+        <translation>Notícias etiquetadas</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="874"/>
         <source>Automatically mark identical news as read</source>
-        <translation>Marcar automaticamente notícias idênticas como lidas</translation>
+        <translation>Marcar automaticamente as notícias idênticas como lidas</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="901"/>
         <source>Prevent accidental deletion of:</source>
-        <translation>Evitar a exclusão acidental de:</translation>
+        <translation>Prevenir a exclusão acidental de:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="913"/>
         <source>Enable cleanup on shutdown</source>
-        <translation>Habilitar limpeza no desligamento</translation>
+        <translation>Ativar a limpeza ao desligar</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="916"/>
         <source>Maximum age of news in days to keep:</source>
-        <translation>Tempo máximo em dias a manter notícias:</translation>
+        <translation>Idade máxima em dias a manter notícias:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="923"/>
@@ -3338,22 +3338,22 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="930"/>
         <source>Delete read news</source>
-        <translation>Apagar notícias lidas</translation>
+        <translation>Apagar as notícias lidas</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="931"/>
         <source>Never delete unread news</source>
-        <translation>Nunca apagar notícias não lidas</translation>
+        <translation>Nunca apagar as notícias não lidas</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="932"/>
         <source>Never delete starred news</source>
-        <translation>Nunca apagar notícias favoritas</translation>
+        <translation>Nunca apagar as notícias favoritas</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="933"/>
         <source>Never delete labeled news</source>
-        <translation>Nunca apagar notícias etiquetadas</translation>
+        <translation>Nunca apagar as notícias etiquetadas</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="935"/>
@@ -3363,7 +3363,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="936"/>
         <source>Enable DB optimization (slower shutdown)</source>
-        <translation>Habilitar a otimização Banco de Dados (desligamento mais lento)</translation>
+        <translation>Ativar a otimização Banco de Dados (desligamento mais lento)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="964"/>
@@ -3393,17 +3393,17 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="991"/>
         <source>Move up</source>
-        <translation>Mover para cima</translation>
+        <translation>Mover acima</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="994"/>
         <source>Move down</source>
-        <translation>Mover para baixo</translation>
+        <translation>Mover abaixo</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1027"/>
         <source>Play sound for incoming new news</source>
-        <translation>Reproduzir som para novas notícias</translation>
+        <translation>Reproduzir um som para as novas notícias</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1031"/>
@@ -3413,27 +3413,27 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1053"/>
         <source>Display notification for incoming news</source>
-        <translation>Exibir notificação para novas notícias</translation>
+        <translation>Exibir a notificação para novas notícias</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1059"/>
         <source>Top Left</source>
-        <translation>Superior Esquerdo</translation>
+        <translation>No Topo à Esquerda</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1059"/>
         <source>Top Right</source>
-        <translation>Superior Direito</translation>
+        <translation>No Topo à Direita</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1060"/>
         <source>Bottom Left</source>
-        <translation>Inferior Esquerdo</translation>
+        <translation>Embaixo à Esquerda</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1060"/>
         <source>Bottom Right</source>
-        <translation>Inferior Direito</translation>
+        <translation>Embaixo à Direita</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1070"/>
@@ -3453,7 +3453,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1082"/>
         <source>item on page notification</source>
-        <translation>item na página de notificação</translation>
+        <translation>itens na página de notificação</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1085"/>
@@ -3468,17 +3468,17 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1090"/>
         <source>Close notification after</source>
-        <translation>Fechar notificação depois de</translation>
+        <translation>Fechar a notificação após</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1094"/>
         <source>Do not show notification in fullscreen mode</source>
-        <translation>Não mostrar notificação no modo fullscreen</translation>
+        <translation>Não mostrar a notificação no modo de tela cheia</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1099"/>
         <source>Only show selected feeds:</source>
-        <translation>Mostrar apenas feeds selecionados:</translation>
+        <translation>Mostrar apenas os feeds selecionados:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1115"/>
@@ -3488,7 +3488,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1163"/>
         <source>Site</source>
-        <translation>Website</translation>
+        <translation>Site</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1163"/>
@@ -3508,7 +3508,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1182"/>
         <source>Delete All</source>
-        <translation>Apagar Todas</translation>
+        <translation>Apagar Tudo</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1184"/>
@@ -3533,7 +3533,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1467"/>
         <source>Choose language:</source>
-        <translation>Escolher linguagem:</translation>
+        <translation>Escolher o idioma:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1488"/>
@@ -3656,7 +3656,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1580"/>
         <source>Count of news unread in feeds tree</source>
-        <translation>Contar notícias não listas na árvore de feeds</translation>
+        <translation>Contagem de notícias não lidas na árvore de feeds</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1583"/>
@@ -3746,7 +3746,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1675"/>
         <source>Fonts Browser</source>
-        <translation>Fontes de Navegador</translation>
+        <translation>Fontes do Navegador</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1676"/>
@@ -3781,7 +3781,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1972"/>
         <source>Auto load images to news view</source>
-        <translation>Carregar imagens automaticamente para notícias vizualizadas</translation>
+        <translation>Carregar imagens automaticamente para as notícias visualizadas</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2136"/>
@@ -3792,7 +3792,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2658"/>
         <source>Select Style Sheet File</source>
-        <translation>Selecionar Arquivo de Folha de Estilo</translation>
+        <translation>Selecionar o Arquivo da Folha de Estilo</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2667"/>
@@ -3803,12 +3803,12 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2677"/>
         <source>Add site to whitelist</source>
-        <translation>Adicionar site na lista branca</translation>
+        <translation>Adicionar um site à lista branca</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2678"/>
         <source>Site without &apos;http://&apos; (ex. youtube.com)</source>
-        <translation>Website sem &apos;http://&apos; (ex. youtube.com)</translation>
+        <translation>Site sem &apos;http://&apos; (ex. youtube.com)</translation>
     </message>
 </context>
 <context>
@@ -3816,17 +3816,17 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4756"/>
         <source>&amp;Step up</source>
-        <translation>&amp;Passo Acima</translation>
+        <translation>&amp;Etapa Acima</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4757"/>
         <source>Step &amp;down</source>
-        <translation>Passo &amp;abaixo</translation>
+        <translation>Etapa &amp;Abaixo</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4758"/>
         <source>&amp;Select All</source>
-        <translation>&amp;Selecionar tudo</translation>
+        <translation>&amp;Selecionar Tudo</translation>
     </message>
 </context>
 <context>
@@ -3867,17 +3867,17 @@ não foi encontrado!</translation>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="953"/>
         <source>Connection refused to host %1</source>
-        <translation>Conexão recusada para host %1</translation>
+        <translation>Conexão recusada para o host %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="958"/>
         <source>Connection timed out to host %1</source>
-        <translation>Conexão expirou para host %1</translation>
+        <translation>A conexão expirou para o host %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="1071"/>
         <source>Connected to host %1</source>
-        <translation>Conectado para host %1</translation>
+        <translation>Conectado ao host %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="1312"/>
@@ -3893,7 +3893,7 @@ não foi encontrado!</translation>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2419"/>
         <source>Connecting to host failed:
 %1</source>
-        <translation>Falha na conexão com host:
+        <translation>Falha ao conectar ao host:
 %1</translation>
     </message>
     <message>
@@ -3907,49 +3907,49 @@ não foi encontrado!</translation>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2427"/>
         <source>Listing directory failed:
 %1</source>
-        <translation>Falha na listagem de pastas:
+        <translation>Falha ao listar a pasta:
 %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2431"/>
         <source>Changing directory failed:
 %1</source>
-        <translation>Falha ao alterar pasta:
+        <translation>Falha ao mudar a pasta:
 %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2435"/>
         <source>Downloading file failed:
 %1</source>
-        <translation>Falha no download do arquivo:
+        <translation>Falha ao baixar o arquivo:
 %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2439"/>
         <source>Uploading file failed:
 %1</source>
-        <translation>Falha ao enviar arquivo:
+        <translation>Falha ao enviar o arquivo:
 %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2443"/>
         <source>Removing file failed:
 %1</source>
-        <translation>Falha ao remover arquivo:
+        <translation>Falha ao remover o arquivo:
 %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2447"/>
         <source>Creating directory failed:
 %1</source>
-        <translation>Falha ao criar pasta:
+        <translation>Falha ao criar a pasta:
 %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2451"/>
         <source>Removing directory failed:
 %1</source>
-        <translation>Falha ao remover pasta:
+        <translation>Falha ao remover a pasta:
 %1</translation>
     </message>
     <message>
@@ -3993,7 +3993,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4745"/>
         <source>Select All</source>
-        <translation>Selecionar tudo</translation>
+        <translation>Selecionar Tudo</translation>
     </message>
 </context>
 <context>
@@ -4001,7 +4001,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4760"/>
         <source>Select IM</source>
-        <translation>Selecione IM</translation>
+        <translation>Selecionar IM</translation>
     </message>
 </context>
 <context>
@@ -4037,7 +4037,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4749"/>
         <source>Cu&amp;t</source>
-        <translation>Cor&amp;tar</translation>
+        <translation>Recor&amp;tar</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4750"/>
@@ -4057,12 +4057,12 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4753"/>
         <source>Select All</source>
-        <translation>Selecionar tudo</translation>
+        <translation>Selecionar Tudo</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4754"/>
         <source>Copy &amp;Link Location</source>
-        <translation>Copiar Endereço do &amp;Link</translation>
+        <translation>Copiar o Endereço do &amp;Link</translation>
     </message>
 </context>
 <context>
@@ -4080,12 +4080,12 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4764"/>
         <source>&amp;Finish</source>
-        <translation>&amp;Finalizar</translation>
+        <translation>&amp;Concluir</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4765"/>
         <source>&amp;Next &gt;</source>
-        <translation>&amp;Próximo &gt;</translation>
+        <translation>&amp;Avançar &gt;</translation>
     </message>
 </context>
 <context>
@@ -4116,7 +4116,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/requestfeed.cpp" line="324"/>
         <source>Request timeout!</source>
-        <translation>Tempo limite de solicitação!</translation>
+        <translation>Intervalo solicitado!</translation>
     </message>
 </context>
 <context>
@@ -4124,17 +4124,17 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/updateappdialog.cpp" line="36"/>
         <source>Check for Updates</source>
-        <translation>Verificar atualizações</translation>
+        <translation>Verificar as Atualizações</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="43"/>
         <source>Checking for updates...</source>
-        <translation>Verificar atualizações...</translation>
+        <translation>Verificando as atualizações...</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="48"/>
         <source>Loading history...</source>
-        <translation>Carregando histórico...</translation>
+        <translation>Carregando o histórico...</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="51"/>
@@ -4169,12 +4169,12 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/updateappdialog.cpp" line="138"/>
         <source>Current version is:</source>
-        <translation>Versão atual é:</translation>
+        <translation>A versão atual é:</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="144"/>
         <source>Error checking updates</source>
-        <translation>Erro ao tentar atualizar</translation>
+        <translation>Erro ao verificar as atualizações</translation>
     </message>
 </context>
 </TS>

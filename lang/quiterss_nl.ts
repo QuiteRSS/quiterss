@@ -21,7 +21,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="56"/>
         <source>QuiteRSS is a open-source cross-platform RSS/Atom news reader</source>
-        <translation>QuiteRSS is een open source tussen verschillende besturingssystemen RSS/Atom lezer</translation>
+        <translation>QuiteRSS is een open source RSS/Atom lezer, tussen verschillende besturingssystemen</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="57"/>
@@ -1620,7 +1620,7 @@ werd niet gevonden</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4545"/>
         <source>Filter Feeds</source>
-        <translation>Filer feeds</translation>
+        <translation>Filter feeds</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4546"/>
