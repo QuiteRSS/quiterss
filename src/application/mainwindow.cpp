@@ -2068,8 +2068,6 @@ void MainWindow::loadSettings()
   else
     setWindowFlags(windowFlags() & ~Qt::WindowStaysOnTopHint);
 
-  updateCheckEnabled_ = settings.value("updateCheckEnabled", true).toBool();
-
   hideFeedsOpenTab_ = settings.value("hideFeedsOpenTab", false).toBool();
   showToggleFeedsTree_ = settings.value("showToggleFeedsTree", true).toBool();
   pushButtonNull_->setVisible(showToggleFeedsTree_);
@@ -2279,8 +2277,6 @@ void MainWindow::saveSettings()
   settings.setValue("openingLinkTimeout", openingLinkTimeout_);
 
   settings.setValue("stayOnTop", stayOnTopAct_->isChecked());
-
-  settings.setValue("updateCheckEnabled", updateCheckEnabled_);
 
   settings.setValue("hideFeedsOpenTab", hideFeedsOpenTab_);
   settings.setValue("showToggleFeedsTree", showToggleFeedsTree_);
@@ -3137,7 +3133,10 @@ void MainWindow::showOptionDlg(int index)
   bool showCloseButtonTab = settings.value("Settings/showCloseButtonTab", true).toBool();
   optionsDialog_->showCloseButtonTab_->setChecked(showCloseButtonTab);
 
-  optionsDialog_->updateCheckEnabled_->setChecked(updateCheckEnabled_);
+  bool updateCheckEnabled = settings.value("Settings/updateCheckEnabled", true).toBool();
+  optionsDialog_->updateCheckEnabled_->setChecked(updateCheckEnabled);
+  bool statisticsEnabled = settings.value("Settings/statisticsEnabled", true).toBool();
+  optionsDialog_->statisticsEnabled_->setChecked(statisticsEnabled);
 
   bool storeDBMemory_ = settings.value("Settings/storeDBMemory", true).toBool();
   optionsDialog_->storeDBMemory_->setChecked(storeDBMemory_);
@@ -3505,7 +3504,10 @@ void MainWindow::showOptionDlg(int index)
 
   pushButtonNull_->setVisible(showToggleFeedsTree_);
 
-  updateCheckEnabled_ = optionsDialog_->updateCheckEnabled_->isChecked();
+  updateCheckEnabled = optionsDialog_->updateCheckEnabled_->isChecked();
+  settings.setValue("Settings/updateCheckEnabled", updateCheckEnabled);
+  statisticsEnabled = optionsDialog_->statisticsEnabled_->isChecked();
+  settings.setValue("Settings/statisticsEnabled", statisticsEnabled);
 
   storeDBMemory_ = optionsDialog_->storeDBMemory_->isChecked();
   settings.setValue("Settings/storeDBMemory", storeDBMemory_);
@@ -5576,8 +5578,6 @@ void MainWindow::showFilterRulesDlg()
 // ----------------------------------------------------------------------------
 void MainWindow::slotUpdateAppCheck()
 {
-  if (!updateCheckEnabled_) return;
-
   updateAppDialog_ = new UpdateAppDialog(langFileName_, this, false);
   connect(updateAppDialog_, SIGNAL(signalNewVersion(QString)),
           this, SLOT(slotNewVersion(QString)), Qt::QueuedConnection);

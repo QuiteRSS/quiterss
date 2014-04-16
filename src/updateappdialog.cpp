@@ -32,13 +32,13 @@ UpdateAppDialog::UpdateAppDialog(const QString &lang, QWidget *parent, bool show
   , lang_(lang)
   , showDialog_(show)
 {
+  Settings settings;
+
   if (showDialog_) {
     setWindowTitle(tr("Check for Updates"));
     setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
     setObjectName("UpdateAppDialog");
     resize(450, 350);
-
-    Settings settings;
 
     infoLabel = new QLabel(tr("Checking for updates..."), this);
     infoLabel->setOpenExternalLinks(true);
@@ -77,12 +77,15 @@ UpdateAppDialog::UpdateAppDialog(const QString &lang, QWidget *parent, bool show
 
     restoreGeometry(settings.value("updateAppDlg/geometry").toByteArray());
   } else {
-    renderStatistics();
-//    page_ = new QWebPage(this);
-//    page_->setNetworkAccessManager(mainApp->networkManager());
-//    page_->mainFrame()->load(QUrl("https://code.google.com/p/quite-rss/wiki/runAplication"));
-//    connect(page_, SIGNAL(loadFinished(bool)),
-//            this, SLOT(renderStatistics()));
+    bool statisticsEnabled = settings.value("Settings/statisticsEnabled", true).toBool();
+    if (statisticsEnabled) {
+      page_ = new QWebPage(this);
+      page_->setNetworkAccessManager(mainApp->networkManager());
+      page_->mainFrame()->load(QUrl("https://code.google.com/p/quite-rss/wiki/runAplication"));
+      connect(page_, SIGNAL(loadFinished(bool)), this, SLOT(renderStatistics()));
+    } else {
+      renderStatistics();
+    }
   }
 }
 
@@ -206,7 +209,13 @@ void UpdateAppDialog::updaterRun()
 
 void UpdateAppDialog::renderStatistics()
 {
-  QNetworkRequest request(QUrl("https://quite-rss.googlecode.com/hg/src/VersionNo.h"));
-  reply_ = mainApp->networkManager()->get(request);
-  connect(reply_, SIGNAL(finished()), this, SLOT(finishUpdatesChecking()));
+  Settings settings;
+  bool updateCheckEnabled = settings.value("Settings/updateCheckEnabled", true).toBool();
+  if (updateCheckEnabled || showDialog_) {
+    QNetworkRequest request(QUrl("https://quite-rss.googlecode.com/hg/src/VersionNo.h"));
+    reply_ = mainApp->networkManager()->get(request);
+    connect(reply_, SIGNAL(finished()), this, SLOT(finishUpdatesChecking()));
+  } else {
+    emit signalNewVersion();
+  }
 }

@@ -32,7 +32,7 @@ public:
   ~UpdateAppDialog();
 
 signals:
-  void signalNewVersion(const QString &newVersion);
+  void signalNewVersion(const QString &newVersion = QString());
 
 private slots:
   void closeDialog();

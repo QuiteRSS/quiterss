@@ -53,6 +53,7 @@ public:
   QCheckBox *defaultIconFeeds_;
   QCheckBox *autocollapseFolder_;
   QCheckBox *updateCheckEnabled_;
+  QCheckBox *statisticsEnabled_;
   QCheckBox *storeDBMemory_;
   QSpinBox *saveDBMemFileInterval_;
 
