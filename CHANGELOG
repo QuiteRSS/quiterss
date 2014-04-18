@@ -1,3 +1,14 @@
+Version 0.15.4 (18 Apr 2014)
+  * Added: Ability to create backup manually (Menu->Create backup)
+  * Changed: More robust operations on DB
+  * Changed: More robust application shutdown
+  * Changed: Backup operation during application update
+  * Changed: Dialog "About". Added path to backup folder
+  * Changed: Updating PortableApps-build is forbidden
+  * Fixed: Feed counters in feed tree
+  * Fixed: Default font size
+  * Fixed: Memory-placed DB optimization
+
 Version 0.15.3 (06 Apr 2014)
   * Main: Support for Mac OS X platform
   * Changed: GUI. Some visual tweaks
