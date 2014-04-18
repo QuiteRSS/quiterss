@@ -2,6 +2,21 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
+<p><b>Version 0.15.3+</b> (xx Apr 2014)
+<ul>
+<li>Added: Ability to create backup manually (Menu->Create backup)</li>
+
+<li>Changed: More robust operations on DB</li>
+<li>Changed: More robust application shutdown</li>
+<li>Changed: Backup operation during application update</li>
+<li>Changed: Dialog "About". Added oath to backup folder</li>
+<li>Changed: Updating PortableApps-build is forbidden</li>
+
+<li>Fixed: feed counters in feed tree</li>
+<li>Fixed: default font size</li>
+<li>Fixed: Memory-placed DB optimization</li>
+</ul>
+<!---------------------------------------------------------------------------->
 <p><b>Version 0.15.3</b> (06 Apr 2014)
 <ul>
 <li>Main: Support for Mac OS X platform</li>
