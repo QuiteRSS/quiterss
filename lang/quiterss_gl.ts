@@ -1819,17 +1819,17 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="159"/>
         <source>Saving data...</source>
-        <translation type="unfinished"/>
+        <translation>A gardar datos...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4495"/>
         <source>Menu</source>
-        <translation type="unfinished"/>
+        <translation>Menú</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4517"/>
         <source>S&amp;how Menu Bar</source>
-        <translation type="unfinished"/>
+        <translation>Mostrar a barra do menú</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4596"/>
@@ -4019,7 +4019,7 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/database/database.cpp" line="218"/>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>Erro</translation>
     </message>
 </context>
 <context>

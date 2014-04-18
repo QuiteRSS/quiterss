@@ -1453,7 +1453,7 @@ Staré správy sa môžu znova objaviť</translation>
         <location filename="../src/application/mainwindow.cpp" line="5868"/>
         <location filename="../src/application/mainwindow.cpp" line="6946"/>
         <source>All: %1</source>
-        <translation>Celkem: %1</translation>
+        <translation>Celkom: %1</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="3371"/>
