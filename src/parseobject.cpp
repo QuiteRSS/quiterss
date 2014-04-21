@@ -637,6 +637,10 @@ QString ParseObject::parseDate(const QString &dateString, const QString &urlStri
 
   if (dateString.isEmpty()) return QString();
 
+  QDateTime dtLocalTime = QDateTime::currentDateTime();
+  QDateTime dtUTC = QDateTime(dtLocalTime.date(), dtLocalTime.time(), Qt::UTC);
+  int nTimeShift = dtLocalTime.secsTo(dtUTC)/3600;
+
   QString ds = dateString.simplified();
   QLocale locale(QLocale::C);
 
@@ -647,46 +651,55 @@ QString ParseObject::parseDate(const QString &dateString, const QString &urlStri
   for (int i = 0; i < 2; i++, locale = QLocale::system()) {
     temp     = ds.left(23);
     timeZone = ds.mid(temp.length(), 3);
+    if (timeZone.isEmpty()) timeZone = QString::number(nTimeShift);
     dt = locale.toDateTime(temp, "yyyy-MM-ddTHH:mm:ss.z");
     if (dt.isValid()) return locale.toString(dt.addSecs(timeZone.toInt() * -3600), "yyyy-MM-ddTHH:mm:ss");
 
     temp     = ds.left(19);
     timeZone = ds.mid(temp.length(), 3);
+    if (timeZone.isEmpty()) timeZone = QString::number(nTimeShift);
     dt = locale.toDateTime(temp, "yyyy-MM-ddTHH:mm:ss");
     if (dt.isValid()) return locale.toString(dt.addSecs(timeZone.toInt() * -3600), "yyyy-MM-ddTHH:mm:ss");
 
     temp = ds.left(23);
     timeZone = ds.mid(temp.length()+1, 3);
+    if (timeZone.isEmpty()) timeZone = QString::number(nTimeShift);
     dt = locale.toDateTime(temp, "yyyy-MM-dd HH:mm:ss.z");
     if (dt.isValid()) return locale.toString(dt.addSecs(timeZone.toInt() * -3600), "yyyy-MM-ddTHH:mm:ss");
 
     temp = ds.left(19);
     timeZone = ds.mid(temp.length()+1, 3);
+    if (timeZone.isEmpty()) timeZone = QString::number(nTimeShift);
     dt = locale.toDateTime(temp, "yyyy-MM-dd HH:mm:ss");
     if (dt.isValid()) return locale.toString(dt.addSecs(timeZone.toInt() * -3600), "yyyy-MM-ddTHH:mm:ss");
 
     temp = ds.left(20);
     timeZone = ds.mid(temp.length()+1, 3);
+    if (timeZone.isEmpty()) timeZone = QString::number(nTimeShift);
     dt = locale.toDateTime(temp, "dd MMM yyyy HH:mm:ss");
     if (dt.isValid()) return locale.toString(dt.addSecs(timeZone.toInt() * -3600), "yyyy-MM-ddTHH:mm:ss");
 
     temp = ds.left(19);
     timeZone = ds.mid(temp.length()+1, 3);
+    if (timeZone.isEmpty()) timeZone = QString::number(nTimeShift);
     dt = locale.toDateTime(temp, "d MMM yyyy HH:mm:ss");
     if (dt.isValid()) return locale.toString(dt.addSecs(timeZone.toInt() * -3600), "yyyy-MM-ddTHH:mm:ss");
 
     temp = ds.left(11);
     timeZone = ds.mid(temp.length()+1, 3);
+    if (timeZone.isEmpty()) timeZone = QString::number(nTimeShift);
     dt = locale.toDateTime(temp, "dd MMM yyyy");
     if (dt.isValid()) return locale.toString(dt.addSecs(timeZone.toInt() * -3600), "yyyy-MM-ddTHH:mm:ss");
 
     temp = ds.left(10);
     timeZone = ds.mid(temp.length()+1, 3);
+    if (timeZone.isEmpty()) timeZone = QString::number(nTimeShift);
     dt = locale.toDateTime(temp, "d MMM yyyy");
     if (dt.isValid()) return locale.toString(dt.addSecs(timeZone.toInt() * -3600), "yyyy-MM-ddTHH:mm:ss");
 
     temp = ds.left(10);
     timeZone = ds.mid(temp.length(), 3);
+    if (timeZone.isEmpty()) timeZone = QString::number(nTimeShift);
     dt = locale.toDateTime(temp, "yyyy-MM-dd");
     if (dt.isValid()) return locale.toString(dt.addSecs(timeZone.toInt() * -3600), "yyyy-MM-ddTHH:mm:ss");
 
@@ -699,6 +712,7 @@ QString ParseObject::parseDate(const QString &dateString, const QString &urlStri
     else temp2.insert(7, "20");
     temp = temp2.left(20);
     timeZone = ds.mid(temp.length()+1-2, 3);  // "-2", cause 2 symbols inserted
+    if (timeZone.isEmpty()) timeZone = QString::number(nTimeShift);
     dt = locale.toDateTime(temp, "dd MMM yyyy HH:mm:ss");
     if (dt.isValid()) return locale.toString(dt.addSecs(timeZone.toInt() * -3600), "yyyy-MM-ddTHH:mm:ss");
   }
