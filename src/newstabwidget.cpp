@@ -314,7 +314,7 @@ void NewsTabWidget::createWebWidget()
   webViewProgress_->setLayout(progressLayout);
 
   //! Create web control panel
-  QToolBar *webToolBar_ = new QToolBar(this);
+  webToolBar_ = new QToolBar(this);
   webToolBar_->setStyleSheet("QToolBar { border: none; padding: 0px; }");
   webToolBar_->setIconSize(QSize(18, 18));
 
@@ -331,6 +331,8 @@ void NewsTabWidget::createWebWidget()
   webAction = webView_->pageAction(QWebPage::Stop);
   webToolBar_->addAction(webAction);
   webToolBar_->addSeparator();
+
+  webToolBar_->addAction(mainApp->mainWindow()->shareMenuAct_);
 
   webExternalBrowserAct_ = new QAction(this);
   webExternalBrowserAct_->setIcon(QIcon(":/images/openBrowser"));
@@ -2060,24 +2062,36 @@ void NewsTabWidget::setTextTab(const QString &text)
  *----------------------------------------------------------------------------*/
 void NewsTabWidget::slotShareNews(QAction *action)
 {
-  if (type_ >= TabTypeWeb) return;
-
-  QList<QModelIndex> indexes = newsView_->selectionModel()->selectedRows(0);
-
-  int cnt = indexes.count();
+  QList<QModelIndex> indexes;
+  int cnt = 0;
+  if (type_ < TabTypeWeb) {
+    indexes = newsView_->selectionModel()->selectedRows(0);
+    cnt = indexes.count();
+  } else if (type_ == TabTypeWeb) {
+    cnt = 1;
+  }
   if (cnt == 0) return;
 
   for (int i = cnt-1; i >= 0; --i) {
-    QString title = newsModel_->dataField(indexes.at(i).row(), "title").toString();
-    QString linkString = getLinkNews(indexes.at(i).row());
+    QString title;
+    QString linkString;
+    QString content;
+    if (type_ < TabTypeWeb) {
+      title = newsModel_->dataField(indexes.at(i).row(), "title").toString();
+      linkString = getLinkNews(indexes.at(i).row());
 
-    QString content = newsModel_->dataField(indexes.at(i).row(), "content").toString();
-    QString description = newsModel_->dataField(indexes.at(i).row(), "description").toString();
-    if (content.isEmpty() || (description.length() > content.length())) {
-      content = description;
+      content = newsModel_->dataField(indexes.at(i).row(), "content").toString();
+      QString description = newsModel_->dataField(indexes.at(i).row(), "description").toString();
+      if (content.isEmpty() || (description.length() > content.length())) {
+        content = description;
+      }
+      QTextDocumentFragment textDocument = QTextDocumentFragment::fromHtml(content);
+      content = textDocument.toPlainText();
+    } else {
+      title = webView_->title();
+      linkString = webView_->url().toString();
+      content = webView_->page()->mainFrame()->toPlainText();
     }
-    QTextDocumentFragment textDocument = QTextDocumentFragment::fromHtml(content);
-    content = textDocument.toPlainText();
     content = content.replace("\n", "%0A");
     content = content.replace("\"", "%22");
 

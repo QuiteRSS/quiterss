@@ -7253,10 +7253,18 @@ void MainWindow::showMenuShareNews()
       shareMenu_->popup(widget->mapToGlobal(QPoint(0, feedsToolBar_->height()-1)));
     }
   }
-  if (currentNewsTab->newsToolBar_->widgetForAction(shareMenuAct_)) {
-    QWidget *widget = currentNewsTab->newsToolBar_->widgetForAction(shareMenuAct_);
+  if (currentNewsTab->type_ < NewsTabWidget::TabTypeWeb) {
+    if (currentNewsTab->newsToolBar_->widgetForAction(shareMenuAct_)) {
+      QWidget *widget = currentNewsTab->newsToolBar_->widgetForAction(shareMenuAct_);
+      if (widget->underMouse()) {
+        shareMenu_->popup(widget->mapToGlobal(QPoint(0, currentNewsTab->newsToolBar_->height()-1)));
+      }
+    }
+  }
+  if (currentNewsTab->webToolBar_->widgetForAction(shareMenuAct_)) {
+    QWidget *widget = currentNewsTab->webToolBar_->widgetForAction(shareMenuAct_);
     if (widget->underMouse()) {
-      shareMenu_->popup(widget->mapToGlobal(QPoint(0, currentNewsTab->newsToolBar_->height()-1)));
+      shareMenu_->popup(widget->mapToGlobal(QPoint(0, currentNewsTab->webToolBar_->height()-1)));
     }
   }
 }

@@ -116,6 +116,7 @@ public:
   QSplitter *newsTabWidgetSplitter_;
 
   WebView *webView_;
+  QToolBar *webToolBar_;
   LocationBar *locationBar_;
   QWidget *webControlPanel_;
 
