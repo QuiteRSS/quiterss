@@ -1727,7 +1727,8 @@ void NewsTabWidget::openLinkInNewTab()
 
 inline static bool launch(const QUrl &url, const QString &client)
 {
-  return (QProcess::startDetached(client + QLatin1Char(' ') + url.toString().toUtf8()));
+  return (QProcess::startDetached(QString::fromUtf8(client.toUtf8()) + QLatin1Char(' ') +
+                                  QString::fromUtf8(url.toEncoded().constData())));
 }
 
 /** @brief Open link in browser
