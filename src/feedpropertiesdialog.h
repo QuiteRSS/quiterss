@@ -68,6 +68,7 @@ typedef struct {
     bool loadMoviesAndOtherContent; //!< Flag to load media content
     bool openLink; //!< Flag to open news link
     int layoutDirection; //!< LTR or RTL layout
+    int javaScriptEnable;
   } display;
 
   //! Columns properties

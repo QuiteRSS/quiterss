@@ -4928,6 +4928,8 @@ void MainWindow::showFeedPropertiesDlg()
       feedsTreeModel_->dataField(index, "displayOnStartup").toInt();
   properties.display.displayEmbeddedImages =
       feedsTreeModel_->dataField(index, "displayEmbeddedImages").toInt();
+  properties.display.javaScriptEnable =
+      feedsTreeModel_->dataField(index, "javaScriptEnable").toInt();
   if (feedsTreeModel_->dataField(index, "displayNews").toString().isEmpty())
     properties.display.displayNews = !showDescriptionNews_;
   else
@@ -5065,8 +5067,8 @@ void MainWindow::showFeedPropertiesDlg()
 
   q.prepare("UPDATE feeds SET text = ?, xmlUrl = ?, displayOnStartup = ?, "
             "displayEmbeddedImages = ?, displayNews = ?, layoutDirection = ?, "
-            "label = ?, duplicateNewsMode = ?, authentication = ?, disableUpdate = ? "
-            "WHERE id == ?");
+            "label = ?, duplicateNewsMode = ?, authentication = ?, disableUpdate = ?, "
+            "javaScriptEnable = ? WHERE id == ?");
   q.addBindValue(properties.general.text);
   q.addBindValue(properties.general.url);
   q.addBindValue(properties.general.displayOnStartup);
@@ -5080,6 +5082,7 @@ void MainWindow::showFeedPropertiesDlg()
   q.addBindValue(properties.general.duplicateNewsMode ? 1 : 0);
   q.addBindValue(properties.authentication.on ? 1 : 0);
   q.addBindValue(properties.general.disableUpdate ? 1 : 0);
+  q.addBindValue(properties.display.javaScriptEnable);
   q.addBindValue(feedId);
   q.exec();
 
@@ -5183,6 +5186,7 @@ void MainWindow::showFeedPropertiesDlg()
   QModelIndex indexDuplicate = feedsTreeModel_->indexSibling(index, "duplicateNewsMode");
   QModelIndex indexAuthentication = feedsTreeModel_->indexSibling(index, "authentication");
   QModelIndex indexDisableUpdate = feedsTreeModel_->indexSibling(index, "disableUpdate");
+  QModelIndex indexJavaScript = feedsTreeModel_->indexSibling(index, "javaScriptEnable");
   feedsTreeModel_->setData(indexText, properties.general.text);
   feedsTreeModel_->setData(indexUrl, properties.general.url);
   feedsTreeModel_->setData(indexStartup, properties.general.displayOnStartup);
@@ -5193,6 +5197,7 @@ void MainWindow::showFeedPropertiesDlg()
   feedsTreeModel_->setData(indexDuplicate, properties.general.duplicateNewsMode ? 1 : 0);
   feedsTreeModel_->setData(indexAuthentication, properties.authentication.on ? 1 : 0);
   feedsTreeModel_->setData(indexDisableUpdate, properties.general.disableUpdate ? 1 : 0);
+  feedsTreeModel_->setData(indexJavaScript, properties.display.javaScriptEnable);
 
   if (!properties.general.updateEnable ||
       (properties.general.updateEnable != updateFeedsEnable_) ||
@@ -5297,7 +5302,8 @@ void MainWindow::showFeedPropertiesDlg()
       if (properties.general.text != properties_tmp.general.text) {
         widget->setTextTab(properties.general.text);
       }
-      if (properties.display.layoutDirection != properties_tmp.display.layoutDirection) {
+      if ((properties.display.layoutDirection != properties_tmp.display.layoutDirection) ||
+          (properties.display.javaScriptEnable != properties_tmp.display.javaScriptEnable)) {
         widget->setSettings();
       }
     }

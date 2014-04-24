@@ -510,13 +510,6 @@ void NewsTabWidget::setSettings(bool init, bool newTab)
         } else {
           autoLoadImages_ = false;
         }
-
-        int layoutDirection = feedsTreeModel_->dataField(feedIndex, "layoutDirection").toInt();
-        if (!layoutDirection) {
-          newsView_->setLayoutDirection(Qt::LeftToRight);
-        } else {
-          newsView_->setLayoutDirection(Qt::RightToLeft);
-        }
       } else {
         autoLoadImages_ = mainWindow_->autoLoadImages_;
       }
@@ -525,6 +518,24 @@ void NewsTabWidget::setSettings(bool init, bool newTab)
       webView_->setZoomFactor(qreal(mainWindow_->defaultZoomPages_)/100.0);
     }
     setAutoLoadImages(false);
+
+    if (type_ == TabTypeFeed) {
+      int javaScriptEnable = feedsTreeModel_->dataField(feedIndex, "javaScriptEnable").toInt();
+      if (javaScriptEnable == 2) {
+        webView_->settings()->setAttribute(QWebSettings::JavascriptEnabled, true);
+      } else if (javaScriptEnable == 1) {
+        webView_->settings()->setAttribute(QWebSettings::JavascriptEnabled, mainWindow_->javaScriptEnable_);
+      } else if (javaScriptEnable == 0) {
+        webView_->settings()->setAttribute(QWebSettings::JavascriptEnabled, false);
+      }
+
+      int layoutDirection = feedsTreeModel_->dataField(feedIndex, "layoutDirection").toInt();
+      if (!layoutDirection) {
+        newsView_->setLayoutDirection(Qt::LeftToRight);
+      } else {
+        newsView_->setLayoutDirection(Qt::RightToLeft);
+      }
+    }
   }
 
   if (type_ < TabTypeWeb) {
