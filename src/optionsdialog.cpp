@@ -187,10 +187,19 @@ void OptionsDialog::showEvent(QShowEvent*event)
 void OptionsDialog::acceptDialog()
 {
 #if defined(Q_OS_WIN)
-  if (autoRunEnabled_->isChecked())
-    autoRunSettings_->setValue("QuiteRSS", QDir::toNativeSeparators(QCoreApplication::applicationFilePath()));
-  else
-    autoRunSettings_->remove("QuiteRSS");
+  if (mainApp->isPortableAppsCom()) {
+    if (autoRunEnabled_->isChecked()) {
+      QFileInfo file(QCoreApplication::applicationDirPath() % "/../../QuiteRSSPortable.exe");
+      autoRunSettings_->setValue("QuiteRSSPortable", QDir::toNativeSeparators(file.absoluteFilePath()));
+    } else {
+      autoRunSettings_->remove("QuiteRSSPortable");
+    }
+  } else {
+    if (autoRunEnabled_->isChecked())
+      autoRunSettings_->setValue("QuiteRSS", QDir::toNativeSeparators(QCoreApplication::applicationFilePath()));
+    else
+      autoRunSettings_->remove("QuiteRSS");
+  }
 #endif
 
   applyProxy();
@@ -320,8 +329,13 @@ void OptionsDialog::createGeneralWidget()
 #if defined(Q_OS_WIN)
   autoRunEnabled_ = new QCheckBox(tr("Run QuiteRSS at Windows startup"));
   autoRunSettings_ = new QSettings("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run",
-                                             QSettings::NativeFormat);
-  autoRunEnabled_->setChecked(autoRunSettings_->value("QuiteRSS", false).toBool());
+                                   QSettings::NativeFormat);
+  bool isAutoRun;
+  if (mainApp->isPortableAppsCom())
+    isAutoRun = autoRunSettings_->value("QuiteRSSPortable", false).toBool();
+  else
+    isAutoRun = autoRunSettings_->value("QuiteRSS", false).toBool();
+  autoRunEnabled_->setChecked(isAutoRun);
 
   generalLayout->addWidget(autoRunEnabled_);
 #endif
