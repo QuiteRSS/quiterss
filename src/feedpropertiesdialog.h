@@ -67,6 +67,7 @@ typedef struct {
     int displayEmbeddedImages; //!< Display embedded images
     bool loadMoviesAndOtherContent; //!< Flag to load media content
     bool openLink; //!< Flag to open news link
+    int layoutDirection; //!< LTR or RTL layout
   } display;
 
   //! Columns properties
@@ -155,12 +156,18 @@ private:
   QSpinBox *updateInterval_;
   QComboBox *updateIntervalType_;
   QCheckBox *displayOnStartup;
-  QCheckBox *showDescriptionNews_;
   QCheckBox *starredOn_;
-  QCheckBox *loadImagesOn;
   QCheckBox *duplicateNewsMode_;
 
-  QWidget *CreateGeneralTab();
+  QWidget *createGeneralTab();
+
+  // Tab "Display"
+  QCheckBox *showDescriptionNews_;
+  QCheckBox *loadImagesOn_;
+  QCheckBox *javaScriptEnable_;
+  QCheckBox *layoutDirection_;
+
+  QWidget *createDisplayTab();
 
   // Tab "Columns"
   QTreeWidget *columnsTree_;
@@ -173,13 +180,13 @@ private:
   QPushButton *removeButton_;
   QPushButton *moveUpButton_;
   QPushButton *moveDownButton_;
-  QWidget *CreateColumnsTab();
+  QWidget *createColumnsTab();
 
   // Tab "Authentication"
   QGroupBox *authentication_;
   LineEdit *user_;
   LineEdit *pass_;
-  QWidget *CreateAuthenticationTab();
+  QWidget *createAuthenticationTab();
 
   // Tab "Status"
   QLabel *statusFeed_;
@@ -187,7 +194,7 @@ private:
   QLabel *createdFeed_;
   QLabel *lastUpdateFeed_;
   QLabel *newsCount_;
-  QWidget *CreateStatusTab();
+  QWidget *createStatusTab();
 
   FEED_PROPERTIES feedProperties;
 

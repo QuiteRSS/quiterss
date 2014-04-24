@@ -611,15 +611,15 @@ void MainWindow::createTabBarWidget()
 {
   mainMenuButton_ = new ToolButton(this);
   mainMenuButton_->setObjectName("mainMenuButton");
-  mainMenuButton_->setStyleSheet("#mainMenuButton { border: none; padding: 0px 5px 0px 0px; }");
   mainMenuButton_->setIcon(QIcon(":/images/menu"));
 
   tabBar_ = new TabBar();
 
   QHBoxLayout *tabBarLayout = new QHBoxLayout();
-  tabBarLayout->setContentsMargins(5, 0, 0, 0);
+  tabBarLayout->setContentsMargins(0, 0, 0, 0);
   tabBarLayout->setSpacing(0);
   tabBarLayout->addWidget(mainMenuButton_);
+  tabBarLayout->addSpacing(5);
   tabBarLayout->addWidget(tabBar_, 1);
 
   tabBarWidget_ = new QWidget(this);
@@ -4492,8 +4492,10 @@ void MainWindow::appInstallTranslator()
 
   if ((langFileName_ == "ar") || (langFileName_ == "fa")) {
     QApplication::setLayoutDirection(Qt::RightToLeft);
+    mainMenuButton_->setStyleSheet("#mainMenuButton { border: none; padding: 0px 5px 0px 0px; }");
   } else {
     QApplication::setLayoutDirection(Qt::LeftToRight);
+    mainMenuButton_->setStyleSheet("#mainMenuButton { border: none; padding: 0px 0px 0px 5px; }");
   }
 
   /** Hack **/
@@ -4931,6 +4933,8 @@ void MainWindow::showFeedPropertiesDlg()
   else
     properties.display.displayNews =
         feedsTreeModel_->dataField(index, "displayNews").toInt();
+  properties.display.layoutDirection =
+      feedsTreeModel_->dataField(index, "layoutDirection").toInt();
 
   properties.general.disableUpdate =
       feedsTreeModel_->dataField(index, "disableUpdate").toBool();
@@ -5060,14 +5064,15 @@ void MainWindow::showFeedPropertiesDlg()
   index = feedsTreeModel_->getIndexById(feedId);
 
   q.prepare("UPDATE feeds SET text = ?, xmlUrl = ?, displayOnStartup = ?, "
-            "displayEmbeddedImages = ?, displayNews = ?, label = ?, "
-            "duplicateNewsMode = ?, authentication = ?, disableUpdate = ? "
+            "displayEmbeddedImages = ?, displayNews = ?, layoutDirection = ?, "
+            "label = ?, duplicateNewsMode = ?, authentication = ?, disableUpdate = ? "
             "WHERE id == ?");
   q.addBindValue(properties.general.text);
   q.addBindValue(properties.general.url);
   q.addBindValue(properties.general.displayOnStartup);
   q.addBindValue(properties.display.displayEmbeddedImages);
   q.addBindValue(properties.display.displayNews);
+  q.addBindValue(properties.display.layoutDirection);
   if (properties.general.starred)
     q.addBindValue("starred");
   else
@@ -5173,6 +5178,7 @@ void MainWindow::showFeedPropertiesDlg()
   QPersistentModelIndex indexStartup = feedsTreeModel_->indexSibling(index, "displayOnStartup");
   QModelIndex indexImages  = feedsTreeModel_->indexSibling(index, "displayEmbeddedImages");
   QModelIndex indexNews    = feedsTreeModel_->indexSibling(index, "displayNews");
+  QModelIndex indexRTL     = feedsTreeModel_->indexSibling(index, "layoutDirection");
   QModelIndex indexLabel   = feedsTreeModel_->indexSibling(index, "label");
   QModelIndex indexDuplicate = feedsTreeModel_->indexSibling(index, "duplicateNewsMode");
   QModelIndex indexAuthentication = feedsTreeModel_->indexSibling(index, "authentication");
@@ -5182,6 +5188,7 @@ void MainWindow::showFeedPropertiesDlg()
   feedsTreeModel_->setData(indexStartup, properties.general.displayOnStartup);
   feedsTreeModel_->setData(indexImages, properties.display.displayEmbeddedImages);
   feedsTreeModel_->setData(indexNews, properties.display.displayNews);
+  feedsTreeModel_->setData(indexRTL, properties.display.layoutDirection);
   feedsTreeModel_->setData(indexLabel, properties.general.starred ? "starred" : "");
   feedsTreeModel_->setData(indexDuplicate, properties.general.duplicateNewsMode ? 1 : 0);
   feedsTreeModel_->setData(indexAuthentication, properties.authentication.on ? 1 : 0);
@@ -5284,11 +5291,14 @@ void MainWindow::showFeedPropertiesDlg()
     slotIconFeedUpdate(feedId, properties.general.image);
   }
 
-  if (properties.general.text != properties_tmp.general.text) {
-    for (int i = 0; i < stackedWidget_->count(); i++) {
-      NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(i);
-      if (widget->feedId_ == feedId) {
+  for (int i = 0; i < stackedWidget_->count(); i++) {
+    NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(i);
+    if (widget->feedId_ == feedId) {
+      if (properties.general.text != properties_tmp.general.text) {
         widget->setTextTab(properties.general.text);
+      }
+      if (properties.display.layoutDirection != properties_tmp.display.layoutDirection) {
+        widget->setSettings();
       }
     }
   }

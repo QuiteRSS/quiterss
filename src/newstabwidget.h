@@ -211,6 +211,7 @@ private:
   bool webToolbarShow_;
 
   QString htmlString_;
+  QString htmlRtlString_;
   QString cssString_;
   QString audioPlayerHtml_;
   QString videoPlayerHtml_;

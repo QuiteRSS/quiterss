@@ -63,15 +63,14 @@ QMenuBar::item:pressed {
 }
 
 #tabBar_::tab {
-	margin-top: 1px;
 	background-color: transparent;
 	border: 1px solid gray;
 	border-bottom: none;
 	border-top-left-radius: 4px;
 	border-top-right-radius: 4px;
-	min-width: 20px;
-	max-width: 130px;
-	padding: 4px 12px 4px 12px;
+	padding: 4px 1px 4px 1px;
+	margin: 0;
+	margin-top: 1px;
 	margin-right: -1px;
 }
 

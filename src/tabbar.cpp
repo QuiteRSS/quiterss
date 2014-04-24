@@ -31,7 +31,8 @@ TabBar::TabBar(QWidget *parent)
   setMouseTracking(true);
   setExpanding(false);
   setMovable(true);
-  setIconSize(QSize(16, 16));
+  setElideMode(Qt::ElideNone);
+  setIconSize(QSize(0, 0));
   setContextMenuPolicy(Qt::CustomContextMenu);
 
   setStyleSheet(QString("#tabBar_ QToolButton {border: 1px solid %1; border-radius: 2px; background: %2;}").

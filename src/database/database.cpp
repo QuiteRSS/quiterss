@@ -23,7 +23,7 @@
 #include "settings.h"
 #include "VersionNo.h"
 
-const int versionDB = 15;
+const int versionDB = 16;
 
 const QString kCreateFeedsTableQuery(
     "CREATE TABLE feeds("
@@ -110,7 +110,9 @@ const QString kCreateFeedsTableQuery(
     "typeFeed integer default 0, "          // reserved for future purposes
     "showNotification integer default 0, "  //
     "disableUpdate integer default 0, "     // disable update feed
-    "javaScriptEnable integer default 1 "   //
+    "javaScriptEnable integer default 1, "  //
+    // version 16
+    "layoutDirection integer default 0 "    // 0 - ltr; 1 - rtl
     ")");
 
 const QString kCreateNewsTableQuery(
@@ -323,7 +325,7 @@ void Database::prepareDatabase()
     setPragma(dbFile);
     QSqlQuery q(dbFile);
 
-    int dbVersion = 0;
+    int dbVersion = -1;
     q.exec("SELECT value FROM info WHERE name='version'");
     if (q.first()) {
       dbVersion = q.value(0).toInt();
@@ -346,6 +348,9 @@ void Database::prepareDatabase()
       q.exec("ALTER TABLE feeds ADD COLUMN disableUpdate integer default 0");
       q.exec("ALTER TABLE feeds ADD COLUMN javaScriptEnable integer default 1");
     }
+    if (dbVersion < 16) {
+      q.exec("ALTER TABLE feeds ADD COLUMN layoutDirection integer default 0");
+    }
 
     // Update appVersion anyway
     if (appVersion.isEmpty()) {
@@ -358,7 +363,11 @@ void Database::prepareDatabase()
       q.exec();
     }
 
-    if (dbVersion < version()) {
+    if (dbVersion == -1) {
+      q.prepare("INSERT INTO info(name, value) VALUES('version', :version)");
+      q.bindValue(":version", version());
+      q.exec();
+    } else if (dbVersion < version()) {
       q.prepare("UPDATE info SET value=:version WHERE name='version'");
       q.bindValue(":version", version());
       q.exec();

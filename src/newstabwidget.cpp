@@ -39,14 +39,11 @@ NewsTabWidget::NewsTabWidget(QWidget *parent, TabType type, int feedId, int feed
   feedsTreeModel_ = mainWindow_->feedsTreeModel_;
   feedsProxyModel_ = mainWindow_->feedsProxyModel_;
 
-  int maxTextTabWidth = MAX_TAB_WIDTH-4;
-
   newsIconTitle_ = new QLabel();
   newsIconMovie_ = new QMovie(":/images/loading");
   newsIconTitle_->setMovie(newsIconMovie_);
   newsTextTitle_ = new QLabel();
   newsTextTitle_->setObjectName("newsTextTitle_");
-  newsTextTitle_->setFixedWidth(maxTextTabWidth);
 
   closeButton_ = new QToolButton();
   closeButton_->setFixedSize(15, 15);
@@ -74,6 +71,15 @@ NewsTabWidget::NewsTabWidget(QWidget *parent, TabType type, int feedId, int feed
   newsTitleLabel_->setMinimumHeight(16);
   newsTitleLabel_->setLayout(newsTitleLayout);
   newsTitleLabel_->setVisible(false);
+
+  Settings settings;
+  bool showCloseButtonTab = settings.value("Settings/showCloseButtonTab", true).toBool();
+  if (!showCloseButtonTab) {
+    closeButton_->hide();
+    newsTitleLabel_->setFixedWidth(MAX_TAB_WIDTH-15);
+  } else {
+    newsTitleLabel_->setFixedWidth(MAX_TAB_WIDTH);
+  }
 
   if (type_ != TabTypeDownloads) {
     if (type_ != TabTypeWeb) {
@@ -224,6 +230,10 @@ void NewsTabWidget::createNewsList()
   htmlFile.setFileName(":/html/description");
   htmlFile.open(QFile::ReadOnly);
   htmlString_ = QString::fromUtf8(htmlFile.readAll());
+  htmlFile.close();
+  htmlFile.setFileName(":/html/description_rtl");
+  htmlFile.open(QFile::ReadOnly);
+  htmlRtlString_ = QString::fromUtf8(htmlFile.readAll());
   htmlFile.close();
 
   connect(newsView_, SIGNAL(pressed(QModelIndex)),
@@ -485,10 +495,6 @@ void NewsTabWidget::setSettings(bool init, bool newTab)
     webView_->page()->action(QWebPage::Back)->setShortcut(mainWindow_->backWebPageAct_->shortcut());
     webView_->page()->action(QWebPage::Forward)->setShortcut(mainWindow_->forwardWebPageAct_->shortcut());
     webView_->page()->action(QWebPage::Reload)->setShortcut(mainWindow_->reloadWebPageAct_->shortcut());
-
-    bool showCloseButtonTab = settings.value("Settings/showCloseButtonTab", true).toBool();
-    if (!showCloseButtonTab)
-      closeButton_->hide();
   }
 
   QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId_);
@@ -503,6 +509,13 @@ void NewsTabWidget::setSettings(bool init, bool newTab)
           autoLoadImages_ = mainWindow_->autoLoadImages_;
         } else {
           autoLoadImages_ = false;
+        }
+
+        int layoutDirection = feedsTreeModel_->dataField(feedIndex, "layoutDirection").toInt();
+        if (!layoutDirection) {
+          newsView_->setLayoutDirection(Qt::LeftToRight);
+        } else {
+          newsView_->setLayoutDirection(Qt::RightToLeft);
         }
       } else {
         autoLoadImages_ = mainWindow_->autoLoadImages_;
@@ -1417,25 +1430,22 @@ void NewsTabWidget::updateWebView(QModelIndex index)
 
     content = enclosureStr + content;
 
-    QString languageString = feedsTreeModel_->dataField(feedIndex, "language").
-        toString().toLower();
-    bool ltr = true;
-    if ((languageString == "ar") || (languageString == "fa") ||
-        QApplication::isRightToLeft()) {
-      ltr = false;
-    }
+    bool ltr = !feedsTreeModel_->dataField(feedIndex, "layoutDirection").toInt();
     QString cssStr = cssString_.
         arg(ltr ? "left" : "right"). // text-align
-        arg(ltr ? "ltr" : "rtl"); // direction
-
+        arg(ltr ? "ltr" : "rtl"). // direction
+        arg(ltr ? "right" : "left"); // "Date" text-align
 
     if (!autoLoadImages_) {
       QRegExp reg("<img[^>]+>", Qt::CaseInsensitive, QRegExp::RegExp2);
       content = content.remove(reg);
     }
 
-    QString htmlStr = htmlString_.
-        arg(cssStr, titleString, dateString, authorString, content);
+    QString htmlStr;
+    if (ltr)
+      htmlStr = htmlString_.arg(cssStr, titleString, dateString, authorString, content);
+    else
+      htmlStr = htmlRtlString_.arg(cssStr, titleString, dateString, authorString, content);
 
     QUrl url;
     url.setScheme(newsUrl.scheme());
@@ -2052,7 +2062,7 @@ void NewsTabWidget::setTextTab(const QString &text)
     padding = 0;
 
   QString textTab = newsTextTitle_->fontMetrics().elidedText(
-        text, Qt::ElideRight, newsTextTitle_->width() - padding);
+        text, Qt::ElideRight, newsTitleLabel_->width() - 16 - 3 - padding);
   newsTextTitle_->setText(textTab);
   newsTitleLabel_->setToolTip(text);
 

@@ -28,14 +28,15 @@ FeedPropertiesDialog::FeedPropertiesDialog(bool isFeed, QWidget *parent)
   setMinimumHeight(350);
 
   tabWidget = new QTabWidget();
-  tabWidget->addTab(CreateGeneralTab(), tr("General"));
-  tabWidget->addTab(CreateColumnsTab(), tr("Columns"));
-  tabWidget->addTab(CreateAuthenticationTab(), tr("Authentication"));
-  tabWidget->addTab(CreateStatusTab(), tr("Status"));
+  tabWidget->addTab(createGeneralTab(), tr("General"));
+  tabWidget->addTab(createDisplayTab(), tr("Display"));
+  tabWidget->addTab(createColumnsTab(), tr("Columns"));
+  tabWidget->addTab(createAuthenticationTab(), tr("Authentication"));
+  tabWidget->addTab(createStatusTab(), tr("Status"));
   pageLayout->addWidget(tabWidget);
 
   if (!isFeed_) {
-    tabWidget->removeTab(2);
+    tabWidget->removeTab(3);
   }
 
   buttonBox->addButton(QDialogButtonBox::Ok);
@@ -48,7 +49,7 @@ FeedPropertiesDialog::FeedPropertiesDialog(bool isFeed, QWidget *parent)
           this, SLOT(slotFaviconUpdate(QString,QByteArray)));
 }
 //------------------------------------------------------------------------------
-QWidget *FeedPropertiesDialog::CreateGeneralTab()
+QWidget *FeedPropertiesDialog::createGeneralTab()
 {
   QWidget *tab = new QWidget();
 
@@ -114,10 +115,7 @@ QWidget *FeedPropertiesDialog::CreateGeneralTab()
           updateIntervalType_, SLOT(setDisabled(bool)));
 
   starredOn_ = new QCheckBox(tr("Starred"));
-  loadImagesOn = new QCheckBox(tr("Load images"));
-  loadImagesOn->setTristate(true);
   displayOnStartup = new QCheckBox(tr("Display in new tab on startup"));
-  showDescriptionNews_ = new QCheckBox(tr("Show news' description instead of loading web page"));
   duplicateNewsMode_ = new QCheckBox(tr("Automatically delete duplicate news"));
 
   QHBoxLayout *layoutGeneralHomepage = new QHBoxLayout();
@@ -141,9 +139,7 @@ QWidget *FeedPropertiesDialog::CreateGeneralTab()
   tabLayout->addLayout(updateFeedsLayout);
   tabLayout->addSpacing(15);
   tabLayout->addWidget(starredOn_);
-  tabLayout->addWidget(loadImagesOn);
   tabLayout->addWidget(displayOnStartup);
-  tabLayout->addWidget(showDescriptionNews_);
   tabLayout->addWidget(duplicateNewsMode_);
   tabLayout->addStretch();
 
@@ -169,7 +165,27 @@ QWidget *FeedPropertiesDialog::CreateGeneralTab()
   return tab;
 }
 //------------------------------------------------------------------------------
-QWidget *FeedPropertiesDialog::CreateColumnsTab()
+QWidget *FeedPropertiesDialog::createDisplayTab()
+{
+  QWidget *tab = new QWidget();
+
+  loadImagesOn_ = new QCheckBox(tr("Load images"));
+  loadImagesOn_->setTristate(true);
+  showDescriptionNews_ = new QCheckBox(tr("Show news' description instead of loading web page"));
+  layoutDirection_ = new QCheckBox(tr("Right-to-left layout"));
+
+  QVBoxLayout *tabLayout = new QVBoxLayout(tab);
+  tabLayout->setMargin(10);
+  tabLayout->setSpacing(5);
+  tabLayout->addWidget(loadImagesOn_);
+  tabLayout->addWidget(showDescriptionNews_);
+  tabLayout->addWidget(layoutDirection_);
+  tabLayout->addStretch();
+
+  return tab;
+}
+//------------------------------------------------------------------------------
+QWidget *FeedPropertiesDialog::createColumnsTab()
 {
   QWidget *tab = new QWidget();
 
@@ -256,7 +272,7 @@ QWidget *FeedPropertiesDialog::CreateColumnsTab()
   return tab;
 }
 //------------------------------------------------------------------------------
-QWidget *FeedPropertiesDialog::CreateAuthenticationTab()
+QWidget *FeedPropertiesDialog::createAuthenticationTab()
 {
   QWidget *tab = new QWidget();
 
@@ -286,7 +302,7 @@ QWidget *FeedPropertiesDialog::CreateAuthenticationTab()
   return tab;
 }
 //------------------------------------------------------------------------------
-QWidget *FeedPropertiesDialog::CreateStatusTab()
+QWidget *FeedPropertiesDialog::createStatusTab()
 {
   QWidget *tab = new QWidget();
 
@@ -344,9 +360,11 @@ QWidget *FeedPropertiesDialog::CreateStatusTab()
 
   displayOnStartup->setChecked(feedProperties.general.displayOnStartup);
   starredOn_->setChecked(feedProperties.general.starred);
-  loadImagesOn->setCheckState((Qt::CheckState)feedProperties.display.displayEmbeddedImages);
-  showDescriptionNews_->setChecked(!feedProperties.display.displayNews);
   duplicateNewsMode_->setChecked(feedProperties.general.duplicateNewsMode);
+
+  loadImagesOn_->setCheckState((Qt::CheckState)feedProperties.display.displayEmbeddedImages);
+  showDescriptionNews_->setChecked(!feedProperties.display.displayNews);
+  layoutDirection_->setChecked(feedProperties.display.layoutDirection);
 
   for (int i = 0; i < feedProperties.column.columns.count(); ++i) {
     int index = feedProperties.column.indexList.indexOf(feedProperties.column.columns.at(i));
@@ -478,9 +496,10 @@ FEED_PROPERTIES FeedPropertiesDialog::getFeedProperties()
 
   feedProperties.general.displayOnStartup = displayOnStartup->isChecked();
   feedProperties.general.starred = starredOn_->isChecked();
-  feedProperties.display.displayEmbeddedImages = loadImagesOn->checkState();
+  feedProperties.display.displayEmbeddedImages = loadImagesOn_->checkState();
   feedProperties.display.displayNews = !showDescriptionNews_->isChecked();
   feedProperties.general.duplicateNewsMode = duplicateNewsMode_->isChecked();
+  feedProperties.display.layoutDirection = layoutDirection_->isChecked();
 
   feedProperties.column.columns.clear();
   for (int i = 0; i < columnsTree_->topLevelItemCount(); ++i) {

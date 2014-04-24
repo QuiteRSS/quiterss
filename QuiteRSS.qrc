@@ -121,6 +121,7 @@
         <file alias="audioplayer">html/audioplayer.html</file>
         <file alias="videoplayer">html/videoplayer.html</file>
         <file>html/adblockPage.html</file>
+        <file alias="description_rtl">html/news_rtl.html</file>
     </qresource>
     <qresource prefix="/flags">
         <file alias="flag_AR">images/flags/flag_arab.png</file>
