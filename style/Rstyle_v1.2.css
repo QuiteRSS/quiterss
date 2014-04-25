@@ -1,0 +1,123 @@
+/****************************/
+/* Rstyle_v1.2 for QuiteRSS */
+/* rrrrrrrrush@gmail.com    */
+/****************************/
+
+/*Do not delete!*/
+/* %1 - newsTextFontFamily */
+/* %2 - newsTextFontSize */
+/* %3 - newsTitleFontFamily */
+/* %4 - newsTitleFontSize */
+/* %5 - 0 */
+/* %6 - color separator */
+/* %7 - news background */
+/* %8 - title background */
+/* %9 - link color */
+/* %10 - title color */
+/* %11 - date color */
+/* %12 - author color */
+/* %13 - text color */
+/* %14 - text-align */
+/* %15 - direction: ltr or rtl */
+/* %16 - "date" text-align */
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+html {
+  display: table;
+  text-align:center;
+  margin: auto;
+  background-color:#E0E0E0;
+}
+body {
+  width: 700px;
+  display: block;
+  background-color:#DBDBDB1;
+  color: #363636;
+  font-family: %1; font-size: %2pt; 
+}
+
+img {
+  display: block;  
+  max-width: 670px;
+  margin-left: auto;   
+  margin-right: auto;
+  border:10px solid #fff;1
+  -webkit-box-shadow: 0 7px 5px -5px #CCC;
+  -moz-box-shadow: 0 7px 5px -5px #CCC;
+  box-shadow: 0 7px 5px -5px #CCC;
+}
+
+td {
+  font-family: %1; font-size: %2pt;
+  padding-top: 10px;
+  color: #363636;
+}
+
+a:link {text-decoration: none; color: #0066CC;}
+a:active {text-decoration: none; color: #0066CC;}
+a:visited {text-decoration: none; color: #0066CC;}
+a:hover {text-decoration: none; color: #0066CC;}
+
+.title {
+  color: #0C60B1; 
+  font-family: %3; font-size: %4pt;
+  text-align: %14;
+  dir: %15;
+  vertical-align: top;
+}
+.title a:link {color: #0C60B1; text-decoration: none;}
+.title a:active {color: #0C60B1; text-decoration: none;}
+.title a:visited {color: #0C60B1; text-decoration: none;}
+.title a:hover {color: #0C60B1; text-decoration: none;}
+.title a.unread {color: #0C60B1; font-weight: bold; text-decoration: none;}
+
+.date {
+  color: #949494;
+  text-align: %16;
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+.author {
+  color: #949494;
+  text-align: %14;
+  dir: %15;
+  vertical-align: top;
+  text-decoration: underline;
+}
+.author a:link {color: #949494; text-decoration: none;}
+.author a:active {color: #949494; text-decoration: none;}
+.author a:visited {color: #949494; text-decoration: none;}
+.author a:hover {color: #949494; text-decoration: none;}
+
+.titleTable {
+  text-align: left;
+  width: 100%;
+  position: relative;
+  margin-top: 10px;
+  padding: 5px;
+  background-color:#3D3D3D;
+  -webkit-border-top-left-radius: 5x;
+  -webkit-border-top-right-radius: 5px;
+  -moz-border-top-left-radius: 5px;
+  -moz-border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.newsTable {
+  background-color:#F5F5F5;
+  width: 100%;
+  padding: 5px;
+  text-align: %14;
+  dir: %15;
+  -webkit-border-bottom-left-radius: 5x;
+  -webkit-border-bottom-right-radius: 5px;
+  -moz-border-bottom-left-radius: 5px;
+  -moz-border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
