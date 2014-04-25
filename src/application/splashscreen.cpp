@@ -16,6 +16,7 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
 #include "splashscreen.h"
+#include "VersionNo.h"
 
 SplashScreen::SplashScreen(const QPixmap &pixmap, Qt::WindowFlags flag)
   : QSplashScreen(pixmap, flag)
@@ -23,7 +24,9 @@ SplashScreen::SplashScreen(const QPixmap &pixmap, Qt::WindowFlags flag)
   setFixedSize(pixmap.width(), pixmap.height());
   setContentsMargins(5, 0, 5, 0);
   setEnabled(false);
-  showMessage("Prepare loading...", Qt::AlignRight | Qt::AlignTop, Qt::darkGray);
+  showMessage("Prepare loading...   " %
+              QString("%1.%2").arg(STRPRODUCTVER).arg(VCS_REVISION),
+              Qt::AlignRight | Qt::AlignTop, Qt::darkGray);
   setAttribute(Qt::WA_DeleteOnClose);
 
   splashProgress_.setObjectName("splashProgress");
@@ -42,6 +45,7 @@ void SplashScreen::setProgress(int value)
 {
   qApp->processEvents();
   splashProgress_.setValue(value);
-  showMessage("Loading: " + QString::number(value) + "%",
+  showMessage("Loading: " % QString::number(value) % "%   " %
+              QString("%1.%2").arg(STRPRODUCTVER).arg(VCS_REVISION),
               Qt::AlignRight | Qt::AlignTop, Qt::darkGray);
 }
