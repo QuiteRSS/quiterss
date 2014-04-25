@@ -447,6 +447,15 @@ QString MainApplication::soundNotifyDefaultFile() const
   return soundNotifyDir_ % "/notification.wav";
 }
 
+QString MainApplication::styleSheetNewsDefaultFile() const
+{
+  if (isPortable_) {
+    return "style/news.css";
+  } else {
+    return resourcesDir_ % "/style/news.css";
+  }
+}
+
 UpdateFeeds *MainApplication::updateFeeds()
 {
   return updateFeeds_;

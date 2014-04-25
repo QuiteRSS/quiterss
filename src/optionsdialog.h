@@ -137,6 +137,8 @@ public:
 
   QComboBox *mainNewsFilter_;
 
+  LineEdit *styleSheetNewsEdit_;
+
   QCheckBox *changeBehaviorActionNUN_;
   QCheckBox *notDeleteStarred_;
   QCheckBox *notDeleteLabeled_;
@@ -223,6 +225,7 @@ private slots:
   void slotResetShortcut();
   void filterShortcutChanged(const QString &text);
   void selectionBrowser();
+  void selectionUserStyleNews();
   void selectionSoundNotifer();
   void slotPlaySoundNotifer();
   void feedsTreeNotifyItemChanged(QTreeWidgetItem* item,int column);

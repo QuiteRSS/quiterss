@@ -56,6 +56,7 @@ public:
   QString dbFileName() const;
   QString cacheDefaultDir() const;
   QString soundNotifyDefaultFile() const;
+  QString styleSheetNewsDefaultFile() const;
 
   bool storeDBMemory() const;
   bool dbFileExists() const { return dbFileExists_; }

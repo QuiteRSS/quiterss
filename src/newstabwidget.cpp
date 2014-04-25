@@ -454,7 +454,9 @@ void NewsTabWidget::setSettings(bool init, bool newTab)
       newsModel_->focusedNewsTextColor_ = mainWindow_->focusedNewsTextColor_;
       newsModel_->focusedNewsBGColor_ = mainWindow_->focusedNewsBGColor_;
 
-      QFile file(mainApp->resourcesDir() + "/style/news.css");
+      QString styleSheetNews = settings.value("Settings/styleSheetNews",
+                                              mainApp->styleSheetNewsDefaultFile()).toString();
+      QFile file(styleSheetNews);
       if (!file.open(QFile::ReadOnly)) {
         file.setFileName(":/style/newsStyle");
         file.open(QFile::ReadOnly);

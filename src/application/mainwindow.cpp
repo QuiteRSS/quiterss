@@ -3253,6 +3253,10 @@ void MainWindow::showOptionDlg(int index)
     }
   }
 
+  QString styleSheetNews = settings.value("Settings/styleSheetNews",
+                                          mainApp->styleSheetNewsDefaultFile()).toString();
+  optionsDialog_->styleSheetNewsEdit_->setText(styleSheetNews);
+
   optionsDialog_->cleanupOnShutdownBox_->setChecked(cleanupOnShutdown_);
   optionsDialog_->dayCleanUpOn_->setChecked(dayCleanUpOn_);
   optionsDialog_->maxDayCleanUp_->setValue(maxDayCleanUp_);
@@ -3655,6 +3659,10 @@ void MainWindow::showOptionDlg(int index)
 
   mainNewsFilter_ = optionsDialog_->mainNewsFilter_->itemData(
         optionsDialog_->mainNewsFilter_->currentIndex()).toString();
+
+  styleSheetNews = optionsDialog_->styleSheetNewsEdit_->text();
+  if (styleSheetNews.isEmpty()) styleSheetNews = mainApp->styleSheetNewsDefaultFile();
+  settings.setValue("Settings/styleSheetNews", styleSheetNews);
 
   cleanupOnShutdown_ = optionsDialog_->cleanupOnShutdownBox_->isChecked();
   dayCleanUpOn_ = optionsDialog_->dayCleanUpOn_->isChecked();

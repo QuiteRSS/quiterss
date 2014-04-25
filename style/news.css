@@ -1,5 +1,23 @@
 /* News Style */
-/*%1 %2 %3 %4 %5 %6 %7 %8 %9 %10 %11 %12 %13 %14 %15 %16*/
+
+/*Do not delete!*/
+/* %1 - newsTextFontFamily */
+/* %2 - newsTextFontSize */
+/* %3 - newsTitleFontFamily */
+/* %4 - newsTitleFontSize */
+/* %5 - 0 */
+/* %6 - color separator */
+/* %7 - news background */
+/* %8 - title background */
+/* %9 - link color */
+/* %10 - title color */
+/* %11 - date color */
+/* %12 - author color */
+/* %13 - text color */
+/* %14 - text-align */
+/* %15 - direction: ltr or rtl */
+/* %16 - "date" text-align */
+
 body {
   overflow: auto;
   margin: 0;

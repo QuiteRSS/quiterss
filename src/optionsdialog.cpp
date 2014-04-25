@@ -848,6 +848,16 @@ void OptionsDialog::createFeedsWidget()
   mainNewsFilterLayout->addWidget(mainNewsFilter_);
   mainNewsFilterLayout->addStretch();
 
+  styleSheetNewsEdit_ = new LineEdit();
+  QPushButton *styleSheetNewsButton = new QPushButton(tr("Browse..."));
+  connect(styleSheetNewsButton, SIGNAL(clicked()),
+          this, SLOT(selectionUserStyleNews()));
+
+  QGridLayout *styleSheetNewsLayout = new QGridLayout();
+  styleSheetNewsLayout->setContentsMargins(15, 0, 5, 10);
+  styleSheetNewsLayout->addWidget(styleSheetNewsEdit_, 0, 0);
+  styleSheetNewsLayout->addWidget(styleSheetNewsButton, 0, 1, Qt::AlignRight);
+
   QVBoxLayout *generalFeedsLayout = new QVBoxLayout();
   generalFeedsLayout->addWidget(updateFeedsStartUp_);
   generalFeedsLayout->addLayout(updateFeedsLayout);
@@ -860,6 +870,9 @@ void OptionsDialog::createFeedsWidget()
   generalFeedsLayout->addLayout(formatDateLayout);
   generalFeedsLayout->addSpacing(10);
   generalFeedsLayout->addLayout(mainNewsFilterLayout);
+  generalFeedsLayout->addSpacing(10);
+  generalFeedsLayout->addWidget(new QLabel(tr("Style sheet for news:")));
+  generalFeedsLayout->addLayout(styleSheetNewsLayout);
   generalFeedsLayout->addStretch();
 
   QWidget *generalFeedsWidget = new QWidget();
@@ -2163,6 +2176,16 @@ void OptionsDialog::applyWhitelist()
     whitelist.append(c2fWhitelist_->topLevelItem(i)->text(0));
   }
   mainApp->c2fSetWhitelist(whitelist);
+}
+//----------------------------------------------------------------------------
+void OptionsDialog::selectionUserStyleNews()
+{
+  QString path(mainApp->resourcesDir() % "/style");
+  QString fileName = QFileDialog::getOpenFileName(this,
+                                                  tr("Select Style Sheet File"),
+                                                  path, "*.css");
+  if (!fileName.isEmpty())
+    styleSheetNewsEdit_->setText(fileName);
 }
 //----------------------------------------------------------------------------
 void OptionsDialog::selectionSoundNotifer()
