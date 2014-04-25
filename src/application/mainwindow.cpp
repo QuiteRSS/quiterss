@@ -756,11 +756,15 @@ void MainWindow::createActions()
   browserToolbarToggle_->setCheckable(true);
   categoriesPanelToggle_ = new QAction(this);
   categoriesPanelToggle_->setCheckable(true);
+  statusBarToggle_ = new QAction(this);
+  statusBarToggle_->setCheckable(true);
 
   connect(feedsToolbarToggle_, SIGNAL(toggled(bool)),
           feedsPanel_, SLOT(setVisible(bool)));
   connect(categoriesPanelToggle_, SIGNAL(toggled(bool)),
           categoriesWidget_, SLOT(setVisible(bool)));
+  connect(statusBarToggle_, SIGNAL(toggled(bool)),
+          statusBar(), SLOT(setVisible(bool)));
 
   customizeMainToolbarAct_ = new QAction(this);
   customizeMainToolbarAct_->setObjectName("customizeMainToolbarAct");
@@ -1563,6 +1567,7 @@ void MainWindow::createMenu()
   toolbarsMenu_->addAction(newsToolbarToggle_);
   toolbarsMenu_->addAction(browserToolbarToggle_);
   toolbarsMenu_->addAction(categoriesPanelToggle_);
+  toolbarsMenu_->addAction(statusBarToggle_);
 
   customizeToolbarGroup_ = new QActionGroup(this);
   customizeToolbarGroup_->addAction(customizeMainToolbarAct_);
@@ -1985,6 +1990,7 @@ void MainWindow::loadSettings()
   browserToolbarToggle_->setChecked(settings.value("browserToolbarShow", true).toBool());
   categoriesPanelToggle_->setChecked(settings.value("categoriesPanelShow", true).toBool());
   categoriesWidget_->setVisible(categoriesPanelToggle_->isChecked());
+  statusBarToggle_->setChecked(settings.value("statusBarShow", true).toBool());
 
   QString str = settings.value("mainToolBar",
                                "newAct,Separator,updateFeedAct,updateAllFeedsAct,"
@@ -2118,6 +2124,8 @@ void MainWindow::loadSettings()
     mainToolbar_->hide();
   if (!feedsToolbarToggle_->isChecked())
     feedsPanel_->hide();
+  if (!statusBarToggle_->isChecked())
+    statusBar()->hide();
 
   mainSplitter_->restoreState(settings.value("MainSplitterState").toByteArray());
   feedsWidgetVisibleAct_->setChecked(settings.value("FeedsWidgetVisible", true).toBool());
@@ -2260,6 +2268,7 @@ void MainWindow::saveSettings()
   settings.setValue("newsToolbarShow", newsToolbarToggle_->isChecked());
   settings.setValue("browserToolbarShow", browserToolbarToggle_->isChecked());
   settings.setValue("categoriesPanelShow", categoriesPanelToggle_->isChecked());
+  settings.setValue("statusBarShow", statusBarToggle_->isChecked());
 
   settings.setValue("styleApplication",
                     styleGroup_->checkedAction()->objectName());
@@ -4711,6 +4720,7 @@ void MainWindow::retranslateStrings()
   newsToolbarToggle_->setText(tr("News Toolbar"));
   browserToolbarToggle_->setText(tr("Browser Toolbar"));
   categoriesPanelToggle_->setText(tr("Panel Categories"));
+  statusBarToggle_->setText(tr("Status Bar"));
 
   fullScreenAct_->setText(tr("Full Screen"));
   fullScreenAct_->setToolTip(tr("Full Screen"));
