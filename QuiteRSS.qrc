@@ -105,6 +105,7 @@
         <file>images/adblock_big.png</file>
         <file>images/adblock-disabled.png</file>
         <file alias="menu">images/menu.png</file>
+        <file alias="backup">images/backup.png</file>
     </qresource>
     <qresource prefix="/style">
         <file alias="systemStyle">style/system.qss</file>

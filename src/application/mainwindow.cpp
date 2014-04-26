@@ -734,6 +734,7 @@ void MainWindow::createActions()
 
   createBackupAct_ = new QAction(this);
   createBackupAct_->setObjectName("createBackupAct");
+  createBackupAct_->setIcon(QIcon(":/images/backup"));
   this->addAction(createBackupAct_);
   connect(createBackupAct_, SIGNAL(triggered()), this, SLOT(createBackup()));
 
@@ -1404,6 +1405,7 @@ void MainWindow::createShortcut()
 
   listActions_.append(importFeedsAct_);
   listActions_.append(exportFeedsAct_);
+  listActions_.append(createBackupAct_);
   listActions_.append(autoLoadImagesToggle_);
   listActions_.append(markAllFeedsRead_);
   listActions_.append(markFeedRead_);
