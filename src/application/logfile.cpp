@@ -67,6 +67,9 @@ void LogFile::msgHandler(QtMsgType type, const QMessageLogContext &, const QStri
 #else
 void LogFile::msgHandler(QtMsgType type, const char *msg)
 {
+  if (QString::fromUtf8(msg) == "QFont::setPixelSize: Pixel size <= 0 (0)")
+    return;
+
   QFile file;
   file.setFileName(mainApp->dataDir() + "/debug.log");
   QIODevice::OpenMode openMode = QIODevice::WriteOnly | QIODevice::Text;
