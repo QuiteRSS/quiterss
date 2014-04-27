@@ -20,7 +20,7 @@
 
 int main(int argc, char **argv)
 {
-#ifdef HAVE_QT5
+#if defined(HAVE_QT5)
   qInstallMessageHandler(LogFile::msgHandler);
 #else
   qInstallMsgHandler(LogFile::msgHandler);
