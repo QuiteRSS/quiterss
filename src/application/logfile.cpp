@@ -18,6 +18,7 @@
 #include "logfile.h"
 
 #include "mainapplication.h"
+#include "settings.h"
 
 LogFile::LogFile()
 {
@@ -26,6 +27,12 @@ LogFile::LogFile()
 #ifdef HAVE_QT5
 void LogFile::msgHandler(QtMsgType type, const QMessageLogContext &, const QString &msg)
 {
+  if (type == QtDebugMsg) {
+    Settings settings;
+    bool noDebugOutput = settings.value("Settings/noDebugOutput", true).toBool();
+    if (noDebugOutput) return;
+  }
+
   QFile file;
   file.setFileName(mainApp->dataDir() + "/debug.log");
   QIODevice::OpenMode openMode = QIODevice::WriteOnly | QIODevice::Text;
@@ -69,6 +76,12 @@ void LogFile::msgHandler(QtMsgType type, const char *msg)
 {
   if (QString::fromUtf8(msg) == "QFont::setPixelSize: Pixel size <= 0 (0)")
     return;
+
+  if (type == QtDebugMsg) {
+    Settings settings;
+    bool noDebugOutput = settings.value("Settings/noDebugOutput", true).toBool();
+    if (noDebugOutput) return;
+  }
 
   QFile file;
   file.setFileName(mainApp->dataDir() + "/debug.log");

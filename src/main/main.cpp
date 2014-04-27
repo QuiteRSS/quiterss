@@ -20,12 +20,10 @@
 
 int main(int argc, char **argv)
 {
-#if defined(QT_NO_DEBUG_OUTPUT)
 #ifdef HAVE_QT5
   qInstallMessageHandler(LogFile::msgHandler);
 #else
   qInstallMsgHandler(LogFile::msgHandler);
-#endif
 #endif
 
   MainApplication app(argc, argv);
