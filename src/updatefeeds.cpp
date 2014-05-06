@@ -182,6 +182,9 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool addFeed)
     startSaveTimer();
   }
 
+#ifndef QT_NO_NETWORKPROXY
+  qRegisterMetaType<QNetworkProxy>("QNetworkProxy");
+#endif
   connect(requestFeed_, SIGNAL(authenticationRequired(QNetworkReply*,QAuthenticator*)),
           mainApp->mainWindow(), SLOT(slotAuthentication(QNetworkReply*,QAuthenticator*)),
           Qt::BlockingQueuedConnection);
