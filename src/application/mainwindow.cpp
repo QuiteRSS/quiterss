@@ -2473,84 +2473,102 @@ void MainWindow::deleteItemFeedsTree()
 {
   if (!feedsTreeView_->selectIndex().isValid()) return;
 
-  QPersistentModelIndex index = feedsTreeView_->selectIndex();
-  int feedDeleteId = feedsTreeModel_->getIdByIndex(index);
-  int feedParentId = feedsTreeModel_->getParidByIndex(index);
-
-  QPersistentModelIndex currentIndex = feedsTreeView_->currentIndex();
-  int feedCurrentId = feedsTreeModel_->getIdByIndex(
-        feedsProxyModel_->mapToSource(feedsTreeView_->currentIndex()));
-
-  QMessageBox msgBox;
+  QMessageBox msgBox(this);
   msgBox.setIcon(QMessageBox::Question);
-  if (feedsTreeModel_->isFolder(index)) {
-    msgBox.setWindowTitle(tr("Delete Folder"));
-    msgBox.setText(QString(tr("Are you sure to delete the folder '%1'?")).
-                   arg(feedsTreeModel_->dataField(index, "text").toString()));
-  } else {
-    msgBox.setWindowTitle(tr("Delete Feed"));
-    msgBox.setText(QString(tr("Are you sure to delete the feed '%1'?")).
-                   arg(feedsTreeModel_->dataField(index, "text").toString()));
-  }
+  msgBox.setWindowTitle(tr("Confirm Delete"));
+  msgBox.setText(tr("Are you sure to delete selected elements?"));
   msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
   msgBox.setDefaultButton(QMessageBox::No);
 
   if (msgBox.exec() == QMessageBox::No) return;
 
+  QModelIndex currentIndex = feedsProxyModel_->mapToSource(feedsTreeView_->currentIndex());
+  int feedIdCur = feedsTreeModel_->getIdByIndex(currentIndex);
+
+  QModelIndexList indexList = feedsTreeView_->selectionModel()->selectedRows(0);
+  if (indexList.count() <= 1) {
+    indexList.clear();
+    indexList.append(feedsProxyModel_->mapFromSource(feedsTreeView_->selectIndex()));
+  }
+
   QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+
+  QList<int> idList;
+  QList<int> parentIdList;
+  for (int i = indexList.count()-1; i >= 0; --i) {
+    QModelIndex index = feedsProxyModel_->mapToSource(indexList[i]);
+    if (feedsTreeModel_->isFolder(index)) {
+      idList.append(feedsTreeModel_->dataField(index, "id").toInt());
+      int parentId = feedsTreeModel_->dataField(index, "parentId").toInt();
+      if (!parentIdList.contains(parentId)) {
+        parentIdList.append(parentId);
+      }
+      indexList.removeAt(i);
+    }
+  }
+  for (int i = indexList.count()-1; i >= 0; --i) {
+    QModelIndex index = feedsProxyModel_->mapToSource(indexList[i]);
+    int parentId = feedsTreeModel_->dataField(index, "parentId").toInt();
+    if (!idList.contains(parentId)) {
+      idList.append(feedsTreeModel_->dataField(index, "id").toInt());
+      int parentId = feedsTreeModel_->dataField(index, "parentId").toInt();
+      if (!parentIdList.contains(parentId)) {
+        parentIdList.append(parentId);
+      }
+    }
+    indexList.removeAt(i);
+  }
 
   db_.transaction();
   QSqlQuery q;
-  QString idStr(QString("id='%1'").arg(feedDeleteId));
-  QString feedIdStr(QString("feedId='%1'").arg(feedDeleteId));
-  QQueue<int> parentIds;
-  parentIds.enqueue(feedDeleteId);
-  while (!parentIds.empty()) {
-    int parentId = parentIds.dequeue();
-    q.exec(QString("SELECT id FROM feeds WHERE parentId='%1'").arg(parentId));
-    while (q.next()) {
-      int feedId = q.value(0).toInt();
-
+  QString idStr;
+  QString feedIdStr;
+  foreach (int feedId, idList) {
+    if (idStr.isEmpty()) {
+      idStr.append(QString("id='%1'").arg(feedId));
+      feedIdStr.append(QString("feedId='%1'").arg(feedId));
+    } else {
       idStr.append(QString(" OR id='%1'").arg(feedId));
       feedIdStr.append(QString(" OR feedId='%1'").arg(feedId));
+    }
+    QQueue<int> parentIds;
+    parentIds.enqueue(feedId);
+    while (!parentIds.empty()) {
+      int parentId = parentIds.dequeue();
+      q.exec(QString("SELECT id FROM feeds WHERE parentId='%1'").arg(parentId));
+      while (q.next()) {
+        int feedId = q.value(0).toInt();
 
-      parentIds.enqueue(feedId);
+        idStr.append(QString(" OR id='%1'").arg(feedId));
+        feedIdStr.append(QString(" OR feedId='%1'").arg(feedId));
+
+        parentIds.enqueue(feedId);
+      }
+    }
+  }
+  q.exec(QString("DELETE FROM feeds WHERE %1").arg(idStr));
+  q.exec(QString("DELETE FROM news WHERE %1").arg(feedIdStr));
+  db_.commit();
+
+  // Correction row
+  foreach (int parentId, parentIdList) {
+    QList<int> idCorrectList;
+    q.exec(QString("SELECT id FROM feeds WHERE parentId='%1' ORDER BY rowToParent").
+           arg(parentId));
+    while (q.next()) {
+      idCorrectList << q.value(0).toInt();
+    }
+    for (int i = 0; i < idCorrectList.count(); i++) {
+      q.exec(QString("UPDATE feeds SET rowToParent='%1' WHERE id=='%2'").
+             arg(i).arg(idCorrectList.at(i)));
     }
   }
 
-  q.exec(QString("DELETE FROM feeds WHERE %1").arg(idStr));
-  q.exec(QString("DELETE FROM news WHERE %1").arg(feedIdStr));
-
-  // Correction row
-  QList<int> idList;
-  q.exec(QString("SELECT id FROM feeds WHERE parentId='%1' ORDER BY rowToParent").
-         arg(feedParentId));
-  while (q.next()) {
-    idList << q.value(0).toInt();
-  }
-  for (int i = 0; i < idList.count(); i++) {
-    q.exec(QString("UPDATE feeds SET rowToParent='%1' WHERE id=='%2'").
-           arg(i).arg(idList.at(i)));
-  }
-  db_.commit();
-
-  QList<int> categoriesList;
-  categoriesList << feedParentId;
-  recountFeedCategories(categoriesList);
-
-  // Set focus on previous feed when deleting last feed in list.
-  // In other case focus disappears.
-  // Compare ids as selectedIndex after hiding popup menu points to
-  // currentIndex()
-  if (feedCurrentId == feedDeleteId) {
-    QModelIndex index = feedsTreeView_->indexBelow(currentIndex);
-    if (!index.isValid())
-      index = feedsTreeView_->indexAbove(currentIndex);
-    currentIndex = index;
-  }
-  feedsTreeView_->setCurrentIndex(currentIndex);
+  recountFeedCategories(parentIdList);
   feedsModelReload();
-  slotFeedClicked(feedsTreeView_->currentIndex());
+  currentIndex = feedsProxyModel_->mapFromSource(feedIdCur);
+  feedsTreeView_->setCurrentIndex(currentIndex);
+  slotFeedClicked(currentIndex);
 
   QApplication::restoreOverrideCursor();
 }
@@ -2974,6 +2992,8 @@ void MainWindow::slotUpdateNews()
  *---------------------------------------------------------------------------*/
 void MainWindow::slotFeedClicked(QModelIndex index)
 {
+  if (feedsTreeView_->selectionModel()->selectedRows(0).count() > 1) return;
+
   int feedIdCur = feedsTreeModel_->getIdByIndex(feedsProxyModel_->mapToSource(index));
 
   if (stackedWidget_->count() && currentNewsTab->type_ < NewsTabWidget::TabTypeWeb) {
@@ -3894,18 +3914,39 @@ void MainWindow::slotGetFeedsTimer()
  *---------------------------------------------------------------------------*/
 void MainWindow::slotGetFeed()
 {
-  QPersistentModelIndex index = feedsTreeView_->selectIndex();
-  if (feedsTreeModel_->isFolder(index)) {
-    QString str = getIdFeedsString(feedsTreeModel_->dataField(index, "id").toInt());
-    str.replace("feedId", "id");
-    QString qStr = QString("SELECT id, xmlUrl, lastBuildDate, authentication FROM feeds WHERE (%1) AND disableUpdate=0").
-        arg(str);
-    emit signalGetFeedsFolder(qStr);
-  } else if (!feedsTreeModel_->dataField(index, "disableUpdate").toBool()) {
-    emit signalGetFeed(feedsTreeModel_->dataField(index, "id").toInt(),
-                       feedsTreeModel_->dataField(index, "xmlUrl").toString(),
-                       feedsTreeModel_->dataField(index, "lastBuildDate").toDateTime(),
-                       feedsTreeModel_->dataField(index, "authentication").toInt());
+  QModelIndexList indexList = feedsTreeView_->selectionModel()->selectedRows(0);
+  if (indexList.count() <= 1) {
+    indexList.clear();
+    indexList.append(feedsProxyModel_->mapFromSource(feedsTreeView_->selectIndex()));
+  }
+  QList<int> idList;
+  foreach (QModelIndex indexProxy, indexList) {
+    QModelIndex index = feedsProxyModel_->mapToSource(indexProxy);
+    if (feedsTreeModel_->isFolder(index)) {
+      QList<int> list = UpdateObject::getIdFeedsInList(feedsTreeModel_->dataField(index, "id").toInt());
+      foreach (int idFeed, list) {
+        if (!idList.contains(idFeed)) {
+          idList.append(idFeed);
+          index = feedsTreeModel_->getIndexById(idFeed);
+          if (!feedsTreeModel_->dataField(index, "disableUpdate").toBool()) {
+            emit signalGetFeed(feedsTreeModel_->dataField(index, "id").toInt(),
+                               feedsTreeModel_->dataField(index, "xmlUrl").toString(),
+                               feedsTreeModel_->dataField(index, "lastBuildDate").toDateTime(),
+                               feedsTreeModel_->dataField(index, "authentication").toInt());
+          }
+        }
+      }
+
+    } else if (!feedsTreeModel_->dataField(index, "disableUpdate").toBool()) {
+      int idFeed = feedsTreeModel_->dataField(index, "id").toInt();
+      if (!idList.contains(idFeed)) {
+        idList.append(idFeed);
+        emit signalGetFeed(feedsTreeModel_->dataField(index, "id").toInt(),
+                           feedsTreeModel_->dataField(index, "xmlUrl").toString(),
+                           feedsTreeModel_->dataField(index, "lastBuildDate").toDateTime(),
+                           feedsTreeModel_->dataField(index, "authentication").toInt());
+      }
+    }
   }
 }
 
@@ -4249,57 +4290,102 @@ void MainWindow::setFeedRead(int type, int feedId, FeedReedType feedReadType,
 void MainWindow::markFeedRead()
 {
   bool openFeed = false;
-  QPersistentModelIndex index = feedsTreeView_->selectIndex();
-  bool isFolder = feedsTreeModel_->isFolder(index);
-  int id = feedsTreeModel_->getIdByIndex(index);
-  if (currentNewsTab->feedId_ == id)
-    openFeed = true;
-  if (isFolder) {
-    if (currentNewsTab->feedParId_ == id)
-      openFeed = true;
+  int feedId = 0;
+  bool isFolder = false;
+
+  QModelIndexList indexList = feedsTreeView_->selectionModel()->selectedRows(0);
+  if (indexList.count() <= 1) {
+    indexList.clear();
+    indexList.append(feedsProxyModel_->mapFromSource(feedsTreeView_->selectIndex()));
   }
+  QList<int> idList;
+  for (int i = indexList.count()-1; i >= 0; --i) {
+    QModelIndex index = feedsProxyModel_->mapToSource(indexList[i]);
+    if (feedsTreeModel_->isFolder(index)) {
+      idList.append(feedsTreeModel_->dataField(index, "id").toInt());
+      indexList.removeAt(i);
+    }
+  }
+  for (int i = indexList.count()-1; i >= 0; --i) {
+    QModelIndex index = feedsProxyModel_->mapToSource(indexList[i]);
+    int parentId = feedsTreeModel_->dataField(index, "parentId").toInt();
+    if (!idList.contains(parentId)) {
+      idList.append(feedsTreeModel_->dataField(index, "id").toInt());
+    }
+    indexList.removeAt(i);
+  }
+  foreach (int id, idList) {
+    bool openFeedT = false;
+    QModelIndex index = feedsTreeModel_->getIndexById(id);
+    int parentId = feedsTreeModel_->dataField(index, "parentId").toInt();
+    if ((currentNewsTab->feedId_ == id)) {
+      openFeedT = true;
+      openFeed = true;
+      feedId = id;
+    }
+    if ((currentNewsTab->feedParId_ == id)) {
+      openFeed = true;
+      feedId = id;
+    }
+    if (currentNewsTab->feedId_ == parentId) {
+      openFeed = true;
+      isFolder = true;
+    }
+    if (feedsTreeModel_->isFolder(index)) {
+      if (currentNewsTab->feedId_ == id) {
+        isFolder = true;
+      }
+      QList<int> list = UpdateObject::getIdFeedsInList(id);
+      foreach (int id1, list) {
+        QModelIndex index1 = feedsTreeModel_->getIndexById(id1);
+        QModelIndex indexUnread = feedsTreeModel_->indexSibling(index1, "unread");
+        QModelIndex indexNew    = feedsTreeModel_->indexSibling(index1, "newCount");
+        feedsTreeModel_->setData(indexUnread, 0);
+        feedsTreeModel_->setData(indexNew, 0);
 
-  emit signalMarkFeedRead(id, isFolder, openFeed);
+        if (!openFeed) {
+          int parentId1 = feedsTreeModel_->dataField(index1, "parentId").toInt();
+          if ((currentNewsTab->feedId_ == id1) || (currentNewsTab->feedId_ == parentId1)) {
+            openFeed = true;
+          }
+        }
+      }
+    }
 
-  QModelIndex indexUnread = feedsTreeModel_->indexSibling(index, "unread");
-  QModelIndex indexNew    = feedsTreeModel_->indexSibling(index, "newCount");
-  feedsTreeModel_->setData(indexUnread, 0);
-  feedsTreeModel_->setData(indexNew, 0);
+    QModelIndex indexUnread = feedsTreeModel_->indexSibling(index, "unread");
+    QModelIndex indexNew    = feedsTreeModel_->indexSibling(index, "newCount");
+    feedsTreeModel_->setData(indexUnread, 0);
+    feedsTreeModel_->setData(indexNew, 0);
+    emit signalMarkFeedRead(id, feedsTreeModel_->isFolder(index), openFeedT);
+  }
 
   // Update feed view with focus
   if (openFeed) {
     if ((tabBar_->currentIndex() == TAB_WIDGET_PERMANENT) && !isFolder) {
-      QModelIndex indexNextUnread =
-          feedsTreeView_->indexNextUnread(feedsTreeView_->currentIndex());
-      feedsTreeView_->setCurrentIndex(indexNextUnread);
-      slotFeedClicked(indexNextUnread);
+      signalRefreshNewsView(1);
     } else {
-      int currentRow = newsView_->currentIndex().row();
-
-      newsModel_->select();
-      while (newsModel_->canFetchMore())
-        newsModel_->fetchMore();
-
-      newsView_->setCurrentIndex(newsModel_->index(currentRow, newsModel_->fieldIndex("title")));
-
-      slotUpdateStatus(id);
+      signalRefreshNewsView(0);
       recountCategoryCounts();
       emit signalSetFeedsFilter(true);
     }
   }
   // Update feeds view without focus
   else {
-    slotUpdateStatus(id);
     recountCategoryCounts();
     emit signalSetFeedsFilter();
   }
 }
 
-/** @brief Refresh news view (After mark all feeds read)
+/** @brief Refresh news view (After mark all feeds or one feed read)
  *---------------------------------------------------------------------------*/
-void MainWindow::slotRefreshNewsView()
+void MainWindow::slotRefreshNewsView(int nextUnread)
 {
-  if (tabBar_->currentIndex() == TAB_WIDGET_PERMANENT) {
+  if (nextUnread == 1) {
+    QModelIndex indexNextUnread =
+        feedsTreeView_->indexNextUnread(feedsTreeView_->currentIndex());
+    feedsTreeView_->setCurrentIndex(indexNextUnread);
+    slotFeedClicked(indexNextUnread);
+  } else if ((tabBar_->currentIndex() == TAB_WIDGET_PERMANENT) && (nextUnread == -1)) {
     QModelIndex index = feedsProxyModel_->index(-1, "text");
     feedsTreeView_->setCurrentIndex(index);
     slotFeedClicked(index);
@@ -5803,9 +5889,21 @@ void MainWindow::slotOpenFeedNewTab()
     settings.setValue("NewsTabSplitterState", currentNewsTab->newsTabWidgetSplitter_->saveState());
   }
 
+  QModelIndexList indexList = feedsTreeView_->selectionModel()->selectedRows(0);
+  if (indexList.count() <= 1) {
+    indexList.clear();
+    indexList.append(feedsProxyModel_->mapFromSource(feedsTreeView_->selectIndex()));
+  }
+  QModelIndex index = indexList.takeFirst();
   feedsTreeView_->selectIdEn_ = false;
-  feedsTreeView_->setCurrentIndex(feedsProxyModel_->mapFromSource(feedsTreeView_->selectIndex()));
-  slotFeedSelected(feedsTreeView_->selectIndex(), true);
+  feedsTreeView_->setCurrentIndex(index);
+  slotFeedSelected(feedsProxyModel_->mapToSource(index), true);
+
+  foreach (QModelIndex indexProxy, indexList) {
+    QModelIndex index = feedsProxyModel_->mapToSource(indexProxy);
+    creatFeedTab(feedsTreeModel_->dataField(index, "id").toInt(),
+                 feedsTreeModel_->dataField(index, "parentId").toInt());
+  }
 }
 
 void MainWindow::slotOpenCategoryNewTab()

@@ -113,7 +113,7 @@ signals:
   void feedCountsUpdate(FeedCountStruct counts);
   void signalFeedsViewportUpdate();
   void signalRefreshInfoTray(int newCount, int unreadCount);
-  void signalMarkAllFeedsRead();
+  void signalMarkAllFeedsRead(int nextUnread = -1);
   void signalIconUpdate(int feedId, QByteArray faviconData);
   void signalSetFeedsFilter(bool clicked = false);
 

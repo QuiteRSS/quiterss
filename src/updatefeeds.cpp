@@ -149,8 +149,10 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool addFeed)
             updateObject_, SLOT(slotUpdateStatus(int,bool)));
     connect(parent, SIGNAL(signalMarkAllFeedsRead()),
             updateObject_, SLOT(slotMarkAllFeedsRead()));
-    connect(updateObject_, SIGNAL(signalMarkAllFeedsRead()),
-            parent, SLOT(slotRefreshNewsView()));
+    connect(parent, SIGNAL(signalRefreshNewsView(int)),
+            updateObject_, SIGNAL(signalMarkAllFeedsRead(int)));
+    connect(updateObject_, SIGNAL(signalMarkAllFeedsRead(int)),
+            parent, SLOT(slotRefreshNewsView(int)));
     connect(parent, SIGNAL(signalMarkAllFeedsOld()),
             updateObject_, SLOT(slotMarkAllFeedsOld()));
 
@@ -993,6 +995,9 @@ void UpdateObject::slotMarkFeedRead(int id, bool isFolder, bool openFeed)
     q.exec(qStr);
   }
   db_.commit();
+
+  if (!openFeed || isFolder)
+    slotUpdateStatus(id, true);
 }
 
 /** @brief Update status of current feed or feed of current tab

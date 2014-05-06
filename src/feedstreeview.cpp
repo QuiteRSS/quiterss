@@ -40,8 +40,7 @@ FeedsTreeView::FeedsTreeView(QWidget * parent)
   setEditTriggers(QAbstractItemView::NoEditTriggers);
 
   setSelectionBehavior(QAbstractItemView::SelectRows);
-//  setSelectionMode(QAbstractItemView::ExtendedSelection);
-  setSelectionMode(QAbstractItemView::SingleSelection);
+  setSelectionMode(QAbstractItemView::ExtendedSelection);
   setUniformRowHeights(true);
 
   header()->setStretchLastSection(false);

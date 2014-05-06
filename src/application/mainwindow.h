@@ -309,6 +309,7 @@ signals:
   void signalUpdateStatus(int feedId, bool changed);
   void signalMarkAllFeedsRead();
   void signalMarkFeedRead(int id, bool isFolder, bool openFeed);
+  void signalRefreshNewsView(int nextUnread);
   void signalSetFeedsFilter(bool clicked = false);
   void signalMarkAllFeedsOld();
 
@@ -342,7 +343,7 @@ private slots:
   void showContextMenuToolBar(const QPoint &pos);
   void showFeedPropertiesDlg();
   void slotFeedMenuShow();
-  void slotRefreshNewsView();
+  void slotRefreshNewsView(int nextUnread = -1);
   void slotIconFeedPreparing(QString feedUrl, QByteArray byteArray, QString format);
   void slotIconFeedUpdate(int feedId, QByteArray faviconData);
   void showNewsFiltersDlg(bool newFilter = false);
