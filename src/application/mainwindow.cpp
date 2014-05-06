@@ -7640,14 +7640,18 @@ void MainWindow::addOurFeed()
 
 void MainWindow::createBackup()
 {
-  QString backupDir = QFileDialog::getExistingDirectory(this, tr("Choose Directory"),
-                                                        QDir::currentPath(),
-                                                        QFileDialog::ShowDirsOnly |
-                                                        QFileDialog::DontResolveSymlinks);
+  QString backupDir(QDir::currentPath());
+  Settings settings;
+  backupDir = settings.value("Settings/backupDir", backupDir).toString();
+  backupDir = QFileDialog::getExistingDirectory(this, tr("Choose Directory"),
+                                                backupDir,
+                                                QFileDialog::ShowDirsOnly |
+                                                QFileDialog::DontResolveSymlinks);
   if (!backupDir.isEmpty()) {
+    settings.setValue("Settings/backupDir", backupDir);
+
     QFileInfo fileInfo;
     QString backupFileName;
-    Settings settings;
     QString timeStr(QDateTime::currentDateTime().toString("yyyy-MM-dd_hh-mm-ss"));
 
     fileInfo.setFile(mainApp->dbFileName());
