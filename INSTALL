@@ -1,5 +1,6 @@
 Build depends:
   GCC or Clang compiler
+  SQLite version 3.6.19 or newer
   Qt version 4.7.* or 4.8.*
   Required Qt development tools:
     qmake

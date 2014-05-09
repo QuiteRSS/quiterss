@@ -749,7 +749,6 @@ void ParseObject::runUserFilter(int feedId, int filterId)
     QString qStr("UPDATE news SET");
     QString qStr1;
     QString qStr2;
-    QString str;
     QString whereStr;
     QStringList soundList;
     QStringList colorList;
@@ -817,78 +816,75 @@ void ParseObject::runUserFilter(int feedId, int filterId)
                       "WHERE idFilter=='%1'").arg(filterId));
       while (q1.next()) {
         if (!qStr1.isNull()) qStr1.append(qStr2);
+        QString content = q1.value(2).toString().replace("'", "''").toUpper();
         switch (q1.value(0).toInt()) {
         case 0: // field -> Title
-          str = q1.value(2).toString().replace("'", "''");
           switch (q1.value(1).toInt()) {
           case 0: // condition -> contains
-            qStr1.append(QString("title LIKE '%%1%' ").arg(str));
+            qStr1.append(QString("UPPER(title) LIKE '%%1%' ").arg(content));
             break;
           case 1: // condition -> doesn't contains
-            qStr1.append(QString("title NOT LIKE '%%1%' ").arg(str));
+            qStr1.append(QString("UPPER(title) NOT LIKE '%%1%' ").arg(content));
             break;
           case 2: // condition -> is
-            qStr1.append(QString("title LIKE '%1' ").arg(str));
+            qStr1.append(QString("UPPER(title) LIKE '%1' ").arg(content));
             break;
           case 3: // condition -> isn't
-            qStr1.append(QString("title NOT LIKE '%1' ").arg(str));
+            qStr1.append(QString("UPPER(title) NOT LIKE '%1' ").arg(content));
             break;
           case 4: // condition -> begins with
-            qStr1.append(QString("title LIKE '%1%' ").arg(str));
+            qStr1.append(QString("UPPER(title) LIKE '%1%' ").arg(content));
             break;
           case 5: // condition -> ends with
-            qStr1.append(QString("title LIKE '%%1' ").arg(str));
+            qStr1.append(QString("UPPER(title) LIKE '%%1' ").arg(content));
             break;
           }
           break;
         case 1: // field -> Description
-          str = q1.value(2).toString().replace("'", "''");
           switch (q1.value(1).toInt()) {
           case 0: // condition -> contains
-            qStr1.append(QString("description LIKE '%%1%' ").arg(str));
+            qStr1.append(QString("UPPER(description) LIKE '%%1%' ").arg(content));
             break;
           case 1: // condition -> doesn't contains
-            qStr1.append(QString("description NOT LIKE '%%1%' ").arg(str));
+            qStr1.append(QString("UPPER(description) NOT LIKE '%%1%' ").arg(content));
             break;
           }
           break;
         case 2: // field -> Author
-          str = q1.value(2).toString().replace("'", "''");
           switch (q1.value(1).toInt()) {
           case 0: // condition -> contains
-            qStr1.append(QString("author_name LIKE '%%1%' ").arg(str));
+            qStr1.append(QString("UPPER(author_name) LIKE '%%1%' ").arg(content));
             break;
           case 1: // condition -> doesn't contains
-            qStr1.append(QString("author_name NOT LIKE '%%1%' ").arg(str));
+            qStr1.append(QString("UPPER(author_name) NOT LIKE '%%1%' ").arg(content));
             break;
           case 2: // condition -> is
-            qStr1.append(QString("author_name LIKE '%1' ").arg(str));
+            qStr1.append(QString("UPPER(author_name) LIKE '%1' ").arg(content));
             break;
           case 3: // condition -> isn't
-            qStr1.append(QString("author_name NOT LIKE '%1' ").arg(str));
+            qStr1.append(QString("UPPER(author_name) NOT LIKE '%1' ").arg(content));
             break;
           }
           break;
         case 3: // field -> Category
-          str = q1.value(2).toString().replace("'", "''");
           switch (q1.value(1).toInt()) {
           case 0: // condition -> contains
-            qStr1.append(QString("category LIKE '%%1%' ").arg(str));
+            qStr1.append(QString("UPPER(category) LIKE '%%1%' ").arg(content));
             break;
           case 1: // condition -> doesn't contains
-            qStr1.append(QString("category NOT LIKE '%%1%' ").arg(str));
+            qStr1.append(QString("UPPER(category) NOT LIKE '%%1%' ").arg(content));
             break;
           case 2: // condition -> is
-            qStr1.append(QString("category LIKE '%1' ").arg(str));
+            qStr1.append(QString("UPPER(category) LIKE '%1' ").arg(content));
             break;
           case 3: // condition -> isn't
-            qStr1.append(QString("category NOT LIKE '%1' ").arg(str));
+            qStr1.append(QString("UPPER(category) NOT LIKE '%1' ").arg(content));
             break;
           case 4: // condition -> begins with
-            qStr1.append(QString("category LIKE '%1%' ").arg(str));
+            qStr1.append(QString("UPPER(category) LIKE '%1%' ").arg(content));
             break;
           case 5: // condition -> ends with
-            qStr1.append(QString("category LIKE '%%1' ").arg(str));
+            qStr1.append(QString("UPPER(category) LIKE '%%1' ").arg(content));
             break;
           }
           break;

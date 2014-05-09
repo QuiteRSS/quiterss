@@ -22,6 +22,7 @@
 #include "mainwindow.h"
 #include "settings.h"
 #include "VersionNo.h"
+#include "sqlitedriver.h"
 
 const int versionDB = 16;
 
@@ -208,7 +209,8 @@ int Database::version()
 
 void Database::initialization()
 {
-  QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+  SQLiteDriver* driver = new SQLiteDriver();
+  QSqlDatabase db = QSqlDatabase::addDatabase(driver);
   if (mainApp->storeDBMemory())
     db.setDatabaseName(":memory:");
   else
@@ -261,8 +263,10 @@ void Database::setPragma(QSqlDatabase &db)
 {
   QSqlQuery q(db);
   q.setForwardOnly(true);
+  q.exec("PRAGMA encoding = \"UTF-8\"");
 //  q.exec("PRAGMA synchronous = FULL");
 //  q.exec("PRAGMA journal_mode = MEMORY");
+
   q.exec("PRAGMA page_size = 4096");
   q.exec("PRAGMA cache_size = 16384");
   q.exec("PRAGMA temp_store = MEMORY");
@@ -410,7 +414,8 @@ QSqlDatabase Database::connection(const QString &connectionName)
   else {
     db = QSqlDatabase::database(connectionName, true);
     if (!db.isValid()) {
-      db = QSqlDatabase::addDatabase("QSQLITE", connectionName);
+      SQLiteDriver* driver = new SQLiteDriver();
+      db = QSqlDatabase::addDatabase(driver, connectionName);
       db.setDatabaseName(mainApp->dbFileName());
       db.open();
       setPragma(db);

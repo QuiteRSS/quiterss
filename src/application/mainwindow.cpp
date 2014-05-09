@@ -4182,25 +4182,25 @@ void MainWindow::setNewsFilter(QAction* pAct, bool clicked)
   if (objectName != "findInBrowserAct") {
     QString findText = currentNewsTab->findText_->text();
     if (!findText.isEmpty()) {
-      findText = findText.replace("'", "''");
+      findText = findText.replace("'", "''").toUpper();
       if (objectName == "findTitleAct") {
         filterStr.append(
-              QString(" AND title LIKE '%%1%'").arg(findText));
+              QString(" AND UPPER(title) LIKE '%%1%'").arg(findText));
       } else if (objectName == "findAuthorAct") {
         filterStr.append(
-              QString(" AND author_name LIKE '%%1%'").arg(findText));
+              QString(" AND UPPER(author_name) LIKE '%%1%'").arg(findText));
       } else if (objectName == "findCategoryAct") {
         filterStr.append(
-              QString(" AND category LIKE '%%1%'").arg(findText));
+              QString(" AND UPPER(category) LIKE '%%1%'").arg(findText));
       } else if (objectName == "findContentAct") {
         filterStr.append(
-              QString(" AND (content LIKE '%%1%' OR description LIKE '%%1%')").
+              QString(" AND (UPPER(content) LIKE '%%1%' OR UPPER(description) LIKE '%%1%')").
               arg(findText));
       } else {
         filterStr.append(
-              QString(" AND (title LIKE '%%1%' OR author_name LIKE '%%1%' "
-                      "OR category LIKE '%%1%' OR content LIKE '%%1%' "
-                      "OR description LIKE '%%1%')").
+              QString(" AND (UPPER(title) LIKE '%%1%' OR UPPER(author_name) LIKE '%%1%' "
+                      "OR UPPER(category) LIKE '%%1%' OR UPPER(content) LIKE '%%1%' "
+                      "OR UPPER(description) LIKE '%%1%')").
               arg(findText));
       }
     }
@@ -7428,7 +7428,7 @@ void MainWindow::sortedByTitleFeedsTree()
 
     // Search children of parent <parentId>
     QSqlQuery q;
-    q.prepare(QString("SELECT id, xmlUrl FROM feeds WHERE parentId=? ORDER BY text"));
+    q.prepare(QString("SELECT id, xmlUrl FROM feeds WHERE parentId=? ORDER BY text COLLATE LOCALE"));
     q.addBindValue(parentId);
     q.exec();
 
