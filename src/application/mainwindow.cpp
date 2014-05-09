@@ -137,12 +137,10 @@ void MainWindow::closeEvent(QCloseEvent *event)
     oldState = windowState();
     emit signalPlaceToTray();
 
-    event->ignore();
   } else {
     quitApp();
-
-    event->accept();
   }
+  event->ignore();
 }
 
 /** @brief Process quit application
