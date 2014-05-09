@@ -231,12 +231,12 @@ isEmpty(SYSTEMQTSA) {
 } else {
   CONFIG += qtsingleapplication
 }
+include(3rdparty/sqlite.pri)
 include(3rdparty/qyursqltreeview/qyursqltreeview.pri)
 include(lang/lang.pri)
 
 os2|win32|mac {
   TARGET = QuiteRSS
-  include(3rdparty/sqlite.pri)
 }
 
 win32 {
@@ -272,7 +272,6 @@ DISTFILES += \
 unix:!mac {
   TARGET = quiterss
   CONFIG += link_pkgconfig
-  PKGCONFIG += sqlite3
 
   isEmpty(PREFIX) {
     PREFIX =   /usr/local
