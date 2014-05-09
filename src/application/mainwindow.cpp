@@ -131,16 +131,15 @@ void MainWindow::closeEvent(QCloseEvent *event)
   if (mainApp->isClosing())
     return;
 
+  event->ignore();
   if (closingTray_ && showTrayIcon_) {
     isOpeningLink_ = false;
 
     oldState = windowState();
     emit signalPlaceToTray();
-
   } else {
     quitApp();
   }
-  event->ignore();
 }
 
 /** @brief Process quit application
@@ -151,8 +150,7 @@ void MainWindow::quitApp()
   isMinimizeToTray_ = true;
   disconnect(this);
 
-  QWidget *widget = new QWidget(0, Qt::Dialog | Qt::WindowTitleHint |
-                                Qt::WindowStaysOnTopHint | Qt::WindowCloseButtonHint);
+  QWidget *widget = new QWidget(0, Qt::Dialog | Qt::WindowStaysOnTopHint | Qt::WindowCloseButtonHint);
   widget->setFocusPolicy(Qt::NoFocus);
   QVBoxLayout *layout = new QVBoxLayout(widget);
   layout->addWidget(new QLabel(tr("Saving data...")));
@@ -160,6 +158,7 @@ void MainWindow::quitApp()
   widget->show();
   widget->move(QApplication::desktop()->availableGeometry().width() - widget->frameSize().width(),
                QApplication::desktop()->availableGeometry().height() - widget->frameSize().height());
+  widget->setFixedSize(widget->size());
   qApp->processEvents();
 
   hide();
