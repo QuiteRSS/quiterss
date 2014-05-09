@@ -4276,7 +4276,6 @@ void MainWindow::setFeedRead(int type, int feedId, FeedReedType feedReadType,
 void MainWindow::markFeedRead()
 {
   bool openFeed = false;
-  int feedId = 0;
   bool isFolder = false;
 
   QModelIndexList indexList = feedsTreeView_->selectionModel()->selectedRows(0);
@@ -4307,11 +4306,9 @@ void MainWindow::markFeedRead()
     if ((currentNewsTab->feedId_ == id)) {
       openFeedT = true;
       openFeed = true;
-      feedId = id;
     }
     if ((currentNewsTab->feedParId_ == id)) {
       openFeed = true;
-      feedId = id;
     }
     if (currentNewsTab->feedId_ == parentId) {
       openFeed = true;
