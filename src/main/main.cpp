@@ -18,9 +18,11 @@
 #include "mainapplication.h"
 #include "logfile.h"
 
+const bool logFileOutput = 1;
+
 int main(int argc, char **argv)
 {
-  if (LOG_OUTPUT) {
+  if (logFileOutput) {
 #if defined(HAVE_QT5)
     qInstallMessageHandler(LogFile::msgHandler);
 #else
