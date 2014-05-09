@@ -280,11 +280,7 @@ void MainWindow::changeEvent(QEvent *event)
     }
   } else if(event->type() == QEvent::ActivationChange) {
     if (isActiveWindow() && (behaviorIconTray_ == CHANGE_ICON_TRAY)) {
-#if defined(QT_NO_DEBUG_OUTPUT)
       traySystem->setIcon(QIcon(":/images/quiterss16"));
-#else
-      traySystem->setIcon(QIcon(":/images/quiterssDebug"));
-#endif
     }
   } else if(event->type() == QEvent::LanguageChange) {
     retranslateStrings();
@@ -588,11 +584,7 @@ void MainWindow::createStatusBar()
 // ---------------------------------------------------------------------------
 void MainWindow::createTray()
 {
-#if defined(QT_NO_DEBUG_OUTPUT)
   traySystem = new QSystemTrayIcon(QIcon(":/images/quiterss16"), this);
-#else
-  traySystem = new QSystemTrayIcon(QIcon(":/images/quiterssDebug"), this);
-#endif
   traySystem->setToolTip("QuiteRSS");
 
 #ifndef Q_OS_MAC
@@ -3560,11 +3552,7 @@ void MainWindow::showOptionDlg(int index)
   if (behaviorIconTray_ > CHANGE_ICON_TRAY) {
     emit signalRefreshInfoTray();
   } else {
-#if defined(QT_NO_DEBUG_OUTPUT)
     traySystem->setIcon(QIcon(":/images/quiterss16"));
-#else
-    traySystem->setIcon(QIcon(":/images/quiterssDebug"));
-#endif
   }
   singleClickTray_ = optionsDialog_->singleClickTray_->isChecked();
   clearStatusNew_ = optionsDialog_->clearStatusNew_->isChecked();
@@ -5502,11 +5490,7 @@ void MainWindow::slotRefreshInfoTray(int newCount, int unreadCount)
     }
     // Draw icon without number
     else {
-#if defined(QT_NO_DEBUG_OUTPUT)
       traySystem->setIcon(QIcon(":/images/quiterss16"));
-#else
-      traySystem->setIcon(QIcon(":/images/quiterssDebug"));
-#endif
     }
   }
 }
