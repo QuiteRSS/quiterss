@@ -25,7 +25,7 @@ SplashScreen::SplashScreen(const QPixmap &pixmap, Qt::WindowFlags flag)
   setContentsMargins(5, 0, 5, 0);
   setEnabled(false);
   showMessage("Prepare loading...   " %
-              QString("%1.%2").arg(STRPRODUCTVER).arg(VCS_REVISION),
+              QString("%1").arg(STRPRODUCTVER),
               Qt::AlignRight | Qt::AlignTop, Qt::darkGray);
   setAttribute(Qt::WA_DeleteOnClose);
 
@@ -46,6 +46,6 @@ void SplashScreen::setProgress(int value)
   qApp->processEvents();
   splashProgress_.setValue(value);
   showMessage("Loading: " % QString::number(value) % "%   " %
-              QString("%1.%2").arg(STRPRODUCTVER).arg(VCS_REVISION),
+              QString("%1").arg(STRPRODUCTVER),
               Qt::AlignRight | Qt::AlignTop, Qt::darkGray);
 }
