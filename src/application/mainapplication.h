@@ -49,6 +49,7 @@ public:
   bool isPortableAppsCom() const;
   void setClosing();
   bool isClosing() const;
+  bool isNoDebugOutput() const { return noDebugOutput_; }
 
   QString resourcesDir() const;
   QString dataDir() const;
@@ -116,6 +117,7 @@ private:
   QString styleApplication_;
   bool showSplashScreen_;
   bool updateFeedsStartUp_;
+  bool noDebugOutput_;
 
   SplashScreen *splashScreen_;
   MainWindow *mainWindow_;

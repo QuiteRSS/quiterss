@@ -213,6 +213,7 @@ void MainApplication::createSettings()
   styleApplication_ = settings.value("styleApplication", "greenStyle_").toString();
   showSplashScreen_ = settings.value("showSplashScreen", true).toBool();
   updateFeedsStartUp_ = settings.value("autoUpdatefeedsStartUp", false).toBool();
+  noDebugOutput_ = settings.value("noDebugOutput", true).toBool();
   settings.endGroup();
 }
 
