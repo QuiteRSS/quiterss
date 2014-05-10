@@ -24,6 +24,18 @@
 #include "VersionNo.h"
 #include "sqlitedriver.h"
 
+#if defined(Q_OS_WIN) || defined(Q_OS_OS2) || defined(Q_OS_MAC)
+#if QT_VERSION >= 0x050100
+#include <sqlite_qt51x/sqlite3.h>
+#elif QT_VERSION >= 0x040800
+#include <sqlite_qt48x/sqlite3.h>
+#else
+#include <sqlite_qt47x/sqlite3.h>
+#endif
+#else
+#include <sqlite3.h>
+#endif
+
 const int versionDB = 16;
 
 const QString kCreateFeedsTableQuery(
@@ -244,17 +256,7 @@ void Database::initialization()
     }
 
     if (mainApp->storeDBMemory()) {
-      createTables(db);
-
-      QSqlQuery q(db);
-      q.prepare("ATTACH DATABASE :file AS 'storage';");
-      q.bindValue(":file", mainApp->dbFileName());
-      q.exec();
-      foreach (const QString &table, tablesList()) {
-        q.exec(QString("INSERT OR REPLACE INTO main.%1 SELECT * FROM storage.%1;").arg(table));
-      }
-      q.exec("DETACH 'storage'");
-      q.finish();
+      sqliteDBMemFile(false);
     }
   }
 }
@@ -424,74 +426,79 @@ QSqlDatabase Database::connection(const QString &connectionName)
   return db;
 }
 
-void Database::saveMemoryDatabase()
+void Database::sqliteDBMemFile(bool save)
 {
-  bool okQuery;
-  qWarning() << "Save memory database: start...";
+  if (save) qWarning() << "sqliteDBMemFile(): from memory to file...";
+  else qWarning() << "sqliteDBMemFile(): from file to memory...";
+  int rc = -1;                   /* Function return code */
+  QVariant v = QSqlDatabase::database().driver()->handle();
+  if (v.isValid() && qstrcmp(v.typeName(),"sqlite3*") == 0) {
+    // v.data() returns a pointer to the handle
+    sqlite3 *handle = *static_cast<sqlite3 **>(v.data());
+    if (handle != 0) {  // check that it is not NULL
+      sqlite3 *pInMemory = handle;
+      sqlite3 *pFile;           /* Database connection opened on zFilename */
+      sqlite3_backup *pBackup;  /* Backup object used to copy data */
+      sqlite3 *pTo;             /* Database to copy to (pFile or pInMemory) */
+      sqlite3 *pFrom;           /* Database to copy from (pFile or pInMemory) */
 
-  QString fileName(mainApp->dbFileName() % ".bak");
-  if (!QFile::copy(mainApp->dbFileName(), fileName))
-    qCritical() << "Failed to copy backup database file!";
+      /* Open the database file identified by zFilename. Exit early if this fails
+      ** for any reason. */
+      rc = sqlite3_open(mainApp->dbFileName().toUtf8().data(), &pFile);
+      if (rc == SQLITE_OK) {
+        /* If this is a 'load' operation (isSave==0), then data is copied
+        ** from the database file just opened to database pInMemory.
+        ** Otherwise, if this is a 'save' operation (isSave==1), then data
+        ** is copied from pInMemory to pFile.  Set the variables pFrom and
+        ** pTo accordingly. */
+        pFrom = (save ? pInMemory : pFile);
+        pTo   = (save ? pFile     : pInMemory);
 
-  QSqlDatabase db = QSqlDatabase::database();
-  QSqlQuery q(db);
-  q.prepare("ATTACH DATABASE :file AS 'storage';");
-  q.bindValue(":file", mainApp->dbFileName());
-  okQuery = q.exec();
-  if (!okQuery) {
-    qCritical() << __PRETTY_FUNCTION__ << __LINE__
-                << "q.lastError(): " << q.lastError().text();
-    okQuery = q.exec("DETACH 'storage'");
-    if (!okQuery) {
-      qCritical() << __PRETTY_FUNCTION__ << __LINE__
-                  << "q.lastError(): " << q.lastError().text();
-    }
-    if (!QFile::remove(fileName))
-      qCritical() << "Failed to delete old database file (0)!";
-    return;
-  }
-  foreach (const QString &table, tablesList()) {
-    okQuery = q.exec(QString("DELETE FROM storage.%1;").arg(table));
-    if (!okQuery) {
-      qCritical() << __PRETTY_FUNCTION__ << __LINE__
-                  << "q.lastError(): " << q.lastError().text();
-    }
+        /* Set up the backup procedure to copy from the "main" database of
+        ** connection pFile to the main database of connection pInMemory.
+        ** If something goes wrong, pBackup will be set to NULL and an error
+        ** code and  message left in connection pTo.
+        **
+        ** If the backup object is successfully created, call backup_step()
+        ** to copy data from pFile to pInMemory. Then call backup_finish()
+        ** to release resources associated with the pBackup object.  If an
+        ** error occurred, then  an error code and message will be left in
+        ** connection pTo. If no error occurred, then the error code belonging
+        ** to pTo is set to SQLITE_OK.
+        */
 
-    okQuery = q.exec(QString("INSERT OR REPLACE INTO storage.%1 SELECT * FROM main.%1;").arg(table));
-    if (!okQuery) {
-      qCritical() << __PRETTY_FUNCTION__ << __LINE__
-                  << "q.lastError(): " << q.lastError().text();
-    }
-  }
-  okQuery = q.exec("DETACH 'storage'");
-  if (!okQuery) {
-    qCritical() << __PRETTY_FUNCTION__ << __LINE__
-                << "q.lastError(): " << q.lastError().text();
-  }
-  q.finish();
+        pBackup = sqlite3_backup_init(pTo, "main", pFrom, "main");
 
-  if (okQuery) {
-    if (!QFile::remove(fileName)) {
-      qCritical() << "Failed to delete old database file (1)!";
-      okQuery = false;
-    }
-  }
+        /* Each iteration of this loop copies 5 database pages from database
+        ** pDb to the backup database. If the return value of backup_step()
+        ** indicates that there are still further pages to copy, sleep for
+        ** 250 ms before repeating. */
+        do {
+          rc = sqlite3_backup_step(pBackup, 10000);
 
-  if (okQuery) {
-    qWarning() << "Save memory database: completed!";
-  } else {
-    QString sourceFileName = QFile::symLinkTarget(mainApp->dbFileName());
-    if (sourceFileName.isEmpty()) {
-      sourceFileName = mainApp->dbFileName();
+          if (!mainApp->isNoDebugOutput()) {
+            int remaining = sqlite3_backup_remaining(pBackup);
+            int pagecount = sqlite3_backup_pagecount(pBackup);
+            qDebug() << rc << "backup" << pagecount << "remain" << remaining;
+          }
+
+          if((rc == SQLITE_OK) || (rc == SQLITE_BUSY) || (rc == SQLITE_LOCKED))
+            sqlite3_sleep(100);
+        } while((rc == SQLITE_OK) || (rc == SQLITE_BUSY) || (rc == SQLITE_LOCKED));
+
+        /* Release resources allocated by backup_init(). */
+        (void)sqlite3_backup_finish(pBackup);
+      }
+
+      /* Close the database connection opened on database file zFilename
+      ** and return the result of this function. */
+      (void)sqlite3_close(pFile);
     }
-    if (QFile::remove(sourceFileName)) {
-      if (!QFile::rename(fileName, sourceFileName))
-        qCritical() << "Failed to rename new database file!";
-    } else {
-      qCritical() << "Failed to delete old database file (2)!";
-    }
-    qCritical() << "Failed to save database!";
   }
+  if (rc == SQLITE_DONE)
+    qWarning() << "sqliteDBMemFile(): finished!";
+  else
+    qWarning() << "sqliteDBMemFile(): return code =" << rc;
 }
 
 void Database::setVacuum()

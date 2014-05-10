@@ -1134,7 +1134,7 @@ void UpdateObject::slotRefreshInfoTray()
 void UpdateObject::saveMemoryDatabase()
 {
   isSaveMemoryDatabase = true;
-  Database::saveMemoryDatabase();
+  Database::sqliteDBMemFile();
   isSaveMemoryDatabase = false;
 }
 
