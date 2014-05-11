@@ -21,10 +21,9 @@
 #include "settings.h"
 
 FilterRulesDialog::FilterRulesDialog(QWidget *parent, int filterId, int feedId)
-  : Dialog(parent)
+  : Dialog(parent, Qt::WindowMinMaxButtonsHint)
   , filterId_(filterId)
 {
-  setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
   setWindowTitle(tr("Filter Rules"));
   setMinimumHeight(300);
 

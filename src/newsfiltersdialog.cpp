@@ -23,9 +23,8 @@
 #include "settings.h"
 
 NewsFiltersDialog::NewsFiltersDialog(QWidget *parent)
-  : Dialog(parent)
+  : Dialog(parent, Qt::WindowMinMaxButtonsHint)
 {
-  setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
   setWindowTitle(tr("News Filters"));
   setMinimumWidth(500);
   setMinimumHeight(300);
