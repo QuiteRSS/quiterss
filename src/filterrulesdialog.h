@@ -99,19 +99,23 @@ private slots:
     if (str == tr("Title")) {
       itemList << tr("contains") << tr("doesn't contains")
                << tr("is") << tr("isn't")
-               << tr("begins with") << tr("ends with");
+               << tr("begins with") << tr("ends with")
+               << tr("Regular expressions");
       comboBox2_->addItems(itemList);
     } else if (str == tr("Description")) {
-      itemList << tr("contains") << tr("doesn't contains");
+      itemList << tr("contains") << tr("doesn't contains")
+               << tr("Regular expressions");
       comboBox2_->addItems(itemList);
     } else if (str == tr("Author")) {
       itemList << tr("contains") << tr("doesn't contains")
-               << tr("is") << tr("isn't");
+               << tr("is") << tr("isn't")
+               << tr("Regular expressions");
       comboBox2_->addItems(itemList);
     } else if (str == tr("Category")) {
       itemList << tr("contains") << tr("doesn't contains")
                << tr("is") << tr("isn't")
-               << tr("begins with") << tr("ends with");
+               << tr("begins with") << tr("ends with")
+               << tr("Regular expressions");
       comboBox2_->addItems(itemList);
     } else if (str == tr("Status")) {
       itemList << tr("is") << tr("isn't");
