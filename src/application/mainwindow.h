@@ -141,6 +141,7 @@ public:
   QAction *printAct_;
   QAction *printPreviewAct_;
   QAction *savePageAsAct_;
+  QAction *savePageAsDescriptAct_;
   QAction *restoreNewsAct_;
   QAction *restoreLastNewsAct_;
   QAction *newsLabelAction_;
@@ -406,6 +407,7 @@ private slots:
   void slotPrintPreview();
 
   void slotSavePageAs();
+  void slotSavePageAsDescript();
 
   void setFullScreen();
   void setStayOnTop();

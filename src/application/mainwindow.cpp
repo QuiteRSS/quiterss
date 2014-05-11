@@ -831,6 +831,13 @@ void MainWindow::createActions()
   this->addAction(savePageAsAct_);
   connect(savePageAsAct_, SIGNAL(triggered()), this, SLOT(slotSavePageAs()));
 
+  savePageAsDescriptAct_ = new QAction(this);
+  savePageAsDescriptAct_->setObjectName("savePageAsDescriptAct");
+  savePageAsDescriptAct_->setIcon(QIcon(":/images/save_as"));
+  this->addAction(savePageAsDescriptAct_);
+  connect(savePageAsDescriptAct_, SIGNAL(triggered()),
+          this, SLOT(slotSavePageAsDescript()));
+
   zoomInAct_ = new QAction(this);
   zoomInAct_->setObjectName("zoomInAct");
   zoomInAct_->setIcon(QIcon(":/images/zoomIn"));
@@ -1441,6 +1448,7 @@ void MainWindow::createShortcut()
 
   savePageAsAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_S));
   listActions_.append(savePageAsAct_);
+  listActions_.append(savePageAsDescriptAct_);
 
   fullScreenAct_->setShortcut(QKeySequence(Qt::Key_F11));
   listActions_.append(fullScreenAct_);
@@ -4792,6 +4800,8 @@ void MainWindow::retranslateStrings()
 
   savePageAsAct_->setText(tr("Save As..."));
   savePageAsAct_->setToolTip(tr("Save Page As..."));
+  savePageAsDescriptAct_->setText(tr("Save instead of description news"));
+  savePageAsDescriptAct_->setToolTip(tr("Save page in DB instead of description news"));
 
   toolbarsMenu_->setTitle(tr("Show/Hide"));
   mainToolbarToggle_->setText(tr("Main Toolbar"));
@@ -7154,6 +7164,11 @@ void MainWindow::slotSavePageAs()
     file.write(codec->fromUnicode(html));
   }
   file.close();
+}
+
+void MainWindow::slotSavePageAsDescript()
+{
+  currentNewsTab->savePageAsDescript();
 }
 
 /** @brief Restore last deleted news
