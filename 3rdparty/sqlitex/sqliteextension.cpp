@@ -63,14 +63,14 @@ static void regexpFunction( sqlite3_context* context, int /*argc*/, sqlite3_valu
     return;
 
   // do not use fromRawData for pattern string because it may be cached internally by the regexp engine
-  QString string1( reinterpret_cast<const QChar*>( data1 ), len1 / sizeof( QChar ) );
+  QString string1 = QString::fromRawData( reinterpret_cast<const QChar*>( data1 ), len1 / sizeof( QChar ) );
   QString string2 = QString::fromRawData( reinterpret_cast<const QChar*>( data2 ), len2 / sizeof( QChar ) );
 
-  QRegExp pattern( string1, Qt::CaseInsensitive );
+  QRegExp pattern( string1, Qt::CaseInsensitive, QRegExp::RegExp2 );
 
-  bool match = pattern.exactMatch( string2 );
+  int pos = pattern.indexIn( string2 );
 
-  sqlite3_result_int( context, match ? 1 : 0 );
+  sqlite3_result_int( context, (pos > -1) ? 1 : 0 );
 }
 
 static void upperFunction(sqlite3_context* context, int /*argc*/, sqlite3_value** argv)
