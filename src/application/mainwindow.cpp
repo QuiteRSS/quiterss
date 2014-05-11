@@ -5761,6 +5761,7 @@ void MainWindow::slotFeedPrevious()
 
   // There is no "upper" index
   if (!indexAfter.isValid()) return;
+  feedsTreeView_->clearSelection();
 
   feedsTreeView_->setCurrentIndex(indexAfter);
   slotFeedClicked(indexAfter);
@@ -5781,6 +5782,7 @@ void MainWindow::slotFeedNext()
 
   // There is no "downer" index
   if (!indexAfter.isValid()) return;
+  feedsTreeView_->clearSelection();
 
   feedsTreeView_->setCurrentIndex(indexAfter);
   slotFeedClicked(indexAfter);
