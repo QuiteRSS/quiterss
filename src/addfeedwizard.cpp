@@ -375,9 +375,9 @@ void AddFeedWizard::addFeed()
     feedId_ = q.lastInsertId().toInt();
     q.finish();
 
-    if (feedUrlString_.contains("&:COOKIE:", Qt::CaseInsensitive)) {
-      int index = feedUrlString_.lastIndexOf("&:COOKIE:", -1, Qt::CaseInsensitive);
-      QString cookieStr = feedUrlString_.right(feedUrlString_.length() - index - 9);
+    if (feedUrlString_.contains(":COOKIE:", Qt::CaseInsensitive)) {
+      int index = feedUrlString_.lastIndexOf(":COOKIE:", -1, Qt::CaseInsensitive);
+      QString cookieStr = feedUrlString_.right(feedUrlString_.length() - index - 8);
       QStringList cookieStrList = cookieStr.split(";");
 
       QList<QNetworkCookie> loadedCookies;
