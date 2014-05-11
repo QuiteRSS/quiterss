@@ -221,7 +221,8 @@ int Database::version()
 
 void Database::initialization()
 {
-  QSqlDatabase db = QSqlDatabase::addDatabase("SQLITEX");
+  SQLiteDriver *driver = new SQLiteDriver();
+  QSqlDatabase db = QSqlDatabase::addDatabase(driver);
   if (mainApp->storeDBMemory())
     db.setDatabaseName(":memory:");
   else
@@ -415,7 +416,8 @@ QSqlDatabase Database::connection(const QString &connectionName)
   else {
     db = QSqlDatabase::database(connectionName, true);
     if (!db.isValid()) {
-      db = QSqlDatabase::addDatabase("SQLITEX", connectionName);
+      SQLiteDriver *driver = new SQLiteDriver();
+      QSqlDatabase db = QSqlDatabase::addDatabase(driver, connectionName);
       db.setDatabaseName(mainApp->dbFileName());
       db.open();
       setPragma(db);
