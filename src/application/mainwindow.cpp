@@ -131,13 +131,16 @@ void MainWindow::closeEvent(QCloseEvent *event)
   if (mainApp->isClosing())
     return;
 
-  event->ignore();
   if (closingTray_ && showTrayIcon_) {
+    event->ignore();
     isOpeningLink_ = false;
 
     oldState = windowState();
     emit signalPlaceToTray();
   } else {
+#if defined(Q_OS_MAC)
+    event->ignore();
+#endif
     quitApp();
   }
 }
@@ -400,7 +403,6 @@ void MainWindow::createFeedsWidget()
   feedsToolBar_ = new QToolBar(this);
   feedsToolBar_->setObjectName("feedsToolBar");
   feedsToolBar_->setStyleSheet("QToolBar { border: none; padding: 0px; }");
-  feedsToolBar_->setIconSize(QSize(18, 18));
 
   QHBoxLayout *feedsPanelLayout = new QHBoxLayout();
   feedsPanelLayout->setMargin(2);
@@ -537,6 +539,12 @@ void MainWindow::createNewsTab(int index)
 // ---------------------------------------------------------------------------
 void MainWindow::createStatusBar()
 {
+#if defined(HAVE_X11) || defined(Q_OS_MAC)
+  statusBar()->setStyleSheet(QString("QStatusBar::item {border-right: 1px solid %1;"
+                                     "margin: 1px;}").
+                             arg(qApp->palette().color(QPalette::Dark).name()));
+#endif
+
   progressBar_ = new QProgressBar(this);
   progressBar_->setObjectName("progressBar_");
   progressBar_->setFormat("%p%");
@@ -548,21 +556,17 @@ void MainWindow::createStatusBar()
   progressBar_->setValue(0);
   progressBar_->setVisible(false);
 
-#ifndef Q_OS_MAC
-  statusBar()->setMinimumHeight(22);
-#else
-  statusBar()->setMinimumHeight(26);
-#endif
-
   adblockIcon_ = new AdBlockIcon(this);
 
   QToolButton *loadImagesButton = new QToolButton(this);
   loadImagesButton->setFocusPolicy(Qt::NoFocus);
+  loadImagesButton->setIconSize(QSize(16,16));
   loadImagesButton->setDefaultAction(autoLoadImagesToggle_);
   loadImagesButton->setStyleSheet("QToolButton { border: none; padding: 0px; }");
 
   QToolButton *fullScreenButton = new QToolButton(this);
   fullScreenButton->setFocusPolicy(Qt::NoFocus);
+  loadImagesButton->setIconSize(QSize(16,16));
   fullScreenButton->setDefaultAction(fullScreenAct_);
   fullScreenButton->setStyleSheet("QToolButton { border: none; padding: 0px; }");
   statusBar()->installEventFilter(this);
@@ -2035,7 +2039,10 @@ void MainWindow::loadSettings()
   }
 
   setToolBarStyle(settings.value("toolBarStyle", "toolBarStyleTuI_").toString());
-  setToolBarIconSize(settings.value("toolBarIconSize", "toolBarIconNormal_").toString());
+  QString iconStr = settings.value("toolBarIconSize", "toolBarIconNormal_").toString();
+  setToolBarIconSize(mainToolbar_, iconStr);
+  iconStr = settings.value("feedsToolBarIconSize", "toolBarIconSmall_").toString();
+  setToolBarIconSize(feedsToolBar_, iconStr);
 
   str = settings.value("styleApplication", "defaultStyle_").toString();
   QList<QAction*> listActions = styleGroup_->actions();
@@ -4946,14 +4953,14 @@ void MainWindow::setToolBarStyle(const QString &styleStr)
   }
 }
 // ----------------------------------------------------------------------------
-void MainWindow::setToolBarIconSize(const QString &iconSizeStr)
+void MainWindow::setToolBarIconSize(QToolBar *toolbar, const QString &iconSizeStr)
 {
   if (iconSizeStr == "toolBarIconBig_") {
-    mainToolbar_->setIconSize(QSize(32, 32));
+    toolbar->setIconSize(QSize(32, 32));
   } else if (iconSizeStr == "toolBarIconSmall_") {
-    mainToolbar_->setIconSize(QSize(16, 16));
+    toolbar->setIconSize(QSize(18, 18));
   } else {
-    mainToolbar_->setIconSize(QSize(24, 24));
+    toolbar->setIconSize(QSize(24, 24));
   }
 }
 

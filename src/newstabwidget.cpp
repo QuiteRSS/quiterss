@@ -166,7 +166,6 @@ void NewsTabWidget::createNewsList()
   newsToolBar_ = new QToolBar(this);
   newsToolBar_->setObjectName("newsToolBar");
   newsToolBar_->setStyleSheet("QToolBar { border: none; padding: 0px; }");
-  newsToolBar_->setIconSize(QSize(18, 18));
 
   Settings settings;
   QString actionListStr = "markNewsRead,markAllNewsRead,Separator,markStarAct,"
@@ -440,6 +439,8 @@ void NewsTabWidget::setSettings(bool init, bool newTab)
   if (newTab) {
     if (type_ < TabTypeWeb) {
       newsTabWidgetSplitter_->restoreState(settings.value("NewsTabSplitterState").toByteArray());
+      QString iconStr = settings.value("Settings/newsToolBarIconSize", "toolBarIconSmall_").toString();
+      mainWindow_->setToolBarIconSize(newsToolBar_, iconStr);
 
       newsView_->setFont(
             QFont(mainWindow_->newsListFontFamily_, mainWindow_->newsListFontSize_));

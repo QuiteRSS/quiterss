@@ -35,6 +35,7 @@ NewsHeader::NewsHeader(NewsModel *model, QWidget *parent)
 #endif
   setDefaultAlignment(Qt::AlignLeft|Qt::AlignVCenter);
   setMinimumSectionSize(22);
+  setMinimumHeight(20);
   setStretchLastSection(false);
 
   viewMenu_ = new QMenu(this);

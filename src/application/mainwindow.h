@@ -88,7 +88,7 @@ public:
   void recountCategoryCounts();
 
   void setToolBarStyle(const QString &styleStr);
-  void setToolBarIconSize(const QString &iconSizeStr);
+  void setToolBarIconSize(QToolBar *toolbar, const QString &iconSizeStr);
 
   static QStringList nameLabels() {
     QStringList nameLabels;

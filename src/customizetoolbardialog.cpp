@@ -25,15 +25,21 @@ CustomizeToolbarDialog::CustomizeToolbarDialog(QWidget *parent, QToolBar *toolba
     toolbar_(toolbar)
 {
   setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
-  setMinimumWidth(300);
+  setMinimumWidth(400);
   setMinimumHeight(400);
 
-  if (toolbar_->objectName() == "ToolBar_General")
+  Settings settings;
+  QString iconStr;
+  if (toolbar_->objectName() == "ToolBar_General") {
     setWindowTitle(tr("Customize Main Toolbar"));
-  else if (toolbar_->objectName() == "feedsToolBar")
+    iconStr = settings.value("Settings/toolBarIconSize", "toolBarIconNormal_").toString();
+  } else if (toolbar_->objectName() == "feedsToolBar") {
     setWindowTitle(tr("Customize Feeds Toolbar"));
-  else if (toolbar_->objectName() == "newsToolBar")
+    iconStr = settings.value("Settings/feedsToolBarIconSize", "toolBarIconSmall_").toString();
+  } else if (toolbar_->objectName() == "newsToolBar") {
     setWindowTitle(tr("Customize News Toolbar"));
+    iconStr = settings.value("Settings/newsToolBarIconSize", "toolBarIconSmall_").toString();
+  }
 
   shortcutTree_ = new QTreeWidget(this);
   shortcutTree_->setObjectName("actionTree");
@@ -90,7 +96,6 @@ CustomizeToolbarDialog::CustomizeToolbarDialog(QWidget *parent, QToolBar *toolba
   treeItem.clear();
   treeItem << tr("Icon") << tr("Text") << tr("Text Beside Icon") << tr("Text Under Icon");
   styleBox_->addItems(treeItem);
-  Settings settings;
   QString styleStr = settings.value("Settings/toolBarStyle", "toolBarStyleTuI_").toString();
   if (styleStr == "toolBarStyleI_") {
     styleBox_->setCurrentIndex(0);
@@ -106,7 +111,6 @@ CustomizeToolbarDialog::CustomizeToolbarDialog(QWidget *parent, QToolBar *toolba
   treeItem.clear();
   treeItem << tr("Big") << tr("Normal") << tr("Small");
   iconBox_->addItems(treeItem);
-  QString iconStr = settings.value("Settings/toolBarIconSize", "toolBarIconNormal_").toString();
   if (iconStr == "toolBarIconBig_") {
     iconBox_->setCurrentIndex(0);
   } else if (iconStr == "toolBarIconSmall_") {
@@ -115,17 +119,24 @@ CustomizeToolbarDialog::CustomizeToolbarDialog(QWidget *parent, QToolBar *toolba
     iconBox_->setCurrentIndex(1);
   }
 
+  QHBoxLayout *iconLayout = new QHBoxLayout();
+  iconLayout->addWidget(new QLabel(tr("Icon Size:")));
+  iconLayout->addWidget(iconBox_);
+  QWidget *iconWidget = new QWidget(this);
+  iconWidget->setLayout(iconLayout);
+
   QHBoxLayout *styleLayout = new QHBoxLayout();
-  styleLayout->setMargin(0);
   styleLayout->addWidget(new QLabel(tr("Style:")));
   styleLayout->addWidget(styleBox_);
-  styleLayout->addSpacing(10);
-  styleLayout->addWidget(new QLabel(tr("Icon Size:")));
-  styleLayout->addWidget(iconBox_);
-  styleLayout->addStretch();
-
   QWidget *styleWidget = new QWidget(this);
   styleWidget->setLayout(styleLayout);
+
+  QHBoxLayout *settingsLayout = new QHBoxLayout();
+  settingsLayout->setMargin(0);
+  settingsLayout->addWidget(iconWidget);
+  settingsLayout->addSpacing(10);
+  settingsLayout->addWidget(styleWidget);
+  settingsLayout->addStretch();
 
   if (toolbar_->objectName() != "ToolBar_General") {
     styleWidget->hide();
@@ -133,7 +144,7 @@ CustomizeToolbarDialog::CustomizeToolbarDialog(QWidget *parent, QToolBar *toolba
 
   QVBoxLayout *mainVLayout = new QVBoxLayout();
   mainVLayout->addWidget(shortcutTree_, 1);
-  mainVLayout->addWidget(styleWidget);
+  mainVLayout->addLayout(settingsLayout);
 
   addButtonMenu_ = new QMenu(this);
   addButton_ = new QPushButton(tr("Add"));
@@ -271,9 +282,17 @@ void CustomizeToolbarDialog::acceptDialog()
     default: str = "toolBarIconNormal_";
     }
     settings.setValue("Settings/toolBarIconSize", str);
-    mainWindow->setToolBarIconSize(str);
+    mainWindow->setToolBarIconSize(toolbar_, str);
   } else if (toolbar_->objectName() == "feedsToolBar") {
     settings.setValue("Settings/feedsToolBar2", str);
+
+    switch (iconBox_->currentIndex()) {
+    case 0: str = "toolBarIconBig_"; break;
+    case 2: str = "toolBarIconSmall_"; break;
+    default: str = "toolBarIconNormal_";
+    }
+    settings.setValue("Settings/feedsToolBarIconSize", str);
+    mainWindow->setToolBarIconSize(toolbar_, str);
   } else if (toolbar_->objectName() == "newsToolBar") {
     settings.setValue("Settings/newsToolBar", str);
 
@@ -297,6 +316,14 @@ void CustomizeToolbarDialog::acceptDialog()
       }
       widget->newsToolBar_->addAction(widget->separatorRAct_);
       widget->newsToolBar_->addAction(mainWindow->restoreNewsAct_);
+
+      switch (iconBox_->currentIndex()) {
+      case 0: str = "toolBarIconBig_"; break;
+      case 2: str = "toolBarIconSmall_"; break;
+      default: str = "toolBarIconNormal_";
+      }
+      settings.setValue("Settings/newsToolBarIconSize", str);
+      mainWindow->setToolBarIconSize(widget->newsToolBar_, str);
     }
   }
 
