@@ -157,6 +157,7 @@ QHeaderView::section {
 	border-top: none;
 	border-left: none;
 	background-color: transparent;
+	padding: 2px;
 	padding-left: 3px;
 }
 
