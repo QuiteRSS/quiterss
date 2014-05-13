@@ -275,6 +275,8 @@ void FilterRulesDialog::setData()
       else
         itemCondition->lineEdit_->setText(q.value(2).toString());
     }
+    if (conditionLayout_->count() == 0)
+      addCondition();
 
     qStr = QString("SELECT action, params "
         "FROM filterActions WHERE idFilter=='%1'").
@@ -296,6 +298,8 @@ void FilterRulesDialog::setData()
         itemAction->colorButton_->setIcon(pixmap);
       }
     }
+    if (actionsLayout_->count() == 0)
+      addAction();
   }
 }
 
