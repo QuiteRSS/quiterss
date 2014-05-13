@@ -183,7 +183,8 @@ void ParseObject::slotParse(const QByteArray &xmlData, const int &feedId,
   }
 
   if (!doc.setContent(convertData, false, &errorStr, &errorLine, &errorColumn)) {
-    qWarning() << QString("Parse data error: line %1, column %2: %3").
+    qWarning() << QString("Parse data error (2): url %1, id %2, line %3, column %4: %5").
+                  arg(feedUrl).arg(parseFeedId_).
                   arg(errorLine).arg(errorColumn).arg(errorStr);
   } else {
     QDomElement rootElem = doc.documentElement();

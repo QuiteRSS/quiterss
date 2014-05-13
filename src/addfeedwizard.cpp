@@ -458,7 +458,8 @@ void AddFeedWizard::getUrlDone(int result, int feedId, QString feedUrlStr,
     int errorColumn;
     QDomDocument doc("parseDoc");
     if (!doc.setContent(data, false, &errorStr, &errorLine, &errorColumn)) {
-      qWarning() << QString("Parse data error: line %1, column %2: %3").
+      qWarning() << QString("Parse data error (1): url %1, id %2, line %3, column %4: %5").
+                    arg(feedUrlStr).arg(feedId).
                     arg(errorLine).arg(errorColumn).arg(errorStr);
     } else {
       QDomElement docElem = doc.documentElement();
