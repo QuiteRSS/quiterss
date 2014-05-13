@@ -7234,6 +7234,7 @@ void MainWindow::nextUnreadNews()
         openingFeedAction_ = 4;
       else
         openingFeedAction_ = 3;
+      feedsTreeView_->clearSelection();
       feedsTreeView_->setCurrentIndex(indexPrevUnread);
       slotFeedClicked(indexPrevUnread);
 
@@ -7291,6 +7292,7 @@ void MainWindow::prevUnreadNews()
         feedsTreeView_->indexNextUnread(feedsTreeView_->currentIndex(), 2);
     if (indexNextUnread.isValid()) {
       openingFeedAction_ = 3;
+      feedsTreeView_->clearSelection();
       feedsTreeView_->setCurrentIndex(indexNextUnread);
       slotFeedClicked(indexNextUnread);
       Settings settings;
@@ -7523,6 +7525,7 @@ void MainWindow::slotPrevFolder()
 
   // there's no "upper" index
   if (!indexAfter.isValid()) return;
+  feedsTreeView_->clearSelection();
 
   feedsTreeView_->setCurrentIndex(indexAfter);
   slotFeedClicked(indexAfter);
@@ -7541,6 +7544,7 @@ void MainWindow::slotNextFolder()
 
   // there's no "downer" index
   if (!indexAfter.isValid()) return;
+  feedsTreeView_->clearSelection();
 
   feedsTreeView_->setCurrentIndex(indexAfter);
   slotFeedClicked(indexAfter);
