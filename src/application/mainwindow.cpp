@@ -4110,6 +4110,7 @@ void MainWindow::setFeedsFilter(bool clicked)
   feedsTreeView_->restoreExpanded();
 
   if (clicked && (tabBar_->currentIndex() == TAB_WIDGET_PERMANENT)) {
+    feedsTreeView_->clearSelection();
     slotFeedClicked(feedsTreeView_->currentIndex());
   }
 
@@ -4383,6 +4384,7 @@ void MainWindow::markFeedRead()
 void MainWindow::slotRefreshNewsView(int nextUnread)
 {
   if (nextUnread == 1) {
+    feedsTreeView_->clearSelection();
     QModelIndex indexNextUnread =
         feedsTreeView_->indexNextUnread(feedsTreeView_->currentIndex());
     feedsTreeView_->setCurrentIndex(indexNextUnread);
