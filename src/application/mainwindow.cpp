@@ -3966,6 +3966,10 @@ void MainWindow::showProgressBar(int maximum)
     isStartImportFeed_ = false;
     return;
   }
+
+  Settings settings;
+  settings.setValue("Flags/updatingFeeds", true);
+
   playSoundNewNews_ = false;
 
   progressBar_->setMaximum(maximum);
@@ -6312,6 +6316,9 @@ void MainWindow::findText()
  *---------------------------------------------------------------------------*/
 void MainWindow::showNotification()
 {
+  Settings settings;
+  settings.setValue("Flags/updatingFeeds", false);
+
   if (idFeedList_.isEmpty() || isActiveWindow() || !showNotifyOn_) {
     clearNotification();
     return;
