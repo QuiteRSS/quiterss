@@ -4109,8 +4109,10 @@ void MainWindow::setFeedsFilter(bool clicked)
 
   feedsTreeView_->restoreExpanded();
 
+  feedsTreeView_->clearSelection();
+  feedsTreeView_->setCurrentIndex(feedsTreeView_->currentIndex());
+
   if (clicked && (tabBar_->currentIndex() == TAB_WIDGET_PERMANENT)) {
-    feedsTreeView_->clearSelection();
     slotFeedClicked(feedsTreeView_->currentIndex());
   }
 
