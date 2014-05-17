@@ -250,7 +250,7 @@ void MainApplication::loadSettings()
 void MainApplication::quitApplication()
 {
   delete networkManager_;
-  delete updateFeeds_;
+  delete mainWindow_;
 
   qWarning() << "Quit application";
 

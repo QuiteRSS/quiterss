@@ -203,22 +203,22 @@ UpdateFeeds::~UpdateFeeds()
 {
   getFeedThread_->exit();
   getFeedThread_->wait();
-  getFeedThread_->deleteLater();
+  delete getFeedThread_;
 
   updateFeedThread_->exit();
   updateFeedThread_->wait();
-  updateFeedThread_->deleteLater();
+  delete updateFeedThread_;
 
-  requestFeed_->deleteLater();
-  parseObject_->deleteLater();
+  delete requestFeed_;
+  delete parseObject_;
 
   if (!addFeed_) {
     getFaviconThread_->exit();
     getFaviconThread_->wait();
-    getFaviconThread_->deleteLater();
+    delete getFaviconThread_;
 
-    updateObject_->deleteLater();
-    faviconObject_->deleteLater();
+    delete updateObject_;
+    delete faviconObject_;
   }
 }
 
@@ -276,6 +276,10 @@ UpdateObject::UpdateObject(QObject *parent)
   timerUpdateNews_ = new QTimer(this);
   timerUpdateNews_->setSingleShot(true);
   connect(timerUpdateNews_, SIGNAL(timeout()), this, SIGNAL(signalUpdateNews()));
+}
+
+UpdateObject::~UpdateObject()
+{
 }
 
 void UpdateObject::slotGetFeedTimer(int feedId)

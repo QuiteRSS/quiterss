@@ -47,6 +47,10 @@ ParseObject::ParseObject(QObject *parent)
           SLOT(slotParse(QByteArray,int,QDateTime,QString)));
 }
 
+ParseObject::~ParseObject()
+{
+}
+
 /** @brief Queueing xml-data
  *----------------------------------------------------------------------------*/
 void ParseObject::parseXml(QByteArray data, int feedId,
