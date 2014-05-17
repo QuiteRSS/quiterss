@@ -221,39 +221,16 @@ int Database::version()
 
 void Database::initialization()
 {
+  prepareDatabase();
+
   SQLiteDriver *driver = new SQLiteDriver();
   QSqlDatabase db = QSqlDatabase::addDatabase(driver);
   if (mainApp->storeDBMemory())
     db.setDatabaseName(":memory:");
   else
     db.setDatabaseName(mainApp->dbFileName());
-  if (!db.open()) {
-    QString message = QString("Cannot open SQLite database! \n"
-                              "Error: %1").arg(db.lastError().text());
-    qCritical() << message;
-    QMessageBox::critical(0, QObject::tr("Error"), message);
-  } else {
-    if (!mainApp->dbFileExists()) {
-      {
-        QSqlDatabase dbFile = QSqlDatabase::addDatabase("QSQLITE", "initialization");
-        dbFile.setDatabaseName(mainApp->dbFileName());
-        dbFile.open();
-        createTables(dbFile);
-        createLabels(dbFile);
-        QSqlQuery q(dbFile);
-        q.prepare("INSERT INTO info(name, value) VALUES ('version', :version)");
-        q.bindValue(":version", version());
-        q.exec();
-        q.prepare("INSERT INTO info(name, value) VALUES('appVersion', :appVersion)");
-        q.bindValue(":appVersion", STRPRODUCTVER);
-        q.exec();
-        q.finish();
-        dbFile.close();
-      }
-      QSqlDatabase::removeDatabase("initialization");
-    } else {
-      prepareDatabase();
-    }
+  if (db.open()) {
+    setPragma(db);
 
     if (mainApp->storeDBMemory()) {
       sqliteDBMemFile(false);
@@ -266,19 +243,108 @@ void Database::setPragma(QSqlDatabase &db)
   QSqlQuery q(db);
   q.setForwardOnly(true);
   q.exec("PRAGMA encoding = \"UTF-8\"");
+
 //  q.exec("PRAGMA synchronous = FULL");
 //  q.exec("PRAGMA journal_mode = MEMORY");
+//  q.exec("PRAGMA temp_store = MEMORY");
 
   q.exec("PRAGMA page_size = 4096");
   q.exec("PRAGMA cache_size = 16384");
-  q.exec("PRAGMA temp_store = MEMORY");
   q.finish();
+}
+
+void Database::prepareDatabase()
+{
+  {
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE", "initialization");
+    db.setDatabaseName(mainApp->dbFileName());
+    if (!db.open()) {
+      QString message = QString("Cannot open SQLite database! \n"
+                                "Error: %1").arg(db.lastError().text());
+      qCritical() << message;
+      QMessageBox::critical(0, QObject::tr("Error"), message);
+    } else {
+      setPragma(db);
+      QSqlQuery q(db);
+      q.setForwardOnly(true);
+
+      if (!mainApp->dbFileExists()) {
+        qWarning() << "Creating database";
+
+        createTables(db);
+        createLabels(db);
+        q.prepare("INSERT INTO info(name, value) VALUES ('version', :version)");
+        q.bindValue(":version", version());
+        q.exec();
+        q.prepare("INSERT INTO info(name, value) VALUES('appVersion', :appVersion)");
+        q.bindValue(":appVersion", STRPRODUCTVER);
+        q.exec();
+      } else {
+        qWarning() << "Preparation database";
+
+        // Version DB > 0.12.1
+        Settings settings;
+
+        int dbVersion = -1;
+        q.exec("SELECT value FROM info WHERE name='version'");
+        if (q.first()) {
+          dbVersion = q.value(0).toInt();
+        }
+
+        QString appVersion = QString();
+        q.exec("SELECT value FROM info WHERE name='appVersion'");
+        if (q.first()) {
+          appVersion = q.value(0).toString();
+        }
+
+        // Create backups for DB and Settings
+        if (appVersion != STRPRODUCTVER) {
+          Common::createFileBackup(mainApp->dbFileName(), appVersion);
+          Common::createFileBackup(settings.fileName(), appVersion);
+        }
+
+        if (dbVersion < 14) {
+          q.exec("ALTER TABLE feeds ADD COLUMN showNotification integer default 0");
+          q.exec("ALTER TABLE feeds ADD COLUMN disableUpdate integer default 0");
+          q.exec("ALTER TABLE feeds ADD COLUMN javaScriptEnable integer default 1");
+        }
+        if (dbVersion < 16) {
+          q.exec("ALTER TABLE feeds ADD COLUMN layoutDirection integer default 0");
+        }
+
+        // Update appVersion anyway
+        if (appVersion.isEmpty()) {
+          q.prepare("INSERT INTO info(name, value) VALUES('appVersion', :appVersion)");
+          q.bindValue(":appVersion", STRPRODUCTVER);
+          q.exec();
+        } else if (appVersion != STRPRODUCTVER) {
+          q.prepare("UPDATE info SET value=:appVersion WHERE name='appVersion'");
+          q.bindValue(":appVersion", STRPRODUCTVER);
+          q.exec();
+        }
+
+        if (dbVersion == -1) {
+          q.prepare("INSERT INTO info(name, value) VALUES('version', :version)");
+          q.bindValue(":version", version());
+          q.exec();
+        } else if (dbVersion < version()) {
+          q.prepare("UPDATE info SET value=:version WHERE name='version'");
+          q.bindValue(":version", version());
+          q.exec();
+        }
+
+        settings.setValue("VersionDB", version());
+      }
+
+      q.finish();
+      db.close();
+    }
+  }
+  QSqlDatabase::removeDatabase("initialization");
 }
 
 void Database::createTables(QSqlDatabase &db)
 {
-  setPragma(db);
-
   db.transaction();
 
   db.exec(kCreateFeedsTableQuery);
@@ -317,74 +383,6 @@ void Database::createTables(QSqlDatabase &db)
   db.exec("CREATE TABLE info(id integer primary key, name varchar, value varchar)");
 
   db.commit();
-}
-
-void Database::prepareDatabase()
-{
-  // Version DB > 0.12.1
-  {
-    Settings settings;
-
-    QSqlDatabase dbFile = QSqlDatabase::addDatabase("QSQLITE", "initialization");
-    dbFile.setDatabaseName(mainApp->dbFileName());
-    dbFile.open();
-    setPragma(dbFile);
-    QSqlQuery q(dbFile);
-
-    int dbVersion = -1;
-    q.exec("SELECT value FROM info WHERE name='version'");
-    if (q.first()) {
-      dbVersion = q.value(0).toInt();
-    }
-
-    QString appVersion = QString();
-    q.exec("SELECT value FROM info WHERE name='appVersion'");
-    if (q.first()) {
-      appVersion = q.value(0).toString();
-    }
-
-    // Create backups for DB and Settings
-    if (appVersion != STRPRODUCTVER) {
-      Common::createFileBackup(mainApp->dbFileName(), appVersion);
-      Common::createFileBackup(settings.fileName(), appVersion);
-    }
-
-    if (dbVersion < 14) {
-      q.exec("ALTER TABLE feeds ADD COLUMN showNotification integer default 0");
-      q.exec("ALTER TABLE feeds ADD COLUMN disableUpdate integer default 0");
-      q.exec("ALTER TABLE feeds ADD COLUMN javaScriptEnable integer default 1");
-    }
-    if (dbVersion < 16) {
-      q.exec("ALTER TABLE feeds ADD COLUMN layoutDirection integer default 0");
-    }
-
-    // Update appVersion anyway
-    if (appVersion.isEmpty()) {
-      q.prepare("INSERT INTO info(name, value) VALUES('appVersion', :appVersion)");
-      q.bindValue(":appVersion", STRPRODUCTVER);
-      q.exec();
-    } else {
-      q.prepare("UPDATE info SET value=:appVersion WHERE name='appVersion'");
-      q.bindValue(":appVersion", STRPRODUCTVER);
-      q.exec();
-    }
-
-    if (dbVersion == -1) {
-      q.prepare("INSERT INTO info(name, value) VALUES('version', :version)");
-      q.bindValue(":version", version());
-      q.exec();
-    } else if (dbVersion < version()) {
-      q.prepare("UPDATE info SET value=:version WHERE name='version'");
-      q.bindValue(":version", version());
-      q.exec();
-    }
-
-    q.finish();
-    dbFile.close();
-
-    settings.setValue("VersionDB", version());
-  }
-  QSqlDatabase::removeDatabase("initialization");
 }
 
 void Database::createLabels(QSqlDatabase &db)
@@ -430,6 +428,7 @@ void Database::sqliteDBMemFile(bool save)
 {
   if (save) qWarning() << "sqliteDBMemFile(): from memory to file...";
   else qWarning() << "sqliteDBMemFile(): from file to memory...";
+
   int rc = -1;                   /* Function return code */
   QVariant v = QSqlDatabase::database().driver()->handle();
   if (v.isValid() && qstrcmp(v.typeName(),"sqlite3*") == 0) {
@@ -488,6 +487,11 @@ void Database::sqliteDBMemFile(bool save)
 
         /* Release resources allocated by backup_init(). */
         (void)sqlite3_backup_finish(pBackup);
+
+        if (rc != SQLITE_DONE)
+          qCritical() << "sqliteDBMemFile(): return code =" << rc;
+      } else {
+        qCritical() << "sqliteDBMemFile(): error open =" << rc;
       }
 
       /* Close the database connection opened on database file zFilename
@@ -495,10 +499,7 @@ void Database::sqliteDBMemFile(bool save)
       (void)sqlite3_close(pFile);
     }
   }
-  if (rc == SQLITE_DONE)
-    qWarning() << "sqliteDBMemFile(): finished!";
-  else
-    qWarning() << "sqliteDBMemFile(): return code =" << rc;
+  qWarning() << "sqliteDBMemFile(): finished!";
 }
 
 void Database::setVacuum()
