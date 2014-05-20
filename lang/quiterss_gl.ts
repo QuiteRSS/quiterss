@@ -920,7 +920,7 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="32"/>
         <source>Display</source>
-        <translation type="unfinished"/>
+        <translation>Mostrar</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="174"/>
@@ -1827,7 +1827,7 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4818"/>
         <source>Save page in database</source>
-        <translation type="unfinished"/>
+        <translation>Gardar páxina na base de datos</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4819"/>
@@ -1842,7 +1842,7 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2483"/>
         <source>Confirm Delete</source>
-        <translation type="unfinished"/>
+        <translation>Confirmar a eliminación</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2484"/>
@@ -1857,7 +1857,7 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4656"/>
         <source>&amp;Create Backup...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Crear copia de seguranza...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4657"/>
@@ -2204,7 +2204,7 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4827"/>
         <source>Status Bar</source>
-        <translation type="unfinished"/>
+        <translation>Barra de estado</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4829"/>
@@ -3312,7 +3312,7 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="874"/>
         <source>Style sheet for news:</source>
-        <translation type="unfinished"/>
+        <translation>Folla de estilo para as novas:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="882"/>

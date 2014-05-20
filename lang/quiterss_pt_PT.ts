@@ -46,7 +46,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="151"/>
         <source>Backup directory:</source>
-        <translation>Diretório de backup:</translation>
+        <translation>Diretório de backup:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="154"/>
@@ -1847,7 +1847,7 @@ não existe!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2484"/>
         <source>Are you sure to delete selected elements?</source>
-        <translation>Tem a certeza que quer os elementos selecionados?</translation>
+        <translation>Tem a certeza que quer eliminar os itens selecionados?</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4634"/>
