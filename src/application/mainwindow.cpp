@@ -4815,8 +4815,8 @@ void MainWindow::retranslateStrings()
 
   savePageAsAct_->setText(tr("Save As..."));
   savePageAsAct_->setToolTip(tr("Save Page As..."));
-  savePageAsDescriptAct_->setText(tr("Save instead of description news"));
-  savePageAsDescriptAct_->setToolTip(tr("Save page in DB instead of description news"));
+  savePageAsDescriptAct_->setText(tr("Save page in database"));
+  savePageAsDescriptAct_->setToolTip(tr("Save page in database instead of news description"));
 
   toolbarsMenu_->setTitle(tr("Show/Hide"));
   mainToolbarToggle_->setText(tr("Main Toolbar"));
