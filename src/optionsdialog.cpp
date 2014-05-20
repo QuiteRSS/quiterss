@@ -295,7 +295,7 @@ void OptionsDialog::createGeneralWidget()
   showCloseButtonTab_ = new QCheckBox(tr("Show close button on tab"));
 
   updateCheckEnabled_ = new QCheckBox(tr("Automatically check for updates"));
-  statisticsEnabled_ = new QCheckBox(tr("Allow to send stats"));
+  statisticsEnabled_ = new QCheckBox(tr("Help improve QuiteRSS by sending usage information"));
   storeDBMemory_ = new QCheckBox(tr("Store a DB in memory (requires program restart)"));
   storeDBMemory_->setChecked(false);
   saveDBMemFileInterval_ = new QSpinBox();
