@@ -1824,6 +1824,16 @@ Ancient news could reappear</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/application/mainwindow.cpp" line="4818"/>
+        <source>Save page in database</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/application/mainwindow.cpp" line="4819"/>
+        <source>Save page in database instead of news description</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/application/mainwindow.cpp" line="159"/>
         <source>Saving data...</source>
         <translation type="unfinished"></translation>
@@ -2163,16 +2173,6 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4817"/>
         <source>Save Page As...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/application/mainwindow.cpp" line="4818"/>
-        <source>Save instead of description news</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/application/mainwindow.cpp" line="4819"/>
-        <source>Save page in DB instead of description news</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2856,7 +2856,7 @@ Ancient news could reappear</source>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="298"/>
-        <source>Allow loading page with statistics of using application</source>
+        <source>Help improve QuiteRSS by sending usage information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4062,7 +4062,7 @@ Ancient news could reappear</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/database/database.cpp" line="234"/>
+        <location filename="../src/database/database.cpp" line="265"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>

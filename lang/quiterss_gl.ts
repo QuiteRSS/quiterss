@@ -46,7 +46,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="151"/>
         <source>Backup directory:</source>
-        <translation type="unfinished"/>
+        <translation>Directorio da copia de seguranza:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="154"/>
@@ -925,7 +925,7 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="174"/>
         <source>Enable JavaScript</source>
-        <translation type="unfinished"/>
+        <translation>Activar JavaScript</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="177"/>
@@ -1321,7 +1321,7 @@ As novas antigas poderían reaparecer</translation>
         <location filename="../src/filterrulesdialog.h" line="112"/>
         <location filename="../src/filterrulesdialog.h" line="118"/>
         <source>Regular expressions</source>
-        <translation type="unfinished"/>
+        <translation>Expresións regulares</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="120"/>
@@ -1825,6 +1825,16 @@ As novas antigas poderían reaparecer</translation>
         <translation>&amp;Ficheiro</translation>
     </message>
     <message>
+        <location filename="../src/application/mainwindow.cpp" line="4818"/>
+        <source>Save page in database</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/application/mainwindow.cpp" line="4819"/>
+        <source>Save page in database instead of news description</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../src/application/mainwindow.cpp" line="159"/>
         <source>Saving data...</source>
         <translation>A gardar datos...</translation>
@@ -1837,7 +1847,7 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2484"/>
         <source>Are you sure to delete selected elements?</source>
-        <translation type="unfinished"/>
+        <translation>Tes a certeza de querer eliminar os elementos seleccionados?</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4634"/>
@@ -2167,16 +2177,6 @@ As novas antigas poderían reaparecer</translation>
         <translation>Gardar páxina como...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4818"/>
-        <source>Save instead of description news</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/application/mainwindow.cpp" line="4819"/>
-        <source>Save page in DB instead of description news</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <location filename="../src/application/mainwindow.cpp" line="4821"/>
         <source>Show/Hide</source>
         <translation>Mostrar/agochar</translation>
@@ -2398,7 +2398,7 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="7664"/>
         <source>Choose Directory</source>
-        <translation type="unfinished"/>
+        <translation>Elixir directorio</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.h" line="101"/>
@@ -2857,7 +2857,7 @@ As novas antigas poderían reaparecer</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="298"/>
-        <source>Allow loading page with statistics of using application</source>
+        <source>Help improve QuiteRSS by sending usage information</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -4072,7 +4072,7 @@ As novas antigas poderían reaparecer</translation>
         <translation>Non se pode iniciar o programa externo! %1</translation>
     </message>
     <message>
-        <location filename="../src/database/database.cpp" line="234"/>
+        <location filename="../src/database/database.cpp" line="265"/>
         <source>Error</source>
         <translation>Erro</translation>
     </message>
@@ -4179,12 +4179,12 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="556"/>
         <source>Error opening database</source>
-        <translation type="unfinished"/>
+        <translation>Erro ao abrir a base de datos</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="567"/>
         <source>Error closing database</source>
-        <translation type="unfinished"/>
+        <translation>Erro ao pechar a base de datos</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="587"/>

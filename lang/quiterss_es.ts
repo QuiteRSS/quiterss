@@ -31,17 +31,17 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="142"/>
         <source>Application directory:</source>
-        <translation type="unfinished"/>
+        <translation>Directorio de la aplicación:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="145"/>
         <source>Resource directory:</source>
-        <translation type="unfinished"/>
+        <translation>Directorio de recursos:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="148"/>
         <source>Data directory:</source>
-        <translation type="unfinished"/>
+        <translation>Directorio de datos:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="151"/>
@@ -51,17 +51,17 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="154"/>
         <source>Database file:</source>
-        <translation type="unfinished"/>
+        <translation>Archivo de la base de datos:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="157"/>
         <source>Settings file:</source>
-        <translation type="unfinished"/>
+        <translation>Configuración de archivos:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="160"/>
         <source>Log file:</source>
-        <translation type="unfinished"/>
+        <translation>Archivo de registro:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="175"/>
@@ -81,7 +81,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="178"/>
         <source>Information</source>
-        <translation type="unfinished"/>
+        <translation>Información</translation>
     </message>
 </context>
 <context>
@@ -89,7 +89,7 @@
     <message>
         <location filename="../src/adblock/adblockaddsubscriptiondialog.ui" line="14"/>
         <source>Add Subscription</source>
-        <translation type="unfinished"/>
+        <translation>Añadir subscripción</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockaddsubscriptiondialog.ui" line="23"/>
@@ -99,12 +99,12 @@
     <message>
         <location filename="../src/adblock/adblockaddsubscriptiondialog.ui" line="33"/>
         <source>Address:</source>
-        <translation type="unfinished"/>
+        <translation>Dirección:</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockaddsubscriptiondialog.ui" line="53"/>
         <source>Add new subscription to AdBlock:</source>
-        <translation type="unfinished"/>
+        <translation>Añadir subscripción a AdBlock:</translation>
     </message>
 </context>
 <context>
@@ -112,7 +112,7 @@
     <message>
         <location filename="../src/adblock/adblocksubscription.cpp" line="484"/>
         <source>Custom Rules</source>
-        <translation type="unfinished"/>
+        <translation>Reglas personalizadas</translation>
     </message>
 </context>
 <context>
@@ -120,17 +120,17 @@
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="14"/>
         <source>AdBlock Configuration</source>
-        <translation type="unfinished"/>
+        <translation>Configuración de AdBlock</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="20"/>
         <source>Enable AdBlock</source>
-        <translation type="unfinished"/>
+        <translation>Activar AdBlock</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="32"/>
         <source>Search...</source>
-        <translation type="unfinished"/>
+        <translation>Buscar...</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="68"/>
@@ -140,42 +140,42 @@
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="98"/>
         <source>AdBlock</source>
-        <translation type="unfinished"/>
+        <translation>AdBlock</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="122"/>
         <source>Use only essential part of EasyList (for performance reasons)</source>
-        <translation type="unfinished"/>
+        <translation>Utilicar sólo una parte esencial de EasyList (por razones de rendimiento)</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="72"/>
         <source>Add Rule</source>
-        <translation type="unfinished"/>
+        <translation>Añadir regla</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="73"/>
         <source>Remove Rule</source>
-        <translation type="unfinished"/>
+        <translation>Eliminar regla</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="75"/>
         <source>Add Subscription</source>
-        <translation type="unfinished"/>
+        <translation>Añadir subscripción</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="76"/>
         <source>Remove Subscription</source>
-        <translation type="unfinished"/>
+        <translation>Eliminar subscripción</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="77"/>
         <source>Update Subscriptions</source>
-        <translation type="unfinished"/>
+        <translation>Actualizar subscripciones</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="79"/>
         <source>Learn about writing rules...</source>
-        <translation type="unfinished"/>
+        <translation>Aprender acerca de la escritura de reglas...</translation>
     </message>
 </context>
 <context>
@@ -188,7 +188,7 @@
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="102"/>
         <source>AdBlock</source>
-        <translation type="unfinished"/>
+        <translation>AdBlock</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="129"/>
@@ -198,28 +198,28 @@
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="137"/>
         <source>Disable on %1</source>
-        <translation type="unfinished"/>
+        <translation>Deshabilitar en %1</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="143"/>
         <source>Disable only on this page</source>
-        <translation type="unfinished"/>
+        <translation>Deshabilitar sólo en esta página</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="153"/>
         <source>Blocked Popup Windows</source>
-        <translation type="unfinished"/>
+        <translation>Bloquear ventanas flotantes</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="158"/>
         <location filename="../src/adblock/adblockicon.cpp" line="175"/>
         <source>%1 with (%2)</source>
-        <translation type="unfinished"/>
+        <translation>%1 con (%2)</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="169"/>
         <source>No content blocked</source>
-        <translation type="unfinished"/>
+        <translation>No hay contenido bloqueado</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="172"/>
@@ -232,7 +232,7 @@
     <message>
         <location filename="../src/adblock/adblockmanager.cpp" line="277"/>
         <source>EasyList</source>
-        <translation type="unfinished"/>
+        <translation>EasyList</translation>
     </message>
 </context>
 <context>
@@ -240,7 +240,7 @@
     <message>
         <location filename="../src/adblock/adblocksubscription.cpp" line="190"/>
         <source>Cannot load subscription!</source>
-        <translation type="unfinished"/>
+        <translation>¡No se pudo leer la subscripción!</translation>
     </message>
 </context>
 <context>
@@ -248,22 +248,22 @@
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="97"/>
         <source>Add Rule</source>
-        <translation type="unfinished"/>
+        <translation>Añadir regla</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="99"/>
         <source>Remove Rule</source>
-        <translation type="unfinished"/>
+        <translation>Eliminar regla</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="160"/>
         <source>Add Custom Rule</source>
-        <translation type="unfinished"/>
+        <translation>Añadir regla personalizada</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="160"/>
         <source>Please write your rule here:</source>
-        <translation type="unfinished"/>
+        <translation>Por favor escriba su regla aquí:</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="198"/>
@@ -1681,12 +1681,12 @@ Noticias antiguas podrían reaparecer.</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4699"/>
         <source>Show Last Day</source>
-        <translation type="unfinished"/>
+        <translation>Mostrar el último día</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4700"/>
         <source>Show Last 7 Days</source>
-        <translation type="unfinished"/>
+        <translation>Mostrar los 7 últimos días</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4702"/>
@@ -1825,6 +1825,16 @@ Noticias antiguas podrían reaparecer.</translation>
         <translation>&amp;Archivo</translation>
     </message>
     <message>
+        <location filename="../src/application/mainwindow.cpp" line="4818"/>
+        <source>Save page in database</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/application/mainwindow.cpp" line="4819"/>
+        <source>Save page in database instead of news description</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../src/application/mainwindow.cpp" line="159"/>
         <source>Saving data...</source>
         <translation type="unfinished"/>
@@ -1832,7 +1842,7 @@ Noticias antiguas podrían reaparecer.</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2483"/>
         <source>Confirm Delete</source>
-        <translation type="unfinished"/>
+        <translation>Confirmar borrado</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2484"/>
@@ -1842,12 +1852,12 @@ Noticias antiguas podrían reaparecer.</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4634"/>
         <source>Menu</source>
-        <translation type="unfinished"/>
+        <translation>Menú</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4656"/>
         <source>&amp;Create Backup...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Crear respaldo...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4657"/>
@@ -2167,16 +2177,6 @@ Noticias antiguas podrían reaparecer.</translation>
         <translation>Guardar página como...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4818"/>
-        <source>Save instead of description news</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/application/mainwindow.cpp" line="4819"/>
-        <source>Save page in DB instead of description news</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <location filename="../src/application/mainwindow.cpp" line="4821"/>
         <source>Show/Hide</source>
         <translation>Mostrar/Ocultar</translation>
@@ -2204,7 +2204,7 @@ Noticias antiguas podrían reaparecer.</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4827"/>
         <source>Status Bar</source>
-        <translation type="unfinished"/>
+        <translation>Barra de estado</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4829"/>
@@ -2557,7 +2557,7 @@ Noticias antiguas podrían reaparecer.</translation>
     <message>
         <location filename="../src/notifications/notificationsnewsitem.cpp" line="43"/>
         <source>Delete News</source>
-        <translation type="unfinished"/>
+        <translation>Borrar noticias</translation>
     </message>
 </context>
 <context>
@@ -2717,12 +2717,12 @@ Noticias antiguas podrían reaparecer.</translation>
     <message>
         <location filename="../src/notifications/notificationswidget.cpp" line="99"/>
         <source>Previous Page</source>
-        <translation type="unfinished"/>
+        <translation>Página anterior</translation>
     </message>
     <message>
         <location filename="../src/notifications/notificationswidget.cpp" line="104"/>
         <source>Next Page</source>
-        <translation type="unfinished"/>
+        <translation>Página siguiente</translation>
     </message>
     <message>
         <location filename="../src/notifications/notificationswidget.cpp" line="146"/>
@@ -2848,7 +2848,7 @@ Noticias antiguas podrían reaparecer.</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="295"/>
         <source>Show close button on tab</source>
-        <translation type="unfinished"/>
+        <translation>Mostrar botón de cierre en pestaña</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="297"/>
@@ -2857,7 +2857,7 @@ Noticias antiguas podrían reaparecer.</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="298"/>
-        <source>Allow loading page with statistics of using application</source>
+        <source>Help improve QuiteRSS by sending usage information</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2984,17 +2984,17 @@ Noticias antiguas podrían reaparecer.</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="474"/>
         <source>Request timeout:</source>
-        <translation type="unfinished"/>
+        <translation>Tiempo de espera:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="476"/>
         <source>Number of requests:</source>
-        <translation type="unfinished"/>
+        <translation>Número de solicitudes</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="478"/>
         <source>Number of retries:</source>
-        <translation type="unfinished"/>
+        <translation>Número de reintentos</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="481"/>
@@ -4072,9 +4072,9 @@ Noticias antiguas podrían reaparecer.</translation>
         <translation>No se puede iniciar programa externo %1</translation>
     </message>
     <message>
-        <location filename="../src/database/database.cpp" line="234"/>
+        <location filename="../src/database/database.cpp" line="265"/>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>Error</translation>
     </message>
 </context>
 <context>
@@ -4148,7 +4148,7 @@ Noticias antiguas podrían reaparecer.</translation>
     <message>
         <location filename="../src/webview/rssdetectionwidget.cpp" line="56"/>
         <source>Untitled feed</source>
-        <translation type="unfinished"/>
+        <translation>Fuente sin título</translation>
     </message>
 </context>
 <context>

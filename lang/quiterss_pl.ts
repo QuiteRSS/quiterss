@@ -46,7 +46,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="151"/>
         <source>Backup directory:</source>
-        <translation type="unfinished"/>
+        <translation>Katalog kopii zapasowej:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="154"/>
@@ -81,7 +81,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="178"/>
         <source>Information</source>
-        <translation>Informacja</translation>
+        <translation>Informacje</translation>
     </message>
 </context>
 <context>
@@ -920,17 +920,17 @@ Starsze wiadomości mogą pojawić się ponownie</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="32"/>
         <source>Display</source>
-        <translation type="unfinished"/>
+        <translation>Wyświetl</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="174"/>
         <source>Enable JavaScript</source>
-        <translation type="unfinished"/>
+        <translation>Włącz JavaScript</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="177"/>
         <source>Right-to-left layout</source>
-        <translation type="unfinished"/>
+        <translation>Układ od prawej do lewej</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="216"/>
@@ -1321,7 +1321,7 @@ Starsze wiadomości mogą pojawić się ponownie</translation>
         <location filename="../src/filterrulesdialog.h" line="112"/>
         <location filename="../src/filterrulesdialog.h" line="118"/>
         <source>Regular expressions</source>
-        <translation type="unfinished"/>
+        <translation>Wyrażenia regularne</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="120"/>
@@ -1825,6 +1825,16 @@ Starsze wiadomości mogą pojawić się ponownie</translation>
         <translation>&amp;Plik</translation>
     </message>
     <message>
+        <location filename="../src/application/mainwindow.cpp" line="4818"/>
+        <source>Save page in database</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/application/mainwindow.cpp" line="4819"/>
+        <source>Save page in database instead of news description</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../src/application/mainwindow.cpp" line="159"/>
         <source>Saving data...</source>
         <translation>Zapisywanie danych...</translation>
@@ -1832,12 +1842,12 @@ Starsze wiadomości mogą pojawić się ponownie</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2483"/>
         <source>Confirm Delete</source>
-        <translation type="unfinished"/>
+        <translation>Potwierdź usunięcie</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2484"/>
         <source>Are you sure to delete selected elements?</source>
-        <translation type="unfinished"/>
+        <translation>Czy na pewno usunąć wybrane elementy?</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4634"/>
@@ -1847,7 +1857,7 @@ Starsze wiadomości mogą pojawić się ponownie</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4656"/>
         <source>&amp;Create Backup...</source>
-        <translation type="unfinished"/>
+        <translation>Wykonaj &amp;Kopię zapasową...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4657"/>
@@ -2167,16 +2177,6 @@ Starsze wiadomości mogą pojawić się ponownie</translation>
         <translation>Zapisz stronę jako...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4818"/>
-        <source>Save instead of description news</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/application/mainwindow.cpp" line="4819"/>
-        <source>Save page in DB instead of description news</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <location filename="../src/application/mainwindow.cpp" line="4821"/>
         <source>Show/Hide</source>
         <translation>Pokaż/Ukryj</translation>
@@ -2204,7 +2204,7 @@ Starsze wiadomości mogą pojawić się ponownie</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4827"/>
         <source>Status Bar</source>
-        <translation type="unfinished"/>
+        <translation>Pasek stanu</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4829"/>
@@ -2398,7 +2398,7 @@ Starsze wiadomości mogą pojawić się ponownie</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="7664"/>
         <source>Choose Directory</source>
-        <translation type="unfinished"/>
+        <translation>Wybierz katalog</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.h" line="101"/>
@@ -2857,7 +2857,7 @@ Starsze wiadomości mogą pojawić się ponownie</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="298"/>
-        <source>Allow loading page with statistics of using application</source>
+        <source>Help improve QuiteRSS by sending usage information</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3312,7 +3312,7 @@ Starsze wiadomości mogą pojawić się ponownie</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="874"/>
         <source>Style sheet for news:</source>
-        <translation type="unfinished"/>
+        <translation>Arkusz stylów dla wiadomości:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="882"/>
@@ -4072,7 +4072,7 @@ Starsze wiadomości mogą pojawić się ponownie</translation>
         <translation>Nie można uruchomić zewnętrznego programu! % 1</translation>
     </message>
     <message>
-        <location filename="../src/database/database.cpp" line="234"/>
+        <location filename="../src/database/database.cpp" line="265"/>
         <source>Error</source>
         <translation>Błąd</translation>
     </message>
@@ -4179,27 +4179,27 @@ Starsze wiadomości mogą pojawić się ponownie</translation>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="556"/>
         <source>Error opening database</source>
-        <translation type="unfinished"/>
+        <translation>Błąd otwierania bazy danych</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="567"/>
         <source>Error closing database</source>
-        <translation type="unfinished"/>
+        <translation>Błąd zamykania bazy danych</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="587"/>
         <source>Unable to begin transaction</source>
-        <translation type="unfinished"/>
+        <translation>Nie można rozpocząć transakcji</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="602"/>
         <source>Unable to commit transaction</source>
-        <translation type="unfinished"/>
+        <translation>Nie można zatwierdzić transakcji</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="617"/>
         <source>Unable to rollback transaction</source>
-        <translation type="unfinished"/>
+        <translation>Nie można wycofać transakcji</translation>
     </message>
 </context>
 <context>
@@ -4209,37 +4209,37 @@ Starsze wiadomości mogą pojawić się ponownie</translation>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="278"/>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="286"/>
         <source>Unable to fetch row</source>
-        <translation type="unfinished"/>
+        <translation>Nie można pobrać wiersza</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="216"/>
         <source>No query</source>
-        <translation type="unfinished"/>
+        <translation>Brak zapytania</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="350"/>
         <source>Unable to execute statement</source>
-        <translation type="unfinished"/>
+        <translation>Nie można wykonać wyrażenia</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="355"/>
         <source>Unable to execute multiple statements at a time</source>
-        <translation type="unfinished"/>
+        <translation>Nie można wykonać wielu wyrażeń naraz</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="375"/>
         <source>Unable to reset statement</source>
-        <translation type="unfinished"/>
+        <translation>Nie można zresetować wyrażenia</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="420"/>
         <source>Unable to bind parameters</source>
-        <translation type="unfinished"/>
+        <translation>Nie można powiązać parametrów</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="427"/>
         <source>Parameter count mismatch</source>
-        <translation type="unfinished"/>
+        <translation>Niewłaściwa liczba parametrów</translation>
     </message>
 </context>
 <context>

@@ -1825,6 +1825,16 @@ adlı dosya bulunamadı!</translation>
         <translation>&amp;Dosya</translation>
     </message>
     <message>
+        <location filename="../src/application/mainwindow.cpp" line="4818"/>
+        <source>Save page in database</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/application/mainwindow.cpp" line="4819"/>
+        <source>Save page in database instead of news description</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../src/application/mainwindow.cpp" line="159"/>
         <source>Saving data...</source>
         <translation type="unfinished"/>
@@ -2165,16 +2175,6 @@ adlı dosya bulunamadı!</translation>
         <location filename="../src/application/mainwindow.cpp" line="4817"/>
         <source>Save Page As...</source>
         <translation>Sayfayı Farklı Kaydet...</translation>
-    </message>
-    <message>
-        <location filename="../src/application/mainwindow.cpp" line="4818"/>
-        <source>Save instead of description news</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/application/mainwindow.cpp" line="4819"/>
-        <source>Save page in DB instead of description news</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4821"/>
@@ -2857,7 +2857,7 @@ adlı dosya bulunamadı!</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="298"/>
-        <source>Allow loading page with statistics of using application</source>
+        <source>Help improve QuiteRSS by sending usage information</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -4063,7 +4063,7 @@ adlı dosya bulunamadı!</translation>
         <translation>Dışsal program başlatılamıyor! %1</translation>
     </message>
     <message>
-        <location filename="../src/database/database.cpp" line="234"/>
+        <location filename="../src/database/database.cpp" line="265"/>
         <source>Error</source>
         <translation type="unfinished"/>
     </message>

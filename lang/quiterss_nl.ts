@@ -46,7 +46,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="151"/>
         <source>Backup directory:</source>
-        <translation type="unfinished"/>
+        <translation>Backup map:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="154"/>
@@ -734,7 +734,7 @@ Oud nieuws kan opnieuw verschijnen</translation>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="374"/>
         <source>Copy Download Link</source>
-        <translation>Copieer Download link</translation>
+        <translation>Kopieer Download link</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="376"/>
@@ -920,17 +920,17 @@ werd niet gevonden</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="32"/>
         <source>Display</source>
-        <translation type="unfinished"/>
+        <translation>Toon</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="174"/>
         <source>Enable JavaScript</source>
-        <translation type="unfinished"/>
+        <translation>Javascript inschakelen</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="177"/>
         <source>Right-to-left layout</source>
-        <translation type="unfinished"/>
+        <translation>Layout van rechts naar links </translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="216"/>
@@ -1321,7 +1321,7 @@ werd niet gevonden</translation>
         <location filename="../src/filterrulesdialog.h" line="112"/>
         <location filename="../src/filterrulesdialog.h" line="118"/>
         <source>Regular expressions</source>
-        <translation type="unfinished"/>
+        <translation>Reguliere expressies</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="120"/>
@@ -1825,6 +1825,16 @@ werd niet gevonden</translation>
         <translation>&amp;Bestand</translation>
     </message>
     <message>
+        <location filename="../src/application/mainwindow.cpp" line="4818"/>
+        <source>Save page in database</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/application/mainwindow.cpp" line="4819"/>
+        <source>Save page in database instead of news description</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../src/application/mainwindow.cpp" line="159"/>
         <source>Saving data...</source>
         <translation>Het opslaan van gegevens...</translation>
@@ -1832,12 +1842,12 @@ werd niet gevonden</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2483"/>
         <source>Confirm Delete</source>
-        <translation type="unfinished"/>
+        <translation>Bevestig verwijderen</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2484"/>
         <source>Are you sure to delete selected elements?</source>
-        <translation type="unfinished"/>
+        <translation>Weet u zeker dat u de geselecteerde elementen wilt verwijderen?</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4634"/>
@@ -1847,7 +1857,7 @@ werd niet gevonden</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4656"/>
         <source>&amp;Create Backup...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Backup maken...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4657"/>
@@ -2167,16 +2177,6 @@ werd niet gevonden</translation>
         <translation>Pagina Opslaan Als...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4818"/>
-        <source>Save instead of description news</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/application/mainwindow.cpp" line="4819"/>
-        <source>Save page in DB instead of description news</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <location filename="../src/application/mainwindow.cpp" line="4821"/>
         <source>Show/Hide</source>
         <translation>Toon/Verberg</translation>
@@ -2204,7 +2204,7 @@ werd niet gevonden</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4827"/>
         <source>Status Bar</source>
-        <translation type="unfinished"/>
+        <translation>Statusbalk</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4829"/>
@@ -2398,7 +2398,7 @@ werd niet gevonden</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="7664"/>
         <source>Choose Directory</source>
-        <translation type="unfinished"/>
+        <translation>Kies map</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.h" line="101"/>
@@ -2605,12 +2605,12 @@ werd niet gevonden</translation>
     <message>
         <location filename="../src/newstabwidget.cpp" line="570"/>
         <source>Copy Link</source>
-        <translation>Copieer link</translation>
+        <translation>Kopieer link</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="571"/>
         <source>Copy</source>
-        <translation>Copieer</translation>
+        <translation>Kopieer</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="572"/>
@@ -2635,12 +2635,12 @@ werd niet gevonden</translation>
     <message>
         <location filename="../src/newstabwidget.cpp" line="576"/>
         <source>Copy Image</source>
-        <translation>Copieer Afbeelding</translation>
+        <translation>Kopieer Afbeelding</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="578"/>
         <source>Copy Image Address</source>
-        <translation>Copieer Afbeelding Adres</translation>
+        <translation>Kopieer Afbeelding Adres</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="588"/>
@@ -2857,7 +2857,7 @@ werd niet gevonden</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="298"/>
-        <source>Allow loading page with statistics of using application</source>
+        <source>Help improve QuiteRSS by sending usage information</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3312,7 +3312,7 @@ werd niet gevonden</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="874"/>
         <source>Style sheet for news:</source>
-        <translation type="unfinished"/>
+        <translation>Bladstijl voor nieuws:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="882"/>
@@ -4033,7 +4033,7 @@ werd niet gevonden</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4885"/>
         <source>&amp;Copy</source>
-        <translation>&amp;Copieer</translation>
+        <translation>&amp;Kopieer</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4886"/>
@@ -4072,7 +4072,7 @@ werd niet gevonden</translation>
         <translation>Kan externe programma niet starten! %1</translation>
     </message>
     <message>
-        <location filename="../src/database/database.cpp" line="234"/>
+        <location filename="../src/database/database.cpp" line="265"/>
         <source>Error</source>
         <translation>Fout</translation>
     </message>
@@ -4097,7 +4097,7 @@ werd niet gevonden</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4893"/>
         <source>&amp;Copy</source>
-        <translation>&amp;Copieer</translation>
+        <translation>&amp;Kopieer</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4894"/>
@@ -4117,7 +4117,7 @@ werd niet gevonden</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4897"/>
         <source>Copy &amp;Link Location</source>
-        <translation>Copieer &amp;Link locatie</translation>
+        <translation>Kopieer &amp;Link locatie</translation>
     </message>
 </context>
 <context>
@@ -4179,27 +4179,27 @@ werd niet gevonden</translation>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="556"/>
         <source>Error opening database</source>
-        <translation type="unfinished"/>
+        <translation>Fout bij het openen databank</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="567"/>
         <source>Error closing database</source>
-        <translation type="unfinished"/>
+        <translation>Fout bij het sluiten databank</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="587"/>
         <source>Unable to begin transaction</source>
-        <translation type="unfinished"/>
+        <translation>Kan de transactie niet starten</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="602"/>
         <source>Unable to commit transaction</source>
-        <translation type="unfinished"/>
+        <translation>Kan de transactie niet bevestigen</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="617"/>
         <source>Unable to rollback transaction</source>
-        <translation type="unfinished"/>
+        <translation>Kan de transactie niet terugdraaien</translation>
     </message>
 </context>
 <context>
@@ -4209,37 +4209,37 @@ werd niet gevonden</translation>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="278"/>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="286"/>
         <source>Unable to fetch row</source>
-        <translation type="unfinished"/>
+        <translation>Kan regel niet ophalen</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="216"/>
         <source>No query</source>
-        <translation type="unfinished"/>
+        <translation>Geen vraag</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="350"/>
         <source>Unable to execute statement</source>
-        <translation type="unfinished"/>
+        <translation>Kan de instructie niet uitvoeren</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="355"/>
         <source>Unable to execute multiple statements at a time</source>
-        <translation type="unfinished"/>
+        <translation>Kan meerdere instructies niet tegelijk uitvoeren</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="375"/>
         <source>Unable to reset statement</source>
-        <translation type="unfinished"/>
+        <translation>Kan de instructie niet resetten</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="420"/>
         <source>Unable to bind parameters</source>
-        <translation type="unfinished"/>
+        <translation>Niet in staat om parameters te binden</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="427"/>
         <source>Parameter count mismatch</source>
-        <translation type="unfinished"/>
+        <translation>Aantal parameters klopt niet</translation>
     </message>
 </context>
 <context>
