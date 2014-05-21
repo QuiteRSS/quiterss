@@ -607,11 +607,11 @@ void NewsTabWidget::setAutoLoadImages(bool apply)
 
   if (autoLoadImages_) {
     mainWindow_->autoLoadImagesToggle_->setText(tr("Load Images"));
-    mainWindow_->autoLoadImagesToggle_->setToolTip(tr("Auto Load Images to News View"));
+    mainWindow_->autoLoadImagesToggle_->setToolTip(tr("Auto Load Images in News View"));
     mainWindow_->autoLoadImagesToggle_->setIcon(QIcon(":/images/imagesOn"));
   } else {
-    mainWindow_->autoLoadImagesToggle_->setText(tr("No Load Images"));
-    mainWindow_->autoLoadImagesToggle_->setToolTip(tr("No Load Images to News View"));
+    mainWindow_->autoLoadImagesToggle_->setText(tr("Don't Load Images"));
+    mainWindow_->autoLoadImagesToggle_->setToolTip(tr("Don't Load Images in News View"));
     mainWindow_->autoLoadImagesToggle_->setIcon(QIcon(":/images/imagesOff"));
   }
 

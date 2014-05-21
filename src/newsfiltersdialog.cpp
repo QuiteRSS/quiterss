@@ -43,7 +43,7 @@ NewsFiltersDialog::NewsFiltersDialog(QWidget *parent)
 #endif
 
   QStringList treeItem;
-  treeItem << "Id" << tr("Name Filter") << tr("Feeds") << "Num";
+  treeItem << "Id" << tr("Filter Name") << tr("Feeds") << "Num";
   filtersTree_->setHeaderLabels(treeItem);
 
   QSqlQuery q;
@@ -257,7 +257,7 @@ void NewsFiltersDialog::deleteFilter()
   QMessageBox msgBox;
   msgBox.setIcon(QMessageBox::Question);
   msgBox.setWindowTitle(tr("Delete Filter"));
-  msgBox.setText(QString(tr("Are you sure to delete the filter '%1'?")).
+  msgBox.setText(QString(tr("Are you sure you want to delete the filter '%1'?")).
                  arg(filtersTree_->currentItem()->text(1)));
   msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
   msgBox.setDefaultButton(QMessageBox::No);

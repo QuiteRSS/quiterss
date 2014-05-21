@@ -406,7 +406,7 @@ void NewsHeader::retranslateStrings()
   model_->setHeaderData(model_->fieldIndex("read"), Qt::Horizontal, tr("Read"));
   model_->setHeaderData(model_->fieldIndex("starred"), Qt::Horizontal, tr("Star"));
   model_->setHeaderData(model_->fieldIndex("label"), Qt::Horizontal, tr("Label"));
-  model_->setHeaderData(model_->fieldIndex("rights"), Qt::Horizontal, tr("Title Feed"));
+  model_->setHeaderData(model_->fieldIndex("rights"), Qt::Horizontal, tr("Feed Title"));
   model_->setHeaderData(model_->fieldIndex("link_href"), Qt::Horizontal, tr("Link"));
 
   createMenu();

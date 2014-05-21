@@ -4706,7 +4706,7 @@ void MainWindow::retranslateStrings()
   reportProblemAct_->setText(tr("Report a Problem..."));
 
   openDescriptionNewsAct_->setText(tr("Open News"));
-  openDescriptionNewsAct_->setToolTip(tr("Open Description News"));
+  openDescriptionNewsAct_->setToolTip(tr("Open News Description"));
   openInBrowserAct_->setText(tr("Open in Browser"));
   openInExternalBrowserAct_->setText(tr("Open in External Browser"));
   openInExternalBrowserAct_->setToolTip(tr("Open News in External Browser"));
@@ -4723,7 +4723,7 @@ void MainWindow::retranslateStrings()
   restoreNewsAct_->setText(tr("Restore"));
   restoreNewsAct_->setToolTip(tr("Restore News"));
   copyLinkAct_->setText(tr("Copy Link"));
-  copyLinkAct_->setToolTip(tr("Copy Link News"));
+  copyLinkAct_->setToolTip(tr("Copy News Link"));
 
   restoreLastNewsAct_->setText(tr("Restore last deleted news"));
 
@@ -4787,13 +4787,12 @@ void MainWindow::retranslateStrings()
   feedsWidgetVisibleAct_->setText(tr("Show/Hide Tree Feeds"));
 
   placeToTrayAct_->setText(tr("Minimize to Tray"));
-  placeToTrayAct_->setToolTip(
-        tr("Minimize Application to Tray"));
+  placeToTrayAct_->setToolTip(tr("Minimize Application to Tray"));
 
   feedsColumnsMenu_->setTitle(tr("Columns"));
-  showUnreadCount_->setText(tr("Count News Unread"));
-  showUndeleteCount_->setText(tr("Count News All"));
-  showLastUpdated_->setText(tr("Last Updated"));
+  showUnreadCount_->setText(tr("Count Unread News"));
+  showUndeleteCount_->setText(tr("Count All News"));
+  showLastUpdated_->setText(tr("Last Update"));
 
   indentationFeedsTreeAct_->setText(tr("Show Indentation"));
 
@@ -4809,9 +4808,9 @@ void MainWindow::retranslateStrings()
   zoomTo100Act_->setToolTip(tr("Reset zoom in browser"));
 
   printAct_->setText(tr("Print..."));
-  printAct_->setToolTip(tr("Print Web page"));
+  printAct_->setToolTip(tr("Print Web Page"));
   printPreviewAct_->setText(tr("Print Preview..."));
-  printPreviewAct_->setToolTip(tr("Preview Web page"));
+  printPreviewAct_->setToolTip(tr("Preview Web Page"));
 
   savePageAsAct_->setText(tr("Save As..."));
   savePageAsAct_->setToolTip(tr("Save Page As..."));

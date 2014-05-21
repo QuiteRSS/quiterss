@@ -1606,7 +1606,7 @@ void OptionsDialog::createFontsColorsWidget()
   treeItem << tr("Feed with new news");
   colorsTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
-  treeItem << tr("Count of news unread in feeds tree");
+  treeItem << tr("Count of unread news in feeds tree");
   colorsTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
   treeItem << tr("Text color of new news");
@@ -1998,7 +1998,7 @@ void OptionsDialog::loadActionShortcut(QList<QAction *> actions, QStringList *li
         }
       } else if (i == 1) {
         if (pAction->objectName() == "autoLoadImagesToggle") {
-          item->setText(tr("Auto load images to news view"));
+          item->setText(tr("Auto load images in news view"));
         }
       }
       if (i >= 0 && i <= 2) {
