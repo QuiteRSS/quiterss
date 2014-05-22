@@ -1830,6 +1830,11 @@ Ancient news could reappear</source>
         <translation type="unfinished"/>
     </message>
     <message>
+        <location filename="../src/application/mainwindow.cpp" line="4808"/>
+        <source>Reset browser zoom</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../src/application/mainwindow.cpp" line="4811"/>
         <source>Print Web Page</source>
         <translation type="unfinished"/>
@@ -2150,11 +2155,6 @@ Ancient news could reappear</source>
         <location filename="../src/application/mainwindow.cpp" line="4807"/>
         <source>100%</source>
         <translation>100%</translation>
-    </message>
-    <message>
-        <location filename="../src/application/mainwindow.cpp" line="4808"/>
-        <source>Reset zoom in browser</source>
-        <translation>إعادة ضبط التقريب في المتصفح</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4810"/>
@@ -2843,11 +2843,6 @@ Ancient news could reappear</source>
         <translation>اخفاء شجرة الحقول عند فتح تبويبات</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="292"/>
-        <source>Show feeds tree toggle at edge of window</source>
-        <translation>اظهار شجره تبديل الحقول عند طرف النافذة</translation>
-    </message>
-    <message>
         <location filename="../src/optionsdialog.cpp" line="293"/>
         <source>Show default rss-icon instead of favourite one</source>
         <translation>عرض ايقونة rss الافتراضية بدلا من المفضلة</translation>
@@ -2937,11 +2932,6 @@ Ancient news could reappear</source>
         <location filename="../src/optionsdialog.cpp" line="381"/>
         <source>Single click instead of double click for show window</source>
         <translation>نقرة واحدة بدلا من النقر المزدوج لعرض النافذة</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="382"/>
-        <source>Clear status new on minimize to tray</source>
-        <translation>مسح جديد الحالة عند التصغير</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="383"/>
@@ -3312,11 +3302,6 @@ Ancient news could reappear</source>
         <translation>اظهار اخر 7 ايام</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="847"/>
-        <source>Main news filter:</source>
-        <translation>مرشحات الاخبار الرئيسية</translation>
-    </message>
-    <message>
         <location filename="../src/optionsdialog.cpp" line="865"/>
         <source>Opening feed:</source>
         <translation>فتح الحقل:</translation>
@@ -3355,11 +3340,6 @@ Ancient news could reappear</source>
         <location filename="../src/optionsdialog.cpp" line="893"/>
         <source>Mark displayed news as read on minimize</source>
         <translation>تعليم الخبر المعروض ب مقروء عند التصغير</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="896"/>
-        <source>Show news&apos; description instead of loading web page</source>
-        <translation>عرض وصف&apos; الخبر بدلا من تحميل صفحة الانترنت</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="898"/>
@@ -3733,6 +3713,26 @@ Ancient news could reappear</source>
         <location filename="../src/optionsdialog.cpp" line="1612"/>
         <source>Text color of new news</source>
         <translation>لون النص للخبر الجديد</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="292"/>
+        <source>Show feeds tree toggle</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="382"/>
+        <source>Clear new status when minimize to tray</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="847"/>
+        <source>Default news filter:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="896"/>
+        <source>Show news description instead of loading web page</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1615"/>

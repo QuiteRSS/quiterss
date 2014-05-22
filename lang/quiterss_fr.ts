@@ -1125,17 +1125,17 @@ Les anciens articles pourraient réapparaitre</translation>
     <message>
         <location filename="../src/findtext.cpp" line="105"/>
         <source>Find in Titles</source>
-        <translation type="unfinished"/>
+        <translation>Chercher dans le titre</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="106"/>
         <source>Find in Authors</source>
-        <translation type="unfinished"/>
+        <translation>Chercher dans les auteurs</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="107"/>
         <source>Find in Categories</source>
-        <translation type="unfinished"/>
+        <translation>Cacher dans les catégories</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="108"/>
@@ -1817,27 +1817,32 @@ Les anciens articles pourraient réapparaitre</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4793"/>
         <source>Count Unread News</source>
-        <translation type="unfinished"/>
+        <translation>Compter les articles non lus</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4794"/>
         <source>Count All News</source>
-        <translation type="unfinished"/>
+        <translation>Compter tous les articles</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4795"/>
         <source>Last Update</source>
+        <translation>Dernière mise à jour</translation>
+    </message>
+    <message>
+        <location filename="../src/application/mainwindow.cpp" line="4808"/>
+        <source>Reset browser zoom</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4811"/>
         <source>Print Web Page</source>
-        <translation type="unfinished"/>
+        <translation>Imprimer la page web</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4813"/>
         <source>Preview Web Page</source>
-        <translation type="unfinished"/>
+        <translation>Aperçu de la page web</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4817"/>
@@ -1882,12 +1887,12 @@ Les anciens articles pourraient réapparaitre</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4709"/>
         <source>Open News Description</source>
-        <translation type="unfinished"/>
+        <translation>Ouvrir la description de l&apos;article</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4726"/>
         <source>Copy News Link</source>
-        <translation type="unfinished"/>
+        <translation>Copier le lien de l&apos;article</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4736"/>
@@ -2150,11 +2155,6 @@ Les anciens articles pourraient réapparaitre</translation>
         <location filename="../src/application/mainwindow.cpp" line="4807"/>
         <source>100%</source>
         <translation>100%</translation>
-    </message>
-    <message>
-        <location filename="../src/application/mainwindow.cpp" line="4808"/>
-        <source>Reset zoom in browser</source>
-        <translation>Réinitialiser le zoom dans le navigateur</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4810"/>
@@ -2446,7 +2446,7 @@ Les anciens articles pourraient réapparaitre</translation>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="46"/>
         <source>Filter Name</source>
-        <translation type="unfinished"/>
+        <translation>Nom du filtre</translation>
     </message>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="91"/>
@@ -2486,7 +2486,7 @@ Les anciens articles pourraient réapparaitre</translation>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="260"/>
         <source>Are you sure you want to delete the filter &apos;%1&apos;?</source>
-        <translation type="unfinished"/>
+        <translation>Êtes-vous sûr de vouloir supprimer le filtre « %1 » ?</translation>
     </message>
 </context>
 <context>
@@ -2539,7 +2539,7 @@ Les anciens articles pourraient réapparaitre</translation>
     <message>
         <location filename="../src/newsheader.cpp" line="409"/>
         <source>Feed Title</source>
-        <translation type="unfinished"/>
+        <translation>Titre du flux</translation>
     </message>
     <message>
         <location filename="../src/newsheader.cpp" line="410"/>
@@ -2671,17 +2671,17 @@ Les anciens articles pourraient réapparaitre</translation>
     <message>
         <location filename="../src/newstabwidget.cpp" line="610"/>
         <source>Auto Load Images in News View</source>
-        <translation type="unfinished"/>
+        <translation>Charger automatiquement les images dans les articles</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="613"/>
         <source>Don&apos;t Load Images</source>
-        <translation type="unfinished"/>
+        <translation>Ne pas charger les images</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="614"/>
         <source>Don&apos;t Load Images in News View</source>
-        <translation type="unfinished"/>
+        <translation>Ne pas charger les images dans les articles</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1398"/>
@@ -2843,11 +2843,6 @@ Les anciens articles pourraient réapparaitre</translation>
         <translation>Cacher l&apos;arborescence des flux lors de l&apos;ouverture des onglets</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="292"/>
-        <source>Show feeds tree toggle at edge of window</source>
-        <translation>Afficher l&apos;arbre des flux basculer au bord de la fenêtre</translation>
-    </message>
-    <message>
         <location filename="../src/optionsdialog.cpp" line="293"/>
         <source>Show default rss-icon instead of favourite one</source>
         <translation>Montrer l&apos;icône RSS par défaut au lieu du favori</translation>
@@ -2937,11 +2932,6 @@ Les anciens articles pourraient réapparaitre</translation>
         <location filename="../src/optionsdialog.cpp" line="381"/>
         <source>Single click instead of double click for show window</source>
         <translation>Clic simple au lieu de clic double pour montrer une fenêtre</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="382"/>
-        <source>Clear status new on minimize to tray</source>
-        <translation>Effacer l&apos;état « Nouveau » lors du passage à la boîte à miniatures</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="383"/>
@@ -3312,11 +3302,6 @@ Les anciens articles pourraient réapparaitre</translation>
         <translation>Afficher les 7 derniers jours</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="847"/>
-        <source>Main news filter:</source>
-        <translation>Filtre principal des articles :</translation>
-    </message>
-    <message>
         <location filename="../src/optionsdialog.cpp" line="865"/>
         <source>Opening feed:</source>
         <translation>Ouvrir flux :</translation>
@@ -3355,11 +3340,6 @@ Les anciens articles pourraient réapparaitre</translation>
         <location filename="../src/optionsdialog.cpp" line="893"/>
         <source>Mark displayed news as read on minimize</source>
         <translation>Marquer les articles affichés comme lus lors du passage à la boîte à miniatures</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="896"/>
-        <source>Show news&apos; description instead of loading web page</source>
-        <translation>Montrer la description des articles au lieu de charger la page web</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="898"/>
@@ -3722,17 +3702,37 @@ Les anciens articles pourraient réapparaitre</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1609"/>
         <source>Count of unread news in feeds tree</source>
-        <translation type="unfinished"/>
+        <translation>Compter les nouvelles non lues dans l&apos;arbre des flux</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2001"/>
         <source>Auto load images in news view</source>
-        <translation type="unfinished"/>
+        <translation>Charger automatiquement les images dans les articles</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1612"/>
         <source>Text color of new news</source>
         <translation>Couleur texte des nouveaux articles</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="292"/>
+        <source>Show feeds tree toggle</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="382"/>
+        <source>Clear new status when minimize to tray</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="847"/>
+        <source>Default news filter:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="896"/>
+        <source>Show news description instead of loading web page</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1615"/>

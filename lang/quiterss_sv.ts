@@ -1125,17 +1125,17 @@ kunde inte hittas!</translation>
     <message>
         <location filename="../src/findtext.cpp" line="105"/>
         <source>Find in Titles</source>
-        <translation type="unfinished"/>
+        <translation>Sök bland titlar</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="106"/>
         <source>Find in Authors</source>
-        <translation type="unfinished"/>
+        <translation>Sök bland författare</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="107"/>
         <source>Find in Categories</source>
-        <translation type="unfinished"/>
+        <translation>Sök i kategorier</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="108"/>
@@ -1817,27 +1817,32 @@ kunde inte hittas!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4793"/>
         <source>Count Unread News</source>
-        <translation type="unfinished"/>
+        <translation>Antal olästa nyheter</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4794"/>
         <source>Count All News</source>
-        <translation type="unfinished"/>
+        <translation>Antal nyheter</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4795"/>
         <source>Last Update</source>
+        <translation>Senast uppdaterad</translation>
+    </message>
+    <message>
+        <location filename="../src/application/mainwindow.cpp" line="4808"/>
+        <source>Reset browser zoom</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4811"/>
         <source>Print Web Page</source>
-        <translation type="unfinished"/>
+        <translation>Skriv ut webbsida</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4813"/>
         <source>Preview Web Page</source>
-        <translation type="unfinished"/>
+        <translation>Förhandsgranska webbsida</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4817"/>
@@ -1882,12 +1887,12 @@ kunde inte hittas!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4709"/>
         <source>Open News Description</source>
-        <translation type="unfinished"/>
+        <translation>Öppna nyhetsbeskrivning</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4726"/>
         <source>Copy News Link</source>
-        <translation type="unfinished"/>
+        <translation>Kopiera nyhetslänk</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4736"/>
@@ -2150,11 +2155,6 @@ kunde inte hittas!</translation>
         <location filename="../src/application/mainwindow.cpp" line="4807"/>
         <source>100%</source>
         <translation>100%</translation>
-    </message>
-    <message>
-        <location filename="../src/application/mainwindow.cpp" line="4808"/>
-        <source>Reset zoom in browser</source>
-        <translation>Återställ zoom-nivå i webbläsare</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4810"/>
@@ -2446,7 +2446,7 @@ kunde inte hittas!</translation>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="46"/>
         <source>Filter Name</source>
-        <translation type="unfinished"/>
+        <translation>Filternamn</translation>
     </message>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="91"/>
@@ -2486,7 +2486,7 @@ kunde inte hittas!</translation>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="260"/>
         <source>Are you sure you want to delete the filter &apos;%1&apos;?</source>
-        <translation type="unfinished"/>
+        <translation>Vill du verkligen ta bort filtret &apos;%1&apos;?</translation>
     </message>
 </context>
 <context>
@@ -2539,7 +2539,7 @@ kunde inte hittas!</translation>
     <message>
         <location filename="../src/newsheader.cpp" line="409"/>
         <source>Feed Title</source>
-        <translation type="unfinished"/>
+        <translation>Flödestitel</translation>
     </message>
     <message>
         <location filename="../src/newsheader.cpp" line="410"/>
@@ -2671,17 +2671,17 @@ kunde inte hittas!</translation>
     <message>
         <location filename="../src/newstabwidget.cpp" line="610"/>
         <source>Auto Load Images in News View</source>
-        <translation type="unfinished"/>
+        <translation>Läs in bilder i nyhetsvyn automatiskt</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="613"/>
         <source>Don&apos;t Load Images</source>
-        <translation type="unfinished"/>
+        <translation>Läs inte in bilder</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="614"/>
         <source>Don&apos;t Load Images in News View</source>
-        <translation type="unfinished"/>
+        <translation>Läs inte in bilder i nyhetsvyn</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1398"/>
@@ -2843,11 +2843,6 @@ kunde inte hittas!</translation>
         <translation>Dölj flödesträdet när flikar öppnas</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="292"/>
-        <source>Show feeds tree toggle at edge of window</source>
-        <translation>Visa flödesväxlare i kanten på fönstret</translation>
-    </message>
-    <message>
         <location filename="../src/optionsdialog.cpp" line="293"/>
         <source>Show default rss-icon instead of favourite one</source>
         <translation>Visa standard rss-ikon istället för favikon</translation>
@@ -2937,11 +2932,6 @@ kunde inte hittas!</translation>
         <location filename="../src/optionsdialog.cpp" line="381"/>
         <source>Single click instead of double click for show window</source>
         <translation>Öppna programfönstret med enkelklick</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="382"/>
-        <source>Clear status new on minimize to tray</source>
-        <translation>Nollställ &apos;nya&apos; vid minimering till meddelandefältet</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="383"/>
@@ -3312,11 +3302,6 @@ kunde inte hittas!</translation>
         <translation>Visa 7 senaste dagarna</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="847"/>
-        <source>Main news filter:</source>
-        <translation>Primärt nyhetsfilter:</translation>
-    </message>
-    <message>
         <location filename="../src/optionsdialog.cpp" line="865"/>
         <source>Opening feed:</source>
         <translation>Öppna flöde:</translation>
@@ -3355,11 +3340,6 @@ kunde inte hittas!</translation>
         <location filename="../src/optionsdialog.cpp" line="893"/>
         <source>Mark displayed news as read on minimize</source>
         <translation>markera nyheter som lästa vid minimering</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="896"/>
-        <source>Show news&apos; description instead of loading web page</source>
-        <translation>Visa nyhetsbeskrivning istället för att läsa in webbsidan</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="898"/>
@@ -3722,17 +3702,37 @@ kunde inte hittas!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1609"/>
         <source>Count of unread news in feeds tree</source>
-        <translation type="unfinished"/>
+        <translation>Antal olästa nyheter i flödeslistan</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2001"/>
         <source>Auto load images in news view</source>
-        <translation type="unfinished"/>
+        <translation>Läs in bilder automatiskt i nyhetsvyn</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1612"/>
         <source>Text color of new news</source>
         <translation>Textfärg för nyheter</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="292"/>
+        <source>Show feeds tree toggle</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="382"/>
+        <source>Clear new status when minimize to tray</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="847"/>
+        <source>Default news filter:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="896"/>
+        <source>Show news description instead of loading web page</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1615"/>

@@ -1828,6 +1828,11 @@ Staré správy sa môžu znova objaviť</translation>
         <translation type="unfinished"/>
     </message>
     <message>
+        <location filename="../src/application/mainwindow.cpp" line="4808"/>
+        <source>Reset browser zoom</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../src/application/mainwindow.cpp" line="4811"/>
         <source>Print Web Page</source>
         <translation type="unfinished"/>
@@ -2148,11 +2153,6 @@ Staré správy sa môžu znova objaviť</translation>
         <location filename="../src/application/mainwindow.cpp" line="4807"/>
         <source>100%</source>
         <translation>100%</translation>
-    </message>
-    <message>
-        <location filename="../src/application/mainwindow.cpp" line="4808"/>
-        <source>Reset zoom in browser</source>
-        <translation>Zresetovať priblíženie v prehliadači</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4810"/>
@@ -2841,11 +2841,6 @@ Staré správy sa môžu znova objaviť</translation>
         <translation>Skryť strom kanálov pri otváraní kariet</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="292"/>
-        <source>Show feeds tree toggle at edge of window</source>
-        <translation>Zobraziť prepínanie stromu kanálov v rohu okna</translation>
-    </message>
-    <message>
         <location filename="../src/optionsdialog.cpp" line="293"/>
         <source>Show default rss-icon instead of favourite one</source>
         <translation>Zobraziť východziu RSS ikonku namiesto obľúbenej</translation>
@@ -2935,11 +2930,6 @@ Staré správy sa môžu znova objaviť</translation>
         <location filename="../src/optionsdialog.cpp" line="381"/>
         <source>Single click instead of double click for show window</source>
         <translation>Jedno kliknutie namiesto dvoch pre zobrazenie okna</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="382"/>
-        <source>Clear status new on minimize to tray</source>
-        <translation>Vynulovať počet nových noviniek pri minimalizovaní do tray lišty</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="383"/>
@@ -3310,11 +3300,6 @@ Staré správy sa môžu znova objaviť</translation>
         <translation>Zobraziť za posledných 7 dní</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="847"/>
-        <source>Main news filter:</source>
-        <translation>Hlavný filter noviniek:</translation>
-    </message>
-    <message>
         <location filename="../src/optionsdialog.cpp" line="865"/>
         <source>Opening feed:</source>
         <translation>Otvoriť kanál:</translation>
@@ -3353,11 +3338,6 @@ Staré správy sa môžu znova objaviť</translation>
         <location filename="../src/optionsdialog.cpp" line="893"/>
         <source>Mark displayed news as read on minimize</source>
         <translation>Označiť novinky ako prečítané pri minimalizácii okna</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="896"/>
-        <source>Show news&apos; description instead of loading web page</source>
-        <translation>Zobrazovať popis novinky namiesto načítania webstránky</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="898"/>
@@ -3731,6 +3711,26 @@ Staré správy sa môžu znova objaviť</translation>
         <location filename="../src/optionsdialog.cpp" line="1612"/>
         <source>Text color of new news</source>
         <translation>Farba textu nových noviniek</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="292"/>
+        <source>Show feeds tree toggle</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="382"/>
+        <source>Clear new status when minimize to tray</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="847"/>
+        <source>Default news filter:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="896"/>
+        <source>Show news description instead of loading web page</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1615"/>

@@ -1830,6 +1830,11 @@ Ancient news could reappear</source>
         <translation type="unfinished"/>
     </message>
     <message>
+        <location filename="../src/application/mainwindow.cpp" line="4808"/>
+        <source>Reset browser zoom</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../src/application/mainwindow.cpp" line="4811"/>
         <source>Print Web Page</source>
         <translation type="unfinished"/>
@@ -2150,11 +2155,6 @@ Ancient news could reappear</source>
         <location filename="../src/application/mainwindow.cpp" line="4807"/>
         <source>100%</source>
         <translation>100%</translation>
-    </message>
-    <message>
-        <location filename="../src/application/mainwindow.cpp" line="4808"/>
-        <source>Reset zoom in browser</source>
-        <translation>ブラウザー内のズームをリセットします</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4810"/>
@@ -2843,11 +2843,6 @@ Ancient news could reappear</source>
         <translation>タブを開いた時にフィードツリーを表示しない</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="292"/>
-        <source>Show feeds tree toggle at edge of window</source>
-        <translation>フィードツリーの表示をウィンドウの端で切り替える</translation>
-    </message>
-    <message>
         <location filename="../src/optionsdialog.cpp" line="293"/>
         <source>Show default rss-icon instead of favourite one</source>
         <translation>デフォルトの RSS アイコンではなくお気に入りのものを表示する</translation>
@@ -2937,11 +2932,6 @@ Ancient news could reappear</source>
         <location filename="../src/optionsdialog.cpp" line="381"/>
         <source>Single click instead of double click for show window</source>
         <translation>ダブルクリックではなくシングルクリックでウィンドウを表示する</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="382"/>
-        <source>Clear status new on minimize to tray</source>
-        <translation>トレイに最小化時にステータスをクリアする</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="383"/>
@@ -3312,11 +3302,6 @@ Ancient news could reappear</source>
         <translation>最新の 7 日分を表示</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="847"/>
-        <source>Main news filter:</source>
-        <translation>メインニュースフィルター:</translation>
-    </message>
-    <message>
         <location filename="../src/optionsdialog.cpp" line="865"/>
         <source>Opening feed:</source>
         <translation>フィードを開く時:</translation>
@@ -3355,11 +3340,6 @@ Ancient news could reappear</source>
         <location filename="../src/optionsdialog.cpp" line="893"/>
         <source>Mark displayed news as read on minimize</source>
         <translation>表示したニュースを最小化した時に既読にする</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="896"/>
-        <source>Show news&apos; description instead of loading web page</source>
-        <translation>ウェブページを読み込むのではなくニュースの説明を表示する</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="898"/>
@@ -3733,6 +3713,26 @@ Ancient news could reappear</source>
         <location filename="../src/optionsdialog.cpp" line="1612"/>
         <source>Text color of new news</source>
         <translation>新着ニュースの文字色</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="292"/>
+        <source>Show feeds tree toggle</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="382"/>
+        <source>Clear new status when minimize to tray</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="847"/>
+        <source>Default news filter:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="896"/>
+        <source>Show news description instead of loading web page</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1615"/>

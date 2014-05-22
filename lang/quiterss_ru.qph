@@ -2767,4 +2767,12 @@ Save?</source>
     <source>S&amp;how Menu Bar</source>
     <target>Показ&amp;ывать меню</target>
 </phrase>
+<phrase>
+    <source>Find in Authors</source>
+    <target>Найти в авторах</target>
+</phrase>
+<phrase>
+    <source>Find in Categories</source>
+    <target>Найти в категориях</target>
+</phrase>
 </QPH>
