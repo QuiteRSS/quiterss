@@ -46,7 +46,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="151"/>
         <source>Backup directory:</source>
-        <translation type="unfinished"/>
+        <translation>Folder copie de rezervă:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="154"/>
@@ -920,17 +920,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="32"/>
         <source>Display</source>
-        <translation type="unfinished"/>
+        <translation>Afişaj</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="174"/>
         <source>Enable JavaScript</source>
-        <translation type="unfinished"/>
+        <translation>Activare JavaScript</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="177"/>
         <source>Right-to-left layout</source>
-        <translation type="unfinished"/>
+        <translation>Aspect de la dreapta la stînga</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="216"/>
@@ -1124,18 +1124,18 @@ Ancient news could reappear</source>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="105"/>
-        <source>Find Title</source>
-        <translation>Caută titlu</translation>
+        <source>Find in Titles</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="106"/>
-        <source>Find Authors</source>
-        <translation>Caută autori</translation>
+        <source>Find in Authors</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="107"/>
-        <source>Find Category</source>
-        <translation>Caută categorii</translation>
+        <source>Find in Categories</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="108"/>
@@ -1321,7 +1321,7 @@ Ancient news could reappear</source>
         <location filename="../src/filterrulesdialog.h" line="112"/>
         <location filename="../src/filterrulesdialog.h" line="118"/>
         <source>Regular expressions</source>
-        <translation type="unfinished"/>
+        <translation>Expresii regulate</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="120"/>
@@ -1398,16 +1398,16 @@ Ancient news could reappear</source>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2146"/>
-        <location filename="../src/application/mainwindow.cpp" line="4839"/>
-        <location filename="../src/application/mainwindow.cpp" line="7004"/>
-        <location filename="../src/application/mainwindow.cpp" line="7026"/>
+        <location filename="../src/application/mainwindow.cpp" line="4838"/>
+        <location filename="../src/application/mainwindow.cpp" line="7003"/>
+        <location filename="../src/application/mainwindow.cpp" line="7025"/>
         <source>Hide Categories</source>
         <translation>Ascunde categorii</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2150"/>
-        <location filename="../src/application/mainwindow.cpp" line="4837"/>
-        <location filename="../src/application/mainwindow.cpp" line="7010"/>
+        <location filename="../src/application/mainwindow.cpp" line="4836"/>
+        <location filename="../src/application/mainwindow.cpp" line="7009"/>
         <source>Show Categories</source>
         <translation>Arată categorii</translation>
     </message>
@@ -1451,8 +1451,8 @@ Ancient news could reappear</source>
         <location filename="../src/application/mainwindow.cpp" line="2901"/>
         <location filename="../src/application/mainwindow.cpp" line="3988"/>
         <location filename="../src/application/mainwindow.cpp" line="4621"/>
-        <location filename="../src/application/mainwindow.cpp" line="6038"/>
-        <location filename="../src/application/mainwindow.cpp" line="6975"/>
+        <location filename="../src/application/mainwindow.cpp" line="6037"/>
+        <location filename="../src/application/mainwindow.cpp" line="6974"/>
         <source>Unread: %1</source>
         <translation>Necitite: %1</translation>
     </message>
@@ -1460,8 +1460,8 @@ Ancient news could reappear</source>
         <location filename="../src/application/mainwindow.cpp" line="2902"/>
         <location filename="../src/application/mainwindow.cpp" line="3989"/>
         <location filename="../src/application/mainwindow.cpp" line="4624"/>
-        <location filename="../src/application/mainwindow.cpp" line="6039"/>
-        <location filename="../src/application/mainwindow.cpp" line="6976"/>
+        <location filename="../src/application/mainwindow.cpp" line="6038"/>
+        <location filename="../src/application/mainwindow.cpp" line="6975"/>
         <source>All: %1</source>
         <translation>Toate: %1</translation>
     </message>
@@ -1474,13 +1474,13 @@ Ancient news could reappear</source>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4629"/>
-        <location filename="../src/application/mainwindow.cpp" line="5472"/>
+        <location filename="../src/application/mainwindow.cpp" line="5471"/>
         <source>New News: %1</source>
         <translation>Noutăţi noi: %1</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4631"/>
-        <location filename="../src/application/mainwindow.cpp" line="5474"/>
+        <location filename="../src/application/mainwindow.cpp" line="5473"/>
         <source>Unread News: %1</source>
         <translation>Noutăţi necitite: %1</translation>
     </message>
@@ -1594,9 +1594,9 @@ Ancient news could reappear</source>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4675"/>
-        <location filename="../src/application/mainwindow.cpp" line="7596"/>
-        <location filename="../src/application/mainwindow.cpp" line="7602"/>
-        <location filename="../src/application/mainwindow.cpp" line="7612"/>
+        <location filename="../src/application/mainwindow.cpp" line="7595"/>
+        <location filename="../src/application/mainwindow.cpp" line="7601"/>
+        <location filename="../src/application/mainwindow.cpp" line="7611"/>
         <source>Downloads</source>
         <translation>Descărcări</translation>
     </message>
@@ -1714,11 +1714,6 @@ Ancient news could reappear</source>
         <translation>Deschide noutăţi</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4709"/>
-        <source>Open Description News</source>
-        <translation>Deschidere descriere noutăţi</translation>
-    </message>
-    <message>
         <location filename="../src/application/mainwindow.cpp" line="4710"/>
         <source>Open in Browser</source>
         <translation>Deschide în browser</translation>
@@ -1794,11 +1789,6 @@ Ancient news could reappear</source>
         <translation>Copiază legătură</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4726"/>
-        <source>Copy Link News</source>
-        <translation>Copiază legătură noutăţi</translation>
-    </message>
-    <message>
         <location filename="../src/application/mainwindow.cpp" line="4728"/>
         <source>Restore last deleted news</source>
         <translation>Restaurare ultimele noutăţi şterse</translation>
@@ -1825,14 +1815,39 @@ Ancient news could reappear</source>
         <translation>&amp;Fişier</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4818"/>
-        <source>Save page in database</source>
+        <location filename="../src/application/mainwindow.cpp" line="4793"/>
+        <source>Count Unread News</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4819"/>
-        <source>Save page in database instead of news description</source>
+        <location filename="../src/application/mainwindow.cpp" line="4794"/>
+        <source>Count All News</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/application/mainwindow.cpp" line="4795"/>
+        <source>Last Update</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/application/mainwindow.cpp" line="4811"/>
+        <source>Print Web Page</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/application/mainwindow.cpp" line="4813"/>
+        <source>Preview Web Page</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/application/mainwindow.cpp" line="4817"/>
+        <source>Save page in database</source>
+        <translation>Salvează pagina în baza de date</translation>
+    </message>
+    <message>
+        <location filename="../src/application/mainwindow.cpp" line="4818"/>
+        <source>Save page in database instead of news description</source>
+        <translation>Salvează pagina în baza de date în loc de de descriere ştiri</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="159"/>
@@ -1842,27 +1857,37 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2483"/>
         <source>Confirm Delete</source>
-        <translation type="unfinished"/>
+        <translation>Confirmare ştergere</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2484"/>
         <source>Are you sure to delete selected elements?</source>
-        <translation type="unfinished"/>
+        <translation>Sigur doriţi ştergerea elementelor selectate&apos;?</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4634"/>
         <source>Menu</source>
-        <translation type="unfinished"/>
+        <translation>Meniu</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4656"/>
         <source>&amp;Create Backup...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Crează copie de rezervă...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4657"/>
         <source>S&amp;how Menu Bar</source>
         <translation>Arată bara de meniu</translation>
+    </message>
+    <message>
+        <location filename="../src/application/mainwindow.cpp" line="4709"/>
+        <source>Open News Description</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/application/mainwindow.cpp" line="4726"/>
+        <source>Copy News Link</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4736"/>
@@ -1896,7 +1921,7 @@ Ancient news could reappear</source>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4743"/>
-        <location filename="../src/application/mainwindow.cpp" line="4822"/>
+        <location filename="../src/application/mainwindow.cpp" line="4821"/>
         <source>Main Toolbar</source>
         <translation>Bară intrumente principală</translation>
     </message>
@@ -2076,329 +2101,304 @@ Ancient news could reappear</source>
         <translation>Minimizare în bară</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4791"/>
+        <location filename="../src/application/mainwindow.cpp" line="4790"/>
         <source>Minimize Application to Tray</source>
         <translation>Minimizare aplicaţie în bară</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4793"/>
+        <location filename="../src/application/mainwindow.cpp" line="4792"/>
         <source>Columns</source>
         <translation>Coloane</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4794"/>
-        <source>Count News Unread</source>
-        <translation>Numără noutăţi necitite</translation>
-    </message>
-    <message>
-        <location filename="../src/application/mainwindow.cpp" line="4795"/>
-        <source>Count News All</source>
-        <translation>Numără toate noutăţile</translation>
-    </message>
-    <message>
-        <location filename="../src/application/mainwindow.cpp" line="4796"/>
-        <source>Last Updated</source>
-        <translation>Ultimele actualizate</translation>
-    </message>
-    <message>
-        <location filename="../src/application/mainwindow.cpp" line="4798"/>
+        <location filename="../src/application/mainwindow.cpp" line="4797"/>
         <source>Show Indentation</source>
         <translation>Arată indentare</translation>
     </message>
     <message>
+        <location filename="../src/application/mainwindow.cpp" line="4799"/>
         <location filename="../src/application/mainwindow.cpp" line="4800"/>
-        <location filename="../src/application/mainwindow.cpp" line="4801"/>
         <source>Search Feed</source>
         <translation>Căutare fluxuri</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4803"/>
+        <location filename="../src/application/mainwindow.cpp" line="4802"/>
         <source>Zoom</source>
         <translation>Zoom</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4804"/>
+        <location filename="../src/application/mainwindow.cpp" line="4803"/>
         <source>Zoom In</source>
         <translation>Mărire</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4805"/>
+        <location filename="../src/application/mainwindow.cpp" line="4804"/>
         <source>Zoom in in browser</source>
         <translation>Mărire în browser</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4806"/>
+        <location filename="../src/application/mainwindow.cpp" line="4805"/>
         <source>Zoom Out</source>
         <translation>Micşorare</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4807"/>
+        <location filename="../src/application/mainwindow.cpp" line="4806"/>
         <source>Zoom out in browser</source>
         <translation>Micşorare în browser</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4808"/>
+        <location filename="../src/application/mainwindow.cpp" line="4807"/>
         <source>100%</source>
         <translation>100%</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4809"/>
+        <location filename="../src/application/mainwindow.cpp" line="4808"/>
         <source>Reset zoom in browser</source>
         <translation>Resetare zoom în browser</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4811"/>
+        <location filename="../src/application/mainwindow.cpp" line="4810"/>
         <source>Print...</source>
         <translation>Imprimare...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4812"/>
-        <source>Print Web page</source>
-        <translation>Imprimare pagină web</translation>
-    </message>
-    <message>
-        <location filename="../src/application/mainwindow.cpp" line="4813"/>
         <source>Print Preview...</source>
         <translation>Previzualizare imprimare...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4814"/>
-        <source>Preview Web page</source>
-        <translation>Previzualizare pagină web</translation>
-    </message>
-    <message>
-        <location filename="../src/application/mainwindow.cpp" line="4816"/>
+        <location filename="../src/application/mainwindow.cpp" line="4815"/>
         <source>Save As...</source>
         <translation>Salvează ca...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4817"/>
+        <location filename="../src/application/mainwindow.cpp" line="4816"/>
         <source>Save Page As...</source>
         <translation>Salvează pagină ca...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4821"/>
+        <location filename="../src/application/mainwindow.cpp" line="4820"/>
         <source>Show/Hide</source>
         <translation>Arată / Ascunde</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4823"/>
+        <location filename="../src/application/mainwindow.cpp" line="4822"/>
         <source>Feeds Toolbar</source>
         <translation>Bară intrumente fluxuri</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4824"/>
+        <location filename="../src/application/mainwindow.cpp" line="4823"/>
         <source>News Toolbar</source>
         <translation>Bară intrumente noutăţi</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4825"/>
+        <location filename="../src/application/mainwindow.cpp" line="4824"/>
         <source>Browser Toolbar</source>
         <translation>Bară intrumente browser</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4826"/>
+        <location filename="../src/application/mainwindow.cpp" line="4825"/>
         <source>Panel Categories</source>
         <translation>Panou categorii</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4827"/>
+        <location filename="../src/application/mainwindow.cpp" line="4826"/>
         <source>Status Bar</source>
-        <translation type="unfinished"/>
+        <translation>Bară de stare</translation>
     </message>
     <message>
+        <location filename="../src/application/mainwindow.cpp" line="4828"/>
         <location filename="../src/application/mainwindow.cpp" line="4829"/>
-        <location filename="../src/application/mainwindow.cpp" line="4830"/>
         <source>Full Screen</source>
         <translation>Tot ecranul</translation>
     </message>
     <message>
+        <location filename="../src/application/mainwindow.cpp" line="4831"/>
         <location filename="../src/application/mainwindow.cpp" line="4832"/>
-        <location filename="../src/application/mainwindow.cpp" line="4833"/>
         <source>Stay On Top</source>
         <translation>Stă deasupra</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4835"/>
+        <location filename="../src/application/mainwindow.cpp" line="4834"/>
         <source>Categories</source>
         <translation>Categorii</translation>
     </message>
     <message>
+        <location filename="../src/application/mainwindow.cpp" line="4840"/>
         <location filename="../src/application/mainwindow.cpp" line="4841"/>
-        <location filename="../src/application/mainwindow.cpp" line="4842"/>
         <source>Label</source>
         <translation>Etichetă</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4843"/>
+        <location filename="../src/application/mainwindow.cpp" line="4842"/>
         <source>Show labels menu</source>
         <translation>Arată etichete meniu</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4845"/>
+        <location filename="../src/application/mainwindow.cpp" line="4844"/>
         <source>Close Tab</source>
         <translation>Închide tab</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4846"/>
+        <location filename="../src/application/mainwindow.cpp" line="4845"/>
         <source>Close Other Tabs</source>
         <translation>Închide celelalte tab-uri</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4847"/>
+        <location filename="../src/application/mainwindow.cpp" line="4846"/>
         <source>Close All Tabs</source>
         <translation>Închide toate tab-urile</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4848"/>
+        <location filename="../src/application/mainwindow.cpp" line="4847"/>
         <source>Switch to next tab</source>
         <translation>Comutare la următorul tab</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4849"/>
+        <location filename="../src/application/mainwindow.cpp" line="4848"/>
         <source>Switch to previous tab</source>
         <translation>Comutare la tab anterior</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4851"/>
+        <location filename="../src/application/mainwindow.cpp" line="4850"/>
         <source>Unread</source>
         <translation>Necitit</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4852"/>
+        <location filename="../src/application/mainwindow.cpp" line="4851"/>
         <source>Starred</source>
         <translation>Cu stea</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4853"/>
+        <location filename="../src/application/mainwindow.cpp" line="4852"/>
         <source>Deleted</source>
         <translation>Şters</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4854"/>
+        <location filename="../src/application/mainwindow.cpp" line="4853"/>
         <source>Labels</source>
         <translation>Etichete</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4856"/>
+        <location filename="../src/application/mainwindow.cpp" line="4855"/>
         <source>Decrease news list/increase browser</source>
         <translation>Micşorare listă noutăţi/mărire browser</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4857"/>
+        <location filename="../src/application/mainwindow.cpp" line="4856"/>
         <source>Increase news list/decrease browser</source>
         <translation>Mărire listă noutăţi/micşorare browser</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4859"/>
+        <location filename="../src/application/mainwindow.cpp" line="4858"/>
         <source>Find</source>
         <translation>Căutare</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4861"/>
+        <location filename="../src/application/mainwindow.cpp" line="4860"/>
         <source>Open Homepage Feed</source>
         <translation>Deschide flux pagină de start</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4862"/>
+        <location filename="../src/application/mainwindow.cpp" line="4861"/>
         <source>Sorted by Name</source>
         <translation>Sortare după nume</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4863"/>
+        <location filename="../src/application/mainwindow.cpp" line="4862"/>
         <source>Collapse All Folders</source>
         <translation>Restrînge toate folderele</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4864"/>
+        <location filename="../src/application/mainwindow.cpp" line="4863"/>
         <source>Expand All Folders</source>
         <translation>Extinde toate folderele</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4865"/>
+        <location filename="../src/application/mainwindow.cpp" line="4864"/>
         <source>Next Folder</source>
         <translation>Folderul următor</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4866"/>
+        <location filename="../src/application/mainwindow.cpp" line="4865"/>
         <source>Previous Folder</source>
         <translation>Folderul anterior</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4867"/>
+        <location filename="../src/application/mainwindow.cpp" line="4866"/>
         <source>Expand Folder</source>
         <translation>Extinde folder</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4869"/>
+        <location filename="../src/application/mainwindow.cpp" line="4868"/>
         <source>Setting Page: Labels</source>
         <translation>Setare pagină: Etichete</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4871"/>
+        <location filename="../src/application/mainwindow.cpp" line="4870"/>
         <source>Share</source>
         <translation>Distribuie</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4873"/>
+        <location filename="../src/application/mainwindow.cpp" line="4872"/>
         <source>Sort By</source>
         <translation>Sortare după</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4874"/>
+        <location filename="../src/application/mainwindow.cpp" line="4873"/>
         <source>Ascending</source>
         <translation>Crescător</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4875"/>
+        <location filename="../src/application/mainwindow.cpp" line="4874"/>
         <source>Descending</source>
         <translation>Descrescător</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5717"/>
+        <location filename="../src/application/mainwindow.cpp" line="5716"/>
         <source>Check for updates</source>
         <translation>Verificare actualizări</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5718"/>
+        <location filename="../src/application/mainwindow.cpp" line="5717"/>
         <source>A new version of QuiteRSS...</source>
         <translation>O nouă versiune a QuiteRSS...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="6080"/>
+        <location filename="../src/application/mainwindow.cpp" line="6079"/>
         <source>Loading...</source>
         <translation>Încărcare...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="6640"/>
-        <location filename="../src/application/mainwindow.cpp" line="6654"/>
+        <location filename="../src/application/mainwindow.cpp" line="6639"/>
+        <location filename="../src/application/mainwindow.cpp" line="6653"/>
         <source>Web Page</source>
         <translation>Pagină web</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="7166"/>
+        <location filename="../src/application/mainwindow.cpp" line="7165"/>
         <source>Save As</source>
         <translation>Salvează ca</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="7168"/>
+        <location filename="../src/application/mainwindow.cpp" line="7167"/>
         <source>HTML-Files (*.%1)</source>
         <translation>Fişiere HTML (*.%1)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="7168"/>
+        <location filename="../src/application/mainwindow.cpp" line="7167"/>
         <source>Text files (*.%2)</source>
         <translation>Fişiere text (*.%2)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="7174"/>
+        <location filename="../src/application/mainwindow.cpp" line="7173"/>
         <source>Save As: can&apos;t open a file</source>
         <translation>Salvare ca: Nu se poate deschide fişierul!</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="7664"/>
+        <location filename="../src/application/mainwindow.cpp" line="7663"/>
         <source>Choose Directory</source>
-        <translation type="unfinished"/>
+        <translation>Alegeţi folderul</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.h" line="101"/>
@@ -2440,13 +2440,13 @@ Ancient news could reappear</source>
     </message>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="46"/>
-        <source>Name Filter</source>
-        <translation>Nume filtru</translation>
+        <source>Feeds</source>
+        <translation>Fluxuri</translation>
     </message>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="46"/>
-        <source>Feeds</source>
-        <translation>Fluxuri</translation>
+        <source>Filter Name</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="91"/>
@@ -2485,8 +2485,8 @@ Ancient news could reappear</source>
     </message>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="260"/>
-        <source>Are you sure to delete the filter &apos;%1&apos;?</source>
-        <translation>Sigur doriţi ştergerea filtrului &apos;%1&apos;?</translation>
+        <source>Are you sure you want to delete the filter &apos;%1&apos;?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2538,8 +2538,8 @@ Ancient news could reappear</source>
     </message>
     <message>
         <location filename="../src/newsheader.cpp" line="409"/>
-        <source>Title Feed</source>
-        <translation>Titlu flux</translation>
+        <source>Feed Title</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/newsheader.cpp" line="410"/>
@@ -2650,19 +2650,16 @@ Ancient news could reappear</source>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="589"/>
-        <location filename="../src/newstabwidget.cpp" line="610"/>
         <source>Auto Load Images to News View</source>
         <translation>Auto încărcare imagini pentru vizualizare noutăţi</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="591"/>
-        <location filename="../src/newstabwidget.cpp" line="613"/>
         <source>No Load Images</source>
         <translation>Nu încarcă imagini</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="592"/>
-        <location filename="../src/newstabwidget.cpp" line="614"/>
         <source>No Load Images to News View</source>
         <translation>Nu încarcă imagini pentru vizualizare noutăţi</translation>
     </message>
@@ -2670,6 +2667,21 @@ Ancient news could reappear</source>
         <location filename="../src/newstabwidget.cpp" line="597"/>
         <source>Close Tab</source>
         <translation>Închide tab</translation>
+    </message>
+    <message>
+        <location filename="../src/newstabwidget.cpp" line="610"/>
+        <source>Auto Load Images in News View</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/newstabwidget.cpp" line="613"/>
+        <source>Don&apos;t Load Images</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/newstabwidget.cpp" line="614"/>
+        <source>Don&apos;t Load Images in News View</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1398"/>
@@ -2858,7 +2870,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="298"/>
         <source>Help improve QuiteRSS by sending usage information</source>
-        <translation type="unfinished"/>
+        <translation>Ajutaţi la îmbunătăţirea QuiteRSS prin trimiterea de informaţii de utilizare</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="299"/>
@@ -3312,7 +3324,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="874"/>
         <source>Style sheet for news:</source>
-        <translation type="unfinished"/>
+        <translation>Foaie de stil pentru ştiri:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="882"/>
@@ -3709,8 +3721,13 @@ Ancient news could reappear</source>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1609"/>
-        <source>Count of news unread in feeds tree</source>
-        <translation>Nr. noutăţi necitite în arbore fluxuri</translation>
+        <source>Count of unread news in feeds tree</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="2001"/>
+        <source>Auto load images in news view</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1612"/>
@@ -3833,11 +3850,6 @@ Ancient news could reappear</source>
         <translation>Scurtătură:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2001"/>
-        <source>Auto load images to news view</source>
-        <translation>Auto încărcare imagini pentru vizualizare noutăţi</translation>
-    </message>
-    <message>
         <location filename="../src/optionsdialog.cpp" line="2165"/>
         <location filename="../src/optionsdialog.cpp" line="2200"/>
         <source>Open File...</source>
@@ -3869,17 +3881,17 @@ Ancient news could reappear</source>
 <context>
     <name>QAbstractSpinBox</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4899"/>
+        <location filename="../src/application/mainwindow.cpp" line="4898"/>
         <source>&amp;Step up</source>
         <translation>Mărire</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4900"/>
+        <location filename="../src/application/mainwindow.cpp" line="4899"/>
         <source>Step &amp;down</source>
         <translation>Micşorare</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4901"/>
+        <location filename="../src/application/mainwindow.cpp" line="4900"/>
         <source>&amp;Select All</source>
         <translation>&amp;Selectare tot</translation>
     </message>
@@ -3887,22 +3899,22 @@ Ancient news could reappear</source>
 <context>
     <name>QDialogButtonBox</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4877"/>
+        <location filename="../src/application/mainwindow.cpp" line="4876"/>
         <source>Close</source>
         <translation>Închidere</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4878"/>
+        <location filename="../src/application/mainwindow.cpp" line="4877"/>
         <source>Cancel</source>
         <translation>Anulare</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4879"/>
+        <location filename="../src/application/mainwindow.cpp" line="4878"/>
         <source>&amp;Yes</source>
         <translation>&amp;Da</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4880"/>
+        <location filename="../src/application/mainwindow.cpp" line="4879"/>
         <source>&amp;No</source>
         <translation>&amp;Nu</translation>
     </message>
@@ -4016,37 +4028,37 @@ Ancient news could reappear</source>
 <context>
     <name>QLineEdit</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4882"/>
+        <location filename="../src/application/mainwindow.cpp" line="4881"/>
         <source>&amp;Undo</source>
         <translation>An&amp;ulează</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4883"/>
+        <location filename="../src/application/mainwindow.cpp" line="4882"/>
         <source>&amp;Redo</source>
         <translation>&amp;Reface</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4884"/>
+        <location filename="../src/application/mainwindow.cpp" line="4883"/>
         <source>Cu&amp;t</source>
         <translation>&amp;Taie</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4885"/>
+        <location filename="../src/application/mainwindow.cpp" line="4884"/>
         <source>&amp;Copy</source>
         <translation>&amp;Copiază</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4886"/>
+        <location filename="../src/application/mainwindow.cpp" line="4885"/>
         <source>&amp;Paste</source>
         <translation>Li&amp;pire</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4887"/>
+        <location filename="../src/application/mainwindow.cpp" line="4886"/>
         <source>Delete</source>
         <translation>Şterge</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4888"/>
+        <location filename="../src/application/mainwindow.cpp" line="4887"/>
         <source>Select All</source>
         <translation>Selectare tot</translation>
     </message>
@@ -4054,7 +4066,7 @@ Ancient news could reappear</source>
 <context>
     <name>QMultiInputContext</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4903"/>
+        <location filename="../src/application/mainwindow.cpp" line="4902"/>
         <source>Select IM</source>
         <translation>Selectare IM</translation>
     </message>
@@ -4080,42 +4092,42 @@ Ancient news could reappear</source>
 <context>
     <name>QTextControl</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4890"/>
+        <location filename="../src/application/mainwindow.cpp" line="4889"/>
         <source>&amp;Undo</source>
         <translation>An&amp;ulează</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4891"/>
+        <location filename="../src/application/mainwindow.cpp" line="4890"/>
         <source>&amp;Redo</source>
         <translation>&amp;Reface</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4892"/>
+        <location filename="../src/application/mainwindow.cpp" line="4891"/>
         <source>Cu&amp;t</source>
         <translation>&amp;Taie</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4893"/>
+        <location filename="../src/application/mainwindow.cpp" line="4892"/>
         <source>&amp;Copy</source>
         <translation>&amp;Copiază</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4894"/>
+        <location filename="../src/application/mainwindow.cpp" line="4893"/>
         <source>&amp;Paste</source>
         <translation>Li&amp;pire</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4895"/>
+        <location filename="../src/application/mainwindow.cpp" line="4894"/>
         <source>Delete</source>
         <translation>Şterge</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4896"/>
+        <location filename="../src/application/mainwindow.cpp" line="4895"/>
         <source>Select All</source>
         <translation>Selectare tot</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4897"/>
+        <location filename="../src/application/mainwindow.cpp" line="4896"/>
         <source>Copy &amp;Link Location</source>
         <translation>Copiază locaţie &amp;legătură</translation>
     </message>
@@ -4123,22 +4135,22 @@ Ancient news could reappear</source>
 <context>
     <name>QWizard</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4905"/>
+        <location filename="../src/application/mainwindow.cpp" line="4904"/>
         <source>Cancel</source>
         <translation>Anulare</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4906"/>
+        <location filename="../src/application/mainwindow.cpp" line="4905"/>
         <source>&lt; &amp;Back</source>
         <translation>&lt; Înapoi</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4907"/>
+        <location filename="../src/application/mainwindow.cpp" line="4906"/>
         <source>&amp;Finish</source>
         <translation>&amp;Finalizează</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4908"/>
+        <location filename="../src/application/mainwindow.cpp" line="4907"/>
         <source>&amp;Next &gt;</source>
         <translation>Î&amp;nainte &gt;</translation>
     </message>
@@ -4179,27 +4191,27 @@ Ancient news could reappear</source>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="556"/>
         <source>Error opening database</source>
-        <translation type="unfinished"/>
+        <translation>Eroare la deschiderea bazei de date</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="567"/>
         <source>Error closing database</source>
-        <translation type="unfinished"/>
+        <translation>Eroare la închiderea bazei de date</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="587"/>
         <source>Unable to begin transaction</source>
-        <translation type="unfinished"/>
+        <translation>Imposibil de a începe tranzacţia</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="602"/>
         <source>Unable to commit transaction</source>
-        <translation type="unfinished"/>
+        <translation>Imposibil de a face tranzacţia</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="617"/>
         <source>Unable to rollback transaction</source>
-        <translation type="unfinished"/>
+        <translation>Imposibil de a da înapoi tranzacţia</translation>
     </message>
 </context>
 <context>
@@ -4209,37 +4221,37 @@ Ancient news could reappear</source>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="278"/>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="286"/>
         <source>Unable to fetch row</source>
-        <translation type="unfinished"/>
+        <translation>Imposibil de a aduce rînd</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="216"/>
         <source>No query</source>
-        <translation type="unfinished"/>
+        <translation>Nici o interogare</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="350"/>
         <source>Unable to execute statement</source>
-        <translation type="unfinished"/>
+        <translation>Imposibil de a executa enunţul</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="355"/>
         <source>Unable to execute multiple statements at a time</source>
-        <translation type="unfinished"/>
+        <translation>Imposibil de a executa enunţuri multiple deodată</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="375"/>
         <source>Unable to reset statement</source>
-        <translation type="unfinished"/>
+        <translation>Imposibil de a reseta enunţul</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="420"/>
         <source>Unable to bind parameters</source>
-        <translation type="unfinished"/>
+        <translation>Imposibil de a uni parametrii</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="427"/>
         <source>Parameter count mismatch</source>
-        <translation type="unfinished"/>
+        <translation>Nepotrivire număr de parametri</translation>
     </message>
 </context>
 <context>
