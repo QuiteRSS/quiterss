@@ -289,7 +289,7 @@ void OptionsDialog::createGeneralWidget()
   reopenFeedStartup_ = new QCheckBox(tr("Reopen last opened feeds on startup"));
   openNewTabNextToActive_ = new QCheckBox(tr("Open new tab next to active"));
   hideFeedsOpenTab_ = new QCheckBox(tr("Hide feeds tree when opening tabs"));
-  showToggleFeedsTree_ = new QCheckBox(tr("Show feeds tree toggle at edge of window"));
+  showToggleFeedsTree_ = new QCheckBox(tr("Show feeds tree toggle"));
   defaultIconFeeds_ = new QCheckBox(tr("Show default rss-icon instead of favourite one"));
   autocollapseFolder_ = new QCheckBox(tr("Automatically collapse folders"));
   showCloseButtonTab_ = new QCheckBox(tr("Show close button on tab"));
@@ -379,7 +379,7 @@ void OptionsDialog::createTraySystemWidget()
 
   singleClickTray_ = new QCheckBox(
         tr("Single click instead of double click for show window"));
-  clearStatusNew_ = new QCheckBox(tr("Clear status new on minimize to tray"));
+  clearStatusNew_ = new QCheckBox(tr("Clear new status when minimize to tray"));
   emptyWorking_ = new QCheckBox(tr("Empty working set on minimize to tray"));
 
   QVBoxLayout *trayLayout = new QVBoxLayout(showTrayIconBox_);
@@ -844,7 +844,7 @@ void OptionsDialog::createFeedsWidget()
 
   QHBoxLayout *mainNewsFilterLayout = new QHBoxLayout();
   mainNewsFilterLayout->setMargin(0);
-  mainNewsFilterLayout->addWidget(new QLabel(tr("Main news filter:")));
+  mainNewsFilterLayout->addWidget(new QLabel(tr("Default news filter:")));
   mainNewsFilterLayout->addWidget(mainNewsFilter_);
   mainNewsFilterLayout->addStretch();
 
@@ -893,7 +893,7 @@ void OptionsDialog::createFeedsWidget()
   markReadMinimize_ = new QCheckBox(tr("Mark displayed news as read on minimize"));
 
   showDescriptionNews_ = new QCheckBox(
-        tr("Show news' description instead of loading web page"));
+        tr("Show news description instead of loading web page"));
 
   changeBehaviorActionNUN_ = new QCheckBox(tr("Change behavior of action 'Next Unread News'"));
 

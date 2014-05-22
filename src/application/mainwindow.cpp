@@ -4805,7 +4805,7 @@ void MainWindow::retranslateStrings()
   zoomOutAct_->setText(tr("Zoom Out"));
   zoomOutAct_->setToolTip(tr("Zoom out in browser"));
   zoomTo100Act_->setText(tr("100%"));
-  zoomTo100Act_->setToolTip(tr("Reset zoom in browser"));
+  zoomTo100Act_->setToolTip(tr("Reset browser zoom"));
 
   printAct_->setText(tr("Print..."));
   printAct_->setToolTip(tr("Print Web Page"));
