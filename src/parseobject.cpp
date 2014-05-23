@@ -250,6 +250,16 @@ void ParseObject::parseAtom(const QString &feedUrl, const QDomDocument &doc)
       break;
     }
   }
+  if (feedItem.link.isEmpty()) {
+    for (int j = 0; j < linksList.size(); j++) {
+        if (!(linksList.at(j).toElement().attribute("rel") == "self")) {
+          feedItem.link = linksList.at(j).toElement().attribute("href");
+          break;
+        }
+    }
+  }
+  if (feedItem.linkBase.isEmpty() && !QUrl(feedItem.link).host().isEmpty())
+    feedItem.linkBase = QUrl(feedItem.link).scheme() %  "://" % QUrl(feedItem.link).host();
   if (QUrl(feedItem.link).host().isEmpty())
     feedItem.link = feedItem.linkBase + feedItem.link;
   feedItem.link = toPlainText(feedItem.link);
