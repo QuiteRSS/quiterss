@@ -1,9 +1,9 @@
 #include "VersionRev.h"
 
-#define STRDATE           "18.04.2014\0"
-#define STRPRODUCTVER     "0.15.4\0"
+#define STRDATE           "24.05.2014\0"
+#define STRPRODUCTVER     "0.16.0\0"
 
-#define VERSION           0,15,4
+#define VERSION           0,16,0
 #define PRODUCTVER        VERSION,0
 #define FILEVER           VERSION,VCS_REVISION
 

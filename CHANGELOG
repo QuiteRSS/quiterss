@@ -1,3 +1,23 @@
+Version 0.16.0 (24 May 2014)
+  * Added: Case-insensitive filters, news searching and feed sorting
+  * Added: Regular expressions support in user's filters
+  * Added: Multiselect feeds
+  * Added: Ability to set style table for news (Options->Feeds)
+  * Added: News style "Rstyle_v1.2.css"
+  * Added: Button "Share" in browser toolbar
+  * Added: Option "View->Show/Hide->Status panel"
+  * Added: Feed option "RTL" ("Display" tab)
+  * Added: Feed option "Enable JavaScript" ("Display" tab)
+  * Added: Ability to add action "Create backup" to toolbar
+  * Added: Shortcut and button "Save page to DB instead of news description"
+  * Changed: GUI. Some visual tweaks
+  * Changed: Save path to folder of the last backup
+  * Fixed: Data loss
+  * Fixed: Opening links in external browser (Unix)
+  * Fixed: Displaying incorrect time with consideration of local time
+  * Fixed: Application autostart (PortableApps)
+  * Fixed: Processing some feeds when authorizing using cookie
+
 Version 0.15.4 (18 Apr 2014)
   * Added: Ability to create backup manually (Menu->Create backup)
   * Changed: More robust operations on DB

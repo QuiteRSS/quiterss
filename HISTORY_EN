@@ -2,7 +2,7 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
-<p><b>Version 0.15.x</b> (xx May 2014)
+<p><b>Version 0.16.0</b> (24 May 2014)
 <ul>
 <li>Added: Case-insensitive filters, news searching and feed sorting</li>
 <li>Added: Regular expressions support in user's filters</li>
