@@ -1832,7 +1832,7 @@ não existe!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4808"/>
         <source>Reset browser zoom</source>
-        <translation type="unfinished"/>
+        <translation>Restaurar ampliação no navegador</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4811"/>
@@ -3717,22 +3717,22 @@ não existe!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="292"/>
         <source>Show feeds tree toggle</source>
-        <translation type="unfinished"/>
+        <translation>Mostrar comutador da árvore de notícias</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="382"/>
         <source>Clear new status when minimize to tray</source>
-        <translation type="unfinished"/>
+        <translation>Remover estado de nova ao minimizar para a bandeja</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="847"/>
         <source>Default news filter:</source>
-        <translation type="unfinished"/>
+        <translation>Filtro de notícias padrão:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="896"/>
         <source>Show news description instead of loading web page</source>
-        <translation type="unfinished"/>
+        <translation>Mostrar descrição das notícias em vez de carregar a página</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1615"/>
