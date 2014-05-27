@@ -55,6 +55,7 @@ MainWindow::MainWindow(QWidget *parent)
 #if defined(HAVE_QT5) || defined(HAVE_PHONON)
   , mediaPlayer_(NULL)
 #endif
+  , updateAppDialog_(NULL)
   , updateFeedsCount_(0)
   , notificationWidget(NULL)
   , feedIdOld_(-2)
@@ -152,6 +153,8 @@ void MainWindow::quitApp()
   mainApp->setClosing();
   isMinimizeToTray_ = true;
   disconnect(this);
+  if (updateAppDialog_)
+    updateAppDialog_->deleteLater();
 
   QWidget *widget = new QWidget(0, Qt::Dialog | Qt::WindowStaysOnTopHint | Qt::WindowCloseButtonHint);
   widget->setFocusPolicy(Qt::NoFocus);
@@ -5711,6 +5714,7 @@ void MainWindow::slotUpdateAppCheck()
 void MainWindow::slotNewVersion(const QString &newVersion)
 {
   delete updateAppDialog_;
+  updateAppDialog_ = NULL;
 
   if (!newVersion.isEmpty()) {
     traySystem->showMessage(tr("Check for updates"),
