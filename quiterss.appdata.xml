@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2011-2014 QuiteRSS Team <quiterssteam@gmail.com> -->
+<application>
+  <id type="desktop">quiterss.desktop</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0+</project_license>
+  <name>QuiteRSS</name>
+  <summary>Free news reader</summary>
+  <description>
+    <p>
+      QuiteRSS is an easy to use application designed to help you keep track of the latest news on your RSS feeds. It is quite fast and comfortable to user.
+    </p>
+    <p>
+      The program allows you to add as many RSS feed links as you want. You can update the feeds manually.
+    </p>
+  </description>
+  <screenshots>
+  <screenshot type="default" width="790" height="538">http://file.quite-rss.googlecode.com/hg/screenshots/screenshots01.png</screenshot>
+  <screenshot width="790" height="538">http://file.quite-rss.googlecode.com/hg/screenshots/screenshots02.png</screenshot>
+  <screenshot width="683" height="595">http://file.quite-rss.googlecode.com/hg/screenshots/screenshots07.png</screenshot>
+  </screenshots>
+  <url type="homepage">http://quiterss.org</url>
+  <updatecontact>quiterssteam@gmail.com</updatecontact>
+</application>
