@@ -271,7 +271,6 @@ DISTFILES += \
 
 unix:!mac {
   TARGET = quiterss
-  CONFIG += link_pkgconfig
 
   isEmpty(PREFIX) {
     PREFIX =   /usr/local

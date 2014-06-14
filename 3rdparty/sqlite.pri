@@ -21,6 +21,7 @@ os2|win32|mac {
     }
   }
 } else {
+  CONFIG += link_pkgconfig
   PKGCONFIG += sqlite3
 }
 
