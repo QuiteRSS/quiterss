@@ -206,6 +206,7 @@ INCLUDEPATH +=  $$PWD/src \
                 $$PWD/src/main \
                 $$PWD/src/database \
                 $$PWD/src/downloads \
+                $$PWD/src/newsfilters \
                 $$PWD/src/notifications \
                 $$PWD/src/plugins \
                 $$PWD/src/adblock \
