@@ -942,6 +942,31 @@ void ParseObject::runUserFilter(int feedId, int filterId)
             }
           }
           break;
+        case 5: // field -> Link
+          switch (q1.value(1).toInt()) {
+          case 0: // condition -> contains
+            qStr1.append(QString("link_href LIKE '%%1%' ").arg(content));
+            break;
+          case 1: // condition -> doesn't contains
+            qStr1.append(QString("link_href NOT LIKE '%%1%' ").arg(content));
+            break;
+          case 2: // condition -> is
+            qStr1.append(QString("Ulink_href LIKE '%1' ").arg(content));
+            break;
+          case 3: // condition -> isn't
+            qStr1.append(QString("link_href NOT LIKE '%1' ").arg(content));
+            break;
+          case 4: // condition -> begins with
+            qStr1.append(QString("link_href LIKE '%1%' ").arg(content));
+            break;
+          case 5: // condition -> ends with
+            qStr1.append(QString("link_href LIKE '%%1' ").arg(content));
+            break;
+          case 6: // condition -> regExp
+            qStr1.append(QString("link_href REGEXP '%1' ").arg(content));
+            break;
+          }
+          break;
         }
       }
       whereStr.append(qStr1).append(")");
