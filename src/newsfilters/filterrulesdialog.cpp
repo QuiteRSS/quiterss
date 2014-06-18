@@ -86,8 +86,8 @@ FilterRulesDialog::FilterRulesDialog(QWidget *parent, int filterId, int feedId)
 
       QList<QTreeWidgetItem *> treeItems =
           feedsTree_->findItems(QString::number(parentId),
-                               Qt::MatchFixedString | Qt::MatchRecursive,
-                               1);
+                                Qt::MatchFixedString | Qt::MatchRecursive,
+                                1);
       treeItems.at(0)->addChild(treeWidgetItem);
       if (xmlUrl.isEmpty())
         parentIds.enqueue(feedIdT.toInt());
@@ -247,8 +247,8 @@ void FilterRulesDialog::setData()
     foreach (QString strIdFeed, strIdFeeds) {
       QList<QTreeWidgetItem *> treeItems =
           feedsTree_->findItems(strIdFeed,
-                               Qt::MatchFixedString | Qt::MatchRecursive,
-                               1);
+                                Qt::MatchFixedString | Qt::MatchRecursive,
+                                1);
       if (treeItems.count())
         treeItems.at(0)->setCheckState(0, Qt::Checked);
     }
@@ -263,7 +263,7 @@ void FilterRulesDialog::setData()
     itemNotChecked_ = false;
 
     qStr = QString("SELECT field, condition, content "
-        "FROM filterConditions WHERE idFilter=='%1' ORDER BY content").
+                   "FROM filterConditions WHERE idFilter=='%1' ORDER BY content").
         arg(filterId_);
     q.exec(qStr);
     while (q.next()) {
@@ -279,7 +279,7 @@ void FilterRulesDialog::setData()
       addCondition();
 
     qStr = QString("SELECT action, params "
-        "FROM filterActions WHERE idFilter=='%1'").
+                   "FROM filterActions WHERE idFilter=='%1'").
         arg(filterId_);
     q.exec(qStr);
     while (q.next()) {
@@ -410,8 +410,8 @@ void FilterRulesDialog::acceptDialog()
       ItemCondition *itemCondition =
           qobject_cast<ItemCondition*>(conditionLayout_->itemAt(i)->widget());
       QString qStr = QString("INSERT INTO filterConditions "
-                     "(idFilter, field, condition, content) "
-                     "VALUES (?, ?, ?, ?)");
+                             "(idFilter, field, condition, content) "
+                             "VALUES (?, ?, ?, ?)");
       q.prepare(qStr);
       q.addBindValue(filterId_);
       q.addBindValue(itemCondition->comboBox1_->currentIndex());
@@ -427,8 +427,8 @@ void FilterRulesDialog::acceptDialog()
       ItemAction *itemAction =
           qobject_cast<ItemAction*>(actionsLayout_->itemAt(i)->widget());
       QString qStr = QString("INSERT INTO filterActions "
-                     "(idFilter, action, params) "
-                     "VALUES (?, ?, ?)");
+                             "(idFilter, action, params) "
+                             "VALUES (?, ?, ?)");
       q.prepare(qStr);
       q.addBindValue(filterId_);
       q.addBindValue(itemAction->comboBox1_->currentIndex());

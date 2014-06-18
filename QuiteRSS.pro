@@ -79,8 +79,6 @@ HEADERS += \
     src/aboutdialog.h \
     src/updateappdialog.h \
     src/feedpropertiesdialog.h \
-    src/newsfiltersdialog.h \
-    src/filterrulesdialog.h \
     src/addfeedwizard.h \
     src/newstabwidget.h \
     src/findtext.h \
@@ -131,7 +129,11 @@ HEADERS += \
     src/common/delegatewithoutfocus.h \
     src/common/dialog.h \
     src/common/lineedit.h \
-    src/common/toolbutton.h
+    src/common/toolbutton.h \
+    src/newsfilters/filterrulesdialog.h \
+    src/newsfilters/newsfiltersdialog.h \
+    src/newsfilters/itemcondition.h \
+    src/newsfilters/itemaction.h
 
 SOURCES += \
     src/parseobject.cpp \
@@ -142,8 +144,6 @@ SOURCES += \
     src/aboutdialog.cpp \
     src/updateappdialog.cpp \
     src/feedpropertiesdialog.cpp \
-    src/newsfiltersdialog.cpp \
-    src/filterrulesdialog.cpp \
     src/addfeedwizard.cpp \
     src/newstabwidget.cpp \
     src/findtext.cpp \
@@ -194,7 +194,11 @@ SOURCES += \
     src/common/delegatewithoutfocus.cpp \
     src/common/dialog.cpp \
     src/common/lineedit.cpp \
-    src/common/toolbutton.cpp
+    src/common/toolbutton.cpp \
+    src/newsfilters/filterrulesdialog.cpp \
+    src/newsfilters/newsfiltersdialog.cpp \
+    src/newsfilters/itemcondition.cpp \
+    src/newsfilters/itemaction.cpp
 
 INCLUDEPATH +=  $$PWD/src \
                 $$PWD/src/application \
