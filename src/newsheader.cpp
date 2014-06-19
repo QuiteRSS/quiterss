@@ -445,9 +445,11 @@ void NewsHeader::setColumns(const QModelIndex &indexFeed)
   indexColumnsStr = mainWindow->feedsTreeModel_->dataField(indexFeed, "columns").toString();
   if (!indexColumnsStr.isEmpty()) {
     QStringList indexColumnsList = indexColumnsStr.split(",", QString::SkipEmptyParts);
-    for (int i = 0; i < count(); ++i) {
-      bool show = indexColumnsList.contains(QString::number(logicalIndex(i)));
-      setSectionHidden(logicalIndex(i),!show);
+    if (indexColumnsList.count()) {
+      for (int i = 0; i < count(); ++i) {
+        bool show = indexColumnsList.contains(QString::number(logicalIndex(i)));
+        setSectionHidden(logicalIndex(i),!show);
+      }
     }
     for (int i = 0; i < indexColumnsList.count(); ++i) {
       QString indexStr = indexColumnsList.at(i);
@@ -458,9 +460,11 @@ void NewsHeader::setColumns(const QModelIndex &indexFeed)
   } else {
     indexColumnsStr = settings.value("columns").toString();
     QStringList indexColumnsList = indexColumnsStr.split(",", QString::SkipEmptyParts);
-    for (int i = 0; i < count(); ++i) {
-      bool show = indexColumnsList.contains(QString::number(logicalIndex(i)));
-      setSectionHidden(logicalIndex(i),!show);
+    if (indexColumnsList.count()) {
+      for (int i = 0; i < count(); ++i) {
+        bool show = indexColumnsList.contains(QString::number(logicalIndex(i)));
+        setSectionHidden(logicalIndex(i),!show);
+      }
     }
     for (int i = 0; i < indexColumnsList.count(); ++i) {
       QString indexStr = indexColumnsList.at(i);
@@ -489,13 +493,19 @@ void NewsHeader::setColumns(const QModelIndex &indexFeed)
 QString NewsHeader::columnsList()
 {
   QString indexColumnsStr;
+  int columnShowCount = 0;
   for (int i = 0; i < count(); ++i) {
     if (!isSectionHidden(logicalIndex(i))) {
+      columnShowCount++;
       indexColumnsStr.append(",");
       indexColumnsStr.append(QString::number(logicalIndex(i)));
     }
   }
   indexColumnsStr.append(",");
+
+  if (columnShowCount > columnVisibleActGroup_->actions().count())
+    indexColumnsStr.clear();
+
   return indexColumnsStr;
 }
 
