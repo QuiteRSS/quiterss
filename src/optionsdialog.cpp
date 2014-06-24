@@ -1620,6 +1620,9 @@ void OptionsDialog::createFontsColorsWidget()
   treeItem.clear();
   treeItem << tr("Focused feed background color");
   colorsTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
+  treeItem.clear();
+  treeItem << tr("Feed with disabled update");
+  colorsTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
 
   colorsTree_->setCurrentItem(colorsTree_->topLevelItem(0));
 
@@ -1941,6 +1944,9 @@ void OptionsDialog::slotColorReset()
     break;
   case 13: case 14:
     colorName = qApp->palette().brush(QPalette::Link).color().name();
+    break;
+  case 19:
+    colorName = "#999999";
     break;
   default:
     colorName = qApp->palette().brush(QPalette::WindowText).color().name();

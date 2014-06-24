@@ -73,6 +73,7 @@ public:
   QString countNewsUnreadColor_;
   QString focusedFeedTextColor_;
   QString focusedFeedBGColor_;
+  QString feedDisabledUpdateColor_;
 
 private:
   QyurSqlTreeView *view_;

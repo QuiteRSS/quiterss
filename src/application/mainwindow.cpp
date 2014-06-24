@@ -2124,6 +2124,7 @@ void MainWindow::loadSettings()
   feedsTreeModel_->countNewsUnreadColor_ = settings.value("countNewsUnreadColor", linkTextColor).toString();
   feedsTreeModel_->focusedFeedTextColor_ = settings.value("focusedFeedTextColor", windowTextColor).toString();
   feedsTreeModel_->focusedFeedBGColor_ = settings.value("focusedFeedBGColor", "").toString();
+  feedsTreeModel_->feedDisabledUpdateColor_ = settings.value("feedDisabledUpdateColor", "#999999").toString();
   settings.endGroup();
 
   resize(800, 600);
@@ -2327,6 +2328,7 @@ void MainWindow::saveSettings()
   settings.setValue("countNewsUnreadColor", feedsTreeModel_->countNewsUnreadColor_);
   settings.setValue("focusedFeedTextColor", feedsTreeModel_->focusedFeedTextColor_);
   settings.setValue("focusedFeedBGColor", feedsTreeModel_->focusedFeedBGColor_);
+  settings.setValue("feedDisabledUpdateColor", feedsTreeModel_->feedDisabledUpdateColor_);
   settings.endGroup();
 
   settings.setValue("GeometryState", saveGeometry());
@@ -3431,6 +3433,9 @@ void MainWindow::showOptionDlg(int index)
     pixmapColor.fill(feedsTreeModel_->focusedFeedBGColor_);
   optionsDialog_->colorsTree_->topLevelItem(18)->setIcon(0, pixmapColor);
   optionsDialog_->colorsTree_->topLevelItem(18)->setText(1, feedsTreeModel_->focusedFeedBGColor_);
+  pixmapColor.fill(feedsTreeModel_->feedDisabledUpdateColor_);
+  optionsDialog_->colorsTree_->topLevelItem(19)->setIcon(0, pixmapColor);
+  optionsDialog_->colorsTree_->topLevelItem(19)->setText(1, feedsTreeModel_->feedDisabledUpdateColor_);
 
   NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(TAB_WIDGET_PERMANENT);
   backWebPageAct_->setText(widget->webView_->page()->action(QWebPage::Back)->text());
@@ -3797,6 +3802,7 @@ void MainWindow::showOptionDlg(int index)
   unreadNewsTextColor_ = optionsDialog_->colorsTree_->topLevelItem(16)->text(1);
   feedsTreeModel_->focusedFeedTextColor_ = optionsDialog_->colorsTree_->topLevelItem(17)->text(1);
   feedsTreeModel_->focusedFeedBGColor_ = optionsDialog_->colorsTree_->topLevelItem(18)->text(1);
+  feedsTreeModel_->feedDisabledUpdateColor_ = optionsDialog_->colorsTree_->topLevelItem(19)->text(1);
 
   delete optionsDialog_;
   optionsDialog_ = NULL;

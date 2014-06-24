@@ -195,6 +195,12 @@ QVariant FeedsTreeModel::data(const QModelIndex &index, int role) const
       }
     }
 
+    if (QyurSqlTreeModel::proxyColumnByOriginal("text") == index.column()) {
+      if (indexSibling(index, "disableUpdate").data(Qt::EditRole).toBool()) {
+        return QColor(feedDisabledUpdateColor_);
+      }
+    }
+
     return QColor(textColor_);
   } else if (role == Qt::BackgroundRole) {
     QModelIndex currentIndex = ((FeedsProxyModel*)view_->model())->mapToSource(view_->currentIndex());
