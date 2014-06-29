@@ -46,7 +46,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="151"/>
         <source>Backup directory:</source>
-        <translation type="unfinished"/>
+        <translation>バックアップディレクトリ:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="154"/>
@@ -920,17 +920,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="32"/>
         <source>Display</source>
-        <translation type="unfinished"/>
+        <translation>表示</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="174"/>
         <source>Enable JavaScript</source>
-        <translation type="unfinished"/>
+        <translation>JavaScript を有効にする</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="177"/>
         <source>Right-to-left layout</source>
-        <translation type="unfinished"/>
+        <translation>右横書き (右から左に書く横書き) レイアウト</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="216"/>
@@ -1125,17 +1125,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/findtext.cpp" line="105"/>
         <source>Find in Titles</source>
-        <translation type="unfinished"/>
+        <translation>タイトルから検索</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="106"/>
         <source>Find in Authors</source>
-        <translation type="unfinished"/>
+        <translation>作者から検索</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="107"/>
         <source>Find in Categories</source>
-        <translation type="unfinished"/>
+        <translation>カテゴリから検索</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="108"/>
@@ -1321,7 +1321,7 @@ Ancient news could reappear</source>
         <location filename="../src/filterrulesdialog.h" line="112"/>
         <location filename="../src/filterrulesdialog.h" line="118"/>
         <source>Regular expressions</source>
-        <translation type="unfinished"/>
+        <translation>正規表現</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="120"/>
@@ -1817,42 +1817,42 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4793"/>
         <source>Count Unread News</source>
-        <translation type="unfinished"/>
+        <translation>未読記事数</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4794"/>
         <source>Count All News</source>
-        <translation type="unfinished"/>
+        <translation>全記事数</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4795"/>
         <source>Last Update</source>
-        <translation type="unfinished"/>
+        <translation>最終更新</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4808"/>
         <source>Reset browser zoom</source>
-        <translation type="unfinished"/>
+        <translation>ブラウザーのズームをリセットします</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4811"/>
         <source>Print Web Page</source>
-        <translation type="unfinished"/>
+        <translation>ウェブページを印刷します</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4813"/>
         <source>Preview Web Page</source>
-        <translation type="unfinished"/>
+        <translation>ウェブページの印刷プレビューを表示します</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4817"/>
         <source>Save page in database</source>
-        <translation type="unfinished"/>
+        <translation>ページをデータベースの保存</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4818"/>
         <source>Save page in database instead of news description</source>
-        <translation type="unfinished"/>
+        <translation>ニュースの説明ではなくページをデータベースに保存します</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="159"/>
@@ -1862,12 +1862,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2483"/>
         <source>Confirm Delete</source>
-        <translation type="unfinished"/>
+        <translation>削除の確認</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2484"/>
         <source>Are you sure to delete selected elements?</source>
-        <translation type="unfinished"/>
+        <translation>選択した要素をデータベースから削除しますか?</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4634"/>
@@ -1877,7 +1877,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4656"/>
         <source>&amp;Create Backup...</source>
-        <translation type="unfinished"/>
+        <translation>バックアップの作成(&amp;C)...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4657"/>
@@ -1887,12 +1887,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4709"/>
         <source>Open News Description</source>
-        <translation type="unfinished"/>
+        <translation>ニュースの説明を開きます</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4726"/>
         <source>Copy News Link</source>
-        <translation type="unfinished"/>
+        <translation>ニュースのリンクをコピー</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4736"/>
@@ -2204,7 +2204,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4826"/>
         <source>Status Bar</source>
-        <translation type="unfinished"/>
+        <translation>ステータスバー</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4828"/>
@@ -2398,7 +2398,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="7663"/>
         <source>Choose Directory</source>
-        <translation type="unfinished"/>
+        <translation>ディレクトリの選択</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.h" line="101"/>
@@ -2446,7 +2446,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="46"/>
         <source>Filter Name</source>
-        <translation type="unfinished"/>
+        <translation>フィルター名</translation>
     </message>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="91"/>
@@ -2486,7 +2486,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="260"/>
         <source>Are you sure you want to delete the filter &apos;%1&apos;?</source>
-        <translation type="unfinished"/>
+        <translation>フィルター &apos;%1&apos; を削除してよろしいですか?</translation>
     </message>
 </context>
 <context>
@@ -2539,7 +2539,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsheader.cpp" line="409"/>
         <source>Feed Title</source>
-        <translation type="unfinished"/>
+        <translation>フィードタイトル</translation>
     </message>
     <message>
         <location filename="../src/newsheader.cpp" line="410"/>
@@ -2671,17 +2671,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newstabwidget.cpp" line="610"/>
         <source>Auto Load Images in News View</source>
-        <translation type="unfinished"/>
+        <translation>ニュースビューで画像を自動的に読み込みます</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="613"/>
         <source>Don&apos;t Load Images</source>
-        <translation type="unfinished"/>
+        <translation>画像を読み込まない</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="614"/>
         <source>Don&apos;t Load Images in News View</source>
-        <translation type="unfinished"/>
+        <translation>ニュースビューで画像を読み込みません</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1398"/>
@@ -2865,7 +2865,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="298"/>
         <source>Help improve QuiteRSS by sending usage information</source>
-        <translation type="unfinished"/>
+        <translation>QuiteRSS の改善を支援するため利用情報を送信する</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="299"/>
@@ -3309,7 +3309,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="874"/>
         <source>Style sheet for news:</source>
-        <translation type="unfinished"/>
+        <translation>ニュース用スタイルシート:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="882"/>
@@ -3702,12 +3702,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1609"/>
         <source>Count of unread news in feeds tree</source>
-        <translation type="unfinished"/>
+        <translation>フィードツリーの未読のニュース数</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2001"/>
         <source>Auto load images in news view</source>
-        <translation type="unfinished"/>
+        <translation>ニュースビューでの画像の自動読み込み</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1612"/>
@@ -3717,22 +3717,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="292"/>
         <source>Show feeds tree toggle</source>
-        <translation type="unfinished"/>
+        <translation>フィードツリーの表示/非表示の切り替え</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="382"/>
         <source>Clear new status when minimize to tray</source>
-        <translation type="unfinished"/>
+        <translation>トレイに最小化したときステータスをクリアする</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="847"/>
         <source>Default news filter:</source>
-        <translation type="unfinished"/>
+        <translation>デフォルトのニュースフィルター:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="896"/>
         <source>Show news description instead of loading web page</source>
-        <translation type="unfinished"/>
+        <translation>ウェブページを読み込むのではなくニュースの説明を表示する</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1615"/>
@@ -4191,27 +4191,27 @@ Ancient news could reappear</source>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="556"/>
         <source>Error opening database</source>
-        <translation type="unfinished"/>
+        <translation>データベースのオープンでエラーです</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="567"/>
         <source>Error closing database</source>
-        <translation type="unfinished"/>
+        <translation>データベースのクローズでエラーです</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="587"/>
         <source>Unable to begin transaction</source>
-        <translation type="unfinished"/>
+        <translation>トランザクションの開始ができません</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="602"/>
         <source>Unable to commit transaction</source>
-        <translation type="unfinished"/>
+        <translation>トランザクションのコミットができません</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="617"/>
         <source>Unable to rollback transaction</source>
-        <translation type="unfinished"/>
+        <translation>トランザクションのロールバックができません</translation>
     </message>
 </context>
 <context>
@@ -4221,37 +4221,37 @@ Ancient news could reappear</source>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="278"/>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="286"/>
         <source>Unable to fetch row</source>
-        <translation type="unfinished"/>
+        <translation>行のフェッチができません</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="216"/>
         <source>No query</source>
-        <translation type="unfinished"/>
+        <translation>クエリがありません</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="350"/>
         <source>Unable to execute statement</source>
-        <translation type="unfinished"/>
+        <translation>SQL 文を実行できません</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="355"/>
         <source>Unable to execute multiple statements at a time</source>
-        <translation type="unfinished"/>
+        <translation>複数の SQL 文の同時実行ができません</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="375"/>
         <source>Unable to reset statement</source>
-        <translation type="unfinished"/>
+        <translation>SQL 文のリセットができません</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="420"/>
         <source>Unable to bind parameters</source>
-        <translation type="unfinished"/>
+        <translation>パラメーターのバインドができません</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="427"/>
         <source>Parameter count mismatch</source>
-        <translation type="unfinished"/>
+        <translation>パラメーター数が一致しません</translation>
     </message>
 </context>
 <context>

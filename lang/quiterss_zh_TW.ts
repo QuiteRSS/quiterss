@@ -461,7 +461,7 @@
     <message>
         <location filename="../src/cleanupwizard.cpp" line="202"/>
         <source>Clean Up</source>
-        <translation>清除</translation>
+        <translation>清理</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="236"/>
@@ -476,7 +476,7 @@
     <message>
         <location filename="../src/cleanupwizard.cpp" line="319"/>
         <source>Clean Up Options</source>
-        <translation> 清除選項</translation>
+        <translation>清理選項</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="321"/>
@@ -511,7 +511,7 @@
     <message>
         <location filename="../src/cleanupwizard.cpp" line="351"/>
         <source>Clean up &apos;Deleted&apos;</source>
-        <translation>清除「刪除的」</translation>
+        <translation>清理「已刪除」</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="352"/>
@@ -1603,7 +1603,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4677"/>
         <source>Clean Up...</source>
-        <translation> 清除...</translation>
+        <translation>清理...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4679"/>
@@ -3404,7 +3404,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="964"/>
         <source>Clean up &apos;Deleted&apos;</source>
-        <translation>清除「刪除的」</translation>
+        <translation>清理「已刪除」</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="965"/>
@@ -3419,7 +3419,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="994"/>
         <source>Clean Up</source>
-        <translation>清除</translation>
+        <translation>清理</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1011"/>

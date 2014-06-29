@@ -3120,7 +3120,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="637"/>
         <source>Block sites from setting any data</source>
-        <translation>Daten-Speicherung für Websites blockieren</translation>
+        <translation>Daten-Speicherung für Webseiten blockieren</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="638"/>

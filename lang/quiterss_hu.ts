@@ -31,37 +31,37 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="142"/>
         <source>Application directory:</source>
-        <translation type="unfinished"/>
+        <translation>Alkalmazás könyvtár:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="145"/>
         <source>Resource directory:</source>
-        <translation type="unfinished"/>
+        <translation>Erőforrás könyvtár:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="148"/>
         <source>Data directory:</source>
-        <translation type="unfinished"/>
+        <translation>Adatkönyvtár:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="151"/>
         <source>Backup directory:</source>
-        <translation type="unfinished"/>
+        <translation>Mentési könyvtár:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="154"/>
         <source>Database file:</source>
-        <translation type="unfinished"/>
+        <translation>Adatbázis-fájl:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="157"/>
         <source>Settings file:</source>
-        <translation type="unfinished"/>
+        <translation>Beállítások fájl:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="160"/>
         <source>Log file:</source>
-        <translation type="unfinished"/>
+        <translation>Naplófájl:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="175"/>
@@ -81,7 +81,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="178"/>
         <source>Information</source>
-        <translation type="unfinished"/>
+        <translation>Információk</translation>
     </message>
 </context>
 <context>
@@ -89,7 +89,7 @@
     <message>
         <location filename="../src/adblock/adblockaddsubscriptiondialog.ui" line="14"/>
         <source>Add Subscription</source>
-        <translation type="unfinished"/>
+        <translation>Előfizetés hozzáadása</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockaddsubscriptiondialog.ui" line="23"/>
@@ -99,12 +99,12 @@
     <message>
         <location filename="../src/adblock/adblockaddsubscriptiondialog.ui" line="33"/>
         <source>Address:</source>
-        <translation type="unfinished"/>
+        <translation>Cím:</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockaddsubscriptiondialog.ui" line="53"/>
         <source>Add new subscription to AdBlock:</source>
-        <translation type="unfinished"/>
+        <translation>Új előfizetés hozzáadása az AdBlock-hoz:</translation>
     </message>
 </context>
 <context>
@@ -112,7 +112,7 @@
     <message>
         <location filename="../src/adblock/adblocksubscription.cpp" line="484"/>
         <source>Custom Rules</source>
-        <translation type="unfinished"/>
+        <translation>Egyéni szabályok</translation>
     </message>
 </context>
 <context>
@@ -120,17 +120,17 @@
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="14"/>
         <source>AdBlock Configuration</source>
-        <translation type="unfinished"/>
+        <translation>AdBlock konfiguráció</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="20"/>
         <source>Enable AdBlock</source>
-        <translation type="unfinished"/>
+        <translation>AdBlock engedélyezése</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="32"/>
         <source>Search...</source>
-        <translation type="unfinished"/>
+        <translation>Keresés...</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="68"/>
@@ -140,42 +140,42 @@
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="98"/>
         <source>AdBlock</source>
-        <translation type="unfinished"/>
+        <translation>AdBlock</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="122"/>
         <source>Use only essential part of EasyList (for performance reasons)</source>
-        <translation type="unfinished"/>
+        <translation>Csak az Egyszerű lista fontosabb részének használata (a megfelelő teljesítmény érdekében)</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="72"/>
         <source>Add Rule</source>
-        <translation type="unfinished"/>
+        <translation>Szabály hozzáadása</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="73"/>
         <source>Remove Rule</source>
-        <translation type="unfinished"/>
+        <translation>Szabály eltávolítása</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="75"/>
         <source>Add Subscription</source>
-        <translation type="unfinished"/>
+        <translation>Előfizetés hozzáadása</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="76"/>
         <source>Remove Subscription</source>
-        <translation type="unfinished"/>
+        <translation>Előfizetés eltávolítása</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="77"/>
         <source>Update Subscriptions</source>
-        <translation type="unfinished"/>
+        <translation>Előfizetések frissítése</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="79"/>
         <source>Learn about writing rules...</source>
-        <translation type="unfinished"/>
+        <translation>Tudjon meg többet az írási szabályokról...</translation>
     </message>
 </context>
 <context>
@@ -183,48 +183,48 @@
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="61"/>
         <source>AdBlock lets you block unwanted content on web pages</source>
-        <translation type="unfinished"/>
+        <translation>Az AdBlock lehetővé teszi a nem kívánt weboldal tartalmak blokkolását</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="102"/>
         <source>AdBlock</source>
-        <translation type="unfinished"/>
+        <translation>AdBlock</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="129"/>
         <source>Show AdBlock &amp;Settings</source>
-        <translation type="unfinished"/>
+        <translation>AdBlock beállítások megjelenítése</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="137"/>
         <source>Disable on %1</source>
-        <translation type="unfinished"/>
+        <translation>Letiltás itt: %1</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="143"/>
         <source>Disable only on this page</source>
-        <translation type="unfinished"/>
+        <translation>Letiltás csak ezen a lapon</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="153"/>
         <source>Blocked Popup Windows</source>
-        <translation type="unfinished"/>
+        <translation>Blokkolt felugró ablakok</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="158"/>
         <location filename="../src/adblock/adblockicon.cpp" line="175"/>
         <source>%1 with (%2)</source>
-        <translation type="unfinished"/>
+        <translation>%1 a következővel: (%2)</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="169"/>
         <source>No content blocked</source>
-        <translation type="unfinished"/>
+        <translation>Nincs blokkolt tartalom</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="172"/>
         <source>Blocked URL (AdBlock Rule) - click to edit rule</source>
-        <translation type="unfinished"/>
+        <translation>Blokkolt URL (AdBlock szabály) - kattintson a szabály szerkesztéséhez</translation>
     </message>
 </context>
 <context>
@@ -232,7 +232,7 @@
     <message>
         <location filename="../src/adblock/adblockmanager.cpp" line="277"/>
         <source>EasyList</source>
-        <translation type="unfinished"/>
+        <translation>Egyszerű lista</translation>
     </message>
 </context>
 <context>
@@ -240,7 +240,7 @@
     <message>
         <location filename="../src/adblock/adblocksubscription.cpp" line="190"/>
         <source>Cannot load subscription!</source>
-        <translation type="unfinished"/>
+        <translation>Nem lehet betölteni az előfizetést!</translation>
     </message>
 </context>
 <context>
@@ -248,32 +248,32 @@
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="97"/>
         <source>Add Rule</source>
-        <translation type="unfinished"/>
+        <translation>Szabály hozzáadása</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="99"/>
         <source>Remove Rule</source>
-        <translation type="unfinished"/>
+        <translation>Szabály eltávolítása</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="160"/>
         <source>Add Custom Rule</source>
-        <translation type="unfinished"/>
+        <translation>Egyéni szabály hozzáadása</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="160"/>
         <source>Please write your rule here:</source>
-        <translation type="unfinished"/>
+        <translation>Kérjük, írja meg a szabályt itt:</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="198"/>
         <source>%1 (recently updated)</source>
-        <translation type="unfinished"/>
+        <translation> %1 (nemrég frissített)</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="207"/>
         <source>%1 (Error: %2)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (Hiba: %2)</translation>
     </message>
 </context>
 <context>
@@ -920,17 +920,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="32"/>
         <source>Display</source>
-        <translation type="unfinished"/>
+        <translation>Kijelző</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="174"/>
         <source>Enable JavaScript</source>
-        <translation type="unfinished"/>
+        <translation>JavaScript engedélyezése</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="177"/>
         <source>Right-to-left layout</source>
-        <translation type="unfinished"/>
+        <translation>Jobbról-balra elrendezés</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="216"/>
@@ -1125,17 +1125,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/findtext.cpp" line="105"/>
         <source>Find in Titles</source>
-        <translation type="unfinished"/>
+        <translation>Keresés a címekben</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="106"/>
         <source>Find in Authors</source>
-        <translation type="unfinished"/>
+        <translation>Keresés a szerzőkben</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="107"/>
         <source>Find in Categories</source>
-        <translation type="unfinished"/>
+        <translation>Keresés a kategóriákban</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="108"/>
@@ -1186,7 +1186,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/filterrulesdialog.h" line="153"/>
         <source>Show News in Notifier</source>
-        <translation type="unfinished"/>
+        <translation>Hírek megjelenítése az értesítőben</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="162"/>
@@ -1321,7 +1321,7 @@ Ancient news could reappear</source>
         <location filename="../src/filterrulesdialog.h" line="112"/>
         <location filename="../src/filterrulesdialog.h" line="118"/>
         <source>Regular expressions</source>
-        <translation type="unfinished"/>
+        <translation>Reguláris kifejezések</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="120"/>
@@ -1394,7 +1394,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="1733"/>
         <source>&amp;AdBlock</source>
-        <translation type="unfinished"/>
+        <translation>&amp;AdBlock</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2146"/>
@@ -1470,7 +1470,7 @@ Ancient news could reappear</source>
         <location filename="../src/application/mainwindow.cpp" line="3439"/>
         <location filename="../src/application/mainwindow.cpp" line="3444"/>
         <source>(Browser)</source>
-        <translation type="unfinished"/>
+        <translation>(Böngésző)</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4629"/>
@@ -1514,7 +1514,7 @@ Ancient news could reappear</source>
         <location filename="../src/application/mainwindow.cpp" line="4645"/>
         <location filename="../src/application/mainwindow.cpp" line="4713"/>
         <source>Open in New Tab</source>
-        <translation type="unfinished"/>
+        <translation>Megnyitás új lapon</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4647"/>
@@ -1817,82 +1817,82 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4793"/>
         <source>Count Unread News</source>
-        <translation type="unfinished"/>
+        <translation>Olvasatlan hírek száma</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4794"/>
         <source>Count All News</source>
-        <translation type="unfinished"/>
+        <translation>Összes hír száma</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4795"/>
         <source>Last Update</source>
-        <translation type="unfinished"/>
+        <translation>Utolsó frissítés</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4808"/>
         <source>Reset browser zoom</source>
-        <translation type="unfinished"/>
+        <translation>Böngésző nagyítás visszaállítása</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4811"/>
         <source>Print Web Page</source>
-        <translation type="unfinished"/>
+        <translation>Weboldal nyomtatása</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4813"/>
         <source>Preview Web Page</source>
-        <translation type="unfinished"/>
+        <translation>Weboldal előnézete</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4817"/>
         <source>Save page in database</source>
-        <translation type="unfinished"/>
+        <translation>Oldal mentése az adatbázisban</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4818"/>
         <source>Save page in database instead of news description</source>
-        <translation type="unfinished"/>
+        <translation>Oldal mentése az adatbázisba a hírek leírás helyett</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="159"/>
         <source>Saving data...</source>
-        <translation type="unfinished"/>
+        <translation>Adatok mentése...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2483"/>
         <source>Confirm Delete</source>
-        <translation type="unfinished"/>
+        <translation>Törlés megerősítése</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2484"/>
         <source>Are you sure to delete selected elements?</source>
-        <translation type="unfinished"/>
+        <translation>Biztos benne, hogy törli a kiválasztott elemeket?</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4634"/>
         <source>Menu</source>
-        <translation type="unfinished"/>
+        <translation>Menü</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4656"/>
         <source>&amp;Create Backup...</source>
-        <translation type="unfinished"/>
+        <translation>Mentés létrehozása...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4657"/>
         <source>S&amp;how Menu Bar</source>
-        <translation type="unfinished"/>
+        <translation>Menüsor megjelenítése</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4709"/>
         <source>Open News Description</source>
-        <translation type="unfinished"/>
+        <translation>Hírleírások megnyitása</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4726"/>
         <source>Copy News Link</source>
-        <translation type="unfinished"/>
+        <translation>Hírek hivatkozás másolása</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4736"/>
@@ -2169,7 +2169,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4815"/>
         <source>Save As...</source>
-        <translation type="unfinished"/>
+        <translation>Mentés másként...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4816"/>
@@ -2204,7 +2204,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4826"/>
         <source>Status Bar</source>
-        <translation type="unfinished"/>
+        <translation>Állapotsor</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4828"/>
@@ -2237,7 +2237,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4844"/>
         <source>Close Tab</source>
-        <translation type="unfinished"/>
+        <translation>Lap bezárása</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4845"/>
@@ -2398,7 +2398,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="7663"/>
         <source>Choose Directory</source>
-        <translation type="unfinished"/>
+        <translation>Válasszon könyvtárat</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.h" line="101"/>
@@ -2446,7 +2446,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="46"/>
         <source>Filter Name</source>
-        <translation type="unfinished"/>
+        <translation>Szűrő neve</translation>
     </message>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="91"/>
@@ -2476,7 +2476,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="107"/>
         <source>Run Filter</source>
-        <translation type="unfinished"/>
+        <translation>Szűrő futtatása</translation>
     </message>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="259"/>
@@ -2486,7 +2486,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="260"/>
         <source>Are you sure you want to delete the filter &apos;%1&apos;?</source>
-        <translation type="unfinished"/>
+        <translation>Biztos benne, hogy törli a &apos;%1&apos; szűrőt?</translation>
     </message>
 </context>
 <context>
@@ -2539,7 +2539,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsheader.cpp" line="409"/>
         <source>Feed Title</source>
-        <translation type="unfinished"/>
+        <translation>Hírcsatorna címe</translation>
     </message>
     <message>
         <location filename="../src/newsheader.cpp" line="410"/>
@@ -2651,17 +2651,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newstabwidget.cpp" line="589"/>
         <source>Auto Load Images to News View</source>
-        <translation type="unfinished"/>
+        <translation>Képek automatikus betöltése a hírek nézetben</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="591"/>
         <source>No Load Images</source>
-        <translation type="unfinished"/>
+        <translation>Ne töltse be a képeket</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="592"/>
         <source>No Load Images to News View</source>
-        <translation type="unfinished"/>
+        <translation>Ne töltse be a képeket hírek nézetben</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="597"/>
@@ -2671,17 +2671,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newstabwidget.cpp" line="610"/>
         <source>Auto Load Images in News View</source>
-        <translation type="unfinished"/>
+        <translation>Képek automatikus betöltése a hírek nézetbe</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="613"/>
         <source>Don&apos;t Load Images</source>
-        <translation type="unfinished"/>
+        <translation>Ne töltse be a képeket</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="614"/>
         <source>Don&apos;t Load Images in News View</source>
-        <translation type="unfinished"/>
+        <translation>Ne töltse be a képeket hírek nézetben</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1398"/>
@@ -2855,7 +2855,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="295"/>
         <source>Show close button on tab</source>
-        <translation type="unfinished"/>
+        <translation>Bezárás gomb megjelenítése a fülön</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="297"/>
@@ -2865,7 +2865,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="298"/>
         <source>Help improve QuiteRSS by sending usage information</source>
-        <translation type="unfinished"/>
+        <translation>Segítsen az QuiteRSS fejlesztésében a használati információk küldésével</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="299"/>
@@ -2875,7 +2875,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="306"/>
         <source>Save DB stored in memory to file every</source>
-        <translation type="unfinished"/>
+        <translation>A memóriában tárolt DB mentése a fájlba minden</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="308"/>
@@ -2986,17 +2986,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="474"/>
         <source>Request timeout:</source>
-        <translation type="unfinished"/>
+        <translation>Kérelem időtúllépése:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="476"/>
         <source>Number of requests:</source>
-        <translation type="unfinished"/>
+        <translation>Kérelmek száma:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="478"/>
         <source>Number of retries:</source>
-        <translation type="unfinished"/>
+        <translation>Próbálkozások száma:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="481"/>
@@ -3309,7 +3309,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="874"/>
         <source>Style sheet for news:</source>
-        <translation type="unfinished"/>
+        <translation>Hírek stíluslap:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="882"/>
@@ -3499,12 +3499,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1111"/>
         <source>item on page notification</source>
-        <translation type="unfinished"/>
+        <translation>elem az értesítési oldalon</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1114"/>
         <source>Width list items</source>
-        <translation type="unfinished"/>
+        <translation>Listaelemek szélessége</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1116"/>
@@ -3702,12 +3702,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1609"/>
         <source>Count of unread news in feeds tree</source>
-        <translation type="unfinished"/>
+        <translation>Olvasatlan hírek száma a hírcsatornák fában</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2001"/>
         <source>Auto load images in news view</source>
-        <translation type="unfinished"/>
+        <translation>Képek automatikus betöltése a hírek nézetbe</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1612"/>
@@ -3717,22 +3717,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="292"/>
         <source>Show feeds tree toggle</source>
-        <translation type="unfinished"/>
+        <translation>Hírcsatornák-fa kapcsoló megjelenítése</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="382"/>
         <source>Clear new status when minimize to tray</source>
-        <translation type="unfinished"/>
+        <translation>Az új státusz törlése a tálcára küldéskor</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="847"/>
         <source>Default news filter:</source>
-        <translation type="unfinished"/>
+        <translation>Alapértelmezett hírek szűrő:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="896"/>
         <source>Show news description instead of loading web page</source>
-        <translation type="unfinished"/>
+        <translation>Hírleírások megjelenítése a weblap betöltése helyett</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1615"/>
@@ -3742,12 +3742,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1618"/>
         <source>Focused feed color</source>
-        <translation type="unfinished"/>
+        <translation>Fókuszban lévő hírcsatorna színe</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1621"/>
         <source>Focused feed background color</source>
-        <translation type="unfinished"/>
+        <translation>Fókuszban lévő hírcsatorna háttérszíne</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1657"/>
@@ -4086,7 +4086,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/database/database.cpp" line="265"/>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>Hiba</translation>
     </message>
 </context>
 <context>
@@ -4160,7 +4160,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/webview/rssdetectionwidget.cpp" line="56"/>
         <source>Untitled feed</source>
-        <translation type="unfinished"/>
+        <translation>Névtelen hírcsatorna</translation>
     </message>
 </context>
 <context>
@@ -4191,27 +4191,27 @@ Ancient news could reappear</source>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="556"/>
         <source>Error opening database</source>
-        <translation type="unfinished"/>
+        <translation>Adatbázis megnyitási hiba</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="567"/>
         <source>Error closing database</source>
-        <translation type="unfinished"/>
+        <translation>Adatbázis bezárási hiba</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="587"/>
         <source>Unable to begin transaction</source>
-        <translation type="unfinished"/>
+        <translation>A tranzakció nem indítható</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="602"/>
         <source>Unable to commit transaction</source>
-        <translation type="unfinished"/>
+        <translation>A tranzakció nem véglegesíthető</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="617"/>
         <source>Unable to rollback transaction</source>
-        <translation type="unfinished"/>
+        <translation>A tranzakció nem vonható vissza</translation>
     </message>
 </context>
 <context>
@@ -4221,37 +4221,37 @@ Ancient news could reappear</source>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="278"/>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="286"/>
         <source>Unable to fetch row</source>
-        <translation type="unfinished"/>
+        <translation>Nem lehet beolvasni a sort</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="216"/>
         <source>No query</source>
-        <translation type="unfinished"/>
+        <translation>Nincs lekérdezés</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="350"/>
         <source>Unable to execute statement</source>
-        <translation type="unfinished"/>
+        <translation>Nem hajtható végre az utasítás</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="355"/>
         <source>Unable to execute multiple statements at a time</source>
-        <translation type="unfinished"/>
+        <translation>Nem hajtható végre több utasítás egyszerre</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="375"/>
         <source>Unable to reset statement</source>
-        <translation type="unfinished"/>
+        <translation>Nem lehet visszaállítani az adatot</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="420"/>
         <source>Unable to bind parameters</source>
-        <translation type="unfinished"/>
+        <translation>Nem lehet átvinni a paramétereket</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="427"/>
         <source>Parameter count mismatch</source>
-        <translation type="unfinished"/>
+        <translation>Paraméter szám eltérés</translation>
     </message>
 </context>
 <context>

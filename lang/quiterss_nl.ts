@@ -1125,17 +1125,17 @@ werd niet gevonden</translation>
     <message>
         <location filename="../src/findtext.cpp" line="105"/>
         <source>Find in Titles</source>
-        <translation type="unfinished"/>
+        <translation>Vind in titels</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="106"/>
         <source>Find in Authors</source>
-        <translation type="unfinished"/>
+        <translation>Vind auteurs</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="107"/>
         <source>Find in Categories</source>
-        <translation type="unfinished"/>
+        <translation>Vind in Catagorie</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="108"/>
@@ -1817,32 +1817,32 @@ werd niet gevonden</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4793"/>
         <source>Count Unread News</source>
-        <translation type="unfinished"/>
+        <translation>Tel ongelezen nieuws</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4794"/>
         <source>Count All News</source>
-        <translation type="unfinished"/>
+        <translation>Tel alle Nieuws</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4795"/>
         <source>Last Update</source>
-        <translation type="unfinished"/>
+        <translation>Laatste update</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4808"/>
         <source>Reset browser zoom</source>
-        <translation type="unfinished"/>
+        <translation>Herstel zoom in browser</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4811"/>
         <source>Print Web Page</source>
-        <translation type="unfinished"/>
+        <translation>Web pagina Afdrukken</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4813"/>
         <source>Preview Web Page</source>
-        <translation type="unfinished"/>
+        <translation>Voorbeeld van Webpagina</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4817"/>
@@ -1887,12 +1887,12 @@ werd niet gevonden</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4709"/>
         <source>Open News Description</source>
-        <translation type="unfinished"/>
+        <translation>Open omschrijving van Nieuws</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4726"/>
         <source>Copy News Link</source>
-        <translation type="unfinished"/>
+        <translation>Kopieer koppeling Nieuws</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4736"/>
@@ -2446,7 +2446,7 @@ werd niet gevonden</translation>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="46"/>
         <source>Filter Name</source>
-        <translation type="unfinished"/>
+        <translation>Filternaam:</translation>
     </message>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="91"/>
@@ -2486,7 +2486,7 @@ werd niet gevonden</translation>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="260"/>
         <source>Are you sure you want to delete the filter &apos;%1&apos;?</source>
-        <translation type="unfinished"/>
+        <translation>Weet je zeker dat je het filter wilt verwijderen &apos;%1&apos;?</translation>
     </message>
 </context>
 <context>
@@ -2539,7 +2539,7 @@ werd niet gevonden</translation>
     <message>
         <location filename="../src/newsheader.cpp" line="409"/>
         <source>Feed Title</source>
-        <translation type="unfinished"/>
+        <translation>Feed titel</translation>
     </message>
     <message>
         <location filename="../src/newsheader.cpp" line="410"/>
@@ -2671,17 +2671,17 @@ werd niet gevonden</translation>
     <message>
         <location filename="../src/newstabwidget.cpp" line="610"/>
         <source>Auto Load Images in News View</source>
-        <translation type="unfinished"/>
+        <translation>Toon Automatisch Afbeeldingen van het Nieuws</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="613"/>
         <source>Don&apos;t Load Images</source>
-        <translation type="unfinished"/>
+        <translation>Afbeeldingen niet laden</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="614"/>
         <source>Don&apos;t Load Images in News View</source>
-        <translation type="unfinished"/>
+        <translation>Laat geen afbeeldingen zien in nieuws </translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1398"/>
@@ -3702,12 +3702,12 @@ werd niet gevonden</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1609"/>
         <source>Count of unread news in feeds tree</source>
-        <translation type="unfinished"/>
+        <translation>Telling van ongelezen nieuws in feed structuur</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2001"/>
         <source>Auto load images in news view</source>
-        <translation type="unfinished"/>
+        <translation>Toon automatisch de afbeeldingen in het nieuws</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1612"/>
@@ -3717,22 +3717,22 @@ werd niet gevonden</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="292"/>
         <source>Show feeds tree toggle</source>
-        <translation type="unfinished"/>
+        <translation>Toon feeds schakel structuur</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="382"/>
         <source>Clear new status when minimize to tray</source>
-        <translation type="unfinished"/>
+        <translation>Wis de nieuwe status en minimaliseer naar systeemvak</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="847"/>
         <source>Default news filter:</source>
-        <translation type="unfinished"/>
+        <translation>Standaard nieuws filter:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="896"/>
         <source>Show news description instead of loading web page</source>
-        <translation type="unfinished"/>
+        <translation>Toon nieuws beschrijving in plaats van webpagina laden</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1615"/>

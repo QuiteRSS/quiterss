@@ -1125,17 +1125,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/findtext.cpp" line="105"/>
         <source>Find in Titles</source>
-        <translation type="unfinished"/>
+        <translation>제목에서 검색</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="106"/>
         <source>Find in Authors</source>
-        <translation type="unfinished"/>
+        <translation>제작자에서 검색</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="107"/>
         <source>Find in Categories</source>
-        <translation type="unfinished"/>
+        <translation>분류에서 검색</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="108"/>
@@ -1817,42 +1817,42 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4793"/>
         <source>Count Unread News</source>
-        <translation type="unfinished"/>
+        <translation>읽지 않은 뉴스</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4794"/>
         <source>Count All News</source>
-        <translation type="unfinished"/>
+        <translation>모든 뉴스</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4795"/>
         <source>Last Update</source>
-        <translation type="unfinished"/>
+        <translation>Last Update</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4808"/>
         <source>Reset browser zoom</source>
-        <translation type="unfinished"/>
+        <translation>화면 확대/축소 초기화</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4811"/>
         <source>Print Web Page</source>
-        <translation type="unfinished"/>
+        <translation>웹 페이지 인쇄</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4813"/>
         <source>Preview Web Page</source>
-        <translation type="unfinished"/>
+        <translation>웹페이지 미리보기</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4817"/>
         <source>Save page in database</source>
-        <translation type="unfinished"/>
+        <translation>페이지를 데이터베이스에 저장</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4818"/>
         <source>Save page in database instead of news description</source>
-        <translation type="unfinished"/>
+        <translation>뉴스설명 대신 페이지를 데이터베이스에 저장</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="159"/>
@@ -1887,12 +1887,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4709"/>
         <source>Open News Description</source>
-        <translation type="unfinished"/>
+        <translation>뉴스 설명을 엽니다</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4726"/>
         <source>Copy News Link</source>
-        <translation type="unfinished"/>
+        <translation>뉴스링크 복사</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4736"/>
@@ -2446,7 +2446,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="46"/>
         <source>Filter Name</source>
-        <translation type="unfinished"/>
+        <translation>필터 이름</translation>
     </message>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="91"/>
@@ -2486,7 +2486,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="260"/>
         <source>Are you sure you want to delete the filter &apos;%1&apos;?</source>
-        <translation type="unfinished"/>
+        <translation>필터 &apos;%1&apos;를 삭제하시겠습니까?</translation>
     </message>
 </context>
 <context>
@@ -2539,7 +2539,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsheader.cpp" line="409"/>
         <source>Feed Title</source>
-        <translation type="unfinished"/>
+        <translation>피드 타이틀</translation>
     </message>
     <message>
         <location filename="../src/newsheader.cpp" line="410"/>
@@ -2671,17 +2671,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newstabwidget.cpp" line="610"/>
         <source>Auto Load Images in News View</source>
-        <translation type="unfinished"/>
+        <translation>뉴스보기에서 이미지를 자동으로 표시</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="613"/>
         <source>Don&apos;t Load Images</source>
-        <translation type="unfinished"/>
+        <translation>이미지를 표시하지 않음</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="614"/>
         <source>Don&apos;t Load Images in News View</source>
-        <translation type="unfinished"/>
+        <translation>뉴스 보기에서 이미지를 표시안함</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1398"/>
@@ -2865,7 +2865,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="298"/>
         <source>Help improve QuiteRSS by sending usage information</source>
-        <translation type="unfinished"/>
+        <translation>사용 정보를 전송하여 QuiteRSS을 개선에 도움을 줍니다.</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="299"/>
@@ -3702,12 +3702,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1609"/>
         <source>Count of unread news in feeds tree</source>
-        <translation type="unfinished"/>
+        <translation>피드목록에 읽지 않은 뉴스 건수 표시</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2001"/>
         <source>Auto load images in news view</source>
-        <translation type="unfinished"/>
+        <translation>뉴스 보기에서 이미지를 자동으로 표시</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1612"/>
@@ -3717,22 +3717,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="292"/>
         <source>Show feeds tree toggle</source>
-        <translation type="unfinished"/>
+        <translation>피드 목록 보기 토글</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="382"/>
         <source>Clear new status when minimize to tray</source>
-        <translation type="unfinished"/>
+        <translation>트레이로 최소화시 상태를 클리어</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="847"/>
         <source>Default news filter:</source>
-        <translation type="unfinished"/>
+        <translation>기본 뉴스 필터:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="896"/>
         <source>Show news description instead of loading web page</source>
-        <translation type="unfinished"/>
+        <translation>웹페이지를 불러오지 않고 뉴스 설명을 표시</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1615"/>
@@ -4201,17 +4201,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="587"/>
         <source>Unable to begin transaction</source>
-        <translation type="unfinished"/>
+        <translation>트랜잭션을 시작할수 없습니다.</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="602"/>
         <source>Unable to commit transaction</source>
-        <translation type="unfinished"/>
+        <translation>트랜잭션을 실행할수 없습니다.</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="617"/>
         <source>Unable to rollback transaction</source>
-        <translation type="unfinished"/>
+        <translation>트랜잭션을 되돌리수 없습니다.</translation>
     </message>
 </context>
 <context>
@@ -4221,32 +4221,32 @@ Ancient news could reappear</source>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="278"/>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="286"/>
         <source>Unable to fetch row</source>
-        <translation type="unfinished"/>
+        <translation>행을 불러 올수 없습니다.</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="216"/>
         <source>No query</source>
-        <translation type="unfinished"/>
+        <translation>질의어가 없습니다</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="350"/>
         <source>Unable to execute statement</source>
-        <translation type="unfinished"/>
+        <translation>작업을 실행할수 없습니다.</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="355"/>
         <source>Unable to execute multiple statements at a time</source>
-        <translation type="unfinished"/>
+        <translation>한번에 여러개 작업을 실행 할수 없습니다.</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="375"/>
         <source>Unable to reset statement</source>
-        <translation type="unfinished"/>
+        <translation>작업을 재설정 할수 없습니다.</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="420"/>
         <source>Unable to bind parameters</source>
-        <translation type="unfinished"/>
+        <translation>매개변수를 연결할수 없습니다.</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="427"/>

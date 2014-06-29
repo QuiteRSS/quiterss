@@ -1832,7 +1832,7 @@ Les anciens articles pourraient réapparaitre</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4808"/>
         <source>Reset browser zoom</source>
-        <translation type="unfinished"/>
+        <translation>Réinitialiser le zoom du navigateur</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4811"/>
@@ -3717,22 +3717,22 @@ Les anciens articles pourraient réapparaitre</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="292"/>
         <source>Show feeds tree toggle</source>
-        <translation type="unfinished"/>
+        <translation>Voir l&apos;arbre des flux basculer</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="382"/>
         <source>Clear new status when minimize to tray</source>
-        <translation type="unfinished"/>
+        <translation>Effacer l&apos;état nouveau lors du passage à la boite à miniatures</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="847"/>
         <source>Default news filter:</source>
-        <translation type="unfinished"/>
+        <translation>Filtre par défaut de nouvelles :</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="896"/>
         <source>Show news description instead of loading web page</source>
-        <translation type="unfinished"/>
+        <translation>Montrer la description des articles au lieu de charger la page web</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1615"/>

@@ -1125,17 +1125,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/findtext.cpp" line="105"/>
         <source>Find in Titles</source>
-        <translation type="unfinished"/>
+        <translation>Caută în titluri</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="106"/>
         <source>Find in Authors</source>
-        <translation type="unfinished"/>
+        <translation>Caută în autori</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="107"/>
         <source>Find in Categories</source>
-        <translation type="unfinished"/>
+        <translation>Caută în categorii</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="108"/>
@@ -1817,32 +1817,32 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4793"/>
         <source>Count Unread News</source>
-        <translation type="unfinished"/>
+        <translation>Numără noutăţile necitite</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4794"/>
         <source>Count All News</source>
-        <translation type="unfinished"/>
+        <translation>Numără toate noutăţile</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4795"/>
         <source>Last Update</source>
-        <translation type="unfinished"/>
+        <translation>Ultima actualizare</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4808"/>
         <source>Reset browser zoom</source>
-        <translation type="unfinished"/>
+        <translation>Resetare zoom browser</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4811"/>
         <source>Print Web Page</source>
-        <translation type="unfinished"/>
+        <translation>Imprimare pagină web</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4813"/>
         <source>Preview Web Page</source>
-        <translation type="unfinished"/>
+        <translation>Previzualizare pagină web</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4817"/>
@@ -1887,12 +1887,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4709"/>
         <source>Open News Description</source>
-        <translation type="unfinished"/>
+        <translation>Deschidere descriere noutăţi</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4726"/>
         <source>Copy News Link</source>
-        <translation type="unfinished"/>
+        <translation>Copiază legătură noutăţi</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4736"/>
@@ -2446,7 +2446,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="46"/>
         <source>Filter Name</source>
-        <translation type="unfinished"/>
+        <translation>Nume filtru</translation>
     </message>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="91"/>
@@ -2486,7 +2486,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="260"/>
         <source>Are you sure you want to delete the filter &apos;%1&apos;?</source>
-        <translation type="unfinished"/>
+        <translation>Sigur doriţi şteregerea filtrului &apos;%1&apos;?</translation>
     </message>
 </context>
 <context>
@@ -2539,7 +2539,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsheader.cpp" line="409"/>
         <source>Feed Title</source>
-        <translation type="unfinished"/>
+        <translation>Titlu flux</translation>
     </message>
     <message>
         <location filename="../src/newsheader.cpp" line="410"/>
@@ -2671,17 +2671,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newstabwidget.cpp" line="610"/>
         <source>Auto Load Images in News View</source>
-        <translation type="unfinished"/>
+        <translation>Auto încărcare imagini în vizualizare noutăţi</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="613"/>
         <source>Don&apos;t Load Images</source>
-        <translation type="unfinished"/>
+        <translation>Nu încarcă imagini</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="614"/>
         <source>Don&apos;t Load Images in News View</source>
-        <translation type="unfinished"/>
+        <translation>Nu încarcă imagini în vizualizare noutăţi</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1398"/>
@@ -3702,12 +3702,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1609"/>
         <source>Count of unread news in feeds tree</source>
-        <translation type="unfinished"/>
+        <translation>Nr. noutăţi necitite în arbore fluxuri</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2001"/>
         <source>Auto load images in news view</source>
-        <translation type="unfinished"/>
+        <translation>Auto încărcare imagini în vizualizare noutăţi</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1612"/>
@@ -3717,22 +3717,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="292"/>
         <source>Show feeds tree toggle</source>
-        <translation type="unfinished"/>
+        <translation>Arată comutator arbore fluxuri</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="382"/>
         <source>Clear new status when minimize to tray</source>
-        <translation type="unfinished"/>
+        <translation>Ştergere statut nou la minimizare în bară</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="847"/>
         <source>Default news filter:</source>
-        <translation type="unfinished"/>
+        <translation>Filtru noutăţi iniţial:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="896"/>
         <source>Show news description instead of loading web page</source>
-        <translation type="unfinished"/>
+        <translation>Arată descriere noutăţi în loc de încărcarea paginii web</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1615"/>

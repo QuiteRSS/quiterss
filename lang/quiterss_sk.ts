@@ -1830,7 +1830,7 @@ Staré správy sa môžu znova objaviť</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4808"/>
         <source>Reset browser zoom</source>
-        <translation type="unfinished"/>
+        <translation>Zresetovať priblíženie v prehliadači</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4811"/>
@@ -3700,12 +3700,12 @@ Staré správy sa môžu znova objaviť</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1609"/>
         <source>Count of unread news in feeds tree</source>
-        <translation type="unfinished"/>
+        <translation>Počet neprečítaných noviniek v zozname kanálov</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2001"/>
         <source>Auto load images in news view</source>
-        <translation type="unfinished"/>
+        <translation>Automaticky načítať obrázky v novinkách</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1612"/>
@@ -3715,22 +3715,22 @@ Staré správy sa môžu znova objaviť</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="292"/>
         <source>Show feeds tree toggle</source>
-        <translation type="unfinished"/>
+        <translation>Zobraziť prepínanie stromu kanálov</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="382"/>
         <source>Clear new status when minimize to tray</source>
-        <translation type="unfinished"/>
+        <translation>Vynulovať počet nových noviniek pri minimalizovaní do tray lišty</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="847"/>
         <source>Default news filter:</source>
-        <translation type="unfinished"/>
+        <translation>Východzí filter noviniek:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="896"/>
         <source>Show news description instead of loading web page</source>
-        <translation type="unfinished"/>
+        <translation>Zobrazovať popis novinky namiesto načítania webstránky</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1615"/>

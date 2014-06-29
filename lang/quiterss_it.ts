@@ -1817,12 +1817,12 @@ Le notizie vecchie potrebbero riapparire.</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4793"/>
         <source>Count Unread News</source>
-        <translation type="unfinished"/>
+        <translation>Numero delle notizie non lette</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4794"/>
         <source>Count All News</source>
-        <translation type="unfinished"/>
+        <translation>Numero di tutte le notizie</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4795"/>
@@ -1852,7 +1852,7 @@ Le notizie vecchie potrebbero riapparire.</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4818"/>
         <source>Save page in database instead of news description</source>
-        <translation type="unfinished"/>
+        <translation>Salva la pagina nel database invece della descrizione delle notizie</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="159"/>
@@ -3702,7 +3702,7 @@ Le notizie vecchie potrebbero riapparire.</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1609"/>
         <source>Count of unread news in feeds tree</source>
-        <translation type="unfinished"/>
+        <translation>Conta le notizie non lette nell&apos;albero delle fonti</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2001"/>
@@ -3717,12 +3717,12 @@ Le notizie vecchie potrebbero riapparire.</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="292"/>
         <source>Show feeds tree toggle</source>
-        <translation type="unfinished"/>
+        <translation>Mostra l&apos;interruttore dell&apos;albero delle fonti</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="382"/>
         <source>Clear new status when minimize to tray</source>
-        <translation type="unfinished"/>
+        <translation>Togli &quot;Nuovo&quot; quando si minimizza nell&apos;area di notifica</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="847"/>
@@ -4231,27 +4231,27 @@ Le notizie vecchie potrebbero riapparire.</translation>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="350"/>
         <source>Unable to execute statement</source>
-        <translation type="unfinished"/>
+        <translation>Impossibile eseguire la richiesta</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="355"/>
         <source>Unable to execute multiple statements at a time</source>
-        <translation type="unfinished"/>
+        <translation>Impossibile eseguire contemporaneamente richieste multiple</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="375"/>
         <source>Unable to reset statement</source>
-        <translation type="unfinished"/>
+        <translation>Impossibile annullare la richiesta</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="420"/>
         <source>Unable to bind parameters</source>
-        <translation type="unfinished"/>
+        <translation>Impossibile associare i parametri</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="427"/>
         <source>Parameter count mismatch</source>
-        <translation type="unfinished"/>
+        <translation>Mancata corrispondenza nel conteggio dei parametri</translation>
     </message>
 </context>
 <context>

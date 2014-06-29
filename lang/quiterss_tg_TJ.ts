@@ -46,7 +46,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="151"/>
         <source>Backup directory:</source>
-        <translation type="unfinished"/>
+        <translation>Суроғаи захиравӣ:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="154"/>
@@ -920,7 +920,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="32"/>
         <source>Display</source>
-        <translation type="unfinished"/>
+        <translation>Намоиш</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="174"/>
@@ -1125,17 +1125,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/findtext.cpp" line="105"/>
         <source>Find in Titles</source>
-        <translation type="unfinished"/>
+        <translation>Ҷустуҷӯ дар сарлавҳаҳо</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="106"/>
         <source>Find in Authors</source>
-        <translation type="unfinished"/>
+        <translation>Ҷустуҷӯ дар муаллиффон</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="107"/>
         <source>Find in Categories</source>
-        <translation type="unfinished"/>
+        <translation>Ҷустуҷӯ дар зумраҳо</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="108"/>
@@ -1321,7 +1321,7 @@ Ancient news could reappear</source>
         <location filename="../src/filterrulesdialog.h" line="112"/>
         <location filename="../src/filterrulesdialog.h" line="118"/>
         <source>Regular expressions</source>
-        <translation type="unfinished"/>
+        <translation>Ифодаҳои регулярӣ</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="120"/>
@@ -1817,37 +1817,37 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4793"/>
         <source>Count Unread News</source>
-        <translation type="unfinished"/>
+        <translation>Миқдори хабарҳои нахонда</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4794"/>
         <source>Count All News</source>
-        <translation type="unfinished"/>
+        <translation>Миқдори ҳамаи хабарҳо</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4795"/>
         <source>Last Update</source>
-        <translation type="unfinished"/>
+        <translation>Охирон азнавкунӣ</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4808"/>
         <source>Reset browser zoom</source>
-        <translation type="unfinished"/>
+        <translation>Партофтани миқёс дар браузер</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4811"/>
         <source>Print Web Page</source>
-        <translation type="unfinished"/>
+        <translation>Чопи веб-саҳифа</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4813"/>
         <source>Preview Web Page</source>
-        <translation type="unfinished"/>
+        <translation>Аз назар гузаронии веб-саҳифа</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4817"/>
         <source>Save page in database</source>
-        <translation type="unfinished"/>
+        <translation>Сабти саҳифа дар ММ</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4818"/>
@@ -1862,12 +1862,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2483"/>
         <source>Confirm Delete</source>
-        <translation type="unfinished"/>
+        <translation>Тасдиқи хориҷкунӣ</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2484"/>
         <source>Are you sure to delete selected elements?</source>
-        <translation type="unfinished"/>
+        <translation>Шумо дар воқеъ мехоҳед элементҳои интихоб шударо  хориҷ кунед?</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4634"/>
@@ -1877,7 +1877,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4656"/>
         <source>&amp;Create Backup...</source>
-        <translation type="unfinished"/>
+        <translation>Захиракунӣ</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4657"/>
@@ -1887,12 +1887,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4709"/>
         <source>Open News Description</source>
-        <translation type="unfinished"/>
+        <translation>Кушодани тавсифи хабар</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4726"/>
         <source>Copy News Link</source>
-        <translation type="unfinished"/>
+        <translation>Нусхабардории суроғаи линки хабар</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4736"/>
@@ -2204,7 +2204,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4826"/>
         <source>Status Bar</source>
-        <translation type="unfinished"/>
+        <translation>Сатри ҳолат</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4828"/>
@@ -2398,7 +2398,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="7663"/>
         <source>Choose Directory</source>
-        <translation type="unfinished"/>
+        <translation>Интихоби каталог</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.h" line="101"/>
@@ -2446,7 +2446,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="46"/>
         <source>Filter Name</source>
-        <translation type="unfinished"/>
+        <translation>Номи филтр</translation>
     </message>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="91"/>
@@ -2486,7 +2486,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="260"/>
         <source>Are you sure you want to delete the filter &apos;%1&apos;?</source>
-        <translation type="unfinished"/>
+        <translation>Шумо дар воқеъ мехоҳед филтри &apos;%1&apos;-ро хориҷ кунед?</translation>
     </message>
 </context>
 <context>
@@ -2539,7 +2539,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsheader.cpp" line="409"/>
         <source>Feed Title</source>
-        <translation type="unfinished"/>
+        <translation>Сарлавҳаи тасма</translation>
     </message>
     <message>
         <location filename="../src/newsheader.cpp" line="410"/>
@@ -2671,17 +2671,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newstabwidget.cpp" line="610"/>
         <source>Auto Load Images in News View</source>
-        <translation type="unfinished"/>
+        <translation>Боркунии автоматии тасвирҳо</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="613"/>
         <source>Don&apos;t Load Images</source>
-        <translation type="unfinished"/>
+        <translation>Бор накардани тасвирҳо</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="614"/>
         <source>Don&apos;t Load Images in News View</source>
-        <translation type="unfinished"/>
+        <translation>Бор накардани тасвирҳо</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1398"/>
@@ -2865,7 +2865,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="298"/>
         <source>Help improve QuiteRSS by sending usage information</source>
-        <translation type="unfinished"/>
+        <translation>Кӯмак барои беҳтар намудани QuiteRSS бо ирсоли омори истифодабарӣ</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="299"/>
@@ -3309,7 +3309,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="874"/>
         <source>Style sheet for news:</source>
-        <translation type="unfinished"/>
+        <translation>Интихоби услуби ҷадвал барои ахборот:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="882"/>
@@ -3702,12 +3702,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1609"/>
         <source>Count of unread news in feeds tree</source>
-        <translation type="unfinished"/>
+        <translation>Миқдори хабарҳои нахонда дар дарахти тасмаҳо</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2001"/>
         <source>Auto load images in news view</source>
-        <translation type="unfinished"/>
+        <translation>Гирифтори автоматии тасвирҳо</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1612"/>
@@ -3717,22 +3717,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="292"/>
         <source>Show feeds tree toggle</source>
-        <translation type="unfinished"/>
+        <translation>Нишондоди дарахти тасмаҳо</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="382"/>
         <source>Clear new status when minimize to tray</source>
-        <translation type="unfinished"/>
+        <translation>Тозакунии ҳолати нав ҳангоми минимизатсия ба трей</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="847"/>
         <source>Default news filter:</source>
-        <translation type="unfinished"/>
+        <translation>Филтри пешфарзи хабарҳо:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="896"/>
         <source>Show news description instead of loading web page</source>
-        <translation type="unfinished"/>
+        <translation>Нишондоди тавсифи хабар бар замми боркунии веб-саҳифа</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1615"/>
@@ -4191,27 +4191,27 @@ Ancient news could reappear</source>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="556"/>
         <source>Error opening database</source>
-        <translation type="unfinished"/>
+        <translation>Хатогии кушодани ММ</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="567"/>
         <source>Error closing database</source>
-        <translation type="unfinished"/>
+        <translation>Хатогии пӯшидани ММ</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="587"/>
         <source>Unable to begin transaction</source>
-        <translation type="unfinished"/>
+        <translation>Транзаксия нотамом монд</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="602"/>
         <source>Unable to commit transaction</source>
-        <translation type="unfinished"/>
+        <translation>Тасдиқи транзаксия имкон надорад</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="617"/>
         <source>Unable to rollback transaction</source>
-        <translation type="unfinished"/>
+        <translation>Рафъи транзаксия имкон надорад</translation>
     </message>
 </context>
 <context>

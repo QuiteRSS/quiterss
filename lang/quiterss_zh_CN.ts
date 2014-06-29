@@ -81,7 +81,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="178"/>
         <source>Information</source>
-        <translation type="unfinished"/>
+        <translation>信息</translation>
     </message>
 </context>
 <context>
@@ -89,7 +89,7 @@
     <message>
         <location filename="../src/adblock/adblockaddsubscriptiondialog.ui" line="14"/>
         <source>Add Subscription</source>
-        <translation type="unfinished"/>
+        <translation>添加订阅</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockaddsubscriptiondialog.ui" line="23"/>
@@ -99,12 +99,12 @@
     <message>
         <location filename="../src/adblock/adblockaddsubscriptiondialog.ui" line="33"/>
         <source>Address:</source>
-        <translation type="unfinished"/>
+        <translation>网址：</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockaddsubscriptiondialog.ui" line="53"/>
         <source>Add new subscription to AdBlock:</source>
-        <translation type="unfinished"/>
+        <translation>添加新的订阅到AdBlock：</translation>
     </message>
 </context>
 <context>
@@ -112,7 +112,7 @@
     <message>
         <location filename="../src/adblock/adblocksubscription.cpp" line="484"/>
         <source>Custom Rules</source>
-        <translation type="unfinished"/>
+        <translation>自定义规则</translation>
     </message>
 </context>
 <context>
@@ -120,12 +120,12 @@
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="14"/>
         <source>AdBlock Configuration</source>
-        <translation type="unfinished"/>
+        <translation>配置AdBlock</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="20"/>
         <source>Enable AdBlock</source>
-        <translation type="unfinished"/>
+        <translation>启用AdBlock</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="32"/>

@@ -46,7 +46,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="151"/>
         <source>Backup directory:</source>
-        <translation type="unfinished"/>
+        <translation>Adresář záloh:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="154"/>
@@ -89,7 +89,7 @@
     <message>
         <location filename="../src/adblock/adblockaddsubscriptiondialog.ui" line="14"/>
         <source>Add Subscription</source>
-        <translation type="unfinished"/>
+        <translation>Přidat sadu filtrů</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockaddsubscriptiondialog.ui" line="23"/>
@@ -104,7 +104,7 @@
     <message>
         <location filename="../src/adblock/adblockaddsubscriptiondialog.ui" line="53"/>
         <source>Add new subscription to AdBlock:</source>
-        <translation type="unfinished"/>
+        <translation>Přidat novou sadu filtrů do AdBlocku:</translation>
     </message>
 </context>
 <context>
@@ -112,7 +112,7 @@
     <message>
         <location filename="../src/adblock/adblocksubscription.cpp" line="484"/>
         <source>Custom Rules</source>
-        <translation>Vlastní pravidla</translation>
+        <translation>Vlastní filtry</translation>
     </message>
 </context>
 <context>
@@ -120,12 +120,12 @@
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="14"/>
         <source>AdBlock Configuration</source>
-        <translation>Konfigurace AdBlock</translation>
+        <translation>Nastavení AdBlocku</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="20"/>
         <source>Enable AdBlock</source>
-        <translation>Aktivovat AdBlock</translation>
+        <translation>Povolit AdBlock</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="32"/>
@@ -160,17 +160,17 @@
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="75"/>
         <source>Add Subscription</source>
-        <translation type="unfinished"/>
+        <translation>Přidat sadu filtrů</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="76"/>
         <source>Remove Subscription</source>
-        <translation type="unfinished"/>
+        <translation>Odebrat sadu filtrů</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="77"/>
         <source>Update Subscriptions</source>
-        <translation type="unfinished"/>
+        <translation>Aktualizovat sady filtrů</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="79"/>
@@ -219,7 +219,7 @@
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="169"/>
         <source>No content blocked</source>
-        <translation>Žádny obsah neblokován</translation>
+        <translation>Žádný blokovaný obsah</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="172"/>
@@ -240,7 +240,7 @@
     <message>
         <location filename="../src/adblock/adblocksubscription.cpp" line="190"/>
         <source>Cannot load subscription!</source>
-        <translation type="unfinished"/>
+        <translation>Nepovedlo se načíst sadu filtrů!</translation>
     </message>
 </context>
 <context>
@@ -263,7 +263,7 @@
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="160"/>
         <source>Please write your rule here:</source>
-        <translation>Napište zde vaše pravidlo:</translation>
+        <translation>Zde napište vlastní pravidlo:</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="198"/>
@@ -523,7 +523,7 @@
         <source>Totally remove records that had marked 'deleted' from DB.
 Ancient news could reappear</source>
         <translation>Úplně odstranit záznamy označené &apos;Smazané&apos; z DB.
-Staré zprávy se mohou znovu objevit</translation>
+Staré novinky se mohou znovu objevit</translation>
     </message>
 </context>
 <context>
@@ -920,17 +920,17 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="32"/>
         <source>Display</source>
-        <translation type="unfinished"/>
+        <translation>Zobrazení</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="174"/>
         <source>Enable JavaScript</source>
-        <translation type="unfinished"/>
+        <translation>Povolit JavaScript</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="177"/>
         <source>Right-to-left layout</source>
-        <translation type="unfinished"/>
+        <translation>Rozvržení zprava doleva</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="216"/>
@@ -1125,17 +1125,17 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/findtext.cpp" line="105"/>
         <source>Find in Titles</source>
-        <translation type="unfinished"/>
+        <translation>Najít v názvech</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="106"/>
         <source>Find in Authors</source>
-        <translation type="unfinished"/>
+        <translation>Najít v autorech</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="107"/>
         <source>Find in Categories</source>
-        <translation type="unfinished"/>
+        <translation>Najít v kategoriích</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="108"/>
@@ -1321,7 +1321,7 @@ nebyl nalezen!</translation>
         <location filename="../src/filterrulesdialog.h" line="112"/>
         <location filename="../src/filterrulesdialog.h" line="118"/>
         <source>Regular expressions</source>
-        <translation type="unfinished"/>
+        <translation>Regulární výraz</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="120"/>
@@ -1817,82 +1817,82 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4793"/>
         <source>Count Unread News</source>
-        <translation type="unfinished"/>
+        <translation>Počet nepřečtených novinek</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4794"/>
         <source>Count All News</source>
-        <translation type="unfinished"/>
+        <translation>Počet všech novinek</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4795"/>
         <source>Last Update</source>
-        <translation type="unfinished"/>
+        <translation>Poslední aktualizace</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4808"/>
         <source>Reset browser zoom</source>
-        <translation type="unfinished"/>
+        <translation>Obnovit výchozí zobrazení v prohlížeči</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4811"/>
         <source>Print Web Page</source>
-        <translation type="unfinished"/>
+        <translation>Tisk webové stránky</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4813"/>
         <source>Preview Web Page</source>
-        <translation type="unfinished"/>
+        <translation>Náhled webové stránky</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4817"/>
         <source>Save page in database</source>
-        <translation type="unfinished"/>
+        <translation>Uložit stránku v databázi</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4818"/>
         <source>Save page in database instead of news description</source>
-        <translation type="unfinished"/>
+        <translation>Uložit stránku do databáze místo popisu novinky</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="159"/>
         <source>Saving data...</source>
-        <translation>Ukládám data...</translation>
+        <translation>Ukládání dat...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2483"/>
         <source>Confirm Delete</source>
-        <translation type="unfinished"/>
+        <translation>Potvrzení smazání</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2484"/>
         <source>Are you sure to delete selected elements?</source>
-        <translation type="unfinished"/>
+        <translation>Opravdu chcete smazat vybrané elementy?</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4634"/>
         <source>Menu</source>
-        <translation type="unfinished"/>
+        <translation>Hlavní nabídka</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4656"/>
         <source>&amp;Create Backup...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Vytvořit zálohu...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4657"/>
         <source>S&amp;how Menu Bar</source>
-        <translation>Zobrazit menu</translation>
+        <translation>Zobrazit hlavní nabídku</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4709"/>
         <source>Open News Description</source>
-        <translation type="unfinished"/>
+        <translation>Otevřít popis novinky</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4726"/>
         <source>Copy News Link</source>
-        <translation type="unfinished"/>
+        <translation>Kopírovat odkaz novinky</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4736"/>
@@ -2204,7 +2204,7 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4826"/>
         <source>Status Bar</source>
-        <translation type="unfinished"/>
+        <translation>Stavový řádek</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4828"/>
@@ -2232,7 +2232,7 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4842"/>
         <source>Show labels menu</source>
-        <translation>Zobrazit menu štítků</translation>
+        <translation>Zobrazit nabídku štítků</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4844"/>
@@ -2282,12 +2282,12 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4855"/>
         <source>Decrease news list/increase browser</source>
-        <translation>Snížit seznam novinek/zvýšit prohlížeč</translation>
+        <translation>Zmenšit seznam novinek/zvětšit prohlížeč</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4856"/>
         <source>Increase news list/decrease browser</source>
-        <translation>Zvýšit seznam novinek/snížit prohlížeč</translation>
+        <translation>Zvětšit seznam novinek/změnšit prohlížeč</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4858"/>
@@ -2398,7 +2398,7 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="7663"/>
         <source>Choose Directory</source>
-        <translation type="unfinished"/>
+        <translation>Vybrat adresář</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.h" line="101"/>
@@ -2446,7 +2446,7 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="46"/>
         <source>Filter Name</source>
-        <translation type="unfinished"/>
+        <translation>Název filtru:</translation>
     </message>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="91"/>
@@ -2486,7 +2486,7 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="260"/>
         <source>Are you sure you want to delete the filter &apos;%1&apos;?</source>
-        <translation type="unfinished"/>
+        <translation>Opravdu chcete smazat filtr &apos;%1&apos;?</translation>
     </message>
 </context>
 <context>
@@ -2539,7 +2539,7 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/newsheader.cpp" line="409"/>
         <source>Feed Title</source>
-        <translation type="unfinished"/>
+        <translation>Název kanálu</translation>
     </message>
     <message>
         <location filename="../src/newsheader.cpp" line="410"/>
@@ -2671,17 +2671,17 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/newstabwidget.cpp" line="610"/>
         <source>Auto Load Images in News View</source>
-        <translation type="unfinished"/>
+        <translation>Automaticky načítat obrázky v zobrazení novinek</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="613"/>
         <source>Don&apos;t Load Images</source>
-        <translation type="unfinished"/>
+        <translation>Nenačítat obrázky</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="614"/>
         <source>Don&apos;t Load Images in News View</source>
-        <translation type="unfinished"/>
+        <translation>Nenačítat obrázky v zobrazení novinek</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1398"/>
@@ -2865,7 +2865,7 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="298"/>
         <source>Help improve QuiteRSS by sending usage information</source>
-        <translation type="unfinished"/>
+        <translation>Pomoct vylepšit QuiteRSS zasíláním informací o používání</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="299"/>
@@ -3309,7 +3309,7 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="874"/>
         <source>Style sheet for news:</source>
-        <translation type="unfinished"/>
+        <translation>CSS styly pro novinky:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="882"/>
@@ -3702,12 +3702,12 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1609"/>
         <source>Count of unread news in feeds tree</source>
-        <translation type="unfinished"/>
+        <translation>Počet nepřečtených novinek v seznamu kanálů</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2001"/>
         <source>Auto load images in news view</source>
-        <translation type="unfinished"/>
+        <translation>Automaticky načítat obrázky v zobrazení novinek</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1612"/>
@@ -3717,22 +3717,22 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="292"/>
         <source>Show feeds tree toggle</source>
-        <translation type="unfinished"/>
+        <translation>Zobrazit přepínání seznamu kanálů</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="382"/>
         <source>Clear new status when minimize to tray</source>
-        <translation type="unfinished"/>
+        <translation>Vynulovat počet novinek při minimalizaci do systémové lišty</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="847"/>
         <source>Default news filter:</source>
-        <translation type="unfinished"/>
+        <translation>Výchozí filtr novinek:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="896"/>
         <source>Show news description instead of loading web page</source>
-        <translation type="unfinished"/>
+        <translation>Zobrazovat popis novinky místo načítání webové stránky</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1615"/>
@@ -4191,27 +4191,27 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="556"/>
         <source>Error opening database</source>
-        <translation type="unfinished"/>
+        <translation>Chyba při otevírání databáze</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="567"/>
         <source>Error closing database</source>
-        <translation type="unfinished"/>
+        <translation>Chyba při zavírání databáze</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="587"/>
         <source>Unable to begin transaction</source>
-        <translation type="unfinished"/>
+        <translation>Nelze spustit transakci</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="602"/>
         <source>Unable to commit transaction</source>
-        <translation type="unfinished"/>
+        <translation>Nelze vykonat transakci</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="617"/>
         <source>Unable to rollback transaction</source>
-        <translation type="unfinished"/>
+        <translation>Nelze vrátit transakci</translation>
     </message>
 </context>
 <context>
@@ -4221,37 +4221,37 @@ nebyl nalezen!</translation>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="278"/>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="286"/>
         <source>Unable to fetch row</source>
-        <translation type="unfinished"/>
+        <translation>Nelze načíst řádek</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="216"/>
         <source>No query</source>
-        <translation type="unfinished"/>
+        <translation>Žádný dotaz</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="350"/>
         <source>Unable to execute statement</source>
-        <translation type="unfinished"/>
+        <translation>Nelze spustit příkaz</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="355"/>
         <source>Unable to execute multiple statements at a time</source>
-        <translation type="unfinished"/>
+        <translation>Nelze spustit více příkazů najednou</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="375"/>
         <source>Unable to reset statement</source>
-        <translation type="unfinished"/>
+        <translation>Nelze vyresetovat příkaz</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="420"/>
         <source>Unable to bind parameters</source>
-        <translation type="unfinished"/>
+        <translation>Nelze předat parametry</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="427"/>
         <source>Parameter count mismatch</source>
-        <translation type="unfinished"/>
+        <translation>Chybný počet parametrů</translation>
     </message>
 </context>
 <context>

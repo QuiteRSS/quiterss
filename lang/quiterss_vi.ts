@@ -4,7 +4,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="45"/>
         <source>About</source>
-        <translation>Dịch bởi Phan Anh</translation>
+        <translation>Giới thiệu</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="56"/>
@@ -292,7 +292,7 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="107"/>
         <source>Use title of the feed as displayed name</source>
-        <translation>Sử dụng tiêu đề của Feed được hiển thị dưới dạng tên</translation>
+        <translation>Sử dụng tiêu đề của Feed như là tên hiển thị</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="111"/>
@@ -312,7 +312,7 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="151"/>
         <source>Feed URL or website address:</source>
-        <translation>Đường dẫn URL của Feed hoặc địa chỉ website:</translation>
+        <translation>Đường dẫn của Feed hoặc địa chỉ website:</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="184"/>
@@ -342,7 +342,7 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="330"/>
         <source>URL error!</source>
-        <translation>Lỗi URL!</translation>
+        <translation>Lỗi đường dẫn!</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="344"/>
@@ -354,7 +354,7 @@
         <location filename="../src/addfeedwizard.cpp" line="509"/>
         <location filename="../src/addfeedwizard.cpp" line="531"/>
         <source>Can&apos;t find feed URL!</source>
-        <translation>Không thể tìm đường dẫn URL của Feed!</translation>
+        <translation>Không tìm thấy đường dẫn của Feed!</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="550"/>
@@ -2646,17 +2646,17 @@ không được tìm thấy!</translation>
         <location filename="../src/newstabwidget.cpp" line="588"/>
         <location filename="../src/newstabwidget.cpp" line="609"/>
         <source>Load Images</source>
-        <translation type="unfinished"/>
+        <translation>Tải hình ảnh</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="589"/>
         <source>Auto Load Images to News View</source>
-        <translation type="unfinished"/>
+        <translation>Tự động tải hình khi đang xem tin tức</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="591"/>
         <source>No Load Images</source>
-        <translation type="unfinished"/>
+        <translation>Không tải hình ảnh</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="592"/>
