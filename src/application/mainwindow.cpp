@@ -6407,8 +6407,6 @@ void MainWindow::slotAddColorList(int id, const QString &color)
  *---------------------------------------------------------------------------*/
 void MainWindow::slotOpenNew(int feedId, int newsId)
 {
-  deleteNotification();
-
   openingFeedAction_ = 0;
   openNewsWebViewOn_ = true;
 
@@ -6524,27 +6522,35 @@ void MainWindow::slotMarkReadNewsInNotification(int feedId, int newsId, int read
 
 void MainWindow::slotDeleteNewsInNotification(int feedId, int newsId)
 {
-  bool showNews = false;
+  mainApp->sqlQueryExec(QString("UPDATE news SET new=0, read=2, deleted=1, deleteDate='%1' WHERE id=='%2'").
+               arg(QDateTime::currentDateTime().toString(Qt::ISODate)).
+               arg(newsId));
+
   if (currentNewsTab->type_ < NewsTabWidget::TabTypeWeb) {
     for (int i = 0; i < newsModel_->rowCount(); ++i) {
       if (newsId == newsModel_->index(i, newsModel_->fieldIndex("id")).data().toInt()) {
-        mainApp->sqlQueryExec(QString("UPDATE news SET new=0, read=2, deleted=1, deleteDate='%1' WHERE id=='%2'").
-                     arg(QDateTime::currentDateTime().toString(Qt::ISODate)).
-                     arg(newsId));
+        newsModel_->setData(newsModel_->index(i, newsModel_->fieldIndex("new")), 0);
+        newsModel_->setData(newsModel_->index(i, newsModel_->fieldIndex("read")), 2);
+        newsModel_->setData(newsModel_->index(i, newsModel_->fieldIndex("deleted")), 1);
+        newsModel_->setData(newsModel_->index(i, newsModel_->fieldIndex("deleteDate")),
+                            QDateTime::currentDateTime().toString(Qt::ISODate));
 
-        newsModel_->select();
+        newsModel_->submitAll();
         while (newsModel_->canFetchMore())
           newsModel_->fetchMore();
-        showNews = true;
+
+        QModelIndex curIndex;
+        if (i == newsModel_->rowCount())
+          curIndex = newsModel_->index(i-1, newsModel_->fieldIndex("title"));
+        else if (i > newsModel_->rowCount())
+          curIndex = newsModel_->index(i-1, newsModel_->fieldIndex("title"));
+        else
+          curIndex = newsModel_->index(i, newsModel_->fieldIndex("title"));
+        newsView_->setCurrentIndex(curIndex);
+        currentNewsTab->slotNewsViewSelected(curIndex);
         break;
       }
     }
-  }
-
-  if (!showNews) {
-    mainApp->sqlQueryExec(QString("UPDATE news SET new=0, read=2, deleted=1, deleteDate='%1' WHERE id=='%2'").
-                 arg(QDateTime::currentDateTime().toString(Qt::ISODate)).
-                 arg(newsId));
   }
 
   slotUpdateStatus(feedId);

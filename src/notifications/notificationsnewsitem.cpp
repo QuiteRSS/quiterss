@@ -86,11 +86,15 @@ void NewsItem::setColorText(const QString &color) {
 bool NewsItem::eventFilter(QObject *obj, QEvent *event)
 {
   if((event->type() == QEvent::MouseButtonPress) && isEnabled()) {
+    read_ = 1;
+    readButton_->setIcon(QIcon(":/images/bulletRead"));
+    QFont font = textLabel_->font();
+    font.setBold(false);
+    textLabel_->setFont(font);
     emit signalTitleClicked(feedId_, newsId_);
     return true;
-  } else {
-    return QObject::eventFilter(obj, event);
   }
+  return QObject::eventFilter(obj, event);
 }
 
 void NewsItem::openExternalBrowser()
