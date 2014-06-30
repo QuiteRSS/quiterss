@@ -773,10 +773,10 @@ void OptionsDialog::createFeedsWidget()
   updateFeedsLayout->addWidget(updateIntervalType_);
   updateFeedsLayout->addStretch();
 
-  positionLastNews_ = new QRadioButton(tr("Position on last opened news"));
-  positionFirstNews_ = new QRadioButton(tr("Position at top of list news"));
-  positionUnreadNews_ = new QRadioButton(tr("Position on unread news"));
-  openNewsWebViewOn_ = new QCheckBox(tr("Open news"));
+  positionLastNews_ = new QRadioButton(tr("Set focus on the last opened news"));
+  positionFirstNews_ = new QRadioButton(tr("Set focus at the top of news list"));
+  positionUnreadNews_ = new QRadioButton(tr("Set focus on the unread news"));
+  openNewsWebViewOn_ = new QCheckBox(tr("Open the news"));
   nottoOpenNews_ = new QRadioButton(tr("Nothing to do"));
   connect(nottoOpenNews_, SIGNAL(toggled(bool)),
           openNewsWebViewOn_, SLOT(setDisabled(bool)));
@@ -862,7 +862,7 @@ void OptionsDialog::createFeedsWidget()
   generalFeedsLayout->addWidget(updateFeedsStartUp_);
   generalFeedsLayout->addLayout(updateFeedsLayout);
   generalFeedsLayout->addSpacing(10);
-  generalFeedsLayout->addWidget(new QLabel(tr("Opening feed:")));
+  generalFeedsLayout->addWidget(new QLabel(tr("Action on feed opening:")));
   generalFeedsLayout->addLayout(openingFeedsLayout);
   generalFeedsLayout->addWidget(alternatingRowColorsNews_);
   generalFeedsLayout->addSpacing(10);
