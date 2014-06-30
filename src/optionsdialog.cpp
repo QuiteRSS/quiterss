@@ -1621,7 +1621,7 @@ void OptionsDialog::createFontsColorsWidget()
   treeItem << tr("Focused feed background color");
   colorsTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
-  treeItem << tr("Feed with disabled update");
+  treeItem << tr("Disabled feed");
   colorsTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
 
   colorsTree_->setCurrentItem(colorsTree_->topLevelItem(0));
