@@ -1623,6 +1623,9 @@ void OptionsDialog::createFontsColorsWidget()
   treeItem.clear();
   treeItem << tr("Disabled feed");
   colorsTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
+  treeItem.clear();
+  treeItem << tr("Alternating row colors");
+  colorsTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
 
   colorsTree_->setCurrentItem(colorsTree_->topLevelItem(0));
 
@@ -1947,6 +1950,9 @@ void OptionsDialog::slotColorReset()
     break;
   case 19:
     colorName = "#999999";
+    break;
+  case 20:
+    colorName = qApp->palette().color(QPalette::AlternateBase).name();
     break;
   default:
     colorName = qApp->palette().brush(QPalette::WindowText).color().name();

@@ -2125,6 +2125,7 @@ void MainWindow::loadSettings()
   feedsTreeModel_->focusedFeedTextColor_ = settings.value("focusedFeedTextColor", windowTextColor).toString();
   feedsTreeModel_->focusedFeedBGColor_ = settings.value("focusedFeedBGColor", "").toString();
   feedsTreeModel_->feedDisabledUpdateColor_ = settings.value("feedDisabledUpdateColor", "#999999").toString();
+  alternatingRowColors_ = settings.value("alternatingRowColors", qApp->palette().color(QPalette::AlternateBase).name()).toString();
   settings.endGroup();
 
   resize(800, 600);
@@ -2329,6 +2330,7 @@ void MainWindow::saveSettings()
   settings.setValue("focusedFeedTextColor", feedsTreeModel_->focusedFeedTextColor_);
   settings.setValue("focusedFeedBGColor", feedsTreeModel_->focusedFeedBGColor_);
   settings.setValue("feedDisabledUpdateColor", feedsTreeModel_->feedDisabledUpdateColor_);
+  settings.setValue("alternatingRowColors", alternatingRowColors_);
   settings.endGroup();
 
   settings.setValue("GeometryState", saveGeometry());
@@ -3437,6 +3439,10 @@ void MainWindow::showOptionDlg(int index)
   optionsDialog_->colorsTree_->topLevelItem(19)->setIcon(0, pixmapColor);
   optionsDialog_->colorsTree_->topLevelItem(19)->setText(1, feedsTreeModel_->feedDisabledUpdateColor_);
 
+  pixmapColor.fill(alternatingRowColors_);
+  optionsDialog_->colorsTree_->topLevelItem(20)->setIcon(0, pixmapColor);
+  optionsDialog_->colorsTree_->topLevelItem(20)->setText(1, alternatingRowColors_);
+
   NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(TAB_WIDGET_PERMANENT);
   backWebPageAct_->setText(widget->webView_->page()->action(QWebPage::Back)->text());
   backWebPageAct_->setToolTip(widget->webView_->page()->action(QWebPage::Back)->toolTip() + " " + tr("(Browser)"));
@@ -3803,6 +3809,7 @@ void MainWindow::showOptionDlg(int index)
   feedsTreeModel_->focusedFeedTextColor_ = optionsDialog_->colorsTree_->topLevelItem(17)->text(1);
   feedsTreeModel_->focusedFeedBGColor_ = optionsDialog_->colorsTree_->topLevelItem(18)->text(1);
   feedsTreeModel_->feedDisabledUpdateColor_ = optionsDialog_->colorsTree_->topLevelItem(19)->text(1);
+  alternatingRowColors_ = optionsDialog_->colorsTree_->topLevelItem(20)->text(1);
 
   delete optionsDialog_;
   optionsDialog_ = NULL;
@@ -4253,6 +4260,10 @@ void MainWindow::setNewsFilter(QAction* pAct, bool clicked)
       currentNewsTab->hideWebContent();
     }
   }
+
+  QPalette palette = newsView_->palette();
+  palette.setColor(QPalette::AlternateBase, alternatingRowColors_);
+  newsView_->setPalette(palette);
 
   qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
