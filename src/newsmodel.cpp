@@ -309,3 +309,21 @@ QVariant NewsModel::dataField(int row, const QString &fieldName) const
 {
   return index(row, fieldIndex(fieldName)).data(Qt::EditRole);
 }
+
+void NewsModel::setFilter(const QString &filter)
+{
+  QPalette palette = view_->palette();
+  palette.setColor(QPalette::AlternateBase, mainApp->mainWindow()->alternatingRowColors_);
+  view_->setPalette(palette);
+
+  QSqlTableModel::setFilter(filter);
+}
+
+bool NewsModel::select()
+{
+  QPalette palette = view_->palette();
+  palette.setColor(QPalette::AlternateBase, mainApp->mainWindow()->alternatingRowColors_);
+  view_->setPalette(palette);
+
+  return QSqlTableModel::select();
+}

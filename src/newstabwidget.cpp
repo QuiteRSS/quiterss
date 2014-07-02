@@ -454,9 +454,6 @@ void NewsTabWidget::setSettings(bool init, bool newTab)
       newsModel_->unreadNewsTextColor_ = mainWindow_->unreadNewsTextColor_;
       newsModel_->focusedNewsTextColor_ = mainWindow_->focusedNewsTextColor_;
       newsModel_->focusedNewsBGColor_ = mainWindow_->focusedNewsBGColor_;
-      QPalette palette = newsView_->palette();
-      palette.setColor(QPalette::AlternateBase, mainWindow_->alternatingRowColors_);
-      newsView_->setPalette(palette);
 
       QString styleSheetNews = settings.value("Settings/styleSheetNews",
                                               mainApp->styleSheetNewsDefaultFile()).toString();
@@ -546,6 +543,11 @@ void NewsTabWidget::setSettings(bool init, bool newTab)
 
   if (type_ < TabTypeWeb) {
     newsView_->setAlternatingRowColors(mainWindow_->alternatingRowColorsNews_);
+
+    QPalette palette = newsView_->palette();
+    palette.setColor(QPalette::AlternateBase, mainWindow_->alternatingRowColors_);
+    newsView_->setPalette(palette);
+
     if (!newTab)
       newsModel_->setFilter("feedId=-1");
     newsHeader_->setColumns(feedIndex);

@@ -4261,10 +4261,6 @@ void MainWindow::setNewsFilter(QAction* pAct, bool clicked)
     }
   }
 
-  QPalette palette = newsView_->palette();
-  palette.setColor(QPalette::AlternateBase, alternatingRowColors_);
-  newsView_->setPalette(palette);
-
   qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
   // Store filter to enable it as "last used filter"

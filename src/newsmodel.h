@@ -40,6 +40,8 @@ public:
       Qt::MatchFlags(Qt::MatchExactly|Qt::MatchWrap)
       ) const;
   QVariant dataField(int row, const QString &fieldName) const;
+  void setFilter(const QString &filter);
+  bool select();
 
   QString formatDate_;
   QString formatTime_;
