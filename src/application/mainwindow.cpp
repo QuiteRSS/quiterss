@@ -1287,44 +1287,62 @@ void MainWindow::createActions()
   evernoteShareAct_ = new QAction(this);
   evernoteShareAct_->setObjectName("evernoteShareAct");
   evernoteShareAct_->setText("Evernote");
-  evernoteShareAct_->setIcon(QIcon(":/images/images/share_evernote.png"));
+  evernoteShareAct_->setIcon(QIcon(":/share/images/share/evernote.png"));
   shareGroup_->addAction(evernoteShareAct_);
 
   gplusShareAct_ = new QAction(this);
   gplusShareAct_->setObjectName("gplusShareAct");
   gplusShareAct_->setText("Google+");
-  gplusShareAct_->setIcon(QIcon(":/images/images/share_gplus.png"));
+  gplusShareAct_->setIcon(QIcon(":/share/images/share/gplus.png"));
   shareGroup_->addAction(gplusShareAct_);
 
   facebookShareAct_ = new QAction(this);
   facebookShareAct_->setObjectName("facebookShareAct");
   facebookShareAct_->setText("Facebook");
-  facebookShareAct_->setIcon(QIcon(":/images/images/share_facebook.png"));
+  facebookShareAct_->setIcon(QIcon(":/share/images/share/facebook.png"));
   shareGroup_->addAction(facebookShareAct_);
 
   livejournalShareAct_ = new QAction(this);
   livejournalShareAct_->setObjectName("livejournalShareAct");
   livejournalShareAct_->setText("LiveJournal");
-  livejournalShareAct_->setIcon(QIcon(":/images/images/share_livejournal.png"));
+  livejournalShareAct_->setIcon(QIcon(":/share/images/share/livejournal.png"));
   shareGroup_->addAction(livejournalShareAct_);
 
   pocketShareAct_ = new QAction(this);
   pocketShareAct_->setObjectName("pocketShareAct");
   pocketShareAct_->setText("Pocket");
-  pocketShareAct_->setIcon(QIcon(":/images/images/share_pocket.png"));
+  pocketShareAct_->setIcon(QIcon(":/share/images/share/pocket.png"));
   shareGroup_->addAction(pocketShareAct_);
 
   twitterShareAct_ = new QAction(this);
   twitterShareAct_->setObjectName("twitterShareAct");
   twitterShareAct_->setText("Twitter");
-  twitterShareAct_->setIcon(QIcon(":/images/images/share_twitter.png"));
+  twitterShareAct_->setIcon(QIcon(":/share/images/share/twitter.png"));
   shareGroup_->addAction(twitterShareAct_);
 
   vkShareAct_ = new QAction(this);
   vkShareAct_->setObjectName("vkShareAct");
   vkShareAct_->setText("VK");
-  vkShareAct_->setIcon(QIcon(":/images/images/share_vk.png"));
+  vkShareAct_->setIcon(QIcon(":/share/images/share/vk.png"));
   shareGroup_->addAction(vkShareAct_);
+
+  linkedinShareAct_ = new QAction(this);
+  linkedinShareAct_->setObjectName("linkedinShareAct");
+  linkedinShareAct_->setText("LinkedIn");
+  linkedinShareAct_->setIcon(QIcon(":/share/images/share/linkedin.png"));
+  shareGroup_->addAction(linkedinShareAct_);
+
+  bloggerShareAct_ = new QAction(this);
+  bloggerShareAct_->setObjectName("bloggerShareAct");
+  bloggerShareAct_->setText("Blogger");
+  bloggerShareAct_->setIcon(QIcon(":/share/images/share/blogger.png"));
+  shareGroup_->addAction(bloggerShareAct_);
+
+  printfriendlyShareAct_ = new QAction(this);
+  printfriendlyShareAct_->setObjectName("printfriendlyShareAct");
+  printfriendlyShareAct_->setText("Printer Friendly");
+  printfriendlyShareAct_->setIcon(QIcon(":/share/images/share/printfriendly.png"));
+  shareGroup_->addAction(printfriendlyShareAct_);
 
   this->addActions(shareGroup_->actions());
   connect(shareGroup_, SIGNAL(triggered(QAction*)),

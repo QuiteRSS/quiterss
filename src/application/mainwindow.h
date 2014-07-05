@@ -158,6 +158,9 @@ public:
   QAction *pocketShareAct_;
   QAction *twitterShareAct_;
   QAction *vkShareAct_;
+  QAction *linkedinShareAct_;
+  QAction *bloggerShareAct_;
+  QAction *printfriendlyShareAct_;
   QAction *copyLinkAct_;
   QAction *nextFolderAct_;
   QAction *prevFolderAct_;

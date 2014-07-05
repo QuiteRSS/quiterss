@@ -81,12 +81,6 @@
         <file alias="save_as">images/save_as.png</file>
         <file>images/share.png</file>
         <file>images/email.png</file>
-        <file>images/share_evernote.png</file>
-        <file>images/share_facebook.png</file>
-        <file>images/share_vk.png</file>
-        <file>images/share_livejournal.png</file>
-        <file>images/share_twitter.png</file>
-        <file>images/share_pocket.png</file>
         <file>images/tab_go.png</file>
         <file alias="copy">images/page_copy.png</file>
         <file alias="bulletMinus">images/bullet_toggle_minus.png</file>
@@ -97,7 +91,6 @@
         <file>images/folder_unread.png</file>
         <file alias="download">images/download.png</file>
         <file alias="list_clear">images/list_clear.png</file>
-        <file>images/share_gplus.png</file>
         <file alias="bulletError">images/bullet_error.png</file>
         <file alias="bulletUpdate">images/bullet_update.png</file>
         <file alias="play">images/control_play.png</file>
@@ -155,5 +148,17 @@
         <file alias="flag_RO">images/flags/flag_romania.png</file>
         <file alias="flag_FI">images/flags/flag_finland.png</file>
         <file alias="flag_GL">images/flags/flag_galicia.png</file>
+    </qresource>
+    <qresource prefix="/share">
+        <file>images/share/blogger.png</file>
+        <file>images/share/evernote.png</file>
+        <file>images/share/facebook.png</file>
+        <file>images/share/gplus.png</file>
+        <file>images/share/linkedin.png</file>
+        <file>images/share/livejournal.png</file>
+        <file>images/share/pocket.png</file>
+        <file>images/share/printfriendly.png</file>
+        <file>images/share/twitter.png</file>
+        <file>images/share/vk.png</file>
     </qresource>
 </RCC>

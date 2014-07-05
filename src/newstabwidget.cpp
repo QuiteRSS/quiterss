@@ -2147,8 +2147,7 @@ void NewsTabWidget::slotShareNews(QAction *action)
       url.addQueryItem("body", linkString + "%0A%0A" + content);
 #endif
       openUrl(url);
-    }
-    else {
+    } else {
       if (action->objectName() == "evernoteShareAct") {
         url.setUrl("https://www.evernote.com/clip.action");
 #ifdef HAVE_QT5
@@ -2160,8 +2159,7 @@ void NewsTabWidget::slotShareNews(QAction *action)
         url.addQueryItem("url", linkString);
         url.addQueryItem("title", title);
 #endif
-      }
-      else if (action->objectName() == "gplusShareAct") {
+      } else if (action->objectName() == "gplusShareAct") {
         url.setUrl("https://plus.google.com/share");
 #ifdef HAVE_QT5
         QUrlQuery urlQuery;
@@ -2170,8 +2168,7 @@ void NewsTabWidget::slotShareNews(QAction *action)
 #else
         url.addQueryItem("url", linkString);
 #endif
-      }
-      else if (action->objectName() == "facebookShareAct") {
+      } else if (action->objectName() == "facebookShareAct") {
         url.setUrl("https://www.facebook.com/sharer.php");
 #ifdef HAVE_QT5
         QUrlQuery urlQuery;
@@ -2182,8 +2179,7 @@ void NewsTabWidget::slotShareNews(QAction *action)
         url.addQueryItem("u", linkString);
         url.addQueryItem("t", title);
 #endif
-      }
-      else if (action->objectName() == "livejournalShareAct") {
+      } else if (action->objectName() == "livejournalShareAct") {
         url.setUrl("http://www.livejournal.com/update.bml");
 #ifdef HAVE_QT5
         QUrlQuery urlQuery;
@@ -2194,8 +2190,7 @@ void NewsTabWidget::slotShareNews(QAction *action)
         url.addQueryItem("event", linkString);
         url.addQueryItem("subject", title);
 #endif
-      }
-      else if (action->objectName() == "pocketShareAct") {
+      } else if (action->objectName() == "pocketShareAct") {
         url.setUrl("https://getpocket.com/save");
 #ifdef HAVE_QT5
         QUrlQuery urlQuery;
@@ -2206,8 +2201,7 @@ void NewsTabWidget::slotShareNews(QAction *action)
         url.addQueryItem("url", linkString);
         url.addQueryItem("title", title);
 #endif
-      }
-      else if (action->objectName() == "twitterShareAct") {
+      } else if (action->objectName() == "twitterShareAct") {
         url.setUrl("https://twitter.com/share");
 #ifdef HAVE_QT5
         QUrlQuery urlQuery;
@@ -2218,8 +2212,7 @@ void NewsTabWidget::slotShareNews(QAction *action)
         url.addQueryItem("url", linkString);
         url.addQueryItem("text", title);
 #endif
-      }
-      else if (action->objectName() == "vkShareAct") {
+      } else if (action->objectName() == "vkShareAct") {
         url.setUrl("https://vk.com/share.php");
 #ifdef HAVE_QT5
         QUrlQuery urlQuery;
@@ -2233,6 +2226,37 @@ void NewsTabWidget::slotShareNews(QAction *action)
         url.addQueryItem("title", title);
         url.addQueryItem("description", "");
         url.addQueryItem("image", "");
+#endif
+      } else if (action->objectName() == "linkedinShareAct") {
+        url.setUrl("http://www.linkedin.com/shareArticle?mini=true");
+#ifdef HAVE_QT5
+        QUrlQuery urlQuery;
+        urlQuery.addQueryItem("url", linkString);
+        urlQuery.addQueryItem("title", title);
+        url.setQuery(urlQuery);
+#else
+        url.addQueryItem("url", linkString);
+        url.addQueryItem("title", title);
+#endif
+      } else if (action->objectName() == "bloggerShareAct") {
+        url.setUrl("http://www.blogger.com/blog_this.pyra?t");
+#ifdef HAVE_QT5
+        QUrlQuery urlQuery;
+        urlQuery.addQueryItem("u", linkString);
+        urlQuery.addQueryItem("n", title);
+        url.setQuery(urlQuery);
+#else
+        url.addQueryItem("u", linkString);
+        url.addQueryItem("n", title);
+#endif
+      } else if (action->objectName() == "printfriendlyShareAct") {
+        url.setUrl("http://www.printfriendly.com/print");
+#ifdef HAVE_QT5
+        QUrlQuery urlQuery;
+        urlQuery.addQueryItem("url", linkString);
+        url.setQuery(urlQuery);
+#else
+        url.addQueryItem("url", linkString);
 #endif
       }
 
