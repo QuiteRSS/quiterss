@@ -1049,52 +1049,52 @@ Ancient news could reappear</source>
 <context>
     <name>FilterRulesDialog</name>
     <message>
-        <location filename="../src/filterrulesdialog.cpp" line="27"/>
+        <location filename="../src/newsfilters/filterrulesdialog.cpp" line="27"/>
         <source>Filter Rules</source>
         <translation>Правила фільтрації</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.cpp" line="43"/>
+        <location filename="../src/newsfilters/filterrulesdialog.cpp" line="43"/>
         <source>Feeds</source>
         <translation>Канали новин</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.cpp" line="47"/>
+        <location filename="../src/newsfilters/filterrulesdialog.cpp" line="47"/>
         <source>All Feeds</source>
         <translation>Всі канали</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.cpp" line="114"/>
+        <location filename="../src/newsfilters/filterrulesdialog.cpp" line="114"/>
         <source>Filter name:</source>
         <translation>Ім&apos;я фільтра:</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.cpp" line="120"/>
+        <location filename="../src/newsfilters/filterrulesdialog.cpp" line="120"/>
         <source>Match all news</source>
         <translation>Відповідає всім новинам</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.cpp" line="120"/>
+        <location filename="../src/newsfilters/filterrulesdialog.cpp" line="120"/>
         <source>Match all conditions</source>
         <translation>Відповідає всім умовам</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.cpp" line="121"/>
+        <location filename="../src/newsfilters/filterrulesdialog.cpp" line="121"/>
         <source>Match any condition</source>
         <translation>Відповідає будь-якій умові</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.cpp" line="172"/>
+        <location filename="../src/newsfilters/filterrulesdialog.cpp" line="172"/>
         <source>Perform these actions:</source>
         <translation>Виконати наступні дії:</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.cpp" line="316"/>
+        <location filename="../src/newsfilters/filterrulesdialog.cpp" line="316"/>
         <source>Please enter name for the filter.</source>
         <translation>Будь ласка, введіть назву фільтра.</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.cpp" line="328"/>
+        <location filename="../src/newsfilters/filterrulesdialog.cpp" line="328"/>
         <source>Please enter search condition for the news filter.</source>
         <translation>Будь ласка, введіть умови пошуку для нового фільтра.</translation>
     </message>
@@ -1157,57 +1157,57 @@ Ancient news could reappear</source>
 <context>
     <name>ItemAction</name>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="151"/>
+        <location filename="../src/newsfilters/itemaction.cpp" line="26"/>
         <source>Mark News as Read</source>
         <translation>Позначити прочитаною</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="151"/>
+        <location filename="../src/newsfilters/itemaction.cpp" line="26"/>
         <source>Add Star</source>
         <translation>Позначити зірочкою</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="152"/>
+        <location filename="../src/newsfilters/itemaction.cpp" line="27"/>
         <source>Delete</source>
         <translation>Видалити</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="152"/>
+        <location filename="../src/newsfilters/itemaction.cpp" line="27"/>
         <source>Add Label</source>
         <translation>Додати мітку</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="153"/>
+        <location filename="../src/newsfilters/itemaction.cpp" line="28"/>
         <source>Play a Sound</source>
         <translation>Відтворити звук</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="153"/>
+        <location filename="../src/newsfilters/itemaction.cpp" line="28"/>
         <source>Show News in Notifier</source>
         <translation>Показати новину в сповіщенні</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="162"/>
+        <location filename="../src/newsfilters/itemaction.cpp" line="37"/>
         <source>Browse</source>
         <translation>Огляд</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="166"/>
+        <location filename="../src/newsfilters/itemaction.cpp" line="41"/>
         <source>Play</source>
         <translation>Відтворити</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="188"/>
+        <location filename="../src/newsfilters/itemaction.cpp" line="63"/>
         <source>Add Action</source>
         <translation>Додати дію</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="192"/>
+        <location filename="../src/newsfilters/itemaction.cpp" line="67"/>
         <source>Delete Action</source>
         <translation>Видалити дію</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="256"/>
+        <location filename="../src/newsfilters/itemaction.cpp" line="116"/>
         <source>Open File...</source>
         <translation>Відкрити файл...</translation>
     </message>
@@ -1215,114 +1215,127 @@ Ancient news could reappear</source>
 <context>
     <name>ItemCondition</name>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="38"/>
-        <location filename="../src/filterrulesdialog.h" line="47"/>
-        <location filename="../src/filterrulesdialog.h" line="99"/>
+        <location filename="../src/newsfilters/itemcondition.cpp" line="29"/>
+        <location filename="../src/newsfilters/itemcondition.cpp" line="39"/>
+        <location filename="../src/newsfilters/itemcondition.cpp" line="80"/>
         <source>Title</source>
         <translation>Заголовок</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="38"/>
-        <location filename="../src/filterrulesdialog.h" line="105"/>
+        <location filename="../src/newsfilters/itemcondition.cpp" line="29"/>
+        <location filename="../src/newsfilters/itemcondition.cpp" line="86"/>
         <source>Description</source>
         <translation>Опис</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="39"/>
-        <location filename="../src/filterrulesdialog.h" line="109"/>
+        <location filename="../src/newsfilters/itemcondition.cpp" line="30"/>
+        <location filename="../src/newsfilters/itemcondition.cpp" line="90"/>
         <source>Author</source>
         <translation>Автор</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="39"/>
-        <location filename="../src/filterrulesdialog.h" line="114"/>
+        <location filename="../src/newsfilters/itemcondition.cpp" line="30"/>
+        <location filename="../src/newsfilters/itemcondition.cpp" line="95"/>
         <source>Category</source>
         <translation>Категорія</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="39"/>
+        <location filename="../src/newsfilters/itemcondition.cpp" line="30"/>
         <source>State</source>
         <translation>Стан</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="44"/>
+        <location filename="../src/newsfilters/itemcondition.cpp" line="31"/>
+        <location filename="../src/newsfilters/itemcondition.cpp" line="106"/>
+        <source>Link</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/newsfilters/itemcondition.cpp" line="36"/>
         <source>New</source>
         <translation>Нове</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="44"/>
+        <location filename="../src/newsfilters/itemcondition.cpp" line="36"/>
         <source>Read</source>
         <translation>Прочитано</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="44"/>
+        <location filename="../src/newsfilters/itemcondition.cpp" line="36"/>
         <source>Starred</source>
         <translation>Позначена зірочкою</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="51"/>
+        <location filename="../src/newsfilters/itemcondition.cpp" line="43"/>
         <source>Add Condition</source>
         <translation>Додати умову</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="55"/>
+        <location filename="../src/newsfilters/itemcondition.cpp" line="47"/>
         <source>Delete Condition</source>
         <translation>Видалити умову</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="100"/>
-        <location filename="../src/filterrulesdialog.h" line="106"/>
-        <location filename="../src/filterrulesdialog.h" line="110"/>
-        <location filename="../src/filterrulesdialog.h" line="115"/>
+        <location filename="../src/newsfilters/itemcondition.cpp" line="81"/>
+        <location filename="../src/newsfilters/itemcondition.cpp" line="87"/>
+        <location filename="../src/newsfilters/itemcondition.cpp" line="91"/>
+        <location filename="../src/newsfilters/itemcondition.cpp" line="96"/>
+        <location filename="../src/newsfilters/itemcondition.cpp" line="107"/>
         <source>contains</source>
         <translation>містить</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="100"/>
-        <location filename="../src/filterrulesdialog.h" line="106"/>
-        <location filename="../src/filterrulesdialog.h" line="110"/>
-        <location filename="../src/filterrulesdialog.h" line="115"/>
+        <location filename="../src/newsfilters/itemcondition.cpp" line="81"/>
+        <location filename="../src/newsfilters/itemcondition.cpp" line="87"/>
+        <location filename="../src/newsfilters/itemcondition.cpp" line="91"/>
+        <location filename="../src/newsfilters/itemcondition.cpp" line="96"/>
+        <location filename="../src/newsfilters/itemcondition.cpp" line="107"/>
         <source>doesn&apos;t contains</source>
         <translation>не містить</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="101"/>
-        <location filename="../src/filterrulesdialog.h" line="111"/>
-        <location filename="../src/filterrulesdialog.h" line="116"/>
-        <location filename="../src/filterrulesdialog.h" line="121"/>
+        <location filename="../src/newsfilters/itemcondition.cpp" line="82"/>
+        <location filename="../src/newsfilters/itemcondition.cpp" line="92"/>
+        <location filename="../src/newsfilters/itemcondition.cpp" line="97"/>
+        <location filename="../src/newsfilters/itemcondition.cpp" line="102"/>
+        <location filename="../src/newsfilters/itemcondition.cpp" line="108"/>
         <source>is</source>
         <translation>збігається з</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="101"/>
-        <location filename="../src/filterrulesdialog.h" line="111"/>
-        <location filename="../src/filterrulesdialog.h" line="116"/>
-        <location filename="../src/filterrulesdialog.h" line="121"/>
+        <location filename="../src/newsfilters/itemcondition.cpp" line="82"/>
+        <location filename="../src/newsfilters/itemcondition.cpp" line="92"/>
+        <location filename="../src/newsfilters/itemcondition.cpp" line="97"/>
+        <location filename="../src/newsfilters/itemcondition.cpp" line="102"/>
+        <location filename="../src/newsfilters/itemcondition.cpp" line="108"/>
         <source>isn&apos;t</source>
         <translation>не збігається з</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="102"/>
-        <location filename="../src/filterrulesdialog.h" line="117"/>
+        <location filename="../src/newsfilters/itemcondition.cpp" line="83"/>
+        <location filename="../src/newsfilters/itemcondition.cpp" line="98"/>
+        <location filename="../src/newsfilters/itemcondition.cpp" line="109"/>
         <source>begins with</source>
         <translation>починається з</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="102"/>
-        <location filename="../src/filterrulesdialog.h" line="117"/>
+        <location filename="../src/newsfilters/itemcondition.cpp" line="83"/>
+        <location filename="../src/newsfilters/itemcondition.cpp" line="98"/>
+        <location filename="../src/newsfilters/itemcondition.cpp" line="109"/>
         <source>ends with</source>
         <translation>закінчується на</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="103"/>
-        <location filename="../src/filterrulesdialog.h" line="107"/>
-        <location filename="../src/filterrulesdialog.h" line="112"/>
-        <location filename="../src/filterrulesdialog.h" line="118"/>
+        <location filename="../src/newsfilters/itemcondition.cpp" line="84"/>
+        <location filename="../src/newsfilters/itemcondition.cpp" line="88"/>
+        <location filename="../src/newsfilters/itemcondition.cpp" line="93"/>
+        <location filename="../src/newsfilters/itemcondition.cpp" line="99"/>
+        <location filename="../src/newsfilters/itemcondition.cpp" line="110"/>
         <source>Regular expressions</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="120"/>
+        <location filename="../src/newsfilters/itemcondition.cpp" line="101"/>
         <source>Status</source>
         <translation>Стан</translation>
     </message>
@@ -1390,1011 +1403,1011 @@ Ancient news could reappear</source>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="1733"/>
+        <location filename="../src/application/mainwindow.cpp" line="1736"/>
         <source>&amp;AdBlock</source>
         <translation>AdBlock</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2146"/>
-        <location filename="../src/application/mainwindow.cpp" line="4838"/>
-        <location filename="../src/application/mainwindow.cpp" line="7003"/>
-        <location filename="../src/application/mainwindow.cpp" line="7025"/>
+        <location filename="../src/application/mainwindow.cpp" line="2151"/>
+        <location filename="../src/application/mainwindow.cpp" line="4854"/>
+        <location filename="../src/application/mainwindow.cpp" line="7026"/>
+        <location filename="../src/application/mainwindow.cpp" line="7048"/>
         <source>Hide Categories</source>
         <translation>Приховати категорії</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2150"/>
-        <location filename="../src/application/mainwindow.cpp" line="4836"/>
-        <location filename="../src/application/mainwindow.cpp" line="7009"/>
+        <location filename="../src/application/mainwindow.cpp" line="2155"/>
+        <location filename="../src/application/mainwindow.cpp" line="4852"/>
+        <location filename="../src/application/mainwindow.cpp" line="7032"/>
         <source>Show Categories</source>
         <translation>Показати категорії</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2588"/>
-        <location filename="../src/application/mainwindow.cpp" line="2617"/>
+        <location filename="../src/application/mainwindow.cpp" line="2595"/>
+        <location filename="../src/application/mainwindow.cpp" line="2624"/>
         <source>Select OPML-File</source>
         <translation>Вибрати OPML-файл</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2590"/>
+        <location filename="../src/application/mainwindow.cpp" line="2597"/>
         <source>OPML-Files (*.%1 *.%2)</source>
         <translation>OPML-файли (*.%1 *.%2)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2594"/>
+        <location filename="../src/application/mainwindow.cpp" line="2601"/>
         <source>Import canceled</source>
         <translation>Імпортування скасовано</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2602"/>
+        <location filename="../src/application/mainwindow.cpp" line="2609"/>
         <source>Import: can&apos;t open a file</source>
         <translation>Імпортування: неможливо відкрити файл</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2619"/>
+        <location filename="../src/application/mainwindow.cpp" line="2626"/>
         <source>OPML-Files (*.%1)</source>
         <translation>OPML-файли (*.%1)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2623"/>
+        <location filename="../src/application/mainwindow.cpp" line="2630"/>
         <source>Export canceled</source>
         <translation>Експортування скасоване</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2629"/>
+        <location filename="../src/application/mainwindow.cpp" line="2636"/>
         <source>Export: can&apos;t open a file</source>
         <translation>Експортування: неможливо відкрити файл</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2901"/>
-        <location filename="../src/application/mainwindow.cpp" line="3988"/>
-        <location filename="../src/application/mainwindow.cpp" line="4621"/>
-        <location filename="../src/application/mainwindow.cpp" line="6037"/>
-        <location filename="../src/application/mainwindow.cpp" line="6974"/>
+        <location filename="../src/application/mainwindow.cpp" line="2908"/>
+        <location filename="../src/application/mainwindow.cpp" line="4004"/>
+        <location filename="../src/application/mainwindow.cpp" line="4637"/>
+        <location filename="../src/application/mainwindow.cpp" line="6054"/>
+        <location filename="../src/application/mainwindow.cpp" line="6997"/>
         <source>Unread: %1</source>
         <translation>Непрочитаних: %1</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2902"/>
-        <location filename="../src/application/mainwindow.cpp" line="3989"/>
-        <location filename="../src/application/mainwindow.cpp" line="4624"/>
-        <location filename="../src/application/mainwindow.cpp" line="6038"/>
-        <location filename="../src/application/mainwindow.cpp" line="6975"/>
+        <location filename="../src/application/mainwindow.cpp" line="2909"/>
+        <location filename="../src/application/mainwindow.cpp" line="4005"/>
+        <location filename="../src/application/mainwindow.cpp" line="4640"/>
+        <location filename="../src/application/mainwindow.cpp" line="6055"/>
+        <location filename="../src/application/mainwindow.cpp" line="6998"/>
         <source>All: %1</source>
         <translation>Всіх: %1</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="3434"/>
-        <location filename="../src/application/mainwindow.cpp" line="3439"/>
-        <location filename="../src/application/mainwindow.cpp" line="3444"/>
+        <location filename="../src/application/mainwindow.cpp" line="3448"/>
+        <location filename="../src/application/mainwindow.cpp" line="3453"/>
+        <location filename="../src/application/mainwindow.cpp" line="3458"/>
         <source>(Browser)</source>
         <translation>(Браузер)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4629"/>
-        <location filename="../src/application/mainwindow.cpp" line="5471"/>
+        <location filename="../src/application/mainwindow.cpp" line="4645"/>
+        <location filename="../src/application/mainwindow.cpp" line="5487"/>
         <source>New News: %1</source>
         <translation>Нових новин: %1</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4631"/>
-        <location filename="../src/application/mainwindow.cpp" line="5473"/>
+        <location filename="../src/application/mainwindow.cpp" line="4647"/>
+        <location filename="../src/application/mainwindow.cpp" line="5489"/>
         <source>Unread News: %1</source>
         <translation>Непрочитаних новин: %1</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4636"/>
+        <location filename="../src/application/mainwindow.cpp" line="4652"/>
         <source>&amp;Add</source>
         <translation>&amp;Додати</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4637"/>
-        <location filename="../src/application/mainwindow.cpp" line="4640"/>
+        <location filename="../src/application/mainwindow.cpp" line="4653"/>
+        <location filename="../src/application/mainwindow.cpp" line="4656"/>
         <source>Add New Feed</source>
         <translation>Додати новий канал новин</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4639"/>
+        <location filename="../src/application/mainwindow.cpp" line="4655"/>
         <source>&amp;Feed...</source>
         <translation>&amp;Канал новин...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4642"/>
+        <location filename="../src/application/mainwindow.cpp" line="4658"/>
         <source>F&amp;older...</source>
         <translation>&amp;Папку...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4643"/>
+        <location filename="../src/application/mainwindow.cpp" line="4659"/>
         <source>Add New Folder</source>
         <translation>Додати нову папку</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4645"/>
-        <location filename="../src/application/mainwindow.cpp" line="4713"/>
+        <location filename="../src/application/mainwindow.cpp" line="4661"/>
+        <location filename="../src/application/mainwindow.cpp" line="4729"/>
         <source>Open in New Tab</source>
         <translation>Відкрити у новій вкладці</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4647"/>
+        <location filename="../src/application/mainwindow.cpp" line="4663"/>
         <source>&amp;Delete...</source>
         <translation>Вида&amp;лити...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4648"/>
+        <location filename="../src/application/mainwindow.cpp" line="4664"/>
         <source>Delete Selected Feed</source>
         <translation>Видалити канал новин</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4650"/>
+        <location filename="../src/application/mainwindow.cpp" line="4666"/>
         <source>&amp;Import Feeds...</source>
         <translation>&amp;Імпортувати канали новин...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4651"/>
+        <location filename="../src/application/mainwindow.cpp" line="4667"/>
         <source>Import Feeds from OPML File</source>
         <translation>Імпортувати канали новин з OPML-файлу</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4653"/>
+        <location filename="../src/application/mainwindow.cpp" line="4669"/>
         <source>&amp;Export Feeds...</source>
         <translation>&amp;Експортувати канали новин...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4654"/>
+        <location filename="../src/application/mainwindow.cpp" line="4670"/>
         <source>Export Feeds to OPML File</source>
         <translation>Експортувати канали новин у OPML-файл</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4659"/>
+        <location filename="../src/application/mainwindow.cpp" line="4675"/>
         <source>E&amp;xit</source>
         <translation>Ви&amp;хід</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4661"/>
+        <location filename="../src/application/mainwindow.cpp" line="4677"/>
         <source>Update Feed</source>
         <translation>Оновити канал</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4662"/>
+        <location filename="../src/application/mainwindow.cpp" line="4678"/>
         <source>Update Current Feed</source>
         <translation>Оновити вибраний канал</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4664"/>
+        <location filename="../src/application/mainwindow.cpp" line="4680"/>
         <source>Update All</source>
         <translation>Оновити все</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4665"/>
+        <location filename="../src/application/mainwindow.cpp" line="4681"/>
         <source>Update All Feeds</source>
         <translation>Оновити всі канали</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4667"/>
+        <location filename="../src/application/mainwindow.cpp" line="4683"/>
         <source>Mark All Feeds Read</source>
         <translation>Позначити всі канали прочитаними</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4669"/>
+        <location filename="../src/application/mainwindow.cpp" line="4685"/>
         <source>Mark Read/Unread</source>
         <translation>Позначити прочитаною/непрочитаною</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4670"/>
+        <location filename="../src/application/mainwindow.cpp" line="4686"/>
         <source>Mark Current News Read/Unread</source>
         <translation>Позначити поточну новину прочитаною/непрочитаною</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4672"/>
-        <location filename="../src/application/mainwindow.cpp" line="4673"/>
+        <location filename="../src/application/mainwindow.cpp" line="4688"/>
+        <location filename="../src/application/mainwindow.cpp" line="4689"/>
         <source>Mark All News Read</source>
         <translation>Позначити всі новини прочитаними</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4675"/>
-        <location filename="../src/application/mainwindow.cpp" line="7595"/>
-        <location filename="../src/application/mainwindow.cpp" line="7601"/>
-        <location filename="../src/application/mainwindow.cpp" line="7611"/>
+        <location filename="../src/application/mainwindow.cpp" line="4691"/>
+        <location filename="../src/application/mainwindow.cpp" line="7618"/>
+        <location filename="../src/application/mainwindow.cpp" line="7624"/>
+        <location filename="../src/application/mainwindow.cpp" line="7634"/>
         <source>Downloads</source>
         <translation>Завантаження</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4677"/>
+        <location filename="../src/application/mainwindow.cpp" line="4693"/>
         <source>Clean Up...</source>
         <translation>Очищення...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4679"/>
+        <location filename="../src/application/mainwindow.cpp" line="4695"/>
         <source>News Filters...</source>
         <translation>Фільтр новин...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4680"/>
+        <location filename="../src/application/mainwindow.cpp" line="4696"/>
         <source>Filter News...</source>
         <translation>Фільтр новин...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4682"/>
+        <location filename="../src/application/mainwindow.cpp" line="4698"/>
         <source>Options...</source>
         <translation>Налаштування...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4683"/>
+        <location filename="../src/application/mainwindow.cpp" line="4699"/>
         <source>Open Options Dialog</source>
         <translation>Відкрити вікно налаштувань</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4685"/>
+        <location filename="../src/application/mainwindow.cpp" line="4701"/>
         <source>Filter Feeds</source>
         <translation>Фільтр каналів новин</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4686"/>
-        <location filename="../src/application/mainwindow.cpp" line="4693"/>
+        <location filename="../src/application/mainwindow.cpp" line="4702"/>
+        <location filename="../src/application/mainwindow.cpp" line="4709"/>
         <source>Show All</source>
         <translation>Показати все</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4687"/>
-        <location filename="../src/application/mainwindow.cpp" line="4694"/>
+        <location filename="../src/application/mainwindow.cpp" line="4703"/>
+        <location filename="../src/application/mainwindow.cpp" line="4710"/>
         <source>Show New</source>
         <translation>Показати нові</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4688"/>
-        <location filename="../src/application/mainwindow.cpp" line="4695"/>
+        <location filename="../src/application/mainwindow.cpp" line="4704"/>
+        <location filename="../src/application/mainwindow.cpp" line="4711"/>
         <source>Show Unread</source>
         <translation>Показати непрочитані</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4689"/>
+        <location filename="../src/application/mainwindow.cpp" line="4705"/>
         <source>Show Starred Feeds</source>
         <translation>Показати канали позначені зірочкою</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4690"/>
+        <location filename="../src/application/mainwindow.cpp" line="4706"/>
         <source>Show Not Working Feeds</source>
         <translation>Показати &quot;мертві&quot; канали</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4692"/>
+        <location filename="../src/application/mainwindow.cpp" line="4708"/>
         <source>Filter News</source>
         <translation>Фільтр новин</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4696"/>
+        <location filename="../src/application/mainwindow.cpp" line="4712"/>
         <source>Show Starred</source>
         <translation>Показати з зірочкою</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4697"/>
+        <location filename="../src/application/mainwindow.cpp" line="4713"/>
         <source>Show Not Starred</source>
         <translation>Показати без зірочки</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4698"/>
+        <location filename="../src/application/mainwindow.cpp" line="4714"/>
         <source>Show Unread or Starred</source>
         <translation>Показати непрочитані з зірочкою</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4699"/>
+        <location filename="../src/application/mainwindow.cpp" line="4715"/>
         <source>Show Last Day</source>
         <translation>Показати за останній день</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4700"/>
+        <location filename="../src/application/mainwindow.cpp" line="4716"/>
         <source>Show Last 7 Days</source>
         <translation>Показати за останні 7 днів</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4702"/>
+        <location filename="../src/application/mainwindow.cpp" line="4718"/>
         <source>About...</source>
         <translation>Про програму...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4703"/>
+        <location filename="../src/application/mainwindow.cpp" line="4719"/>
         <source>Show &apos;About&apos; Dialog</source>
         <translation>Показати діалог &apos;Про програму&apos;</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4705"/>
+        <location filename="../src/application/mainwindow.cpp" line="4721"/>
         <source>Check for Updates...</source>
         <translation>Перевірити наявність оновлень...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4706"/>
+        <location filename="../src/application/mainwindow.cpp" line="4722"/>
         <source>Report a Problem...</source>
         <translation>Повідомити про проблему...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4708"/>
+        <location filename="../src/application/mainwindow.cpp" line="4724"/>
         <source>Open News</source>
         <translation>Відкрити новини</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4710"/>
+        <location filename="../src/application/mainwindow.cpp" line="4726"/>
         <source>Open in Browser</source>
         <translation>Відкрити у браузері</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4711"/>
+        <location filename="../src/application/mainwindow.cpp" line="4727"/>
         <source>Open in External Browser</source>
         <translation>Відкрити у зовнішньому браузері</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4712"/>
+        <location filename="../src/application/mainwindow.cpp" line="4728"/>
         <source>Open News in External Browser</source>
         <translation>Відкрити новину в зовнішньому браузері</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4714"/>
+        <location filename="../src/application/mainwindow.cpp" line="4730"/>
         <source>Open News in New Tab</source>
         <translation>Відкрити новину у новій вкладці</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4715"/>
+        <location filename="../src/application/mainwindow.cpp" line="4731"/>
         <source>Open in Background Tab</source>
         <translation>Відкрити у фоновій вкладці</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4716"/>
+        <location filename="../src/application/mainwindow.cpp" line="4732"/>
         <source>Open News in Background Tab</source>
         <translation>Відкрити новину у фоновій вкладці</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4717"/>
+        <location filename="../src/application/mainwindow.cpp" line="4733"/>
         <source>Star</source>
         <translation>Зірочка</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4718"/>
+        <location filename="../src/application/mainwindow.cpp" line="4734"/>
         <source>Mark News Star</source>
         <translation>Позначити новину зіркою</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4719"/>
+        <location filename="../src/application/mainwindow.cpp" line="4735"/>
         <source>Delete</source>
         <translation>Видалити</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4720"/>
+        <location filename="../src/application/mainwindow.cpp" line="4736"/>
         <source>Delete Selected News</source>
         <translation>Видалити вибрані новини</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4721"/>
+        <location filename="../src/application/mainwindow.cpp" line="4737"/>
         <source>Delete All News</source>
         <translation>Видалити всі новини</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4722"/>
+        <location filename="../src/application/mainwindow.cpp" line="4738"/>
         <source>Delete All News from List</source>
         <translation>Видалити всі новини у списку</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4723"/>
+        <location filename="../src/application/mainwindow.cpp" line="4739"/>
         <source>Restore</source>
         <translation>Відновити</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4724"/>
+        <location filename="../src/application/mainwindow.cpp" line="4740"/>
         <source>Restore News</source>
         <translation>Відновити новину</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4725"/>
+        <location filename="../src/application/mainwindow.cpp" line="4741"/>
         <source>Copy Link</source>
         <translation>Копіювати адресу посилання</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4728"/>
+        <location filename="../src/application/mainwindow.cpp" line="4744"/>
         <source>Restore last deleted news</source>
         <translation>Відновити останню видалену новину</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4730"/>
+        <location filename="../src/application/mainwindow.cpp" line="4746"/>
         <source>Mark Read</source>
         <translation>Позначити прочитаною</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4731"/>
+        <location filename="../src/application/mainwindow.cpp" line="4747"/>
         <source>Mark Feed Read</source>
         <translation>Позначити канал прочитаним</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4732"/>
-        <location filename="../src/application/mainwindow.cpp" line="4733"/>
+        <location filename="../src/application/mainwindow.cpp" line="4748"/>
+        <location filename="../src/application/mainwindow.cpp" line="4749"/>
         <source>Properties</source>
         <translation>Властивості</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4735"/>
+        <location filename="../src/application/mainwindow.cpp" line="4751"/>
         <source>&amp;File</source>
         <translation>&amp;Файл</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4793"/>
+        <location filename="../src/application/mainwindow.cpp" line="4809"/>
         <source>Count Unread News</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4794"/>
+        <location filename="../src/application/mainwindow.cpp" line="4810"/>
         <source>Count All News</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4795"/>
+        <location filename="../src/application/mainwindow.cpp" line="4811"/>
         <source>Last Update</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4808"/>
+        <location filename="../src/application/mainwindow.cpp" line="4824"/>
         <source>Reset browser zoom</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4811"/>
+        <location filename="../src/application/mainwindow.cpp" line="4827"/>
         <source>Print Web Page</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4813"/>
+        <location filename="../src/application/mainwindow.cpp" line="4829"/>
         <source>Preview Web Page</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4817"/>
+        <location filename="../src/application/mainwindow.cpp" line="4833"/>
         <source>Save page in database</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4818"/>
+        <location filename="../src/application/mainwindow.cpp" line="4834"/>
         <source>Save page in database instead of news description</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="159"/>
+        <location filename="../src/application/mainwindow.cpp" line="162"/>
         <source>Saving data...</source>
         <translation>Збереження даних...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2483"/>
+        <location filename="../src/application/mainwindow.cpp" line="2490"/>
         <source>Confirm Delete</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2484"/>
+        <location filename="../src/application/mainwindow.cpp" line="2491"/>
         <source>Are you sure to delete selected elements?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4634"/>
+        <location filename="../src/application/mainwindow.cpp" line="4650"/>
         <source>Menu</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4656"/>
+        <location filename="../src/application/mainwindow.cpp" line="4672"/>
         <source>&amp;Create Backup...</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4657"/>
+        <location filename="../src/application/mainwindow.cpp" line="4673"/>
         <source>S&amp;how Menu Bar</source>
         <translation>Показувати меню</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4709"/>
+        <location filename="../src/application/mainwindow.cpp" line="4725"/>
         <source>Open News Description</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4726"/>
+        <location filename="../src/application/mainwindow.cpp" line="4742"/>
         <source>Copy News Link</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4736"/>
+        <location filename="../src/application/mainwindow.cpp" line="4752"/>
         <source>&amp;View</source>
         <translation>&amp;Вигляд</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4737"/>
+        <location filename="../src/application/mainwindow.cpp" line="4753"/>
         <source>Fee&amp;ds</source>
         <translation>&amp;Канали новин</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4738"/>
+        <location filename="../src/application/mainwindow.cpp" line="4754"/>
         <source>&amp;News</source>
         <translation>&amp;Новини</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4739"/>
+        <location filename="../src/application/mainwindow.cpp" line="4755"/>
         <source>&amp;Browser</source>
         <translation>&amp;Браузер</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4740"/>
+        <location filename="../src/application/mainwindow.cpp" line="4756"/>
         <source>&amp;Tools</source>
         <translation>Н&amp;алаштування</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4741"/>
+        <location filename="../src/application/mainwindow.cpp" line="4757"/>
         <source>&amp;Help</source>
         <translation>&amp;Довідка</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4743"/>
-        <location filename="../src/application/mainwindow.cpp" line="4821"/>
+        <location filename="../src/application/mainwindow.cpp" line="4759"/>
+        <location filename="../src/application/mainwindow.cpp" line="4837"/>
         <source>Main Toolbar</source>
         <translation>Головна панель</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4744"/>
+        <location filename="../src/application/mainwindow.cpp" line="4760"/>
         <source>Customize Toolbar</source>
         <translation>Налаштування панелі інструментів</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4745"/>
+        <location filename="../src/application/mainwindow.cpp" line="4761"/>
         <source>Main Toolbar...</source>
         <translation>Головна панель...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4746"/>
+        <location filename="../src/application/mainwindow.cpp" line="4762"/>
         <source>Customize Toolbar...</source>
         <translation>Налаштування панелі інструментів...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4747"/>
+        <location filename="../src/application/mainwindow.cpp" line="4763"/>
         <source>Feeds Toolbar...</source>
         <translation>Панель каналів новин...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4748"/>
+        <location filename="../src/application/mainwindow.cpp" line="4764"/>
         <source>News Toolbar...</source>
         <translation>Панель списку новин...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4750"/>
+        <location filename="../src/application/mainwindow.cpp" line="4766"/>
         <source>Lock Toolbar</source>
         <translation>Закріпити панель інструментів</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4751"/>
+        <location filename="../src/application/mainwindow.cpp" line="4767"/>
         <source>Hide Toolbar</source>
         <translation>Приховати панель інструментів</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4753"/>
+        <location filename="../src/application/mainwindow.cpp" line="4769"/>
         <source>Application Style</source>
         <translation>Стиль програми</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4754"/>
+        <location filename="../src/application/mainwindow.cpp" line="4770"/>
         <source>System</source>
         <translation>Системний</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4755"/>
+        <location filename="../src/application/mainwindow.cpp" line="4771"/>
         <source>System2</source>
         <translation>Системний 2</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4756"/>
+        <location filename="../src/application/mainwindow.cpp" line="4772"/>
         <source>Green</source>
         <translation>Зелений</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4757"/>
+        <location filename="../src/application/mainwindow.cpp" line="4773"/>
         <source>Orange</source>
         <translation>Помаранчевий</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4758"/>
+        <location filename="../src/application/mainwindow.cpp" line="4774"/>
         <source>Purple</source>
         <translation>Пурпурний</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4759"/>
+        <location filename="../src/application/mainwindow.cpp" line="4775"/>
         <source>Pink</source>
         <translation>Рожевий</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4760"/>
+        <location filename="../src/application/mainwindow.cpp" line="4776"/>
         <source>Gray</source>
         <translation>Сірий</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4762"/>
+        <location filename="../src/application/mainwindow.cpp" line="4778"/>
         <source>Browser Position</source>
         <translation>Позиція браузера</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4763"/>
+        <location filename="../src/application/mainwindow.cpp" line="4779"/>
         <source>Top</source>
         <translation>Зверху</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4764"/>
+        <location filename="../src/application/mainwindow.cpp" line="4780"/>
         <source>Bottom</source>
         <translation>Знизу</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4765"/>
+        <location filename="../src/application/mainwindow.cpp" line="4781"/>
         <source>Right</source>
         <translation>Праворуч</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4766"/>
+        <location filename="../src/application/mainwindow.cpp" line="4782"/>
         <source>Left</source>
         <translation>Ліворуч</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4768"/>
+        <location filename="../src/application/mainwindow.cpp" line="4784"/>
         <source>Show Window</source>
         <translation>Показати вікно</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4770"/>
+        <location filename="../src/application/mainwindow.cpp" line="4786"/>
         <source>Previous Feed</source>
         <translation>Попередній канал</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4771"/>
+        <location filename="../src/application/mainwindow.cpp" line="4787"/>
         <source>Next Feed</source>
         <translation>Наступний канал</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4772"/>
+        <location filename="../src/application/mainwindow.cpp" line="4788"/>
         <source>Previous News</source>
         <translation>Попередня новина</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4773"/>
+        <location filename="../src/application/mainwindow.cpp" line="4789"/>
         <source>Next News</source>
         <translation>Наступна новина</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4774"/>
+        <location filename="../src/application/mainwindow.cpp" line="4790"/>
         <source>News Page Up</source>
         <translation>Сторінка новин вверх</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4775"/>
+        <location filename="../src/application/mainwindow.cpp" line="4791"/>
         <source>News Page Down</source>
         <translation>Сторінка новин вниз</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4777"/>
+        <location filename="../src/application/mainwindow.cpp" line="4793"/>
         <source>Next Unread News</source>
         <translation>Наступна непрочитана новина</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4778"/>
+        <location filename="../src/application/mainwindow.cpp" line="4794"/>
         <source>Previous Unread News</source>
         <translation>Попередня непрочитана новина</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4780"/>
+        <location filename="../src/application/mainwindow.cpp" line="4796"/>
         <source>Switch Focus to Next Panel</source>
         <translation>Переключити фокус на наступну панель</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4782"/>
+        <location filename="../src/application/mainwindow.cpp" line="4798"/>
         <source>Switch Focus to Next Panel (Tree Feeds, List News, Browser)</source>
         <translation>Переключити фокус на наступну панель (дерево каналів, список новин, браузер)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4783"/>
+        <location filename="../src/application/mainwindow.cpp" line="4799"/>
         <source>Switch Focus to Previous Panel</source>
         <translation>Переключити фокус на попередню панель</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4785"/>
+        <location filename="../src/application/mainwindow.cpp" line="4801"/>
         <source>Switch Focus to Previous Panel (Tree Feeds, Browser, List News)</source>
         <translation>Переключити фокус на попередню панель (дерево каналів, список новин, браузер)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4787"/>
+        <location filename="../src/application/mainwindow.cpp" line="4803"/>
         <source>Show/Hide Tree Feeds</source>
         <translation>Показати/приховати дерево каналів</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4789"/>
+        <location filename="../src/application/mainwindow.cpp" line="4805"/>
         <source>Minimize to Tray</source>
         <translation>Мінімізувати до трею</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4790"/>
+        <location filename="../src/application/mainwindow.cpp" line="4806"/>
         <source>Minimize Application to Tray</source>
         <translation>Згорнути програму до трею</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4792"/>
+        <location filename="../src/application/mainwindow.cpp" line="4808"/>
         <source>Columns</source>
         <translation>Колонки</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4797"/>
+        <location filename="../src/application/mainwindow.cpp" line="4813"/>
         <source>Show Indentation</source>
         <translation>Показувати відступ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4799"/>
-        <location filename="../src/application/mainwindow.cpp" line="4800"/>
+        <location filename="../src/application/mainwindow.cpp" line="4815"/>
+        <location filename="../src/application/mainwindow.cpp" line="4816"/>
         <source>Search Feed</source>
         <translation>Пошук каналу</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4802"/>
+        <location filename="../src/application/mainwindow.cpp" line="4818"/>
         <source>Zoom</source>
         <translation>Масштаб</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4803"/>
+        <location filename="../src/application/mainwindow.cpp" line="4819"/>
         <source>Zoom In</source>
         <translation>Збільшити</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4804"/>
+        <location filename="../src/application/mainwindow.cpp" line="4820"/>
         <source>Zoom in in browser</source>
         <translation>Збільшення масштабу у браузері</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4805"/>
+        <location filename="../src/application/mainwindow.cpp" line="4821"/>
         <source>Zoom Out</source>
         <translation>Зменшити</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4806"/>
+        <location filename="../src/application/mainwindow.cpp" line="4822"/>
         <source>Zoom out in browser</source>
         <translation>Зменшення масштабу у браузері</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4807"/>
+        <location filename="../src/application/mainwindow.cpp" line="4823"/>
         <source>100%</source>
         <translation>100%</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4810"/>
+        <location filename="../src/application/mainwindow.cpp" line="4826"/>
         <source>Print...</source>
         <translation>Друк...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4812"/>
+        <location filename="../src/application/mainwindow.cpp" line="4828"/>
         <source>Print Preview...</source>
         <translation>Попередній перегляд...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4815"/>
+        <location filename="../src/application/mainwindow.cpp" line="4831"/>
         <source>Save As...</source>
         <translation>Зберегти як...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4816"/>
+        <location filename="../src/application/mainwindow.cpp" line="4832"/>
         <source>Save Page As...</source>
         <translation>Зберегти сторінку як...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4820"/>
+        <location filename="../src/application/mainwindow.cpp" line="4836"/>
         <source>Show/Hide</source>
         <translation>Показати/приховати</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4822"/>
+        <location filename="../src/application/mainwindow.cpp" line="4838"/>
         <source>Feeds Toolbar</source>
         <translation>Панель каналів новин</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4823"/>
+        <location filename="../src/application/mainwindow.cpp" line="4839"/>
         <source>News Toolbar</source>
         <translation>Панель списку новин</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4824"/>
+        <location filename="../src/application/mainwindow.cpp" line="4840"/>
         <source>Browser Toolbar</source>
         <translation>Панель браузера</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4825"/>
+        <location filename="../src/application/mainwindow.cpp" line="4841"/>
         <source>Panel Categories</source>
         <translation>Панель категорій</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4826"/>
+        <location filename="../src/application/mainwindow.cpp" line="4842"/>
         <source>Status Bar</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4828"/>
-        <location filename="../src/application/mainwindow.cpp" line="4829"/>
+        <location filename="../src/application/mainwindow.cpp" line="4844"/>
+        <location filename="../src/application/mainwindow.cpp" line="4845"/>
         <source>Full Screen</source>
         <translation>На весь екран</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4831"/>
-        <location filename="../src/application/mainwindow.cpp" line="4832"/>
+        <location filename="../src/application/mainwindow.cpp" line="4847"/>
+        <location filename="../src/application/mainwindow.cpp" line="4848"/>
         <source>Stay On Top</source>
         <translation>Поверх всіх вікон</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4834"/>
+        <location filename="../src/application/mainwindow.cpp" line="4850"/>
         <source>Categories</source>
         <translation>Категорії</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4840"/>
-        <location filename="../src/application/mainwindow.cpp" line="4841"/>
+        <location filename="../src/application/mainwindow.cpp" line="4856"/>
+        <location filename="../src/application/mainwindow.cpp" line="4857"/>
         <source>Label</source>
         <translation>Мітка</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4842"/>
+        <location filename="../src/application/mainwindow.cpp" line="4858"/>
         <source>Show labels menu</source>
         <translation>Показати меню міток</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4844"/>
+        <location filename="../src/application/mainwindow.cpp" line="4860"/>
         <source>Close Tab</source>
         <translation>Закрити вкладку</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4845"/>
+        <location filename="../src/application/mainwindow.cpp" line="4861"/>
         <source>Close Other Tabs</source>
         <translation>Закрити інші вкладки</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4846"/>
+        <location filename="../src/application/mainwindow.cpp" line="4862"/>
         <source>Close All Tabs</source>
         <translation>Закрити всі вкладки</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4847"/>
+        <location filename="../src/application/mainwindow.cpp" line="4863"/>
         <source>Switch to next tab</source>
         <translation>Перейти до наступної вкладки</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4848"/>
+        <location filename="../src/application/mainwindow.cpp" line="4864"/>
         <source>Switch to previous tab</source>
         <translation>Перейти до попередньої вкладки</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4850"/>
+        <location filename="../src/application/mainwindow.cpp" line="4866"/>
         <source>Unread</source>
         <translation>Не прочитано</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4851"/>
+        <location filename="../src/application/mainwindow.cpp" line="4867"/>
         <source>Starred</source>
         <translation>Відмічена зірочкою</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4852"/>
+        <location filename="../src/application/mainwindow.cpp" line="4868"/>
         <source>Deleted</source>
         <translation>Видалені</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4853"/>
+        <location filename="../src/application/mainwindow.cpp" line="4869"/>
         <source>Labels</source>
         <translation>Мітки</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4855"/>
+        <location filename="../src/application/mainwindow.cpp" line="4871"/>
         <source>Decrease news list/increase browser</source>
         <translation>Зменшення списку новин/збільшення браузера</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4856"/>
+        <location filename="../src/application/mainwindow.cpp" line="4872"/>
         <source>Increase news list/decrease browser</source>
         <translation>Збільшення списку новин/зменшення браузера</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4858"/>
+        <location filename="../src/application/mainwindow.cpp" line="4874"/>
         <source>Find</source>
         <translation>Знайти</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4860"/>
+        <location filename="../src/application/mainwindow.cpp" line="4876"/>
         <source>Open Homepage Feed</source>
         <translation>Відкрити домашню сторінку каналу</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4861"/>
+        <location filename="../src/application/mainwindow.cpp" line="4877"/>
         <source>Sorted by Name</source>
         <translation>Сортувати за ім&apos;ям</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4862"/>
+        <location filename="../src/application/mainwindow.cpp" line="4878"/>
         <source>Collapse All Folders</source>
         <translation>Згорнути всі папки</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4863"/>
+        <location filename="../src/application/mainwindow.cpp" line="4879"/>
         <source>Expand All Folders</source>
         <translation>Розгорнути всі папки</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4864"/>
+        <location filename="../src/application/mainwindow.cpp" line="4880"/>
         <source>Next Folder</source>
         <translation>Наступна папка</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4865"/>
+        <location filename="../src/application/mainwindow.cpp" line="4881"/>
         <source>Previous Folder</source>
         <translation>Попередня папка</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4866"/>
+        <location filename="../src/application/mainwindow.cpp" line="4882"/>
         <source>Expand Folder</source>
         <translation>Розгорнути папку</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4868"/>
+        <location filename="../src/application/mainwindow.cpp" line="4884"/>
         <source>Setting Page: Labels</source>
         <translation>Сторінка налаштувань: Мітки</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4870"/>
+        <location filename="../src/application/mainwindow.cpp" line="4886"/>
         <source>Share</source>
         <translation>Поділитися</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4872"/>
+        <location filename="../src/application/mainwindow.cpp" line="4888"/>
         <source>Sort By</source>
         <translation>Сортувати за</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4873"/>
+        <location filename="../src/application/mainwindow.cpp" line="4889"/>
         <source>Ascending</source>
         <translation>Зростанням</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4874"/>
+        <location filename="../src/application/mainwindow.cpp" line="4890"/>
         <source>Descending</source>
         <translation>Спаданням</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5716"/>
+        <location filename="../src/application/mainwindow.cpp" line="5733"/>
         <source>Check for updates</source>
         <translation>Перевірити наявність оновлень</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5717"/>
+        <location filename="../src/application/mainwindow.cpp" line="5734"/>
         <source>A new version of QuiteRSS...</source>
         <translation>Нова версія QuiteRSS...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="6079"/>
+        <location filename="../src/application/mainwindow.cpp" line="6096"/>
         <source>Loading...</source>
         <translation>Завантаження...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="6639"/>
-        <location filename="../src/application/mainwindow.cpp" line="6653"/>
+        <location filename="../src/application/mainwindow.cpp" line="6662"/>
+        <location filename="../src/application/mainwindow.cpp" line="6676"/>
         <source>Web Page</source>
         <translation>Веб-сторінка</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="7165"/>
+        <location filename="../src/application/mainwindow.cpp" line="7188"/>
         <source>Save As</source>
         <translation>Зберегти як</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="7167"/>
+        <location filename="../src/application/mainwindow.cpp" line="7190"/>
         <source>HTML-Files (*.%1)</source>
         <translation>HTML-файли (*.%1)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="7167"/>
+        <location filename="../src/application/mainwindow.cpp" line="7190"/>
         <source>Text files (*.%2)</source>
         <translation>Текстові файли (*.%2)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="7173"/>
+        <location filename="../src/application/mainwindow.cpp" line="7196"/>
         <source>Save As: can&apos;t open a file</source>
         <translation>Зберегти як: неможливо відкрити файл</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="7663"/>
+        <location filename="../src/application/mainwindow.cpp" line="7686"/>
         <source>Choose Directory</source>
         <translation type="unfinished"/>
     </message>
@@ -2432,57 +2445,57 @@ Ancient news could reappear</source>
 <context>
     <name>NewsFiltersDialog</name>
     <message>
-        <location filename="../src/newsfiltersdialog.cpp" line="28"/>
+        <location filename="../src/newsfilters/newsfiltersdialog.cpp" line="28"/>
         <source>News Filters</source>
         <translation>Фільтри новин</translation>
     </message>
     <message>
-        <location filename="../src/newsfiltersdialog.cpp" line="46"/>
+        <location filename="../src/newsfilters/newsfiltersdialog.cpp" line="46"/>
         <source>Feeds</source>
         <translation>Канали новин</translation>
     </message>
     <message>
-        <location filename="../src/newsfiltersdialog.cpp" line="46"/>
+        <location filename="../src/newsfilters/newsfiltersdialog.cpp" line="46"/>
         <source>Filter Name</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/newsfiltersdialog.cpp" line="91"/>
+        <location filename="../src/newsfilters/newsfiltersdialog.cpp" line="91"/>
         <source>New...</source>
         <translation>Створити...</translation>
     </message>
     <message>
-        <location filename="../src/newsfiltersdialog.cpp" line="93"/>
+        <location filename="../src/newsfilters/newsfiltersdialog.cpp" line="93"/>
         <source>Edit...</source>
         <translation>Редагувати...</translation>
     </message>
     <message>
-        <location filename="../src/newsfiltersdialog.cpp" line="96"/>
+        <location filename="../src/newsfilters/newsfiltersdialog.cpp" line="96"/>
         <source>Delete...</source>
         <translation>Видалити...</translation>
     </message>
     <message>
-        <location filename="../src/newsfiltersdialog.cpp" line="100"/>
+        <location filename="../src/newsfilters/newsfiltersdialog.cpp" line="100"/>
         <source>Move up</source>
         <translation>Вгору</translation>
     </message>
     <message>
-        <location filename="../src/newsfiltersdialog.cpp" line="103"/>
+        <location filename="../src/newsfilters/newsfiltersdialog.cpp" line="103"/>
         <source>Move down</source>
         <translation>Вниз</translation>
     </message>
     <message>
-        <location filename="../src/newsfiltersdialog.cpp" line="107"/>
+        <location filename="../src/newsfilters/newsfiltersdialog.cpp" line="107"/>
         <source>Run Filter</source>
         <translation>Запустити фільтр</translation>
     </message>
     <message>
-        <location filename="../src/newsfiltersdialog.cpp" line="259"/>
+        <location filename="../src/newsfilters/newsfiltersdialog.cpp" line="259"/>
         <source>Delete Filter</source>
         <translation>Видалити фільтр</translation>
     </message>
     <message>
-        <location filename="../src/newsfiltersdialog.cpp" line="260"/>
+        <location filename="../src/newsfilters/newsfiltersdialog.cpp" line="260"/>
         <source>Are you sure you want to delete the filter &apos;%1&apos;?</source>
         <translation type="unfinished"/>
     </message>
@@ -2561,153 +2574,153 @@ Ancient news could reappear</source>
 <context>
     <name>NewsTabWidget</name>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="560"/>
+        <location filename="../src/newstabwidget.cpp" line="565"/>
         <source>Loading... (%p%)</source>
         <translation>Завантаження... (%p%)</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="562"/>
+        <location filename="../src/newstabwidget.cpp" line="567"/>
         <source>Home</source>
         <translation>Додому</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="563"/>
+        <location filename="../src/newstabwidget.cpp" line="568"/>
         <source>Open Page in External Browser</source>
         <translation>Відкрити сторінку у зовнішньому браузері</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="564"/>
+        <location filename="../src/newstabwidget.cpp" line="569"/>
         <source>Open Link in External Browser</source>
         <translation>Відкрити посилання у зовнішньому браузері</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="566"/>
+        <location filename="../src/newstabwidget.cpp" line="571"/>
         <source>Open Link</source>
         <translation>Відкрити посилання</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="567"/>
+        <location filename="../src/newstabwidget.cpp" line="572"/>
         <source>Open in New Tab</source>
         <translation>Відкрити у новій вкладці</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="568"/>
+        <location filename="../src/newstabwidget.cpp" line="573"/>
         <source>Save Link...</source>
         <translation>Зберегти по посиланню як...</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="569"/>
+        <location filename="../src/newstabwidget.cpp" line="574"/>
         <source>Save Image...</source>
         <translation>Зберегти зображення...</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="570"/>
+        <location filename="../src/newstabwidget.cpp" line="575"/>
         <source>Copy Link</source>
         <translation>Копіювати адресу посилання</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="571"/>
+        <location filename="../src/newstabwidget.cpp" line="576"/>
         <source>Copy</source>
         <translation>Копіювати</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="572"/>
+        <location filename="../src/newstabwidget.cpp" line="577"/>
         <source>Go Back</source>
         <translation>Назад</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="573"/>
+        <location filename="../src/newstabwidget.cpp" line="578"/>
         <source>Go Forward</source>
         <translation>Вперед</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="574"/>
+        <location filename="../src/newstabwidget.cpp" line="579"/>
         <source>Stop</source>
         <translation>Зупинити</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="575"/>
+        <location filename="../src/newstabwidget.cpp" line="580"/>
         <source>Reload</source>
         <translation>Оновити</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="576"/>
+        <location filename="../src/newstabwidget.cpp" line="581"/>
         <source>Copy Image</source>
         <translation>Копіювати зображення</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="578"/>
+        <location filename="../src/newstabwidget.cpp" line="583"/>
         <source>Copy Image Address</source>
         <translation>Копіювати адресу зображення</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="588"/>
-        <location filename="../src/newstabwidget.cpp" line="609"/>
+        <location filename="../src/newstabwidget.cpp" line="593"/>
+        <location filename="../src/newstabwidget.cpp" line="614"/>
         <source>Load Images</source>
         <translation>Завантажувати зображення</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="589"/>
+        <location filename="../src/newstabwidget.cpp" line="594"/>
         <source>Auto Load Images to News View</source>
         <translation>Автоматичне завантаження зображень</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="591"/>
+        <location filename="../src/newstabwidget.cpp" line="596"/>
         <source>No Load Images</source>
         <translation>Не завантажувати зображення</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="592"/>
+        <location filename="../src/newstabwidget.cpp" line="597"/>
         <source>No Load Images to News View</source>
         <translation>Не завантажувати зображення в списку новин</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="597"/>
+        <location filename="../src/newstabwidget.cpp" line="602"/>
         <source>Close Tab</source>
         <translation>Закрити вкладку</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="610"/>
+        <location filename="../src/newstabwidget.cpp" line="615"/>
         <source>Auto Load Images in News View</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="613"/>
+        <location filename="../src/newstabwidget.cpp" line="618"/>
         <source>Don&apos;t Load Images</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="614"/>
+        <location filename="../src/newstabwidget.cpp" line="619"/>
         <source>Don&apos;t Load Images in News View</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1398"/>
+        <location filename="../src/newstabwidget.cpp" line="1403"/>
         <source>Comments</source>
         <translation>Коментарі</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1404"/>
+        <location filename="../src/newstabwidget.cpp" line="1409"/>
         <source>Author: %1</source>
         <translation>Автор: %1</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1432"/>
+        <location filename="../src/newstabwidget.cpp" line="1437"/>
         <source>audio</source>
         <translation>аудіо</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1437"/>
+        <location filename="../src/newstabwidget.cpp" line="1442"/>
         <source>video</source>
         <translation>відео</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1441"/>
+        <location filename="../src/newstabwidget.cpp" line="1446"/>
         <source>media</source>
         <translation>медіа</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1444"/>
+        <location filename="../src/newstabwidget.cpp" line="1449"/>
         <source>Link to</source>
         <translation>Посилання на</translation>
     </message>
@@ -2783,13 +2796,13 @@ Ancient news could reappear</source>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="80"/>
-        <location filename="../src/optionsdialog.cpp" line="1790"/>
+        <location filename="../src/optionsdialog.cpp" line="1796"/>
         <source>Labels</source>
         <translation>Мітки</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="83"/>
-        <location filename="../src/optionsdialog.cpp" line="1792"/>
+        <location filename="../src/optionsdialog.cpp" line="1798"/>
         <source>Notifications</source>
         <translation>Сповіщення</translation>
     </message>
@@ -2816,7 +2829,7 @@ Ancient news could reappear</source>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="264"/>
-        <location filename="../src/optionsdialog.cpp" line="2110"/>
+        <location filename="../src/optionsdialog.cpp" line="2122"/>
         <source>Warning: key is already assigned to</source>
         <translation>Попередження: клавіша вже призначена на</translation>
     </message>
@@ -3033,7 +3046,7 @@ Ancient news could reappear</source>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="505"/>
-        <location filename="../src/optionsdialog.cpp" line="1996"/>
+        <location filename="../src/optionsdialog.cpp" line="2008"/>
         <source>Load images</source>
         <translation>Завантажувати зображення</translation>
     </message>
@@ -3205,26 +3218,6 @@ Ancient news could reappear</source>
         <translation>годин</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="776"/>
-        <source>Position on last opened news</source>
-        <translation>Позиціонувати на останній відкритій новині</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="777"/>
-        <source>Position at top of list news</source>
-        <translation>Позиціонувати на початок списку новин</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="778"/>
-        <source>Position on unread news</source>
-        <translation>Позиціонувати на непрочитаній новині</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="779"/>
-        <source>Open news</source>
-        <translation>Відкривати новину</translation>
-    </message>
-    <message>
         <location filename="../src/optionsdialog.cpp" line="780"/>
         <source>Nothing to do</source>
         <translation>Нічого не робити</translation>
@@ -3298,11 +3291,6 @@ Ancient news could reappear</source>
         <location filename="../src/optionsdialog.cpp" line="833"/>
         <source>Show Last 7 Days</source>
         <translation>Показати за останні 7 днів</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="865"/>
-        <source>Opening feed:</source>
-        <translation>Відкриття каналу:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="874"/>
@@ -3616,14 +3604,14 @@ Ancient news could reappear</source>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1540"/>
-        <location filename="../src/optionsdialog.cpp" line="1629"/>
+        <location filename="../src/optionsdialog.cpp" line="1635"/>
         <source>Change...</source>
         <translation>Змінити...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1542"/>
-        <location filename="../src/optionsdialog.cpp" line="1631"/>
-        <location filename="../src/optionsdialog.cpp" line="1743"/>
+        <location filename="../src/optionsdialog.cpp" line="1637"/>
+        <location filename="../src/optionsdialog.cpp" line="1749"/>
         <source>Reset</source>
         <translation>Скинути</translation>
     </message>
@@ -3703,7 +3691,17 @@ Ancient news could reappear</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2001"/>
+        <location filename="../src/optionsdialog.cpp" line="1624"/>
+        <source>Disabled feed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1627"/>
+        <source>Alternating row colors</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="2013"/>
         <source>Auto load images in news view</source>
         <translation type="unfinished"/>
     </message>
@@ -3723,8 +3721,33 @@ Ancient news could reappear</source>
         <translation type="unfinished"/>
     </message>
     <message>
+        <location filename="../src/optionsdialog.cpp" line="776"/>
+        <source>Set focus on the last opened news</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="777"/>
+        <source>Set focus at the top of news list</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="778"/>
+        <source>Set focus on the unread news</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="779"/>
+        <source>Open the news</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../src/optionsdialog.cpp" line="847"/>
         <source>Default news filter:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="865"/>
+        <source>Action on feed opening:</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3748,130 +3771,130 @@ Ancient news could reappear</source>
         <translation>Колір стрічки під курсором</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1657"/>
+        <location filename="../src/optionsdialog.cpp" line="1663"/>
         <source>Standard</source>
         <translation>Стандартний</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1659"/>
+        <location filename="../src/optionsdialog.cpp" line="1665"/>
         <source>Fixed</source>
         <translation>Фіксований</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1661"/>
+        <location filename="../src/optionsdialog.cpp" line="1667"/>
         <source>Serif</source>
         <translation>Із зарубками</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1663"/>
+        <location filename="../src/optionsdialog.cpp" line="1669"/>
         <source>Sans Serif</source>
         <translation>Без зарубок</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1665"/>
+        <location filename="../src/optionsdialog.cpp" line="1671"/>
         <source>Cursive</source>
         <translation>Курсив</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1667"/>
+        <location filename="../src/optionsdialog.cpp" line="1673"/>
         <source>Fantasy</source>
         <translation>Моноширинний</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1682"/>
+        <location filename="../src/optionsdialog.cpp" line="1688"/>
         <source>Default font size</source>
         <translation>Розмір шрифту за замовчуванням</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1684"/>
+        <location filename="../src/optionsdialog.cpp" line="1690"/>
         <source>Fixed font size</source>
         <translation>Фіксований розмір шрифту</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1686"/>
+        <location filename="../src/optionsdialog.cpp" line="1692"/>
         <source>Minimum font size</source>
         <translation>Мінімальний розмір шрифту</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1688"/>
+        <location filename="../src/optionsdialog.cpp" line="1694"/>
         <source>Minimum logical font size</source>
         <translation>Мінімальний логічний розмір шрифту</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1692"/>
+        <location filename="../src/optionsdialog.cpp" line="1698"/>
         <source>Font families:</source>
         <translation>Сімейство шрифтів:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1694"/>
+        <location filename="../src/optionsdialog.cpp" line="1700"/>
         <source>Font sizes:</source>
         <translation>Розміри шрифтів:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1703"/>
+        <location filename="../src/optionsdialog.cpp" line="1709"/>
         <source>Fonts</source>
         <translation>Шрифти</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1704"/>
+        <location filename="../src/optionsdialog.cpp" line="1710"/>
         <source>Fonts Browser</source>
         <translation>Шрифти браузера</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1705"/>
+        <location filename="../src/optionsdialog.cpp" line="1711"/>
         <source>Colors</source>
         <translation>Кольори</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1712"/>
+        <location filename="../src/optionsdialog.cpp" line="1718"/>
         <source>Filter</source>
         <translation>Фільтр</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1738"/>
+        <location filename="../src/optionsdialog.cpp" line="1744"/>
         <source>Action</source>
         <translation>Дія</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1738"/>
+        <location filename="../src/optionsdialog.cpp" line="1744"/>
         <source>Description</source>
         <translation>Опис</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1738"/>
+        <location filename="../src/optionsdialog.cpp" line="1744"/>
         <source>Shortcut</source>
         <translation>Комбінації клавіш</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1746"/>
+        <location filename="../src/optionsdialog.cpp" line="1752"/>
         <source>Shortcut:</source>
         <translation>Комбінації клавіш:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2165"/>
-        <location filename="../src/optionsdialog.cpp" line="2200"/>
+        <location filename="../src/optionsdialog.cpp" line="2177"/>
+        <location filename="../src/optionsdialog.cpp" line="2212"/>
         <source>Open File...</source>
         <translation>Відкрити файл...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2185"/>
-        <location filename="../src/optionsdialog.cpp" line="2697"/>
+        <location filename="../src/optionsdialog.cpp" line="2197"/>
+        <location filename="../src/optionsdialog.cpp" line="2709"/>
         <source>Select Style Sheet File</source>
         <translation>Виберіть файл таблиці стилів</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2706"/>
-        <location filename="../src/optionsdialog.cpp" line="2735"/>
+        <location filename="../src/optionsdialog.cpp" line="2718"/>
+        <location filename="../src/optionsdialog.cpp" line="2747"/>
         <source>Open Directory...</source>
         <translation>Відкрити каталог...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2716"/>
+        <location filename="../src/optionsdialog.cpp" line="2728"/>
         <source>Add site to whitelist</source>
         <translation>Додати сайт в білий список</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2717"/>
+        <location filename="../src/optionsdialog.cpp" line="2729"/>
         <source>Site without &apos;http://&apos; (ex. youtube.com)</source>
         <translation>Сайт без &apos;http://&apos; (наприклад, youtube.com)</translation>
     </message>
@@ -3879,17 +3902,17 @@ Ancient news could reappear</source>
 <context>
     <name>QAbstractSpinBox</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4898"/>
+        <location filename="../src/application/mainwindow.cpp" line="4914"/>
         <source>&amp;Step up</source>
         <translation>Крок вгор&amp;у</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4899"/>
+        <location filename="../src/application/mainwindow.cpp" line="4915"/>
         <source>Step &amp;down</source>
         <translation>Крок вни&amp;з</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4900"/>
+        <location filename="../src/application/mainwindow.cpp" line="4916"/>
         <source>&amp;Select All</source>
         <translation>Виділити в&amp;се</translation>
     </message>
@@ -3897,22 +3920,22 @@ Ancient news could reappear</source>
 <context>
     <name>QDialogButtonBox</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4876"/>
+        <location filename="../src/application/mainwindow.cpp" line="4892"/>
         <source>Close</source>
         <translation>Закрити</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4877"/>
+        <location filename="../src/application/mainwindow.cpp" line="4893"/>
         <source>Cancel</source>
         <translation>Скасувати</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4878"/>
+        <location filename="../src/application/mainwindow.cpp" line="4894"/>
         <source>&amp;Yes</source>
         <translation>&amp;Так</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4879"/>
+        <location filename="../src/application/mainwindow.cpp" line="4895"/>
         <source>&amp;No</source>
         <translation>&amp;Ні</translation>
     </message>
@@ -4017,37 +4040,37 @@ Ancient news could reappear</source>
 <context>
     <name>QLineEdit</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4881"/>
+        <location filename="../src/application/mainwindow.cpp" line="4897"/>
         <source>&amp;Undo</source>
         <translation>В&amp;ідмінити дію</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4882"/>
+        <location filename="../src/application/mainwindow.cpp" line="4898"/>
         <source>&amp;Redo</source>
         <translation>П&amp;овторити дію</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4883"/>
+        <location filename="../src/application/mainwindow.cpp" line="4899"/>
         <source>Cu&amp;t</source>
         <translation>В&amp;ирізати</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4884"/>
+        <location filename="../src/application/mainwindow.cpp" line="4900"/>
         <source>&amp;Copy</source>
         <translation>&amp;Копіювати</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4885"/>
+        <location filename="../src/application/mainwindow.cpp" line="4901"/>
         <source>&amp;Paste</source>
         <translation>&amp;Вставити</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4886"/>
+        <location filename="../src/application/mainwindow.cpp" line="4902"/>
         <source>Delete</source>
         <translation>Видалити</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4887"/>
+        <location filename="../src/application/mainwindow.cpp" line="4903"/>
         <source>Select All</source>
         <translation>Виділити все</translation>
     </message>
@@ -4055,7 +4078,7 @@ Ancient news could reappear</source>
 <context>
     <name>QMultiInputContext</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4902"/>
+        <location filename="../src/application/mainwindow.cpp" line="4918"/>
         <source>Select IM</source>
         <translation>Вибрати режим вводу</translation>
     </message>
@@ -4081,42 +4104,42 @@ Ancient news could reappear</source>
 <context>
     <name>QTextControl</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4889"/>
+        <location filename="../src/application/mainwindow.cpp" line="4905"/>
         <source>&amp;Undo</source>
         <translation>В&amp;ідмінити дію</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4890"/>
+        <location filename="../src/application/mainwindow.cpp" line="4906"/>
         <source>&amp;Redo</source>
         <translation>П&amp;овторити дію</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4891"/>
+        <location filename="../src/application/mainwindow.cpp" line="4907"/>
         <source>Cu&amp;t</source>
         <translation>В&amp;ирізати</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4892"/>
+        <location filename="../src/application/mainwindow.cpp" line="4908"/>
         <source>&amp;Copy</source>
         <translation>&amp;Копіювати</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4893"/>
+        <location filename="../src/application/mainwindow.cpp" line="4909"/>
         <source>&amp;Paste</source>
         <translation>&amp;Вставити</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4894"/>
+        <location filename="../src/application/mainwindow.cpp" line="4910"/>
         <source>Delete</source>
         <translation>Видалити</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4895"/>
+        <location filename="../src/application/mainwindow.cpp" line="4911"/>
         <source>Select All</source>
         <translation>Виділити все</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4896"/>
+        <location filename="../src/application/mainwindow.cpp" line="4912"/>
         <source>Copy &amp;Link Location</source>
         <translation>Копіювати &amp;адресу посилання</translation>
     </message>
@@ -4124,22 +4147,22 @@ Ancient news could reappear</source>
 <context>
     <name>QWizard</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4904"/>
+        <location filename="../src/application/mainwindow.cpp" line="4920"/>
         <source>Cancel</source>
         <translation>Скасувати</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4905"/>
+        <location filename="../src/application/mainwindow.cpp" line="4921"/>
         <source>&lt; &amp;Back</source>
         <translation>&lt; На&amp;зад</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4906"/>
+        <location filename="../src/application/mainwindow.cpp" line="4922"/>
         <source>&amp;Finish</source>
         <translation>Завер&amp;шити</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4907"/>
+        <location filename="../src/application/mainwindow.cpp" line="4923"/>
         <source>&amp;Next &gt;</source>
         <translation>Впере&amp;д &gt;</translation>
     </message>
