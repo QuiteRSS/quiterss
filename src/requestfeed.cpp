@@ -231,13 +231,17 @@ void RequestFeed::finished(QNetworkReply *reply)
           QString host(QUrl::fromEncoded(feedUrl.toUtf8()).host());
           if (reply->operation() == QNetworkAccessManager::HeadOperation) {
             qDebug() << objectName() << "  head redirect...";
-            if (redirectionTarget.host().isNull())
+            if (redirectionTarget.host().isEmpty())
               redirectionTarget.setUrl("http://" + host + redirectionTarget.toString());
+            if (redirectionTarget.scheme().isEmpty())
+              redirectionTarget.setScheme(QUrl(feedUrl).scheme());
             emit signalHead(redirectionTarget, feedId, feedUrl, feedDate, count);
           } else {
             qDebug() << objectName() << "  get redirect...";
-            if (redirectionTarget.host().isNull())
+            if (redirectionTarget.host().isEmpty())
               redirectionTarget.setUrl("http://" + host + redirectionTarget.toString());
+            if (redirectionTarget.scheme().isEmpty())
+              redirectionTarget.setScheme(QUrl(feedUrl).scheme());
             emit signalGet(redirectionTarget, feedId, feedUrl, feedDate, count);
           }
         } else {
