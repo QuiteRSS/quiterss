@@ -2775,4 +2775,20 @@ Save?</source>
     <source>Find in Categories</source>
     <target>Найти в категориях</target>
 </phrase>
+<phrase>
+    <source>Disabled feed</source>
+    <target>Отключенные ленты</target>
+</phrase>
+<phrase>
+    <source>Alternating row colors</source>
+    <target>Цвет чередующихся строк</target>
+</phrase>
+<phrase>
+    <source>Action on feed opening:</source>
+    <target>Действие на открытие ленты:</target>
+</phrase>
+<phrase>
+    <source>Set focus on the last opened news</source>
+    <target>Установить фокус на последней открытой новости</target>
+</phrase>
 </QPH>
