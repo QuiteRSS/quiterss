@@ -4892,7 +4892,7 @@ void MainWindow::retranslateStrings()
   findTextAct_->setText(tr("Find"));
 
   openHomeFeedAct_->setText(tr("Open Homepage Feed"));
-  sortedByTitleFeedsTreeAct_->setText(tr("Sorted by Name"));
+  sortedByTitleFeedsTreeAct_->setText(tr("Sort by Name"));
   collapseAllFoldersAct_->setText(tr("Collapse All Folders"));
   expandAllFoldersAct_->setText(tr("Expand All Folders"));
   nextFolderAct_->setText(tr("Next Folder"));
