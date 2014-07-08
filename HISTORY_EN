@@ -2,6 +2,19 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
+<p><b>Version 0.16.0+</b> (xx Jul 2014)
+<ul>
+<li>Added: Ability to filter news by link</li>
+<li>Added: Share news - LinkedIn, Blogger, Printer Friendly</li>
+<li>Added: Color adjustment of the feeds with disabled update</li>
+<li>Added: Color adjustment of the alternating rows background of the news list</li>
+
+<li>Fixed: Operating in some unix OS</li>
+<li>Fixed: Display all columns if the new list despite of settings</li>
+<li>Fixed: Parsing some feeds</li>
+<li>Fixed: Application crash while shutdown</li>
+</ul>
+<!---------------------------------------------------------------------------->
 <p><b>Version 0.16.0</b> (24 May 2014)
 <ul>
 <li>Added: Case-insensitive filters, news searching and feed sorting</li>
