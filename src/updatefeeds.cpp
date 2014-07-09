@@ -431,6 +431,15 @@ void UpdateObject::slotImportFeeds(QByteArray xmlData)
         }
         // Feed finded
         else {
+          if (xmlUrlString.contains("feed:", Qt::CaseInsensitive)) {
+            if (xmlUrlString.contains("https://", Qt::CaseInsensitive)) {
+              xmlUrlString.remove(0, 5);
+            } else {
+              xmlUrlString.remove(0, 7);
+              xmlUrlString = "http://" + xmlUrlString;
+            }
+          }
+
           bool isFeedDuplicated = false;
           q.prepare("SELECT id FROM feeds WHERE xmlUrl LIKE :xmlUrl");
           q.bindValue(":xmlUrl", xmlUrlString);

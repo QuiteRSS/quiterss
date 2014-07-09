@@ -315,6 +315,16 @@ void AddFeedWizard::finishButtonClicked()
 void AddFeedWizard::addFeed()
 {
   // Set URL-schema for URL-address "http://" or leave it "https://"
+  feedUrlString_ = urlFeedEdit_->text().simplified();
+  if (feedUrlString_.contains("feed:", Qt::CaseInsensitive)) {
+    if (feedUrlString_.contains("https://", Qt::CaseInsensitive)) {
+      feedUrlString_.remove(0, 5);
+      urlFeedEdit_->setText(feedUrlString_);
+    } else {
+      feedUrlString_.remove(0, 7);
+      urlFeedEdit_->setText("http://" + feedUrlString_);
+    }
+  }
   QUrl feedUrl(urlFeedEdit_->text().simplified());
   if (feedUrl.scheme().isEmpty()) {
     feedUrl.setUrl("http://" % urlFeedEdit_->text().simplified());
