@@ -1250,7 +1250,7 @@ kunde inte hittas!</translation>
         <location filename="../src/newsfilters/itemcondition.cpp" line="31"/>
         <location filename="../src/newsfilters/itemcondition.cpp" line="106"/>
         <source>Link</source>
-        <translation type="unfinished"/>
+        <translation>Länk</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/itemcondition.cpp" line="36"/>
@@ -3695,12 +3695,12 @@ kunde inte hittas!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1624"/>
         <source>Disabled feed</source>
-        <translation type="unfinished"/>
+        <translation>Inaktivera flöde</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1627"/>
         <source>Alternating row colors</source>
-        <translation type="unfinished"/>
+        <translation>Växlande radfärger</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2013"/>
@@ -3725,22 +3725,22 @@ kunde inte hittas!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="776"/>
         <source>Set focus on the last opened news</source>
-        <translation type="unfinished"/>
+        <translation>Fokusera senast öppnade nyhet</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="777"/>
         <source>Set focus at the top of news list</source>
-        <translation type="unfinished"/>
+        <translation>Fokusera första objektet i nyhetslistan</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="778"/>
         <source>Set focus on the unread news</source>
-        <translation type="unfinished"/>
+        <translation>Fokusera olästa nyheter</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="779"/>
         <source>Open the news</source>
-        <translation type="unfinished"/>
+        <translation>Öppna nyheter</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="847"/>
@@ -3750,7 +3750,7 @@ kunde inte hittas!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="865"/>
         <source>Action on feed opening:</source>
-        <translation type="unfinished"/>
+        <translation>Åtgärd vid öppning av flöde:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="896"/>

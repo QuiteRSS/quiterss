@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="ru">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="ru" version="2.0">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -522,7 +520,7 @@
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="356"/>
-        <source>Totally remove records that had marked &apos;deleted&apos; from DB.
+        <source>Totally remove records that had marked 'deleted' from DB.
 Ancient news could reappear</source>
         <translation>Полностью удаляет записи, которые отмечены как &quot;удаленные&quot; из БД.
 Возможно, удалённые новости загрузятся снова</translation>

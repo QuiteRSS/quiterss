@@ -920,7 +920,7 @@ Le notizie vecchie potrebbero riapparire.</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="32"/>
         <source>Display</source>
-        <translation type="unfinished"/>
+        <translation>Visualizzazione</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="174"/>
@@ -1250,7 +1250,7 @@ Le notizie vecchie potrebbero riapparire.</translation>
         <location filename="../src/newsfilters/itemcondition.cpp" line="31"/>
         <location filename="../src/newsfilters/itemcondition.cpp" line="106"/>
         <source>Link</source>
-        <translation type="unfinished"/>
+        <translation>Collegamento</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/itemcondition.cpp" line="36"/>
@@ -3695,12 +3695,12 @@ Le notizie vecchie potrebbero riapparire.</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1624"/>
         <source>Disabled feed</source>
-        <translation type="unfinished"/>
+        <translation>Fonte disattivata</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1627"/>
         <source>Alternating row colors</source>
-        <translation type="unfinished"/>
+        <translation>Colori delle righe alternati</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2013"/>
@@ -3725,22 +3725,22 @@ Le notizie vecchie potrebbero riapparire.</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="776"/>
         <source>Set focus on the last opened news</source>
-        <translation type="unfinished"/>
+        <translation>Poni la selezione sull&apos;ultima notizia aperta</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="777"/>
         <source>Set focus at the top of news list</source>
-        <translation type="unfinished"/>
+        <translation>Poni la selezione all&apos;inizio nell&apos;elenco delle notizie</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="778"/>
         <source>Set focus on the unread news</source>
-        <translation type="unfinished"/>
+        <translation>Poni la selezione sulle notizie non lette</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="779"/>
         <source>Open the news</source>
-        <translation type="unfinished"/>
+        <translation>Apri le notizie</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="847"/>
@@ -3750,7 +3750,7 @@ Le notizie vecchie potrebbero riapparire.</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="865"/>
         <source>Action on feed opening:</source>
-        <translation type="unfinished"/>
+        <translation>Azione all&apos;apertura delle fonte:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="896"/>

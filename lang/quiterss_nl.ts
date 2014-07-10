@@ -1250,7 +1250,7 @@ werd niet gevonden</translation>
         <location filename="../src/newsfilters/itemcondition.cpp" line="31"/>
         <location filename="../src/newsfilters/itemcondition.cpp" line="106"/>
         <source>Link</source>
-        <translation type="unfinished"/>
+        <translation>Koppeling</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/itemcondition.cpp" line="36"/>
@@ -3695,12 +3695,12 @@ werd niet gevonden</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1624"/>
         <source>Disabled feed</source>
-        <translation type="unfinished"/>
+        <translation>Feed uitzetten</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1627"/>
         <source>Alternating row colors</source>
-        <translation type="unfinished"/>
+        <translation>Afwisselend rijkleuren</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2013"/>
@@ -3725,22 +3725,22 @@ werd niet gevonden</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="776"/>
         <source>Set focus on the last opened news</source>
-        <translation type="unfinished"/>
+        <translation>Stel focus in op laatst geopende nieuws</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="777"/>
         <source>Set focus at the top of news list</source>
-        <translation type="unfinished"/>
+        <translation>Stel focus in op de top van de nieuwslijst</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="778"/>
         <source>Set focus on the unread news</source>
-        <translation type="unfinished"/>
+        <translation>Stel focus in op ongelezen nieuws</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="779"/>
         <source>Open the news</source>
-        <translation type="unfinished"/>
+        <translation>Open het nieuws</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="847"/>
@@ -3750,7 +3750,7 @@ werd niet gevonden</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="865"/>
         <source>Action on feed opening:</source>
-        <translation type="unfinished"/>
+        <translation>Aktie op feed opening:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="896"/>

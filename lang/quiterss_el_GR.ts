@@ -1250,7 +1250,7 @@ Ancient news could reappear</source>
         <location filename="../src/newsfilters/itemcondition.cpp" line="31"/>
         <location filename="../src/newsfilters/itemcondition.cpp" line="106"/>
         <source>Link</source>
-        <translation type="unfinished"/>
+        <translation>Σύνδεσμος</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/itemcondition.cpp" line="36"/>
@@ -1845,7 +1845,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4824"/>
         <source>Reset browser zoom</source>
-        <translation type="unfinished"/>
+        <translation>Μηδενισμός μεγέθυνσης στον browser</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4827"/>
@@ -3695,12 +3695,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1624"/>
         <source>Disabled feed</source>
-        <translation type="unfinished"/>
+        <translation>Απενεργοποιημένο feed</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1627"/>
         <source>Alternating row colors</source>
-        <translation type="unfinished"/>
+        <translation>Χρωματισμός σειρών</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2013"/>
@@ -3715,47 +3715,47 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="292"/>
         <source>Show feeds tree toggle</source>
-        <translation type="unfinished"/>
+        <translation>Κουμπί εμφάνισης δέντρου</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="382"/>
         <source>Clear new status when minimize to tray</source>
-        <translation type="unfinished"/>
+        <translation>Εκκαθάριση κατάστασης νέων κατα την ελαχιστοποίηση</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="776"/>
         <source>Set focus on the last opened news</source>
-        <translation type="unfinished"/>
+        <translation>Κεντράρισμα στα τελευταία ανοιγμένα νέα</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="777"/>
         <source>Set focus at the top of news list</source>
-        <translation type="unfinished"/>
+        <translation>Κεντράρισμα στο επάνω μέρος της λίστας νέων</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="778"/>
         <source>Set focus on the unread news</source>
-        <translation type="unfinished"/>
+        <translation>Κεντράρισμα στα μη αναγνωσμένα νέα</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="779"/>
         <source>Open the news</source>
-        <translation type="unfinished"/>
+        <translation>Άνοιγμα νέων</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="847"/>
         <source>Default news filter:</source>
-        <translation type="unfinished"/>
+        <translation>Προεπιλεγμένο φίλτρο νέων:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="865"/>
         <source>Action on feed opening:</source>
-        <translation type="unfinished"/>
+        <translation>Ενέργεια κατα το άνοιγμα feed:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="896"/>
         <source>Show news description instead of loading web page</source>
-        <translation type="unfinished"/>
+        <translation>Εμφάνιση περιγραφής νέων αντί για φόρτωση της σελίδας</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1615"/>

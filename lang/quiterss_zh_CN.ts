@@ -130,7 +130,7 @@
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="32"/>
         <source>Search...</source>
-        <translation type="unfinished"/>
+        <translation>搜索...</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="68"/>
@@ -140,37 +140,37 @@
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="98"/>
         <source>AdBlock</source>
-        <translation type="unfinished"/>
+        <translation>AdBlock</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="122"/>
         <source>Use only essential part of EasyList (for performance reasons)</source>
-        <translation type="unfinished"/>
+        <translation>仅使用EasyList中的重要部分 (出于性能的原因)</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="72"/>
         <source>Add Rule</source>
-        <translation type="unfinished"/>
+        <translation>添加规则</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="73"/>
         <source>Remove Rule</source>
-        <translation type="unfinished"/>
+        <translation>移除规则</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="75"/>
         <source>Add Subscription</source>
-        <translation type="unfinished"/>
+        <translation>添加订阅</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="76"/>
         <source>Remove Subscription</source>
-        <translation type="unfinished"/>
+        <translation>移除订阅</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="77"/>
         <source>Update Subscriptions</source>
-        <translation type="unfinished"/>
+        <translation>更新订阅</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="79"/>

@@ -1125,17 +1125,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/findtext.cpp" line="105"/>
         <source>Find in Titles</source>
-        <translation type="unfinished"/>
+        <translation>Наћи у наслов</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="106"/>
         <source>Find in Authors</source>
-        <translation type="unfinished"/>
+        <translation>Наћи у ауторе</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="107"/>
         <source>Find in Categories</source>
-        <translation type="unfinished"/>
+        <translation>Наћи у категорији</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="108"/>
@@ -1250,7 +1250,7 @@ Ancient news could reappear</source>
         <location filename="../src/newsfilters/itemcondition.cpp" line="31"/>
         <location filename="../src/newsfilters/itemcondition.cpp" line="106"/>
         <source>Link</source>
-        <translation type="unfinished"/>
+        <translation>Веза</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/itemcondition.cpp" line="36"/>
@@ -1830,42 +1830,42 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4809"/>
         <source>Count Unread News</source>
-        <translation type="unfinished"/>
+        <translation>Број нечитане вести</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4810"/>
         <source>Count All News</source>
-        <translation type="unfinished"/>
+        <translation>Број свих вести</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4811"/>
         <source>Last Update</source>
-        <translation type="unfinished"/>
+        <translation>Ажурирано</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4824"/>
         <source>Reset browser zoom</source>
-        <translation type="unfinished"/>
+        <translation>Ресетуј зум прегледачу</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4827"/>
         <source>Print Web Page</source>
-        <translation type="unfinished"/>
+        <translation>Штампај лист</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4829"/>
         <source>Preview Web Page</source>
-        <translation type="unfinished"/>
+        <translation>Преглед листа</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4833"/>
         <source>Save page in database</source>
-        <translation type="unfinished"/>
+        <translation>Сачувај лист у базу</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4834"/>
         <source>Save page in database instead of news description</source>
-        <translation type="unfinished"/>
+        <translation>Сачувај лист у базу у место опис вести</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="162"/>
@@ -1900,12 +1900,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4725"/>
         <source>Open News Description</source>
-        <translation type="unfinished"/>
+        <translation>Отвори опис вести</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4742"/>
         <source>Copy News Link</source>
-        <translation type="unfinished"/>
+        <translation>Копирај везу вести</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4752"/>
@@ -2459,7 +2459,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsfilters/newsfiltersdialog.cpp" line="46"/>
         <source>Filter Name</source>
-        <translation type="unfinished"/>
+        <translation>Име филтра</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/newsfiltersdialog.cpp" line="91"/>
@@ -2499,7 +2499,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsfilters/newsfiltersdialog.cpp" line="260"/>
         <source>Are you sure you want to delete the filter &apos;%1&apos;?</source>
-        <translation type="unfinished"/>
+        <translation>Сигурно обрисати филтер „%1“?</translation>
     </message>
 </context>
 <context>
@@ -2552,7 +2552,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsheader.cpp" line="409"/>
         <source>Feed Title</source>
-        <translation type="unfinished"/>
+        <translation>Наслов канала</translation>
     </message>
     <message>
         <location filename="../src/newsheader.cpp" line="410"/>
@@ -2684,17 +2684,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newstabwidget.cpp" line="615"/>
         <source>Auto Load Images in News View</source>
-        <translation type="unfinished"/>
+        <translation>Ауто учитај слике у изглед вести</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="618"/>
         <source>Don&apos;t Load Images</source>
-        <translation type="unfinished"/>
+        <translation>Не учитај слике</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="619"/>
         <source>Don&apos;t Load Images in News View</source>
-        <translation type="unfinished"/>
+        <translation>Не учитај слике у изглед вести</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1403"/>
@@ -2878,7 +2878,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="298"/>
         <source>Help improve QuiteRSS by sending usage information</source>
-        <translation type="unfinished"/>
+        <translation>Помогни да се побољша QuiteRSS тако што шаљете инфо о употреби</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="299"/>
@@ -3690,22 +3690,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1609"/>
         <source>Count of unread news in feeds tree</source>
-        <translation type="unfinished"/>
+        <translation>Број нечитане вести у дрву канала</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1624"/>
         <source>Disabled feed</source>
-        <translation type="unfinished"/>
+        <translation>Онемогућен канал</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1627"/>
         <source>Alternating row colors</source>
-        <translation type="unfinished"/>
+        <translation>Наизменична боја колона</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2013"/>
         <source>Auto load images in news view</source>
-        <translation type="unfinished"/>
+        <translation>Ауто учитај слике у изглед вести</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1612"/>
@@ -3715,47 +3715,47 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="292"/>
         <source>Show feeds tree toggle</source>
-        <translation type="unfinished"/>
+        <translation>Покажи пребацивање дрва канала</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="382"/>
         <source>Clear new status when minimize to tray</source>
-        <translation type="unfinished"/>
+        <translation>Очисти стање „ново“ на умањивање</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="776"/>
         <source>Set focus on the last opened news</source>
-        <translation type="unfinished"/>
+        <translation>Фокус на последњу отворену вест</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="777"/>
         <source>Set focus at the top of news list</source>
-        <translation type="unfinished"/>
+        <translation>Фокус на врх листе вести</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="778"/>
         <source>Set focus on the unread news</source>
-        <translation type="unfinished"/>
+        <translation>Фокус на нечитану вест</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="779"/>
         <source>Open the news</source>
-        <translation type="unfinished"/>
+        <translation>Отвори вест</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="847"/>
         <source>Default news filter:</source>
-        <translation type="unfinished"/>
+        <translation>Подразумевани филтер вести:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="865"/>
         <source>Action on feed opening:</source>
-        <translation type="unfinished"/>
+        <translation>Акција на отварање канала</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="896"/>
         <source>Show news description instead of loading web page</source>
-        <translation type="unfinished"/>
+        <translation>Прикажи опис вести у место учитавање странице</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1615"/>
