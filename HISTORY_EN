@@ -2,7 +2,7 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
-<p><b>Version 0.16.0+</b> (xx Jul 2014)
+<p><b>Version 0.16.1</b> (10 Jul 2014)
 <ul>
 <li>Added: Ability to filter news by link</li>
 <li>Added: Share news - LinkedIn, Blogger, Printer Friendly</li>

@@ -1,3 +1,13 @@
+Version 0.16.1 (10 Jul 2014)
+  * Added: Ability to filter news by link
+  * Added: Share news - LinkedIn, Blogger, Printer Friendly
+  * Added: Color adjustment of the feeds with disabled update
+  * Added: Color adjustment of the alternating rows background of the news list
+  * Fixed: Operating in some unix OS
+  * Fixed: Display all columns if the new list despite of settings
+  * Fixed: Parsing some feeds
+  * Fixed: Application crash while shutdown
+
 Version 0.16.0 (24 May 2014)
   * Added: Case-insensitive filters, news searching and feed sorting
   * Added: Regular expressions support in user's filters
