@@ -98,7 +98,7 @@ void ItemCondition::currentIndexChanged(const QString &str)
              << tr("begins with") << tr("ends with")
              << tr("Regular expressions");
     comboBox2_->addItems(itemList);
-  } else if (str == tr("Status")) {
+  } else if (str == tr("State")) {
     itemList << tr("is") << tr("isn't");
     comboBox2_->addItems(itemList);
     comboBox3_->setVisible(true);
