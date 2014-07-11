@@ -6681,12 +6681,12 @@ void MainWindow::slotPrint()
   QPrintDialog *printDlg = new QPrintDialog(&printer);
   connect(printDlg, SIGNAL(accepted(QPrinter*)), currentNewsTab->webView_, SLOT(print(QPrinter*)));
   printDlg->exec();
-  delete printDlg;
+  printDlg->deleteLater();
 }
 
 /** @brief Call print preview dialog
  *---------------------------------------------------------------------------*/
-void MainWindow::slotPrintPreview()
+void MainWindow::slotPrintPreview(QWebFrame *frame)
 {
   if (currentNewsTab->type_ == NewsTabWidget::TabTypeDownloads) return;
 
@@ -6695,9 +6695,12 @@ void MainWindow::slotPrintPreview()
   QPrintPreviewDialog *prevDlg = new QPrintPreviewDialog(&printer);
   prevDlg->setWindowFlags(prevDlg->windowFlags() | Qt::WindowMaximizeButtonHint);
   prevDlg->resize(650, 800);
-  connect(prevDlg, SIGNAL(paintRequested(QPrinter*)), currentNewsTab->webView_, SLOT(print(QPrinter*)));
+  if (!frame)
+    connect(prevDlg, SIGNAL(paintRequested(QPrinter*)), currentNewsTab->webView_, SLOT(print(QPrinter*)));
+  else
+    connect(prevDlg, SIGNAL(paintRequested(QPrinter*)), frame, SLOT(print(QPrinter*)));
   prevDlg->exec();
-  delete prevDlg;
+  prevDlg->deleteLater();
 }
 // ----------------------------------------------------------------------------
 void MainWindow::setFullScreen()

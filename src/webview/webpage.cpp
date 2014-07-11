@@ -48,6 +48,8 @@ WebPage::WebPage(QObject *parent)
           this, SLOT(handleUnsupportedContent(QNetworkReply*)));
   connect(this, SIGNAL(downloadRequested(QNetworkRequest)),
           this, SLOT(downloadRequested(QNetworkRequest)));
+  connect(this, SIGNAL(printRequested(QWebFrame*)),
+          mainApp->mainWindow(), SLOT(slotPrintPreview(QWebFrame*)));
 
   livingPages_.append(this);
 }

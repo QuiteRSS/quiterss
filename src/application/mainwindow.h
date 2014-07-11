@@ -289,6 +289,7 @@ public slots:
   void slotProxyAuthentication(const QNetworkProxy &proxy, QAuthenticator *auth);
   void feedsModelReload(bool checkFilter = false);
   void setStatusFeed(int feedId, QString status);
+  void slotPrintPreview(QWebFrame* frame = 0);
 
 signals:
   void signalPlaceToTray();
@@ -408,7 +409,6 @@ private slots:
   void slotReportProblem();
 
   void slotPrint();
-  void slotPrintPreview();
 
   void slotSavePageAs();
   void slotSavePageAsDescript();
