@@ -46,7 +46,7 @@ a {
   font-family: %3;
   font-size: %4pt;
   text-align: %14;
-  dir: %15;
+  direction: %15;
   vertical-align: top;
 }
 .title a.unread {
@@ -64,7 +64,7 @@ a {
 .author {
   color: %12;
   text-align: %14;
-  dir: %15;
+  direction: %15;
   vertical-align: top;
 }
 
@@ -87,7 +87,7 @@ a.enclosure {
 .newsTable {
   border-top: 1px solid %6;
   text-align: %14;
-  dir: %15;
+  direction: %15;
   width: 100%;
   padding: 5px;
   color: %13;

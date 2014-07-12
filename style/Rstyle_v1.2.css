@@ -65,7 +65,7 @@ a:hover {text-decoration: none; color: #0066CC;}
   color: #0C60B1; 
   font-family: %3; font-size: %4pt;
   text-align: %14;
-  dir: %15;
+  direction: %15;
   vertical-align: top;
 }
 .title a:link {color: #0C60B1; text-decoration: none;}
@@ -84,7 +84,7 @@ a:hover {text-decoration: none; color: #0066CC;}
 .author {
   color: #949494;
   text-align: %14;
-  dir: %15;
+  direction: %15;
   vertical-align: top;
   text-decoration: underline;
 }
@@ -113,7 +113,7 @@ a:hover {text-decoration: none; color: #0066CC;}
   width: 100%;
   padding: 5px;
   text-align: %14;
-  dir: %15;
+  direction: %15;
   -webkit-border-bottom-left-radius: 5x;
   -webkit-border-bottom-right-radius: 5px;
   -moz-border-bottom-left-radius: 5px;
