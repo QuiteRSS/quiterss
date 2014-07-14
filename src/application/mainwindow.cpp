@@ -1340,7 +1340,7 @@ void MainWindow::createActions()
 
   printfriendlyShareAct_ = new QAction(this);
   printfriendlyShareAct_->setObjectName("printfriendlyShareAct");
-  printfriendlyShareAct_->setText("Printer Friendly");
+  printfriendlyShareAct_->setText("PrintFriendly");
   printfriendlyShareAct_->setIcon(QIcon(":/share/images/share/printfriendly.png"));
   shareGroup_->addAction(printfriendlyShareAct_);
 
@@ -6672,14 +6672,17 @@ void MainWindow::slotReportProblem()
 
 /** @brief Print browser page
  *---------------------------------------------------------------------------*/
-void MainWindow::slotPrint()
+void MainWindow::slotPrint(QWebFrame *frame)
 {
   if (currentNewsTab->type_ == NewsTabWidget::TabTypeDownloads) return;
 
   QPrinter printer;
   printer.setDocName(tr("Web Page"));
   QPrintDialog *printDlg = new QPrintDialog(&printer);
-  connect(printDlg, SIGNAL(accepted(QPrinter*)), currentNewsTab->webView_, SLOT(print(QPrinter*)));
+  if (!frame)
+    connect(printDlg, SIGNAL(accepted(QPrinter*)), currentNewsTab->webView_, SLOT(print(QPrinter*)));
+  else
+    connect(printDlg, SIGNAL(accepted(QPrinter*)), frame, SLOT(print(QPrinter*)));
   printDlg->exec();
   printDlg->deleteLater();
 }
