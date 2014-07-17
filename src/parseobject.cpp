@@ -342,6 +342,10 @@ void ParseObject::parseAtom(const QString &feedUrl, const QDomDocument &doc)
     if (!newsItem.linkAlternate.isEmpty() && QUrl(newsItem.linkAlternate).host().isEmpty())
       newsItem.linkAlternate = feedItem.linkBase + newsItem.linkAlternate;
     newsItem.linkAlternate = toPlainText(newsItem.linkAlternate);
+    if (newsItem.link.isEmpty()) {
+      newsItem.link = newsItem.linkAlternate;
+      newsItem.linkAlternate.clear();
+    }
 
     addAtomNewsIntoBase(newsItem);
   }
