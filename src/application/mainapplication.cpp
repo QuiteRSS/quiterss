@@ -249,8 +249,8 @@ void MainApplication::loadSettings()
 
 void MainApplication::quitApplication()
 {
-  delete networkManager_;
   delete mainWindow_;
+  delete networkManager_;
 
   qWarning() << "Quit application";
 
