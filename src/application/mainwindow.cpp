@@ -2365,7 +2365,7 @@ void MainWindow::saveSettings()
     settings.setValue("FeedsWidgetSplitterState", feedsSplitter_->saveState());
   }
   settings.setValue("NewsCategoriesTreeVisible", newsCategoriesTreeVisible);
-  settings.setValue("categoriesTreeExpanded", categoriesTree_->topLevelItem(3)->isExpanded());
+  settings.setValue("categoriesTreeExpanded", categoriesTree_->topLevelItem(CategoriesTreeWidget::LabelsItem)->isExpanded());
 
   if (stackedWidget_->count()) {
     NewsTabWidget *widget;
@@ -2837,7 +2837,7 @@ void MainWindow::slotRecountCategoryCounts(QList<int> deletedList, QList<int> st
   int unreadLabelCount = 0;
   QFont font;
 
-  QTreeWidgetItem *labelTreeItem = categoriesTree_->topLevelItem(3);
+  QTreeWidgetItem *labelTreeItem = categoriesTree_->topLevelItem(CategoriesTreeWidget::LabelsItem);
   for (int i = 0; i < labelTreeItem->childCount(); i++) {
     int id = labelTreeItem->child(i)->text(2).toInt();
     allCountList.insert(id, 0);
@@ -2892,31 +2892,31 @@ void MainWindow::slotRecountCategoryCounts(QList<int> deletedList, QList<int> st
     countStr = "";
   else
     countStr = QString("(%1/%2)").arg(unreadStarredCount).arg(allStarredCount);
-  categoriesTree_->topLevelItem(1)->setText(4, countStr);
-  font = categoriesTree_->topLevelItem(1)->font(0);
+  categoriesTree_->topLevelItem(CategoriesTreeWidget::StarredItem)->setText(4, countStr);
+  font = categoriesTree_->topLevelItem(CategoriesTreeWidget::StarredItem)->font(0);
   if (unreadStarredCount)
     font.setBold(true);
   else
     font.setBold(false);
-  categoriesTree_->topLevelItem(1)->setFont(0, font);
+  categoriesTree_->topLevelItem(CategoriesTreeWidget::StarredItem)->setFont(0, font);
 
   if (!deletedCount)
     countStr = "";
   else
     countStr = QString("(%1)").arg(deletedCount);
-  categoriesTree_->topLevelItem(2)->setText(4, countStr);
+  categoriesTree_->topLevelItem(CategoriesTreeWidget::DeletedItem)->setText(4, countStr);
 
   if (!unreadLabelCount && !allLabelCount)
     countStr = "";
   else
     countStr = QString("(%1/%2)").arg(unreadLabelCount).arg(allLabelCount);
-  categoriesTree_->topLevelItem(3)->setText(4, countStr);
-  font = categoriesTree_->topLevelItem(3)->font(0);
+  categoriesTree_->topLevelItem(CategoriesTreeWidget::LabelsItem)->setText(4, countStr);
+  font = categoriesTree_->topLevelItem(CategoriesTreeWidget::LabelsItem)->font(0);
   if (unreadLabelCount)
     font.setBold(true);
   else
     font.setBold(false);
-  categoriesTree_->topLevelItem(3)->setFont(0, font);
+  categoriesTree_->topLevelItem(CategoriesTreeWidget::LabelsItem)->setFont(0, font);
 
   NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(stackedWidget_->currentIndex());
   if ((widget->type_ > NewsTabWidget::TabTypeFeed) && (widget->type_ < NewsTabWidget::TabTypeWeb)
@@ -3511,7 +3511,7 @@ void MainWindow::showOptionDlg(int index)
   }
 
   if (optionsDialog_->idLabels_.count()) {
-    QTreeWidgetItem *labelTreeItem = categoriesTree_->topLevelItem(3);
+    QTreeWidgetItem *labelTreeItem = categoriesTree_->topLevelItem(CategoriesTreeWidget::LabelsItem);
     while (labelTreeItem->childCount()) {
       labelTreeItem->removeChild(labelTreeItem->child(0));
     }
@@ -4881,10 +4881,10 @@ void MainWindow::retranslateStrings()
   nextTabAct_->setText(tr("Switch to next tab"));
   prevTabAct_->setText(tr("Switch to previous tab"));
 
-  categoriesTree_->topLevelItem(0)->setText(0, tr("Unread"));
-  categoriesTree_->topLevelItem(1)->setText(0, tr("Starred"));
-  categoriesTree_->topLevelItem(2)->setText(0, tr("Deleted"));
-  categoriesTree_->topLevelItem(3)->setText(0, tr("Labels"));
+  categoriesTree_->topLevelItem(CategoriesTreeWidget::UnreadItem)->setText(0, tr("Unread"));
+  categoriesTree_->topLevelItem(CategoriesTreeWidget::StarredItem)->setText(0, tr("Starred"));
+  categoriesTree_->topLevelItem(CategoriesTreeWidget::DeletedItem)->setText(0, tr("Deleted"));
+  categoriesTree_->topLevelItem(CategoriesTreeWidget::LabelsItem)->setText(0, tr("Labels"));
 
   reduceNewsListAct_->setText(tr("Decrease news list/increase browser"));
   increaseNewsListAct_->setText(tr("Increase news list/decrease browser"));
@@ -5489,15 +5489,15 @@ void MainWindow::showFeedPropertiesDlg()
 void MainWindow::slotRefreshInfoTray(int newCount, int unreadCount)
 {
   if (!unreadCount)
-    categoriesTree_->topLevelItem(0)->setText(4, "");
+    categoriesTree_->topLevelItem(CategoriesTreeWidget::UnreadItem)->setText(4, "");
   else
-    categoriesTree_->topLevelItem(0)->setText(4, QString("(%1)").arg(unreadCount));
-  QFont font = categoriesTree_->topLevelItem(0)->font(0);
+    categoriesTree_->topLevelItem(CategoriesTreeWidget::UnreadItem)->setText(4, QString("(%1)").arg(unreadCount));
+  QFont font = categoriesTree_->topLevelItem(CategoriesTreeWidget::UnreadItem)->font(0);
   if (unreadCount)
     font.setBold(true);
   else
     font.setBold(false);
-  categoriesTree_->topLevelItem(0)->setFont(0, font);
+  categoriesTree_->topLevelItem(CategoriesTreeWidget::UnreadItem)->setFont(0, font);
 
   // Setting tooltip text
   QString info =

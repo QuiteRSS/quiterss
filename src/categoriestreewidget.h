@@ -31,6 +31,19 @@ class CategoriesTreeWidget : public QTreeWidget
 public:
   explicit CategoriesTreeWidget(QWidget *parent = 0);
 
+  enum Items {UnreadItem, StarredItem, DeletedItem, LabelsItem};
+
+  QList<QTreeWidgetItem *> getLabelItems() const {
+    QList<QTreeWidgetItem *> items;
+    for (int i = 0; i < topLevelItem(LabelsItem)->childCount(); ++i) {
+      items.append(topLevelItem(LabelsItem)->child(i));
+    }
+    return items;
+  }
+  int labelsCount() const {
+    return topLevelItem(LabelsItem)->childCount();
+  }
+
 signals:
   void signalMiddleClicked();
   void signalClearDeleted();
