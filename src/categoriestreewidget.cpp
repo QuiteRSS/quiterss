@@ -75,7 +75,7 @@ CategoriesTreeWidget::CategoriesTreeWidget(QWidget * parent)
   addTopLevelItem(treeWidgetItem);
 
   QSqlQuery q;
-  q.exec("SELECT id, name, image, currentNews FROM labels ORDER BY num");
+  q.exec("SELECT id, name, image, currentNews, num, color_bg, color_text FROM labels ORDER BY num");
   while (q.next()) {
     int idLabel = q.value(0).toInt();
     QString nameLabel = q.value(1).toString();
@@ -89,6 +89,10 @@ CategoriesTreeWidget::CategoriesTreeWidget(QWidget * parent)
              << QString::number(idLabel) << currentNews;
     QTreeWidgetItem *childItem = new QTreeWidgetItem(treeItem);
     childItem->setIcon(0, QIcon(imageLabel));
+    childItem->setData(0, ImageRole, q.value(2));
+    childItem->setData(0, NumRole, q.value(4));
+    childItem->setData(0, colorBgRole, q.value(5));
+    childItem->setData(0, colorTextRole, q.value(6));
     treeWidgetItem->addChild(childItem);
   }
 

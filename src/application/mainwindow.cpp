@@ -3529,7 +3529,7 @@ void MainWindow::showOptionDlg(int index)
     }
 
     QSqlQuery q;
-    q.exec("SELECT id, name, image, currentNews FROM labels ORDER BY num");
+    q.exec("SELECT id, name, image, currentNews, num, color_bg, color_text FROM labels ORDER BY num");
     while (q.next()) {
       int idLabel = q.value(0).toInt();
       QString nameLabel = q.value(1).toString();
@@ -3543,6 +3543,10 @@ void MainWindow::showOptionDlg(int index)
                << QString::number(idLabel) << currentNews;
       QTreeWidgetItem *childItem = new QTreeWidgetItem(dataItem);
       childItem->setIcon(0, QIcon(imageLabel));
+      childItem->setData(0, CategoriesTreeWidget::ImageRole, q.value(2));
+      childItem->setData(0, CategoriesTreeWidget::NumRole, q.value(4));
+      childItem->setData(0, CategoriesTreeWidget::colorBgRole, q.value(5));
+      childItem->setData(0, CategoriesTreeWidget::colorTextRole, q.value(6));
       labelTreeItem->addChild(childItem);
 
       if (idLabel == tabLabelId) {

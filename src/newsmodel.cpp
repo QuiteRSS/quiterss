@@ -68,25 +68,16 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
 
       return icon;
     } else if (QSqlTableModel::fieldIndex("label") == index.column()) {
-      QPixmap icon;
-      QByteArray byteArray;
-      int num = -1;
-      QStringList strLabelIdList = index.data(Qt::EditRole).toString().
-          split(",", QString::SkipEmptyParts);
-      foreach (QString strLabelId, strLabelIdList) {
-        QSqlQuery q;
-        q.exec(QString("SELECT num, image FROM labels WHERE id=='%1'").
-               arg(strLabelId));
-        if (q.next()) {
-          if ((q.value(0).toInt() < num) || (num == -1)) {
-            num = q.value(0).toInt();
-            byteArray = q.value(1).toByteArray();
-          }
+      QIcon icon;
+      QString strIdLabels = index.data(Qt::EditRole).toString();
+      QList<QTreeWidgetItem *> labelListItems = mainApp->mainWindow()->
+          categoriesTree_->getLabelListItems();
+      foreach (QTreeWidgetItem *item, labelListItems) {
+        if (strIdLabels.contains(QString(",%1,").arg(item->text(2)))) {
+          icon = item->icon(0);
+          break;
         }
       }
-
-      if (!byteArray.isNull())
-        icon.loadFromData(byteArray);
       return icon;
     }
   } else if (role == Qt::ToolTipRole) {
@@ -149,16 +140,11 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
     } else if (QSqlTableModel::fieldIndex("label") == index.column()) {
       QStringList nameLabelList;
       QString strIdLabels = index.data(Qt::EditRole).toString();
-      QSqlQuery q;
-      q.exec("SELECT id, name FROM labels ORDER BY num");
-      while (q.next()) {
-        int idLabel = q.value(0).toInt();
-        if (strIdLabels.contains(QString(",%1,").arg(QString::number(idLabel)))) {
-          if ((idLabel <= 6) && (MainWindow::nameLabels().at(idLabel-1) == q.value(1).toString())) {
-            nameLabelList << MainWindow::trNameLabels().at(idLabel-1);
-          } else {
-            nameLabelList << q.value(1).toString();
-          }
+      QList<QTreeWidgetItem *> labelListItems = mainApp->mainWindow()->
+          categoriesTree_->getLabelListItems();
+      foreach (QTreeWidgetItem *item, labelListItems) {
+        if (strIdLabels.contains(QString(",%1,").arg(item->text(2)))) {
+          nameLabelList << item->text(0);
         }
       }
       return nameLabelList.join(", ");
@@ -185,26 +171,17 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
     }
 
     if (QSqlTableModel::index(index.row(), fieldIndex("label")).data(Qt::EditRole).isValid()) {
-      QString strColor;
-      int num = -1;
-      QStringList strLabelIdList =
-          QSqlTableModel::index(index.row(), fieldIndex("label")).data(Qt::EditRole).toString().
-          split(",", QString::SkipEmptyParts);
-
-      foreach (QString strLabelId, strLabelIdList) {
-        QSqlQuery q;
-        q.exec(QString("SELECT num, color_bg FROM labels WHERE id=='%1'").
-               arg(strLabelId));
-        if (q.next()) {
-          if ((q.value(0).toInt() < num) || (num == -1)) {
-            num = q.value(0).toInt();
-            strColor = q.value(1).toString();
-          }
+      QString strIdLabels = QSqlTableModel::index(index.row(), fieldIndex("label")).data(Qt::EditRole).toString();
+      QList<QTreeWidgetItem *> labelListItems = mainApp->mainWindow()->
+          categoriesTree_->getLabelListItems();
+      foreach (QTreeWidgetItem *item, labelListItems) {
+        if (strIdLabels.contains(QString(",%1,").arg(item->text(2)))) {
+          QString strColor = item->data(0, CategoriesTreeWidget::colorBgRole).toString();
+          if (!strColor.isEmpty())
+            return QColor(strColor);
+          break;
         }
       }
-
-      if (!strColor.isEmpty())
-        return QColor(strColor);
     }
   } else if (role == Qt::TextColorRole) {
     if (index.row() == view_->currentIndex().row()) {
@@ -212,26 +189,17 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
     }
 
     if (QSqlTableModel::index(index.row(), fieldIndex("label")).data(Qt::EditRole).isValid()) {
-      QString strColor;
-      int num = -1;
-      QStringList strLabelIdList =
-          QSqlTableModel::index(index.row(), fieldIndex("label")).data(Qt::EditRole).toString().
-          split(",", QString::SkipEmptyParts);
-
-      foreach (QString strLabelId, strLabelIdList) {
-        QSqlQuery q;
-        q.exec(QString("SELECT num, color_text FROM labels WHERE id=='%1'").
-               arg(strLabelId));
-        if (q.next()) {
-          if ((q.value(0).toInt() < num) || (num == -1)) {
-            num = q.value(0).toInt();
-            strColor = q.value(1).toString();
-          }
+      QString strIdLabels = QSqlTableModel::index(index.row(), fieldIndex("label")).data(Qt::EditRole).toString();
+      QList<QTreeWidgetItem *> labelListItems = mainApp->mainWindow()->
+          categoriesTree_->getLabelListItems();
+      foreach (QTreeWidgetItem *item, labelListItems) {
+        if (strIdLabels.contains(QString(",%1,").arg(item->text(2)))) {
+          QString strColor = item->data(0, CategoriesTreeWidget::colorTextRole).toString();
+          if (!strColor.isEmpty())
+            return QColor(strColor);
+          break;
         }
       }
-
-      if (!strColor.isEmpty())
-        return QColor(strColor);
     }
 
     if (1 == QSqlTableModel::index(index.row(), fieldIndex("new")).data(Qt::EditRole).toInt())
