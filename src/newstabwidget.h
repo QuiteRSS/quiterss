@@ -182,6 +182,7 @@ private slots:
 private:
   void createNewsList();
   void createWebWidget();
+  QString getHtmlLabels(int row);
 
   MainWindow *mainWindow_;
   QSqlDatabase db_;

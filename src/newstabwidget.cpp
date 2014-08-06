@@ -1422,6 +1422,8 @@ void NewsTabWidget::updateWebView(QModelIndex index)
         }
       }
 
+      QString labelsString = getHtmlLabels(index.row());
+      authorString.append("<table class=\"author\" id=\"labels\"><tr>" % labelsString % "</tr></table>");
 
       QString enclosureStr;
       QString enclosureUrl = newsModel_->dataField(index.row(), "enclosure_url").toString();
@@ -1963,6 +1965,19 @@ void NewsTabWidget::setLabelNews(int labelId)
     newsModel_->setData(index, strIdLabels);
 
     int newsId = newsModel_->dataField(index.row(), "id").toInt();
+
+    if ((newsId == currentNewsIdOld) &&
+        (webView_->title() == "news_descriptions")) {
+      QWebFrame *frame = webView_->page()->mainFrame();
+      QWebElement document = frame->documentElement();
+      QWebElement element = document.findFirst("table[id=labels]");
+      if (!element.isNull()) {
+        element.removeAllChildren();
+        QString labelsString = getHtmlLabels(index.row());
+        element.appendInside(labelsString);
+      }
+    }
+
     QSqlQuery q;
     q.exec(QString("UPDATE news SET label='%1' WHERE id=='%2'").
            arg(strIdLabels).arg(newsId));
@@ -1996,6 +2011,19 @@ void NewsTabWidget::setLabelNews(int labelId)
       newsModel_->setData(index, strIdLabels);
 
       int newsId = newsModel_->dataField(index.row(), "id").toInt();
+
+      if ((newsId == currentNewsIdOld) &&
+          (webView_->title() == "news_descriptions")) {
+        QWebFrame *frame = webView_->page()->mainFrame();
+        QWebElement document = frame->documentElement();
+        QWebElement element = document.findFirst("table[id=labels]");
+        if (!element.isNull()) {
+          element.removeAllChildren();
+          QString labelsString = getHtmlLabels(index.row());
+          element.appendInside(labelsString);
+        }
+      }
+
       QSqlQuery q;
       q.exec(QString("UPDATE news SET label='%1' WHERE id=='%2'").
              arg(strIdLabels).arg(newsId));
@@ -2007,7 +2035,6 @@ void NewsTabWidget::setLabelNews(int labelId)
     db_.commit();
   }
   newsView_->viewport()->update();
-
   mainWindow_->recountCategoryCounts();
 }
 
@@ -2307,4 +2334,24 @@ void NewsTabWidget::savePageAsDescript()
   QString qStr = QString("UPDATE news SET content='%1' WHERE id=='%2'").
       arg(html).arg(newsId);
   mainApp->sqlQueryExec(qStr);
+}
+
+QString NewsTabWidget::getHtmlLabels(int row)
+{
+  QStringList strLabelIdList = newsModel_->dataField(row, "label").toString().
+      split(",", QString::SkipEmptyParts);
+  QString labelsString;
+  QList<QTreeWidgetItem *> labelListItems = mainWindow_->categoriesTree_->getLabelListItems();
+  foreach (QTreeWidgetItem *item, labelListItems) {
+    if (strLabelIdList.contains(item->text(2))) {
+      strLabelIdList.removeOne(item->text(2));
+      QByteArray byteArray = item->data(0, CategoriesTreeWidget::ImageRole).toByteArray();
+      labelsString.append(QString("<td><img src=\"data:image/png;base64,") % byteArray.toBase64() % "\"/></td>");
+      labelsString.append("<td>" % item->text(0));
+      if (strLabelIdList.count())
+        labelsString.append(",");
+      labelsString.append("</td>");
+    }
+  }
+  return labelsString;
 }
