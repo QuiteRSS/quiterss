@@ -538,6 +538,8 @@ void NewsTabWidget::setSettings(bool init, bool newTab)
       } else {
         newsView_->setLayoutDirection(Qt::RightToLeft);
       }
+    } else {
+      webView_->settings()->setAttribute(QWebSettings::JavascriptEnabled, mainWindow_->javaScriptEnable_);
     }
   }
 
