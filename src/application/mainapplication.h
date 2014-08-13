@@ -86,6 +86,7 @@ public slots:
   void reloadUserStyleBrowser();
 
 signals:
+  void signalRunUserFilter(int feedId, int filterId);
   void signalSqlQueryExec(const QString &query);
 
 private slots:

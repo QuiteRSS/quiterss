@@ -464,7 +464,7 @@ UpdateFeeds *MainApplication::updateFeeds()
 
 void MainApplication::runUserFilter(int feedId, int filterId)
 {
-  updateFeeds_->parseObject_->runUserFilter(feedId, filterId);
+  emit signalRunUserFilter(feedId, filterId);
 }
 
 void MainApplication::sqlQueryExec(const QString &query)

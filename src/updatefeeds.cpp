@@ -163,6 +163,8 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool addFeed)
 
     connect(mainApp, SIGNAL(signalSqlQueryExec(QString)),
             updateObject_, SLOT(slotSqlQueryExec(QString)));
+    connect(mainApp, SIGNAL(signalRunUserFilter(int, int)),
+            parseObject_, SLOT(runUserFilter(int, int)));
 
     // faviconObject_
     connect(parent, SIGNAL(faviconRequestUrl(QString,QString)),
