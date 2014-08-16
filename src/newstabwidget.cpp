@@ -1509,8 +1509,9 @@ void NewsTabWidget::slotLinkClicked(QUrl url)
   }
 
   if (url.host().isEmpty()) {
-    QModelIndex currentIndex = feedsProxyModel_->mapToSource(feedsTreeView_->currentIndex());
-    QUrl hostUrl = feedsTreeModel_->dataField(currentIndex, "htmlUrl").toString();
+    int feedId = newsModel_->dataField(row, "feedId").toInt();
+    QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId);
+    QUrl hostUrl = feedsTreeModel_->dataField(feedIndex, "htmlUrl").toString();
 
     url.setScheme(hostUrl.scheme());
     url.setHost(hostUrl.host());
@@ -1730,11 +1731,9 @@ void NewsTabWidget::openNewsNewTab()
     QUrl url = QUrl::fromEncoded(getLinkNews(row).toUtf8());
     if (url.host().isEmpty()) {
       int feedId = newsModel_->dataField(row, "feedId").toInt();
-      QUrl hostUrl;
-      QSqlQuery q;
-      q.exec(QString("SELECT htmlUrl FROM feeds WHERE id=='%1'").arg(feedId));
-      if (q.next())
-        hostUrl.setUrl(q.value(0).toString());
+      QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId);
+      QUrl hostUrl = feedsTreeModel_->dataField(feedIndex, "htmlUrl").toString();
+
       url.setScheme(hostUrl.scheme());
       url.setHost(hostUrl.host());
     }
@@ -1925,8 +1924,9 @@ void NewsTabWidget::openUrlInExternalBrowser()
   }
 
   if (linkUrl_.host().isEmpty()) {
-    QModelIndex currentIndex = feedsProxyModel_->mapToSource(feedsTreeView_->currentIndex());
-    QUrl hostUrl = feedsTreeModel_->dataField(currentIndex, "htmlUrl").toString();
+    int feedId = newsModel_->dataField(row, "feedId").toInt();
+    QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId);
+    QUrl hostUrl = feedsTreeModel_->dataField(feedIndex, "htmlUrl").toString();
 
     linkUrl_.setScheme(hostUrl.scheme());
     linkUrl_.setHost(hostUrl.host());
