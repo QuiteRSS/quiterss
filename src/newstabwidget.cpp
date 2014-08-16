@@ -1508,14 +1508,18 @@ void NewsTabWidget::slotLinkClicked(QUrl url)
     return;
   }
 
-  if (url.host().isEmpty()) {
-    int feedId = newsModel_->dataField(row, "feedId").toInt();
-    QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId);
-    QUrl hostUrl = feedsTreeModel_->dataField(feedIndex, "htmlUrl").toString();
+  if (type_ != TabTypeWeb) {
+    if (url.host().isEmpty() && newsView_->currentIndex().isValid()) {
+      int row = newsView_->currentIndex().row();
+      int feedId = newsModel_->dataField(row, "feedId").toInt();
+      QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId);
+      QUrl hostUrl = feedsTreeModel_->dataField(feedIndex, "htmlUrl").toString();
 
-    url.setScheme(hostUrl.scheme());
-    url.setHost(hostUrl.host());
+      url.setScheme(hostUrl.scheme());
+      url.setHost(hostUrl.host());
+    }
   }
+
   if ((mainWindow_->externalBrowserOn_ <= 0) &&
       (webView_->buttonClick_ != LEFT_BUTTON_ALT)) {
     if (webView_->buttonClick_ == LEFT_BUTTON) {
@@ -1923,13 +1927,16 @@ void NewsTabWidget::openUrlInExternalBrowser()
     return;
   }
 
-  if (linkUrl_.host().isEmpty()) {
-    int feedId = newsModel_->dataField(row, "feedId").toInt();
-    QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId);
-    QUrl hostUrl = feedsTreeModel_->dataField(feedIndex, "htmlUrl").toString();
+  if (type_ != TabTypeWeb) {
+    if (linkUrl_.host().isEmpty() && newsView_->currentIndex().isValid()) {
+      int row = newsView_->currentIndex().row();
+      int feedId = newsModel_->dataField(row, "feedId").toInt();
+      QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId);
+      QUrl hostUrl = feedsTreeModel_->dataField(feedIndex, "htmlUrl").toString();
 
-    linkUrl_.setScheme(hostUrl.scheme());
-    linkUrl_.setHost(hostUrl.host());
+      linkUrl_.setScheme(hostUrl.scheme());
+      linkUrl_.setHost(hostUrl.host());
+    }
   }
   openUrl(linkUrl_);
 }
