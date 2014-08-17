@@ -2,6 +2,21 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
+<p><b>Version 0.16.1+</b> (хх Aug 2014)
+<ul>
+<li>Added: Displaying of label markers in news description</li>
+
+<li>Changed: GUI. Some visual tweaks</li>
+<li>Changed: Printing web-page frame</li>
+
+<li>Fixed: Creation of the filter with condition "State"</li>
+<li>Fixed: Filter operation for some atom-feeds</li>
+<li>Fixed: RTL support for new description</li>
+<li>Fixed: Application shutdown</li>
+<li>Fixed: Javascript operation in categories</li>
+<li>Fixed: Application crashes while using RegExp in filter condition</li>
+</ul>
+<!---------------------------------------------------------------------------->
 <p><b>Version 0.16.1</b> (10 Jul 2014)
 <ul>
 <li>Added: Ability to filter news by link</li>
