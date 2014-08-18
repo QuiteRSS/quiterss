@@ -130,7 +130,7 @@
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="32"/>
         <source>Search...</source>
-        <translation>Recherche ...</translation>
+        <translation>Recherche...</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="68"/>
@@ -175,7 +175,7 @@
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="79"/>
         <source>Learn about writing rules...</source>
-        <translation>Apprendre sur l&apos;écriture de règles ...</translation>
+        <translation>Apprendre sur l&apos;écriture de règles...</translation>
     </message>
 </context>
 <context>
@@ -208,7 +208,7 @@
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="153"/>
         <source>Blocked Popup Windows</source>
-        <translation>Fenêtres popup bloquée</translation>
+        <translation>Fenêtres popup bloquées</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="158"/>
@@ -263,7 +263,7 @@
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="160"/>
         <source>Please write your rule here:</source>
-        <translation>S&apos;il vous plait écrivez votre règle ici :</translation>
+        <translation>S&apos;il vous plaît écrivez votre règle ici :</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="198"/>
@@ -481,7 +481,7 @@
     <message>
         <location filename="../src/cleanupwizard.cpp" line="321"/>
         <source>Maximum age of news in days to keep:</source>
-        <translation>Age maximum des articles en jours à garder :</translation>
+        <translation>Âge maximum des articles en jours à garder :</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="328"/>
@@ -523,7 +523,7 @@
         <source>Totally remove records that had marked 'deleted' from DB.
 Ancient news could reappear</source>
         <translation>Supprimer totalement les archives qui étaient marqués « supprimé » de la BD.
-Les anciens articles pourraient réapparaitre</translation>
+Les anciens articles pourraient réapparaître</translation>
     </message>
 </context>
 <context>
@@ -792,7 +792,7 @@ Les anciens articles pourraient réapparaitre</translation>
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="89"/>
         <source>Save As...</source>
-        <translation>Enregistrer sous ...</translation>
+        <translation>Enregistrer sous...</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="160"/>
@@ -910,7 +910,7 @@ Les anciens articles pourraient réapparaitre</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="176"/>
         <source>Show news&apos; description instead of loading web page</source>
-        <translation>Montrer la description des articles au lieu de charger la page web</translation>
+        <translation>Afficher la description des articles au lieu de charger la page web</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="119"/>
@@ -1135,7 +1135,7 @@ Les anciens articles pourraient réapparaitre</translation>
     <message>
         <location filename="../src/findtext.cpp" line="107"/>
         <source>Find in Categories</source>
-        <translation>Cacher dans les catégories</translation>
+        <translation>Chercher dans les catégories</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="108"/>
@@ -1211,7 +1211,7 @@ Les anciens articles pourraient réapparaitre</translation>
     <message>
         <location filename="../src/newsfilters/itemaction.cpp" line="116"/>
         <source>Open File...</source>
-        <translation>Ouvrir un fichier ...</translation>
+        <translation>Ouvrir un fichier...</translation>
     </message>
 </context>
 <context>
@@ -1612,7 +1612,7 @@ Les anciens articles pourraient réapparaitre</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4715"/>
         <source>Clean Up...</source>
-        <translation>Nettoyer ...</translation>
+        <translation>Nettoyer...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4717"/>
@@ -1632,7 +1632,7 @@ Les anciens articles pourraient réapparaitre</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4721"/>
         <source>Open Options Dialog</source>
-        <translation>Ouvrir la boite de dialogue de configuration</translation>
+        <translation>Ouvrir la boîte de dialogue de configuration</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4723"/>
@@ -1705,7 +1705,7 @@ Les anciens articles pourraient réapparaitre</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4741"/>
         <source>Show &apos;About&apos; Dialog</source>
-        <translation>Montrer la boite de dialogue « À propos »</translation>
+        <translation>Afficher la boîte de dialogue « À propos »</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4743"/>
@@ -1861,7 +1861,7 @@ Les anciens articles pourraient réapparaitre</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4856"/>
         <source>Save page in database instead of news description</source>
-        <translation>Sauvegarder la page dans la base de données à la place de la description des nouveautés</translation>
+        <translation>Sauvegarder la page dans la base de données à la place de la description des articles</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="162"/>
@@ -1876,7 +1876,7 @@ Les anciens articles pourraient réapparaitre</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2509"/>
         <source>Are you sure to delete selected elements?</source>
-        <translation>vous êtes sûr de vouloir supprimer les éléments sélectionnés ?</translation>
+        <translation>Êtes-vous sûr(e) de vouloir supprimer les éléments sélectionnés ?</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4672"/>
@@ -1886,7 +1886,7 @@ Les anciens articles pourraient réapparaitre</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4694"/>
         <source>&amp;Create Backup...</source>
-        <translation>&amp;Créer une sauvegarde ...</translation>
+        <translation>&amp;Créer une sauvegarde...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4695"/>
@@ -2311,7 +2311,7 @@ Les anciens articles pourraient réapparaitre</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4899"/>
         <source>Sort by Name</source>
-        <translation type="unfinished"/>
+        <translation>Trier par nom</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4900"/>
@@ -2397,7 +2397,7 @@ Les anciens articles pourraient réapparaitre</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="7218"/>
         <source>Text files (*.%2)</source>
-        <translation>Fichiers Texte (*.%2)</translation>
+        <translation>Fichiers texte (*.%2)</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="7224"/>
@@ -2495,7 +2495,7 @@ Les anciens articles pourraient réapparaitre</translation>
     <message>
         <location filename="../src/newsfilters/newsfiltersdialog.cpp" line="260"/>
         <source>Are you sure you want to delete the filter &apos;%1&apos;?</source>
-        <translation>Êtes-vous sûr de vouloir supprimer le filtre « %1 » ?</translation>
+        <translation>Êtes-vous sûr(e) de vouloir supprimer le filtre « %1 » ?</translation>
     </message>
 </context>
 <context>
@@ -2609,7 +2609,7 @@ Les anciens articles pourraient réapparaitre</translation>
     <message>
         <location filename="../src/newstabwidget.cpp" line="576"/>
         <source>Save Image...</source>
-        <translation>Enregistrer l&apos;image ...</translation>
+        <translation>Enregistrer l&apos;image...</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="577"/>
@@ -2834,7 +2834,7 @@ Les anciens articles pourraient réapparaitre</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="288"/>
         <source>Show splash screen on startup</source>
-        <translation>Montrer l&apos;écran de démarrage</translation>
+        <translation>Afficher l&apos;écran de démarrage</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="289"/>
@@ -2854,7 +2854,7 @@ Les anciens articles pourraient réapparaitre</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="293"/>
         <source>Show default rss-icon instead of favourite one</source>
-        <translation>Montrer l&apos;icône RSS par défaut au lieu du favori</translation>
+        <translation>Afficher l&apos;icône RSS par défaut au lieu du favori</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="294"/>
@@ -2920,7 +2920,7 @@ Les anciens articles pourraient réapparaitre</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="369"/>
         <source>Show static icon</source>
-        <translation>Montrer icône statique</translation>
+        <translation>Afficher icône statique</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="370"/>
@@ -2930,17 +2930,17 @@ Les anciens articles pourraient réapparaitre</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="371"/>
         <source>Show count of new news</source>
-        <translation>Montrer le nombre d&apos;articles nouveaux</translation>
+        <translation>Afficher le nombre d&apos;articles nouveaux</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="372"/>
         <source>Show count of unread news</source>
-        <translation>Montrer le nombre d&apos;articles non lus</translation>
+        <translation>Afficher le nombre d&apos;articles non lus</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="381"/>
         <source>Single click instead of double click for show window</source>
-        <translation>Clic simple au lieu de clic double pour montrer une fenêtre</translation>
+        <translation>Clic simple au lieu de clic double pour afficher une fenêtre</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="383"/>
@@ -3161,7 +3161,7 @@ Les anciens articles pourraient réapparaitre</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="681"/>
         <source>Remove...</source>
-        <translation>Supprimer ...</translation>
+        <translation>Supprimer...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="722"/>
@@ -3181,7 +3181,7 @@ Les anciens articles pourraient réapparaitre</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="742"/>
         <source>Privacy</source>
-        <translation>Intimité</translation>
+        <translation>Confidentialité</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="743"/>
@@ -3478,7 +3478,7 @@ Les anciens articles pourraient réapparaitre</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1109"/>
         <source>Show maximum of</source>
-        <translation>Montrer un maximum de</translation>
+        <translation>Afficher un maximum de</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1111"/>
@@ -3508,7 +3508,7 @@ Les anciens articles pourraient réapparaitre</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1128"/>
         <source>Only show selected feeds:</source>
-        <translation>Montrer seulement les flux sélectionnés :</translation>
+        <translation>Afficher seulement les flux sélectionnés :</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1144"/>
@@ -3543,7 +3543,7 @@ Les anciens articles pourraient réapparaitre</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1213"/>
         <source>Show Passwords</source>
-        <translation>Montrer les mots de passe</translation>
+        <translation>Afficher les mots de passe</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1245"/>
@@ -3681,12 +3681,12 @@ Les anciens articles pourraient réapparaitre</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1606"/>
         <source>Feed with new news</source>
-        <translation>Alimenter avec les articles nouveaux</translation>
+        <translation>Flux avec de nouveaux articles</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1609"/>
         <source>Count of unread news in feeds tree</source>
-        <translation>Compter les nouvelles non lues dans l&apos;arbre des flux</translation>
+        <translation>Compter les articles non lus dans l&apos;arbre des flux</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1624"/>
@@ -3696,7 +3696,7 @@ Les anciens articles pourraient réapparaitre</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1627"/>
         <source>Alternating row colors</source>
-        <translation>Couleurs des lignes alternantes</translation>
+        <translation>Couleurs alternantes des lignes</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2013"/>
@@ -3716,7 +3716,7 @@ Les anciens articles pourraient réapparaitre</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="382"/>
         <source>Clear new status when minimize to tray</source>
-        <translation>Effacer l&apos;état nouveau lors du passage à la boite à miniatures</translation>
+        <translation>Effacer l&apos;état nouveau lors du passage à la boîte à miniatures</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="776"/>
@@ -3751,7 +3751,7 @@ Les anciens articles pourraient réapparaitre</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="896"/>
         <source>Show news description instead of loading web page</source>
-        <translation>Montrer la description des articles au lieu de charger la page web</translation>
+        <translation>Afficher la description des articles au lieu de charger la page web</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1615"/>
@@ -3781,12 +3781,12 @@ Les anciens articles pourraient réapparaitre</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1667"/>
         <source>Serif</source>
-        <translation>Serif</translation>
+        <translation>Sérif</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1669"/>
         <source>Sans Serif</source>
-        <translation>Sans Serif</translation>
+        <translation>Sans Sérif</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1671"/>
@@ -3884,7 +3884,7 @@ Les anciens articles pourraient réapparaitre</translation>
         <location filename="../src/optionsdialog.cpp" line="2718"/>
         <location filename="../src/optionsdialog.cpp" line="2747"/>
         <source>Open Directory...</source>
-        <translation>Ouvrir le répertoire ...</translation>
+        <translation>Ouvrir le répertoire...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2728"/>
@@ -4192,12 +4192,12 @@ Les anciens articles pourraient réapparaitre</translation>
     <message>
         <location filename="../src/requestfeed.cpp" line="209"/>
         <source>Server replied: Not Found!</source>
-        <translation>Le s serveur a répondu : Introuvable !</translation>
+        <translation>Le serveur a répondu : Introuvable !</translation>
     </message>
     <message>
         <location filename="../src/requestfeed.cpp" line="248"/>
         <source>Redirect error!</source>
-        <translation>Erreur  de redirection !</translation>
+        <translation>Erreur de redirection !</translation>
     </message>
     <message>
         <location filename="../src/requestfeed.cpp" line="328"/>
@@ -4220,7 +4220,7 @@ Les anciens articles pourraient réapparaitre</translation>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="587"/>
         <source>Unable to begin transaction</source>
-        <translation>Impossible de valider la transaction</translation>
+        <translation>Impossible d&apos;initier la transaction</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="602"/>
@@ -4245,7 +4245,7 @@ Les anciens articles pourraient réapparaitre</translation>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="216"/>
         <source>No query</source>
-        <translation>Pas de question</translation>
+        <translation>Pas de requête</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="350"/>
@@ -4270,7 +4270,7 @@ Les anciens articles pourraient réapparaitre</translation>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="427"/>
         <source>Parameter count mismatch</source>
-        <translation>Nombre de paramètres non-concordance</translation>
+        <translation>Décalage du nombre de paramètres</translation>
     </message>
 </context>
 <context>

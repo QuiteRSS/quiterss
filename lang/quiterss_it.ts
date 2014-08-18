@@ -2311,7 +2311,7 @@ Le notizie vecchie potrebbero riapparire.</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4899"/>
         <source>Sort by Name</source>
-        <translation type="unfinished"/>
+        <translation>Ordina per nome</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4900"/>

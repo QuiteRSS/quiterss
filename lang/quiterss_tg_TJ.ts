@@ -2311,7 +2311,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4899"/>
         <source>Sort by Name</source>
-        <translation type="unfinished"/>
+        <translation>Яккачин аз рӯи ном</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4900"/>

@@ -2311,7 +2311,7 @@ kunde inte hittas!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4899"/>
         <source>Sort by Name</source>
-        <translation type="unfinished"/>
+        <translation>Sortera efter namn</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4900"/>

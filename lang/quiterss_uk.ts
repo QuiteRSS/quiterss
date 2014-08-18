@@ -46,7 +46,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="151"/>
         <source>Backup directory:</source>
-        <translation type="unfinished"/>
+        <translation>Каталог резервування:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="154"/>
@@ -918,17 +918,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="32"/>
         <source>Display</source>
-        <translation type="unfinished"/>
+        <translation>Відображення</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="174"/>
         <source>Enable JavaScript</source>
-        <translation type="unfinished"/>
+        <translation>Включити JavaScript</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="177"/>
         <source>Right-to-left layout</source>
-        <translation type="unfinished"/>
+        <translation>Макет справа наліво</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="216"/>
@@ -1123,17 +1123,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/findtext.cpp" line="105"/>
         <source>Find in Titles</source>
-        <translation type="unfinished"/>
+        <translation>Знайти у заголовках</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="106"/>
         <source>Find in Authors</source>
-        <translation type="unfinished"/>
+        <translation>Знайти у авторах</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="107"/>
         <source>Find in Categories</source>
-        <translation type="unfinished"/>
+        <translation>Знайти у категоріях</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="108"/>
@@ -1249,7 +1249,7 @@ Ancient news could reappear</source>
         <location filename="../src/newsfilters/itemcondition.cpp" line="31"/>
         <location filename="../src/newsfilters/itemcondition.cpp" line="106"/>
         <source>Link</source>
-        <translation type="unfinished"/>
+        <translation>Посилання</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/itemcondition.cpp" line="36"/>
@@ -1333,7 +1333,7 @@ Ancient news could reappear</source>
         <location filename="../src/newsfilters/itemcondition.cpp" line="99"/>
         <location filename="../src/newsfilters/itemcondition.cpp" line="110"/>
         <source>Regular expressions</source>
-        <translation type="unfinished"/>
+        <translation>Регулярні вирази</translation>
     </message>
 </context>
 <context>
@@ -1824,42 +1824,42 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4831"/>
         <source>Count Unread News</source>
-        <translation type="unfinished"/>
+        <translation>Кількість непрочитаних новин</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4832"/>
         <source>Count All News</source>
-        <translation type="unfinished"/>
+        <translation>Кількість всіх новин</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4833"/>
         <source>Last Update</source>
-        <translation type="unfinished"/>
+        <translation>Останнє оновлення</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4846"/>
         <source>Reset browser zoom</source>
-        <translation type="unfinished"/>
+        <translation>Скинути масштабування у браузері</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4849"/>
         <source>Print Web Page</source>
-        <translation type="unfinished"/>
+        <translation>Друкування веб-сторінки</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4851"/>
         <source>Preview Web Page</source>
-        <translation type="unfinished"/>
+        <translation>Попередній огляд веб-сторінки</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4855"/>
         <source>Save page in database</source>
-        <translation type="unfinished"/>
+        <translation>Зберегти сторінку в базі даних</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4856"/>
         <source>Save page in database instead of news description</source>
-        <translation type="unfinished"/>
+        <translation>Зберегти сторінку в базі даних замість опису новини</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="162"/>
@@ -1869,22 +1869,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2508"/>
         <source>Confirm Delete</source>
-        <translation type="unfinished"/>
+        <translation>Підтвердження видалення</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2509"/>
         <source>Are you sure to delete selected elements?</source>
-        <translation type="unfinished"/>
+        <translation>Ви впевнені, що бажаєте видалити обрані елементи?</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4672"/>
         <source>Menu</source>
-        <translation type="unfinished"/>
+        <translation>Меню</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4694"/>
         <source>&amp;Create Backup...</source>
-        <translation type="unfinished"/>
+        <translation>Створити резервну копію...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4695"/>
@@ -1894,12 +1894,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4747"/>
         <source>Open News Description</source>
-        <translation type="unfinished"/>
+        <translation>Відкрити опис новини</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4764"/>
         <source>Copy News Link</source>
-        <translation type="unfinished"/>
+        <translation>Копіювати посилання на новину</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4774"/>
@@ -2211,7 +2211,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4864"/>
         <source>Status Bar</source>
-        <translation type="unfinished"/>
+        <translation>Рядок стану</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4866"/>
@@ -2309,7 +2309,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4899"/>
         <source>Sort by Name</source>
-        <translation type="unfinished"/>
+        <translation>Сортувати за ім&apos;ям</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4900"/>
@@ -2405,7 +2405,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="7714"/>
         <source>Choose Directory</source>
-        <translation type="unfinished"/>
+        <translation>Оберіть каталог</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.h" line="101"/>
@@ -2453,7 +2453,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsfilters/newsfiltersdialog.cpp" line="46"/>
         <source>Filter Name</source>
-        <translation type="unfinished"/>
+        <translation>Ім&apos;я фільтру</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/newsfiltersdialog.cpp" line="91"/>
@@ -2493,7 +2493,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsfilters/newsfiltersdialog.cpp" line="260"/>
         <source>Are you sure you want to delete the filter &apos;%1&apos;?</source>
-        <translation type="unfinished"/>
+        <translation>Ви впевнені, що бажаєте видалити фільтр &apos;%1&apos;?</translation>
     </message>
 </context>
 <context>
@@ -2546,7 +2546,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsheader.cpp" line="409"/>
         <source>Feed Title</source>
-        <translation type="unfinished"/>
+        <translation>Заголовок стрічки</translation>
     </message>
     <message>
         <location filename="../src/newsheader.cpp" line="410"/>
@@ -2678,17 +2678,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newstabwidget.cpp" line="617"/>
         <source>Auto Load Images in News View</source>
-        <translation type="unfinished"/>
+        <translation>Автоматичне завантаження зображень при перегляді новин</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="620"/>
         <source>Don&apos;t Load Images</source>
-        <translation type="unfinished"/>
+        <translation>Не завантажувати зображення</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="621"/>
         <source>Don&apos;t Load Images in News View</source>
-        <translation type="unfinished"/>
+        <translation>Не завантажувати зображення при перегляді новин</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1405"/>
@@ -2872,7 +2872,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="298"/>
         <source>Help improve QuiteRSS by sending usage information</source>
-        <translation type="unfinished"/>
+        <translation>Надсилати дані щодо використання, щоб допомогти покращити QuiteRSS</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="299"/>
@@ -3291,7 +3291,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="874"/>
         <source>Style sheet for news:</source>
-        <translation type="unfinished"/>
+        <translation>Таблиця стилів для новини:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="882"/>
@@ -3684,22 +3684,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1609"/>
         <source>Count of unread news in feeds tree</source>
-        <translation type="unfinished"/>
+        <translation>Кількість непрочитаних новин у дереві каналів</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1624"/>
         <source>Disabled feed</source>
-        <translation type="unfinished"/>
+        <translation>Відключений канал</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1627"/>
         <source>Alternating row colors</source>
-        <translation type="unfinished"/>
+        <translation>Чередування кольорів рядків</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2013"/>
         <source>Auto load images in news view</source>
-        <translation type="unfinished"/>
+        <translation>Автоматичне завантаження зображень при перегляді новин</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1612"/>
@@ -3709,47 +3709,47 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="292"/>
         <source>Show feeds tree toggle</source>
-        <translation type="unfinished"/>
+        <translation>Показувати перемикач дерева каналів</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="382"/>
         <source>Clear new status when minimize to tray</source>
-        <translation type="unfinished"/>
+        <translation>Очистити статус нових при мінімізації в трей</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="776"/>
         <source>Set focus on the last opened news</source>
-        <translation type="unfinished"/>
+        <translation>Встановити фокус на останній відкритій новині</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="777"/>
         <source>Set focus at the top of news list</source>
-        <translation type="unfinished"/>
+        <translation>Встановити фокус на початку списку новин</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="778"/>
         <source>Set focus on the unread news</source>
-        <translation type="unfinished"/>
+        <translation>Встановити фокус на непрочитаній новині</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="779"/>
         <source>Open the news</source>
-        <translation type="unfinished"/>
+        <translation>Відкрити новину</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="847"/>
         <source>Default news filter:</source>
-        <translation type="unfinished"/>
+        <translation>Фільтр новин за замовчуванням:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="865"/>
         <source>Action on feed opening:</source>
-        <translation type="unfinished"/>
+        <translation>Дія при відкритті каналу:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="896"/>
         <source>Show news description instead of loading web page</source>
-        <translation type="unfinished"/>
+        <translation>Показати опис новини замість завантаження веб-сторінки</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1615"/>
@@ -4199,27 +4199,27 @@ Ancient news could reappear</source>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="556"/>
         <source>Error opening database</source>
-        <translation type="unfinished"/>
+        <translation>Помилка відкриття бази даних</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="567"/>
         <source>Error closing database</source>
-        <translation type="unfinished"/>
+        <translation>Помилка закриття бази даних</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="587"/>
         <source>Unable to begin transaction</source>
-        <translation type="unfinished"/>
+        <translation>Неможливо почати транзакцію</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="602"/>
         <source>Unable to commit transaction</source>
-        <translation type="unfinished"/>
+        <translation>Неможливо виконати транзакцію</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="617"/>
         <source>Unable to rollback transaction</source>
-        <translation type="unfinished"/>
+        <translation>Неможливо відмінити транзакцію</translation>
     </message>
 </context>
 <context>
@@ -4229,37 +4229,37 @@ Ancient news could reappear</source>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="278"/>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="286"/>
         <source>Unable to fetch row</source>
-        <translation type="unfinished"/>
+        <translation>Неможливо отримати рядок</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="216"/>
         <source>No query</source>
-        <translation type="unfinished"/>
+        <translation>Відсутній запит</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="350"/>
         <source>Unable to execute statement</source>
-        <translation type="unfinished"/>
+        <translation>Неможливо виконати запит</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="355"/>
         <source>Unable to execute multiple statements at a time</source>
-        <translation type="unfinished"/>
+        <translation>Неможливо виконати декілька запитів за раз</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="375"/>
         <source>Unable to reset statement</source>
-        <translation type="unfinished"/>
+        <translation>Неможливо скинути запит</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="420"/>
         <source>Unable to bind parameters</source>
-        <translation type="unfinished"/>
+        <translation>Неможливо співставити параметри</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="427"/>
         <source>Parameter count mismatch</source>
-        <translation type="unfinished"/>
+        <translation>Кількість параметрів не співпадає</translation>
     </message>
 </context>
 <context>

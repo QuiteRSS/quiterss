@@ -2309,7 +2309,7 @@ Staré správy sa môžu znova objaviť</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4899"/>
         <source>Sort by Name</source>
-        <translation type="unfinished"/>
+        <translation>Zoradiť podľa názvu</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4900"/>
