@@ -1,3 +1,14 @@
+Version 0.16.2 (18 Aug 2014)
+  * Added: Displaying of label markers in news description
+  * Changed: GUI. Some visual tweaks
+  * Changed: Printing web-page frame
+  * Fixed: Creation of the filter with condition "State"
+  * Fixed: Filter operation for some atom-feeds
+  * Fixed: RTL support for new description
+  * Fixed: Application shutdown
+  * Fixed: Javascript operation in categories
+  * Fixed: Application crashes while using RegExp in filter condition
+
 Version 0.16.1 (10 Jul 2014)
   * Added: Ability to filter news by link
   * Added: Share news - LinkedIn, Blogger, Printer Friendly
