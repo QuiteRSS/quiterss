@@ -247,10 +247,12 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
 {
   int newsId = index(view_->currentIndex().row(), fieldIndex("id")).data().toInt();
 
-  if ((column == fieldIndex("read")) || (column == fieldIndex("starred")))
+  if ((column == fieldIndex("read")) || (column == fieldIndex("starred")) ||
+      (column == fieldIndex("rights"))) {
     emit signalSort(column, order);
-  else
-    QSqlTableModel::sort(column, order);
+    column = fieldIndex("rights");
+  }
+  QSqlTableModel::sort(column, order);
 
   while (canFetchMore())
     fetchMore();

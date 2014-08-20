@@ -1279,7 +1279,7 @@ void NewsTabWidget::slotCopyLinkNews()
 
 /** @brief Sort news by Star or Read column
  *----------------------------------------------------------------------------*/
-void NewsTabWidget::slotSort(int column, int order)
+void NewsTabWidget::slotSort(int column, int/* order*/)
 {
   QString strId;
   if (feedsTreeModel_->isFolder(feedsTreeModel_->getIndexById(feedId_))) {
@@ -1295,9 +1295,12 @@ void NewsTabWidget::slotSort(int column, int order)
   else if (column == newsModel_->fieldIndex("starred")) {
     qStr = QString("UPDATE news SET rights=starred WHERE %1").arg(strId);
   }
+  else if (column == newsModel_->fieldIndex("rights")) {
+    qStr = QString("UPDATE news SET rights = (SELECT text from feeds where id = news.feedId) WHERE %1").arg(strId);
+  }
+
   QSqlQuery q;
   q.exec(qStr);
-  newsModel_->sort(newsModel_->fieldIndex("rights"), (Qt::SortOrder)order);
 }
 
 /** @brief Load/Update browser contents
