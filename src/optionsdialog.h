@@ -288,6 +288,7 @@ private:
   QRadioButton *directConnectionButton_;
   QRadioButton *manualProxyButton_;
   QWidget *manualWidget_;
+  QComboBox *typeProxy_;
   LineEdit *editHost_;
   LineEdit *editPort_;
   LineEdit *editUser_;

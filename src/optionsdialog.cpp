@@ -421,6 +421,8 @@ void OptionsDialog::createNetworkConnectionsWidget()
   networkConnectionsLayout->addWidget(systemProxyButton_);
   networkConnectionsLayout->addWidget(manualProxyButton_);
 
+  typeProxy_ = new QComboBox();
+  typeProxy_->addItems(QStringList() << "HTTP" << "SOCKS5");
   editHost_ = new LineEdit();
   editPort_ = new LineEdit();
   editPort_->setFixedWidth(60);
@@ -430,6 +432,7 @@ void OptionsDialog::createNetworkConnectionsWidget()
 
   QHBoxLayout *addrPortLayout = new QHBoxLayout();
   addrPortLayout->setMargin(0);
+  addrPortLayout->addWidget(typeProxy_);
   addrPortLayout->addWidget(new QLabel(tr("Proxy server:")));
   addrPortLayout->addWidget(editHost_);
   addrPortLayout->addWidget(new QLabel(tr("Port:")));
@@ -438,12 +441,12 @@ void OptionsDialog::createNetworkConnectionsWidget()
   QWidget *addrPortWidget = new QWidget();
   addrPortWidget->setLayout(addrPortLayout);
 
-  QGridLayout *userPasswordLayout = new QGridLayout();
+  QHBoxLayout *userPasswordLayout = new QHBoxLayout();
   userPasswordLayout->setMargin(0);
-  userPasswordLayout->addWidget(new QLabel(tr("Username:")), 0, 0);
-  userPasswordLayout->addWidget(editUser_,                   0, 1);
-  userPasswordLayout->addWidget(new QLabel(tr("Password:")), 1, 0);
-  userPasswordLayout->addWidget(editPassword_,               1, 1);
+  userPasswordLayout->addWidget(new QLabel(tr("Username:")));
+  userPasswordLayout->addWidget(editUser_);
+  userPasswordLayout->addWidget(new QLabel(tr("Password:")));
+  userPasswordLayout->addWidget(editPassword_);
 
   QWidget *userPasswordWidget = new QWidget();
   userPasswordWidget->setLayout(userPasswordLayout);
@@ -1830,8 +1833,10 @@ void OptionsDialog::setProxy(const QNetworkProxy proxy)
 void OptionsDialog::updateProxy()
 {
   switch (networkProxy_.type()) {
-  case QNetworkProxy::HttpProxy:
+  case QNetworkProxy::HttpProxy: case QNetworkProxy::Socks5Proxy:
     manualProxyButton_->setChecked(true);
+    if (networkProxy_.type() == QNetworkProxy::Socks5Proxy)
+      typeProxy_->setCurrentIndex(1);
     break;
   case QNetworkProxy::NoProxy:
     directConnectionButton_->setChecked(true);
@@ -1848,15 +1853,19 @@ void OptionsDialog::updateProxy()
 //----------------------------------------------------------------------------
 void OptionsDialog::applyProxy()
 {
-  if (systemProxyButton_->isChecked())
+  if (systemProxyButton_->isChecked()) {
     networkProxy_.setType(QNetworkProxy::DefaultProxy);
-  else if (manualProxyButton_->isChecked())
-    networkProxy_.setType(QNetworkProxy::HttpProxy);
-  else
+  } else if (manualProxyButton_->isChecked()) {
+    if (typeProxy_->currentIndex() == 1)
+      networkProxy_.setType(QNetworkProxy::Socks5Proxy);
+    else
+      networkProxy_.setType(QNetworkProxy::HttpProxy);
+  } else {
     networkProxy_.setType(QNetworkProxy::NoProxy);
+  }
   networkProxy_.setHostName(editHost_->text());
-  networkProxy_.setPort(    editPort_->text().toInt());
-  networkProxy_.setUser(    editUser_->text());
+  networkProxy_.setPort(editPort_->text().toInt());
+  networkProxy_.setUser(editUser_->text());
   networkProxy_.setPassword(editPassword_->text());
 }
 //----------------------------------------------------------------------------
