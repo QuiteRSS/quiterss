@@ -1324,12 +1324,16 @@ void NewsTabWidget::updateWebView(QModelIndex index)
     showDescriptionNews_ = !displayNews.toInt();
 
   if (!showDescriptionNews_) {
-    locationBar_->setText(newsUrl.toString());
-    setWebToolbarVisible(true, false);
+    if (mainWindow_->externalBrowserOn_ <= 0) {
+      locationBar_->setText(newsUrl.toString());
+      setWebToolbarVisible(true, false);
 
-    webView_->history()->setMaximumItemCount(0);
-    webView_->load(newsUrl);
-    webView_->history()->setMaximumItemCount(100);
+      webView_->history()->setMaximumItemCount(0);
+      webView_->load(newsUrl);
+      webView_->history()->setMaximumItemCount(100);
+    } else {
+      openUrl(newsUrl);
+    }
   } else {
     setWebToolbarVisible(false, false);
 
