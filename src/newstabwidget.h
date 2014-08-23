@@ -64,6 +64,7 @@ public:
 
   void retranslateStrings();
   void setSettings(bool init = true, bool newTab = true);
+  void setNewsLayout();
   void setBrowserPosition();
   void markNewsRead();
   void markAllNewsRead();
@@ -82,6 +83,7 @@ public:
   void openNewsNewTab();
 
   void updateWebView(QModelIndex index);
+  void loadNewspaper();
   void hideWebContent();
   QString getLinkNews(int row);
 
@@ -212,6 +214,9 @@ private:
   QWidget *newsPanelWidget_;
   bool webToolbarShow_;
 
+  QString newspaperHeadHtml_;
+  QString newspaperHtml_;
+  QString newspaperHtmlRtl_;
   QString htmlString_;
   QString htmlRtlString_;
   QString cssString_;

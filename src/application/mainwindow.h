@@ -234,6 +234,7 @@ public:
   bool askDownloadLocation_;
   int defaultZoomPages_;
 
+  int newsLayout_;
   int browserPosition_;
 
   QString newsFilterStr;
@@ -371,6 +372,7 @@ private slots:
   void slotTabCurrentChanged(int index);
   void slotTabMoved(int fromIndex, int toIndex);
   void feedsColumnVisible(QAction *action);
+  void setNewsLayout(QAction *action);
   void setBrowserPosition(QAction *action);
   void slotOpenNewsWebView();
 
@@ -529,6 +531,8 @@ private:
   QAction *customizeMainToolbarAct2_;
   QAction *customizeFeedsToolbarAct_;
   QAction *customizeNewsToolbarAct_;
+  QAction *classicLayoutAct_;
+  QAction *newspaperLayoutAct_;
   QAction *systemStyle_;
   QAction *system2Style_;
   QAction *greenStyle_;
@@ -587,6 +591,7 @@ private:
   QAction *zoomTo100Act_;
 
   QActionGroup *customizeToolbarGroup_;
+  QActionGroup *layoutGroup_;
   QActionGroup *styleGroup_;
   QActionGroup *browserPositionGroup_;
   QActionGroup *feedsFilterGroup_;
@@ -621,6 +626,7 @@ private:
   QMenu *viewMenu_;
   QMenu *toolbarsMenu_;
   QMenu *customizeToolbarMenu_;
+  QMenu *layoutMenu_;
   QMenu *styleMenu_;
   QMenu *browserPositionMenu_;
   QMenu *feedMenu_;
