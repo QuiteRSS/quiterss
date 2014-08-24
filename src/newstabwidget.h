@@ -49,15 +49,21 @@ class NewsTabWidget : public QWidget
 {
   Q_OBJECT
 public:
-    enum TabType {
-        TabTypeFeed,
-        TabTypeUnread,
-        TabTypeStar,
-        TabTypeDel,
-        TabTypeLabel,
-        TabTypeWeb,
-        TabTypeDownloads
-    };
+  enum TabType {
+    TabTypeFeed,
+    TabTypeUnread,
+    TabTypeStar,
+    TabTypeDel,
+    TabTypeLabel,
+    TabTypeWeb,
+    TabTypeDownloads
+  };
+
+  enum RefreshNewspaper {
+    RefreshAll,
+    RefreshInsert,
+    RefreshWithPos
+  };
 
   explicit NewsTabWidget(QWidget *parent, TabType type, int feedId = -1, int feedParId = -1);
   ~NewsTabWidget();
@@ -83,7 +89,7 @@ public:
   void openNewsNewTab();
 
   void updateWebView(QModelIndex index);
-  void loadNewspaper();
+  void loadNewspaper(int refresh = RefreshAll);
   void hideWebContent();
   QString getLinkNews(int row);
 

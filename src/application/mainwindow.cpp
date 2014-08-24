@@ -3016,21 +3016,19 @@ void MainWindow::slotUpdateFeed(int feedId, bool changed, int newCount, bool fin
 
 /** @brief Process updating news list
  *---------------------------------------------------------------------------*/
-void MainWindow::slotUpdateNews()
+void MainWindow::slotUpdateNews(int refresh)
 {
   int newsId = newsModel_->index(
         newsView_->currentIndex().row(), newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
 
   newsModel_->select();
 
-  if (!newsModel_->rowCount()) {
-    currentNewsTab->currentNewsIdOld = newsId;
-    currentNewsTab->hideWebContent();
-    return;
+  if (newsModel_->rowCount() != 0) {
+    while (newsModel_->canFetchMore())
+      newsModel_->fetchMore();
   }
 
-  while (newsModel_->canFetchMore())
-    newsModel_->fetchMore();
+  currentNewsTab->loadNewspaper(refresh);
 
   QModelIndex index = newsModel_->index(0, newsModel_->fieldIndex("id"));
   QModelIndexList indexList = newsModel_->match(index, Qt::EditRole, newsId);
@@ -3587,7 +3585,7 @@ void MainWindow::showOptionDlg(int index)
       slotCloseTab(indexTab);
     }
     if ((tabBar_->currentIndex() == indexTab) && (indexTab > 0) && (tabLabelId == 0)) {
-      slotUpdateNews();
+      slotUpdateNews(NewsTabWidget::RefreshWithPos);
     }
   }
 
@@ -4297,6 +4295,8 @@ void MainWindow::setNewsFilter(QAction* pAct, bool clicked)
 
   // Set focus on previous displayed feed, if user click has been
   if (clicked) {
+    currentNewsTab->loadNewspaper(NewsTabWidget::RefreshWithPos);
+
     QModelIndex index = newsModel_->index(0, newsModel_->fieldIndex("id"));
     QModelIndexList indexList = newsModel_->match(index, Qt::EditRole, newsId);
     if (indexList.count()) {
@@ -4306,6 +4306,8 @@ void MainWindow::setNewsFilter(QAction* pAct, bool clicked)
       currentNewsTab->currentNewsIdOld = newsId;
       currentNewsTab->hideWebContent();
     }
+  } else {
+    currentNewsTab->loadNewspaper();
   }
 
   qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
@@ -4465,6 +4467,8 @@ void MainWindow::slotRefreshNewsView(int nextUnread)
 
     while (newsModel_->canFetchMore())
       newsModel_->fetchMore();
+
+    currentNewsTab->loadNewspaper(NewsTabWidget::RefreshWithPos);
 
     newsView_->setCurrentIndex(newsModel_->index(currentRow, newsModel_->fieldIndex("title")));
   }
@@ -6055,7 +6059,7 @@ void MainWindow::slotTabCurrentChanged(int index)
 
     setFeedsFilter(false);
 
-    slotUpdateNews();
+    slotUpdateNews(NewsTabWidget::RefreshWithPos);
     if (widget->isVisible())
       newsView_->setFocus();
     else
@@ -6097,7 +6101,7 @@ void MainWindow::slotTabCurrentChanged(int index)
     newsModel_ = currentNewsTab->newsModel_;
     newsView_ = currentNewsTab->newsView_;
 
-    slotUpdateNews();
+    slotUpdateNews(NewsTabWidget::RefreshWithPos);
     newsView_->setFocus();
 
     int unreadCount = widget->getUnreadCount(categoriesTree_->currentItem()->text(4));
@@ -6232,6 +6236,8 @@ void MainWindow::creatFeedTab(int feedId, int feedParId)
       while (widget->newsModel_->canFetchMore())
         widget->newsModel_->fetchMore();
     }
+
+    currentNewsTab->loadNewspaper();
 
     // focus feed has displayed before
     int newsRow = -1;
@@ -6600,8 +6606,11 @@ void MainWindow::slotDeleteNewsInNotification(int feedId, int newsId)
                             QDateTime::currentDateTime().toString(Qt::ISODate));
 
         newsModel_->submitAll();
+
         while (newsModel_->canFetchMore())
           newsModel_->fetchMore();
+
+        currentNewsTab->loadNewspaper(NewsTabWidget::RefreshWithPos);
 
         QModelIndex curIndex;
         if (i == newsModel_->rowCount())
@@ -7007,6 +7016,7 @@ void MainWindow::slotCategoriesClicked(QTreeWidgetItem *item, int, bool createTa
       while (newsModel_->canFetchMore())
         newsModel_->fetchMore();
     }
+
     if (type == NewsTabWidget::TabTypeDel){
       currentNewsTab->newsHeader_->setSortIndicator(newsModel_->fieldIndex("deleteDate"),
                                                     Qt::DescendingOrder);
@@ -7017,6 +7027,8 @@ void MainWindow::slotCategoriesClicked(QTreeWidgetItem *item, int, bool createTa
                                  currentNewsTab->newsHeader_->sortIndicatorOrder());
       }
     }
+
+    currentNewsTab->loadNewspaper();
 
     // Search previous displayed news of the feed
     int newsRow = -1;
@@ -7295,6 +7307,8 @@ void MainWindow::restoreLastNews()
 
     while (newsModel_->canFetchMore())
       newsModel_->fetchMore();
+
+    currentNewsTab->loadNewspaper(NewsTabWidget::RefreshWithPos);
 
     QModelIndex index = newsModel_->index(0, newsModel_->fieldIndex("id"));
     QModelIndexList indexList = newsModel_->match(index, Qt::EditRole, newsIdCur);

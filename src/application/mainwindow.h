@@ -281,7 +281,7 @@ public slots:
   void myEmptyWorkingSet();
   void slotUpdateFeed(int feedId, bool changed, int newCount, bool finish);
   void slotFeedCountsUpdate(FeedCountStruct counts);
-  void slotUpdateNews();
+  void slotUpdateNews(int refresh = NewsTabWidget::RefreshInsert);
   void slotUpdateStatus(int feedId, bool changed = true);
   void setNewsFilter(QAction*, bool clicked = true);
   void slotCloseTab(int index);
