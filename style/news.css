@@ -36,9 +36,18 @@ img {
   max-width: 100%;
 }
 
+div {
+  display: block;
+}
+
 a {
   color: %9;
   text-decoration: none;
+}
+
+.unread-button {
+  float: left;
+  width: 16px;
 }
 
 .title {
@@ -50,8 +59,11 @@ a {
   vertical-align: top;
 }
 .title a.unread {
-  color: %10;
   font-weight: bold;
+}
+
+.title a.read {
+  font-weight: normal;
 }
 
 .date {

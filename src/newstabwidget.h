@@ -191,6 +191,7 @@ private:
   void createNewsList();
   void createWebWidget();
   QString getHtmlLabels(int row);
+  void actionNewspaper(QUrl url);
 
   MainWindow *mainWindow_;
   QSqlDatabase db_;

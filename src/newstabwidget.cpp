@@ -579,24 +579,6 @@ void NewsTabWidget::setSettings(bool init, bool newTab)
     default:
       newsWidget_->setVisible(true);
     }
-
-    QString htmlStr;
-    QUrl hostUrl;
-    bool ltr = true;
-
-    if (type_ == TabTypeFeed) {
-      QModelIndex feedIndex = feedsProxyModel_->mapToSource(feedsTreeView_->currentIndex());
-      hostUrl = feedsTreeModel_->dataField(feedIndex, "htmlUrl").toString();
-      ltr = !feedsTreeModel_->dataField(feedIndex, "layoutDirection").toInt();
-    }
-
-    QString cssStr = cssString_.
-        arg(ltr ? "left" : "right"). // text-align
-        arg(ltr ? "ltr" : "rtl"). // direction
-        arg(ltr ? "right" : "left"); // "Date" text-align
-    htmlStr = newspaperHeadHtml_.arg(cssStr);
-
-    webView_->setHtml(htmlStr, hostUrl);
   }
 }
 
@@ -666,9 +648,17 @@ void NewsTabWidget::setAutoLoadImages(bool apply)
     webView_->settings()->setAttribute(QWebSettings::AutoLoadImages, autoLoadImages_);
     if (autoLoadImages_) {
       if ((webView_->title() == "news_descriptions") &&
-          (type_ == NewsTabWidget::TabTypeFeed))
-        updateWebView(newsView_->currentIndex());
-      else webView_->reload();
+          (type_ == NewsTabWidget::TabTypeFeed)) {
+        switch (mainWindow_->newsLayout_) {
+        case 1:
+          loadNewspaper();
+          break;
+        default:
+          updateWebView(newsView_->currentIndex());
+        }
+      } else {
+        webView_->reload();
+      }
     }
   }
 }
@@ -1544,7 +1534,14 @@ void NewsTabWidget::updateWebView(QModelIndex index)
 void NewsTabWidget::loadNewspaper(int refresh)
 {
   if (mainWindow_->newsLayout_ != 1) return;
+  setWebToolbarVisible(false, false);
+
   qCritical() << "*01";
+
+  int scrollBarValue = 0;
+  if (refresh == RefreshWithPos) {
+    scrollBarValue = webView_->page()->mainFrame()->scrollBarValue(Qt::Vertical);
+  }
 
   QString htmlStr;
   QUrl hostUrl;
@@ -1556,7 +1553,7 @@ void NewsTabWidget::loadNewspaper(int refresh)
     ltr = !feedsTreeModel_->dataField(feedIndex, "layoutDirection").toInt();
   }
 
-  if (refresh == RefreshAll) {
+  if ((refresh == RefreshAll) || (refresh == RefreshWithPos)) {
     QString cssStr = cssString_.
         arg(ltr ? "left" : "right"). // text-align
         arg(ltr ? "ltr" : "rtl"). // direction
@@ -1591,21 +1588,23 @@ void NewsTabWidget::loadNewspaper(int refresh)
       QString feedId = newsModel_->dataField(index.row(), "feedId").toString();
       QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId.toInt());
 
-      QString iconStr;
-      if (newsModel_->dataField(index.row(), "new").toInt() == 1)
+      QString iconStr = "qrc:/images/bulletRead";
+      QString titleStyle = "read";
+      if (newsModel_->dataField(index.row(), "new").toInt() == 1) {
         iconStr = "qrc:/images/bulletNew";
-      else if (newsModel_->dataField(index.row(), "read").toInt() == 0)
+        titleStyle = "unread";
+      } else if (newsModel_->dataField(index.row(), "read").toInt() == 0) {
         iconStr = "qrc:/images/bulletUnread";
-      else
-        iconStr = "qrc:/images/bulletRead";
+        titleStyle = "unread";
+      }
 
       QString readImg = QString("<a href=\"quiterss://readButton.ui?#%1\"><img id=\"readButton%1\" src=\"%2\"/></a>").
           arg(newsId).arg(iconStr);
 
       QString titleString = newsModel_->dataField(index.row(), "title").toString();
       if (!linkString.isEmpty()) {
-        titleString = QString("<a href='%1' class='unread'>%2</a>").
-            arg(linkString, titleString);
+        titleString = QString("<a href='%1' class='%2' id='title%3'>%4</a>").
+            arg(linkString, titleStyle, newsId, titleString);
       }
 
       QDateTime dtLocal;
@@ -1740,6 +1739,10 @@ void NewsTabWidget::loadNewspaper(int refresh)
     element.appendInside(htmlStr);
     qApp->processEvents();
   }
+
+  if (refresh == RefreshWithPos) {
+    webView_->page()->mainFrame()->setScrollBarValue(Qt::Vertical, scrollBarValue);
+  }
 }
 
 /** @brief Asynchorous update web view
@@ -1762,25 +1765,7 @@ void NewsTabWidget::hideWebContent()
 void NewsTabWidget::slotLinkClicked(QUrl url)
 {
   if (url.scheme() == QLatin1String("quiterss")) {
-    qCritical() << url.host() << url.fragment();
-    QString newsId = url.fragment();
-    QModelIndex startIndex = newsModel_->index(0, newsModel_->fieldIndex("id"));
-    QModelIndexList indexList = newsModel_->match(startIndex, Qt::EditRole, newsId);
-    if (!indexList.isEmpty()) {
-      QString iconStr;
-      if (newsModel_->dataField(indexList.first().row(), "read").toInt() == 0) {
-        slotSetItemRead(indexList.first(), 1);
-        iconStr = "qrc:/images/bulletRead";
-      } else {
-        slotSetItemRead(indexList.first(), 0);
-        iconStr = "qrc:/images/bulletUnread";
-      }
-      QWebElement document = webView_->page()->mainFrame()->documentElement();
-      QWebElement element = document.findFirst(QString("img[id=readButton%1]").arg(newsId));
-      if (!element.isNull()) {
-        element.setAttribute("src", iconStr);
-      }
-    }
+    actionNewspaper(url);
     return;
   }
 
@@ -1894,7 +1879,13 @@ void NewsTabWidget::slotUrlChanged(const QUrl &url)
 void NewsTabWidget::webHomePage()
 {
   if (type_ != TabTypeWeb) {
-    updateWebView(newsView_->currentIndex());
+    switch (mainWindow_->newsLayout_) {
+    case 1:
+      loadNewspaper();
+      break;
+    default:
+      updateWebView(newsView_->currentIndex());
+    }
   } else {
     webView_->history()->goToItem(webView_->history()->itemAt(0));
   }
@@ -2663,4 +2654,36 @@ QString NewsTabWidget::getHtmlLabels(int row)
     }
   }
   return labelsString;
+}
+
+void NewsTabWidget::actionNewspaper(QUrl url)
+{
+  qCritical() << url.host() << url.fragment();
+
+  QString newsId = url.fragment();
+  QModelIndex startIndex = newsModel_->index(0, newsModel_->fieldIndex("id"));
+  QModelIndexList indexList = newsModel_->match(startIndex, Qt::EditRole, newsId);
+  if (!indexList.isEmpty()) {
+    QString iconStr;
+    QString titleStyle;
+    if (newsModel_->dataField(indexList.first().row(), "read").toInt() == 0) {
+      slotSetItemRead(indexList.first(), 1);
+      iconStr = "qrc:/images/bulletRead";
+      titleStyle = "read";
+    } else {
+      slotSetItemRead(indexList.first(), 0);
+      iconStr = "qrc:/images/bulletUnread";
+      titleStyle = "unread";
+    }
+    QWebElement document = webView_->page()->mainFrame()->documentElement();
+    QWebElement newsItem = document.findFirst(QString("div[id=newsItem%1]").arg(newsId));
+    if (!newsItem.isNull()) {
+      QWebElement element = newsItem.findFirst(QString("img[id=readButton%1]").arg(newsId));
+      if (!element.isNull())
+        element.setAttribute("src", iconStr);
+      element = newsItem.findFirst(QString("a[id=title%1]").arg(newsId));
+      if (!element.isNull())
+        element.setAttribute("class", titleStyle);
+    }
+  }
 }

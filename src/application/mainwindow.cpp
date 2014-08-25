@@ -4289,14 +4289,14 @@ void MainWindow::setNewsFilter(QAction* pAct, bool clicked)
                              currentNewsTab->newsHeader_->sortIndicatorOrder());
   }
 
+  currentNewsTab->loadNewspaper();
+
   // Set icon right before user click
   if (pAct->objectName() == "filterNewsAll_") newsFilter_->setIcon(QIcon(":/images/filterOff"));
   else newsFilter_->setIcon(QIcon(":/images/filterOn"));
 
   // Set focus on previous displayed feed, if user click has been
   if (clicked) {
-    currentNewsTab->loadNewspaper(NewsTabWidget::RefreshWithPos);
-
     QModelIndex index = newsModel_->index(0, newsModel_->fieldIndex("id"));
     QModelIndexList indexList = newsModel_->match(index, Qt::EditRole, newsId);
     if (indexList.count()) {
@@ -4306,8 +4306,6 @@ void MainWindow::setNewsFilter(QAction* pAct, bool clicked)
       currentNewsTab->currentNewsIdOld = newsId;
       currentNewsTab->hideWebContent();
     }
-  } else {
-    currentNewsTab->loadNewspaper();
   }
 
   qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
