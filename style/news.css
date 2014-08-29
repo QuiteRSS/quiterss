@@ -45,9 +45,15 @@ a {
   text-decoration: none;
 }
 
-.unread-button {
+.read-action {
   float: left;
   width: 16px;
+  margin-right: 5px;
+}
+
+.star-action, .labels-menu, .share-menu, .open-browser, .delete-action {
+  float: left;
+  margin-right: 10px;
 }
 
 .title {
