@@ -1583,6 +1583,11 @@ void NewsTabWidget::loadNewspaper(int refresh)
         content = description;
       }
 
+//      QTextDocumentFragment textDocument = QTextDocumentFragment::fromHtml(content);
+//      content = textDocument.toPlainText();
+//      content = webView_->fontMetrics().elidedText(
+//            content, Qt::ElideRight, 1500);
+
       QString feedId = newsModel_->dataField(index.row(), "feedId").toString();
       QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId.toInt());
 
