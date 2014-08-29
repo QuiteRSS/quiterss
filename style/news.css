@@ -46,14 +46,14 @@ a {
 }
 
 .read-action {
-  float: left;
+  float: %14;
   width: 16px;
-  margin-right: 5px;
+  margin-%16: 5px;
 }
 
 .star-action, .labels-menu, .share-menu, .open-browser, .delete-action {
-  float: left;
-  margin-right: 10px;
+  float: %14;
+  margin-%16: 10px;
 }
 
 .title {
