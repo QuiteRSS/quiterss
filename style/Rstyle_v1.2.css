@@ -39,7 +39,7 @@ body {
   font-family: %1; font-size: %2pt; 
 }
 
-img {
+img:not(.quiterss-img) {
   display: block;  
   max-width: 670px;
   margin-left: auto;   
@@ -60,6 +60,17 @@ a:link {text-decoration: none; color: #0066CC;}
 a:active {text-decoration: none; color: #0066CC;}
 a:visited {text-decoration: none; color: #0066CC;}
 a:hover {text-decoration: none; color: #0066CC;}
+
+.read-action {
+  float: %14;
+  width: 16px;
+  margin-%16: 5px;
+}
+
+.star-action, .labels-menu, .share-menu, .open-browser, .delete-action {
+  float: %14;
+  margin-%16: 10px;
+}
 
 .title {
   color: #0C60B1; 
@@ -92,6 +103,13 @@ a:hover {text-decoration: none; color: #0066CC;}
 .author a:active {color: #949494; text-decoration: none;}
 .author a:visited {color: #949494; text-decoration: none;}
 .author a:hover {color: #949494; text-decoration: none;}
+
+.labels td {
+  color: #949494;
+  text-align: %14;
+  direction: %15;
+  vertical-align: top;
+}
 
 .titleTable {
   text-align: left;

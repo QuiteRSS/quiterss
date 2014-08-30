@@ -31,7 +31,7 @@ td {
   font-size: %2pt;
 }
 
-img {
+img:not(.quiterss-img) {
   display: block;
   max-width: 100%;
 }
@@ -91,6 +91,13 @@ a.enclosure {
 }
 .enclosureImg {
   max-width: 100%;
+}
+
+.labels td {
+  color: %12;
+  text-align: %14;
+  direction: %15;
+  vertical-align: top;
 }
 
 .titleTable {
