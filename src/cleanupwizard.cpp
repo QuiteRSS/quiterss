@@ -491,7 +491,7 @@ void CleanUpWizard::finishCleanUp()
     treeItem = feedsTree_->itemBelow(treeItem);
   }
   if (feedId != -1)
-    mainWindow->slotUpdateNews();
+    mainWindow->slotUpdateNews(NewsTabWidget::RefreshAll);
   mainWindow->slotUpdateStatus(feedId, false);
 
   mainWindow->feedsModelReload();

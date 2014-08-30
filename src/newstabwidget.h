@@ -49,21 +49,28 @@ class NewsTabWidget : public QWidget
 {
   Q_OBJECT
 public:
-    enum TabType {
-        TabTypeFeed,
-        TabTypeUnread,
-        TabTypeStar,
-        TabTypeDel,
-        TabTypeLabel,
-        TabTypeWeb,
-        TabTypeDownloads
-    };
+  enum TabType {
+    TabTypeFeed,
+    TabTypeUnread,
+    TabTypeStar,
+    TabTypeDel,
+    TabTypeLabel,
+    TabTypeWeb,
+    TabTypeDownloads
+  };
+
+  enum RefreshNewspaper {
+    RefreshAll,
+    RefreshInsert,
+    RefreshWithPos
+  };
 
   explicit NewsTabWidget(QWidget *parent, TabType type, int feedId = -1, int feedParId = -1);
   ~NewsTabWidget();
 
   void retranslateStrings();
   void setSettings(bool init = true, bool newTab = true);
+  void setNewsLayout();
   void setBrowserPosition();
   void markNewsRead();
   void markAllNewsRead();
@@ -82,6 +89,7 @@ public:
   void openNewsNewTab();
 
   void updateWebView(QModelIndex index);
+  void loadNewspaper(int refresh = RefreshAll);
   void hideWebContent();
   QString getLinkNews(int row);
 
@@ -183,6 +191,7 @@ private:
   void createNewsList();
   void createWebWidget();
   QString getHtmlLabels(int row);
+  void actionNewspaper(QUrl url);
 
   MainWindow *mainWindow_;
   QSqlDatabase db_;
@@ -212,6 +221,9 @@ private:
   QWidget *newsPanelWidget_;
   bool webToolbarShow_;
 
+  QString newspaperHeadHtml_;
+  QString newspaperHtml_;
+  QString newspaperHtmlRtl_;
   QString htmlString_;
   QString htmlRtlString_;
   QString cssString_;

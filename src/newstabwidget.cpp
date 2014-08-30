@@ -226,6 +226,18 @@ void NewsTabWidget::createNewsList()
   markNewsReadTimer_ = new QTimer(this);
 
   QFile htmlFile;
+  htmlFile.setFileName(":/html/newspaper_head");
+  htmlFile.open(QFile::ReadOnly);
+  newspaperHeadHtml_ = QString::fromUtf8(htmlFile.readAll());
+  htmlFile.close();
+  htmlFile.setFileName(":/html/newspaper_description");
+  htmlFile.open(QFile::ReadOnly);
+  newspaperHtml_ = QString::fromUtf8(htmlFile.readAll());
+  htmlFile.close();
+  htmlFile.setFileName(":/html/newspaper_description_rtl");
+  htmlFile.open(QFile::ReadOnly);
+  newspaperHtmlRtl_ = QString::fromUtf8(htmlFile.readAll());
+  htmlFile.close();
   htmlFile.setFileName(":/html/description");
   htmlFile.open(QFile::ReadOnly);
   htmlString_ = QString::fromUtf8(htmlFile.readAll());
@@ -393,7 +405,7 @@ void NewsTabWidget::createWebWidget()
   connect(urlExternalBrowserAct_, SIGNAL(triggered()),
           this, SLOT(openUrlInExternalBrowser()));
   connect(this, SIGNAL(signalSetHtmlWebView(QString,QUrl)),
-                SLOT(setHtmlWebView(QString,QUrl)), Qt::QueuedConnection);
+          SLOT(setHtmlWebView(QString,QUrl)), Qt::QueuedConnection);
   connect(webView_, SIGNAL(loadStarted()), this, SLOT(slotLoadStarted()));
   connect(webView_, SIGNAL(loadFinished(bool)), this, SLOT(slotLoadFinished(bool)));
   connect(webView_, SIGNAL(linkClicked(QUrl)), this, SLOT(slotLinkClicked(QUrl)));
@@ -557,6 +569,14 @@ void NewsTabWidget::setSettings(bool init, bool newTab)
     mainWindow_->newsFilter_->setEnabled(type_ == TabTypeFeed);
     separatorRAct_->setVisible(type_ == TabTypeDel);
     mainWindow_->restoreNewsAct_->setVisible(type_ == TabTypeDel);
+
+    switch (mainWindow_->newsLayout_) {
+    case 1:
+      newsWidget_->setVisible(false);
+      break;
+    default:
+      newsWidget_->setVisible(true);
+    }
   }
 }
 
@@ -626,9 +646,17 @@ void NewsTabWidget::setAutoLoadImages(bool apply)
     webView_->settings()->setAttribute(QWebSettings::AutoLoadImages, autoLoadImages_);
     if (autoLoadImages_) {
       if ((webView_->title() == "news_descriptions") &&
-          (type_ == NewsTabWidget::TabTypeFeed))
-        updateWebView(newsView_->currentIndex());
-      else webView_->reload();
+          (type_ == NewsTabWidget::TabTypeFeed)) {
+        switch (mainWindow_->newsLayout_) {
+        case 1:
+          loadNewspaper();
+          break;
+        default:
+          updateWebView(newsView_->currentIndex());
+        }
+      } else {
+        webView_->reload();
+      }
     }
   }
 }
@@ -645,6 +673,8 @@ void NewsTabWidget::slotNewsViewClicked(QModelIndex index)
 // ----------------------------------------------------------------------------
 void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
 {
+  if (mainWindow_->newsLayout_ == 1) return;
+
   int newsId = newsModel_->dataField(index.row(), "id").toInt();
 
   if (mainWindow_->markNewsReadOn_ && mainWindow_->markPrevNewsRead_ &&
@@ -664,7 +694,7 @@ void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
 
   if (!((newsId == currentNewsIdOld) &&
         newsModel_->dataField(index.row(), "read").toInt() >= 1) ||
-        clicked) {
+      clicked) {
 
     markNewsReadTimer_->stop();
     if (mainWindow_->markNewsReadOn_ && mainWindow_->markCurNewsRead_) {
@@ -896,7 +926,7 @@ void NewsTabWidget::slotSetItemStar(QModelIndex index, int starred)
 
   int newsId = newsModel_->dataField(index.row(), "id").toInt();
   mainApp->sqlQueryExec(QString("UPDATE news SET starred='%1' WHERE id=='%2'").
-                            arg(starred).arg(newsId));
+                        arg(starred).arg(newsId));
   mainWindow_->recountCategoryCounts();
 }
 
@@ -942,11 +972,11 @@ void NewsTabWidget::markNewsRead()
     for (int i = cnt-1; i >= 0; --i) {
       curIndex = indexes.at(i);
       newsModel_->setData(
-                  newsModel_->index(curIndex.row(), newsModel_->fieldIndex("new")),
-                  0);
+            newsModel_->index(curIndex.row(), newsModel_->fieldIndex("new")),
+            0);
       newsModel_->setData(
-                  newsModel_->index(curIndex.row(), newsModel_->fieldIndex("read")),
-                  markRead);
+            newsModel_->index(curIndex.row(), newsModel_->fieldIndex("read")),
+            markRead);
 
       int newsId = newsModel_->dataField(curIndex.row(), "id").toInt();
       q.exec(QString("UPDATE news SET new=0, read='%1' WHERE id=='%2'").
@@ -994,6 +1024,8 @@ void NewsTabWidget::markAllNewsRead()
 
   while (newsModel_->canFetchMore())
     newsModel_->fetchMore();
+
+  loadNewspaper(RefreshWithPos);
 
   newsView_->setCurrentIndex(newsModel_->index(currentRow, newsModel_->fieldIndex("title")));
 
@@ -1131,6 +1163,8 @@ void NewsTabWidget::deleteNews()
   while (newsModel_->canFetchMore())
     newsModel_->fetchMore();
 
+  loadNewspaper(RefreshWithPos);  // Переделать
+
   if (curIndex.row() == newsModel_->rowCount())
     curIndex = newsModel_->index(curIndex.row()-1, newsModel_->fieldIndex("title"));
   else if (curIndex.row() > newsModel_->rowCount())
@@ -1239,6 +1273,8 @@ void NewsTabWidget::restoreNews()
   while (newsModel_->canFetchMore())
     newsModel_->fetchMore();
 
+  loadNewspaper(RefreshWithPos);
+
   if (curIndex.row() == newsModel_->rowCount())
     curIndex = newsModel_->index(curIndex.row()-1, newsModel_->fieldIndex("title"));
   else if (curIndex.row() > newsModel_->rowCount())
@@ -1312,6 +1348,7 @@ void NewsTabWidget::updateWebView(QModelIndex index)
     return;
   }
 
+  QString newsId = newsModel_->dataField(index.row(), "id").toString();
   linkNewsString_ = getLinkNews(index.row());
   QString linkString = linkNewsString_;
   QUrl newsUrl = QUrl::fromEncoded(linkString.toUtf8());
@@ -1432,7 +1469,8 @@ void NewsTabWidget::updateWebView(QModelIndex index)
       }
 
       QString labelsString = getHtmlLabels(index.row());
-      authorString.append("<table class=\"author\" id=\"labels\"><tr>" % labelsString % "</tr></table>");
+      authorString.append(QString("<table class=\"author\" id=\"labels%1\"><tr>%2</tr></table>").
+                          arg(newsId).arg(labelsString));
 
       QString enclosureStr;
       QString enclosureUrl = newsModel_->dataField(index.row(), "enclosure_url").toString();
@@ -1493,6 +1531,252 @@ void NewsTabWidget::updateWebView(QModelIndex index)
   }
 }
 
+void NewsTabWidget::loadNewspaper(int refresh)
+{
+  if (mainWindow_->newsLayout_ != 1) return;
+  setWebToolbarVisible(false, false);
+
+  int scrollBarValue = 0;
+  if (refresh == RefreshWithPos) {
+    scrollBarValue = webView_->page()->mainFrame()->scrollBarValue(Qt::Vertical);
+  }
+
+  QString htmlStr;
+  QUrl hostUrl;
+  bool ltr = true;
+
+  if (type_ == TabTypeFeed) {
+    QModelIndex feedIndex = feedsProxyModel_->mapToSource(feedsTreeView_->currentIndex());
+    hostUrl = feedsTreeModel_->dataField(feedIndex, "htmlUrl").toString();
+    ltr = !feedsTreeModel_->dataField(feedIndex, "layoutDirection").toInt();
+  }
+
+  if ((refresh == RefreshAll) || (refresh == RefreshWithPos)) {
+    QString cssStr = cssString_.
+        arg(ltr ? "left" : "right"). // text-align
+        arg(ltr ? "ltr" : "rtl"). // direction
+        arg(ltr ? "right" : "left"); // "Date" text-align
+    htmlStr = newspaperHeadHtml_.arg(cssStr);
+
+    webView_->setHtml(htmlStr, hostUrl);
+  }
+
+  for (int i = 0; i < newsModel_->rowCount(); ++i) {
+    QModelIndex index = newsModel_->index(i, newsModel_->fieldIndex("id"));
+    QString newsId = newsModel_->dataField(index.row(), "id").toString();
+
+    if (refresh == RefreshInsert) {
+      QWebElement document = webView_->page()->mainFrame()->documentElement();
+      QWebElement element = document.findFirst(QString("div[id=newsItem%1]").arg(newsId));
+      if (!element.isNull()) {
+        continue;
+      }
+    }
+
+    linkNewsString_ = getLinkNews(index.row());
+    QString linkString = linkNewsString_;
+
+    QString content = newsModel_->dataField(index.row(), "content").toString();
+    if (!content.contains(QRegExp("<html(.*)</html>", Qt::CaseInsensitive, QRegExp::RegExp2))) {
+      QString description = newsModel_->dataField(index.row(), "description").toString();
+      if (content.isEmpty() || (description.length() > content.length())) {
+        content = description;
+      }
+
+//      QTextDocumentFragment textDocument = QTextDocumentFragment::fromHtml(content);
+//      content = textDocument.toPlainText();
+//      content = webView_->fontMetrics().elidedText(
+//            content, Qt::ElideRight, 1500);
+
+      QString feedId = newsModel_->dataField(index.row(), "feedId").toString();
+      QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId.toInt());
+
+      QString iconStr = "qrc:/images/bulletRead";
+      QString titleStyle = "read";
+      if (newsModel_->dataField(index.row(), "new").toInt() == 1) {
+        iconStr = "qrc:/images/bulletNew";
+        titleStyle = "unread";
+      } else if (newsModel_->dataField(index.row(), "read").toInt() == 0) {
+        iconStr = "qrc:/images/bulletUnread";
+        titleStyle = "unread";
+      }
+      QString readImg = QString("<a href=\"quiterss://read.action.ui?#%1\"><img id=\"readAction%1\" src=\"%2\"/></a>").
+          arg(newsId).arg(iconStr);
+
+      QString titleString = newsModel_->dataField(index.row(), "title").toString();
+      if (!linkString.isEmpty()) {
+        titleString = QString("<a href='%1' class='%2' id='title%3'>%4</a>").
+            arg(linkString, titleStyle, newsId, titleString);
+      }
+
+      QDateTime dtLocal;
+      QString dateString = newsModel_->dataField(index.row(), "published").toString();
+      if (!dateString.isNull()) {
+        QDateTime dtLocalTime = QDateTime::currentDateTime();
+        QDateTime dtUTC = QDateTime(dtLocalTime.date(), dtLocalTime.time(), Qt::UTC);
+        int nTimeShift = dtLocalTime.secsTo(dtUTC);
+
+        QDateTime dt = QDateTime::fromString(dateString, Qt::ISODate);
+        dtLocal = dt.addSecs(nTimeShift);
+      } else {
+        dtLocal = QDateTime::fromString(
+              newsModel_->dataField(index.row(), "received").toString(),
+              Qt::ISODate);
+      }
+      if (QDateTime::currentDateTime().date() <= dtLocal.date())
+        dateString = dtLocal.toString(mainWindow_->formatTime_);
+      else
+        dateString = dtLocal.toString(mainWindow_->formatDate_ + " " + mainWindow_->formatTime_);
+
+      // Create author panel from news author
+      QString authorString;
+      QString authorName = newsModel_->dataField(index.row(), "author_name").toString();
+      QString authorEmail = newsModel_->dataField(index.row(), "author_email").toString();
+      QString authorUri = newsModel_->dataField(index.row(), "author_uri").toString();
+
+      QRegExp reg("(^\\S+@\\S+\\.\\S+)", Qt::CaseInsensitive, QRegExp::RegExp2);
+      int pos = reg.indexIn(authorName);
+      if (pos > -1) {
+        authorName.replace(reg.cap(1), QString(" <a href='mailto:%1'>%1</a>").arg(reg.cap(1)));
+      }
+      authorString = authorName;
+
+      if (!authorEmail.isEmpty())
+        authorString.append(QString(" <a href='mailto:%1'>e-mail</a>").arg(authorEmail));
+      if (!authorUri.isEmpty())
+        authorString.append(QString(" <a href='%1'>page</a>"). arg(authorUri));
+
+      // If news author is absent, create author panel from feed author
+      // @note(arhohryakov:2012.01.03) Author is got from current feed, because
+      //   news is belong to it
+      if (authorString.isEmpty()) {
+        authorName  = feedsTreeModel_->dataField(feedIndex, "author_name").toString();
+        authorEmail = feedsTreeModel_->dataField(feedIndex, "author_email").toString();
+        authorUri   = feedsTreeModel_->dataField(feedIndex, "author_uri").toString();
+
+        authorString = authorName;
+        if (!authorEmail.isEmpty())
+          authorString.append(QString(" <a href='mailto:%1'>e-mail</a>").arg(authorEmail));
+        if (!authorUri.isEmpty())
+          authorString.append(QString(" <a href='%1'>page</a>").arg(authorUri));
+      }
+
+      QString commentsStr;
+      QString commentsUrl = newsModel_->dataField(index.row(), "comments").toString();
+      if (!commentsUrl.isEmpty()) {
+        commentsStr = QString("<a href=\"%1\"> %2</a>").arg(commentsUrl, tr("Comments"));
+      }
+
+      QString category = newsModel_->dataField(index.row(), "category").toString();
+
+      if (!authorString.isEmpty()) {
+        authorString = QString(tr("Author: %1")).arg(authorString);
+        if (!commentsStr.isEmpty())
+          authorString.append(QString(" | %1").arg(commentsStr));
+        if (!category.isEmpty())
+          authorString.append(QString(" | %1").arg(category));
+      } else {
+        if (!commentsStr.isEmpty())
+          authorString.append(commentsStr);
+        if (!category.isEmpty()) {
+          if (!commentsStr.isEmpty())
+            authorString.append(QString(" | %1").arg(category));
+          else
+            authorString.append(category);
+        }
+      }
+
+      QString labelsString = getHtmlLabels(index.row());
+      authorString.append(QString("<table class=\"author\" id=\"labels%1\"><tr>%2</tr></table>").
+                          arg(newsId).arg(labelsString));
+
+      QString enclosureStr;
+      QString enclosureUrl = newsModel_->dataField(index.row(), "enclosure_url").toString();
+      if (!enclosureUrl.isEmpty()) {
+        QString type = newsModel_->dataField(index.row(), "enclosure_type").toString();
+        if (type.contains("image")) {
+          if (!content.contains(enclosureUrl) && autoLoadImages_) {
+            enclosureStr = QString("<IMG SRC=\"%1\" class=\"enclosureImg\"><p>").
+                arg(enclosureUrl);
+          }
+        } else {
+          if (type.contains("audio")) {
+            type = tr("audio");
+            enclosureStr = audioPlayerHtml_.arg(enclosureUrl);
+            enclosureStr.append("<p>");
+          }
+          else if (type.contains("video")) {
+            type = tr("video");
+            enclosureStr = videoPlayerHtml_.arg(enclosureUrl);
+            enclosureStr.append("<p>");
+          }
+          else type = tr("media");
+
+          enclosureStr.append(QString("<a href=\"%1\" class=\"enclosure\"> %2 %3 </a><p>").
+                              arg(enclosureUrl, tr("Link to"), type));
+        }
+      }
+
+      content = enclosureStr + content;
+
+      if (!autoLoadImages_) {
+        QRegExp reg("<img[^>]+>", Qt::CaseInsensitive, QRegExp::RegExp2);
+        content = content.remove(reg);
+      }
+
+      iconStr = "qrc:/images/starOff";
+      if (newsModel_->dataField(index.row(), "starred").toInt() == 1) {
+        iconStr = "qrc:/images/starOn";
+      }
+      QString starAction = QString("<div class=\"star-action\">"
+                                   "<a href=\"quiterss://star.action.ui?#%1\">"
+                                   "<img id=\"starAction%1\" src=\"%2\"/></a></div>").
+          arg(newsId).arg(iconStr);
+      QString labelsMenu = QString("<div class=\"labels-menu\">"
+                                   "<a href=\"quiterss://labels.menu.ui?#%1\">"
+                                   "<img id=\"labelsMenu%1\" src=\"qrc:/images/label_5\"/></a></div>").
+          arg(newsId);
+      QString shareMenu = QString("<div class=\"share-menu\">"
+                                   "<a href=\"quiterss://share.menu.ui?#%1\">"
+                                   "<img id=\"shareMenu%1\" src=\"qrc:/images/images/share.png\"/></a></div>").
+          arg(newsId);
+      QString openBrowserAction = QString("<div class=\"open-browser\">"
+                                   "<a href=\"quiterss://open.browser.ui?#%1\">"
+                                   "<img id=\"openBrowser%1\" src=\"qrc:/images/openBrowser\"/></a></div>").
+          arg(newsId);
+//      QString deleteAction = QString("<div class=\"delete-action\">"
+//                                   "<a href=\"quiterss://delete.action.ui?#%1\">"
+//                                   "<img id=\"deleteAction%1\" src=\"qrc:/images/delete\"/></a></div>").
+//          arg(newsId);
+      QString actionNews = starAction % labelsMenu % shareMenu % openBrowserAction;
+
+      QString border = "0";
+      if (i != 0) border = "1";
+      if (ltr) {
+        htmlStr = newspaperHtml_.arg(newsId, border, readImg, titleString,
+                                     dateString, authorString, content, actionNews);
+      } else {
+        htmlStr = newspaperHtmlRtl_.arg(newsId, border, readImg, titleString,
+                                        dateString, authorString, content, actionNews);
+      }
+    } else {
+      if (!autoLoadImages_) {
+        content = content.remove(QRegExp("<img[^>]+>", Qt::CaseInsensitive, QRegExp::RegExp2));
+      }
+      htmlStr = content;
+    }
+
+    QWebElement document = webView_->page()->mainFrame()->documentElement();
+    QWebElement element = document.findFirst("body");
+    element.appendInside(htmlStr);
+    qApp->processEvents();
+  }
+
+  if (refresh == RefreshWithPos) {
+    webView_->page()->mainFrame()->setScrollBarValue(Qt::Vertical, scrollBarValue);
+  }
+}
+
 /** @brief Asynchorous update web view
  *----------------------------------------------------------------------------*/
 void NewsTabWidget::setHtmlWebView(const QString &html, const QUrl &baseUrl)
@@ -1504,12 +1788,19 @@ void NewsTabWidget::setHtmlWebView(const QString &html, const QUrl &baseUrl)
 
 void NewsTabWidget::hideWebContent()
 {
+  if (mainWindow_->newsLayout_ == 1) return;
+
   emit signalSetHtmlWebView();
   setWebToolbarVisible(false, false);
 }
 
 void NewsTabWidget::slotLinkClicked(QUrl url)
 {
+  if (url.scheme() == QLatin1String("quiterss")) {
+    actionNewspaper(url);
+    return;
+  }
+
   if (url.scheme() == QLatin1String("mailto")) {
     QDesktopServices::openUrl(url);
     return;
@@ -1559,6 +1850,8 @@ void NewsTabWidget::slotLinkClicked(QUrl url)
 //----------------------------------------------------------------------------
 void NewsTabWidget::slotLinkHovered(const QString &link, const QString &, const QString &)
 {
+  if (QUrl(link).scheme() == QLatin1String("quiterss")) return;
+
   mainWindow_->statusBar()->showMessage(link.simplified(), 3000);
 }
 //----------------------------------------------------------------------------
@@ -1618,7 +1911,13 @@ void NewsTabWidget::slotUrlChanged(const QUrl &url)
 void NewsTabWidget::webHomePage()
 {
   if (type_ != TabTypeWeb) {
-    updateWebView(newsView_->currentIndex());
+    switch (mainWindow_->newsLayout_) {
+    case 1:
+      loadNewspaper();
+      break;
+    default:
+      updateWebView(newsView_->currentIndex());
+    }
   } else {
     webView_->history()->goToItem(webView_->history()->itemAt(0));
   }
@@ -1669,6 +1968,21 @@ void NewsTabWidget::openInExternalBrowserNews()
     }
   } else {
     openUrl(webView_->url());
+  }
+}
+
+void NewsTabWidget::setNewsLayout()
+{
+  if (type_ == TabTypeDownloads) return;
+
+  switch (mainWindow_->newsLayout_) {
+  case 1:
+    newsWidget_->setVisible(false);
+    loadNewspaper();
+    break;
+  default:
+    newsWidget_->setVisible(true);
+    updateWebView(newsView_->currentIndex());
   }
 }
 
@@ -1791,7 +2105,7 @@ bool NewsTabWidget::openUrl(const QUrl &url)
     return false;
 
   if (url.scheme() == QLatin1String("mailto"))
-      return QDesktopServices::openUrl(url);
+    return QDesktopServices::openUrl(url);
 
   mainWindow_->isOpeningLink_ = true;
   if ((mainWindow_->externalBrowserOn_ == 2) || (mainWindow_->externalBrowserOn_ == -1)) {
@@ -1822,14 +2136,14 @@ void NewsTabWidget::slotFindText(const QString &text)
 
     QString filterStr;
     switch (type_) {
-      case TabTypeUnread:
-      case TabTypeStar:
-      case TabTypeDel:
-      case TabTypeLabel:
-        filterStr = categoryFilterStr_;
-        break;
-      default:
-        filterStr = mainWindow_->newsFilterStr;
+    case TabTypeUnread:
+    case TabTypeStar:
+    case TabTypeDel:
+    case TabTypeLabel:
+      filterStr = categoryFilterStr_;
+      break;
+    default:
+      filterStr = mainWindow_->newsFilterStr;
     }
 
     if (!text.isEmpty()) {
@@ -1986,7 +2300,7 @@ void NewsTabWidget::setLabelNews(int labelId)
         (webView_->title() == "news_descriptions")) {
       QWebFrame *frame = webView_->page()->mainFrame();
       QWebElement document = frame->documentElement();
-      QWebElement element = document.findFirst("table[id=labels]");
+      QWebElement element = document.findFirst(QString("table[id=labels%1]").arg(newsId));
       if (!element.isNull()) {
         element.removeAllChildren();
         QString labelsString = getHtmlLabels(index.row());
@@ -2032,7 +2346,7 @@ void NewsTabWidget::setLabelNews(int labelId)
           (webView_->title() == "news_descriptions")) {
         QWebFrame *frame = webView_->page()->mainFrame();
         QWebElement document = frame->documentElement();
-        QWebElement element = document.findFirst("table[id=labels]");
+        QWebElement element = document.findFirst(QString("table[id=labels%1]").arg(newsId));
         if (!element.isNull()) {
           element.removeAllChildren();
           QString labelsString = getHtmlLabels(index.row());
@@ -2317,13 +2631,13 @@ int NewsTabWidget::getUnreadCount(QString countString)
 
   countString.remove(QRegExp("[()]"));
   switch (type_) {
-    case TabTypeUnread:
-      return countString.toInt();
-    case TabTypeStar:
-    case TabTypeLabel:
-      return countString.section("/", 0, 0).toInt();
-    default:
-      return 0;
+  case TabTypeUnread:
+    return countString.toInt();
+  case TabTypeStar:
+  case TabTypeLabel:
+    return countString.section("/", 0, 0).toInt();
+  default:
+    return 0;
   }
 }
 
@@ -2344,8 +2658,8 @@ void NewsTabWidget::savePageAsDescript()
 
   QString html = webView_->page()->currentFrame()->toHtml().replace("'", "''");
   newsModel_->setData(
-              newsModel_->index(curIndex.row(), newsModel_->fieldIndex("content")),
-              html);
+        newsModel_->index(curIndex.row(), newsModel_->fieldIndex("content")),
+        html);
   int newsId = newsModel_->dataField(curIndex.row(), "id").toInt();
   QString qStr = QString("UPDATE news SET content='%1' WHERE id=='%2'").
       arg(html).arg(newsId);
@@ -2370,4 +2684,75 @@ QString NewsTabWidget::getHtmlLabels(int row)
     }
   }
   return labelsString;
+}
+
+void NewsTabWidget::actionNewspaper(QUrl url)
+{
+  QString newsId = url.fragment();
+  QModelIndex startIndex = newsModel_->index(0, newsModel_->fieldIndex("id"));
+  QModelIndexList indexList = newsModel_->match(startIndex, Qt::EditRole, newsId);
+  if (!indexList.isEmpty()) {
+    QString iconStr;
+    if (url.host() == "read.action.ui") {
+      QString titleStyle;
+      if (newsModel_->dataField(indexList.first().row(), "read").toInt() == 0) {
+        slotSetItemRead(indexList.first(), 1);
+        iconStr = "qrc:/images/bulletRead";
+        titleStyle = "read";
+      } else {
+        slotSetItemRead(indexList.first(), 0);
+        iconStr = "qrc:/images/bulletUnread";
+        titleStyle = "unread";
+      }
+      QWebElement document = webView_->page()->mainFrame()->documentElement();
+      QWebElement newsItem = document.findFirst(QString("div[id=newsItem%1]").arg(newsId));
+      if (!newsItem.isNull()) {
+        QWebElement element = newsItem.findFirst(QString("img[id=readAction%1]").arg(newsId));
+        if (!element.isNull())
+          element.setAttribute("src", iconStr);
+        element = newsItem.findFirst(QString("a[id=title%1]").arg(newsId));
+        if (!element.isNull())
+          element.setAttribute("class", titleStyle);
+      }
+    } else if (url.host() == "star.action.ui") {
+      int row = indexList.first().row();
+      if (newsModel_->dataField(row, "starred").toInt() == 0) {
+        slotSetItemStar(newsModel_->index(row, newsModel_->fieldIndex("starred")), 1);
+        iconStr = "qrc:/images/starOn";
+      } else {
+        slotSetItemStar(newsModel_->index(row, newsModel_->fieldIndex("starred")), 0);
+        iconStr = "qrc:/images/starOff";
+      }
+      QWebElement document = webView_->page()->mainFrame()->documentElement();
+      QWebElement newsItem = document.findFirst(QString("div[id=newsItem%1]").arg(newsId));
+      if (!newsItem.isNull()) {
+        QWebElement element = newsItem.findFirst(QString("img[id=starAction%1]").arg(newsId));
+        if (!element.isNull())
+          element.setAttribute("src", iconStr);
+      }
+    } else if (url.host() == "labels.menu.ui") {
+      newsView_->selectionModel()->clearSelection();
+      newsView_->selectionModel()->select(
+            indexList.first(), QItemSelectionModel::Select|QItemSelectionModel::Rows);
+      currentNewsIdOld = newsId.toInt();
+      mainWindow_->newsLabelMenu_->popup(QCursor::pos());
+    } else if (url.host() == "share.menu.ui") {
+      newsView_->selectionModel()->clearSelection();
+      newsView_->selectionModel()->select(
+            indexList.first(), QItemSelectionModel::Select|QItemSelectionModel::Rows);
+      currentNewsIdOld = newsId.toInt();
+      mainWindow_->shareMenu_->popup(QCursor::pos());
+    } else if (url.host() == "open.browser.ui") {
+      QUrl url = QUrl::fromEncoded(getLinkNews(indexList.first().row()).toUtf8());
+      if (url.host().isEmpty()) {
+        QString feedId = newsModel_->dataField(indexList.first().row(), "feedId").toString();
+        QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId.toInt());
+        QUrl hostUrl = feedsTreeModel_->dataField(feedIndex, "htmlUrl").toString();
+
+        url.setScheme(hostUrl.scheme());
+        url.setHost(hostUrl.host());
+      }
+      openUrl(url);
+    }
+  }
 }

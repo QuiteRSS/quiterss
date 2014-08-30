@@ -780,6 +780,15 @@ void MainWindow::createActions()
   customizeNewsToolbarAct_ = new QAction(this);
   customizeNewsToolbarAct_->setObjectName("customizeNewsToolbarAct");
 
+  classicLayoutAct_ = new QAction(this);
+  classicLayoutAct_->setObjectName("classicLayoutAct_");
+  classicLayoutAct_->setCheckable(true);
+  classicLayoutAct_->setData(0);
+  newspaperLayoutAct_ = new QAction(this);
+  newspaperLayoutAct_->setObjectName("newspaperLayoutAct_");
+  newspaperLayoutAct_->setCheckable(true);
+  newspaperLayoutAct_->setData(1);
+
   systemStyle_ = new QAction(this);
   systemStyle_->setObjectName("systemStyle_");
   systemStyle_->setCheckable(true);
@@ -1601,6 +1610,12 @@ void MainWindow::createMenu()
   customizeToolbarMenu_ = new QMenu(this);
   customizeToolbarMenu_->addActions(customizeToolbarGroup_->actions());
 
+  layoutGroup_ = new QActionGroup(this);
+  layoutGroup_->addAction(classicLayoutAct_);
+  layoutGroup_->addAction(newspaperLayoutAct_);
+  layoutMenu_ = new QMenu(this);
+  layoutMenu_->addActions(layoutGroup_->actions());
+
   styleGroup_ = new QActionGroup(this);
   styleGroup_->addAction(systemStyle_);
   styleGroup_->addAction(system2Style_);
@@ -1626,6 +1641,7 @@ void MainWindow::createMenu()
   viewMenu_->addMenu(toolbarsMenu_);
   viewMenu_->addMenu(customizeToolbarMenu_);
   viewMenu_->addSeparator();
+  viewMenu_->addMenu(layoutMenu_);
   viewMenu_->addMenu(browserPositionMenu_);
   viewMenu_->addMenu(styleMenu_);
   viewMenu_->addSeparator();
@@ -2084,6 +2100,14 @@ void MainWindow::loadSettings()
   indentationFeedsTreeAct_->setChecked(settings.value("indentationFeedsTree", true).toBool());
   slotIndentationFeedsTree();
 
+  newsLayout_ = settings.value("newsLayout", 0).toInt();
+  switch (newsLayout_) {
+  case 1:  newspaperLayoutAct_->setChecked(true); break;
+  default: classicLayoutAct_->setChecked(true);
+  }
+  connect(layoutGroup_, SIGNAL(triggered(QAction*)),
+          this, SLOT(setNewsLayout(QAction*)));
+
   browserPosition_ = settings.value("browserPosition", BOTTOM_POSITION).toInt();
   switch (browserPosition_) {
   case TOP_POSITION:   topBrowserPositionAct_->setChecked(true); break;
@@ -2309,6 +2333,7 @@ void MainWindow::saveSettings()
 
   settings.setValue("indentationFeedsTree", indentationFeedsTreeAct_->isChecked());
 
+  settings.setValue("newsLayout", newsLayout_);
   settings.setValue("browserPosition", browserPosition_);
 
   settings.setValue("openLinkInBackground", openLinkInBackground_);
@@ -2991,21 +3016,19 @@ void MainWindow::slotUpdateFeed(int feedId, bool changed, int newCount, bool fin
 
 /** @brief Process updating news list
  *---------------------------------------------------------------------------*/
-void MainWindow::slotUpdateNews()
+void MainWindow::slotUpdateNews(int refresh)
 {
   int newsId = newsModel_->index(
         newsView_->currentIndex().row(), newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
 
   newsModel_->select();
 
-  if (!newsModel_->rowCount()) {
-    currentNewsTab->currentNewsIdOld = newsId;
-    currentNewsTab->hideWebContent();
-    return;
+  if (newsModel_->rowCount() != 0) {
+    while (newsModel_->canFetchMore())
+      newsModel_->fetchMore();
   }
 
-  while (newsModel_->canFetchMore())
-    newsModel_->fetchMore();
+  currentNewsTab->loadNewspaper(refresh);
 
   QModelIndex index = newsModel_->index(0, newsModel_->fieldIndex("id"));
   QModelIndexList indexList = newsModel_->match(index, Qt::EditRole, newsId);
@@ -3562,7 +3585,7 @@ void MainWindow::showOptionDlg(int index)
       slotCloseTab(indexTab);
     }
     if ((tabBar_->currentIndex() == indexTab) && (indexTab > 0) && (tabLabelId == 0)) {
-      slotUpdateNews();
+      slotUpdateNews(NewsTabWidget::RefreshWithPos);
     }
   }
 
@@ -4266,6 +4289,8 @@ void MainWindow::setNewsFilter(QAction* pAct, bool clicked)
                              currentNewsTab->newsHeader_->sortIndicatorOrder());
   }
 
+  currentNewsTab->loadNewspaper();
+
   // Set icon right before user click
   if (pAct->objectName() == "filterNewsAll_") newsFilter_->setIcon(QIcon(":/images/filterOff"));
   else newsFilter_->setIcon(QIcon(":/images/filterOn"));
@@ -4440,6 +4465,8 @@ void MainWindow::slotRefreshNewsView(int nextUnread)
 
     while (newsModel_->canFetchMore())
       newsModel_->fetchMore();
+
+    currentNewsTab->loadNewspaper(NewsTabWidget::RefreshWithPos);
 
     newsView_->setCurrentIndex(newsModel_->index(currentRow, newsModel_->fieldIndex("title")));
   }
@@ -4787,6 +4814,10 @@ void MainWindow::retranslateStrings()
 
   toolBarLockAct_->setText(tr("Lock Toolbar"));
   toolBarHideAct_->setText(tr("Hide Toolbar"));
+
+  layoutMenu_->setTitle(tr("Layout"));
+  classicLayoutAct_->setText(tr("Classic"));
+  newspaperLayoutAct_->setText(tr("Newspaper"));
 
   styleMenu_->setTitle(tr("Application Style"));
   systemStyle_->setText(tr("System"));
@@ -6026,7 +6057,7 @@ void MainWindow::slotTabCurrentChanged(int index)
 
     setFeedsFilter(false);
 
-    slotUpdateNews();
+    slotUpdateNews(NewsTabWidget::RefreshWithPos);
     if (widget->isVisible())
       newsView_->setFocus();
     else
@@ -6068,7 +6099,7 @@ void MainWindow::slotTabCurrentChanged(int index)
     newsModel_ = currentNewsTab->newsModel_;
     newsView_ = currentNewsTab->newsView_;
 
-    slotUpdateNews();
+    slotUpdateNews(NewsTabWidget::RefreshWithPos);
     newsView_->setFocus();
 
     int unreadCount = widget->getUnreadCount(categoriesTree_->currentItem()->text(4));
@@ -6099,6 +6130,12 @@ void MainWindow::feedsColumnVisible(QAction *action)
     feedsTreeView_->showColumn(idx);
   else
     feedsTreeView_->hideColumn(idx);
+}
+
+void MainWindow::setNewsLayout(QAction *action)
+{
+  newsLayout_ = action->data().toInt();
+  currentNewsTab->setNewsLayout();
 }
 
 /** @brief Set browser position
@@ -6197,6 +6234,8 @@ void MainWindow::creatFeedTab(int feedId, int feedParId)
       while (widget->newsModel_->canFetchMore())
         widget->newsModel_->fetchMore();
     }
+
+    currentNewsTab->loadNewspaper();
 
     // focus feed has displayed before
     int newsRow = -1;
@@ -6565,8 +6604,11 @@ void MainWindow::slotDeleteNewsInNotification(int feedId, int newsId)
                             QDateTime::currentDateTime().toString(Qt::ISODate));
 
         newsModel_->submitAll();
+
         while (newsModel_->canFetchMore())
           newsModel_->fetchMore();
+
+        currentNewsTab->loadNewspaper(NewsTabWidget::RefreshWithPos);
 
         QModelIndex curIndex;
         if (i == newsModel_->rowCount())
@@ -6972,6 +7014,7 @@ void MainWindow::slotCategoriesClicked(QTreeWidgetItem *item, int, bool createTa
       while (newsModel_->canFetchMore())
         newsModel_->fetchMore();
     }
+
     if (type == NewsTabWidget::TabTypeDel){
       currentNewsTab->newsHeader_->setSortIndicator(newsModel_->fieldIndex("deleteDate"),
                                                     Qt::DescendingOrder);
@@ -6982,6 +7025,8 @@ void MainWindow::slotCategoriesClicked(QTreeWidgetItem *item, int, bool createTa
                                  currentNewsTab->newsHeader_->sortIndicatorOrder());
       }
     }
+
+    currentNewsTab->loadNewspaper();
 
     // Search previous displayed news of the feed
     int newsRow = -1;
@@ -7260,6 +7305,8 @@ void MainWindow::restoreLastNews()
 
     while (newsModel_->canFetchMore())
       newsModel_->fetchMore();
+
+    currentNewsTab->loadNewspaper(NewsTabWidget::RefreshWithPos);
 
     QModelIndex index = newsModel_->index(0, newsModel_->fieldIndex("id"));
     QModelIndexList indexList = newsModel_->match(index, Qt::EditRole, newsIdCur);

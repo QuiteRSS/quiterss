@@ -36,9 +36,24 @@ img {
   max-width: 100%;
 }
 
+div {
+  display: block;
+}
+
 a {
   color: %9;
   text-decoration: none;
+}
+
+.read-action {
+  float: %14;
+  width: 16px;
+  margin-%16: 5px;
+}
+
+.star-action, .labels-menu, .share-menu, .open-browser, .delete-action {
+  float: %14;
+  margin-%16: 10px;
 }
 
 .title {
@@ -50,8 +65,11 @@ a {
   vertical-align: top;
 }
 .title a.unread {
-  color: %10;
   font-weight: bold;
+}
+
+.title a.read {
+  font-weight: normal;
 }
 
 .date {
