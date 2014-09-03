@@ -2,7 +2,7 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
-<p><b>Version 0.16.2+</b> (xx Sep 2014)
+<p><b>Version 0.17.0</b> (03 Sep 2014)
 <ul>
 <li>Added: The Newspaper view (View->Layout->Newspaper)</li>
 <li>Added: Socks5 proxy support</li>

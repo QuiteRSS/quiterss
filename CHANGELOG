@@ -1,3 +1,9 @@
+Version 0.17.0 (03 Sep 2014)
+  * Added: The Newspaper view (View->Layout->Newspaper)
+  * Added: Socks5 proxy support
+  * Changed: News opening in external browser
+  * Fixed: Sorting by feed title in news list
+
 Version 0.16.2 (18 Aug 2014)
   * Added: Displaying of label markers in news description
   * Changed: GUI. Some visual tweaks
