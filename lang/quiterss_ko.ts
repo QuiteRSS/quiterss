@@ -1977,17 +1977,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4818"/>
         <source>Layout</source>
-        <translation type="unfinished"/>
+        <translation>레이아웃</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4819"/>
         <source>Classic</source>
-        <translation type="unfinished"/>
+        <translation>클래식</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4820"/>
         <source>Newspaper</source>
-        <translation type="unfinished"/>
+        <translation>신문</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4822"/>
@@ -2746,27 +2746,27 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1605"/>
         <source>Mark Read/Unread</source>
-        <translation type="unfinished"/>
+        <translation>읽음/읽지 않음 표시</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1735"/>
         <source>Mark News Star</source>
-        <translation type="unfinished"/>
+        <translation>뉴스 별표</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1739"/>
         <source>Label</source>
-        <translation type="unfinished"/>
+        <translation>라벨</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1743"/>
         <source>Share</source>
-        <translation type="unfinished"/>
+        <translation>공유</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1747"/>
         <source>Open News in External Browser</source>
-        <translation type="unfinished"/>
+        <translation>Open News in External Browser</translation>
     </message>
 </context>
 <context>

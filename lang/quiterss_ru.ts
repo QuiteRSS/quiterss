@@ -1977,17 +1977,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4818"/>
         <source>Layout</source>
-        <translation type="unfinished"/>
+        <translation>Макет</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4819"/>
         <source>Classic</source>
-        <translation type="unfinished"/>
+        <translation>Классик</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4820"/>
         <source>Newspaper</source>
-        <translation type="unfinished"/>
+        <translation>Газета</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4822"/>
@@ -2746,27 +2746,27 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1605"/>
         <source>Mark Read/Unread</source>
-        <translation type="unfinished"/>
+        <translation>Отметить прочитанной/непрочитанной</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1735"/>
         <source>Mark News Star</source>
-        <translation type="unfinished"/>
+        <translation>Отметить новость звёздочкой</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1739"/>
         <source>Label</source>
-        <translation type="unfinished"/>
+        <translation>Метка</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1743"/>
         <source>Share</source>
-        <translation type="unfinished"/>
+        <translation>Поделиться</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1747"/>
         <source>Open News in External Browser</source>
-        <translation type="unfinished"/>
+        <translation>Открыть новость во внешнем браузере</translation>
     </message>
 </context>
 <context>

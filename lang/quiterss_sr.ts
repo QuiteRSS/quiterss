@@ -1977,17 +1977,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4818"/>
         <source>Layout</source>
-        <translation type="unfinished"/>
+        <translation>Изглед</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4819"/>
         <source>Classic</source>
-        <translation type="unfinished"/>
+        <translation>Класичан</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4820"/>
         <source>Newspaper</source>
-        <translation type="unfinished"/>
+        <translation>Новине</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4822"/>
@@ -2326,7 +2326,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4930"/>
         <source>Sort by Name</source>
-        <translation type="unfinished"/>
+        <translation>Среди по Имену</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4931"/>
@@ -2746,27 +2746,27 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1605"/>
         <source>Mark Read/Unread</source>
-        <translation type="unfinished"/>
+        <translation>Постави Читано/Нечитано</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1735"/>
         <source>Mark News Star</source>
-        <translation type="unfinished"/>
+        <translation>Постави звезду вести</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1739"/>
         <source>Label</source>
-        <translation type="unfinished"/>
+        <translation>Етикета</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1743"/>
         <source>Share</source>
-        <translation type="unfinished"/>
+        <translation>Дељење</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1747"/>
         <source>Open News in External Browser</source>
-        <translation type="unfinished"/>
+        <translation>Отвори вести у спољном прегледачу</translation>
     </message>
 </context>
 <context>

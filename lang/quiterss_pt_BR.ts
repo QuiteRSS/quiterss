@@ -1977,17 +1977,17 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4818"/>
         <source>Layout</source>
-        <translation type="unfinished"/>
+        <translation>Layout</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4819"/>
         <source>Classic</source>
-        <translation type="unfinished"/>
+        <translation>Clássico</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4820"/>
         <source>Newspaper</source>
-        <translation type="unfinished"/>
+        <translation>Jornal</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4822"/>
@@ -2326,7 +2326,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4930"/>
         <source>Sort by Name</source>
-        <translation type="unfinished"/>
+        <translation>Classificar por Nome</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4931"/>
@@ -2746,27 +2746,27 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1605"/>
         <source>Mark Read/Unread</source>
-        <translation type="unfinished"/>
+        <translation>Marcar como Lido/Não Lido</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1735"/>
         <source>Mark News Star</source>
-        <translation type="unfinished"/>
+        <translation>Marcar como Notícia Favorita</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1739"/>
         <source>Label</source>
-        <translation type="unfinished"/>
+        <translation>Etiqueta</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1743"/>
         <source>Share</source>
-        <translation type="unfinished"/>
+        <translation>Compartilhar</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1747"/>
         <source>Open News in External Browser</source>
-        <translation type="unfinished"/>
+        <translation>Abrir Notícias no Navegador Externo</translation>
     </message>
 </context>
 <context>
@@ -4266,17 +4266,17 @@ não foi encontrado!</translation>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="587"/>
         <source>Unable to begin transaction</source>
-        <translation>Impossibilitado de iniciar transação</translation>
+        <translation>Não é possível iniciar a transação</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="602"/>
         <source>Unable to commit transaction</source>
-        <translation>Impossibilitado de confirmar transação</translation>
+        <translation>Não é possível confirmar a transação</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="617"/>
         <source>Unable to rollback transaction</source>
-        <translation>Impossibilitado de reverter transação</translation>
+        <translation>Não é possível reverter a transação</translation>
     </message>
 </context>
 <context>
@@ -4286,7 +4286,7 @@ não foi encontrado!</translation>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="278"/>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="286"/>
         <source>Unable to fetch row</source>
-        <translation>Impossibilitado de obter linha</translation>
+        <translation>Não é possível obter a linha</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="216"/>
@@ -4296,27 +4296,27 @@ não foi encontrado!</translation>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="350"/>
         <source>Unable to execute statement</source>
-        <translation>Impossibilitado de executar instrução</translation>
+        <translation>Não é possível executar a instrução</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="355"/>
         <source>Unable to execute multiple statements at a time</source>
-        <translation>Impossibilitado de executar várias instruções ao mesmo tempo</translation>
+        <translation>Não é possível executar várias instruções ao mesmo tempo</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="375"/>
         <source>Unable to reset statement</source>
-        <translation>Impossibilitado de redefinir instrução</translation>
+        <translation>Não é possível redefinir a instrução</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="420"/>
         <source>Unable to bind parameters</source>
-        <translation>Impossibilitado de vincular parâmetros</translation>
+        <translation>Não é possível vincular os parâmetros</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="427"/>
         <source>Parameter count mismatch</source>
-        <translation>Incompatibilidade de contagem de parâmetro</translation>
+        <translation>Incompatibilidade na contagem do parâmetro</translation>
     </message>
 </context>
 <context>

@@ -46,7 +46,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="151"/>
         <source>Backup directory:</source>
-        <translation type="unfinished"/>
+        <translation>وجهة النسخ الاحتياطي:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="154"/>
@@ -920,17 +920,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="32"/>
         <source>Display</source>
-        <translation type="unfinished"/>
+        <translation>الشاشة</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="174"/>
         <source>Enable JavaScript</source>
-        <translation type="unfinished"/>
+        <translation>تفعيل JavaScript</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="177"/>
         <source>Right-to-left layout</source>
-        <translation type="unfinished"/>
+        <translation>تنسيق من اليسار لليمين</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="216"/>
@@ -1125,17 +1125,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/findtext.cpp" line="105"/>
         <source>Find in Titles</source>
-        <translation type="unfinished"/>
+        <translation>ايجاد في العنوان</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="106"/>
         <source>Find in Authors</source>
-        <translation type="unfinished"/>
+        <translation>ايجاد في المؤلف</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="107"/>
         <source>Find in Categories</source>
-        <translation type="unfinished"/>
+        <translation>ايجاد في التصنيف</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="108"/>
@@ -1251,7 +1251,7 @@ Ancient news could reappear</source>
         <location filename="../src/newsfilters/itemcondition.cpp" line="31"/>
         <location filename="../src/newsfilters/itemcondition.cpp" line="106"/>
         <source>Link</source>
-        <translation type="unfinished"/>
+        <translation>رابط</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/itemcondition.cpp" line="36"/>
@@ -1335,7 +1335,7 @@ Ancient news could reappear</source>
         <location filename="../src/newsfilters/itemcondition.cpp" line="99"/>
         <location filename="../src/newsfilters/itemcondition.cpp" line="110"/>
         <source>Regular expressions</source>
-        <translation type="unfinished"/>
+        <translation>تعابير شائعة</translation>
     </message>
 </context>
 <context>
@@ -1826,42 +1826,42 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4862"/>
         <source>Count Unread News</source>
-        <translation type="unfinished"/>
+        <translation>عد  الاخبار الغير مقروئة</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4863"/>
         <source>Count All News</source>
-        <translation type="unfinished"/>
+        <translation>عد جميع الاخبار</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4864"/>
         <source>Last Update</source>
-        <translation type="unfinished"/>
+        <translation>اخر تحديث</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4877"/>
         <source>Reset browser zoom</source>
-        <translation type="unfinished"/>
+        <translation>إعادة ضبط تكبير المتصفح</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4880"/>
         <source>Print Web Page</source>
-        <translation type="unfinished"/>
+        <translation>طباعة صفحة الويب</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4882"/>
         <source>Preview Web Page</source>
-        <translation type="unfinished"/>
+        <translation>استعراض صفحة الويب</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4886"/>
         <source>Save page in database</source>
-        <translation type="unfinished"/>
+        <translation>حقظ الصفحة في قاعدة البيانات</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4887"/>
         <source>Save page in database instead of news description</source>
-        <translation type="unfinished"/>
+        <translation>حفظ الصفحة في قاعدة البيانات بدلا من وصف الاخبار</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="162"/>
@@ -1871,12 +1871,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2533"/>
         <source>Confirm Delete</source>
-        <translation type="unfinished"/>
+        <translation>تأكيد الحذف</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2534"/>
         <source>Are you sure to delete selected elements?</source>
-        <translation type="unfinished"/>
+        <translation>هل انت متأكد من حذف العناصر المحددة؟</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4699"/>
@@ -1886,7 +1886,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4721"/>
         <source>&amp;Create Backup...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;إنشاء تسخة احتياطية...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4722"/>
@@ -1896,12 +1896,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4774"/>
         <source>Open News Description</source>
-        <translation type="unfinished"/>
+        <translation>فتح وصف الخبر</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4791"/>
         <source>Copy News Link</source>
-        <translation type="unfinished"/>
+        <translation>نسخ رابط الخبر</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4801"/>
@@ -1977,17 +1977,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4818"/>
         <source>Layout</source>
-        <translation type="unfinished"/>
+        <translation>تنسيق</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4819"/>
         <source>Classic</source>
-        <translation type="unfinished"/>
+        <translation>كلاسيكي</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4820"/>
         <source>Newspaper</source>
-        <translation type="unfinished"/>
+        <translation>صحيفة</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4822"/>
@@ -2228,7 +2228,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4895"/>
         <source>Status Bar</source>
-        <translation type="unfinished"/>
+        <translation>شريط الحالة</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4897"/>
@@ -2326,7 +2326,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4930"/>
         <source>Sort by Name</source>
-        <translation type="unfinished"/>
+        <translation>ترتيب حسب الاسم</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4931"/>
@@ -2422,7 +2422,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="7761"/>
         <source>Choose Directory</source>
-        <translation type="unfinished"/>
+        <translation>اختيار الوجهة</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.h" line="101"/>

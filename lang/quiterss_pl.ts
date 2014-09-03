@@ -1251,7 +1251,7 @@ Starsze wiadomości mogą pojawić się ponownie</translation>
         <location filename="../src/newsfilters/itemcondition.cpp" line="31"/>
         <location filename="../src/newsfilters/itemcondition.cpp" line="106"/>
         <source>Link</source>
-        <translation type="unfinished"/>
+        <translation>Link</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/itemcondition.cpp" line="36"/>
@@ -1977,17 +1977,17 @@ Starsze wiadomości mogą pojawić się ponownie</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4818"/>
         <source>Layout</source>
-        <translation type="unfinished"/>
+        <translation>Układ</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4819"/>
         <source>Classic</source>
-        <translation type="unfinished"/>
+        <translation>Klasyczny</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4820"/>
         <source>Newspaper</source>
-        <translation type="unfinished"/>
+        <translation>Gazeta</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4822"/>
@@ -2326,7 +2326,7 @@ Starsze wiadomości mogą pojawić się ponownie</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4930"/>
         <source>Sort by Name</source>
-        <translation type="unfinished"/>
+        <translation>Sortuj po nazwie</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4931"/>
@@ -2746,27 +2746,27 @@ Starsze wiadomości mogą pojawić się ponownie</translation>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1605"/>
         <source>Mark Read/Unread</source>
-        <translation type="unfinished"/>
+        <translation>Oznacz jako Przeczytane/Nieprzeczytane</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1735"/>
         <source>Mark News Star</source>
-        <translation type="unfinished"/>
+        <translation>Oznacz wiadomości gwiazdką</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1739"/>
         <source>Label</source>
-        <translation type="unfinished"/>
+        <translation>Etykieta</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1743"/>
         <source>Share</source>
-        <translation type="unfinished"/>
+        <translation>Udostępnij</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1747"/>
         <source>Open News in External Browser</source>
-        <translation type="unfinished"/>
+        <translation>Otwórz wiadomość w zewnętrznej przeglądarce</translation>
     </message>
 </context>
 <context>
@@ -3737,12 +3737,12 @@ Starsze wiadomości mogą pojawić się ponownie</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1627"/>
         <source>Disabled feed</source>
-        <translation type="unfinished"/>
+        <translation>Nieaktywny kanał</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1630"/>
         <source>Alternating row colors</source>
-        <translation type="unfinished"/>
+        <translation>Naprzemienne kolory wierszy</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2022"/>
@@ -3767,22 +3767,22 @@ Starsze wiadomości mogą pojawić się ponownie</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="779"/>
         <source>Set focus on the last opened news</source>
-        <translation type="unfinished"/>
+        <translation>Ustaw na ostatnio otwartej wiadomości</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="780"/>
         <source>Set focus at the top of news list</source>
-        <translation type="unfinished"/>
+        <translation>Ustaw na górze listy wiadomości</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="781"/>
         <source>Set focus on the unread news</source>
-        <translation type="unfinished"/>
+        <translation>Ustaw na nieprzeczytanej wiadomości</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="782"/>
         <source>Open the news</source>
-        <translation type="unfinished"/>
+        <translation>Otwórz wiadomość</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="850"/>
@@ -3792,7 +3792,7 @@ Starsze wiadomości mogą pojawić się ponownie</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="868"/>
         <source>Action on feed opening:</source>
-        <translation type="unfinished"/>
+        <translation>Akcja podczas otwierania kanału:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="899"/>

@@ -224,7 +224,7 @@
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="172"/>
         <source>Blocked URL (AdBlock Rule) - click to edit rule</source>
-        <translation>Blockierte URL (Adblock-Filterregel) - klicken zum Bearbeiten</translation>
+        <translation>Blockierte URL (Adblock-Filterregel) - zur Bearbeitung anklicken</translation>
     </message>
 </context>
 <context>
@@ -1975,17 +1975,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4818"/>
         <source>Layout</source>
-        <translation type="unfinished"/>
+        <translation>Layout</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4819"/>
         <source>Classic</source>
-        <translation type="unfinished"/>
+        <translation>Klassisch</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4820"/>
         <source>Newspaper</source>
-        <translation type="unfinished"/>
+        <translation>Zeitung</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4822"/>
@@ -2744,27 +2744,27 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1605"/>
         <source>Mark Read/Unread</source>
-        <translation type="unfinished"/>
+        <translation>Als gelesen/ungelesen markieren</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1735"/>
         <source>Mark News Star</source>
-        <translation type="unfinished"/>
+        <translation>Nachricht mit Stern markieren</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1739"/>
         <source>Label</source>
-        <translation type="unfinished"/>
+        <translation>Label</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1743"/>
         <source>Share</source>
-        <translation type="unfinished"/>
+        <translation>Mitteilung senden</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1747"/>
         <source>Open News in External Browser</source>
-        <translation type="unfinished"/>
+        <translation>Nachricht im externen Browser öffnen</translation>
     </message>
 </context>
 <context>
@@ -3372,17 +3372,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="901"/>
         <source>Change behavior of action &apos;Next Unread News&apos;</source>
-        <translation>Verhalten bei &quot;Nächste ungelesene Nachricht&quot; ändern</translation>
+        <translation>Verhalten von &quot;Nächste ungelesene Nachricht&quot; ändern</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="903"/>
         <source>starred news</source>
-        <translation>Nachrichten mit Stern </translation>
+        <translation>Nachrichten mit Stern</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="904"/>
         <source>labeled news</source>
-        <translation>Nachrichten mit Label </translation>
+        <translation>Nachrichten mit Label</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="906"/>
