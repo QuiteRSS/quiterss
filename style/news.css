@@ -51,9 +51,13 @@ a {
   margin-%16: 5px;
 }
 
-.star-action, .labels-menu, .share-menu, .open-browser, .delete-action {
+.star-action, .labels-menu, .share-menu, .open-browser {
   float: %14;
   margin-%16: 10px;
+}
+
+.delete-action {
+  float: %16;
 }
 
 .title {
