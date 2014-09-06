@@ -1163,8 +1163,6 @@ void NewsTabWidget::deleteNews()
   while (newsModel_->canFetchMore())
     newsModel_->fetchMore();
 
-  loadNewspaper(RefreshWithPos);  // Переделать
-
   if (curIndex.row() == newsModel_->rowCount())
     curIndex = newsModel_->index(curIndex.row()-1, newsModel_->fieldIndex("title"));
   else if (curIndex.row() > newsModel_->rowCount())
@@ -1745,11 +1743,12 @@ void NewsTabWidget::loadNewspaper(int refresh)
                                    "<a href=\"quiterss://open.browser.ui?#%1\" title='%2'>"
                                    "<img class='quiterss-img' id=\"openBrowser%1\" src=\"qrc:/images/openBrowser\"'/></a></div>").
           arg(newsId).arg(tr("Open News in External Browser"));
-//      QString deleteAction = QString("<div class=\"delete-action\">"
-//                                   "<a href=\"quiterss://delete.action.ui?#%1\" title='%2'>"
-//                                   "<img class='quiterss-img' id=\"deleteAction%1\" src=\"qrc:/images/delete\"/></a></div>").
-//          arg(newsId).arg(tr("Delete"));
-      QString actionNews = starAction % labelsMenu % shareMenu % openBrowserAction;
+      QString deleteAction = QString("<div class=\"delete-action\">"
+                                   "<a href=\"quiterss://delete.action.ui?#%1\" title='%2'>"
+                                   "<img class='quiterss-img' id=\"deleteAction%1\" src=\"qrc:/images/delete\"/></a></div>").
+          arg(newsId).arg(tr("Delete"));
+      QString actionNews = starAction % labelsMenu % shareMenu % openBrowserAction %
+          deleteAction;
 
       QString border = "0";
       if (i != 0) border = "1";
@@ -2754,6 +2753,16 @@ void NewsTabWidget::actionNewspaper(QUrl url)
         url.setHost(hostUrl.host());
       }
       openUrl(url);
+    } else if (url.host() == "delete.action.ui") {
+      newsView_->selectionModel()->clearSelection();
+      newsView_->selectionModel()->select(
+            indexList.first(), QItemSelectionModel::Select|QItemSelectionModel::Rows);
+      deleteNews();
+      QWebElement document = webView_->page()->mainFrame()->documentElement();
+      QWebElement newsItem = document.findFirst(QString("div[id=newsItem%1]").arg(newsId));
+      if (!newsItem.isNull()) {
+        newsItem.removeFromDocument();
+      }
     }
   }
 }
