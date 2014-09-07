@@ -958,7 +958,7 @@ void ParseObject::runUserFilter(int feedId, int filterId)
             qStr1.append(QString("link_href NOT LIKE '%%1%' ").arg(content));
             break;
           case 2: // condition -> is
-            qStr1.append(QString("Ulink_href LIKE '%1' ").arg(content));
+            qStr1.append(QString("link_href LIKE '%1' ").arg(content));
             break;
           case 3: // condition -> isn't
             qStr1.append(QString("link_href NOT LIKE '%1' ").arg(content));
