@@ -4197,9 +4197,6 @@ void MainWindow::setNewsFilter(QAction* pAct, bool clicked)
     return;
   }
 
-  if (!clicked)
-    currentNewsTab->findText_->clear();
-
   QElapsedTimer timer;
   timer.start();
   qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
@@ -6989,8 +6986,6 @@ void MainWindow::slotCategoriesClicked(QTreeWidgetItem *item, int, bool createTa
 
     currentNewsTab->labelId_ = item->text(2).toInt();
 
-    currentNewsTab->findText_->clear();
-
     switch (type) {
     case NewsTabWidget::TabTypeUnread:
       currentNewsTab->categoryFilterStr_ = "feedId > 0 AND deleted = 0 AND read < 2";
@@ -7012,7 +7007,40 @@ void MainWindow::slotCategoriesClicked(QTreeWidgetItem *item, int, bool createTa
       }
       break;
     }
-    newsModel_->setFilter(currentNewsTab->categoryFilterStr_);
+    // ... add filter from "search"
+    QString filterStr = currentNewsTab->categoryFilterStr_;
+    QString objectName = currentNewsTab->findText_->findGroup_->checkedAction()->objectName();
+    if (objectName != "findInBrowserAct") {
+      QString findText = currentNewsTab->findText_->text();
+      if (!findText.isEmpty()) {
+        findText = findText.replace("'", "''").toUpper();
+        if (objectName == "findTitleAct") {
+          filterStr.append(
+                QString(" AND UPPER(title) LIKE '%%1%'").arg(findText));
+        } else if (objectName == "findAuthorAct") {
+          filterStr.append(
+                QString(" AND UPPER(author_name) LIKE '%%1%'").arg(findText));
+        } else if (objectName == "findCategoryAct") {
+          filterStr.append(
+                QString(" AND UPPER(category) LIKE '%%1%'").arg(findText));
+        } else if (objectName == "findContentAct") {
+          filterStr.append(
+                QString(" AND (UPPER(content) LIKE '%%1%' OR UPPER(description) LIKE '%%1%')").
+                arg(findText));
+        } else if (objectName == "findLinkAct") {
+          filterStr.append(
+                QString(" AND link_href LIKE '%%1%'").
+                arg(findText));
+        } else {
+          filterStr.append(
+                QString(" AND (UPPER(title) LIKE '%%1%' OR UPPER(author_name) LIKE '%%1%' "
+                        "OR UPPER(category) LIKE '%%1%' OR UPPER(content) LIKE '%%1%' "
+                        "OR UPPER(description) LIKE '%%1%')").
+                arg(findText));
+        }
+      }
+    }
+    newsModel_->setFilter(filterStr);
 
     if (newsModel_->rowCount() != 0) {
       while (newsModel_->canFetchMore())
