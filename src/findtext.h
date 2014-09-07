@@ -55,6 +55,7 @@ private:
   QAction *findAuthorAct_;
   QAction *findCategoryAct_;
   QAction *findContentAct_;
+  QAction *findLinkAct_;
   QAction *findInBrowserAct_;
 
   QLabel *findLabel_;

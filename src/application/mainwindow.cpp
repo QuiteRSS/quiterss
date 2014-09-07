@@ -4265,6 +4265,10 @@ void MainWindow::setNewsFilter(QAction* pAct, bool clicked)
         filterStr.append(
               QString(" AND (UPPER(content) LIKE '%%1%' OR UPPER(description) LIKE '%%1%')").
               arg(findText));
+      } else if (objectName == "findLinkAct") {
+        filterStr.append(
+              QString(" AND link_href LIKE '%%1%'").
+              arg(findText));
       } else {
         filterStr.append(
               QString(" AND (UPPER(title) LIKE '%%1%' OR UPPER(author_name) LIKE '%%1%' "

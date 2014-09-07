@@ -42,6 +42,10 @@ FindTextContent::FindTextContent(QWidget *parent)
   findContentAct_->setObjectName("findContentAct");
   findContentAct_->setIcon(QIcon(":/images/findInNews"));
   findContentAct_->setCheckable(true);
+  findLinkAct_ = new QAction(this);
+  findLinkAct_->setObjectName("findLinkAct");
+  findLinkAct_->setIcon(QIcon(":/images/findInNews"));
+  findLinkAct_->setCheckable(true);
 
   findInBrowserAct_ = new QAction(this);
   findInBrowserAct_->setObjectName("findInBrowserAct");
@@ -55,6 +59,7 @@ FindTextContent::FindTextContent(QWidget *parent)
   findGroup_->addAction(findAuthorAct_);
   findGroup_->addAction(findCategoryAct_);
   findGroup_->addAction(findContentAct_);
+  findGroup_->addAction(findLinkAct_);
   findGroup_->addAction(findInBrowserAct_);
 
   findMenu_ = new QMenu(this);
@@ -106,6 +111,7 @@ void FindTextContent::retranslateStrings()
   findAuthorAct_->setText(tr("Find in Authors"));
   findCategoryAct_->setText(tr("Find in Categories"));
   findContentAct_->setText(tr("Find in Content"));
+  findLinkAct_->setText(tr("Find in Links"));
   findInBrowserAct_->setText(tr("Find in Browser"));
   findLabel_->setText(findGroup_->checkedAction()->text());
   if (findLabel_->isVisible()) {
