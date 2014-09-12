@@ -38,6 +38,7 @@ CleanUpThread::CleanUpThread(QObject *parent)
   , neverLabelCleanUp_(false)
   , cleanUpDeleted_(false)
   , fullCleanUp_(false)
+  , countDeleted(0)
 {
 }
 
@@ -54,12 +55,13 @@ CleanUpThread::~CleanUpThread()
   QSqlDatabase db = QSqlDatabase::database();
   db.transaction();
 
+  q.exec("SELECT count(id) FROM news WHERE deleted < 2");
+  if (q.first()) countDeleted = q.value(0).toInt();
+
   foreach (QString feedId, feedsIdList_) {
     int cntT = 0;
     int cntNews = 0;
 
-    QSqlQuery q;
-    QString qStr;
     qStr = QString("SELECT undeleteCount FROM feeds WHERE id=='%1'").
         arg(feedId);
     q.exec(qStr);
@@ -181,6 +183,9 @@ CleanUpThread::~CleanUpThread()
            "category='', new='', read='', starred='', label='', "
            "deleteDate='', feedParentId='', deleted=2 WHERE deleted==1");
   }
+
+  q.exec("SELECT count(id) FROM news WHERE deleted < 2");
+  if (q.first()) countDeleted = countDeleted - q.value(0).toInt();
 
   q.finish();
   db.commit();
@@ -513,5 +518,10 @@ void CleanUpWizard::finishCleanUp()
   settings.endGroup();
 
   selectedPage_ = true;
+
   accept();
+
+  QMessageBox::information(0, tr("Information"),
+                           tr("Clean Up wizard deleted %1 news").
+                           arg(cleanUpThread_->countDeleted));
 }

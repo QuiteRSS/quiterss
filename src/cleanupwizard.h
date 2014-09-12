@@ -47,6 +47,7 @@ public:
   bool fullCleanUp_;
   QStringList feedsIdList_;
   QList<int> foldersIdList_;
+  int countDeleted;
 
 protected:
   virtual void run();
