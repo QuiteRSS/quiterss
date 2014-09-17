@@ -80,7 +80,9 @@ private:
   QList<int> idNewsList_;
   QTimer *showTimer_;
   int timeShowNews_;
+  int screen_;
   int position_;
+  int transparency_;
   int cntAllNews_;
   int cntReadNews_;
 

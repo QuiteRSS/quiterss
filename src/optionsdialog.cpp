@@ -1056,35 +1056,15 @@ void OptionsDialog::createLabelsWidget()
  *----------------------------------------------------------------------------*/
 void OptionsDialog::createNotifierWidget()
 {
-  soundNewNews_ = new QCheckBox(tr("Play sound for incoming new news"));
-  soundNewNews_->setChecked(true);
-  editSoundNotifer_ = new LineEdit();
-  selectionSoundNotifer_ = new QPushButton(tr("Browse..."));
-  playSoundNotifer_ = new QPushButton(tr("Play"));
-
-  connect(soundNewNews_, SIGNAL(toggled(bool)),
-          editSoundNotifer_, SLOT(setEnabled(bool)));
-  connect(soundNewNews_, SIGNAL(toggled(bool)),
-          selectionSoundNotifer_, SLOT(setEnabled(bool)));
-  connect(soundNewNews_, SIGNAL(toggled(bool)),
-          playSoundNotifer_, SLOT(setEnabled(bool)));
-  connect(selectionSoundNotifer_, SIGNAL(clicked()),
-          this, SLOT(selectionSoundNotifer()));
-  connect(playSoundNotifer_, SIGNAL(clicked()), this, SLOT(slotPlaySoundNotifer()));
-  connect(this, SIGNAL(signalPlaySound(QString)), parent(), SLOT(slotPlaySound(QString)));
-
-  QHBoxLayout *notifierLayout5 = new QHBoxLayout();
-  notifierLayout5->addWidget(editSoundNotifer_, 1);
-  notifierLayout5->addWidget(selectionSoundNotifer_);
-  notifierLayout5->addWidget(playSoundNotifer_);
-
-  QVBoxLayout *notifierLayout0 = new QVBoxLayout();
-  notifierLayout0->addWidget(soundNewNews_);
-  notifierLayout0->addLayout(notifierLayout5);
-
   showNotifyOn_ = new QGroupBox(tr("Display notification for incoming news"));
   showNotifyOn_->setCheckable(true);
   showNotifyOn_->setChecked(false);
+
+  screenNotify_ = new QComboBox();
+  for (int i = 0; i < QApplication::desktop()->screenCount(); ++i) {
+    screenNotify_->addItem(QString::number(i));
+  }
+  screenNotify_->setCurrentIndex(0);
 
   positionNotify_ = new QComboBox();
   QStringList positionList;
@@ -1092,6 +1072,13 @@ void OptionsDialog::createNotifierWidget()
                << tr("Bottom Left") << tr("Bottom Right");
   positionNotify_->addItems(positionList);
 
+  fullscreenModeNotify_ = new QCheckBox(tr("Do not show notification in fullscreen mode"));
+#if !defined(Q_OS_WIN)
+  fullscreenModeNotify_->hide();
+#endif
+
+  transparencyNotify_ = new QSpinBox();
+  transparencyNotify_->setRange(0, 100);
   countShowNewsNotify_ = new QSpinBox();
   countShowNewsNotify_->setRange(1, 30);
   widthTitleNewsNotify_ = new QSpinBox();
@@ -1102,31 +1089,29 @@ void OptionsDialog::createNotifierWidget()
   QPushButton *showNotifer = new QPushButton(tr("Review"));
   connect(showNotifer, SIGNAL(clicked()), this, SLOT(showNotification()));
 
-  QHBoxLayout *notifierLayout4 = new QHBoxLayout();
-  notifierLayout4->addWidget(new QLabel(tr("Position")));
-  notifierLayout4->addWidget(positionNotify_);
-  notifierLayout4->addStretch(1);
-  notifierLayout4->addWidget(showNotifer);
-
   QHBoxLayout *notifierLayout1 = new QHBoxLayout();
-  notifierLayout1->addWidget(new QLabel(tr("Show maximum of")));
-  notifierLayout1->addWidget(countShowNewsNotify_);
-  notifierLayout1->addWidget(new QLabel(tr("item on page notification")), 1);
+  notifierLayout1->addWidget(new QLabel(tr("Screen")));
+  notifierLayout1->addWidget(screenNotify_);
+  notifierLayout1->addSpacing(10);
+  notifierLayout1->addWidget(new QLabel(tr("Position")));
+  notifierLayout1->addWidget(positionNotify_);
+  notifierLayout1->addStretch(1);
+  notifierLayout1->addWidget(showNotifer);
 
-  QHBoxLayout *notifierLayout2 = new QHBoxLayout();
-  notifierLayout2->addWidget(new QLabel(tr("Width list items")));
-  notifierLayout2->addWidget(widthTitleNewsNotify_);
-  notifierLayout2->addWidget(new QLabel(tr("pixels")), 1);
-
-  QHBoxLayout *notifierLayout3 = new QHBoxLayout();
-  notifierLayout3->addWidget(new QLabel(tr("Close notification after")));
-  notifierLayout3->addWidget(timeShowNewsNotify_);
-  notifierLayout3->addWidget(new QLabel(tr("seconds")), 1);
-
-  fullscreenModeNotify_ = new QCheckBox(tr("Do not show notification in fullscreen mode"));
-#if !defined(Q_OS_WIN)
-  fullscreenModeNotify_->hide();
-#endif
+  QGridLayout *notifierLayout2 = new QGridLayout();
+  notifierLayout2->setColumnStretch(2, 1);
+  notifierLayout2->addWidget(new QLabel(tr("Transparency")), 0, 0);
+  notifierLayout2->addWidget(transparencyNotify_, 0, 1);
+  notifierLayout2->addWidget(new QLabel("%"), 0, 2);
+  notifierLayout2->addWidget(new QLabel(tr("Show maximum of")), 1, 0);
+  notifierLayout2->addWidget(countShowNewsNotify_, 1, 1);
+  notifierLayout2->addWidget(new QLabel(tr("item on page notification")), 1, 2);
+  notifierLayout2->addWidget(new QLabel(tr("Width list items")), 2, 0);
+  notifierLayout2->addWidget(widthTitleNewsNotify_, 2, 1);
+  notifierLayout2->addWidget(new QLabel(tr("pixels")), 2, 2);
+  notifierLayout2->addWidget(new QLabel(tr("Close notification after")), 3, 0);
+  notifierLayout2->addWidget(timeShowNewsNotify_, 3, 1);
+  notifierLayout2->addWidget(new QLabel(tr("seconds")), 3, 2);
 
   onlySelectedFeeds_ = new QCheckBox(tr("Only show selected feeds:"));
 
@@ -1151,28 +1136,55 @@ void OptionsDialog::createNotifierWidget()
   connect(feedsTreeNotify_, SIGNAL(itemChanged(QTreeWidgetItem*,int)),
           this, SLOT(feedsTreeNotifyItemChanged(QTreeWidgetItem*,int)));
 
-  QVBoxLayout *notificationLayout = new QVBoxLayout();
-  notificationLayout->addLayout(notifierLayout4);
-  notificationLayout->addLayout(notifierLayout1);
-  notificationLayout->addLayout(notifierLayout2);
-  notificationLayout->addLayout(notifierLayout3);
-  notificationLayout->addWidget(fullscreenModeNotify_);
-  notificationLayout->addWidget(onlySelectedFeeds_);
-  notificationLayout->addWidget(feedsTreeNotify_, 1);
+  QVBoxLayout *notificationLayoutV = new QVBoxLayout();
+  notificationLayoutV->setMargin(10);
+  notificationLayoutV->addLayout(notifierLayout1);
+  notificationLayoutV->addWidget(fullscreenModeNotify_);
+  notificationLayoutV->addLayout(notifierLayout2);
+  notificationLayoutV->addWidget(onlySelectedFeeds_);
+  notificationLayoutV->addWidget(feedsTreeNotify_, 1);
 
   connect(onlySelectedFeeds_, SIGNAL(toggled(bool)),
           feedsTreeNotify_, SLOT(setEnabled(bool)));
 
-  showNotifyOn_->setLayout(notificationLayout);
+  showNotifyOn_->setLayout(notificationLayoutV);
 
-  QVBoxLayout *notifierMainLayout = new QVBoxLayout();
-  notifierMainLayout->addLayout(notifierLayout0);
-  notifierMainLayout->addSpacing(5);
-  notifierMainLayout->addWidget(showNotifyOn_, 1);
+  QWidget *notificationWidget = new QWidget();
+  QVBoxLayout *notificationLayout = new QVBoxLayout(notificationWidget);
+  notificationLayout->addWidget(showNotifyOn_);
 
-  notifierWidget_ = new QFrame();
-  notifierWidget_->setFrameStyle(QFrame::StyledPanel | QFrame::Plain);
-  notifierWidget_->setLayout(notifierMainLayout);
+
+  soundNotifyBox_ = new QGroupBox(tr("Play sound for incoming new news"));
+  soundNotifyBox_->setCheckable(true);
+  soundNotifyBox_->setChecked(false);
+
+  editSoundNotifer_ = new LineEdit();
+  selectionSoundNotifer_ = new QPushButton(tr("Browse..."));
+  playSoundNotifer_ = new QPushButton(tr("Play"));
+
+  connect(selectionSoundNotifer_, SIGNAL(clicked()),
+          this, SLOT(selectionSoundNotifer()));
+  connect(playSoundNotifer_, SIGNAL(clicked()), this, SLOT(slotPlaySoundNotifer()));
+  connect(this, SIGNAL(signalPlaySound(QString)), parent(), SLOT(slotPlaySound(QString)));
+
+  QHBoxLayout *soundNotifyLayoutH = new QHBoxLayout();
+  soundNotifyLayoutH->addWidget(editSoundNotifer_, 1);
+  soundNotifyLayoutH->addWidget(selectionSoundNotifer_);
+  soundNotifyLayoutH->addWidget(playSoundNotifer_);
+
+  QVBoxLayout *soundNotifyLayout = new QVBoxLayout(soundNotifyBox_);
+  soundNotifyLayout->setMargin(10);
+  soundNotifyLayout->addLayout(soundNotifyLayoutH);
+  soundNotifyLayout->addStretch(1);
+
+  QWidget *soundNotifyWidget = new QWidget();
+  QVBoxLayout *boxCleanUpFeedsLayout = new QVBoxLayout(soundNotifyWidget);
+  boxCleanUpFeedsLayout->addWidget(soundNotifyBox_);
+
+
+  notifierWidget_ = new QTabWidget();
+  notifierWidget_->addTab(notificationWidget, tr("Notification"));
+  notifierWidget_->addTab(soundNotifyWidget, tr("Sound"));
 
   loadNotifierOk_ = false;
 }

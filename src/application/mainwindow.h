@@ -247,7 +247,9 @@ public:
 
   int openNewsTab_;
 
+  int screenNotify_;
   int positionNotify_;
+  int transparencyNotify_;
   int countShowNewsNotify_;
   int widthTitleNewsNotify_;
   int timeShowNewsNotify_;

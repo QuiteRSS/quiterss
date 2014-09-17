@@ -43,7 +43,9 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
   int fontSize;
 
   if (idFeedList.count()) {
+    screen_ = mainApp->mainWindow()->screenNotify_;
     position_ = mainApp->mainWindow()->positionNotify_;
+    transparency_ = mainApp->mainWindow()->transparencyNotify_;
     timeShowNews_ = mainApp->mainWindow()->timeShowNewsNotify_;
     numberItems = mainApp->mainWindow()->countShowNewsNotify_;
     widthList = mainApp->mainWindow()->widthTitleNewsNotify_;
@@ -51,7 +53,9 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
     fontSize = mainApp->mainWindow()->notificationFontSize_;
   } else {
     OptionsDialog *options = qobject_cast<OptionsDialog*>(parentWidget);
+    screen_ = options->screenNotify_->currentIndex();
     position_ = options->positionNotify_->currentIndex();
+    transparency_ = options->transparencyNotify_->value();
     timeShowNews_ = options->timeShowNewsNotify_->value();
     numberItems = options->countShowNewsNotify_->value();
     widthList = options->widthTitleNewsNotify_->value();
@@ -62,6 +66,15 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
       cntNewNewsList << 9;
     }
   }
+
+  int transparency = 255*transparency_/100;
+  QColor color(Qt::white);
+  int redColor = color.red()-20;
+  if (redColor < 0) redColor = 0;
+  int greenColor = color.green()-20;
+  if (greenColor < 0) greenColor = 0;
+  int blueColor = color.blue()-20;
+  if (blueColor < 0) blueColor = 0;
 
   iconTitle_ = new QLabel(this);
   iconTitle_->setPixmap(QPixmap(":/images/quiterss16"));
@@ -87,6 +100,9 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
   titlePanel_->setObjectName("titleNotification");
   titlePanel_->setLayout(titleLayout);
   titlePanel_->installEventFilter(this);
+  titlePanel_->setStyleSheet(QString("#titleNotification { background: rgba(%1, %2, %3, %4); }").
+                             arg(redColor).arg(greenColor).
+                             arg(blueColor).arg(transparency));
 
   numPage_ = new QLabel(this);
 
@@ -119,6 +135,9 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
   QWidget *bottomPanel_ = new QWidget(this);
   bottomPanel_->setObjectName("bottomNotification");
   bottomPanel_->setLayout(bottomLayout);
+  bottomPanel_->setStyleSheet(QString("#bottomNotification { background: rgba(%1, %2, %3, %4); }").
+                              arg(redColor).arg(greenColor).
+                              arg(blueColor).arg(transparency));
 
   stackedWidget_ = new QStackedWidget(this);
 
@@ -133,6 +152,9 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
   mainWidget->setObjectName("notificationWidget");
   mainWidget->setLayout(mainLayout);
   mainWidget->setMouseTracking(true);
+  mainWidget->setStyleSheet(QString("#notificationWidget { background: rgba(%1, %2, %3, %4); }").
+                            arg(color.red()).arg(color.green()).
+                            arg(color.blue()).arg(transparency));
 
   QVBoxLayout *layout = new QVBoxLayout();
   layout->setMargin(0);
@@ -287,20 +309,20 @@ void NotificationWidget::showEvent(QShowEvent*)
   QPoint point;
   switch(position_) {
   case 0:
-    point = QPoint(QApplication::desktop()->availableGeometry().topLeft().x()+1,
-                   QApplication::desktop()->availableGeometry().topLeft().y()+1);
+    point = QPoint(QApplication::desktop()->availableGeometry(screen_).topLeft().x()+1,
+                   QApplication::desktop()->availableGeometry(screen_).topLeft().y()+1);
     break;
   case 1:
-    point = QPoint(QApplication::desktop()->availableGeometry().topRight().x()-width()-1,
-                   QApplication::desktop()->availableGeometry().topRight().y()+1);
+    point = QPoint(QApplication::desktop()->availableGeometry(screen_).topRight().x()-width()-1,
+                   QApplication::desktop()->availableGeometry(screen_).topRight().y()+1);
     break;
   case 2:
-    point = QPoint(QApplication::desktop()->availableGeometry().bottomLeft().x()+1,
-                   QApplication::desktop()->availableGeometry().bottomLeft().y()-height()-1);
+    point = QPoint(QApplication::desktop()->availableGeometry(screen_).bottomLeft().x()+1,
+                   QApplication::desktop()->availableGeometry(screen_).bottomLeft().y()-height()-1);
     break;
   default:
-    point = QPoint(QApplication::desktop()->availableGeometry().bottomRight().x()-width()-1,
-                   QApplication::desktop()->availableGeometry().bottomRight().y()-height()-1);
+    point = QPoint(QApplication::desktop()->availableGeometry(screen_).bottomRight().x()-width()-1,
+                   QApplication::desktop()->availableGeometry(screen_).bottomRight().y()-height()-1);
     break;
   }
   move(point);

@@ -2015,7 +2015,9 @@ void MainWindow::loadSettings()
   soundNewNews_ = settings.value("soundNewNews", true).toBool();
   soundNotifyPath_ = settings.value("soundNotifyPath", mainApp->soundNotifyDefaultFile()).toString();
   showNotifyOn_ = settings.value("showNotifyOn", true).toBool();
+  screenNotify_ = settings.value("screenNotify", 0).toInt();
   positionNotify_ = settings.value("positionNotify", 3).toInt();
+  transparencyNotify_ = settings.value("transparencyNotify", 60).toInt();
   countShowNewsNotify_ = settings.value("countShowNewsNotify", 10).toInt();
   widthTitleNewsNotify_ = settings.value("widthTitleNewsNotify", 300).toInt();
   timeShowNewsNotify_ = settings.value("timeShowNewsNotify", 10).toInt();
@@ -2308,7 +2310,9 @@ void MainWindow::saveSettings()
   settings.setValue("soundNewNews", soundNewNews_);
   settings.setValue("soundNotifyPath", soundNotifyPath_);
   settings.setValue("showNotifyOn", showNotifyOn_);
+  settings.setValue("screenNotify", screenNotify_);
   settings.setValue("positionNotify", positionNotify_);
+  settings.setValue("transparencyNotify", transparencyNotify_);
   settings.setValue("countShowNewsNotify", countShowNewsNotify_);
   settings.setValue("widthTitleNewsNotify", widthTitleNewsNotify_);
   settings.setValue("timeShowNewsNotify", timeShowNewsNotify_);
@@ -3344,10 +3348,12 @@ void MainWindow::showOptionDlg(int index)
   optionsDialog_->cleanUpDeleted_->setChecked(cleanUpDeleted_);
   optionsDialog_->optimizeDB_->setChecked(optimizeDB_);
 
-  optionsDialog_->soundNewNews_->setChecked(soundNewNews_);
+  optionsDialog_->soundNotifyBox_->setChecked(soundNewNews_);
   optionsDialog_->editSoundNotifer_->setText(soundNotifyPath_);
   optionsDialog_->showNotifyOn_->setChecked(showNotifyOn_);
+  optionsDialog_->screenNotify_->setCurrentIndex(screenNotify_);
   optionsDialog_->positionNotify_->setCurrentIndex(positionNotify_);
+  optionsDialog_->transparencyNotify_->setValue(transparencyNotify_);
   optionsDialog_->countShowNewsNotify_->setValue(countShowNewsNotify_);
   optionsDialog_->widthTitleNewsNotify_->setValue(widthTitleNewsNotify_);
   optionsDialog_->timeShowNewsNotify_->setValue(timeShowNewsNotify_);
@@ -3758,10 +3764,12 @@ void MainWindow::showOptionDlg(int index)
   cleanUpDeleted_ = optionsDialog_->cleanUpDeleted_->isChecked();
   optimizeDB_ = optionsDialog_->optimizeDB_->isChecked();
 
-  soundNewNews_ = optionsDialog_->soundNewNews_->isChecked();
+  soundNewNews_ = optionsDialog_->soundNotifyBox_->isChecked();
   soundNotifyPath_ = optionsDialog_->editSoundNotifer_->text();
   showNotifyOn_ = optionsDialog_->showNotifyOn_->isChecked();
+  screenNotify_ = optionsDialog_->screenNotify_->currentIndex();
   positionNotify_ = optionsDialog_->positionNotify_->currentIndex();
+  transparencyNotify_ = optionsDialog_->transparencyNotify_->value();
   countShowNewsNotify_ = optionsDialog_->countShowNewsNotify_->value();
   widthTitleNewsNotify_ = optionsDialog_->widthTitleNewsNotify_->value();
   timeShowNewsNotify_ = optionsDialog_->timeShowNewsNotify_->value();

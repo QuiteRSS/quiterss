@@ -161,13 +161,15 @@ public:
   QTreeWidget *labelsTree_;
 
   // nitifier
-  QCheckBox *soundNewNews_;
+  QGroupBox *soundNotifyBox_;
   QLineEdit *editSoundNotifer_;
   QPushButton *selectionSoundNotifer_;
   QPushButton *playSoundNotifer_;
 
   QGroupBox *showNotifyOn_;
+  QComboBox *screenNotify_;
   QComboBox *positionNotify_;
+  QSpinBox *transparencyNotify_;
   QSpinBox *countShowNewsNotify_;
   QSpinBox *timeShowNewsNotify_;
   QSpinBox *widthTitleNewsNotify_;
@@ -264,7 +266,7 @@ private:
   QTabWidget *browserWidget_;
   QTabWidget *feedsWidget_;
   QWidget *labelsWidget_;
-  QFrame *notifierWidget_;
+  QTabWidget *notifierWidget_;
   QWidget *passwordsWidget_;
   QWidget *languageWidget_;
   QTabWidget *fontsColorsWidget_;
