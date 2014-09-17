@@ -309,20 +309,20 @@ void NotificationWidget::showEvent(QShowEvent*)
   QPoint point;
   switch(position_) {
   case 0:
-    point = QPoint(QApplication::desktop()->availableGeometry(screen_).topLeft().x()+1,
-                   QApplication::desktop()->availableGeometry(screen_).topLeft().y()+1);
+    point = QPoint(QApplication::desktop()->availableGeometry(screen_).topLeft().x(),
+                   QApplication::desktop()->availableGeometry(screen_).topLeft().y());
     break;
   case 1:
-    point = QPoint(QApplication::desktop()->availableGeometry(screen_).topRight().x()-width()-1,
-                   QApplication::desktop()->availableGeometry(screen_).topRight().y()+1);
+    point = QPoint(QApplication::desktop()->availableGeometry(screen_).topRight().x()-width(),
+                   QApplication::desktop()->availableGeometry(screen_).topRight().y());
     break;
   case 2:
-    point = QPoint(QApplication::desktop()->availableGeometry(screen_).bottomLeft().x()+1,
-                   QApplication::desktop()->availableGeometry(screen_).bottomLeft().y()-height()-1);
+    point = QPoint(QApplication::desktop()->availableGeometry(screen_).bottomLeft().x(),
+                   QApplication::desktop()->availableGeometry(screen_).bottomLeft().y()-height());
     break;
   default:
-    point = QPoint(QApplication::desktop()->availableGeometry(screen_).bottomRight().x()-width()-1,
-                   QApplication::desktop()->availableGeometry(screen_).bottomRight().y()-height()-1);
+    point = QPoint(QApplication::desktop()->availableGeometry(screen_).bottomRight().x()-width(),
+                   QApplication::desktop()->availableGeometry(screen_).bottomRight().y()-height());
     break;
   }
   move(point);
