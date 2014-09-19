@@ -241,26 +241,17 @@ QMainWindow::separator {
 }
 
 #notificationWidget {
-	background: #ffffff;
 	border: 1px solid #7070c8;
 	border-radius: 8px;
 }
 
 #titleNotification {
-	background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
-										stop:0 #e0e0ee,
-										stop:0.4 #d8d8ee,
-										stop:1 #e0e0ee);
 	border-bottom: 1px solid #ccccee;
 	border-top-left-radius: 8px;
 	border-top-right-radius: 8px;
 }
 
 #bottomNotification {
-	background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
-										stop:0 #e0e0ee,
-										stop:0.6 #d8d8ee,
-										stop:1 #e0e0ee);
 	border-top: 1px solid #ccccee;
 	border-bottom-left-radius: 8px;
 	border-bottom-right-radius: 8px;

@@ -86,26 +86,17 @@ QMainWindow::separator {
 }
 
 #notificationWidget {
-	background: #ffffff;
 	border: 1px solid #c0c0c0;
 	border-radius: 8px;
 }
 
 #titleNotification {
-	background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
-										stop:0 #f0f0f0,
-										stop:0.4 #e5e5e5,
-										stop:1 #f0f0f0);
 	border-bottom: 1px solid #e0e0e0;
 	border-top-left-radius: 8px;
 	border-top-right-radius: 8px;
 }
 
 #bottomNotification {
-	background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
-										stop:0 #f0f0f0,
-										stop:0.6 #e5e5e5,
-										stop:1 #f0f0f0);
 	border-top: 1px solid #e0e0e0;
 	border-bottom-left-radius: 8px;
 	border-bottom-right-radius: 8px;

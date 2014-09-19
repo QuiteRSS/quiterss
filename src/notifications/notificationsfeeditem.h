@@ -33,7 +33,8 @@ public:
 
   void setIcon(const QPixmap &icon);
   void setTitle(const QString &text, int cntNews);
-  void setFontTitle(const QFont & font);
+  void setFontTitle(const QFont &font);
+  void setColorText(const QColor &color);
 
 private:
   QLabel *iconLabel_;

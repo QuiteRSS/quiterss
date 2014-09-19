@@ -65,22 +65,25 @@ NewsItem::~NewsItem()
 
 }
 
-void NewsItem::setText(const QString &text) {
+void NewsItem::setText(const QString &text)
+{
   QString titleStr = textLabel_->fontMetrics().elidedText(
         text, Qt::ElideRight, textLabel_->sizeHint().width());
   textLabel_->setText(titleStr);
   textLabel_->setToolTip(text);
 }
 
-void NewsItem::setFontText(const QFont & font) {
+void NewsItem::setFontText(const QFont & font)
+{
   textLabel_->setFont(font);
 }
 
-void NewsItem::setColorText(const QString &color) {
+void NewsItem::setColorText(const QString &color, const QString &linkColor)
+{
   textLabel_->setStyleSheet(QString(
-                              "QLabel:hover {color: #1155CC;}"
-                              "QLabel {color: %1;}").
-                            arg(color));
+                              "QLabel {color: %1;}"
+                              "QLabel:hover {color: %2;}").
+                            arg(color).arg(linkColor));
 }
 
 bool NewsItem::eventFilter(QObject *obj, QEvent *event)

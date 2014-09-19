@@ -2170,6 +2170,8 @@ void MainWindow::loadSettings()
   feedsTreeModel_->focusedFeedBGColor_ = settings.value("focusedFeedBGColor", "").toString();
   feedsTreeModel_->feedDisabledUpdateColor_ = settings.value("feedDisabledUpdateColor", "#999999").toString();
   alternatingRowColors_ = settings.value("alternatingRowColors", qApp->palette().color(QPalette::AlternateBase).name()).toString();
+  notifierTextColor_ = settings.value("notifierTextColor", windowTextColor).toString();
+  notifierBackgroundColor_ = settings.value("notifierBackgroundColor", "#FFFFFF").toString();
   settings.endGroup();
 
   resize(800, 600);
@@ -2378,6 +2380,8 @@ void MainWindow::saveSettings()
   settings.setValue("focusedFeedBGColor", feedsTreeModel_->focusedFeedBGColor_);
   settings.setValue("feedDisabledUpdateColor", feedsTreeModel_->feedDisabledUpdateColor_);
   settings.setValue("alternatingRowColors", alternatingRowColors_);
+  settings.setValue("notifierTextColor", notifierTextColor_);
+  settings.setValue("notifierBackgroundColor", notifierBackgroundColor_);
   settings.endGroup();
 
   settings.setValue("GeometryState", saveGeometry());
@@ -3490,6 +3494,13 @@ void MainWindow::showOptionDlg(int index)
   optionsDialog_->colorsTree_->topLevelItem(20)->setIcon(0, pixmapColor);
   optionsDialog_->colorsTree_->topLevelItem(20)->setText(1, alternatingRowColors_);
 
+  pixmapColor.fill(notifierTextColor_);
+  optionsDialog_->colorsTree_->topLevelItem(21)->setIcon(0, pixmapColor);
+  optionsDialog_->colorsTree_->topLevelItem(21)->setText(1, notifierTextColor_);
+  pixmapColor.fill(notifierBackgroundColor_);
+  optionsDialog_->colorsTree_->topLevelItem(22)->setIcon(0, pixmapColor);
+  optionsDialog_->colorsTree_->topLevelItem(22)->setText(1, notifierBackgroundColor_);
+
   NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(TAB_WIDGET_PERMANENT);
   backWebPageAct_->setText(widget->webView_->page()->action(QWebPage::Back)->text());
   backWebPageAct_->setToolTip(widget->webView_->page()->action(QWebPage::Back)->toolTip() + " " + tr("(Browser)"));
@@ -3863,6 +3874,8 @@ void MainWindow::showOptionDlg(int index)
   feedsTreeModel_->focusedFeedBGColor_ = optionsDialog_->colorsTree_->topLevelItem(18)->text(1);
   feedsTreeModel_->feedDisabledUpdateColor_ = optionsDialog_->colorsTree_->topLevelItem(19)->text(1);
   alternatingRowColors_ = optionsDialog_->colorsTree_->topLevelItem(20)->text(1);
+  notifierTextColor_ = optionsDialog_->colorsTree_->topLevelItem(21)->text(1);
+  notifierBackgroundColor_ = optionsDialog_->colorsTree_->topLevelItem(22)->text(1);
 
   delete optionsDialog_;
   optionsDialog_ = NULL;

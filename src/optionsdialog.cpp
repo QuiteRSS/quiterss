@@ -1641,6 +1641,12 @@ void OptionsDialog::createFontsColorsWidget()
   treeItem.clear();
   treeItem << tr("Alternating row colors");
   colorsTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
+  treeItem.clear();
+  treeItem << tr("Notification text color");
+  colorsTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
+  treeItem.clear();
+  treeItem << tr("Notification background color");
+  colorsTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
 
   colorsTree_->setCurrentItem(colorsTree_->topLevelItem(0));
 
@@ -1963,7 +1969,7 @@ void OptionsDialog::slotColorReset()
   case 10:
     colorName = "#000000";
     break;
-  case 11: case 12:
+  case 11: case 12: case 22:
     colorName = "#FFFFFF";
     break;
   case 13: case 14:

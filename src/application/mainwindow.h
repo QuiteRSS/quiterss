@@ -203,6 +203,8 @@ public:
   QString newsTitleBackgroundColor_;
   QString newsBackgroundColor_;
   QString alternatingRowColors_;
+  QString notifierTextColor_;
+  QString notifierBackgroundColor_;
   QString formatDate_;
   QString formatTime_;
 

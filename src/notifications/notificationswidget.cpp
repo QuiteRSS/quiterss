@@ -41,6 +41,9 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
   int widthList;
   QString fontFamily;
   int fontSize;
+  QString textColor;
+  QString backgroundColor;
+  QString linkColor;
 
   if (idFeedList.count()) {
     screen_ = mainApp->mainWindow()->screenNotify_;
@@ -51,6 +54,9 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
     widthList = mainApp->mainWindow()->widthTitleNewsNotify_;
     fontFamily = mainApp->mainWindow()->notificationFontFamily_;
     fontSize = mainApp->mainWindow()->notificationFontSize_;
+    textColor = mainApp->mainWindow()->notifierTextColor_;
+    backgroundColor = mainApp->mainWindow()->notifierBackgroundColor_;
+    linkColor = mainApp->mainWindow()->linkColor_;
   } else {
     OptionsDialog *options = qobject_cast<OptionsDialog*>(parentWidget);
     screen_ = options->screenNotify_->currentIndex();
@@ -61,6 +67,9 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
     widthList = options->widthTitleNewsNotify_->value();
     fontFamily = options->fontsTree_->topLevelItem(4)->text(2).section(", ", 0, 0);
     fontSize = options->fontsTree_->topLevelItem(4)->text(2).section(", ", 1).toInt();
+    textColor = options->colorsTree_->topLevelItem(21)->text(1);
+    backgroundColor = options->colorsTree_->topLevelItem(22)->text(1);
+    linkColor = options->colorsTree_->topLevelItem(6)->text(1);
 
     for (int i = 0; i < 10; i++) {
       cntNewNewsList << 9;
@@ -68,7 +77,7 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
   }
 
   int transparency = 255*transparency_/100;
-  QColor color(Qt::white);
+  QColor color(backgroundColor);
   int redColor = color.red()-20;
   if (redColor < 0) redColor = 0;
   int greenColor = color.green()-20;
@@ -89,7 +98,7 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
         "image: url(:/images/closeHover); }");
 
   QHBoxLayout *titleLayout = new QHBoxLayout();
-  titleLayout->setMargin(5);
+  titleLayout->setMargin(4);
   titleLayout->setSpacing(5);
   titleLayout->addWidget(iconTitle_);
   titleLayout->addWidget(textTitle_, 1);
@@ -142,7 +151,7 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
   stackedWidget_ = new QStackedWidget(this);
 
   QVBoxLayout *mainLayout = new QVBoxLayout();
-  mainLayout->setMargin(2);
+  mainLayout->setMargin(1);
   mainLayout->setSpacing(0);
   mainLayout->addWidget(titlePanel_);
   mainLayout->addWidget(stackedWidget_);
@@ -200,6 +209,7 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
       FeedItem *feedItem = new FeedItem(widthList, this);
       feedItem->setIcon(icon);
       feedItem->setFontTitle(QFont(fontFamily, fontSize, -1, true));
+      feedItem->setColorText(textColor);
       feedItem->setTitle(titleFeed, cntNewNewsList[i]);
       pageLayout_->addWidget(feedItem);
 
@@ -218,6 +228,7 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
           FeedItem *feedItem = new FeedItem(widthList, this);
           feedItem->setIcon(icon);
           feedItem->setFontTitle(QFont(fontFamily, fontSize, -1, true));
+          feedItem->setColorText(textColor);
           feedItem->setTitle(titleFeed, cntNewNewsList[i]);
           pageLayout_->addWidget(feedItem);
         } else countItems++;
@@ -229,7 +240,9 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
         newsItem->setText(q.value(1).toString());
         int index = idColorList.indexOf(idNews);
         if (index != -1)
-          newsItem->setColorText(colorList.at(index));
+          newsItem->setColorText(colorList.at(index), linkColor);
+        else
+          newsItem->setColorText(textColor, linkColor);
         pageLayout_->addWidget(newsItem);
 
         connect(newsItem, SIGNAL(signalMarkRead(int, int, int)),
@@ -255,6 +268,7 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
       FeedItem *feedItem = new FeedItem(widthList, this);
       feedItem->setIcon(QPixmap(":/images/feed"));
       feedItem->setFontTitle(QFont(fontFamily, fontSize, -1, true));
+      feedItem->setColorText(textColor);
       feedItem->setTitle(QString("Title Feed %1").arg(i+1), 9);
       pageLayout_->addWidget(feedItem);
 
@@ -266,12 +280,14 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
           FeedItem *feedItem = new FeedItem(widthList, this);
           feedItem->setIcon(QPixmap(":/images/feed"));
           feedItem->setFontTitle(QFont(fontFamily, fontSize, -1, true));
+          feedItem->setColorText(textColor);
           feedItem->setTitle(QString("Title Feed %1").arg(i+1), 9);
           pageLayout_->addWidget(feedItem);
         } else countItems++;
 
         NewsItem *newsItem = new NewsItem(0, 0, widthList, this);
         newsItem->setFontText(QFont(fontFamily, fontSize, QFont::Bold));
+        newsItem->setColorText(textColor, linkColor);
         newsItem->setText("Test News Test News Test News Test News Test News");
         pageLayout_->addWidget(newsItem);
       }

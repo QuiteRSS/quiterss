@@ -36,7 +36,7 @@ public:
 
   void setText(const QString &text);
   void setFontText(const QFont & font);
-  void setColorText(const QString &color);
+  void setColorText(const QString &color, const QString &linkColor);
 
 signals:
   void signalOpenExternalBrowser(const QUrl &url);
