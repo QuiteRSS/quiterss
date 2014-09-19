@@ -694,6 +694,7 @@ private:
   bool playSoundNewNews_;
   bool showNotifyOn_;
   bool fullscreenModeNotify_;
+  bool showNotifyInactiveApp_;
   bool onlySelectedFeeds_;
 
   UpdateAppDialog *updateAppDialog_;

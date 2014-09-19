@@ -1076,6 +1076,7 @@ void OptionsDialog::createNotifierWidget()
 #if !defined(Q_OS_WIN)
   fullscreenModeNotify_->hide();
 #endif
+  showNotifyInactiveApp_ = new QCheckBox(tr("Show when inactive main window"));
 
   transparencyNotify_ = new QSpinBox();
   transparencyNotify_->setRange(0, 100);
@@ -1084,7 +1085,7 @@ void OptionsDialog::createNotifierWidget()
   widthTitleNewsNotify_ = new QSpinBox();
   widthTitleNewsNotify_->setRange(50, 500);
   timeShowNewsNotify_ = new QSpinBox();
-  timeShowNewsNotify_->setRange(0, 999);
+  timeShowNewsNotify_->setRange(0, 99999);
 
   QPushButton *showNotifer = new QPushButton(tr("Review"));
   connect(showNotifer, SIGNAL(clicked()), this, SLOT(showNotification()));
@@ -1140,6 +1141,7 @@ void OptionsDialog::createNotifierWidget()
   notificationLayoutV->setMargin(10);
   notificationLayoutV->addLayout(notifierLayout1);
   notificationLayoutV->addWidget(fullscreenModeNotify_);
+  notificationLayoutV->addWidget(showNotifyInactiveApp_);
   notificationLayoutV->addLayout(notifierLayout2);
   notificationLayoutV->addWidget(onlySelectedFeeds_);
   notificationLayoutV->addWidget(feedsTreeNotify_, 1);

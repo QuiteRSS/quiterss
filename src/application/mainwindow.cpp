@@ -2022,6 +2022,7 @@ void MainWindow::loadSettings()
   widthTitleNewsNotify_ = settings.value("widthTitleNewsNotify", 300).toInt();
   timeShowNewsNotify_ = settings.value("timeShowNewsNotify", 10).toInt();
   fullscreenModeNotify_ = settings.value("fullscreenModeNotify", true).toBool();
+  showNotifyInactiveApp_ = settings.value("showNotifyInactiveApp", true).toBool();
   onlySelectedFeeds_ = settings.value("onlySelectedFeeds", false).toBool();
 
   toolBarLockAct_->setChecked(settings.value("mainToolbarLock", true).toBool());
@@ -2319,6 +2320,7 @@ void MainWindow::saveSettings()
   settings.setValue("widthTitleNewsNotify", widthTitleNewsNotify_);
   settings.setValue("timeShowNewsNotify", timeShowNewsNotify_);
   settings.setValue("fullscreenModeNotify", fullscreenModeNotify_);
+  settings.setValue("showNotifyInactiveApp", showNotifyInactiveApp_);
   settings.setValue("onlySelectedFeeds", onlySelectedFeeds_);
 
   settings.setValue("mainToolbarLock", toolBarLockAct_->isChecked());
@@ -2994,7 +2996,10 @@ void MainWindow::slotUpdateFeed(int feedId, bool changed, int newCount, bool fin
     emit signalPlaySoundNewNews();
 
   // Manage notifications
-  if (isActiveWindow()) {
+  bool showNotify = true;
+  if (showNotifyInactiveApp_)
+    showNotify = !isActiveWindow();
+  if (!showNotify) {
     clearNotification();
   } else if (newCount > 0) {
     int feedIdIndex = idFeedList_.indexOf(feedId);
@@ -3362,6 +3367,7 @@ void MainWindow::showOptionDlg(int index)
   optionsDialog_->widthTitleNewsNotify_->setValue(widthTitleNewsNotify_);
   optionsDialog_->timeShowNewsNotify_->setValue(timeShowNewsNotify_);
   optionsDialog_->fullscreenModeNotify_->setChecked(fullscreenModeNotify_);
+  optionsDialog_->showNotifyInactiveApp_->setChecked(showNotifyInactiveApp_);
   optionsDialog_->onlySelectedFeeds_->setChecked(onlySelectedFeeds_);
 
   optionsDialog_->setLanguage(langFileName_);
@@ -3785,6 +3791,7 @@ void MainWindow::showOptionDlg(int index)
   widthTitleNewsNotify_ = optionsDialog_->widthTitleNewsNotify_->value();
   timeShowNewsNotify_ = optionsDialog_->timeShowNewsNotify_->value();
   fullscreenModeNotify_ = optionsDialog_->fullscreenModeNotify_->isChecked();
+  showNotifyInactiveApp_ = optionsDialog_->showNotifyInactiveApp_->isChecked();
   onlySelectedFeeds_ = optionsDialog_->onlySelectedFeeds_->isChecked();
 
   langFileName_ = optionsDialog_->language();
@@ -6422,7 +6429,10 @@ void MainWindow::showNotification()
   Settings settings;
   settings.setValue("Flags/updatingFeeds", false);
 
-  if (idFeedList_.isEmpty() || isActiveWindow() || !showNotifyOn_) {
+  bool showNotify = true;
+  if (showNotifyInactiveApp_)
+    showNotify = !isActiveWindow();
+  if (idFeedList_.isEmpty() || !showNotify || !showNotifyOn_) {
     clearNotification();
     return;
   }
