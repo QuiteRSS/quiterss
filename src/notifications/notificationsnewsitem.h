@@ -38,6 +38,11 @@ public:
   void setFontText(const QFont & font);
   void setColorText(const QString &color, const QString &linkColor);
 
+  QLabel *iconLabel_;
+  ToolButton *readButton_;
+  ToolButton *openExternalBrowserButton_;
+  ToolButton *deleteButton_;
+
 signals:
   void signalOpenExternalBrowser(const QUrl &url);
   void signalMarkRead(int feedId, int newsId, int read);
@@ -56,8 +61,8 @@ private:
   int feedId_;
   int newsId_;
   bool read_;
+
   QLabel *textLabel_;
-  ToolButton *readButton_;
 
 };
 

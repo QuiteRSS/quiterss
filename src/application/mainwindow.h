@@ -255,6 +255,12 @@ public:
   int countShowNewsNotify_;
   int widthTitleNewsNotify_;
   int timeShowNewsNotify_;
+  bool showTitlesFeedsNotify_;
+  bool showIconFeedNotify_;
+  bool showButtonMarkAllNotify_;
+  bool showButtonMarkReadNotify_;
+  bool showButtonExBrowserNotify_;
+  bool showButtonDeleteNotify_;
   QList<int> idFeedsNotifyList_;
 
   AdBlockIcon *adBlockIcon() { return adblockIcon_; }

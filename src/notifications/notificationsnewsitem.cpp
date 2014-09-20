@@ -24,6 +24,10 @@ NewsItem::NewsItem(int idFeed, int idNews, int width, QWidget * parent)
   , read_(false)
 {
   setCursor(Qt::PointingHandCursor);
+  setMinimumHeight(17);
+
+  iconLabel_ = new QLabel(this);
+  iconLabel_->setFixedWidth(19);
 
   textLabel_ = new QLabel(this);
   textLabel_->setFixedWidth(width);
@@ -34,28 +38,29 @@ NewsItem::NewsItem(int idFeed, int idNews, int width, QWidget * parent)
   readButton_->setToolTip(tr("Mark Read/Unread"));
   readButton_->setAutoRaise(true);
 
-  ToolButton *openExternalBrowserButton = new ToolButton(this);
-  openExternalBrowserButton->setIcon(QIcon(":/images/openBrowser"));
-  openExternalBrowserButton->setAutoRaise(true);
+  openExternalBrowserButton_ = new ToolButton(this);
+  openExternalBrowserButton_->setIcon(QIcon(":/images/openBrowser"));
+  openExternalBrowserButton_->setAutoRaise(true);
 
-  ToolButton *deleteButton = new ToolButton(this);
-  deleteButton->setIcon(QIcon(":/images/editClear"));
-  deleteButton->setToolTip(tr("Delete News"));
-  deleteButton->setAutoRaise(true);
+  deleteButton_ = new ToolButton(this);
+  deleteButton_->setIcon(QIcon(":/images/editClear"));
+  deleteButton_->setToolTip(tr("Delete News"));
+  deleteButton_->setAutoRaise(true);
 
   QHBoxLayout *mainLayout = new QHBoxLayout();
   mainLayout->setMargin(0);
   mainLayout->setSpacing(1);
   mainLayout->addWidget(readButton_);
-  mainLayout->addWidget(textLabel_);
-  mainLayout->addStretch();
-  mainLayout->addWidget(openExternalBrowserButton);
-  mainLayout->addWidget(deleteButton);
+  mainLayout->addWidget(iconLabel_);
+  mainLayout->addWidget(textLabel_, 1);
+  mainLayout->addStretch(0);
+  mainLayout->addWidget(openExternalBrowserButton_);
+  mainLayout->addWidget(deleteButton_);
   setLayout(mainLayout);
 
   connect(readButton_, SIGNAL(clicked()), this, SLOT(markRead()));
-  connect(openExternalBrowserButton, SIGNAL(clicked()), this, SLOT(openExternalBrowser()));
-  connect(deleteButton, SIGNAL(clicked()), this, SLOT(deleteNews()));
+  connect(openExternalBrowserButton_, SIGNAL(clicked()), this, SLOT(openExternalBrowser()));
+  connect(deleteButton_, SIGNAL(clicked()), this, SLOT(deleteNews()));
 
   installEventFilter(this);
 }

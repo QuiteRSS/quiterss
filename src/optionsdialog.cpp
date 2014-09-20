@@ -1114,6 +1114,23 @@ void OptionsDialog::createNotifierWidget()
   notifierLayout2->addWidget(timeShowNewsNotify_, 3, 1);
   notifierLayout2->addWidget(new QLabel(tr("seconds")), 3, 2);
 
+
+  showTitlesFeedsNotify_ = new QCheckBox(tr("Show titles feeds"));
+  showIconFeedNotify_ = new QCheckBox(tr("Show icon feed"));
+  showButtonMarkAllNotify_ = new QCheckBox(tr("Show button 'Mark All News Read'"));
+  showButtonMarkReadNotify_ = new QCheckBox(tr("Show button 'Mark Read/Unread'"));
+  showButtonExBrowserNotify_ = new QCheckBox(tr("Show button 'Open in External Browser'"));
+  showButtonDeleteNotify_ = new QCheckBox(tr("Show button 'Delete News'"));
+
+  QVBoxLayout *notifierLayout3 = new QVBoxLayout();
+  notifierLayout3->addWidget(showTitlesFeedsNotify_);
+  notifierLayout3->addWidget(showIconFeedNotify_);
+  notifierLayout3->addWidget(showButtonMarkAllNotify_);
+  notifierLayout3->addWidget(showButtonMarkReadNotify_);
+  notifierLayout3->addWidget(showButtonExBrowserNotify_);
+  notifierLayout3->addWidget(showButtonDeleteNotify_);
+
+
   onlySelectedFeeds_ = new QCheckBox(tr("Only show selected feeds:"));
   QPushButton *feedsNotiferButton = new QPushButton(tr("Feeds"));
   feedsNotiferButton->setEnabled(false);
@@ -1135,7 +1152,11 @@ void OptionsDialog::createNotifierWidget()
   notificationLayoutV->addLayout(notifierLayout1);
   notificationLayoutV->addWidget(fullscreenModeNotify_);
   notificationLayoutV->addWidget(showNotifyInactiveApp_);
+  notificationLayoutV->addSpacing(10);
   notificationLayoutV->addLayout(notifierLayout2);
+  notificationLayoutV->addSpacing(10);
+  notificationLayoutV->addLayout(notifierLayout3);
+  notificationLayoutV->addSpacing(10);
   notificationLayoutV->addLayout(onlySelectedFeedsLayout);
   notificationLayoutV->addStretch(1);
 

@@ -174,6 +174,13 @@ public:
   QSpinBox *timeShowNewsNotify_;
   QSpinBox *widthTitleNewsNotify_;
 
+  QCheckBox *showTitlesFeedsNotify_;
+  QCheckBox *showIconFeedNotify_;
+  QCheckBox *showButtonMarkAllNotify_;
+  QCheckBox *showButtonMarkReadNotify_;
+  QCheckBox *showButtonExBrowserNotify_;
+  QCheckBox *showButtonDeleteNotify_;
+
   QCheckBox *fullscreenModeNotify_;
   QCheckBox *showNotifyInactiveApp_;
   QCheckBox *onlySelectedFeeds_;

@@ -44,6 +44,12 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
   QString textColor;
   QString backgroundColor;
   QString linkColor;
+  bool showTitlesFeedsNotify;
+  bool showIconFeedNotify;
+  bool showButtonMarkAllNotify;
+  bool showButtonMarkReadNotify;
+  bool showButtonExBrowserNotify;
+  bool showButtonDeleteNotify;
 
   if (idFeedList.count()) {
     screen_ = mainApp->mainWindow()->screenNotify_;
@@ -57,6 +63,13 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
     textColor = mainApp->mainWindow()->notifierTextColor_;
     backgroundColor = mainApp->mainWindow()->notifierBackgroundColor_;
     linkColor = mainApp->mainWindow()->linkColor_;
+
+    showTitlesFeedsNotify = mainApp->mainWindow()->showTitlesFeedsNotify_;
+    showIconFeedNotify = mainApp->mainWindow()->showIconFeedNotify_;
+    showButtonMarkAllNotify = mainApp->mainWindow()->showButtonMarkAllNotify_;
+    showButtonMarkReadNotify = mainApp->mainWindow()->showButtonMarkReadNotify_;
+    showButtonExBrowserNotify = mainApp->mainWindow()->showButtonExBrowserNotify_;
+    showButtonDeleteNotify = mainApp->mainWindow()->showButtonDeleteNotify_;
   } else {
     OptionsDialog *options = qobject_cast<OptionsDialog*>(parentWidget);
     screen_ = options->screenNotify_->currentIndex();
@@ -70,6 +83,13 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
     textColor = options->colorsTree_->topLevelItem(21)->text(1);
     backgroundColor = options->colorsTree_->topLevelItem(22)->text(1);
     linkColor = options->colorsTree_->topLevelItem(6)->text(1);
+
+    showTitlesFeedsNotify = options->showTitlesFeedsNotify_->isChecked();
+    showIconFeedNotify = options->showIconFeedNotify_->isChecked();
+    showButtonMarkAllNotify = options->showButtonMarkAllNotify_->isChecked();
+    showButtonMarkReadNotify = options->showButtonMarkReadNotify_->isChecked();
+    showButtonExBrowserNotify = options->showButtonExBrowserNotify_->isChecked();
+    showButtonDeleteNotify = options->showButtonDeleteNotify_->isChecked();
 
     for (int i = 0; i < 10; i++) {
       cntNewNewsList << 9;
@@ -135,8 +155,10 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
   bottomLayout->addSpacing(3);
   bottomLayout->addWidget(numPage_);
   bottomLayout->addStretch(1);
-  bottomLayout->addWidget(markAllReadButton_);
-  bottomLayout->addSpacing(5);
+  if (showButtonMarkAllNotify) {
+    bottomLayout->addWidget(markAllReadButton_);
+    bottomLayout->addSpacing(5);
+  }
   bottomLayout->addWidget(prevButton_);
   bottomLayout->addWidget(nextButton_);
   bottomLayout->addSpacing(3);
@@ -183,14 +205,16 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
 
   if (!idFeedList.isEmpty()) {
     QSqlQuery q;
+    QString qStr;
+    QString titleFeed;
+    QPixmap icon;
     int countItems = 0;
     for (int i = 0; i < idFeedList.count(); i++) {
       int idFeed = idFeedList[i];
-      QString qStr = QString("SELECT text, image FROM feeds WHERE id=='%1'").
+
+      qStr = QString("SELECT text, image FROM feeds WHERE id=='%1'").
           arg(idFeed);
       q.exec(qStr);
-      QString titleFeed;
-      QPixmap icon;
       if (q.next()) {
         titleFeed = q.value(0).toString();
         QByteArray byteArray = q.value(1).toByteArray();
@@ -201,17 +225,19 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
         }
       }
 
-      if (countItems >= (numberItems - 1)) {
-        countItems = 1;
-        addPage();
-      } else countItems++;
+      if (showTitlesFeedsNotify) {
+        if (countItems >= (numberItems - 1)) {
+          countItems = 1;
+          addPage();
+        } else countItems++;
 
-      FeedItem *feedItem = new FeedItem(widthList, this);
-      feedItem->setIcon(icon);
-      feedItem->setFontTitle(QFont(fontFamily, fontSize, -1, true));
-      feedItem->setColorText(textColor);
-      feedItem->setTitle(titleFeed, cntNewNewsList[i]);
-      pageLayout_->addWidget(feedItem);
+        FeedItem *feedItem = new FeedItem(widthList, this);
+        feedItem->setIcon(icon);
+        feedItem->setFontTitle(QFont(fontFamily, fontSize, -1, true));
+        feedItem->setColorText(textColor);
+        feedItem->setTitle(titleFeed, cntNewNewsList[i]);
+        pageLayout_->addWidget(feedItem);
+      }
 
       int cntNewNews = 0;
       qStr = QString("SELECT id, title FROM news WHERE new=1 AND feedId=='%1'").
@@ -222,15 +248,19 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
         else cntNewNews++;
 
         if (countItems >= numberItems) {
-          countItems = 2;
           addPage();
+          if (showTitlesFeedsNotify) {
+            countItems = 2;
 
-          FeedItem *feedItem = new FeedItem(widthList, this);
-          feedItem->setIcon(icon);
-          feedItem->setFontTitle(QFont(fontFamily, fontSize, -1, true));
-          feedItem->setColorText(textColor);
-          feedItem->setTitle(titleFeed, cntNewNewsList[i]);
-          pageLayout_->addWidget(feedItem);
+            FeedItem *feedItem = new FeedItem(widthList, this);
+            feedItem->setIcon(icon);
+            feedItem->setFontTitle(QFont(fontFamily, fontSize, -1, true));
+            feedItem->setColorText(textColor);
+            feedItem->setTitle(titleFeed, cntNewNewsList[i]);
+            pageLayout_->addWidget(feedItem);
+          } else {
+            countItems = 1;
+          }
         } else countItems++;
 
         int idNews = q.value(0).toInt();
@@ -243,6 +273,12 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
           newsItem->setColorText(colorList.at(index), linkColor);
         else
           newsItem->setColorText(textColor, linkColor);
+        newsItem->iconLabel_->setPixmap(icon);
+        newsItem->iconLabel_->setToolTip(titleFeed);
+        newsItem->readButton_->setVisible(showButtonMarkReadNotify);
+        newsItem->iconLabel_->setVisible(showIconFeedNotify);
+        newsItem->openExternalBrowserButton_->setVisible(showButtonExBrowserNotify);
+        newsItem->deleteButton_->setVisible(showButtonDeleteNotify);
         pageLayout_->addWidget(newsItem);
 
         connect(newsItem, SIGNAL(signalMarkRead(int, int, int)),
@@ -260,35 +296,47 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
   else {
     int countItems = 0;
     for (int i = 0; i < 10; i++) {
-      if (countItems >= (numberItems - 1)) {
-        countItems = 1;
-        addPage();
-      } else countItems++;
+      if (showTitlesFeedsNotify) {
+        if (countItems >= (numberItems - 1)) {
+          countItems = 1;
+          addPage();
+        } else countItems++;
 
-      FeedItem *feedItem = new FeedItem(widthList, this);
-      feedItem->setIcon(QPixmap(":/images/feed"));
-      feedItem->setFontTitle(QFont(fontFamily, fontSize, -1, true));
-      feedItem->setColorText(textColor);
-      feedItem->setTitle(QString("Title Feed %1").arg(i+1), 9);
-      pageLayout_->addWidget(feedItem);
+        FeedItem *feedItem = new FeedItem(widthList, this);
+        feedItem->setIcon(QPixmap(":/images/feed"));
+        feedItem->setFontTitle(QFont(fontFamily, fontSize, -1, true));
+        feedItem->setColorText(textColor);
+        feedItem->setTitle(QString("Title Feed %1").arg(i+1), 9);
+        pageLayout_->addWidget(feedItem);
+      }
 
       for (int y = 0; y < cntNewNewsList.at(i); y++) {
         if (countItems >= numberItems) {
-          countItems = 2;
           addPage();
+          if (showTitlesFeedsNotify) {
+            countItems = 2;
 
-          FeedItem *feedItem = new FeedItem(widthList, this);
-          feedItem->setIcon(QPixmap(":/images/feed"));
-          feedItem->setFontTitle(QFont(fontFamily, fontSize, -1, true));
-          feedItem->setColorText(textColor);
-          feedItem->setTitle(QString("Title Feed %1").arg(i+1), 9);
-          pageLayout_->addWidget(feedItem);
+            FeedItem *feedItem = new FeedItem(widthList, this);
+            feedItem->setIcon(QPixmap(":/images/feed"));
+            feedItem->setFontTitle(QFont(fontFamily, fontSize, -1, true));
+            feedItem->setColorText(textColor);
+            feedItem->setTitle(QString("Title Feed %1").arg(i+1), 9);
+            pageLayout_->addWidget(feedItem);
+          } else {
+            countItems = 1;
+          }
         } else countItems++;
 
         NewsItem *newsItem = new NewsItem(0, 0, widthList, this);
         newsItem->setFontText(QFont(fontFamily, fontSize, QFont::Bold));
         newsItem->setColorText(textColor, linkColor);
         newsItem->setText("Test News Test News Test News Test News Test News");
+        newsItem->iconLabel_->setPixmap(QPixmap(":/images/feed"));
+        newsItem->iconLabel_->setToolTip(QString("Title Feed %1").arg(i+1));
+        newsItem->readButton_->setVisible(showButtonMarkReadNotify);
+        newsItem->iconLabel_->setVisible(showIconFeedNotify);
+        newsItem->openExternalBrowserButton_->setVisible(showButtonExBrowserNotify);
+        newsItem->deleteButton_->setVisible(showButtonDeleteNotify);
         pageLayout_->addWidget(newsItem);
       }
     }

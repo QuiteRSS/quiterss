@@ -2024,6 +2024,12 @@ void MainWindow::loadSettings()
   fullscreenModeNotify_ = settings.value("fullscreenModeNotify", true).toBool();
   showNotifyInactiveApp_ = settings.value("showNotifyInactiveApp", true).toBool();
   onlySelectedFeeds_ = settings.value("onlySelectedFeeds", false).toBool();
+  showTitlesFeedsNotify_ = settings.value("showTitlesFeedsNotify", true).toBool();
+  showIconFeedNotify_ = settings.value("showIconFeedNotify", false).toBool();
+  showButtonMarkAllNotify_ = settings.value("showButtonMarkAllNotify", true).toBool();
+  showButtonMarkReadNotify_ = settings.value("showButtonMarkReadNotify", true).toBool();
+  showButtonExBrowserNotify_ = settings.value("showButtonExBrowserNotify", true).toBool();
+  showButtonDeleteNotify_ = settings.value("showButtonDeleteNotify", true).toBool();
 
   toolBarLockAct_->setChecked(settings.value("mainToolbarLock", true).toBool());
   lockMainToolbar(toolBarLockAct_->isChecked());
@@ -2322,6 +2328,12 @@ void MainWindow::saveSettings()
   settings.setValue("fullscreenModeNotify", fullscreenModeNotify_);
   settings.setValue("showNotifyInactiveApp", showNotifyInactiveApp_);
   settings.setValue("onlySelectedFeeds", onlySelectedFeeds_);
+  settings.setValue("showTitlesFeedsNotify", showTitlesFeedsNotify_);
+  settings.setValue("showIconFeedNotify", showIconFeedNotify_);
+  settings.setValue("showButtonMarkAllNotify", showButtonMarkAllNotify_);
+  settings.setValue("showButtonMarkReadNotify", showButtonMarkReadNotify_);
+  settings.setValue("showButtonExBrowserNotify", showButtonExBrowserNotify_);
+  settings.setValue("showButtonDeleteNotify", showButtonDeleteNotify_);
 
   settings.setValue("mainToolbarLock", toolBarLockAct_->isChecked());
 
@@ -3369,6 +3381,12 @@ void MainWindow::showOptionDlg(int index)
   optionsDialog_->fullscreenModeNotify_->setChecked(fullscreenModeNotify_);
   optionsDialog_->showNotifyInactiveApp_->setChecked(showNotifyInactiveApp_);
   optionsDialog_->onlySelectedFeeds_->setChecked(onlySelectedFeeds_);
+  optionsDialog_->showTitlesFeedsNotify_->setChecked(showTitlesFeedsNotify_);
+  optionsDialog_->showIconFeedNotify_->setChecked(showIconFeedNotify_);
+  optionsDialog_->showButtonMarkAllNotify_->setChecked(showButtonMarkAllNotify_);
+  optionsDialog_->showButtonMarkReadNotify_->setChecked(showButtonMarkReadNotify_);
+  optionsDialog_->showButtonExBrowserNotify_->setChecked(showButtonExBrowserNotify_);
+  optionsDialog_->showButtonDeleteNotify_->setChecked(showButtonDeleteNotify_);
 
   optionsDialog_->setLanguage(langFileName_);
 
@@ -3793,6 +3811,12 @@ void MainWindow::showOptionDlg(int index)
   fullscreenModeNotify_ = optionsDialog_->fullscreenModeNotify_->isChecked();
   showNotifyInactiveApp_ = optionsDialog_->showNotifyInactiveApp_->isChecked();
   onlySelectedFeeds_ = optionsDialog_->onlySelectedFeeds_->isChecked();
+  showTitlesFeedsNotify_ = optionsDialog_->showTitlesFeedsNotify_->isChecked();
+  showIconFeedNotify_ = optionsDialog_->showIconFeedNotify_->isChecked();
+  showButtonMarkAllNotify_ = optionsDialog_->showButtonMarkAllNotify_->isChecked();
+  showButtonMarkReadNotify_ = optionsDialog_->showButtonMarkReadNotify_->isChecked();
+  showButtonExBrowserNotify_ = optionsDialog_->showButtonExBrowserNotify_->isChecked();
+  showButtonDeleteNotify_ = optionsDialog_->showButtonDeleteNotify_->isChecked();
 
   langFileName_ = optionsDialog_->language();
   appInstallTranslator();
