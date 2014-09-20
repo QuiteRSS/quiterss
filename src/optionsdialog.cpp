@@ -1115,27 +1115,20 @@ void OptionsDialog::createNotifierWidget()
   notifierLayout2->addWidget(new QLabel(tr("seconds")), 3, 2);
 
   onlySelectedFeeds_ = new QCheckBox(tr("Only show selected feeds:"));
+  QPushButton *feedsNotiferButton = new QPushButton(tr("Feeds"));
+  feedsNotiferButton->setEnabled(false);
 
-  feedsTreeNotify_ = new QTreeWidget(this);
-  feedsTreeNotify_->setObjectName("feedsTreeNotify_");
-  feedsTreeNotify_->setColumnCount(2);
-  feedsTreeNotify_->setColumnHidden(1, true);
-  feedsTreeNotify_->header()->hide();
-  feedsTreeNotify_->setEnabled(false);
+  QHBoxLayout *onlySelectedFeedsLayout = new QHBoxLayout();
+  onlySelectedFeedsLayout->addWidget(onlySelectedFeeds_);
+  onlySelectedFeedsLayout->addWidget(feedsNotiferButton);
+  onlySelectedFeedsLayout->addStretch(1);
 
-  itemNotChecked_ = false;
+  createFeedsNotifierDlg();
 
-  QStringList treeItem;
-  treeItem << "Feeds" << "Id";
-  feedsTreeNotify_->setHeaderLabels(treeItem);
-
-  treeItem.clear();
-  treeItem << tr("All Feeds") << "0";
-  QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(treeItem);
-  treeWidgetItem->setCheckState(0, Qt::Checked);
-  feedsTreeNotify_->addTopLevelItem(treeWidgetItem);
-  connect(feedsTreeNotify_, SIGNAL(itemChanged(QTreeWidgetItem*,int)),
-          this, SLOT(feedsTreeNotifyItemChanged(QTreeWidgetItem*,int)));
+  connect(onlySelectedFeeds_, SIGNAL(toggled(bool)),
+          feedsNotiferButton, SLOT(setEnabled(bool)));
+  connect(feedsNotiferButton, SIGNAL(clicked()),
+          feedsNotifierDlg_, SLOT(exec()));
 
   QVBoxLayout *notificationLayoutV = new QVBoxLayout();
   notificationLayoutV->setMargin(10);
@@ -1143,11 +1136,8 @@ void OptionsDialog::createNotifierWidget()
   notificationLayoutV->addWidget(fullscreenModeNotify_);
   notificationLayoutV->addWidget(showNotifyInactiveApp_);
   notificationLayoutV->addLayout(notifierLayout2);
-  notificationLayoutV->addWidget(onlySelectedFeeds_);
-  notificationLayoutV->addWidget(feedsTreeNotify_, 1);
-
-  connect(onlySelectedFeeds_, SIGNAL(toggled(bool)),
-          feedsTreeNotify_, SLOT(setEnabled(bool)));
+  notificationLayoutV->addLayout(onlySelectedFeedsLayout);
+  notificationLayoutV->addStretch(1);
 
   showNotifyOn_->setLayout(notificationLayoutV);
 
@@ -1189,6 +1179,40 @@ void OptionsDialog::createNotifierWidget()
   notifierWidget_->addTab(soundNotifyWidget, tr("Sound"));
 
   loadNotifierOk_ = false;
+}
+
+/** @brief Create dialog "Feeds" for Notifier
+ *----------------------------------------------------------------------------*/
+void OptionsDialog::createFeedsNotifierDlg()
+{
+  feedsNotifierDlg_ = new Dialog(this);
+  feedsNotifierDlg_->setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
+  feedsNotifierDlg_->setWindowTitle(tr("Selection of feeds"));
+  feedsNotifierDlg_->setMinimumSize(300, 300);
+
+  feedsTreeNotify_ = new QTreeWidget(this);
+  feedsTreeNotify_->setObjectName("feedsTreeNotify_");
+  feedsTreeNotify_->setColumnCount(2);
+  feedsTreeNotify_->setColumnHidden(1, true);
+  feedsTreeNotify_->header()->hide();
+
+  itemNotChecked_ = false;
+
+  QStringList treeItem;
+  treeItem << "Feeds" << "Id";
+  feedsTreeNotify_->setHeaderLabels(treeItem);
+
+  treeItem.clear();
+  treeItem << tr("All Feeds") << "0";
+  QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(treeItem);
+  treeWidgetItem->setCheckState(0, Qt::Checked);
+  feedsTreeNotify_->addTopLevelItem(treeWidgetItem);
+
+  feedsNotifierDlg_->pageLayout->addWidget(feedsTreeNotify_);
+  feedsNotifierDlg_->buttonBox->addButton(QDialogButtonBox::Close);
+
+  connect(feedsTreeNotify_, SIGNAL(itemChanged(QTreeWidgetItem*,int)),
+          this, SLOT(feedsTreeNotifyItemChanged(QTreeWidgetItem*,int)));
 }
 
 /** @brief Create widget "Passwords"

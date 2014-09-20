@@ -160,7 +160,7 @@ public:
   QStringList idLabels_;
   QTreeWidget *labelsTree_;
 
-  // nitifier
+  // notifier
   QGroupBox *soundNotifyBox_;
   QLineEdit *editSoundNotifer_;
   QPushButton *selectionSoundNotifer_;
@@ -179,6 +179,7 @@ public:
   QCheckBox *onlySelectedFeeds_;
   QTreeWidget *feedsTreeNotify_;
   bool itemNotChecked_;
+  Dialog *feedsNotifierDlg_;
 
   // language
   QString language();
@@ -310,6 +311,7 @@ private:
 
   // notifier
   void createNotifierWidget();
+  void createFeedsNotifierDlg();
   void loadNotifier();
   void applyNotifier();
   bool loadNotifierOk_;
