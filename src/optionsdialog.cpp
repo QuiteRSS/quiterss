@@ -324,7 +324,7 @@ void OptionsDialog::createGeneralWidget()
   generalLayout->addWidget(defaultIconFeeds_);
   generalLayout->addWidget(autocollapseFolder_);
   generalLayout->addWidget(showCloseButtonTab_);
-  generalLayout->addStretch();
+  generalLayout->addSpacing(20);
 
 #if defined(Q_OS_WIN)
   autoRunEnabled_ = new QCheckBox(tr("Run QuiteRSS at Windows startup"));
@@ -344,6 +344,7 @@ void OptionsDialog::createGeneralWidget()
   generalLayout->addWidget(statisticsEnabled_);
   generalLayout->addWidget(storeDBMemory_);
   generalLayout->addWidget(saveDBMemFileWidget);
+  generalLayout->addStretch(1);
 
   generalWidget_ = new QFrame();
   generalWidget_->setFrameStyle(QFrame::StyledPanel | QFrame::Plain);
@@ -462,7 +463,7 @@ void OptionsDialog::createNetworkConnectionsWidget()
   manualWidget_->setLayout(manualLayout);
 
   networkConnectionsLayout->addWidget(manualWidget_);
-  networkConnectionsLayout->addStretch();
+  networkConnectionsLayout->addSpacing(20);
 
   timeoutRequest_ = new QSpinBox();
   timeoutRequest_->setRange(0, 300);
@@ -483,6 +484,7 @@ void OptionsDialog::createNetworkConnectionsWidget()
 
   networkConnectionsLayout->addWidget(new QLabel(tr("Options network requests when updating feeds (requires program restart):")));
   networkConnectionsLayout->addLayout(requestLayout);
+  networkConnectionsLayout->addStretch(1);
 
   networkConnectionsWidget_ = new QFrame();
   networkConnectionsWidget_->setFrameStyle(QFrame::StyledPanel | QFrame::Plain);
