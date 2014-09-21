@@ -254,7 +254,8 @@ void RequestFeed::finished(QNetworkReply *reply)
         qDebug() << feedDate << replyDate << replyLocalDate;
         qDebug() << feedDate.toMSecsSinceEpoch() << replyDate.toMSecsSinceEpoch() << replyLocalDate.toMSecsSinceEpoch();
         if ((reply->operation() == QNetworkAccessManager::HeadOperation) &&
-            ((!feedDate.isValid()) || (!replyLocalDate.isValid()) || (feedDate < replyLocalDate))) {
+            ((!feedDate.isValid()) || (!replyLocalDate.isValid()) ||
+             (feedDate < replyLocalDate) || !replyDate.toMSecsSinceEpoch())) {
           emit signalGet(replyUrl, feedId, feedUrl, feedDate);
         }
         else {
