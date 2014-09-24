@@ -204,12 +204,12 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
   addPage(false);
 
   if (!idFeedList.isEmpty()) {
-    QSqlQuery q;
-    QString qStr;
-    QString titleFeed;
-    QPixmap icon;
     int countItems = 0;
     for (int i = 0; i < idFeedList.count(); i++) {
+      QSqlQuery q;
+      QString qStr;
+      QString titleFeed;
+      QPixmap icon;
       int idFeed = idFeedList[i];
 
       qStr = QString("SELECT text, image FROM feeds WHERE id=='%1'").
