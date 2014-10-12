@@ -5488,7 +5488,7 @@ void MainWindow::showFeedPropertiesDlg()
           feedsTreeModel_->setData(indexUpdateInterval, properties.general.updateInterval);
           feedsTreeModel_->setData(indexIntervalType, properties.general.intervalType);
 
-          if (!q.value(2).toString().isEmpty()) {
+          if (!xmlUrl.isEmpty()) {
             if (properties.general.updateEnable) {
               updateFeedsIntervalSec_.insert(id, updateInterval);
               updateFeedsTimeCount_.insert(id, 0);
@@ -5496,10 +5496,9 @@ void MainWindow::showFeedPropertiesDlg()
               updateFeedsIntervalSec_.remove(id);
               updateFeedsTimeCount_.remove(id);
             }
-          }
-
-          if (xmlUrl.isEmpty())
+          } else {
             parentIds.enqueue(id);
+          }
         }
       }
     } else {
