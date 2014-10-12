@@ -5295,6 +5295,9 @@ void MainWindow::showFeedPropertiesDlg()
     return;
   }
 
+  if (!mainApp->storeDBMemory())
+    db_.transaction();
+
   properties = feedPropertiesDialog->getFeedProperties();
   delete feedPropertiesDialog;
 
@@ -5569,6 +5572,9 @@ void MainWindow::showFeedPropertiesDlg()
       }
     }
   }
+
+  if (!mainApp->storeDBMemory())
+    db_.commit();
 }
 
 /** @brief Update tray information: icon and tooltip text
