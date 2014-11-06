@@ -153,6 +153,8 @@ bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
   Q_UNUSED(obj)
 
   if (event->type() == QEvent::Show) {
+    if (!show_)
+      adjustAllColumnsWidths(size().width()+1);
     show_ = true;
     return false;
   } else if (event->type() == QEvent::Resize) {
