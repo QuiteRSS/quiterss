@@ -99,6 +99,8 @@
         <file>images/adblock-disabled.png</file>
         <file alias="menu">images/menu.png</file>
         <file alias="backup">images/backup.png</file>
+        <file alias="layout_classic">images/layout_classic.png</file>
+        <file alias="layout_newspaper">images/layout_newspaper.png</file>
     </qresource>
     <qresource prefix="/style">
         <file alias="systemStyle">style/system.qss</file>

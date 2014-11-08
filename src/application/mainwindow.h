@@ -383,6 +383,7 @@ private slots:
   void slotTabMoved(int fromIndex, int toIndex);
   void feedsColumnVisible(QAction *action);
   void setNewsLayout(QAction *action);
+  void setNewsLayout();
   void setBrowserPosition(QAction *action);
   void slotOpenNewsWebView();
 
@@ -543,6 +544,7 @@ private:
   QAction *customizeNewsToolbarAct_;
   QAction *classicLayoutAct_;
   QAction *newspaperLayoutAct_;
+  QAction *layoutToggle_;
   QAction *systemStyle_;
   QAction *system2Style_;
   QAction *greenStyle_;

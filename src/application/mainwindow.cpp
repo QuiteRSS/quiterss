@@ -782,12 +782,20 @@ void MainWindow::createActions()
 
   classicLayoutAct_ = new QAction(this);
   classicLayoutAct_->setObjectName("classicLayoutAct_");
+  classicLayoutAct_->setIcon(QIcon(":/images/layout_classic"));
   classicLayoutAct_->setCheckable(true);
   classicLayoutAct_->setData(0);
   newspaperLayoutAct_ = new QAction(this);
   newspaperLayoutAct_->setObjectName("newspaperLayoutAct_");
+  newspaperLayoutAct_->setIcon(QIcon(":/images/layout_newspaper"));
   newspaperLayoutAct_->setCheckable(true);
   newspaperLayoutAct_->setData(1);
+  layoutToggle_ = new QAction(this);
+  layoutToggle_->setObjectName("layoutToggle");
+  layoutToggle_->setIcon(QIcon(":/images/layout_classic"));
+  this->addAction(layoutToggle_);
+  connect(layoutToggle_, SIGNAL(triggered()),
+          this, SLOT(setNewsLayout()));
 
   systemStyle_ = new QAction(this);
   systemStyle_->setObjectName("systemStyle_");
@@ -1490,6 +1498,8 @@ void MainWindow::createShortcut()
   stayOnTopAct_->setShortcut(QKeySequence(Qt::Key_F10));
   listActions_.append(stayOnTopAct_);
 
+  listActions_.append(layoutToggle_);
+
   closeTabAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_W));
   listActions_.append(closeTabAct_);
   listActions_.append(closeOtherTabsAct_);
@@ -1615,6 +1625,7 @@ void MainWindow::createMenu()
   layoutGroup_->addAction(newspaperLayoutAct_);
   layoutMenu_ = new QMenu(this);
   layoutMenu_->addActions(layoutGroup_->actions());
+  layoutToggle_->setMenu(layoutMenu_);
 
   styleGroup_ = new QActionGroup(this);
   styleGroup_->addAction(systemStyle_);
@@ -2111,8 +2122,13 @@ void MainWindow::loadSettings()
 
   newsLayout_ = settings.value("newsLayout", 0).toInt();
   switch (newsLayout_) {
-  case 1:  newspaperLayoutAct_->setChecked(true); break;
-  default: classicLayoutAct_->setChecked(true);
+  case 1:
+    newspaperLayoutAct_->setChecked(true);
+    layoutToggle_->setIcon(QIcon(":/images/layout_newspaper"));
+    break;
+  default:
+    classicLayoutAct_->setChecked(true);
+    layoutToggle_->setIcon(QIcon(":/images/layout_classic"));
   }
   connect(layoutGroup_, SIGNAL(triggered(QAction*)),
           this, SLOT(setNewsLayout(QAction*)));
@@ -4871,6 +4887,7 @@ void MainWindow::retranslateStrings()
   layoutMenu_->setTitle(tr("Layout"));
   classicLayoutAct_->setText(tr("Classic"));
   newspaperLayoutAct_->setText(tr("Newspaper"));
+  layoutToggle_->setText(tr("Layout"));
 
   styleMenu_->setTitle(tr("Application Style"));
   systemStyle_->setText(tr("System"));
@@ -6193,7 +6210,23 @@ void MainWindow::feedsColumnVisible(QAction *action)
 void MainWindow::setNewsLayout(QAction *action)
 {
   newsLayout_ = action->data().toInt();
+  switch (newsLayout_) {
+  case 1:
+    layoutToggle_->setIcon(QIcon(":/images/layout_newspaper"));
+    break;
+  default:
+    layoutToggle_->setIcon(QIcon(":/images/layout_classic"));
+  }
   currentNewsTab->setNewsLayout();
+}
+
+void MainWindow::setNewsLayout()
+{
+  if ((newsLayout_ + 1) >= layoutGroup_->actions().count())
+    layoutGroup_->actions().at(0)->setChecked(true);
+  else
+    layoutGroup_->actions().at(newsLayout_ + 1)->setChecked(true);
+  setNewsLayout(layoutGroup_->checkedAction());
 }
 
 /** @brief Set browser position
