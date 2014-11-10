@@ -1267,6 +1267,17 @@ void MainWindow::createActions()
   this->addAction(copyLinkAct_);
   connect(copyLinkAct_, SIGNAL(triggered()), this, SLOT(slotCopyLinkNews()));
 
+  pageUpWebViewAct_ = new QAction(this);
+  pageUpWebViewAct_->setObjectName("pageUpWebViewAct");
+  this->addAction(pageUpWebViewAct_);
+  connect(pageUpWebViewAct_, SIGNAL(triggered()),
+          this, SLOT(slotPageUpWebView()));
+  pageDownWebViewAct_ = new QAction(this);
+  pageDownWebViewAct_->setObjectName("pageDownWebViewAct");
+  this->addAction(pageDownWebViewAct_);
+  connect(pageDownWebViewAct_, SIGNAL(triggered()),
+          this, SLOT(slotPageDownWebView()));
+
   nextFolderAct_ = new QAction(this);
   nextFolderAct_->setObjectName("nextFolderAct");
   this->addAction(nextFolderAct_);
@@ -1523,6 +1534,8 @@ void MainWindow::createShortcut()
   listActions_.append(backWebPageAct_);
   listActions_.append(forwardWebPageAct_);
   listActions_.append(reloadWebPageAct_);
+  listActions_.append(pageUpWebViewAct_);
+  listActions_.append(pageDownWebViewAct_);
 
   listActions_.append(shareGroup_->actions());
 
@@ -4951,6 +4964,9 @@ void MainWindow::retranslateStrings()
   printPreviewAct_->setText(tr("Print Preview..."));
   printPreviewAct_->setToolTip(tr("Preview Web Page"));
 
+  pageUpWebViewAct_->setText(tr("Page up (Browser)"));
+  pageDownWebViewAct_->setText(tr("Page down (Browser)"));
+
   savePageAsAct_->setText(tr("Save As..."));
   savePageAsAct_->setToolTip(tr("Save Page As..."));
   savePageAsDescriptAct_->setText(tr("Save page in database"));
@@ -6443,7 +6459,18 @@ void MainWindow::slotShowLabelsMenu()
 {
   currentNewsTab->showLabelsMenu();
 }
+// ----------------------------------------------------------------------------
+void MainWindow::slotPageUpWebView()
+{
+  QKeyEvent *keyEvent = new QKeyEvent(QEvent::KeyPress, Qt::Key_PageUp, Qt::NoModifier);
+  QApplication::sendEvent(currentNewsTab->webView_, keyEvent);
+}
 
+void MainWindow::slotPageDownWebView()
+{
+  QKeyEvent *keyEvent = new QKeyEvent(QEvent::KeyPress, Qt::Key_PageDown, Qt::NoModifier);
+  QApplication::sendEvent(currentNewsTab->webView_, keyEvent);
+}
 /** @brief Reload full model
  * @details Performs: reload model, reset proxy model, restore focus
  *---------------------------------------------------------------------------*/

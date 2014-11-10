@@ -162,6 +162,8 @@ public:
   QAction *bloggerShareAct_;
   QAction *printfriendlyShareAct_;
   QAction *copyLinkAct_;
+  QAction *pageUpWebViewAct_;
+  QAction *pageDownWebViewAct_;
   QAction *nextFolderAct_;
   QAction *prevFolderAct_;
   QAction *expandFolderAct_;
@@ -403,6 +405,8 @@ private slots:
   void slotOpenNewsBackgroundTab();
   void slotCopyLinkNews();
   void slotShowLabelsMenu();
+  void slotPageUpWebView();
+  void slotPageDownWebView();
   void setCurrentTab(int index, bool updateCurrentTab = false);
   void findText();
 
