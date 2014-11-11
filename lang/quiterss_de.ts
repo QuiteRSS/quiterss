@@ -348,7 +348,7 @@
         <location filename="../src/addfeedwizard.cpp" line="354"/>
         <location filename="../src/addfeedwizard.cpp" line="517"/>
         <source>Duplicate feed!</source>
-        <translation>Feed duplizieren!</translation>
+        <translation>Feed bereits vorhanden!</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="519"/>
@@ -541,7 +541,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/plugins/clicktoflash.cpp" line="133"/>
         <source>Add &apos;%1&apos; to whitelist</source>
-        <translation>&apos;%1 der Whitelist hinzufügen</translation>
+        <translation>&apos;%1 der Positivliste hinzufügen</translation>
     </message>
 </context>
 <context>
@@ -3933,7 +3933,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2737"/>
         <source>Add site to whitelist</source>
-        <translation>Webseite zur Whitelist hinzufügen</translation>
+        <translation>Webseite zur Positivliste hinzufügen</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2738"/>

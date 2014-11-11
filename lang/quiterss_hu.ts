@@ -2751,12 +2751,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1735"/>
         <source>Mark News Star</source>
-        <translation type="unfinished"/>
+        <translation>Hírek megjelölése csillaggal</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1739"/>
         <source>Label</source>
-        <translation type="unfinished"/>
+        <translation>Címke</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1743"/>

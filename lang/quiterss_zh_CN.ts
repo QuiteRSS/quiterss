@@ -46,7 +46,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="151"/>
         <source>Backup directory:</source>
-        <translation type="unfinished"/>
+        <translation>备份所在目录：</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="154"/>
@@ -175,7 +175,7 @@
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="79"/>
         <source>Learn about writing rules...</source>
-        <translation type="unfinished"/>
+        <translation>了解如何写规则...</translation>
     </message>
 </context>
 <context>
@@ -183,48 +183,48 @@
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="61"/>
         <source>AdBlock lets you block unwanted content on web pages</source>
-        <translation type="unfinished"/>
+        <translation>AdBlock拦截网页上你不希望出现的内容</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="102"/>
         <source>AdBlock</source>
-        <translation type="unfinished"/>
+        <translation>AdBlock</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="129"/>
         <source>Show AdBlock &amp;Settings</source>
-        <translation type="unfinished"/>
+        <translation>显示AdBlock的设置(&amp;S)</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="137"/>
         <source>Disable on %1</source>
-        <translation type="unfinished"/>
+        <translation>在 %1 上禁用</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="143"/>
         <source>Disable only on this page</source>
-        <translation type="unfinished"/>
+        <translation>仅在本页禁用</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="153"/>
         <source>Blocked Popup Windows</source>
-        <translation type="unfinished"/>
+        <translation>拦截弹出窗口</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="158"/>
         <location filename="../src/adblock/adblockicon.cpp" line="175"/>
         <source>%1 with (%2)</source>
-        <translation type="unfinished"/>
+        <translation>%1 和 (%2)</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="169"/>
         <source>No content blocked</source>
-        <translation type="unfinished"/>
+        <translation>没有内容被拦截</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="172"/>
         <source>Blocked URL (AdBlock Rule) - click to edit rule</source>
-        <translation type="unfinished"/>
+        <translation>拦截 URL (AdBlock 规则) - 点击修改规则</translation>
     </message>
 </context>
 <context>
@@ -232,7 +232,7 @@
     <message>
         <location filename="../src/adblock/adblockmanager.cpp" line="277"/>
         <source>EasyList</source>
-        <translation type="unfinished"/>
+        <translation>简易列表</translation>
     </message>
 </context>
 <context>
@@ -240,7 +240,7 @@
     <message>
         <location filename="../src/adblock/adblocksubscription.cpp" line="190"/>
         <source>Cannot load subscription!</source>
-        <translation type="unfinished"/>
+        <translation>无法加载订阅！</translation>
     </message>
 </context>
 <context>
@@ -248,32 +248,32 @@
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="97"/>
         <source>Add Rule</source>
-        <translation type="unfinished"/>
+        <translation>添加规则</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="99"/>
         <source>Remove Rule</source>
-        <translation type="unfinished"/>
+        <translation>移除规则</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="160"/>
         <source>Add Custom Rule</source>
-        <translation type="unfinished"/>
+        <translation>添加自定规则</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="160"/>
         <source>Please write your rule here:</source>
-        <translation type="unfinished"/>
+        <translation>请在这里写你的规则：</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="198"/>
         <source>%1 (recently updated)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (最近更新)</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="207"/>
         <source>%1 (Error: %2)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (错误：%2)</translation>
     </message>
 </context>
 <context>
@@ -920,17 +920,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="32"/>
         <source>Display</source>
-        <translation type="unfinished"/>
+        <translation>显示</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="174"/>
         <source>Enable JavaScript</source>
-        <translation type="unfinished"/>
+        <translation>启用 JavaScript</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="177"/>
         <source>Right-to-left layout</source>
-        <translation type="unfinished"/>
+        <translation>从右到左的布局</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="216"/>
@@ -1125,17 +1125,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/findtext.cpp" line="105"/>
         <source>Find in Titles</source>
-        <translation type="unfinished"/>
+        <translation>在标题中查找</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="106"/>
         <source>Find in Authors</source>
-        <translation type="unfinished"/>
+        <translation>在作者中查找</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="107"/>
         <source>Find in Categories</source>
-        <translation type="unfinished"/>
+        <translation>在分类中查找</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="108"/>
@@ -1251,7 +1251,7 @@ Ancient news could reappear</source>
         <location filename="../src/newsfilters/itemcondition.cpp" line="31"/>
         <location filename="../src/newsfilters/itemcondition.cpp" line="106"/>
         <source>Link</source>
-        <translation type="unfinished"/>
+        <translation>链接</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/itemcondition.cpp" line="36"/>
@@ -1335,7 +1335,7 @@ Ancient news could reappear</source>
         <location filename="../src/newsfilters/itemcondition.cpp" line="99"/>
         <location filename="../src/newsfilters/itemcondition.cpp" line="110"/>
         <source>Regular expressions</source>
-        <translation type="unfinished"/>
+        <translation>正则表达式</translation>
     </message>
 </context>
 <context>
@@ -1403,7 +1403,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="1770"/>
         <source>&amp;AdBlock</source>
-        <translation type="unfinished"/>
+        <translation>&amp;AdBlock</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2193"/>
@@ -1479,7 +1479,7 @@ Ancient news could reappear</source>
         <location filename="../src/application/mainwindow.cpp" line="3494"/>
         <location filename="../src/application/mainwindow.cpp" line="3499"/>
         <source>(Browser)</source>
-        <translation type="unfinished"/>
+        <translation>(浏览器)</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4694"/>
@@ -1588,7 +1588,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4734"/>
         <source>Mark Read/Unread</source>
-        <translation type="unfinished"/>
+        <translation>标记 已读/未读</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4735"/>
@@ -1826,82 +1826,82 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4862"/>
         <source>Count Unread News</source>
-        <translation type="unfinished"/>
+        <translation>统计未读消息</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4863"/>
         <source>Count All News</source>
-        <translation type="unfinished"/>
+        <translation>统计所有消息</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4864"/>
         <source>Last Update</source>
-        <translation type="unfinished"/>
+        <translation>最近一次更新</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4877"/>
         <source>Reset browser zoom</source>
-        <translation type="unfinished"/>
+        <translation>重设浏览器缩放</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4880"/>
         <source>Print Web Page</source>
-        <translation type="unfinished"/>
+        <translation>打印Web页</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4882"/>
         <source>Preview Web Page</source>
-        <translation type="unfinished"/>
+        <translation>预览Web页</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4886"/>
         <source>Save page in database</source>
-        <translation type="unfinished"/>
+        <translation>保存页面到数据​​库</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4887"/>
         <source>Save page in database instead of news description</source>
-        <translation type="unfinished"/>
+        <translation>保存页面到数据​​库取代消息描述</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="162"/>
         <source>Saving data...</source>
-        <translation type="unfinished"/>
+        <translation>保存数据...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2533"/>
         <source>Confirm Delete</source>
-        <translation type="unfinished"/>
+        <translation>确认删除</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2534"/>
         <source>Are you sure to delete selected elements?</source>
-        <translation type="unfinished"/>
+        <translation>您确定要删除选定的元素？</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4699"/>
         <source>Menu</source>
-        <translation type="unfinished"/>
+        <translation>菜单</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4721"/>
         <source>&amp;Create Backup...</source>
-        <translation type="unfinished"/>
+        <translation>创建备份(&amp;C)</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4722"/>
         <source>S&amp;how Menu Bar</source>
-        <translation type="unfinished"/>
+        <translation>显示菜单栏(&amp;h)</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4774"/>
         <source>Open News Description</source>
-        <translation type="unfinished"/>
+        <translation>打开新闻描述</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4791"/>
         <source>Copy News Link</source>
-        <translation type="unfinished"/>
+        <translation>复制消息链接</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4801"/>
@@ -1977,17 +1977,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4818"/>
         <source>Layout</source>
-        <translation type="unfinished"/>
+        <translation>布局</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4819"/>
         <source>Classic</source>
-        <translation type="unfinished"/>
+        <translation>经典</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4820"/>
         <source>Newspaper</source>
-        <translation type="unfinished"/>
+        <translation>报纸</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4822"/>
@@ -2228,7 +2228,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4895"/>
         <source>Status Bar</source>
-        <translation type="unfinished"/>
+        <translation>状态栏</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4897"/>
@@ -2291,7 +2291,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4920"/>
         <source>Starred</source>
-        <translation type="unfinished"/>
+        <translation>标星</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4921"/>
@@ -2326,7 +2326,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4930"/>
         <source>Sort by Name</source>
-        <translation type="unfinished"/>
+        <translation>按名称排序</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4931"/>
@@ -2422,7 +2422,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="7761"/>
         <source>Choose Directory</source>
-        <translation type="unfinished"/>
+        <translation>选择目录</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.h" line="101"/>
@@ -2470,7 +2470,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsfilters/newsfiltersdialog.cpp" line="46"/>
         <source>Filter Name</source>
-        <translation type="unfinished"/>
+        <translation>筛选器名称</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/newsfiltersdialog.cpp" line="91"/>
@@ -2510,7 +2510,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsfilters/newsfiltersdialog.cpp" line="260"/>
         <source>Are you sure you want to delete the filter &apos;%1&apos;?</source>
-        <translation type="unfinished"/>
+        <translation>你确定要删除筛选器 &apos;%1&apos;？</translation>
     </message>
 </context>
 <context>
@@ -2563,7 +2563,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsheader.cpp" line="409"/>
         <source>Feed Title</source>
-        <translation type="unfinished"/>
+        <translation>Feed 标题</translation>
     </message>
     <message>
         <location filename="../src/newsheader.cpp" line="410"/>
@@ -2695,17 +2695,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newstabwidget.cpp" line="637"/>
         <source>Auto Load Images in News View</source>
-        <translation type="unfinished"/>
+        <translation>在消息视图自动加载图片</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="640"/>
         <source>Don&apos;t Load Images</source>
-        <translation type="unfinished"/>
+        <translation>不要载入图片</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="641"/>
         <source>Don&apos;t Load Images in News View</source>
-        <translation type="unfinished"/>
+        <translation>不要在消息视图载入图片</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1449"/>
@@ -2746,27 +2746,27 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1605"/>
         <source>Mark Read/Unread</source>
-        <translation type="unfinished"/>
+        <translation>标记 已读/未读</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1735"/>
         <source>Mark News Star</source>
-        <translation type="unfinished"/>
+        <translation>消息标星</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1739"/>
         <source>Label</source>
-        <translation type="unfinished"/>
+        <translation>标签</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1743"/>
         <source>Share</source>
-        <translation type="unfinished"/>
+        <translation>分享</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1747"/>
         <source>Open News in External Browser</source>
-        <translation type="unfinished"/>
+        <translation>在外部浏览器中打开消息</translation>
     </message>
 </context>
 <context>
@@ -2920,7 +2920,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="298"/>
         <source>Help improve QuiteRSS by sending usage information</source>
-        <translation type="unfinished"/>
+        <translation>通过发送有价值的信息帮助改善QuiteRSS</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="299"/>
@@ -3339,7 +3339,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="877"/>
         <source>Style sheet for news:</source>
-        <translation type="unfinished"/>
+        <translation>消息的样式表：</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="885"/>
@@ -3732,22 +3732,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1612"/>
         <source>Count of unread news in feeds tree</source>
-        <translation type="unfinished"/>
+        <translation>feeds 树中未读消息计数</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1627"/>
         <source>Disabled feed</source>
-        <translation type="unfinished"/>
+        <translation>禁用 feed</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1630"/>
         <source>Alternating row colors</source>
-        <translation type="unfinished"/>
+        <translation>交替行的颜色</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2022"/>
         <source>Auto load images in news view</source>
-        <translation type="unfinished"/>
+        <translation>在消息视图自动载入图片</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1615"/>
@@ -3757,47 +3757,47 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="292"/>
         <source>Show feeds tree toggle</source>
-        <translation type="unfinished"/>
+        <translation>显示feeds 树切换</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="382"/>
         <source>Clear new status when minimize to tray</source>
-        <translation type="unfinished"/>
+        <translation>最小化到托盘时清除消息状态</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="779"/>
         <source>Set focus on the last opened news</source>
-        <translation type="unfinished"/>
+        <translation>将焦点放在最后打开消息</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="780"/>
         <source>Set focus at the top of news list</source>
-        <translation type="unfinished"/>
+        <translation>将焦点放在消息列表的顶部</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="781"/>
         <source>Set focus on the unread news</source>
-        <translation type="unfinished"/>
+        <translation>将焦点放在未读消息</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="782"/>
         <source>Open the news</source>
-        <translation type="unfinished"/>
+        <translation>打开消息</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="850"/>
         <source>Default news filter:</source>
-        <translation type="unfinished"/>
+        <translation>默认消息筛选器：</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="868"/>
         <source>Action on feed opening:</source>
-        <translation type="unfinished"/>
+        <translation>打开feed 时的动作：</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="899"/>
         <source>Show news description instead of loading web page</source>
-        <translation type="unfinished"/>
+        <translation>显示消息的描述，而不是载入网页</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1618"/>
@@ -4256,27 +4256,27 @@ Ancient news could reappear</source>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="556"/>
         <source>Error opening database</source>
-        <translation type="unfinished"/>
+        <translation>打开数据库出错</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="567"/>
         <source>Error closing database</source>
-        <translation type="unfinished"/>
+        <translation>关闭数据库出错</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="587"/>
         <source>Unable to begin transaction</source>
-        <translation type="unfinished"/>
+        <translation>无法开始事务</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="602"/>
         <source>Unable to commit transaction</source>
-        <translation type="unfinished"/>
+        <translation>无法提交事务</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="617"/>
         <source>Unable to rollback transaction</source>
-        <translation type="unfinished"/>
+        <translation>无法回滚事务</translation>
     </message>
 </context>
 <context>
@@ -4286,37 +4286,37 @@ Ancient news could reappear</source>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="278"/>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="286"/>
         <source>Unable to fetch row</source>
-        <translation type="unfinished"/>
+        <translation>无法读取行</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="216"/>
         <source>No query</source>
-        <translation type="unfinished"/>
+        <translation>没有查询</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="350"/>
         <source>Unable to execute statement</source>
-        <translation type="unfinished"/>
+        <translation>无法执行语句</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="355"/>
         <source>Unable to execute multiple statements at a time</source>
-        <translation type="unfinished"/>
+        <translation>无法在同一时间执行多个语句</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="375"/>
         <source>Unable to reset statement</source>
-        <translation type="unfinished"/>
+        <translation>无法重置语句</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="420"/>
         <source>Unable to bind parameters</source>
-        <translation type="unfinished"/>
+        <translation>无法绑定参数</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="427"/>
         <source>Parameter count mismatch</source>
-        <translation type="unfinished"/>
+        <translation>参数数量不匹配 </translation>
     </message>
 </context>
 <context>

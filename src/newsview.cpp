@@ -76,7 +76,7 @@ NewsView::NewsView(QWidget * parent)
     if (selectionModel()->selectedRows(0).count() > 1)
       return;
   }
-
+qCritical() << "*01";
   QTreeView::mousePressEvent(event);
 }
 
@@ -97,16 +97,24 @@ NewsView::NewsView(QWidget * parent)
 
 /*virtual*/ void NewsView::keyPressEvent(QKeyEvent *event)
 {
-  if (!event->modifiers()) {
-    if (event->key() == Qt::Key_Up)         emit pressKeyUp();
-    else if (event->key() == Qt::Key_Down)  emit pressKeyDown();
-    else if (event->key() == Qt::Key_Home)  emit pressKeyHome();
-    else if (event->key() == Qt::Key_End)   emit pressKeyEnd();
+//  QTreeView::keyPressEvent(event);
+//  if (!event->modifiers()) {
+  qCritical() << "*01" << currentIndex().row();
+    if (event->key() == Qt::Key_Up)
+      emit pressKeyUp();
+    else if (event->key() == Qt::Key_Down)
+      emit pressKeyDown();
+    else if ((event->key() == Qt::Key_Home)/* &&
+             (event->modifiers() == Qt::NoModifier)*/)
+      emit pressKeyHome();
+    else if ((event->key() == Qt::Key_End) /*&&
+             (event->modifiers() == Qt::NoModifier)*/)
+      emit pressKeyEnd();
     else if (event->key() == Qt::Key_PageUp)   emit pressKeyPageUp();
     else if (event->key() == Qt::Key_PageDown) emit pressKeyPageDown();
-  } else if (((event->modifiers() == Qt::ControlModifier) &&
-             (event->key() == Qt::Key_A)) ||
-             (event->modifiers() == Qt::ShiftModifier)) {
+//  } else if (((event->modifiers() == Qt::ControlModifier) &&
+//             (event->key() == Qt::Key_A)) ||
+//             (event->modifiers() == Qt::ShiftModifier)) {
     QTreeView::keyPressEvent(event);
-  }
+//  }
 }

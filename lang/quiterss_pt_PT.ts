@@ -2751,7 +2751,7 @@ não existe!</translation>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1735"/>
         <source>Mark News Star</source>
-        <translation type="unfinished"/>
+        <translation>Marcar notícias com estrela</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1739"/>
