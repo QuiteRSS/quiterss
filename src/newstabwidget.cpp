@@ -665,9 +665,7 @@ void NewsTabWidget::setAutoLoadImages(bool apply)
  *----------------------------------------------------------------------------*/
 void NewsTabWidget::slotNewsViewClicked(QModelIndex index)
 {
-//  if (QApplication::keyboardModifiers() == Qt::NoModifier) {
-    slotNewsViewSelected(index);
-//  }
+  slotNewsViewSelected(index);
 }
 
 // ----------------------------------------------------------------------------
@@ -761,31 +759,14 @@ void NewsTabWidget::slotNewsMiddleClicked(QModelIndex index)
 void NewsTabWidget::slotNewsUpPressed()
 {
   if (type_ >= TabTypeWeb) return;
-  if (QApplication::keyboardModifiers() == Qt::NoModifier)
-    newsView_->clearSelection();
-
-  if (!newsView_->currentIndex().isValid()) {
-    if (newsModel_->rowCount() > 0) {
-      newsView_->setCurrentIndex(newsModel_->index(0, newsModel_->fieldIndex("title")));
-      slotNewsViewSelected(newsModel_->index(0, newsModel_->fieldIndex("title")));
-    }
-    return;
-  }
 
   int row = newsView_->currentIndex().row();
-  if (row == 0) {
-    newsView_->setCurrentIndex(newsView_->currentIndex());
-    return;
-  }
-  else row--;
-
   int value = newsView_->verticalScrollBar()->value();
   int pageStep = newsView_->verticalScrollBar()->pageStep();
   if (row < (value + pageStep/2))
     newsView_->verticalScrollBar()->setValue(row - pageStep/2);
 
-  newsView_->setCurrentIndex(newsModel_->index(row, newsModel_->fieldIndex("title")));
-  slotNewsViewSelected(newsModel_->index(row, newsModel_->fieldIndex("title")));
+  slotNewsViewSelected(newsView_->currentIndex());
 }
 
 /** @brief Process pressing DOWN-key
@@ -793,85 +774,41 @@ void NewsTabWidget::slotNewsUpPressed()
 void NewsTabWidget::slotNewsDownPressed()
 {
   if (type_ >= TabTypeWeb) return;
-  if (QApplication::keyboardModifiers() == Qt::NoModifier)
-    newsView_->clearSelection();
-
-  if (!newsView_->currentIndex().isValid()) {
-    if (newsModel_->rowCount() > 0) {
-      newsView_->setCurrentIndex(newsModel_->index(0, newsModel_->fieldIndex("title")));
-      slotNewsViewSelected(newsModel_->index(0, newsModel_->fieldIndex("title")));
-    }
-    return;
-  }
 
   int row = newsView_->currentIndex().row();
-  if ((row+1) == newsModel_->rowCount()) {
-//    newsView_->setCurrentIndex(newsView_->currentIndex());
-    return;
-  }
-  else row++;
-
   int value = newsView_->verticalScrollBar()->value();
   int pageStep = newsView_->verticalScrollBar()->pageStep();
   if (row > (value + pageStep/2))
     newsView_->verticalScrollBar()->setValue(row - pageStep/2);
-qCritical() << "*02" << newsView_->currentIndex().row() << row;
-//  newsView_->setCurrentIndex(newsModel_->index(row, newsModel_->fieldIndex("title")));
-  slotNewsViewSelected(newsModel_->index(row, newsModel_->fieldIndex("title")));
+  slotNewsViewSelected(newsView_->currentIndex());
 }
 
 /** @brief Process pressing HOME-key
  *----------------------------------------------------------------------------*/
 void NewsTabWidget::slotNewsHomePressed()
 {
-  int row = 0;
-//  newsView_->setCurrentIndex(newsModel_->index(row, newsModel_->fieldIndex("title")));
-  slotNewsViewSelected(newsModel_->index(row, newsModel_->fieldIndex("title")));
+  slotNewsViewSelected(newsView_->currentIndex());
 }
 
 /** @brief Process pressing END-key
  *----------------------------------------------------------------------------*/
 void NewsTabWidget::slotNewsEndPressed()
 {
-  int row = newsModel_->rowCount() - 1;
-//  newsView_->setCurrentIndex(newsModel_->index(row, newsModel_->fieldIndex("title")));
-  slotNewsViewSelected(newsModel_->index(row, newsModel_->fieldIndex("title")));
+  slotNewsViewSelected(newsView_->currentIndex());
 }
 
 /** @brief Process pressing PageUp-key
  *----------------------------------------------------------------------------*/
 void NewsTabWidget::slotNewsPageUpPressed()
 {
-  if (!newsView_->currentIndex().isValid()) {
-    if (newsModel_->rowCount() > 0) {
-      newsView_->setCurrentIndex(newsModel_->index(0, newsModel_->fieldIndex("title")));
-      slotNewsViewSelected(newsModel_->index(0, newsModel_->fieldIndex("title")));
-    }
-    return;
-  }
-
-  int row = newsView_->currentIndex().row() - newsView_->verticalScrollBar()->pageStep();
-  if (row < 0) row = 0;
-  newsView_->setCurrentIndex(newsModel_->index(row, newsModel_->fieldIndex("title")));
-  slotNewsViewSelected(newsModel_->index(row, newsModel_->fieldIndex("title")));
+  slotNewsViewSelected(newsView_->currentIndex());
 }
 
 /** @brief Process pressing PageDown-key
  *----------------------------------------------------------------------------*/
 void NewsTabWidget::slotNewsPageDownPressed()
 {
-  if (!newsView_->currentIndex().isValid()) {
-    if (newsModel_->rowCount() > 0) {
-      newsView_->setCurrentIndex(newsModel_->index(0, newsModel_->fieldIndex("title")));
-      slotNewsViewSelected(newsModel_->index(0, newsModel_->fieldIndex("title")));
-    }
-    return;
-  }
-
-  int row = newsView_->currentIndex().row() + newsView_->verticalScrollBar()->pageStep();
-  if ((row+1) > newsModel_->rowCount()) row = newsModel_->rowCount()-1;
-  newsView_->setCurrentIndex(newsModel_->index(row, newsModel_->fieldIndex("title")));
-  slotNewsViewSelected(newsModel_->index(row, newsModel_->fieldIndex("title")));
+  slotNewsViewSelected(newsView_->currentIndex());
 }
 
 /** @brief Mark news Read
