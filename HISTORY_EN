@@ -2,6 +2,28 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
+<p><b>Version 0.17.0+</b> (xx Nov 2014)
+<ul>
+<li>Added: Button and shortcut to switch layout</li>
+<li>Added: Ability to delete news in newspaper layout</li>
+<li>Added: News list search: "Find in links"</li>
+<li>Added: Ability to choose monitor to display notifications</li>
+<li>Added: Notification transparency option</li>
+<li>Added: Notification text and background colors options</li>
+<li>Added: Notification option "Show when main window is inactive"</li>
+<li>Added: Additional options for notification layout</li>
+<li>Added: Scroll by page shortcuts in embedded browser</li>
+
+<li>Changed: Retain search text while switching feed</li>
+<li>Changed: Show deleted news number after clean up wizard</li>
+<li>Changed: Multi-select behavior in news list</li>
+
+<li>Fixed: Host-name absence in some feed links</li>
+<li>Fixed: Inactive filters with "Link" field and "is" condition</li>
+<li>Fixed: Update of the feeds which last update date is 1970</li>
+<li>Fixed: Occasional error of restoring feed list columns length</li>
+</ul>
+<!---------------------------------------------------------------------------->
 <p><b>Version 0.17.0</b> (03 Sep 2014)
 <ul>
 <li>Added: The Newspaper view (View->Layout->Newspaper)</li>
@@ -44,7 +66,7 @@
 <ul>
 <li>Added: Case-insensitive filters, news searching and feed sorting</li>
 <li>Added: Regular expressions support in user's filters</li>
-<li>Added: Multiselect feeds</li>
+<li>Added: Multi-select feeds</li>
 <li>Added: Ability to set style table for news (Options->Feeds)</li>
 <li>Added: News style "Rstyle_v1.2.css"</li>
 <li>Added: Button "Share" in browser toolbar</li>
