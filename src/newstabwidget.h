@@ -143,12 +143,12 @@ public slots:
   void slotNewsViewSelected(QModelIndex index, bool clicked = false);
   void slotNewsViewDoubleClicked(QModelIndex index);
   void slotNewsMiddleClicked(QModelIndex index);
-  void slotNewsUpPressed();
-  void slotNewsDownPressed();
-  void slotNewsHomePressed();
-  void slotNewsEndPressed();
-  void slotNewsPageUpPressed();
-  void slotNewsPageDownPressed();
+  void slotNewsUpPressed(QModelIndex index=QModelIndex());
+  void slotNewsDownPressed(QModelIndex index=QModelIndex());
+  void slotNewsHomePressed(QModelIndex index=QModelIndex());
+  void slotNewsEndPressed(QModelIndex index=QModelIndex());
+  void slotNewsPageUpPressed(QModelIndex index=QModelIndex());
+  void slotNewsPageDownPressed(QModelIndex index=QModelIndex());
   void slotSort(int column, int order);
 
 signals:

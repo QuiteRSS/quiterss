@@ -38,12 +38,12 @@ signals:
   void signalDoubleClicked(QModelIndex index);
   void signalMiddleClicked(QModelIndex index);
   void signaNewslLabelClicked(QModelIndex index);
-  void pressKeyUp();
-  void pressKeyDown();
-  void pressKeyHome();
-  void pressKeyEnd();
-  void pressKeyPageUp();
-  void pressKeyPageDown();
+  void pressKeyUp(const QModelIndex &index);
+  void pressKeyDown(const QModelIndex &index);
+  void pressKeyHome(const QModelIndex &index);
+  void pressKeyEnd(const QModelIndex &index);
+  void pressKeyPageUp(const QModelIndex &index);
+  void pressKeyPageDown(const QModelIndex &index);
 
 protected:
   virtual void mousePressEvent(QMouseEvent*);

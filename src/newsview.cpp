@@ -97,10 +97,10 @@ NewsView::NewsView(QWidget * parent)
 /*virtual*/ void NewsView::keyPressEvent(QKeyEvent *event)
 {
   QTreeView::keyPressEvent(event);
-  if (event->key() == Qt::Key_Up)         emit pressKeyUp();
-  else if (event->key() == Qt::Key_Down)  emit pressKeyDown();
-  else if (event->key() == Qt::Key_Home)  emit pressKeyHome();
-  else if (event->key() == Qt::Key_End)   emit pressKeyEnd();
-  else if (event->key() == Qt::Key_PageUp)   emit pressKeyPageUp();
-  else if (event->key() == Qt::Key_PageDown) emit pressKeyPageDown();
+  if (event->key() == Qt::Key_Up)         emit pressKeyUp(currentIndex());
+  else if (event->key() == Qt::Key_Down)  emit pressKeyDown(currentIndex());
+  else if (event->key() == Qt::Key_Home)  emit pressKeyHome(currentIndex());
+  else if (event->key() == Qt::Key_End)   emit pressKeyEnd(currentIndex());
+  else if (event->key() == Qt::Key_PageUp)   emit pressKeyPageUp(currentIndex());
+  else if (event->key() == Qt::Key_PageDown) emit pressKeyPageDown(currentIndex());
 }

@@ -249,12 +249,18 @@ void NewsTabWidget::createNewsList()
 
   connect(newsView_, SIGNAL(pressed(QModelIndex)),
           this, SLOT(slotNewsViewClicked(QModelIndex)));
-  connect(newsView_, SIGNAL(pressKeyUp()), this, SLOT(slotNewsUpPressed()));
-  connect(newsView_, SIGNAL(pressKeyDown()), this, SLOT(slotNewsDownPressed()));
-  connect(newsView_, SIGNAL(pressKeyHome()), this, SLOT(slotNewsHomePressed()));
-  connect(newsView_, SIGNAL(pressKeyEnd()), this, SLOT(slotNewsEndPressed()));
-  connect(newsView_, SIGNAL(pressKeyPageUp()), this, SLOT(slotNewsPageUpPressed()));
-  connect(newsView_, SIGNAL(pressKeyPageDown()), this, SLOT(slotNewsPageDownPressed()));
+  connect(newsView_, SIGNAL(pressKeyUp(QModelIndex)),
+          this, SLOT(slotNewsUpPressed(QModelIndex)));
+  connect(newsView_, SIGNAL(pressKeyDown(QModelIndex)),
+          this, SLOT(slotNewsDownPressed(QModelIndex)));
+  connect(newsView_, SIGNAL(pressKeyHome(QModelIndex)),
+          this, SLOT(slotNewsHomePressed(QModelIndex)));
+  connect(newsView_, SIGNAL(pressKeyEnd(QModelIndex)),
+          this, SLOT(slotNewsEndPressed(QModelIndex)));
+  connect(newsView_, SIGNAL(pressKeyPageUp(QModelIndex)),
+          this, SLOT(slotNewsPageUpPressed(QModelIndex)));
+  connect(newsView_, SIGNAL(pressKeyPageDown(QModelIndex)),
+          this, SLOT(slotNewsPageDownPressed(QModelIndex)));
   connect(newsView_, SIGNAL(signalSetItemRead(QModelIndex, int)),
           this, SLOT(slotSetItemRead(QModelIndex, int)));
   connect(newsView_, SIGNAL(signalSetItemStar(QModelIndex,int)),
@@ -756,59 +762,85 @@ void NewsTabWidget::slotNewsMiddleClicked(QModelIndex index)
 
 /** @brief Process pressing UP-key
  *----------------------------------------------------------------------------*/
-void NewsTabWidget::slotNewsUpPressed()
+void NewsTabWidget::slotNewsUpPressed(QModelIndex index)
 {
   if (type_ >= TabTypeWeb) return;
 
-  int row = newsView_->currentIndex().row();
+  int row;
+  if (!index.isValid()) {
+    if (!newsView_->currentIndex().isValid())
+      row = 0;
+    else
+      row = newsView_->currentIndex().row() - 1;
+    if (row < 0)
+      return;
+    index = newsModel_->index(row, newsModel_->fieldIndex("title"));
+    newsView_->setCurrentIndex(index);
+  } else {
+    row = index.row();
+  }
+
   int value = newsView_->verticalScrollBar()->value();
   int pageStep = newsView_->verticalScrollBar()->pageStep();
   if (row < (value + pageStep/2))
     newsView_->verticalScrollBar()->setValue(row - pageStep/2);
 
-  slotNewsViewSelected(newsView_->currentIndex());
+  slotNewsViewSelected(index);
 }
 
 /** @brief Process pressing DOWN-key
  *----------------------------------------------------------------------------*/
-void NewsTabWidget::slotNewsDownPressed()
+void NewsTabWidget::slotNewsDownPressed(QModelIndex index)
 {
   if (type_ >= TabTypeWeb) return;
 
-  int row = newsView_->currentIndex().row();
+  int row;
+  if (!index.isValid()) {
+    if (!newsView_->currentIndex().isValid())
+      row = 0;
+    else
+      row = newsView_->currentIndex().row() + 1;
+    if (row >= newsModel_->rowCount())
+      return;
+    index = newsModel_->index(row, newsModel_->fieldIndex("title"));
+    newsView_->setCurrentIndex(index);
+  } else {
+    row = index.row();
+  }
+
   int value = newsView_->verticalScrollBar()->value();
   int pageStep = newsView_->verticalScrollBar()->pageStep();
   if (row > (value + pageStep/2))
     newsView_->verticalScrollBar()->setValue(row - pageStep/2);
-  slotNewsViewSelected(newsView_->currentIndex());
+  slotNewsViewSelected(index);
 }
 
 /** @brief Process pressing HOME-key
  *----------------------------------------------------------------------------*/
-void NewsTabWidget::slotNewsHomePressed()
+void NewsTabWidget::slotNewsHomePressed(QModelIndex index)
 {
-  slotNewsViewSelected(newsView_->currentIndex());
+  slotNewsViewSelected(index);
 }
 
 /** @brief Process pressing END-key
  *----------------------------------------------------------------------------*/
-void NewsTabWidget::slotNewsEndPressed()
+void NewsTabWidget::slotNewsEndPressed(QModelIndex index)
 {
-  slotNewsViewSelected(newsView_->currentIndex());
+  slotNewsViewSelected(index);
 }
 
 /** @brief Process pressing PageUp-key
  *----------------------------------------------------------------------------*/
-void NewsTabWidget::slotNewsPageUpPressed()
+void NewsTabWidget::slotNewsPageUpPressed(QModelIndex index)
 {
-  slotNewsViewSelected(newsView_->currentIndex());
+  slotNewsViewSelected(index);
 }
 
 /** @brief Process pressing PageDown-key
  *----------------------------------------------------------------------------*/
-void NewsTabWidget::slotNewsPageDownPressed()
+void NewsTabWidget::slotNewsPageDownPressed(QModelIndex index)
 {
-  slotNewsViewSelected(newsView_->currentIndex());
+  slotNewsViewSelected(index);
 }
 
 /** @brief Mark news Read
