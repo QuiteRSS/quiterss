@@ -2791,4 +2791,68 @@ Save?</source>
     <source>Set focus on the last opened news</source>
     <target>Установить фокус на последней открытой новости</target>
 </phrase>
+<phrase>
+    <source>Clean Up wizard deleted %1 news</source>
+    <target>Мастер очистки удалил %1 новостей</target>
+</phrase>
+<phrase>
+    <source>Page up (Browser)</source>
+    <target>Страница вверх (Браузер)</target>
+</phrase>
+<phrase>
+    <source>Page down (Browser)</source>
+    <target>Страница вниз (Браузер)</target>
+</phrase>
+<phrase>
+    <source>Screen</source>
+    <target>Экран</target>
+</phrase>
+<phrase>
+    <source>Show when inactive main window</source>
+    <target>Показывать при неактивности главного окна</target>
+</phrase>
+<phrase>
+    <source>Transparency</source>
+    <target>Прозрачность</target>
+</phrase>
+<phrase>
+    <source>Show titles feeds</source>
+    <target>Показывать заголовки лент</target>
+</phrase>
+<phrase>
+    <source>Show icon feed</source>
+    <target>Показывать иконку ленты</target>
+</phrase>
+<phrase>
+    <source>Show button &apos;Mark Read/Unread&apos;</source>
+    <target>Показывать кнопку &apos;Отметить прочитанной/непрочитанной&apos;</target>
+</phrase>
+<phrase>
+    <source>Show button &apos;Open in External Browser&apos;</source>
+    <target>Показывать кнопку &apos;Открыть во внешнем браузере&apos;</target>
+</phrase>
+<phrase>
+    <source>Show button &apos;Mark All News Read&apos;</source>
+    <target>Показывать кнопку &apos;Отметить все новости прочитанными&apos;</target>
+</phrase>
+<phrase>
+    <source>Show button &apos;Delete News&apos;</source>
+    <target>Показывать кнопку &apos;Удалить новость&apos;</target>
+</phrase>
+<phrase>
+    <source>Sound</source>
+    <target>Звук</target>
+</phrase>
+<phrase>
+    <source>Selection of feeds</source>
+    <target>Выбор лент</target>
+</phrase>
+<phrase>
+    <source>Notification text color</source>
+    <target>Цвет текста уведомления</target>
+</phrase>
+<phrase>
+    <source>Notification background color</source>
+    <target>Цвет фона уведомления</target>
+</phrase>
 </QPH>
