@@ -833,6 +833,18 @@ void NewsTabWidget::slotNewsEndPressed(QModelIndex index)
  *----------------------------------------------------------------------------*/
 void NewsTabWidget::slotNewsPageUpPressed(QModelIndex index)
 {
+  int row;
+  if (!index.isValid()) {
+    if (!newsView_->currentIndex().isValid())
+      row = 0;
+    else
+      row = newsView_->currentIndex().row() - newsView_->verticalScrollBar()->pageStep();
+    if (row < 0)
+      row = 0;
+    index = newsModel_->index(row, newsModel_->fieldIndex("title"));
+    newsView_->setCurrentIndex(index);
+  }
+
   slotNewsViewSelected(index);
 }
 
@@ -840,6 +852,18 @@ void NewsTabWidget::slotNewsPageUpPressed(QModelIndex index)
  *----------------------------------------------------------------------------*/
 void NewsTabWidget::slotNewsPageDownPressed(QModelIndex index)
 {
+  int row;
+  if (!index.isValid()) {
+    if (!newsView_->currentIndex().isValid())
+      row = 0;
+    else
+      row = newsView_->currentIndex().row() + newsView_->verticalScrollBar()->pageStep();
+    if (row >= newsModel_->rowCount())
+      row = newsModel_->rowCount()-1;
+    index = newsModel_->index(row, newsModel_->fieldIndex("title"));
+    newsView_->setCurrentIndex(index);
+  }
+
   slotNewsViewSelected(index);
 }
 
