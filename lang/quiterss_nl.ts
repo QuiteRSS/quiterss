@@ -528,12 +528,12 @@ Oud nieuws kan opnieuw verschijnen</translation>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="524"/>
         <source>Information</source>
-        <translation type="unfinished"/>
+        <translation>Informatie</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="525"/>
         <source>Clean Up wizard deleted %1 news</source>
-        <translation type="unfinished"/>
+        <translation>Schoonmaak assistent verwijderde %1 nieuws</translation>
     </message>
 </context>
 <context>
@@ -1116,12 +1116,12 @@ werd niet gevonden</translation>
     <message>
         <location filename="../src/findfeed.cpp" line="79"/>
         <source>Find Name</source>
-        <translation>Vind Naam</translation>
+        <translation>Zoek Naam</translation>
     </message>
     <message>
         <location filename="../src/findfeed.cpp" line="80"/>
         <source>Find Link</source>
-        <translation>Vind link</translation>
+        <translation>Zoek link</translation>
     </message>
 </context>
 <context>
@@ -1130,37 +1130,37 @@ werd niet gevonden</translation>
         <location filename="../src/findtext.cpp" line="94"/>
         <location filename="../src/findtext.cpp" line="109"/>
         <source>Find in News</source>
-        <translation>Vind in nieuws</translation>
+        <translation>Zoek in nieuws</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="110"/>
         <source>Find in Titles</source>
-        <translation>Vind in titels</translation>
+        <translation>Zoek in titels</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="111"/>
         <source>Find in Authors</source>
-        <translation>Vind auteurs</translation>
+        <translation>Zoek auteurs</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="112"/>
         <source>Find in Categories</source>
-        <translation>Vind in Catagorie</translation>
+        <translation>Zoek in Catagorie</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="113"/>
         <source>Find in Content</source>
-        <translation>Vind in inhoud</translation>
+        <translation>Zoek in inhoud</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="114"/>
         <source>Find in Links</source>
-        <translation type="unfinished"/>
+        <translation>Zoek in links</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="115"/>
         <source>Find in Browser</source>
-        <translation>Vind in webbrowser</translation>
+        <translation>Zoek in webbrowser</translation>
     </message>
 </context>
 <context>
@@ -2209,12 +2209,12 @@ werd niet gevonden</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4967"/>
         <source>Page up (Browser)</source>
-        <translation type="unfinished"/>
+        <translation>Pagina verder (Browser)</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4968"/>
         <source>Page down (Browser)</source>
-        <translation type="unfinished"/>
+        <translation>Pagina terug (Browser)</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4970"/>
@@ -2342,7 +2342,7 @@ werd niet gevonden</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5013"/>
         <source>Find</source>
-        <translation>Vind</translation>
+        <translation>Zoek</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5015"/>
@@ -2797,7 +2797,7 @@ werd niet gevonden</translation>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1749"/>
         <source>Delete</source>
-        <translation type="unfinished"/>
+        <translation>Verwijder</translation>
     </message>
 </context>
 <context>
@@ -2912,7 +2912,7 @@ werd niet gevonden</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="288"/>
         <source>Show splash screen on startup</source>
-        <translation>Laat opstartscherm zien bij het opstarten</translation>
+        <translation>Opstartscherm tonen bij het opstarten</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="289"/>
@@ -3511,47 +3511,47 @@ werd niet gevonden</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1081"/>
         <source>Show when inactive main window</source>
-        <translation type="unfinished"/>
+        <translation>Toon wanneer hoofdvenster inactief is</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1096"/>
         <source>Screen</source>
-        <translation type="unfinished"/>
+        <translation>Scherm</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1106"/>
         <source>Transparency</source>
-        <translation type="unfinished"/>
+        <translation>Doorzichtigheid</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1120"/>
         <source>Show titles feeds</source>
-        <translation type="unfinished"/>
+        <translation>Toon Sterren Feeds</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1121"/>
         <source>Show icon feed</source>
-        <translation type="unfinished"/>
+        <translation>Toon icon feed</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1122"/>
         <source>Show button &apos;Mark All News Read&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Toon knop &apos;Markeer alle nieuws als gelezen&apos;</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1123"/>
         <source>Show button &apos;Mark Read/Unread&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Toon knop Markeer Gelezen/Ongelezen&apos;</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1124"/>
         <source>Show button &apos;Open in External Browser&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Toon knop &apos;Open in Externe Browser&apos;</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1125"/>
         <source>Show button &apos;Delete News&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Toon knop &apos;Verwijder Nieuws&apos;</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1172"/>
@@ -3636,17 +3636,17 @@ werd niet gevonden</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1201"/>
         <source>Notification</source>
-        <translation type="unfinished"/>
+        <translation>Meldingen</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1202"/>
         <source>Sound</source>
-        <translation type="unfinished"/>
+        <translation>Geluid</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1213"/>
         <source>Selection of feeds</source>
-        <translation type="unfinished"/>
+        <translation>Selectie van feeds</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1229"/>
@@ -3839,12 +3839,12 @@ werd niet gevonden</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1694"/>
         <source>Notification text color</source>
-        <translation type="unfinished"/>
+        <translation>Melding van tekst kleur</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1697"/>
         <source>Notification background color</source>
-        <translation type="unfinished"/>
+        <translation>Melding van achtergrondkleur</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2089"/>

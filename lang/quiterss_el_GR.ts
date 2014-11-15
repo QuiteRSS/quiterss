@@ -31,7 +31,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="142"/>
         <source>Application directory:</source>
-        <translation>Κατάλογος Εφαρμογών</translation>
+        <translation>Κατάλογος Εφαρμογών:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="145"/>
@@ -183,7 +183,7 @@
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="61"/>
         <source>AdBlock lets you block unwanted content on web pages</source>
-        <translation>Το AdBlock σας επιτρέπει να μπλοκάρετε τις διαφημήσεις</translation>
+        <translation>Το AdBlock σας επιτρέπει τη φραγή του ανεπιθύμητου περιεχομένου των ιστοσελίδων</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="102"/>
@@ -193,7 +193,7 @@
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="129"/>
         <source>Show AdBlock &amp;Settings</source>
-        <translation>Εμφάνιση Ρυθμίσεων AdBlock</translation>
+        <translation>Εμφάνιση &amp;Ρυθμίσεων AdBlock</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="137"/>
@@ -203,7 +203,7 @@
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="143"/>
         <source>Disable only on this page</source>
-        <translation>Απενεργοποιήση στη σελίδα</translation>
+        <translation>Απενεργοποίηση μόνο για τη σελίδα</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="153"/>
@@ -224,7 +224,7 @@
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="172"/>
         <source>Blocked URL (AdBlock Rule) - click to edit rule</source>
-        <translation>Μπλοκαρισμένη URL (Κανόνας AdBlock) - κάντε κλίκ για επεξεργασία</translation>
+        <translation>Μπλοκαρισμένη URL (Κανόνας AdBlock) - κάντε κλικ για επεξεργασία</translation>
     </message>
 </context>
 <context>
@@ -253,7 +253,7 @@
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="99"/>
         <source>Remove Rule</source>
-        <translation>Αφαίρεση Κανόνα</translation>
+        <translation>Αφαίρεση κανόνα</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="160"/>
@@ -297,17 +297,17 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="111"/>
         <source>Server requires authentication:</source>
-        <translation>Ο διακομιστής απαιτεί authentication:</translation>
+        <translation>Ο διακομιστής απαιτεί ταυτοποίηση:</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="120"/>
         <source>Username:</source>
-        <translation>Όνομα Χρήστη:</translation>
+        <translation>Όνομα χρήστη:</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="122"/>
         <source>Password:</source>
-        <translation>Κωδικός:</translation>
+        <translation>Κωδικός πρόσβασης:</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="151"/>
@@ -317,17 +317,17 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="184"/>
         <source>Feeds</source>
-        <translation>Feeds</translation>
+        <translation>Ροές</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="188"/>
         <source>All Feeds</source>
-        <translation>Όλα τα Feeds</translation>
+        <translation>Όλα οι ροές</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="228"/>
         <source>New Folder...</source>
-        <translation>Νέος Φάκελος...</translation>
+        <translation>Νέος φάκελος...</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="243"/>
@@ -367,17 +367,17 @@
     <message>
         <location filename="../src/addfolderdialog.cpp" line="24"/>
         <source>Add Folder</source>
-        <translation>Προσθήκη Φακέλου</translation>
+        <translation>Προσθήκη φακέλου</translation>
     </message>
     <message>
         <location filename="../src/addfolderdialog.cpp" line="37"/>
         <source>Feeds</source>
-        <translation>Feeds</translation>
+        <translation>Ροές</translation>
     </message>
     <message>
         <location filename="../src/addfolderdialog.cpp" line="41"/>
         <source>All Feeds</source>
-        <translation>Όλα τα Feeds</translation>
+        <translation>Όλες οι ροές</translation>
     </message>
     <message>
         <location filename="../src/addfolderdialog.cpp" line="79"/>
@@ -387,7 +387,7 @@
     <message>
         <location filename="../src/addfolderdialog.cpp" line="81"/>
         <source>Location:</source>
-        <translation>Τοποθεσία</translation>
+        <translation>Τοποθεσία:</translation>
     </message>
 </context>
 <context>
@@ -420,7 +420,7 @@
     <message>
         <location filename="../src/network/authenticationdialog.cpp" line="61"/>
         <source>Password:</source>
-        <translation>Κωδικός:</translation>
+        <translation>Κωδικός πρόσβασης:</translation>
     </message>
 </context>
 <context>
@@ -433,7 +433,7 @@
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="62"/>
         <source>Starred</source>
-        <translation>Μαρκαρισμένο</translation>
+        <translation>Με αστερίσκο</translation>
     </message>
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="67"/>
@@ -453,7 +453,7 @@
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="140"/>
         <source>Clear &apos;Deleted&apos;</source>
-        <translation>Καθαρισμός &apos;Διαγραμμένων&apos;</translation>
+        <translation>Καθαρισμός «Διαγραμμένων»</translation>
     </message>
 </context>
 <context>
@@ -466,12 +466,12 @@
     <message>
         <location filename="../src/cleanupwizard.cpp" line="241"/>
         <source>Choose Feeds</source>
-        <translation>Επιλογή Feeds</translation>
+        <translation>Επιλογή ροών</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="254"/>
         <source>All Feeds</source>
-        <translation>Όλα τα Feeds</translation>
+        <translation>Όλες οι ροές</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="324"/>
@@ -481,7 +481,7 @@
     <message>
         <location filename="../src/cleanupwizard.cpp" line="326"/>
         <source>Maximum age of news in days to keep:</source>
-        <translation>Ηλικία των νέων σε ημέρες που αποθηκεύονται:</translation>
+        <translation>Μέγιστο χρονικό διάστημα αποθήκευσης των νέων σε ημέρες:</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="333"/>
@@ -496,22 +496,22 @@
     <message>
         <location filename="../src/cleanupwizard.cpp" line="341"/>
         <source>Never delete unread news</source>
-        <translation>Ποτέ διαγραφή μη αναγνωσμένων νέων</translation>
+        <translation>Να μην γίνεται διαγραφή των μη αναγνωσμένων ειδήσεων</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="342"/>
         <source>Never delete starred news</source>
-        <translation>Ποτέ διαγραφή μαρκαρισμένων νέων</translation>
+        <translation>Να μην γίνεται διαγραφή των ειδήσεων με αστερίσκο</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="343"/>
         <source>Never delete labeled news</source>
-        <translation>Ποτέ διαγραφή νέων με ετικέτα</translation>
+        <translation>Να μην γίνεται διαγραφή των ειδήσεων με ετικέτα</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="356"/>
         <source>Clean up &apos;Deleted&apos;</source>
-        <translation>Καθαρισμός &apos;διαγραμμένων&apos;</translation>
+        <translation>Καθαρισμός «διαγραμμένων»</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="357"/>
@@ -522,18 +522,18 @@
         <location filename="../src/cleanupwizard.cpp" line="361"/>
         <source>Totally remove records that had marked 'deleted' from DB.
 Ancient news could reappear</source>
-        <translation>Πλήρης αφαίρεση εγγραφών μαρκαρισμένες ώς &apos;διαγραμμένες&apos; στην ΔΒ.
+        <translation>Πλήρης αφαίρεση εγγραφών μαρκαρισμένες ως «διαγραμμένες» στη ΒΔ.
 Αρχαία νέα μπορεί να επανεμφανιστούν</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="524"/>
         <source>Information</source>
-        <translation type="unfinished"/>
+        <translation>Πληροφορίες</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="525"/>
         <source>Clean Up wizard deleted %1 news</source>
-        <translation type="unfinished"/>
+        <translation>Ο οδηγός καθαρισμού διέγραψε %1 ειδήσεις</translation>
     </message>
 </context>
 <context>
@@ -546,12 +546,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/plugins/clicktoflash.cpp" line="132"/>
         <source>Hide object</source>
-        <translation>Απόκρυψη Αντικειμένου</translation>
+        <translation>Απόκρυψη αντικειμένου</translation>
     </message>
     <message>
         <location filename="../src/plugins/clicktoflash.cpp" line="133"/>
         <source>Add &apos;%1&apos; to whitelist</source>
-        <translation>Προσθήκη &apos;%1&apos; στην whitelist</translation>
+        <translation>Προσθήκη «%1» στη λευκή λίστα</translation>
     </message>
 </context>
 <context>
@@ -559,24 +559,24 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="34"/>
         <source>Customize Main Toolbar</source>
-        <translation>Παραμετροποίηση Κύριας Γραμμής Εργαλείων</translation>
+        <translation>Παραμετροποίηση της κύριας γραμμής εργαλείων</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="37"/>
         <source>Customize Feeds Toolbar</source>
-        <translation>Παραμετροποίηση Γραμμής Εργαλείων Feed</translation>
+        <translation>Παραμετροποίηση της γραμμής εργαλείων ροών</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="40"/>
         <source>Customize News Toolbar</source>
-        <translation>Παραμετροποίηση Γραμμής Εργαλείων Νέων</translation>
+        <translation>Παραμετροποίηση της γραμμής εργαλείων ειδήσεων</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="79"/>
         <location filename="../src/customizetoolbardialog.cpp" line="379"/>
         <location filename="../src/customizetoolbardialog.cpp" line="481"/>
         <source>Load images</source>
-        <translation>Φόρτωση Εικόνων</translation>
+        <translation>Φόρτωση εικόνων</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="87"/>
@@ -598,12 +598,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="97"/>
         <source>Text Beside Icon</source>
-        <translation>Κείμενο Δίπλα σε Εικονίδιο</translation>
+        <translation>Κείμενο δίπλα από το εικονίδιο</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="97"/>
         <source>Text Under Icon</source>
-        <translation>Κείμενο Κάτω από Εικονίδιο</translation>
+        <translation>Κείμενο κάτω από το εικονίδιο</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="112"/>
@@ -623,7 +623,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="129"/>
         <source>Style:</source>
-        <translation>Στύλ:</translation>
+        <translation>Στιλ:</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="123"/>
@@ -729,7 +729,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="353"/>
         <source>Do you want to also delete dowloaded file?</source>
-        <translation>Θέλετε να διαγράφθει το κατεβασμενο αρχείο;</translation>
+        <translation>Θέλετε να διαγράψετε και το ληφθέν αρχείο;</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="370"/>
@@ -835,7 +835,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="34"/>
         <source>Authentication</source>
-        <translation>Authentication</translation>
+        <translation>Ταυτοποίηση</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="35"/>
@@ -860,7 +860,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="66"/>
         <source>Load Title</source>
-        <translation>Φόρτωση Τίτλου</translation>
+        <translation>Φόρτωση τίτλου</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="70"/>
@@ -870,12 +870,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="72"/>
         <source>Select Icon...</source>
-        <translation>Επιλογή Εικόνας...</translation>
+        <translation>Επιλογή εικονιδίου...</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="75"/>
         <source>Select Icon</source>
-        <translation>Επιλογή Εικόνας</translation>
+        <translation>Επιλογή εικονιδίου</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="85"/>
@@ -915,17 +915,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="118"/>
         <source>Display in new tab on startup</source>
-        <translation>Εμφάνιση σε νέα καρτέλα κατα την εκκίνηση</translation>
+        <translation>Εμφάνιση σε νέα καρτέλα κατά την εκκίνηση</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="176"/>
         <source>Show news&apos; description instead of loading web page</source>
-        <translation>Εμφάνιση περιγραφής νέων αντί για φόρτωση της σελίδας</translation>
+        <translation>Εμφάνιση της περιγραφής των ειδήσεων αντί για φόρτωση της σελίδας</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="119"/>
         <source>Automatically delete duplicate news</source>
-        <translation>Αυτόματη διαγραφή διπλότυπων νέων</translation>
+        <translation>Αυτόματη διαγραφή διπλότυπων ειδήσεων</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="32"/>
@@ -940,7 +940,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="177"/>
         <source>Right-to-left layout</source>
-        <translation>δεξιά προς τα αριστερά</translation>
+        <translation>Διάταξη δεξιά προς τα αριστερά</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="216"/>
@@ -985,17 +985,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="283"/>
         <source>Server requires authentication:</source>
-        <translation>Ο διακομιστής απαιτεί authentication:</translation>
+        <translation>Ο διακομιστής απαιτεί ταυτοποίηση:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="292"/>
         <source>Username:</source>
-        <translation>Όνομα Χρήστη:</translation>
+        <translation>Όνομα χρήστη:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="294"/>
         <source>Password:</source>
-        <translation>Κωδικός:</translation>
+        <translation>Κωδικός πρόσβασης:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="318"/>
@@ -1050,7 +1050,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="439"/>
         <source>Select Image</source>
-        <translation>Επιλογή Εικόνας</translation>
+        <translation>Επιλογή εικόνας</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="446"/>
@@ -1073,7 +1073,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsfilters/filterrulesdialog.cpp" line="47"/>
         <source>All Feeds</source>
-        <translation>Όλα τα Feeds</translation>
+        <translation>Όλες οι ροές</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/filterrulesdialog.cpp" line="114"/>
@@ -1130,7 +1130,7 @@ Ancient news could reappear</source>
         <location filename="../src/findtext.cpp" line="94"/>
         <location filename="../src/findtext.cpp" line="109"/>
         <source>Find in News</source>
-        <translation>Αναζήτηση στα νέα</translation>
+        <translation>Αναζήτηση στις ειδήσεις</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="110"/>
@@ -1150,17 +1150,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/findtext.cpp" line="113"/>
         <source>Find in Content</source>
-        <translation>Εύρεση στο Περιεχόμενο</translation>
+        <translation>Εύρεση στο περιεχόμενο</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="114"/>
         <source>Find in Links</source>
-        <translation type="unfinished"/>
+        <translation>Αναζήτηση στους δεσμούς</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="115"/>
         <source>Find in Browser</source>
-        <translation>Εύρεση στον Browser</translation>
+        <translation>Αναζήτηση στον Περιηγητή</translation>
     </message>
 </context>
 <context>
@@ -1176,12 +1176,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsfilters/itemaction.cpp" line="26"/>
         <source>Mark News as Read</source>
-        <translation>Σήμανση ως αναγνωσμένα</translation>
+        <translation>Σήμανση ειδήσεων ως αναγνωσμένες</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/itemaction.cpp" line="26"/>
         <source>Add Star</source>
-        <translation>Μαρκάρισμα</translation>
+        <translation>Προσθήκη αστερίσκου</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/itemaction.cpp" line="27"/>
@@ -1191,22 +1191,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsfilters/itemaction.cpp" line="27"/>
         <source>Add Label</source>
-        <translation>Προσθήκη Ετικέτας</translation>
+        <translation>Προσθήκη ετικέτας</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/itemaction.cpp" line="28"/>
         <source>Play a Sound</source>
-        <translation>Αναπαραγωγή Ήχου</translation>
+        <translation>Αναπαραγωγή ήχου</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/itemaction.cpp" line="28"/>
         <source>Show News in Notifier</source>
-        <translation>Εμφάνιση νέων στις ειδοποιήσεις</translation>
+        <translation>Εμφάνιση των ειδήσεων στις ειδοποιήσεις</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/itemaction.cpp" line="37"/>
         <source>Browse</source>
-        <translation>Αναζήτηση</translation>
+        <translation>Περιήγηση</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/itemaction.cpp" line="41"/>
@@ -1281,7 +1281,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsfilters/itemcondition.cpp" line="36"/>
         <source>Starred</source>
-        <translation>Μαρκαρισμένο</translation>
+        <translation>Με αστερίσκο</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/itemcondition.cpp" line="43"/>
@@ -1469,7 +1469,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2730"/>
         <source>Export: can&apos;t open a file</source>
-        <translation>Εξαγωγή: σφάλμα κατα το άνοιγμα αρχείου</translation>
+        <translation>Εξαγωγή: σφάλμα κατά το άνοιγμα του αρχείου</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="3002"/>
@@ -1494,7 +1494,7 @@ Ancient news could reappear</source>
         <location filename="../src/application/mainwindow.cpp" line="3564"/>
         <location filename="../src/application/mainwindow.cpp" line="3569"/>
         <source>(Browser)</source>
-        <translation>(Browser)</translation>
+        <translation>(Περιηγητής)</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4776"/>
@@ -1517,12 +1517,12 @@ Ancient news could reappear</source>
         <location filename="../src/application/mainwindow.cpp" line="4784"/>
         <location filename="../src/application/mainwindow.cpp" line="4787"/>
         <source>Add New Feed</source>
-        <translation>Προσθήκη νέου feed</translation>
+        <translation>Προσθήκη νέας ροής</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4786"/>
         <source>&amp;Feed...</source>
-        <translation>&amp;Feed...</translation>
+        <translation>&amp;Ροή...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4789"/>
@@ -1532,13 +1532,13 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4790"/>
         <source>Add New Folder</source>
-        <translation>Προσθήκη Νέου Φακέλου</translation>
+        <translation>Προσθήκη νέου φακέλου</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4792"/>
         <location filename="../src/application/mainwindow.cpp" line="4860"/>
         <source>Open in New Tab</source>
-        <translation>Άνοιγμα σε Νέα Καρτέλα</translation>
+        <translation>Άνοιγμα σε νέα καρτέλα</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4794"/>
@@ -1548,22 +1548,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4795"/>
         <source>Delete Selected Feed</source>
-        <translation>Διαγραφή επιλεγμένου feed</translation>
+        <translation>Διαγραφή της επιλεγμένης ροής</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4797"/>
         <source>&amp;Import Feeds...</source>
-        <translation>&amp;Εισαγωγή feeds...</translation>
+        <translation>&amp;Εισαγωγή ροών...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4798"/>
         <source>Import Feeds from OPML File</source>
-        <translation>Εισαγωγή feed από αρχείο OPML</translation>
+        <translation>Εισαγωγή ροής από αρχείο OPML</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4800"/>
         <source>&amp;Export Feeds...</source>
-        <translation>&amp;Εξαγωγή feed...</translation>
+        <translation>&amp;Εξαγωγή ροής...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4801"/>
@@ -1578,43 +1578,43 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4808"/>
         <source>Update Feed</source>
-        <translation>Ανανέωση Feed</translation>
+        <translation>Ενημέρωση της ροής</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4809"/>
         <source>Update Current Feed</source>
-        <translation>Ανανέωση του επιλεγμένου feed</translation>
+        <translation>Ενημέρωση της επιλεγμένης ροής</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4811"/>
         <source>Update All</source>
-        <translation>Ανανέωση Όλων</translation>
+        <translation>Ενημέρωση όλων</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4812"/>
         <source>Update All Feeds</source>
-        <translation>Ανανέωση Όλων των Feed</translation>
+        <translation>Ενημέρωση όλων των ροών</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4814"/>
         <source>Mark All Feeds Read</source>
-        <translation>Μαρκάρισμα όλων των feed ως αναγνωσμένα</translation>
+        <translation>Σημείωση των ροών ως αναγνωσμένες</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4816"/>
         <source>Mark Read/Unread</source>
-        <translation>Μαρκάρισμα σαν αναγνωσμένο/μη αναγνωσμένο</translation>
+        <translation>Σημείωση ως αναγνωσμένο/μη αναγνωσμένο</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4817"/>
         <source>Mark Current News Read/Unread</source>
-        <translation>Μαρκάρισμα επιλεγμένου νέου ως αναγνωσμένο/μη αναγνωσμένο</translation>
+        <translation>Σημείωση της επιλεγμένης είδησης ως αναγνωσμένη/μη αναγνωσμένη</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4819"/>
         <location filename="../src/application/mainwindow.cpp" line="4820"/>
         <source>Mark All News Read</source>
-        <translation>Μαρκάρισμα όλων των νέων ως αναγνωσμένα</translation>
+        <translation>Σημείωση όλων των ειδήσεων ως αναγνωσμένες</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4822"/>
@@ -1632,12 +1632,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4826"/>
         <source>News Filters...</source>
-        <translation>Φίλτρα Νέων...</translation>
+        <translation>Φίλτρα ειδήσεων...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4827"/>
         <source>Filter News...</source>
-        <translation>Φιλτράρισμα νέων...</translation>
+        <translation>Φιλτράρισμα ειδήσεων...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4829"/>
@@ -1647,12 +1647,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4830"/>
         <source>Open Options Dialog</source>
-        <translation>Άνοιγμα Επιλογών</translation>
+        <translation>Άνοιγμα επιλογών</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4832"/>
         <source>Filter Feeds</source>
-        <translation>Φίλτρο Feed</translation>
+        <translation>Φίλτρο ροών</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4833"/>
@@ -1675,42 +1675,42 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4836"/>
         <source>Show Starred Feeds</source>
-        <translation>Εμφάνιση μαρκαρισμένων feed</translation>
+        <translation>Εμφάνιση των ροών με αστερίσκο</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4837"/>
         <source>Show Not Working Feeds</source>
-        <translation>Εμφάνιση μη λειτουργικών feeds</translation>
+        <translation>Εμφάνιση μη λειτουργικών ροών</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4839"/>
         <source>Filter News</source>
-        <translation>Φίλτρο Νέων</translation>
+        <translation>Φίλτρο Ειδήσεων</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4843"/>
         <source>Show Starred</source>
-        <translation>Εμφάνιση μαρκαρισμένων</translation>
+        <translation>Εμφάνιση αυτών με αστερίσκο</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4844"/>
         <source>Show Not Starred</source>
-        <translation>Εμφάνιση μη μαρκαρισμένων</translation>
+        <translation>Εμφάνιση αυτών χωρίς αστερίσκο</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4845"/>
         <source>Show Unread or Starred</source>
-        <translation>Εμφάνιση μη αναγνωσμένων η μαρκαρισμένων</translation>
+        <translation>Εμφάνιση των μη αναγνωσμένων ή των σημειωμένων με αστερίσκο</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4846"/>
         <source>Show Last Day</source>
-        <translation>Εμφάνιση Τελευταίας Ημέρας</translation>
+        <translation>Εμφάνιση της τελευταίας ημέρας</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4847"/>
         <source>Show Last 7 Days</source>
-        <translation>Εμφάνιση Τελευταίων 7 Ημερών</translation>
+        <translation>Εμφάνιση των τελευταίων 7 ημερών</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4849"/>
@@ -1720,7 +1720,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4850"/>
         <source>Show &apos;About&apos; Dialog</source>
-        <translation>Εμφάνιση &apos;Σχετικα&apos;</translation>
+        <translation>Εμφάνιση του διαλόγου «Σχετικα»</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4852"/>
@@ -1735,27 +1735,27 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4855"/>
         <source>Open News</source>
-        <translation>Ανοιχτά Νέα</translation>
+        <translation>Άνοιγμα της είδησης</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4857"/>
         <source>Open in Browser</source>
-        <translation>Άνοιγμα σε Browser</translation>
+        <translation>Άνοιγμα στον Περιηγητή</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4858"/>
         <source>Open in External Browser</source>
-        <translation>Άνοιγμα σε εξωτερικό Browser</translation>
+        <translation>Άνοιγμα σε εξωτερικό Περιηγητή</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4859"/>
         <source>Open News in External Browser</source>
-        <translation>Άνοιγμα νέων σε εξωτερικό browser</translation>
+        <translation>Άνοιγμα των ειδήσεων σε εξωτερικό Περιηγητή</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4861"/>
         <source>Open News in New Tab</source>
-        <translation>Άνοιγμα νέων σε καινούρια καρτέλα</translation>
+        <translation>Άνοιγμα των ειδήσεων σε νέα καρτέλα</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4862"/>
@@ -1765,17 +1765,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4863"/>
         <source>Open News in Background Tab</source>
-        <translation>Άνοιγμα νέων σε καρτέλα στο παρασκήνιο</translation>
+        <translation>Άνοιγμα των ειδήσεων σε καρτέλα στο παρασκήνιο</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4864"/>
         <source>Star</source>
-        <translation>Μαρκαρισμένο</translation>
+        <translation>Αστερίσκος</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4865"/>
         <source>Mark News Star</source>
-        <translation>Μαρκάρισμα νέων</translation>
+        <translation>Σημείωση της είδησης με αστερίσκο</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4866"/>
@@ -1785,17 +1785,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4867"/>
         <source>Delete Selected News</source>
-        <translation>Διαγραφή επιλεγμένων νέων</translation>
+        <translation>Διαγραφή επιλεγμένων ειδήσεων</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4868"/>
         <source>Delete All News</source>
-        <translation>Διαγραφή όλων των νέων</translation>
+        <translation>Διαγραφή όλων των ειδήσεων</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4869"/>
         <source>Delete All News from List</source>
-        <translation>Διαγραφή όλων των νέων από τη λίστα</translation>
+        <translation>Διαγραφή όλων των ειδήσεων από τη λίστα</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4870"/>
@@ -1805,7 +1805,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4871"/>
         <source>Restore News</source>
-        <translation>Επαναφορά Νέων</translation>
+        <translation>Επαναφορά ειδήσεων</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4872"/>
@@ -1815,17 +1815,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4875"/>
         <source>Restore last deleted news</source>
-        <translation>Ανάκτηση τελευταίων διαγραμμένων νέων</translation>
+        <translation>Ανάκτηση τελευταίων διαγραμμένων ειδήσεων</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4877"/>
         <source>Mark Read</source>
-        <translation>Μαρκάρισμα ως αναγνωσμένο</translation>
+        <translation>Σημείωση ως αναγνωσμένο</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4878"/>
         <source>Mark Feed Read</source>
-        <translation>Μαρκάρισμα feed ως αναγνωσμένο</translation>
+        <translation>Σημείωση ροής ως αναγνωσμένη</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4879"/>
@@ -1841,12 +1841,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4945"/>
         <source>Count Unread News</source>
-        <translation>Μέτρηση μή αναγνωσμένων νέων</translation>
+        <translation>Καταμέτρηση των μη αναγνωσμένων ειδήσεων</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4946"/>
         <source>Count All News</source>
-        <translation>Μέτρηση όλων των νέων</translation>
+        <translation>Καταμέτρηση όλων των ειδήσεων</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4947"/>
@@ -1856,7 +1856,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4960"/>
         <source>Reset browser zoom</source>
-        <translation>Μηδενισμός μεγέθυνσης στον browser</translation>
+        <translation>Επαναφορά εστίασης στον περιηγητή</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4963"/>
@@ -1871,7 +1871,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4972"/>
         <source>Save page in database</source>
-        <translation>Αποθήκευση σελίδας στην βάση δεδομένων</translation>
+        <translation>Αποθήκευση της σελίδας στη βάση δεδομένων</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4973"/>
@@ -1891,7 +1891,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2585"/>
         <source>Are you sure to delete selected elements?</source>
-        <translation>Είστε σίγουρος ότι θέλετε να διαγράψετε τα στοιχεία;</translation>
+        <translation>Είστε σίγουρος-η ότι θέλετε να διαγράψετε τα επιλεγμένα στοιχεία;</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4781"/>
@@ -1901,47 +1901,47 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4803"/>
         <source>&amp;Create Backup...</source>
-        <translation>Δημιουργία Αντιγράφου Ασφαλείας</translation>
+        <translation>&amp;Δημιουργία Αντιγράφου Ασφαλείας...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4804"/>
         <source>S&amp;how Menu Bar</source>
-        <translation>Εμφάνιση Μπάρας Μενού</translation>
+        <translation>&amp;Εμφάνιση γραμμής μενού</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4856"/>
         <source>Open News Description</source>
-        <translation>Άνοιγμα περιγραφής νέων</translation>
+        <translation>Άνοιγμα περιγραφής ειδήσεων</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4873"/>
         <source>Copy News Link</source>
-        <translation>Αντιγραφή συνδέσμου νέων</translation>
+        <translation>Αντιγραφή συνδέσμου ειδήσεων</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4883"/>
         <source>&amp;View</source>
-        <translation>Ε&amp;μφάνιση</translation>
+        <translation>Π&amp;ροβολή</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4884"/>
         <source>Fee&amp;ds</source>
-        <translation>Fee&amp;ds</translation>
+        <translation>&amp;Ροές</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4885"/>
         <source>&amp;News</source>
-        <translation>&amp;Νέα</translation>
+        <translation>&amp;Ειδήσεις</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4886"/>
         <source>&amp;Browser</source>
-        <translation>&amp;Browser</translation>
+        <translation>&amp;Περιηγητής</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4887"/>
         <source>&amp;Tools</source>
-        <translation>Ε&amp;ργαλεία</translation>
+        <translation>Ερ&amp;γαλεία</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4888"/>
@@ -1952,63 +1952,63 @@ Ancient news could reappear</source>
         <location filename="../src/application/mainwindow.cpp" line="4890"/>
         <location filename="../src/application/mainwindow.cpp" line="4976"/>
         <source>Main Toolbar</source>
-        <translation>Κύρια Γραμμή Εργαλείων</translation>
+        <translation>Κύρια γραμμή εργαλείων</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4891"/>
         <source>Customize Toolbar</source>
-        <translation>Παραμετροποίηση Γραμμής Εργαλείων</translation>
+        <translation>Παραμετροποίηση της γραμμής εργαλείων</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4892"/>
         <source>Main Toolbar...</source>
-        <translation>Κυρίως Γραμμή Εργαλείων...</translation>
+        <translation>Κύρια γραμμή εργαλείων...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4893"/>
         <source>Customize Toolbar...</source>
-        <translation>Παραμετροποίηση Γραμμής Εργαλείων...</translation>
+        <translation>Παραμετροποίηση της γραμμής εργαλείων...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4894"/>
         <source>Feeds Toolbar...</source>
-        <translation>Γραμμή Εργαλείων Feed...</translation>
+        <translation>Γραμμή εργαλείων ροών...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4895"/>
         <source>News Toolbar...</source>
-        <translation>Γραμμή Εργαλείων Νέων...</translation>
+        <translation>Γραμμή εργαλείων ειδήσεων...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4897"/>
         <source>Lock Toolbar</source>
-        <translation>Κλείδωμα Μπάρας Εργαλείων</translation>
+        <translation>Κλείδωμα της γραμμής εργαλείων</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4898"/>
         <source>Hide Toolbar</source>
-        <translation>Απόκρυψη Γραμμής Εργαλείων</translation>
+        <translation>Απόκρυψη της γραμμής εργαλείων</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4900"/>
         <location filename="../src/application/mainwindow.cpp" line="4903"/>
         <source>Layout</source>
-        <translation type="unfinished"/>
+        <translation>Διάταξη</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4901"/>
         <source>Classic</source>
-        <translation type="unfinished"/>
+        <translation>Κλασική</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4902"/>
         <source>Newspaper</source>
-        <translation type="unfinished"/>
+        <translation>Εφημερίδα</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4905"/>
         <source>Application Style</source>
-        <translation>Στύλ Εφαρμογής</translation>
+        <translation>Στιλ εφαρμογής</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4906"/>
@@ -2048,7 +2048,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4914"/>
         <source>Browser Position</source>
-        <translation>Θέση Browser</translation>
+        <translation>Θέση Περιηγητή</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4915"/>
@@ -2083,17 +2083,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4923"/>
         <source>Next Feed</source>
-        <translation>Επόμενο feed</translation>
+        <translation>Επόμενη ροή</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4924"/>
         <source>Previous News</source>
-        <translation>Προηγούμενα Νέα</translation>
+        <translation>Προηγούμενη είδηση</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4925"/>
         <source>Next News</source>
-        <translation>Επόμενα Νέα</translation>
+        <translation>Επόμενη είδηση</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4926"/>
@@ -2108,47 +2108,47 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4929"/>
         <source>Next Unread News</source>
-        <translation>Επόμενο μη αναγνωσμένο νέο</translation>
+        <translation>Επόμενη μη αναγνωσμένη είδηση</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4930"/>
         <source>Previous Unread News</source>
-        <translation>Προηγούμενο μη αναγνωσμένο νέο</translation>
+        <translation>Προηγούμενη μη αναγνωσμένη είδηση</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4932"/>
         <source>Switch Focus to Next Panel</source>
-        <translation>Μετάβαση στο επόμενο panel</translation>
+        <translation>Εναλλαγή εστίασης στον επόμενο πίνακα</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4934"/>
         <source>Switch Focus to Next Panel (Tree Feeds, List News, Browser)</source>
-        <translation>Μετάβαση στο επόμενο panel (Δέντρο feed, λίστα νέων, browser)</translation>
+        <translation>Εναλλαγή εστίασης στον επόμενο πίνακα (Δέντρο ροών, λίστα ειδήσεων, Περιηγητής)</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4935"/>
         <source>Switch Focus to Previous Panel</source>
-        <translation>Μετάβαση στο προηγούμενο panel</translation>
+        <translation>Εναλλαγή εστίασης στον προηγούμενο πίνακα</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4937"/>
         <source>Switch Focus to Previous Panel (Tree Feeds, Browser, List News)</source>
-        <translation>Μετάβαση στο προηγούμενο panel (Δέντρο feed, browser, λίστα νέων)</translation>
+        <translation>Εναλλαγή εστίασης στον προηγούμενο πίνακα (Δέντρο ροών, λίστα ειδήσεων, Περιηγητής)</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4939"/>
         <source>Show/Hide Tree Feeds</source>
-        <translation>Εμφάνιση/Απόκρυψη Δέντρου Feed</translation>
+        <translation>Εμφάνιση/Απόκρυψη δέντρου ροών</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4941"/>
         <source>Minimize to Tray</source>
-        <translation>Ελαχιστοποίηση στο tray</translation>
+        <translation>Ελαχιστοποίηση στο πλαίσιο συστήματος</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4942"/>
         <source>Minimize Application to Tray</source>
-        <translation>Ελαχιστοποίηση της εφαρμογής στο tray</translation>
+        <translation>Ελαχιστοποίηση της εφαρμογής στο πλαίσιο συστήματος</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4944"/>
@@ -2158,18 +2158,18 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4949"/>
         <source>Show Indentation</source>
-        <translation>Εμφάνιση Εσοχών</translation>
+        <translation>Εμφάνιση εσοχών</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4951"/>
         <location filename="../src/application/mainwindow.cpp" line="4952"/>
         <source>Search Feed</source>
-        <translation>Αναζήτηση feed</translation>
+        <translation>Αναζήτηση ροής</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4954"/>
         <source>Zoom</source>
-        <translation>Μεγέθυνση</translation>
+        <translation>Εστίαση</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4955"/>
@@ -2179,7 +2179,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4956"/>
         <source>Zoom in in browser</source>
-        <translation>Μεγέθυνση στον browser</translation>
+        <translation>Μεγέθυνση στον Περιηγητή</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4957"/>
@@ -2189,7 +2189,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4958"/>
         <source>Zoom out in browser</source>
-        <translation>Σμίκρυνση στον browser</translation>
+        <translation>Σμίκρυνση στον Περιηγητή</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4959"/>
@@ -2209,22 +2209,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4967"/>
         <source>Page up (Browser)</source>
-        <translation type="unfinished"/>
+        <translation>Προηγούμενη σελίδα (Περιηγητής)</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4968"/>
         <source>Page down (Browser)</source>
-        <translation type="unfinished"/>
+        <translation>Επόμενη σελίδα (Περιηγητής)</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4970"/>
         <source>Save As...</source>
-        <translation>Αποθήκευση Ως...</translation>
+        <translation>Αποθήκευση ως...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4971"/>
         <source>Save Page As...</source>
-        <translation>Αποθήκευση Σελίδας Ως...</translation>
+        <translation>Αποθήκευση σελίδας ως...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4975"/>
@@ -2234,33 +2234,33 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4977"/>
         <source>Feeds Toolbar</source>
-        <translation>Γραμμή Εργαλείων Feed</translation>
+        <translation>Γραμμή εργαλείων ροών</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4978"/>
         <source>News Toolbar</source>
-        <translation>Γραμμή Εργαλείων Νέων</translation>
+        <translation>Γραμμή εργαλείων ειδήσεων</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4979"/>
         <source>Browser Toolbar</source>
-        <translation>Γραμμή Εργαλείων Browser</translation>
+        <translation>Γραμμή εργαλείων Περιηγητή</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4980"/>
         <source>Panel Categories</source>
-        <translation>Κατηγορίες Panel</translation>
+        <translation>Κατηγορίες πινάκων</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4981"/>
         <source>Status Bar</source>
-        <translation>Μπάρα Κατάστασης</translation>
+        <translation>Γραμμή κατάστασης</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4983"/>
         <location filename="../src/application/mainwindow.cpp" line="4984"/>
         <source>Full Screen</source>
-        <translation>Πλήρης Οθόνη</translation>
+        <translation>Πλήρης οθόνη</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4986"/>
@@ -2287,17 +2287,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4999"/>
         <source>Close Tab</source>
-        <translation>Κλείσιμο Καρτέλας</translation>
+        <translation>Κλείσιμο καρτέλας</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5000"/>
         <source>Close Other Tabs</source>
-        <translation>Κλείσιμο των άλλων καρτέλων</translation>
+        <translation>Κλείσιμο των άλλων καρτελών</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5001"/>
         <source>Close All Tabs</source>
-        <translation>Κλείσιμο όλων των καρτέλων</translation>
+        <translation>Κλείσιμο όλων των καρτελών</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5002"/>
@@ -2317,7 +2317,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5006"/>
         <source>Starred</source>
-        <translation>Μαρκαρισμένο</translation>
+        <translation>Με αστερίσκο</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5007"/>
@@ -2332,12 +2332,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5010"/>
         <source>Decrease news list/increase browser</source>
-        <translation>Μείωση λίστας νέων/αύξηση browser</translation>
+        <translation>Μείωση της λίστας ειδήσεων / αύξηση του Περιηγητή</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5011"/>
         <source>Increase news list/decrease browser</source>
-        <translation>Αύξηση λίστας νέων/μείωση browser</translation>
+        <translation>Αύξηση της λίστας ειδήσεων / μείωση του Περιηγητή</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5013"/>
@@ -2347,17 +2347,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5015"/>
         <source>Open Homepage Feed</source>
-        <translation>Άνοιγμα αρχικού feed</translation>
+        <translation>Άνοιγμα αρχικής ροής</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5016"/>
         <source>Sort by Name</source>
-        <translation type="unfinished"/>
+        <translation>Ταξινόμηση ανά όνομα</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5017"/>
         <source>Collapse All Folders</source>
-        <translation>Σύμπτηξη Όλων των φακέλων</translation>
+        <translation>Σύμπτυξη όλων των φακέλων</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5018"/>
@@ -2428,12 +2428,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="7413"/>
         <source>Save As</source>
-        <translation>Αποθήκευση Ως</translation>
+        <translation>Αποθήκευση ως</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="7415"/>
         <source>HTML-Files (*.%1)</source>
-        <translation>Αρχείο HTML (*.%1)</translation>
+        <translation>Αρχεία HTML (*.%1)</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="7415"/>
@@ -2443,12 +2443,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="7421"/>
         <source>Save As: can&apos;t open a file</source>
-        <translation>Αποθήκευση Ως: σφάλμα κατα το άνοιγμα αρχείου</translation>
+        <translation>Αποθήκευση ως: σφάλμα κατά το άνοιγμα αρχείου</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="7913"/>
         <source>Choose Directory</source>
-        <translation>Επιλογή Φακέλου</translation>
+        <translation>Επιλογή φακέλου</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.h" line="101"/>
@@ -2458,7 +2458,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.h" line="101"/>
         <source>Work</source>
-        <translation>Δουλειά</translation>
+        <translation>Εργασία</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.h" line="101"/>
@@ -2468,7 +2468,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.h" line="102"/>
         <source>To Do</source>
-        <translation>Να γίνει</translation>
+        <translation>Προς υλοποίηση</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.h" line="102"/>
@@ -2486,12 +2486,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsfilters/newsfiltersdialog.cpp" line="28"/>
         <source>News Filters</source>
-        <translation>Φίλτρα νέων</translation>
+        <translation>Φίλτρα ειδήσεων</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/newsfiltersdialog.cpp" line="46"/>
         <source>Feeds</source>
-        <translation>Feeds</translation>
+        <translation>Ροές</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/newsfiltersdialog.cpp" line="46"/>
@@ -2516,7 +2516,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsfilters/newsfiltersdialog.cpp" line="100"/>
         <source>Move up</source>
-        <translation>Μετακίνηση επάνω</translation>
+        <translation>Μετακίνηση πάνω</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/newsfiltersdialog.cpp" line="103"/>
@@ -2531,12 +2531,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsfilters/newsfiltersdialog.cpp" line="259"/>
         <source>Delete Filter</source>
-        <translation>Διαγραφή Φίλτρου</translation>
+        <translation>Διαγραφή φίλτρου</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/newsfiltersdialog.cpp" line="260"/>
         <source>Are you sure you want to delete the filter &apos;%1&apos;?</source>
-        <translation>Είστε σίγουρος ότι θέλετε να διαγράψετε το φίλτρο &apos;%1&apos;?</translation>
+        <translation>Είστε σίγουρος-η ότι θέλετε να διαγράψετε το φίλτρο «%1»;</translation>
     </message>
 </context>
 <context>
@@ -2544,7 +2544,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsheader.cpp" line="402"/>
         <source>Icon Feed</source>
-        <translation>Feed Εικόνων</translation>
+        <translation>Εικονίδιο ροής</translation>
     </message>
     <message>
         <location filename="../src/newsheader.cpp" line="403"/>
@@ -2579,7 +2579,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsheader.cpp" line="409"/>
         <source>Star</source>
-        <translation>Μαρκαρισμένο</translation>
+        <translation>Αστερίσκος</translation>
     </message>
     <message>
         <location filename="../src/newsheader.cpp" line="410"/>
@@ -2589,7 +2589,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsheader.cpp" line="411"/>
         <source>Feed Title</source>
-        <translation>Τίλος Feed</translation>
+        <translation>Τίτλος ροής</translation>
     </message>
     <message>
         <location filename="../src/newsheader.cpp" line="412"/>
@@ -2602,12 +2602,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/notifications/notificationsnewsitem.cpp" line="38"/>
         <source>Mark Read/Unread</source>
-        <translation>Μαρκάρισμα σαν αναγνωσμένο/μη αναγνωσμένο</translation>
+        <translation>Σημείωση ως αναγνωσμένο/μη αναγνωσμένο</translation>
     </message>
     <message>
         <location filename="../src/notifications/notificationsnewsitem.cpp" line="47"/>
         <source>Delete News</source>
-        <translation>Διαγραφή Νέων</translation>
+        <translation>Διαγραφή των ειδήσεων</translation>
     </message>
 </context>
 <context>
@@ -2625,27 +2625,27 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newstabwidget.cpp" line="590"/>
         <source>Open Page in External Browser</source>
-        <translation>Άνοιγμα σελίδας σε εξωτερικό browser</translation>
+        <translation>Άνοιγμα σελίδας σε εξωτερικό περιηγητή</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="591"/>
         <source>Open Link in External Browser</source>
-        <translation>Άνοιγμα Συνδέσμου σε Εξωτερικό Browser</translation>
+        <translation>Άνοιγμα συνδέσμου σε εξωτερικό περιηγητή</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="593"/>
         <source>Open Link</source>
-        <translation>Άνοιγμα Συνδέσμου</translation>
+        <translation>Άνοιγμα συνδέσμου</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="594"/>
         <source>Open in New Tab</source>
-        <translation>Άνοιγμα σε Νέα Καρτέλα</translation>
+        <translation>Άνοιγμα σε νέα καρτέλα</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="595"/>
         <source>Save Link...</source>
-        <translation>Αποθήκευση Συνδέσμου...</translation>
+        <translation>Αποθήκευση συνδέσμου...</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="596"/>
@@ -2655,7 +2655,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newstabwidget.cpp" line="597"/>
         <source>Copy Link</source>
-        <translation>Αντιγραφή Συνδέσμου</translation>
+        <translation>Αντιγραφή συνδέσμου</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="598"/>
@@ -2680,58 +2680,58 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newstabwidget.cpp" line="602"/>
         <source>Reload</source>
-        <translation>Ανανέωση</translation>
+        <translation>Επαναφόρτωση</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="603"/>
         <source>Copy Image</source>
-        <translation>Αντιγραφή Εικόνας</translation>
+        <translation>Αντιγραφή της εικόνας</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="605"/>
         <source>Copy Image Address</source>
-        <translation>Αντιγραφή Διεύθυνσης Εικόνας</translation>
+        <translation>Αντιγραφή της διεύθυνσης της εικόνας</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="615"/>
         <location filename="../src/newstabwidget.cpp" line="636"/>
         <source>Load Images</source>
-        <translation>Φόρτωση εικόνων</translation>
+        <translation>Φόρτωση των εικόνων</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="616"/>
         <source>Auto Load Images to News View</source>
-        <translation>Αυτόματη φόρτωση εικόνων στην εμφάνιση νέων</translation>
+        <translation>Αυτόματη φόρτωση των εικόνων στην προβολή ειδήσεων</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="618"/>
         <source>No Load Images</source>
-        <translation>Χωρίς φόρτωση εικόνων</translation>
+        <translation>Χωρίς φόρτωση των εικόνων</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="619"/>
         <source>No Load Images to News View</source>
-        <translation>Χωρίς φόρτωση εικόνων στην εμφάνιση νέων</translation>
+        <translation>Χωρίς φόρτωση των εικόνων στην προβολή των ειδήσεων</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="624"/>
         <source>Close Tab</source>
-        <translation>Κλείσιμο Καρτέλας</translation>
+        <translation>Κλείσιμο της καρτέλας</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="637"/>
         <source>Auto Load Images in News View</source>
-        <translation>Αυτόματη φόρτωση εικόνων στην εμφάνιση νέων</translation>
+        <translation>Αυτόματη φόρτωση των εικόνων στην προβολή των ειδήσεων</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="640"/>
         <source>Don&apos;t Load Images</source>
-        <translation>Χωρίς φόρτωση εικόνων</translation>
+        <translation>Χωρίς φόρτωση των εικόνων</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="641"/>
         <source>Don&apos;t Load Images in News View</source>
-        <translation>Χωρίς φόρτωση εικόνων στη λίστα νέων</translation>
+        <translation>Χωρίς φόρτωση των εικόνων στη λίστα ειδήσεων</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1447"/>
@@ -2772,32 +2772,32 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1603"/>
         <source>Mark Read/Unread</source>
-        <translation type="unfinished"/>
+        <translation>Σημείωση ως αναγνωσμένο/μη αναγνωσμένο</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1733"/>
         <source>Mark News Star</source>
-        <translation type="unfinished"/>
+        <translation>Σημείωση ειδήσεων με αστερίσκο</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1737"/>
         <source>Label</source>
-        <translation type="unfinished"/>
+        <translation>Ετικέτα</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1741"/>
         <source>Share</source>
-        <translation type="unfinished"/>
+        <translation>Διαμοιρασμός</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1745"/>
         <source>Open News in External Browser</source>
-        <translation type="unfinished"/>
+        <translation>Άνοιγμα της είδησης σε εξωτερικό περιηγητή</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1749"/>
         <source>Delete</source>
-        <translation type="unfinished"/>
+        <translation>Διαγραφή</translation>
     </message>
 </context>
 <context>
@@ -2810,22 +2810,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/notifications/notificationswidget.cpp" line="139"/>
         <source>Mark All News Read</source>
-        <translation>Μαρκάρισμα όλων των νέων ως αναγνωσμένα</translation>
+        <translation>Σημείωση όλων των ειδήσεων ως αναγνωσμένες</translation>
     </message>
     <message>
         <location filename="../src/notifications/notificationswidget.cpp" line="144"/>
         <source>Previous Page</source>
-        <translation>Προηγούμενη Σελίδα</translation>
+        <translation>Προηγούμενη σελίδα</translation>
     </message>
     <message>
         <location filename="../src/notifications/notificationswidget.cpp" line="149"/>
         <source>Next Page</source>
-        <translation>Επόμενη Σελίδα</translation>
+        <translation>Επόμενη σελίδα</translation>
     </message>
     <message>
         <location filename="../src/notifications/notificationswidget.cpp" line="199"/>
         <source>Incoming News: %1</source>
-        <translation>Εισερχόμενα Νέα: %1</translation>
+        <translation>Εισερχόμενες ειδήσεις: %1</translation>
     </message>
     <message>
         <location filename="../src/notifications/notificationswidget.cpp" line="346"/>
@@ -2852,23 +2852,23 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="68"/>
         <source>System Tray</source>
-        <translation>Tray</translation>
+        <translation>Πλαίσιο συστήματος</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="71"/>
         <source>Network Connections</source>
-        <translation>Συνδέσεις Δικτύου</translation>
+        <translation>Συνδέσεις δικτύου</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="74"/>
         <source>Browser</source>
-        <translation>Browser</translation>
+        <translation>Περιηγητής</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="77"/>
         <location filename="../src/optionsdialog.cpp" line="1137"/>
         <source>Feeds</source>
-        <translation>Feeds</translation>
+        <translation>Ροές</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="80"/>
@@ -2885,7 +2885,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="86"/>
         <source>Passwords</source>
-        <translation>Κωδικοί</translation>
+        <translation>Κωδικοί πρόσβασης</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="89"/>
@@ -2912,37 +2912,37 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="288"/>
         <source>Show splash screen on startup</source>
-        <translation>Εμφάνιση splash screen κατα την εκκίνηση</translation>
+        <translation>Εμφάνιση εικόνας εκκίνησης στην έναρξη</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="289"/>
         <source>Reopen last opened feeds on startup</source>
-        <translation>Άνοιγμα των τελευταίων feeds κατα την εκκίνηση</translation>
+        <translation>Άνοιγμα εκ νέου των τελευταίων ροών κατά την εκκίνηση</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="290"/>
         <source>Open new tab next to active</source>
-        <translation>Άνοιγμα νέας καρτέλας δίπλα στην ενεργό</translation>
+        <translation>Άνοιγμα νέας καρτέλας δίπλα στην ενεργή</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="291"/>
         <source>Hide feeds tree when opening tabs</source>
-        <translation>Απόκρυψη δέντρου feeds κατα το άνοιγμα καρτελών</translation>
+        <translation>Απόκρυψη δέντρου ροών κατά το άνοιγμα καρτελών</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="293"/>
         <source>Show default rss-icon instead of favourite one</source>
-        <translation>Εμφάνιση του προεπιλεγμένου εικονιδίο rss αντί για το αγαπημένο</translation>
+        <translation>Εμφάνιση του προεπιλεγμένου εικονιδίου rss αντί για το προτιμώμενο</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="294"/>
         <source>Automatically collapse folders</source>
-        <translation>Αυτόματη σύμπτυξη φακέλων</translation>
+        <translation>Αυτόματη σύμπτυξη των φακέλων</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="295"/>
         <source>Show close button on tab</source>
-        <translation>Εμφάνιση κουμπιού κλεισίματος στην καρτέλα</translation>
+        <translation>Εμφάνιση του κουμπιού κλεισίματος στην καρτέλα</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="297"/>
@@ -2957,7 +2957,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="299"/>
         <source>Store a DB in memory (requires program restart)</source>
-        <translation>Αποθήκευση βάσης δεδομένων (απαιτεί επανεκκίνιση του προγράμματος)</translation>
+        <translation>Αποθήκευση της βάσης δεδομένων στη μνήμη (απαιτεί επανεκκίνηση του προγράμματος)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="306"/>
@@ -2973,27 +2973,27 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="330"/>
         <source>Run QuiteRSS at Windows startup</source>
-        <translation>Εκτελέση του QuiteRSS κατα την εκκίνηση του Windows </translation>
+        <translation>Εκτέλεση του QuiteRSS κατά την εκκίνηση του Windows</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="358"/>
         <source>Show system tray icon</source>
-        <translation>Εμφάνιση εικονιδίου στο tray</translation>
+        <translation>Εμφάνιση εικονιδίου στο πλαίσιο συστήματος</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="361"/>
         <source>starting QuiteRSS</source>
-        <translation>εκκίνηση QuiteRSS</translation>
+        <translation>εκκίνηση του QuiteRSS</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="362"/>
         <source>minimizing QuiteRSS</source>
-        <translation>ελαχιστοποίηση QuiteRSS</translation>
+        <translation>ελαχιστοποίηση του QuiteRSS</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="363"/>
         <source>closing QuiteRSS</source>
-        <translation>κλείσιμο QuiteRSS</translation>
+        <translation>κλείσιμο του QuiteRSS</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="370"/>
@@ -3003,77 +3003,77 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="371"/>
         <source>Change icon for incoming new news</source>
-        <translation>Αλλαγή εικονιδίου για τα εισερχόμενα νέα</translation>
+        <translation>Αλλαγή εικονιδίου για τα εισερχόμενες ειδήσεις</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="372"/>
         <source>Show count of new news</source>
-        <translation>Εμφάνιση πλήθους νέων</translation>
+        <translation>Εμφάνιση πλήθους ειδήσεων</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="373"/>
         <source>Show count of unread news</source>
-        <translation>Εμφάνιση πλήθους μη αναγνωσμένων νέων</translation>
+        <translation>Εμφάνιση πλήθους μη αναγνωσμένων ειδήσεων</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="382"/>
         <source>Single click instead of double click for show window</source>
-        <translation>Κλίκ αντί για διπλό κλίκ για εμφάνιση νέου παραθύρου</translation>
+        <translation>Μονό αντί για διπλό κλικ για την εμφάνιση νέου παραθύρου</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="384"/>
         <source>Empty working set on minimize to tray</source>
-        <translation>Άδειασμα του σετ κατα την ελαχιστοποίηση</translation>
+        <translation>Απαλοιφή της εργασίας στο σύνολό της κατά την ελαχιστοποίηση στο πλαίσιο συστήματος</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="388"/>
         <source>Move to the system tray when:</source>
-        <translation>Μετακίνηση στο tray όταν:</translation>
+        <translation>Μετακίνηση στο πλαίσιο συστήματος όταν:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="391"/>
         <source>Tray icon behavior:</source>
-        <translation>Συμπεριφορά εικονιδίου tray:</translation>
+        <translation>Συμπεριφορά εικονιδίου του πλαισίου συστήματος:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="415"/>
         <source>Direct connection to the Internet</source>
-        <translation>Άμεση σύνδεση στο ίντερνετ</translation>
+        <translation>Άμεση σύνδεση στο διαδίκτυο</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="417"/>
         <source>System proxy configuration (if available)</source>
-        <translation>Ρύθμιση proxy συστήματος (εάν υπάρχει)</translation>
+        <translation>Διαμόρφωση διαμεσολαβήτή συστήματος (εάν υπάρχει)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="418"/>
         <source>Manual proxy configuration:</source>
-        <translation>Χειροκίνητη ρύθμιση proxy:</translation>
+        <translation>Χειροκίνητη ρύθμιση διαμεσολαβητή:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="437"/>
         <source>Proxy server:</source>
-        <translation>Proxy:</translation>
+        <translation>Διαμεσολαβητής:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="439"/>
         <source>Port:</source>
-        <translation>Port:</translation>
+        <translation>Θύρα:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="447"/>
         <source>Username:</source>
-        <translation>Username:</translation>
+        <translation>Όνομα χρήστη:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="449"/>
         <source>Password:</source>
-        <translation>Password:</translation>
+        <translation>Κωδικός πρόσβασης:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="478"/>
         <source>Request timeout:</source>
-        <translation>Η αίτηση έγινε timeout:</translation>
+        <translation>Χρονικό όριο αίτησης:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="480"/>
@@ -3088,27 +3088,27 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="485"/>
         <source>Options network requests when updating feeds (requires program restart):</source>
-        <translation>Επιλογές δικτύου κατα την ανανέωση των feeds (απαιτεί επανεκκίνηση):</translation>
+        <translation>Επιλογές αιτήσεων δικτύου κατά την ανανέωση των ροών (απαιτεί επανεκκίνηση του προγράμματος):</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="502"/>
         <source>Use embedded browser</source>
-        <translation>Χρήση του ενσωματωμένου browser</translation>
+        <translation>Χρήση του ενσωματωμένου περιηγητή</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="503"/>
         <source>Use external browser</source>
-        <translation>Χρήση εξωτερικού browser</translation>
+        <translation>Χρήση εξωτερικού περιηγητή</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="504"/>
         <source>Default external browser</source>
-        <translation>Προεπιλεγμένος εξωτερικός browser</translation>
+        <translation>Προεπιλεγμένος εξωτερικός περιηγητής</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="505"/>
         <source>Following external browser:</source>
-        <translation>Ακολουθούμενος εξωτερικός browser:</translation>
+        <translation>Ακολουθούμενος εξωτερικός περιηγητής:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="508"/>
@@ -3118,7 +3118,7 @@ Ancient news could reappear</source>
         <location filename="../src/optionsdialog.cpp" line="857"/>
         <location filename="../src/optionsdialog.cpp" line="1177"/>
         <source>Browse...</source>
-        <translation>Αναζήτηση...</translation>
+        <translation>Περιήγηση...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="510"/>
@@ -3139,27 +3139,27 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="518"/>
         <source>Open links in embedded browser in background</source>
-        <translation>Άνοιγμα συνδέσμων στον ενσωματωμένο browser στο παρασκήνιο</translation>
+        <translation>Άνοιγμα συνδέσμων στον ενσωματωμένο περιηγητή στο παρασκήνιο</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="519"/>
         <source>Open links in external browser in background (experimental)</source>
-        <translation>Άνοιγμα συνδέσμων σε εξωτερικό browser στο παρασκήνιο (πειραματικό)</translation>
+        <translation>Άνοιγμα συνδέσμων σε εξωτερικό περιηγητή στο παρασκήνιο (πειραματικό)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="545"/>
         <source>Default zoom on pages:</source>
-        <translation>Προεπιλεγμένη μεγέθυνση στις σελίδες;</translation>
+        <translation>Προεπιλεγμένη εστίαση στις σελίδες:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="563"/>
         <source>Browser selection:</source>
-        <translation>Επιλογή Browser:</translation>
+        <translation>Επιλογή περιηγητή:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="565"/>
         <source>External browser:</source>
-        <translation>Εξωτερικός browser:</translation>
+        <translation>Εξωτερικός περιηγητής:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="567"/>
@@ -3169,7 +3169,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="569"/>
         <source>User style sheet:</source>
-        <translation>Css χρήστη:</translation>
+        <translation>Φύλλο στιλ χρήστη:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="598"/>
@@ -3179,12 +3179,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="609"/>
         <source>Store cache in:</source>
-        <translation>Αποθήκευση σε:</translation>
+        <translation>Αποθήκευση κρυφής μνήμης σε:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="617"/>
         <source>Maximum size of disk cache</source>
-        <translation>Μέγιστο μέγεθος στο δίσκο</translation>
+        <translation>Μέγιστο μέγεθος κρυφής μνήμης στον δίσκο</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="619"/>
@@ -3194,17 +3194,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="625"/>
         <source>Use disk cache</source>
-        <translation>Χρήση αποθήκευσης δίσκου</translation>
+        <translation>Χρήση κρυφής μνήμης στον δίσκο</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="640"/>
         <source>Allow local data to be set</source>
-        <translation>Να επιτρέπεται η αποθήκευση δεδομένων</translation>
+        <translation>Να επιτρέπεται o καθορισμός των τοπικών δεδομένων</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="641"/>
         <source>Keep local data only until quit application</source>
-        <translation>Αποθήκευση δεδομένων μέχρι την έξοδο</translation>
+        <translation>Διατήρηση των τοπικών δεδομένων μόνο μέχρι την έξοδο της εφαρμογής</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="642"/>
@@ -3224,7 +3224,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="667"/>
         <source>Click To Flash is a plugin which blocks auto loading of Flash content at page. You can always load it manually by clicking on the Flash play icon.</source>
-        <translation>Το Click To Flash είναι ένα πρόσθετο το οποίο μπλοκάρει το αυτόματο φόρτωμα του Flash. Μπορείτε να φορτώσετε τα αντικείμενα flash κάνοντας κλίκ στο εικονίδιο.</translation>
+        <translation>Το Click To Flash είναι ένα πρόσθετο το οποίο μπλοκάρει το αυτόματο φόρτωμα του Flash. Μπορείτε να φορτώσετε τα αντικείμενα flash κάνοντας κλικ στο εικονίδιο.</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="672"/>
@@ -3249,7 +3249,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="737"/>
         <source>Download location:</source>
-        <translation>Τοποθεσια ληψης:</translation>
+        <translation>Τοποθεσία λήψης:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="746"/>
@@ -3259,7 +3259,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="747"/>
         <source>Privacy</source>
-        <translation>Ιδιωτικότητα</translation>
+        <translation>Ιδιωτικό απόρρητο</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="748"/>
@@ -3274,12 +3274,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="758"/>
         <source>Automatically update the feeds on startup</source>
-        <translation>Αυτόματη ανανέωση των feeds κατα την εκκίνηση</translation>
+        <translation>Αυτόματη ανανέωση των ροών κατά την εκκίνηση</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="759"/>
         <source>Automatically update the feeds every</source>
-        <translation>Αυτόματη ανανέωση των feeds κάθε</translation>
+        <translation>Αυτόματη ανανέωση των ροών κάθε</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="769"/>
@@ -3296,7 +3296,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="785"/>
         <source>Nothing to do</source>
-        <translation>Ολοκληρώθηκε</translation>
+        <translation>Καμία ενέργεια προς εκτέλεση</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="800"/>
@@ -3311,7 +3311,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="824"/>
         <source>Display format for date:</source>
-        <translation>Εμφάνιση ημερομηνίας:</translation>
+        <translation>Μορφή εμφάνισης για την ημερομηνία:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="827"/>
@@ -3321,7 +3321,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="831"/>
         <source>Alternating row background colors</source>
-        <translation>Χρωματισμός φόντου σειρών</translation>
+        <translation>Εναλλαγή χρωματισμού φόντου γραμμών</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="832"/>
@@ -3331,97 +3331,97 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="835"/>
         <source>Show All</source>
-        <translation>Εμφάνιση Όλων</translation>
+        <translation>Εμφάνιση όλων</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="835"/>
         <source>Show New</source>
-        <translation>Εμφάνιση Νέων</translation>
+        <translation>Εμφάνιση νέων</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="835"/>
         <source>Show Unread</source>
-        <translation>Εμφάνιση μη αναγνωσμένων</translation>
+        <translation>Εμφάνιση των μη αναγνωσμένων</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="836"/>
         <source>Show Starred</source>
-        <translation>Εμφάνιση Μαρκαρισμένων</translation>
+        <translation>Εμφάνιση αυτών με αστερίσκο</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="836"/>
         <source>Show Not Starred</source>
-        <translation>Εμφάνιση Μη Μαρκαρισμένων</translation>
+        <translation>Εμφάνιση αυτών χωρίς αστερίσκο</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="837"/>
         <source>Show Unread or Starred</source>
-        <translation>Εμφάνιση μη αναγνωσμένων ή μαρκαρισμένων</translation>
+        <translation>Εμφάνιση των μη αναγνωσμένων ή αυτών με αστερίσκο</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="837"/>
         <source>Show Last Day</source>
-        <translation>Εμφάνιση Τελευταίας Μέρας</translation>
+        <translation>Εμφάνιση τελευταίας ημέρας</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="838"/>
         <source>Show Last 7 Days</source>
-        <translation>Εμφάνιση Τελευταίων 7 Ημερών</translation>
+        <translation>Εμφάνιση τελευταίων 7 ημερών</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="879"/>
         <source>Style sheet for news:</source>
-        <translation>StyleSheet για τα νέα:</translation>
+        <translation>Φύλλο στιλ για τις ειδήσεις:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="887"/>
         <source>Mark news as read:</source>
-        <translation>Μαρκάρισμα νέων ως αναγνωσμένα:</translation>
+        <translation>Σημείωση των ειδήσεων ως αναγνωσμένες:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="889"/>
         <source>on selecting. With timeout</source>
-        <translation>κατα την επιλογή. Με χρόνο</translation>
+        <translation>κατά την επιλογή. Με χρονικό όριο</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="890"/>
         <source>after switching to another news</source>
-        <translation>μετά από αλλαγή σε άλλα νέα</translation>
+        <translation>μετά από εναλλαγή σε άλλη είδηση</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="896"/>
         <source>Mark displayed news as read when switching feeds</source>
-        <translation>Μαρκάρισμα νέων ως αναγνωσμένων κατα την αλλαγή feed</translation>
+        <translation>Σημείωση των ειδήσεων ως αναγνωσμένες κατά την εναλλαγή ροής</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="897"/>
         <source>Mark displayed news as read when closing tab</source>
-        <translation>Μαρκάρισμα νέων ως αναγνωσμένα κατα το κλείσιμο καρτέλας</translation>
+        <translation>Σημείωση των ειδήσεων ως αναγνωσμένες κατά το κλείσιμο της καρτέλας</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="898"/>
         <source>Mark displayed news as read on minimize</source>
-        <translation>Μαρκάρισμα νέων ως αναγνωσμένα κατα την ελαχιστοποίηση</translation>
+        <translation>Σημείωση των ειδήσεων αναγνωσμένες κατά την ελαχιστοποίηση</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="903"/>
         <source>Change behavior of action &apos;Next Unread News&apos;</source>
-        <translation>Αλλαγή συμπεριφοράς &apos;Επόμενο μη διαβασμένο νέο&apos;</translation>
+        <translation>Αλλαγή συμπεριφοράς «Επόμενη μη αναγνωσμένη είδηση»</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="905"/>
         <source>starred news</source>
-        <translation>Μαρκαρισμένα νέα</translation>
+        <translation>ειδήσεις με αστερίσκο</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="906"/>
         <source>labeled news</source>
-        <translation>Νέα με ετικέτα</translation>
+        <translation>ειδήσεις με ετικέτα</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="908"/>
         <source>Automatically mark identical news as read</source>
-        <translation>Αυτόματη πανομοιότυπη είδηση ​​ως αναγνωσμένη</translation>
+        <translation>Αυτόματη σημείωση των πανομοιότυπων ειδήσεων ​​ως αναγνωσμένες</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="935"/>
@@ -3431,47 +3431,47 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="947"/>
         <source>Enable cleanup on shutdown</source>
-        <translation>Ενεργοποίηση του καθαρισμού κατα την έξοδο</translation>
+        <translation>Ενεργοποίηση του καθαρισμού κατά την έξοδο</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="950"/>
         <source>Maximum age of news in days to keep:</source>
-        <translation>Μέγιστη ηλικία των νέων που θα αποθηκεύονται:</translation>
+        <translation>Μέγιστος χρόνος αποθήκευσης των ειδήσεων σε ημέρες:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="957"/>
         <source>Maximum number of news to keep:</source>
-        <translation>Μέγιστο πλήθος των νέων που θα αποθηκεύονται:</translation>
+        <translation>Μέγιστο πλήθος διατήρησης ειδήσεων:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="964"/>
         <source>Delete read news</source>
-        <translation>Διαγραφή αναγνωσμένων νέων</translation>
+        <translation>Διαγραφή αναγνωσμένων ειδήσεων</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="965"/>
         <source>Never delete unread news</source>
-        <translation>Να μην γίνεται ποτέ διαγραφή των μη αναγνωσμένων νέων</translation>
+        <translation>Να μην γίνεται ποτέ διαγραφή των μη αναγνωσμένων ειδήσεων</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="966"/>
         <source>Never delete starred news</source>
-        <translation>Να μην γίνεται ποτέ διαγραφή των μαρκαρισμένων νέων</translation>
+        <translation>Να μην γίνεται ποτέ διαγραφή των ειδήσεων με αστερίσκο</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="967"/>
         <source>Never delete labeled news</source>
-        <translation>Ποτέ διαγραφή των νέων με ετικέτα</translation>
+        <translation>Να μην γίνεται ποτέ διαγραφή των ειδήσεων με ετικέτα</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="969"/>
         <source>Clean up &apos;Deleted&apos;</source>
-        <translation>Καθαρισμός &apos;Διαγραμμένων&apos;</translation>
+        <translation>Καθαρισμός των «διαγραμμένων»</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="970"/>
         <source>Enable DB optimization (slower shutdown)</source>
-        <translation>Ενεργοποίηση βελτιστοποίησης ΒΔ</translation>
+        <translation>Ενεργοποίηση βελτιστοποίησης ΒΔ (καθυστέρηση στην έξοδο)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="998"/>
@@ -3501,57 +3501,57 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1025"/>
         <source>Move up</source>
-        <translation>Μετακίνηση επάνω</translation>
+        <translation>Μετακίνηση πάνω</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1028"/>
         <source>Move down</source>
-        <translation>Μετακίνηση κάτω...</translation>
+        <translation>Μετακίνηση κάτω</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1081"/>
         <source>Show when inactive main window</source>
-        <translation type="unfinished"/>
+        <translation>Εμφάνιση όταν το κυρίως παράθυρο είναι ανενεργό</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1096"/>
         <source>Screen</source>
-        <translation type="unfinished"/>
+        <translation>Οθόνη</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1106"/>
         <source>Transparency</source>
-        <translation type="unfinished"/>
+        <translation>Διαφάνεια</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1120"/>
         <source>Show titles feeds</source>
-        <translation type="unfinished"/>
+        <translation>Εμφάνιση τίτλων των ροών</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1121"/>
         <source>Show icon feed</source>
-        <translation type="unfinished"/>
+        <translation>Εμφάνιση εικονιδίου ροής</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1122"/>
         <source>Show button &apos;Mark All News Read&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Εμφάνιση του κουμπιού «Σημείωση όλων των ειδήσεων ως αναγνωσμένες»</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1123"/>
         <source>Show button &apos;Mark Read/Unread&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Εμφάνιση του κουμπιού «Σημείωση ως αναγνωσμένο/μη αναγνωσμένο»</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1124"/>
         <source>Show button &apos;Open in External Browser&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Εμφάνιση του κουμπιού «Άνοιγμα σε εξωτερικό περιηγητή»</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1125"/>
         <source>Show button &apos;Delete News&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Εμφάνιση του κουμπιού «Διαγραφή είδησης»</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1172"/>
@@ -3571,27 +3571,27 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1073"/>
         <source>Top Left</source>
-        <translation>Top Αριστερά</translation>
+        <translation>Πάνω αριστερά</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1073"/>
         <source>Top Right</source>
-        <translation>Top Δεξιά</translation>
+        <translation>Πάνω δεξιά</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1074"/>
         <source>Bottom Left</source>
-        <translation>Αριστερά bottom</translation>
+        <translation>Κάτω αριστερά</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1074"/>
         <source>Bottom Right</source>
-        <translation>Δεξια Bottom </translation>
+        <translation>Κάτω δεξιά</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1092"/>
         <source>Review</source>
-        <translation>Ανασκόπηση</translation>
+        <translation>Αναθεώρηση</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1099"/>
@@ -3606,7 +3606,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1111"/>
         <source>item on page notification</source>
-        <translation>αντικείμενο στη σελίδα ειδοποιήσεων</translation>
+        <translation>αντικείμενων στη σελίδα ειδοποιήσεων</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1112"/>
@@ -3616,7 +3616,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1114"/>
         <source>pixels</source>
-        <translation>pixel</translation>
+        <translation>εικονοστοιχεία</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1115"/>
@@ -3626,32 +3626,32 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1077"/>
         <source>Do not show notification in fullscreen mode</source>
-        <translation>Απενεργοποίηση εμφάνισης ειδοποιήσεων σε πλήρη οθόνη</translation>
+        <translation>Απενεργοποίηση εμφάνισης ειδοποιήσεων σε λειτουργία πλήρους οθόνης</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1136"/>
         <source>Only show selected feeds:</source>
-        <translation>Εμφάνιση μόνο επιλεγμένων feed:</translation>
+        <translation>Εμφάνιση μόνο των επιλεγμένων ροών:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1201"/>
         <source>Notification</source>
-        <translation type="unfinished"/>
+        <translation>Ειδοποίηση</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1202"/>
         <source>Sound</source>
-        <translation type="unfinished"/>
+        <translation>Ήχος</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1213"/>
         <source>Selection of feeds</source>
-        <translation type="unfinished"/>
+        <translation>Επιλογή ροών</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1229"/>
         <source>All Feeds</source>
-        <translation>Όλα τα feed</translation>
+        <translation>Όλες οι ροές</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1256"/>
@@ -3666,7 +3666,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1256"/>
         <source>Password</source>
-        <translation>Κωδικός</translation>
+        <translation>Κωδικός πρόσβασης</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1273"/>
@@ -3681,7 +3681,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1277"/>
         <source>Show Passwords</source>
-        <translation>Εμφάνιση Κωδικών</translation>
+        <translation>Εμφάνιση κωδικών πρόσβασης</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1309"/>
@@ -3716,27 +3716,27 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1585"/>
         <source>Feeds list font</source>
-        <translation>Γραμματοσειρά λίστας feed</translation>
+        <translation>Γραμματοσειρά της λίστας ροών</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1588"/>
         <source>News list font</source>
-        <translation>Γραμματοσειρά λίστας νέων</translation>
+        <translation>Γραμματοσειρά της λίστας ειδήσεων</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1591"/>
         <source>News title font</source>
-        <translation>Γραμματοσειρά τίτλου νέων</translation>
+        <translation>Γραμματοσειρά των τίτλων ειδήσεων</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1594"/>
         <source>News text font</source>
-        <translation>Γραμματοσειρά κειμένου νέων</translation>
+        <translation>Γραμματοσειρά του κειμένου των ειδήσεων</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1597"/>
         <source>Notification font</source>
-        <translation>Γραμματοσειρά ειδοποιήσεων</translation>
+        <translation>Γραμματοσειρά των ειδοποιήσεων</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1604"/>
@@ -3749,47 +3749,47 @@ Ancient news could reappear</source>
         <location filename="../src/optionsdialog.cpp" line="1707"/>
         <location filename="../src/optionsdialog.cpp" line="1819"/>
         <source>Reset</source>
-        <translation>Μηδενισμός</translation>
+        <translation>Επαναφορά</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1631"/>
         <source>Feeds list color</source>
-        <translation>Feeds χρώμα λίστας</translation>
+        <translation>Χρώμα λίστας ροών</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1634"/>
         <source>Feeds list background</source>
-        <translation>Feeds φόντος λίστας</translation>
+        <translation>Χρώμα φόντου λίστας ροών</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1637"/>
         <source>News list color</source>
-        <translation>Χρωμα λίστας νέων</translation>
+        <translation>Χρώμα λίστας ειδήσεων</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1640"/>
         <source>News list background</source>
-        <translation>Φοντος λίστας νέων</translation>
+        <translation>Φόντο λίστας ειδοποιήσεων</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1643"/>
         <source>Focused news color</source>
-        <translation>Εστιασμένο χρώμα ειδήσεων</translation>
+        <translation>Χρώμα τρέχουσας είδησης</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1646"/>
         <source>Focused news background color</source>
-        <translation>Εστιασμένο χρώμα του φόντου ειδήσεων</translation>
+        <translation>Χρώμα φόντου της τρέχουσας είδησης</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1649"/>
         <source>Link color</source>
-        <translation>Χρώμα σύνδεσμου</translation>
+        <translation>Χρώμα συνδέσμων</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1652"/>
         <source>Title color</source>
-        <translation>Χρώμα τίτλου</translation>
+        <translation>Χρώμα τίτλων</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1655"/>
@@ -3804,122 +3804,122 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1661"/>
         <source>News text color</source>
-        <translation>Χρώμα γραμματοσειράς νέων</translation>
+        <translation>Χρώμα γραμματοσειράς ειδήσεων</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1664"/>
         <source>News title background</source>
-        <translation>Φοντος τιτλων ειδησεων</translation>
+        <translation>Φόντο τίτλου ειδήσεων</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1667"/>
         <source>News background</source>
-        <translation>Φοντος ειδησεων</translation>
+        <translation>Φόντο ειδήσεων</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1670"/>
         <source>Feed with new news</source>
-        <translation>Feed με νέα</translation>
+        <translation>Ροή με νέες ειδήσεις</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1673"/>
         <source>Count of unread news in feeds tree</source>
-        <translation>Πλήθος μη αναγνωσμένων νέων στο δέντρο</translation>
+        <translation>Καταμέτρηση των μη αναγνωσμένων ειδήσεων στο δέντρο ροών</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1688"/>
         <source>Disabled feed</source>
-        <translation>Απενεργοποιημένο feed</translation>
+        <translation>Απενεργοποιημένη ροή</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1691"/>
         <source>Alternating row colors</source>
-        <translation>Χρωματισμός σειρών</translation>
+        <translation>Εναλλαγή χρωματισμού γραμμών</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1694"/>
         <source>Notification text color</source>
-        <translation type="unfinished"/>
+        <translation>Χρώμα κειμένου ειδοποιήσεων</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1697"/>
         <source>Notification background color</source>
-        <translation type="unfinished"/>
+        <translation>Χρώμα φόντου ειδοποιήσεων</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2089"/>
         <source>Auto load images in news view</source>
-        <translation>Αυτόματη φόρτωση εικόνων στην εμφάνιση νέων</translation>
+        <translation>Αυτόματη φόρτωση εικόνων στην εμφάνιση των ειδήσεων</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1676"/>
         <source>Text color of new news</source>
-        <translation>Χρώμα γραμματοσειράς καινούριων νέων</translation>
+        <translation>Χρώμα γραμματοσειράς των νέων ειδήσεων</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="292"/>
         <source>Show feeds tree toggle</source>
-        <translation>Κουμπί εμφάνισης δέντρου</translation>
+        <translation>Εμφάνιση του κουμπιού εμφάνισης/απόκρυψης του δέντρου ροών</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="383"/>
         <source>Clear new status when minimize to tray</source>
-        <translation>Εκκαθάριση κατάστασης νέων κατα την ελαχιστοποίηση</translation>
+        <translation>Εκκαθάριση της κατάστασης νέου κατά την ελαχιστοποίηση στο πλαίσιο συστήματος</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="781"/>
         <source>Set focus on the last opened news</source>
-        <translation>Κεντράρισμα στα τελευταία ανοιγμένα νέα</translation>
+        <translation>Εστίαση στις τελευταία ανοιγμένες ειδήσεις</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="782"/>
         <source>Set focus at the top of news list</source>
-        <translation>Κεντράρισμα στο επάνω μέρος της λίστας νέων</translation>
+        <translation>Εστίαση στο πάνω μέρος της λίστας ειδήσεων</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="783"/>
         <source>Set focus on the unread news</source>
-        <translation>Κεντράρισμα στα μη αναγνωσμένα νέα</translation>
+        <translation>Εστίαση στις μη αναγνωσμένες ειδήσεις</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="784"/>
         <source>Open the news</source>
-        <translation>Άνοιγμα νέων</translation>
+        <translation>Άνοιγμα των ειδήσεων</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="852"/>
         <source>Default news filter:</source>
-        <translation>Προεπιλεγμένο φίλτρο νέων:</translation>
+        <translation>Προεπιλεγμένο φίλτρο ειδήσεων:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="870"/>
         <source>Action on feed opening:</source>
-        <translation>Ενέργεια κατα το άνοιγμα feed:</translation>
+        <translation>Ενέργεια κατά το άνοιγμα της ροής:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="901"/>
         <source>Show news description instead of loading web page</source>
-        <translation>Εμφάνιση περιγραφής νέων αντί για φόρτωση της σελίδας</translation>
+        <translation>Εμφάνιση περιγραφής ειδήσεων αντί για φόρτωση της σελίδας</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1679"/>
         <source>Text color of unread news</source>
-        <translation>Χρώμα γραμματοσειράς μη αναγνωσμένων νέων</translation>
+        <translation>Χρώμα γραμματοσειράς των μη αναγνωσμένων ειδήσεων</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1682"/>
         <source>Focused feed color</source>
-        <translation>Εστιασμένο χρώμα ειδήσεων</translation>
+        <translation>Χρώμα τρέχουσας ροής</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1685"/>
         <source>Focused feed background color</source>
-        <translation>Εστιασμένο χρώμα του φόντου ειδήσεων</translation>
+        <translation>Χρώμα φόντου της τρέχουσας ροής</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1733"/>
         <source>Standard</source>
-        <translation>Προεπιλογή</translation>
+        <translation>Τυπικό</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1735"/>
@@ -3954,7 +3954,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1760"/>
         <source>Fixed font size</source>
-        <translation>Σταθερό μέγεθος γραμματοσειράς</translation>
+        <translation>Μέγεθος γραμματοσειράς σταθερού πλάτους</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1762"/>
@@ -3969,7 +3969,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1768"/>
         <source>Font families:</source>
-        <translation>Γραμματοσειρές</translation>
+        <translation>Οικογένειες γραμματοσειρών:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1770"/>
@@ -3984,7 +3984,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1780"/>
         <source>Fonts Browser</source>
-        <translation>Γραμματοσειρές</translation>
+        <translation>Περιηγητής γραμματοσειρών</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1781"/>
@@ -4026,23 +4026,23 @@ Ancient news could reappear</source>
         <location filename="../src/optionsdialog.cpp" line="2273"/>
         <location filename="../src/optionsdialog.cpp" line="2785"/>
         <source>Select Style Sheet File</source>
-        <translation>Επιλογή αρχείου css</translation>
+        <translation>Επιλογή αρχείου φύλλου στιλ</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2794"/>
         <location filename="../src/optionsdialog.cpp" line="2823"/>
         <source>Open Directory...</source>
-        <translation>Άνοιγμα...</translation>
+        <translation>Άνοιγμα καταλόγου...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2804"/>
         <source>Add site to whitelist</source>
-        <translation>Προσθήκη ιστοσελίδας στην whitelist</translation>
+        <translation>Προσθήκη ιστοσελίδας στη λευκή λίστα</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2805"/>
         <source>Site without &apos;http://&apos; (ex. youtube.com)</source>
-        <translation>Ιστοσελίδα χωρίς http:// (πχ. youtube.com)</translation>
+        <translation>Ιστοσελίδα χωρίς «http://» (πχ. youtube.com)</translation>
     </message>
 </context>
 <context>
@@ -4050,12 +4050,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5053"/>
         <source>&amp;Step up</source>
-        <translation>&amp;Επάνω</translation>
+        <translation>&amp;Βήμα πάνω</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5054"/>
         <source>Step &amp;down</source>
-        <translation>&amp;Κάτω</translation>
+        <translation>Βήμα &amp;κάτω</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5055"/>
@@ -4101,22 +4101,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="953"/>
         <source>Connection refused to host %1</source>
-        <translation>Η σύνδεση με το %1 απορρίφθηκε.</translation>
+        <translation>Η σύνδεση με τον υπολογιστή %1 απορρίφθηκε</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="958"/>
         <source>Connection timed out to host %1</source>
-        <translation>Η σύνδεση με το %1 έληξε.</translation>
+        <translation>Η σύνδεση με τον υπολογιστή %1 έληξε</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="1071"/>
         <source>Connected to host %1</source>
-        <translation>Συνδεδεμένο με το %1</translation>
+        <translation>Συνδεδεμένο με τον υπολογιστή %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="1312"/>
         <source>Connection refused for data connection</source>
-        <translation>Η σύνδεση απορρίφθηκε για δεδομένα</translation>
+        <translation>Η σύνδεση απέρριψε τη σύνδεση δεδομένων</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="1490"/>
@@ -4127,7 +4127,7 @@ Ancient news could reappear</source>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2419"/>
         <source>Connecting to host failed:
 %1</source>
-        <translation>Η σύνδεση με το διακομιστή απέτυχε.
+        <translation>Η σύνδεση με το διακομιστή απέτυχε:
 %1</translation>
     </message>
     <message>
@@ -4155,14 +4155,14 @@ Ancient news could reappear</source>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2435"/>
         <source>Downloading file failed:
 %1</source>
-        <translation>Το κατέβασμα απέτυχε:
+        <translation>Η λήψη απέτυχε:
 %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2439"/>
         <source>Uploading file failed:
 %1</source>
-        <translation>Το ανέβασμα απέτυχε:
+        <translation>Η αποστολή απέτυχε:
 %1</translation>
     </message>
     <message>
@@ -4176,14 +4176,14 @@ Ancient news could reappear</source>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2447"/>
         <source>Creating directory failed:
 %1</source>
-        <translation>Η δημιουργία απέτυχε:
+        <translation>Η δημιουργία καταλόγου απέτυχε:
 %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2451"/>
         <source>Removing directory failed:
 %1</source>
-        <translation>Η διαγραφή απέτυχε:
+        <translation>Η διαγραφή του καταλόγου απέτυχε:
 %1</translation>
     </message>
     <message>
@@ -4202,7 +4202,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5037"/>
         <source>&amp;Redo</source>
-        <translation>&amp;Επανάληψη</translation>
+        <translation>Επανα&amp;φορά</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5038"/>
@@ -4227,7 +4227,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5042"/>
         <source>Select All</source>
-        <translation>Επιλογή Όλων</translation>
+        <translation>Επιλογή όλων</translation>
     </message>
 </context>
 <context>
@@ -4235,7 +4235,8 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5057"/>
         <source>Select IM</source>
-        <translation>Επιλογή IM</translation>
+        <translation>Επιλογή μεθόδου εισαγωγής
+</translation>
     </message>
 </context>
 <context>
@@ -4243,12 +4244,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="163"/>
         <source>Cannot start external program</source>
-        <translation>Δεν είναι δυνατή η έναρξη εξωτερικόυ πρόγραμματος</translation>
+        <translation>Δεν είναι δυνατή η έναρξη εξωτερικού προγράμματος</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="164"/>
         <source>Cannot start external program! %1</source>
-        <translation>Δεν είναι δυνατή η έναρξη εξωτερικόυ πρόγραμματος! %1</translation>
+        <translation>Δεν είναι δυνατή η έναρξη εξωτερικού προγράμματος! %1</translation>
     </message>
     <message>
         <location filename="../src/database/database.cpp" line="265"/>
@@ -4266,7 +4267,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5045"/>
         <source>&amp;Redo</source>
-        <translation>&amp;Επανάληψη</translation>
+        <translation>Επανα&amp;φορά</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5046"/>
@@ -4296,7 +4297,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5051"/>
         <source>Copy &amp;Link Location</source>
-        <translation>&amp;Αντιγραφή Συνδέσμου</translation>
+        <translation>Αντιγραφή &amp;διεύθυνσης δεσμού</translation>
     </message>
 </context>
 <context>
@@ -4327,7 +4328,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/webview/rssdetectionwidget.cpp" line="56"/>
         <source>Untitled feed</source>
-        <translation>Feed χωρίς όνομα</translation>
+        <translation>Ροή χωρίς όνομα</translation>
     </message>
 </context>
 <context>
@@ -4335,7 +4336,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/requestfeed.cpp" line="207"/>
         <source>Server requires authentication!</source>
-        <translation>Ο διακομιστής απαιτεί authentication!</translation>
+        <translation>Ο διακομιστής απαιτεί ταυτοποίηση!</translation>
     </message>
     <message>
         <location filename="../src/requestfeed.cpp" line="209"/>
@@ -4418,7 +4419,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="427"/>
         <source>Parameter count mismatch</source>
-        <translation>Αναντιστοιχεία παραμέτρων</translation>
+        <translation>Λάθος καταμέτρηση παραμέτρων</translation>
     </message>
 </context>
 <context>
@@ -4441,7 +4442,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/updateappdialog.cpp" line="51"/>
         <source>Don&apos;t remind about this version</source>
-        <translation>Όχι υπενθύμιση για αυτή την έκδοση ξανά</translation>
+        <translation>Να μην γίνει υπενθύμιση για αυτή την έκδοση ξανά</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="59"/>
@@ -4461,7 +4462,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/updateappdialog.cpp" line="134"/>
         <source>Click here to go to the download page</source>
-        <translation>Κάντε κλίκ για να μεταβείτε στην σελίδα</translation>
+        <translation>Κάντε κλικ για να μεταβείτε στην σελίδα λήψεων</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="139"/>
@@ -4471,7 +4472,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/updateappdialog.cpp" line="141"/>
         <source>Current version is:</source>
-        <translation>Η έκδοση είναι:</translation>
+        <translation>Η τρέχουσα έκδοση είναι:</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="147"/>
