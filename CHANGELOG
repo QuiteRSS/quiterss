@@ -1,3 +1,21 @@
+Version 0.17.1 (15 Nov 2014)
+  * Added: Button and shortcut to switch layout
+  * Added: Ability to delete news in newspaper layout
+  * Added: News list search: "Find in links"
+  * Added: Ability to choose monitor to display notifications
+  * Added: Notification transparency option
+  * Added: Notification text and background colors options
+  * Added: Notification option "Show when main window is inactive"
+  * Added: Additional options for notification layout
+  * Added: Scroll by page shortcuts in embedded browser
+  * Changed: Retain search text while switching feed
+  * Changed: Show deleted news number after clean up wizard
+  * Changed: Multi-select behavior in news list
+  * Fixed: Host-name absence in some feed links
+  * Fixed: Inactive filters with "Link" field and "is" condition
+  * Fixed: Update of the feeds which last update date is 1970
+  * Fixed: Occasional error of restoring feed list columns length
+
 Version 0.17.0 (03 Sep 2014)
   * Added: The Newspaper view (View->Layout->Newspaper)
   * Added: Socks5 proxy support
