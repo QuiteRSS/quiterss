@@ -43,8 +43,12 @@ WebView::WebView(QWidget *parent)
 /*virtual*/ void WebView::mousePressEvent(QMouseEvent *event)
 {
   buttonClick_ = 0;
-  if (event->buttons() & Qt::RightButton)
+
+  if (event->buttons() == Qt::RightButton) {
     posX_ = event->pos().x();
+  } else if (event->buttons() == Qt::LeftButton) {
+    dragStartPos_ = event->pos();
+  }
 
   QWebView::mousePressEvent(event);
 }
@@ -100,6 +104,34 @@ WebView::WebView(QWidget *parent)
     return;
   }
   QWebView::wheelEvent(event);
+}
+
+void WebView::mouseMoveEvent(QMouseEvent* event)
+{
+  if (event->buttons() != Qt::LeftButton) {
+    QWebView::mouseMoveEvent(event);
+    return;
+  }
+
+  int manhattanLength = (event->pos() - dragStartPos_).manhattanLength();
+  if (manhattanLength <= QApplication::startDragDistance()) {
+    QWebView::mouseMoveEvent(event);
+    return;
+  }
+
+  const QWebHitTestResult &hitTest = page()->mainFrame()->hitTestContent(dragStartPos_);
+  if (hitTest.linkUrl().isEmpty()) {
+    QWebView::mouseMoveEvent(event);
+    return;
+  }
+
+  QDrag *drag = new QDrag(this);
+  QMimeData *mime = new QMimeData;
+  mime->setUrls(QList<QUrl>() << hitTest.linkUrl());
+  mime->setText(hitTest.linkUrl().toString());
+
+  drag->setMimeData(mime);
+  drag->exec();
 }
 
 void WebView::slotLoadStarted()

@@ -51,6 +51,7 @@ protected:
   virtual void mousePressEvent(QMouseEvent*);
   virtual void mouseReleaseEvent(QMouseEvent*);
   virtual void wheelEvent(QWheelEvent*);
+  void mouseMoveEvent(QMouseEvent* event);
 
 private slots:
   void slotLoadStarted();
@@ -63,6 +64,7 @@ private:
   bool rssChecked_;
   bool hasRss_;
   int posX_;
+  QPoint dragStartPos_;
 
 };
 
