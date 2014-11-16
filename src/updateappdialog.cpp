@@ -143,7 +143,7 @@ void UpdateAppDialog::finishUpdatesChecking()
         "</td></tr></table><p>" + str +
         "</body></html>";
   } else {
-    //    qDebug() << reply_->error() << reply_->errorString();
+    qWarning() << "Error checking updates" << reply_->error() << reply_->errorString();
     info = tr("Error checking updates");
     if (showDialog_)
       history_->setText("");
