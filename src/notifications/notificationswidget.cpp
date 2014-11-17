@@ -96,7 +96,7 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
     }
   }
 
-  int transparency = 255*transparency_/100;
+  int transparency = 255*(100-transparency_)/100;
   QColor color(backgroundColor);
   int redColor = color.red()-20;
   if (redColor < 0) redColor = 0;
