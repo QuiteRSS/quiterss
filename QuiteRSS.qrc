@@ -153,6 +153,8 @@
         <file alias="flag_RO">images/flags/flag_romania.png</file>
         <file alias="flag_FI">images/flags/flag_finland.png</file>
         <file alias="flag_GL">images/flags/flag_galicia.png</file>
+        <file alias="flag_BG">images/flags/flag_bulgaria.png</file>
+        <file alias="flag_HI">images/flags/flag_india.png</file>
     </qresource>
     <qresource prefix="/share">
         <file>images/share/blogger.png</file>
