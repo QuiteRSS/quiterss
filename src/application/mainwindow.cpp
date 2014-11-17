@@ -2484,7 +2484,7 @@ void MainWindow::setProxy(const QNetworkProxy proxy)
 
 void MainWindow::showMainMenu()
 {
-  mainMenu_->popup(mainMenuButton_->mapToGlobal(QPoint(-5, mainMenuButton_->height())));
+  mainMenu_->popup(mainMenuButton_->mapToGlobal(QPoint(0, mainMenuButton_->height())));
 }
 
 /** @brief Add feed to feed list
