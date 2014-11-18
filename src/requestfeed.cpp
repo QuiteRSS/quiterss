@@ -228,21 +228,25 @@ void RequestFeed::finished(QNetworkReply *reply)
       QUrl redirectionTarget = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
       if (redirectionTarget.isValid()) {
         if (count < (numberRepeats_ + 3)) {
-          QString host(QUrl::fromEncoded(feedUrl.toUtf8()).host());
-          if (reply->operation() == QNetworkAccessManager::HeadOperation) {
-            qDebug() << objectName() << "  head redirect...";
-            if (redirectionTarget.host().isEmpty())
-              redirectionTarget.setUrl("http://" + host + redirectionTarget.toString());
-            if (redirectionTarget.scheme().isEmpty())
-              redirectionTarget.setScheme(QUrl(feedUrl).scheme());
-            emit signalHead(redirectionTarget, feedId, feedUrl, feedDate, count);
+          if (headOk && (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 302)) {
+            emit signalGet(replyUrl, feedId, feedUrl, feedDate);
           } else {
-            qDebug() << objectName() << "  get redirect...";
-            if (redirectionTarget.host().isEmpty())
-              redirectionTarget.setUrl("http://" + host + redirectionTarget.toString());
-            if (redirectionTarget.scheme().isEmpty())
-              redirectionTarget.setScheme(QUrl(feedUrl).scheme());
-            emit signalGet(redirectionTarget, feedId, feedUrl, feedDate, count);
+            QString host(QUrl::fromEncoded(feedUrl.toUtf8()).host());
+            if (reply->operation() == QNetworkAccessManager::HeadOperation) {
+              qDebug() << objectName() << "  head redirect...";
+              if (redirectionTarget.host().isEmpty())
+                redirectionTarget.setUrl("http://" + host + redirectionTarget.toString());
+              if (redirectionTarget.scheme().isEmpty())
+                redirectionTarget.setScheme(QUrl(feedUrl).scheme());
+              emit signalHead(redirectionTarget, feedId, feedUrl, feedDate, count);
+            } else {
+              qDebug() << objectName() << "  get redirect...";
+              if (redirectionTarget.host().isEmpty())
+                redirectionTarget.setUrl("http://" + host + redirectionTarget.toString());
+              if (redirectionTarget.scheme().isEmpty())
+                redirectionTarget.setScheme(QUrl(feedUrl).scheme());
+              emit signalGet(redirectionTarget, feedId, feedUrl, feedDate, count);
+            }
           }
         } else {
           emit getUrlDone(-4, feedId, feedUrl, tr("Redirect error!"));
