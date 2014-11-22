@@ -1531,6 +1531,7 @@ void NewsTabWidget::loadNewspaper(int refresh)
   if (refresh == RefreshWithPos) {
     scrollBarValue = webView_->page()->mainFrame()->scrollBarValue(Qt::Vertical);
   }
+  webView_->settings()->setAttribute(QWebSettings::AutoLoadImages, true);
 
   QString htmlStr;
   QUrl hostUrl;
@@ -1765,6 +1766,7 @@ void NewsTabWidget::loadNewspaper(int refresh)
     qApp->processEvents();
   }
 
+  webView_->settings()->setAttribute(QWebSettings::AutoLoadImages, autoLoadImages_);
   if (refresh == RefreshWithPos) {
     webView_->page()->mainFrame()->setScrollBarValue(Qt::Vertical, scrollBarValue);
   }
@@ -2299,9 +2301,11 @@ void NewsTabWidget::setLabelNews(int labelId)
       QWebElement document = frame->documentElement();
       QWebElement element = document.findFirst(QString("table[id=labels%1]").arg(newsId));
       if (!element.isNull()) {
+        webView_->settings()->setAttribute(QWebSettings::AutoLoadImages,true);
         element.removeAllChildren();
         QString labelsString = getHtmlLabels(index.row());
         element.appendInside(labelsString);
+        webView_->settings()->setAttribute(QWebSettings::AutoLoadImages, autoLoadImages_);
       }
     }
 
