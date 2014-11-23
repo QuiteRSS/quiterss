@@ -7402,10 +7402,21 @@ void MainWindow::slotSavePageAs()
   if (currentNewsTab->type_ == NewsTabWidget::TabTypeDownloads) return;
 
   QString fileName = currentNewsTab->webView_->title();
-  if (fileName == "news_descriptions") {
-    int row = currentNewsTab->newsView_->currentIndex().row();
-    fileName = currentNewsTab->newsModel_->dataField(row, "title").toString();
+  if (newsLayout_ == 0) {
+    if (fileName == "news_descriptions") {
+      int row = currentNewsTab->newsView_->currentIndex().row();
+      fileName = currentNewsTab->newsModel_->dataField(row, "title").toString();
+    }
+  } else {
+    if (currentNewsTab->type_ == NewsTabWidget::TabTypeFeed) {
+      QModelIndex feedIndex = feedsTreeView_->currentIndex();
+      feedIndex = feedsProxyModel_->mapToSource(feedIndex);
+      fileName = feedsTreeModel_->dataField(feedIndex, "text").toString();
+    } else {
+      fileName = categoriesTree_->currentItem()->text(0);
+    }
   }
+  QString title = fileName.trimmed();
 
   fileName = fileName.trimmed();
   fileName = fileName.replace(QRegExp("[:\"]"), "_");
@@ -7426,6 +7437,10 @@ void MainWindow::slotSavePageAs()
     file.write(currentNewsTab->webView_->page()->mainFrame()->toPlainText().toUtf8());
   } else {
     QString html = currentNewsTab->webView_->page()->mainFrame()->toHtml();
+    QRegExp reg("news_descriptions", Qt::CaseInsensitive, QRegExp::RegExp2);
+    html = html.replace(reg, title);
+    reg.setPattern("<img class=\"quiterss-img\"[^>]+\\>");
+    html = html.remove(reg);
     QTextCodec *codec = QTextCodec::codecForHtml(html.toUtf8(),
                                                  QTextCodec::codecForName("UTF-8"));
     file.write(codec->fromUnicode(html));
