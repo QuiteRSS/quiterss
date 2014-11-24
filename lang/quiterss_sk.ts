@@ -533,7 +533,7 @@ Staré správy sa môžu znova objaviť</translation>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="525"/>
         <source>Clean Up wizard deleted %1 news</source>
-        <translation type="unfinished"/>
+        <translation>Sprievodca čistením vymazal %1 noviniek</translation>
     </message>
 </context>
 <context>
@@ -2207,12 +2207,12 @@ Staré správy sa môžu znova objaviť</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4967"/>
         <source>Page up (Browser)</source>
-        <translation type="unfinished"/>
+        <translation>Posunúť stránku vyššie (prehliadač)</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4968"/>
         <source>Page down (Browser)</source>
-        <translation type="unfinished"/>
+        <translation>Posunúť stránku nižšie (prehliadač)</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4970"/>
@@ -3509,7 +3509,7 @@ Staré správy sa môžu znova objaviť</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1081"/>
         <source>Show when inactive main window</source>
-        <translation type="unfinished"/>
+        <translation>Zobraziť keď je hlavné okno neaktívne</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1096"/>
@@ -3519,37 +3519,37 @@ Staré správy sa môžu znova objaviť</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1106"/>
         <source>Transparency</source>
-        <translation type="unfinished"/>
+        <translation>Nepriesvitnosť</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1120"/>
         <source>Show titles feeds</source>
-        <translation type="unfinished"/>
+        <translation>Zobraziť názvy kanálov</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1121"/>
         <source>Show icon feed</source>
-        <translation type="unfinished"/>
+        <translation>Zobraziť ikonu kanála</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1122"/>
         <source>Show button &apos;Mark All News Read&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Zobraziť tlačítko &quot;Označiť všetky novinky ako prečítané&quot;</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1123"/>
         <source>Show button &apos;Mark Read/Unread&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Zobraziť tlačítko &quot;Označiť ako prečítané/neprečítané&quot;</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1124"/>
         <source>Show button &apos;Open in External Browser&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Zobraziť tlačítko &quot;Otvoriť v externom prehliadači&quot;</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1125"/>
         <source>Show button &apos;Delete News&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Zobraziť tlačítko &quot;Vymazať novinky&quot;</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1172"/>
@@ -3644,7 +3644,7 @@ Staré správy sa môžu znova objaviť</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1213"/>
         <source>Selection of feeds</source>
-        <translation type="unfinished"/>
+        <translation>Výber kanálov</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1229"/>
@@ -3837,12 +3837,12 @@ Staré správy sa môžu znova objaviť</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1694"/>
         <source>Notification text color</source>
-        <translation type="unfinished"/>
+        <translation>Farba textu oznámenia</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1697"/>
         <source>Notification background color</source>
-        <translation type="unfinished"/>
+        <translation>Farba pozadia oznámenia</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2089"/>

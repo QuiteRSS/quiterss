@@ -2880,7 +2880,7 @@ Ancient news could reappear</source>
         <location filename="../src/optionsdialog.cpp" line="83"/>
         <location filename="../src/optionsdialog.cpp" line="1868"/>
         <source>Notifications</source>
-        <translation>Уведомления</translation>
+        <translation>Известия</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="86"/>
@@ -2952,163 +2952,163 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="298"/>
         <source>Help improve QuiteRSS by sending usage information</source>
-        <translation type="unfinished"/>
+        <translation>Помогнете за  подобряването на QuiteRSS чрез изпращане на статистики</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="299"/>
         <source>Store a DB in memory (requires program restart)</source>
-        <translation type="unfinished"/>
+        <translation>Запазвайте DB в паметта (изисква рестарт на програмата)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="306"/>
         <source>Save DB stored in memory to file every</source>
-        <translation type="unfinished"/>
+        <translation>Записвайте DB от паметта във файл на всеки</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="308"/>
         <location filename="../src/optionsdialog.cpp" line="769"/>
         <source>minutes</source>
-        <translation type="unfinished"/>
+        <translation>минути</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="330"/>
         <source>Run QuiteRSS at Windows startup</source>
-        <translation type="unfinished"/>
+        <translation>Стартирай QuiteRSS заедно с Windows</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="358"/>
         <source>Show system tray icon</source>
-        <translation type="unfinished"/>
+        <translation>Покажи икона в system tray</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="361"/>
         <source>starting QuiteRSS</source>
-        <translation type="unfinished"/>
+        <translation>стартиране на QuiteRSS</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="362"/>
         <source>minimizing QuiteRSS</source>
-        <translation type="unfinished"/>
+        <translation>минимизиране на QuiteRSS</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="363"/>
         <source>closing QuiteRSS</source>
-        <translation type="unfinished"/>
+        <translation>затваряне на QuiteRSS</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="370"/>
         <source>Show static icon</source>
-        <translation type="unfinished"/>
+        <translation>Покажи статична икона</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="371"/>
         <source>Change icon for incoming new news</source>
-        <translation type="unfinished"/>
+        <translation>Промени иконата според пристигащи нови новини</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="372"/>
         <source>Show count of new news</source>
-        <translation type="unfinished"/>
+        <translation>Покажи броя на новите новини</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="373"/>
         <source>Show count of unread news</source>
-        <translation type="unfinished"/>
+        <translation>Покажи броя на непрочетените новини</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="382"/>
         <source>Single click instead of double click for show window</source>
-        <translation type="unfinished"/>
+        <translation>Показване на прозореца с единичен клик вместо двоен</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="384"/>
         <source>Empty working set on minimize to tray</source>
-        <translation type="unfinished"/>
+        <translation>Изпразни ползваната памет при минимизиране в tray</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="388"/>
         <source>Move to the system tray when:</source>
-        <translation type="unfinished"/>
+        <translation>Премести в system tray когато:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="391"/>
         <source>Tray icon behavior:</source>
-        <translation type="unfinished"/>
+        <translation>Поведение на tray иконата:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="415"/>
         <source>Direct connection to the Internet</source>
-        <translation type="unfinished"/>
+        <translation>Директна връзка с интернет</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="417"/>
         <source>System proxy configuration (if available)</source>
-        <translation type="unfinished"/>
+        <translation>Конфигурация от системно прокси (ако е налично)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="418"/>
         <source>Manual proxy configuration:</source>
-        <translation type="unfinished"/>
+        <translation>Ръчна конфигурация на прокси:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="437"/>
         <source>Proxy server:</source>
-        <translation type="unfinished"/>
+        <translation>Прокси сървър:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="439"/>
         <source>Port:</source>
-        <translation type="unfinished"/>
+        <translation>Порт:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="447"/>
         <source>Username:</source>
-        <translation type="unfinished"/>
+        <translation>Потребителско име:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="449"/>
         <source>Password:</source>
-        <translation type="unfinished"/>
+        <translation>Парола:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="478"/>
         <source>Request timeout:</source>
-        <translation type="unfinished"/>
+        <translation>Таймаут на заявката:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="480"/>
         <source>Number of requests:</source>
-        <translation type="unfinished"/>
+        <translation>Брой заявки:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="482"/>
         <source>Number of retries:</source>
-        <translation type="unfinished"/>
+        <translation>Брой опити:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="485"/>
         <source>Options network requests when updating feeds (requires program restart):</source>
-        <translation type="unfinished"/>
+        <translation>Настройки за мрежовите заявки при обновление на емисиите (изисква рестарт на програмата):</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="502"/>
         <source>Use embedded browser</source>
-        <translation type="unfinished"/>
+        <translation>Използвай вградения браузър</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="503"/>
         <source>Use external browser</source>
-        <translation type="unfinished"/>
+        <translation>Използвай външния браузър</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="504"/>
         <source>Default external browser</source>
-        <translation type="unfinished"/>
+        <translation>Външен браузър по подразбиране</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="505"/>
         <source>Following external browser:</source>
-        <translation type="unfinished"/>
+        <translation>Следния външен браузър:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="508"/>
@@ -3118,128 +3118,128 @@ Ancient news could reappear</source>
         <location filename="../src/optionsdialog.cpp" line="857"/>
         <location filename="../src/optionsdialog.cpp" line="1177"/>
         <source>Browse...</source>
-        <translation type="unfinished"/>
+        <translation>Прегледай...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="510"/>
         <location filename="../src/optionsdialog.cpp" line="2084"/>
         <source>Load images</source>
-        <translation type="unfinished"/>
+        <translation>Зареди изображенията</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="511"/>
         <source>Enable JavaScript</source>
-        <translation type="unfinished"/>
+        <translation>Разреши JavaScript</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="512"/>
         <source>Enable plug-ins</source>
-        <translation type="unfinished"/>
+        <translation>Разреши добавки</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="518"/>
         <source>Open links in embedded browser in background</source>
-        <translation type="unfinished"/>
+        <translation>Отваряй връзките във вградения браузър във фонов режим</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="519"/>
         <source>Open links in external browser in background (experimental)</source>
-        <translation type="unfinished"/>
+        <translation>Отваряй връзките във външния браузър във фонов режим (експериментално)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="545"/>
         <source>Default zoom on pages:</source>
-        <translation type="unfinished"/>
+        <translation>Мащабиране за страниците по подразбиране:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="563"/>
         <source>Browser selection:</source>
-        <translation type="unfinished"/>
+        <translation>Избор на браузър:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="565"/>
         <source>External browser:</source>
-        <translation type="unfinished"/>
+        <translation>Външен браузър:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="567"/>
         <source>Content:</source>
-        <translation type="unfinished"/>
+        <translation>Съдържание:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="569"/>
         <source>User style sheet:</source>
-        <translation type="unfinished"/>
+        <translation>Потребителски стилове:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="598"/>
         <source>Maximum pages in cache</source>
-        <translation type="unfinished"/>
+        <translation>Максимум страници в кеша</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="609"/>
         <source>Store cache in:</source>
-        <translation type="unfinished"/>
+        <translation>Съхранявай кеша в:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="617"/>
         <source>Maximum size of disk cache</source>
-        <translation type="unfinished"/>
+        <translation>Максимален обем на дисковия кеш</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="619"/>
         <source>MB</source>
-        <translation type="unfinished"/>
+        <translation>MB</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="625"/>
         <source>Use disk cache</source>
-        <translation type="unfinished"/>
+        <translation>Използвай дисков кеш</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="640"/>
         <source>Allow local data to be set</source>
-        <translation type="unfinished"/>
+        <translation>Разреши запис на локални данни</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="641"/>
         <source>Keep local data only until quit application</source>
-        <translation type="unfinished"/>
+        <translation>Съхранявай локалните данни до изход от програмата</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="642"/>
         <source>Block sites from setting any data</source>
-        <translation type="unfinished"/>
+        <translation>Блокирай сайтовете да не пращат данни</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="643"/>
         <source>Clear</source>
-        <translation type="unfinished"/>
+        <translation>Почисти</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="659"/>
         <source>Cookies:</source>
-        <translation type="unfinished"/>
+        <translation>Бисквитки:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="667"/>
         <source>Click To Flash is a plugin which blocks auto loading of Flash content at page. You can always load it manually by clicking on the Flash play icon.</source>
-        <translation type="unfinished"/>
+        <translation>Click To Flash е добавка, която блокира автоматичното зареждане на Flash в страницата. Винаги може да бъде зареден ръчно, като кликнете на иконата Flash play.</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="672"/>
         <source>Use Click to Flash</source>
-        <translation type="unfinished"/>
+        <translation>Използвай Click to Flash</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="684"/>
         <source>Add...</source>
-        <translation type="unfinished"/>
+        <translation>Добави...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="686"/>
         <source>Remove...</source>
-        <translation type="unfinished"/>
+        <translation>Премахни...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="727"/>
@@ -3254,17 +3254,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="746"/>
         <source>History</source>
-        <translation type="unfinished"/>
+        <translation>История</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="747"/>
         <source>Privacy</source>
-        <translation type="unfinished"/>
+        <translation>Поверителност</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="748"/>
         <source>Click to Flash</source>
-        <translation type="unfinished"/>
+        <translation>Click to Flash</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="749"/>
@@ -3274,775 +3274,775 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="758"/>
         <source>Automatically update the feeds on startup</source>
-        <translation type="unfinished"/>
+        <translation>Автоматично обновявай емисиите при стартиране</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="759"/>
         <source>Automatically update the feeds every</source>
-        <translation type="unfinished"/>
+        <translation>Обновявай автоматично емисиите на всеки</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="769"/>
         <location filename="../src/optionsdialog.cpp" line="914"/>
         <location filename="../src/optionsdialog.cpp" line="1117"/>
         <source>seconds</source>
-        <translation type="unfinished"/>
+        <translation>секунди</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="769"/>
         <source>hours</source>
-        <translation type="unfinished"/>
+        <translation>часа</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="785"/>
         <source>Nothing to do</source>
-        <translation type="unfinished"/>
+        <translation>Няма нищо за правене</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="800"/>
         <source>Dec</source>
-        <translation type="unfinished"/>
+        <translation>Дек</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="801"/>
         <source>December</source>
-        <translation type="unfinished"/>
+        <translation>Декември</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="824"/>
         <source>Display format for date:</source>
-        <translation type="unfinished"/>
+        <translation>Формат на датата:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="827"/>
         <source>time:</source>
-        <translation type="unfinished"/>
+        <translation>час:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="831"/>
         <source>Alternating row background colors</source>
-        <translation type="unfinished"/>
+        <translation>Алтернативен цветове на фона на редовете</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="832"/>
         <source>Simplified representation of date and time</source>
-        <translation type="unfinished"/>
+        <translation>Опростено представяне на дата и час</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="835"/>
         <source>Show All</source>
-        <translation type="unfinished"/>
+        <translation>Покажи всички</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="835"/>
         <source>Show New</source>
-        <translation type="unfinished"/>
+        <translation>Покажи новите</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="835"/>
         <source>Show Unread</source>
-        <translation type="unfinished"/>
+        <translation>Покажи непрочетените</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="836"/>
         <source>Show Starred</source>
-        <translation type="unfinished"/>
+        <translation>Покажи със звезда</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="836"/>
         <source>Show Not Starred</source>
-        <translation type="unfinished"/>
+        <translation>Покажи без звезда</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="837"/>
         <source>Show Unread or Starred</source>
-        <translation type="unfinished"/>
+        <translation>Покажи непрочетени или със звезда</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="837"/>
         <source>Show Last Day</source>
-        <translation type="unfinished"/>
+        <translation>Покажи последен ден</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="838"/>
         <source>Show Last 7 Days</source>
-        <translation type="unfinished"/>
+        <translation>Покажи последните 7 дни</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="879"/>
         <source>Style sheet for news:</source>
-        <translation type="unfinished"/>
+        <translation>Стил за новините</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="887"/>
         <source>Mark news as read:</source>
-        <translation type="unfinished"/>
+        <translation>Отбележи новините като прочетени:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="889"/>
         <source>on selecting. With timeout</source>
-        <translation type="unfinished"/>
+        <translation>при избор. Със закъснение</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="890"/>
         <source>after switching to another news</source>
-        <translation type="unfinished"/>
+        <translation>след преминаване на друга новина</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="896"/>
         <source>Mark displayed news as read when switching feeds</source>
-        <translation type="unfinished"/>
+        <translation>При преминаване на друга емисия, отбележи показаните новини като прочетени</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="897"/>
         <source>Mark displayed news as read when closing tab</source>
-        <translation type="unfinished"/>
+        <translation>При затваряне на таба, отбележи показаните новини като прочетени</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="898"/>
         <source>Mark displayed news as read on minimize</source>
-        <translation type="unfinished"/>
+        <translation>При минимизиране отбележи показаните новини като прочетени</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="903"/>
         <source>Change behavior of action &apos;Next Unread News&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Промени поведението на действие &quot;Следваща непрочетена новина&quot;</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="905"/>
         <source>starred news</source>
-        <translation type="unfinished"/>
+        <translation>новини със звезда</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="906"/>
         <source>labeled news</source>
-        <translation type="unfinished"/>
+        <translation>новини с етикет</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="908"/>
         <source>Automatically mark identical news as read</source>
-        <translation type="unfinished"/>
+        <translation>Отбелязвай автоматично идентични новини като прочетени</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="935"/>
         <source>Prevent accidental deletion of:</source>
-        <translation type="unfinished"/>
+        <translation>Предпазвай случайно изтриване на:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="947"/>
         <source>Enable cleanup on shutdown</source>
-        <translation type="unfinished"/>
+        <translation>Разреши изчистване при затваряне</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="950"/>
         <source>Maximum age of news in days to keep:</source>
-        <translation type="unfinished"/>
+        <translation>Пази новини не по-стари от (дни):</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="957"/>
         <source>Maximum number of news to keep:</source>
-        <translation type="unfinished"/>
+        <translation>Пази новини, не повече от:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="964"/>
         <source>Delete read news</source>
-        <translation type="unfinished"/>
+        <translation>Изтрий прочетените новини</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="965"/>
         <source>Never delete unread news</source>
-        <translation type="unfinished"/>
+        <translation>Никога не изтривай непрочетени новини</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="966"/>
         <source>Never delete starred news</source>
-        <translation type="unfinished"/>
+        <translation>Никога не изтривай новини със звезда</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="967"/>
         <source>Never delete labeled news</source>
-        <translation type="unfinished"/>
+        <translation>Никога не изтривай новини с етикет</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="969"/>
         <source>Clean up &apos;Deleted&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Изчисти &apos;Изтрити&apos;</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="970"/>
         <source>Enable DB optimization (slower shutdown)</source>
-        <translation type="unfinished"/>
+        <translation>Разреши оптимизация на DB (по-бавно затваряне)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="998"/>
         <source>Reading</source>
-        <translation type="unfinished"/>
+        <translation>Четене</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="999"/>
         <source>Clean Up</source>
-        <translation type="unfinished"/>
+        <translation>Почистване</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1016"/>
         <source>New...</source>
-        <translation type="unfinished"/>
+        <translation>Ново...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1018"/>
         <source>Edit...</source>
-        <translation type="unfinished"/>
+        <translation>Редактиране...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1021"/>
         <source>Delete...</source>
-        <translation type="unfinished"/>
+        <translation>Изтриване...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1025"/>
         <source>Move up</source>
-        <translation type="unfinished"/>
+        <translation>Нагоре</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1028"/>
         <source>Move down</source>
-        <translation type="unfinished"/>
+        <translation>Надолу</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1081"/>
         <source>Show when inactive main window</source>
-        <translation type="unfinished"/>
+        <translation>Покажи при неактивен прозорец</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1096"/>
         <source>Screen</source>
-        <translation type="unfinished"/>
+        <translation>Екран</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1106"/>
         <source>Transparency</source>
-        <translation type="unfinished"/>
+        <translation>Прозрачност</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1120"/>
         <source>Show titles feeds</source>
-        <translation type="unfinished"/>
+        <translation>Покажи заглавията на емисиите</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1121"/>
         <source>Show icon feed</source>
-        <translation type="unfinished"/>
+        <translation>Покажи иконите на емисиите</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1122"/>
         <source>Show button &apos;Mark All News Read&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Покажи бутон &quot;Отбележи всички новини като прочетени&quot;</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1123"/>
         <source>Show button &apos;Mark Read/Unread&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Покажи бутон &apos;Отбележи Прочетени/Непрочетени&apos;</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1124"/>
         <source>Show button &apos;Open in External Browser&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Покажи бутон &apos;Отвори във външен браузър&apos;</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1125"/>
         <source>Show button &apos;Delete News&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Покажи бутон &apos;Изтрий новините&apos;</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1172"/>
         <source>Play sound for incoming new news</source>
-        <translation type="unfinished"/>
+        <translation>Възпроизведи звук при нови новини</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1178"/>
         <source>Play</source>
-        <translation type="unfinished"/>
+        <translation>Възпроизведи</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1061"/>
         <source>Display notification for incoming news</source>
-        <translation type="unfinished"/>
+        <translation>Покажи уведомление за нови новини</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1073"/>
         <source>Top Left</source>
-        <translation type="unfinished"/>
+        <translation>Горе ляво</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1073"/>
         <source>Top Right</source>
-        <translation type="unfinished"/>
+        <translation>Горе дясно</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1074"/>
         <source>Bottom Left</source>
-        <translation type="unfinished"/>
+        <translation>Долу ляво</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1074"/>
         <source>Bottom Right</source>
-        <translation type="unfinished"/>
+        <translation>Долу дясно</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1092"/>
         <source>Review</source>
-        <translation type="unfinished"/>
+        <translation>Преглед</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1099"/>
         <source>Position</source>
-        <translation type="unfinished"/>
+        <translation>Разположение</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1109"/>
         <source>Show maximum of</source>
-        <translation type="unfinished"/>
+        <translation>Покажи не повече от</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1111"/>
         <source>item on page notification</source>
-        <translation type="unfinished"/>
+        <translation>новини на страница при известяване</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1112"/>
         <source>Width list items</source>
-        <translation type="unfinished"/>
+        <translation>Ширина на списъка</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1114"/>
         <source>pixels</source>
-        <translation type="unfinished"/>
+        <translation>пиксела</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1115"/>
         <source>Close notification after</source>
-        <translation type="unfinished"/>
+        <translation>Затвори известието след</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1077"/>
         <source>Do not show notification in fullscreen mode</source>
-        <translation type="unfinished"/>
+        <translation>Не показвай известия в режим на цял екран</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1136"/>
         <source>Only show selected feeds:</source>
-        <translation type="unfinished"/>
+        <translation>Покажи само избрани емисии:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1201"/>
         <source>Notification</source>
-        <translation type="unfinished"/>
+        <translation>Известие</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1202"/>
         <source>Sound</source>
-        <translation type="unfinished"/>
+        <translation>Звук</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1213"/>
         <source>Selection of feeds</source>
-        <translation type="unfinished"/>
+        <translation>Избор на емисии</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1229"/>
         <source>All Feeds</source>
-        <translation type="unfinished"/>
+        <translation>Всички емисии</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1256"/>
         <source>Site</source>
-        <translation type="unfinished"/>
+        <translation>Сайт</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1256"/>
         <source>User</source>
-        <translation type="unfinished"/>
+        <translation>Потребител</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1256"/>
         <source>Password</source>
-        <translation type="unfinished"/>
+        <translation>Парола</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1273"/>
         <source>Delete</source>
-        <translation type="unfinished"/>
+        <translation>Изтрий</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1275"/>
         <source>Delete All</source>
-        <translation type="unfinished"/>
+        <translation>Изтрий всички</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1277"/>
         <source>Show Passwords</source>
-        <translation type="unfinished"/>
+        <translation>Покажи паролите</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1309"/>
         <source>Version</source>
-        <translation type="unfinished"/>
+        <translation>Версия</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1310"/>
         <source>Author</source>
-        <translation type="unfinished"/>
+        <translation>Автор</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1310"/>
         <source>Contact</source>
-        <translation type="unfinished"/>
+        <translation>Контакти</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1560"/>
         <source>Choose language:</source>
-        <translation type="unfinished"/>
+        <translation>Избери език</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1581"/>
         <source>Type</source>
-        <translation type="unfinished"/>
+        <translation>Тип</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1581"/>
         <source>Font</source>
-        <translation type="unfinished"/>
+        <translation>Шрифт</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1585"/>
         <source>Feeds list font</source>
-        <translation type="unfinished"/>
+        <translation>Шрифт за списъка с емисии</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1588"/>
         <source>News list font</source>
-        <translation type="unfinished"/>
+        <translation>Шрифт за списъка с новини</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1591"/>
         <source>News title font</source>
-        <translation type="unfinished"/>
+        <translation>Шрифт за заглавие на новини</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1594"/>
         <source>News text font</source>
-        <translation type="unfinished"/>
+        <translation>Шрифт за текста на новини</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1597"/>
         <source>Notification font</source>
-        <translation type="unfinished"/>
+        <translation>Шрифт при известие</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1604"/>
         <location filename="../src/optionsdialog.cpp" line="1705"/>
         <source>Change...</source>
-        <translation type="unfinished"/>
+        <translation>Промяна...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1606"/>
         <location filename="../src/optionsdialog.cpp" line="1707"/>
         <location filename="../src/optionsdialog.cpp" line="1819"/>
         <source>Reset</source>
-        <translation type="unfinished"/>
+        <translation>Нулиране</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1631"/>
         <source>Feeds list color</source>
-        <translation type="unfinished"/>
+        <translation>Цвят на списъка с емисии</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1634"/>
         <source>Feeds list background</source>
-        <translation type="unfinished"/>
+        <translation>Фон на списъка с емисии</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1637"/>
         <source>News list color</source>
-        <translation type="unfinished"/>
+        <translation>Цвят на списъка с новини</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1640"/>
         <source>News list background</source>
-        <translation type="unfinished"/>
+        <translation>Фон на списъка с новини</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1643"/>
         <source>Focused news color</source>
-        <translation type="unfinished"/>
+        <translation>Цвят на новина на фокус</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1646"/>
         <source>Focused news background color</source>
-        <translation type="unfinished"/>
+        <translation>Фон на новина на фокус</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1649"/>
         <source>Link color</source>
-        <translation type="unfinished"/>
+        <translation>Цвят на връзки</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1652"/>
         <source>Title color</source>
-        <translation type="unfinished"/>
+        <translation>Цвят на заглавия</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1655"/>
         <source>Date color</source>
-        <translation type="unfinished"/>
+        <translation>Цвят на дата</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1658"/>
         <source>Author color</source>
-        <translation type="unfinished"/>
+        <translation>Цвят на автор</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1661"/>
         <source>News text color</source>
-        <translation type="unfinished"/>
+        <translation>Цвят на текста на новини</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1664"/>
         <source>News title background</source>
-        <translation type="unfinished"/>
+        <translation>Фон на заглавието на новини</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1667"/>
         <source>News background</source>
-        <translation type="unfinished"/>
+        <translation>Фон на новини</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1670"/>
         <source>Feed with new news</source>
-        <translation type="unfinished"/>
+        <translation>Емисия с нови новини</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1673"/>
         <source>Count of unread news in feeds tree</source>
-        <translation type="unfinished"/>
+        <translation>Брой непрочетени новини в дървото с емисии</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1688"/>
         <source>Disabled feed</source>
-        <translation type="unfinished"/>
+        <translation>Забранена емисия</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1691"/>
         <source>Alternating row colors</source>
-        <translation type="unfinished"/>
+        <translation>Алтернативни цветове на редовете</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1694"/>
         <source>Notification text color</source>
-        <translation type="unfinished"/>
+        <translation>Цвят на текста при известие</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1697"/>
         <source>Notification background color</source>
-        <translation type="unfinished"/>
+        <translation>Цвят на фона при известие</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2089"/>
         <source>Auto load images in news view</source>
-        <translation type="unfinished"/>
+        <translation>Автоматично зареждай изображенията при преглед на новини</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1676"/>
         <source>Text color of new news</source>
-        <translation type="unfinished"/>
+        <translation>Цвят на текста на новите новини</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="292"/>
         <source>Show feeds tree toggle</source>
-        <translation type="unfinished"/>
+        <translation>Превключване на дървото с емисиите</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="383"/>
         <source>Clear new status when minimize to tray</source>
-        <translation type="unfinished"/>
+        <translation>Изчисти статус нови при минимизиране в tray</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="781"/>
         <source>Set focus on the last opened news</source>
-        <translation type="unfinished"/>
+        <translation>Сложи на фокус последната отворена новина</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="782"/>
         <source>Set focus at the top of news list</source>
-        <translation type="unfinished"/>
+        <translation>Сложи на фокус най-горната новина от списъка</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="783"/>
         <source>Set focus on the unread news</source>
-        <translation type="unfinished"/>
+        <translation>Сложи на фокус непрочетените новини</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="784"/>
         <source>Open the news</source>
-        <translation type="unfinished"/>
+        <translation>Отвори новините</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="852"/>
         <source>Default news filter:</source>
-        <translation type="unfinished"/>
+        <translation>Филтър по подразбиране за новини:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="870"/>
         <source>Action on feed opening:</source>
-        <translation type="unfinished"/>
+        <translation>Действие при отваряне на емисия:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="901"/>
         <source>Show news description instead of loading web page</source>
-        <translation type="unfinished"/>
+        <translation>Покажи описанието на новината вместо зареждане на уебстраницата</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1679"/>
         <source>Text color of unread news</source>
-        <translation type="unfinished"/>
+        <translation>Цвят на текста за непрочетените новини</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1682"/>
         <source>Focused feed color</source>
-        <translation type="unfinished"/>
+        <translation>Цвят на емисията на фокус</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1685"/>
         <source>Focused feed background color</source>
-        <translation type="unfinished"/>
+        <translation>Цвят на фона на емисията на фокус</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1733"/>
         <source>Standard</source>
-        <translation type="unfinished"/>
+        <translation>Стандартен</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1735"/>
         <source>Fixed</source>
-        <translation type="unfinished"/>
+        <translation>Фиксиран</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1737"/>
         <source>Serif</source>
-        <translation type="unfinished"/>
+        <translation>Серифен</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1739"/>
         <source>Sans Serif</source>
-        <translation type="unfinished"/>
+        <translation>Безсерифен</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1741"/>
         <source>Cursive</source>
-        <translation type="unfinished"/>
+        <translation>Наклонен</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1743"/>
         <source>Fantasy</source>
-        <translation type="unfinished"/>
+        <translation>Фентъзи</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1758"/>
         <source>Default font size</source>
-        <translation type="unfinished"/>
+        <translation>Размер по подразбиране</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1760"/>
         <source>Fixed font size</source>
-        <translation type="unfinished"/>
+        <translation>Фиксиран размер</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1762"/>
         <source>Minimum font size</source>
-        <translation type="unfinished"/>
+        <translation>Минимален размер</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1764"/>
         <source>Minimum logical font size</source>
-        <translation type="unfinished"/>
+        <translation>Минимален логически размер</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1768"/>
         <source>Font families:</source>
-        <translation type="unfinished"/>
+        <translation>Семейства шрифтове</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1770"/>
         <source>Font sizes:</source>
-        <translation type="unfinished"/>
+        <translation>Размери шрифтове</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1779"/>
         <source>Fonts</source>
-        <translation type="unfinished"/>
+        <translation>Шрифтове</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1780"/>
         <source>Fonts Browser</source>
-        <translation type="unfinished"/>
+        <translation>Преглед на шрифтове</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1781"/>
         <source>Colors</source>
-        <translation type="unfinished"/>
+        <translation>Цветове</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1788"/>
         <source>Filter</source>
-        <translation type="unfinished"/>
+        <translation>Филтър</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1814"/>
         <source>Action</source>
-        <translation type="unfinished"/>
+        <translation>Действие</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1814"/>
         <source>Description</source>
-        <translation type="unfinished"/>
+        <translation>Описание</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1814"/>
         <source>Shortcut</source>
-        <translation type="unfinished"/>
+        <translation>Пряк път</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1822"/>
         <source>Shortcut:</source>
-        <translation type="unfinished"/>
+        <translation>Пряк път:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2253"/>
         <location filename="../src/optionsdialog.cpp" line="2288"/>
         <source>Open File...</source>
-        <translation type="unfinished"/>
+        <translation>Отвори файл...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2273"/>
         <location filename="../src/optionsdialog.cpp" line="2785"/>
         <source>Select Style Sheet File</source>
-        <translation type="unfinished"/>
+        <translation>Избери файл със стилове</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2794"/>
         <location filename="../src/optionsdialog.cpp" line="2823"/>
         <source>Open Directory...</source>
-        <translation type="unfinished"/>
+        <translation>Отвори папка...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2804"/>
         <source>Add site to whitelist</source>
-        <translation type="unfinished"/>
+        <translation>Добави сайта в белия списък</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2805"/>
         <source>Site without &apos;http://&apos; (ex. youtube.com)</source>
-        <translation type="unfinished"/>
+        <translation>Сайт без &apos;http://&apos; (напр. youtube.com)</translation>
     </message>
 </context>
 <context>
@@ -4050,17 +4050,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5053"/>
         <source>&amp;Step up</source>
-        <translation type="unfinished"/>
+        <translation>На&amp;горе</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5054"/>
         <source>Step &amp;down</source>
-        <translation type="unfinished"/>
+        <translation>На&amp;долу</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5055"/>
         <source>&amp;Select All</source>
-        <translation type="unfinished"/>
+        <translation>Избери &amp;всички</translation>
     </message>
 </context>
 <context>
@@ -4068,22 +4068,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5031"/>
         <source>Close</source>
-        <translation type="unfinished"/>
+        <translation>Затвори</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5032"/>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>Откажи</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5033"/>
         <source>&amp;Yes</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Да</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5034"/>
         <source>&amp;No</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Не</translation>
     </message>
 </context>
 <context>
@@ -4091,61 +4091,65 @@ Ancient news could reappear</source>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="877"/>
         <source>Not connected</source>
-        <translation type="unfinished"/>
+        <translation>Няма връзка</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="948"/>
         <source>Host %1 not found</source>
-        <translation type="unfinished"/>
+        <translation>Хост %1 не е намерен</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="953"/>
         <source>Connection refused to host %1</source>
-        <translation type="unfinished"/>
+        <translation>Връзката към хост %1 отказана</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="958"/>
         <source>Connection timed out to host %1</source>
-        <translation type="unfinished"/>
+        <translation>Таймаут при опит за връзка с хост %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="1071"/>
         <source>Connected to host %1</source>
-        <translation type="unfinished"/>
+        <translation>Свързан към хост %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="1312"/>
         <source>Connection refused for data connection</source>
-        <translation type="unfinished"/>
+        <translation>Отказана връзка за данни</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="1490"/>
         <source>Unknown error</source>
-        <translation type="unfinished"/>
+        <translation>Неизвестна грешка</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2419"/>
         <source>Connecting to host failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Връзката до хоста се провали:
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2423"/>
         <source>Login failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Неуспешен вход:
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2427"/>
         <source>Listing directory failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Получаване на списъка неуспешно:
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2431"/>
         <source>Changing directory failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Неуспешна промяна на директория:
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2435"/>
@@ -4158,30 +4162,34 @@ Ancient news could reappear</source>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2439"/>
         <source>Uploading file failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Качване на файл неуспешно:
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2443"/>
         <source>Removing file failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Неуспешно премахване на файл:
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2447"/>
         <source>Creating directory failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Неуспешно създаване на директория:
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2451"/>
         <source>Removing directory failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Неуспешно премахване на директория:
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2481"/>
         <source>Connection closed</source>
-        <translation type="unfinished"/>
+        <translation>Връзката прекъсната</translation>
     </message>
 </context>
 <context>
@@ -4189,37 +4197,37 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5036"/>
         <source>&amp;Undo</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Undo</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5037"/>
         <source>&amp;Redo</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Redo</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5038"/>
         <source>Cu&amp;t</source>
-        <translation type="unfinished"/>
+        <translation>Из&amp;рязване</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5039"/>
         <source>&amp;Copy</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Копиране</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5040"/>
         <source>&amp;Paste</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Вмъкване</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5041"/>
         <source>Delete</source>
-        <translation type="unfinished"/>
+        <translation>Изтриване</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5042"/>
         <source>Select All</source>
-        <translation type="unfinished"/>
+        <translation>Избери всички</translation>
     </message>
 </context>
 <context>
@@ -4227,7 +4235,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5057"/>
         <source>Select IM</source>
-        <translation type="unfinished"/>
+        <translation>Избери IM</translation>
     </message>
 </context>
 <context>
@@ -4235,17 +4243,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="163"/>
         <source>Cannot start external program</source>
-        <translation type="unfinished"/>
+        <translation>Не мога да стартирам външна програма</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="164"/>
         <source>Cannot start external program! %1</source>
-        <translation type="unfinished"/>
+        <translation>Не мога да стартирам външна програма! %1</translation>
     </message>
     <message>
         <location filename="../src/database/database.cpp" line="265"/>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>Грешка</translation>
     </message>
 </context>
 <context>
@@ -4253,42 +4261,42 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5044"/>
         <source>&amp;Undo</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Undo</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5045"/>
         <source>&amp;Redo</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Redo</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5046"/>
         <source>Cu&amp;t</source>
-        <translation type="unfinished"/>
+        <translation>Из&amp;рязване</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5047"/>
         <source>&amp;Copy</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Копиране</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5048"/>
         <source>&amp;Paste</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Вмъкване</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5049"/>
         <source>Delete</source>
-        <translation type="unfinished"/>
+        <translation>Изтриване</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5050"/>
         <source>Select All</source>
-        <translation type="unfinished"/>
+        <translation>Избери всички</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5051"/>
         <source>Copy &amp;Link Location</source>
-        <translation type="unfinished"/>
+        <translation>Копиране на връ&amp;зката</translation>
     </message>
 </context>
 <context>
@@ -4296,22 +4304,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5059"/>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>Отказ</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5060"/>
         <source>&lt; &amp;Back</source>
-        <translation type="unfinished"/>
+        <translation>&lt; Н&amp;азад</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5061"/>
         <source>&amp;Finish</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Завършване</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5062"/>
         <source>&amp;Next &gt;</source>
-        <translation type="unfinished"/>
+        <translation>На&amp;пред &gt;</translation>
     </message>
 </context>
 <context>
@@ -4319,7 +4327,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/webview/rssdetectionwidget.cpp" line="56"/>
         <source>Untitled feed</source>
-        <translation type="unfinished"/>
+        <translation>Неозаглавена емисия</translation>
     </message>
 </context>
 <context>
@@ -4327,22 +4335,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/requestfeed.cpp" line="207"/>
         <source>Server requires authentication!</source>
-        <translation type="unfinished"/>
+        <translation>Сървърът изисква автентикация!</translation>
     </message>
     <message>
         <location filename="../src/requestfeed.cpp" line="209"/>
         <source>Server replied: Not Found!</source>
-        <translation type="unfinished"/>
+        <translation>Отговор на сървъра: Ненамерен!</translation>
     </message>
     <message>
         <location filename="../src/requestfeed.cpp" line="248"/>
         <source>Redirect error!</source>
-        <translation type="unfinished"/>
+        <translation>Грешка при пренасочване!</translation>
     </message>
     <message>
         <location filename="../src/requestfeed.cpp" line="329"/>
         <source>Request timeout!</source>
-        <translation type="unfinished"/>
+        <translation>Таймаут на заявката!</translation>
     </message>
 </context>
 <context>
@@ -4350,27 +4358,27 @@ Ancient news could reappear</source>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="556"/>
         <source>Error opening database</source>
-        <translation type="unfinished"/>
+        <translation>Грешка при отваряне на базата данни</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="567"/>
         <source>Error closing database</source>
-        <translation type="unfinished"/>
+        <translation>Грешка при затваряне на базата данни</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="587"/>
         <source>Unable to begin transaction</source>
-        <translation type="unfinished"/>
+        <translation>Не мога да започна транзакция</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="602"/>
         <source>Unable to commit transaction</source>
-        <translation type="unfinished"/>
+        <translation>Не мога да потвърдя транзакция</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="617"/>
         <source>Unable to rollback transaction</source>
-        <translation type="unfinished"/>
+        <translation>Не мога да възстановя транзакция</translation>
     </message>
 </context>
 <context>
@@ -4380,37 +4388,37 @@ Ancient news could reappear</source>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="278"/>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="286"/>
         <source>Unable to fetch row</source>
-        <translation type="unfinished"/>
+        <translation>Не мога да прочета ред</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="216"/>
         <source>No query</source>
-        <translation type="unfinished"/>
+        <translation>Няма въпрос</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="350"/>
         <source>Unable to execute statement</source>
-        <translation type="unfinished"/>
+        <translation>Не мога да изпълня команда</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="355"/>
         <source>Unable to execute multiple statements at a time</source>
-        <translation type="unfinished"/>
+        <translation>Не мога да изпълня няколко команди едновременно</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="375"/>
         <source>Unable to reset statement</source>
-        <translation type="unfinished"/>
+        <translation>Не мога да нулирам команда</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="420"/>
         <source>Unable to bind parameters</source>
-        <translation type="unfinished"/>
+        <translation>Не мога да задам параметри</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="427"/>
         <source>Parameter count mismatch</source>
-        <translation type="unfinished"/>
+        <translation>Броят на параметрите не съвпада</translation>
     </message>
 </context>
 <context>
@@ -4418,37 +4426,37 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/updateappdialog.cpp" line="38"/>
         <source>Check for Updates</source>
-        <translation type="unfinished"/>
+        <translation>Провери за обновления</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="43"/>
         <source>Checking for updates...</source>
-        <translation type="unfinished"/>
+        <translation>Проверявам за обновления...</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="48"/>
         <source>Loading history...</source>
-        <translation type="unfinished"/>
+        <translation>Зареждам историята...</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="51"/>
         <source>Don&apos;t remind about this version</source>
-        <translation type="unfinished"/>
+        <translation>Не ми напомняй за тази версия</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="59"/>
         <source>&amp;Install</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Инсталирай</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="121"/>
         <source>You already have the latest version</source>
-        <translation type="unfinished"/>
+        <translation>Вие имате последна версия</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="131"/>
         <source>A new version of QuiteRSS is available!</source>
-        <translation type="unfinished"/>
+        <translation>Има нова версия на QuiteRSS!</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="134"/>
@@ -4458,17 +4466,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/updateappdialog.cpp" line="139"/>
         <source>Your version is:</source>
-        <translation type="unfinished"/>
+        <translation>Вашата версия е:</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="141"/>
         <source>Current version is:</source>
-        <translation type="unfinished"/>
+        <translation>Текущата версия е:</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="147"/>
         <source>Error checking updates</source>
-        <translation type="unfinished"/>
+        <translation>Грешка при проверяване за обновления</translation>
     </message>
 </context>
 </TS>

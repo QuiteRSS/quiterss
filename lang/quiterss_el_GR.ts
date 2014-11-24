@@ -1160,7 +1160,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/findtext.cpp" line="115"/>
         <source>Find in Browser</source>
-        <translation>Αναζήτηση στον Περιηγητή</translation>
+        <translation>Αναζήτηση στον περιηγητή</translation>
     </message>
 </context>
 <context>
@@ -1740,17 +1740,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4857"/>
         <source>Open in Browser</source>
-        <translation>Άνοιγμα στον Περιηγητή</translation>
+        <translation>Άνοιγμα στον περιηγητή</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4858"/>
         <source>Open in External Browser</source>
-        <translation>Άνοιγμα σε εξωτερικό Περιηγητή</translation>
+        <translation>Άνοιγμα σε εξωτερικό περιηγητή</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4859"/>
         <source>Open News in External Browser</source>
-        <translation>Άνοιγμα των ειδήσεων σε εξωτερικό Περιηγητή</translation>
+        <translation>Άνοιγμα των ειδήσεων σε εξωτερικό περιηγητή</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4861"/>
@@ -2048,7 +2048,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4914"/>
         <source>Browser Position</source>
-        <translation>Θέση Περιηγητή</translation>
+        <translation>Θέση περιηγητή</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4915"/>
@@ -2123,7 +2123,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4934"/>
         <source>Switch Focus to Next Panel (Tree Feeds, List News, Browser)</source>
-        <translation>Εναλλαγή εστίασης στον επόμενο πίνακα (Δέντρο ροών, λίστα ειδήσεων, Περιηγητής)</translation>
+        <translation>Εναλλαγή εστίασης στον επόμενο πίνακα (Δέντρο ροών, λίστα ειδήσεων, περιηγητής)</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4935"/>
@@ -2133,7 +2133,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4937"/>
         <source>Switch Focus to Previous Panel (Tree Feeds, Browser, List News)</source>
-        <translation>Εναλλαγή εστίασης στον προηγούμενο πίνακα (Δέντρο ροών, λίστα ειδήσεων, Περιηγητής)</translation>
+        <translation>Εναλλαγή εστίασης στον προηγούμενο πίνακα (Δέντρο ροών, λίστα ειδήσεων, περιηγητής)</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4939"/>
@@ -2179,7 +2179,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4956"/>
         <source>Zoom in in browser</source>
-        <translation>Μεγέθυνση στον Περιηγητή</translation>
+        <translation>Μεγέθυνση στον περιηγητή</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4957"/>
@@ -2189,7 +2189,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4958"/>
         <source>Zoom out in browser</source>
-        <translation>Σμίκρυνση στον Περιηγητή</translation>
+        <translation>Σμίκρυνση στον περιηγητή</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4959"/>
@@ -2244,7 +2244,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4979"/>
         <source>Browser Toolbar</source>
-        <translation>Γραμμή εργαλείων Περιηγητή</translation>
+        <translation>Γραμμή εργαλείων περιηγητή</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4980"/>
@@ -2332,12 +2332,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5010"/>
         <source>Decrease news list/increase browser</source>
-        <translation>Μείωση της λίστας ειδήσεων / αύξηση του Περιηγητή</translation>
+        <translation>Μείωση της λίστας ειδήσεων / αύξηση του περιηγητή</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5011"/>
         <source>Increase news list/decrease browser</source>
-        <translation>Αύξηση της λίστας ειδήσεων / μείωση του Περιηγητή</translation>
+        <translation>Αύξηση της λίστας ειδήσεων / μείωση του περιηγητή</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5013"/>
