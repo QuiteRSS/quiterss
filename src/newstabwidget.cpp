@@ -2708,12 +2708,14 @@ void NewsTabWidget::actionNewspaper(QUrl url)
       QWebElement document = webView_->page()->mainFrame()->documentElement();
       QWebElement newsItem = document.findFirst(QString("div[id=newsItem%1]").arg(newsId));
       if (!newsItem.isNull()) {
+        webView_->settings()->setAttribute(QWebSettings::AutoLoadImages, true);
         QWebElement element = newsItem.findFirst(QString("img[id=readAction%1]").arg(newsId));
         if (!element.isNull())
           element.setAttribute("src", iconStr);
         element = newsItem.findFirst(QString("a[id=title%1]").arg(newsId));
         if (!element.isNull())
           element.setAttribute("class", titleStyle);
+        webView_->settings()->setAttribute(QWebSettings::AutoLoadImages, autoLoadImages_);
       }
     } else if (url.host() == "star.action.ui") {
       int row = indexList.first().row();
@@ -2728,8 +2730,11 @@ void NewsTabWidget::actionNewspaper(QUrl url)
       QWebElement newsItem = document.findFirst(QString("div[id=newsItem%1]").arg(newsId));
       if (!newsItem.isNull()) {
         QWebElement element = newsItem.findFirst(QString("img[id=starAction%1]").arg(newsId));
-        if (!element.isNull())
+        if (!element.isNull()) {
+          webView_->settings()->setAttribute(QWebSettings::AutoLoadImages, true);
           element.setAttribute("src", iconStr);
+          webView_->settings()->setAttribute(QWebSettings::AutoLoadImages, autoLoadImages_);
+        }
       }
     } else if (url.host() == "labels.menu.ui") {
       newsView_->selectionModel()->clearSelection();
