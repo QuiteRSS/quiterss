@@ -696,7 +696,6 @@ void FeedsTreeView::handleDrop(QDropEvent *e)
 {
   QModelIndex dropIndex = indexAt(e->pos());
 
-  QModelIndex indexWhat = currentIndex();
   QModelIndex indexWhere = dropIndex;
 
   int how = 0;
@@ -715,7 +714,6 @@ void FeedsTreeView::handleDrop(QDropEvent *e)
       if (!dropIndex.isValid()) how = 1;
     }
   }
-  indexWhat = ((FeedsProxyModel*)model())->mapToSource(indexWhat);
   indexWhere = ((FeedsProxyModel*)model())->mapToSource(indexWhere);
-  emit signalDropped(indexWhat, indexWhere, how);
+  emit signalDropped(indexWhere, how);
 }

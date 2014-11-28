@@ -491,8 +491,8 @@ void MainWindow::createFeedsWidget()
   connect(feedsTreeView_, SIGNAL(pressKeyDown()), this, SLOT(slotFeedDownPressed()));
   connect(feedsTreeView_, SIGNAL(pressKeyHome()), this, SLOT(slotFeedHomePressed()));
   connect(feedsTreeView_, SIGNAL(pressKeyEnd()), this, SLOT(slotFeedEndPressed()));
-  connect(feedsTreeView_, SIGNAL(signalDropped(QModelIndex&,QModelIndex&,int)),
-          this, SLOT(slotMoveIndex(QModelIndex&,QModelIndex&,int)));
+  connect(feedsTreeView_, SIGNAL(signalDropped(QModelIndex,int)),
+          this, SLOT(slotMoveIndex(QModelIndex,int)));
   connect(feedsTreeView_, SIGNAL(customContextMenuRequested(QPoint)),
           this, SLOT(showContextMenuFeed(const QPoint &)));
 
@@ -6927,104 +6927,108 @@ void MainWindow::showMenuBar()
  * @param indexWhat index that is moving
  * @param indexWhere index, where to move
  *---------------------------------------------------------------------------*/
-void MainWindow::slotMoveIndex(QModelIndex &indexWhat, QModelIndex &indexWhere, int how)
+void MainWindow::slotMoveIndex(const QModelIndex &indexWhere, int how)
 {
   feedsTreeView_->setCursor(Qt::WaitCursor);
 
-  int feedIdWhat = feedsTreeModel_->getIdByIndex(indexWhat);
-  int feedParIdWhat = feedsTreeModel_->getParidByIndex(indexWhat);
-  int feedIdWhere = feedsTreeModel_->getIdByIndex(indexWhere);
-  int feedParIdWhere = feedsTreeModel_->getParidByIndex(indexWhere);
+  QModelIndexList indexList = feedsTreeView_->selectionModel()->selectedRows(0);
+  for (int i = 0; i < indexList.count(); i++) {
+    QModelIndex indexWhat = feedsProxyModel_->mapToSource(indexList[i]);
+    int feedIdWhat = feedsTreeModel_->getIdByIndex(indexWhat);
+    int feedParIdWhat = feedsTreeModel_->getParidByIndex(indexWhat);
+    int feedIdWhere = feedsTreeModel_->getIdByIndex(indexWhere);
+    int feedParIdWhere = feedsTreeModel_->getParidByIndex(indexWhere);
 
-  // Repair rowToParent
-  QSqlQuery q;
-  if (how == 2) {
-    // Move to another folder
-    QList<int> idList;
-    q.exec(QString("SELECT id FROM feeds WHERE parentId='%1' ORDER BY rowToParent").
-           arg(feedParIdWhat));
-    while (q.next()) {
-      if (feedIdWhat != q.value(0).toInt())
+    // Repair rowToParent
+    QSqlQuery q;
+    if (how == 2) {
+      // Move to another folder
+      QList<int> idList;
+      q.exec(QString("SELECT id FROM feeds WHERE parentId='%1' ORDER BY rowToParent").
+             arg(feedParIdWhat));
+      while (q.next()) {
+        if (feedIdWhat != q.value(0).toInt())
+          idList << q.value(0).toInt();
+      }
+      for (int i = 0; i < idList.count(); i++) {
+        q.exec(QString("UPDATE feeds SET rowToParent='%1' WHERE id=='%2'").
+               arg(i).arg(idList.at(i)));
+      }
+
+      int rowToParent = 0;
+      q.exec(QString("SELECT count(id) FROM feeds WHERE parentId='%1'").
+             arg(feedIdWhere));
+      if (q.next()) rowToParent = q.value(0).toInt();
+
+      q.exec(QString("UPDATE feeds SET parentId='%1', rowToParent='%2' WHERE id=='%3'").
+             arg(feedIdWhere).arg(rowToParent).arg(feedIdWhat));
+
+      QList<int> categoriesList;
+      categoriesList << feedParIdWhat << feedIdWhere;
+      recountFeedCategories(categoriesList);
+    } else if (feedParIdWhat == feedParIdWhere) {
+      // Move inside folder
+      QList<int> idList;
+      q.exec(QString("SELECT id FROM feeds WHERE parentId='%1' ORDER BY rowToParent").
+             arg(feedParIdWhat));
+      while (q.next()) {
         idList << q.value(0).toInt();
-    }
-    for (int i = 0; i < idList.count(); i++) {
-      q.exec(QString("UPDATE feeds SET rowToParent='%1' WHERE id=='%2'").
-             arg(i).arg(idList.at(i)));
-    }
+      }
 
-    int rowToParent = 0;
-    q.exec(QString("SELECT count(id) FROM feeds WHERE parentId='%1'").
-           arg(feedIdWhere));
-    if (q.next()) rowToParent = q.value(0).toInt();
+      int rowWhat = feedsTreeModel_->dataField(indexWhat, "rowToParent").toInt();
+      int rowWhere = feedsTreeModel_->dataField(indexWhere, "rowToParent").toInt();
+      if ((rowWhat < rowWhere) && (how != 1)) rowWhere--;
+      else if (how == 1) rowWhere++;
+      idList.insert(rowWhere, idList.takeAt(rowWhat));
 
-    q.exec(QString("UPDATE feeds SET parentId='%1', rowToParent='%2' WHERE id=='%3'").
-           arg(feedIdWhere).arg(rowToParent).arg(feedIdWhat));
+      for (int i = 0; i < idList.count(); i++) {
+        q.exec(QString("UPDATE feeds SET rowToParent='%1' WHERE id=='%2'").
+               arg(i).arg(idList.at(i)));
+      }
+    } else {
+      // Move in another folder beside feeds
+      QList<int> idList;
+      q.exec(QString("SELECT id FROM feeds WHERE parentId='%1' ORDER BY rowToParent").
+             arg(feedParIdWhat));
+      while (q.next()) {
+        if (feedIdWhat != q.value(0).toInt())
+          idList << q.value(0).toInt();
+      }
+      for (int i = 0; i < idList.count(); i++) {
+        q.exec(QString("UPDATE feeds SET rowToParent='%1' WHERE id=='%2'").
+               arg(i).arg(idList.at(i)));
+      }
 
-    QList<int> categoriesList;
-    categoriesList << feedParIdWhat << feedIdWhere;
-    recountFeedCategories(categoriesList);
-  } else if (feedParIdWhat == feedParIdWhere) {
-    // Move inside folder
-    QList<int> idList;
-    q.exec(QString("SELECT id FROM feeds WHERE parentId='%1' ORDER BY rowToParent").
-           arg(feedParIdWhat));
-    while (q.next()) {
-      idList << q.value(0).toInt();
-    }
+      //
 
-    int rowWhat = feedsTreeModel_->dataField(indexWhat, "rowToParent").toInt();
-    int rowWhere = feedsTreeModel_->dataField(indexWhere, "rowToParent").toInt();
-    if ((rowWhat < rowWhere) && (how != 1)) rowWhere--;
-    else if (how == 1) rowWhere++;
-    idList.insert(rowWhere, idList.takeAt(rowWhat));
-
-    for (int i = 0; i < idList.count(); i++) {
-      q.exec(QString("UPDATE feeds SET rowToParent='%1' WHERE id=='%2'").
-             arg(i).arg(idList.at(i)));
-    }
-  } else {
-    // Move in another folder beside feeds
-    QList<int> idList;
-    q.exec(QString("SELECT id FROM feeds WHERE parentId='%1' ORDER BY rowToParent").
-           arg(feedParIdWhat));
-    while (q.next()) {
-      if (feedIdWhat != q.value(0).toInt())
+      idList.clear();
+      q.exec(QString("SELECT id FROM feeds WHERE parentId='%1' ORDER BY rowToParent").
+             arg(feedParIdWhere));
+      while (q.next()) {
         idList << q.value(0).toInt();
+      }
+
+      int rowWhere = feedsTreeModel_->dataField(indexWhere, "rowToParent").toInt();
+      if (how == 1) rowWhere++;
+      idList.insert(rowWhere, feedIdWhat);
+
+      for (int i = 0; i < idList.count(); i++) {
+        q.exec(QString("UPDATE feeds SET rowToParent='%1' WHERE id=='%2'").
+               arg(i).arg(idList.at(i)));
+      }
+
+      q.exec(QString("UPDATE feeds SET parentId='%1' WHERE id=='%2'").
+             arg(feedParIdWhere).arg(feedIdWhat));
+
+      QList<int> categoriesList;
+      categoriesList << feedParIdWhat << feedParIdWhere;
+      recountFeedCategories(categoriesList);
     }
-    for (int i = 0; i < idList.count(); i++) {
-      q.exec(QString("UPDATE feeds SET rowToParent='%1' WHERE id=='%2'").
-             arg(i).arg(idList.at(i)));
-    }
-
-    //
-
-    idList.clear();
-    q.exec(QString("SELECT id FROM feeds WHERE parentId='%1' ORDER BY rowToParent").
-           arg(feedParIdWhere));
-    while (q.next()) {
-      idList << q.value(0).toInt();
-    }
-
-    int rowWhere = feedsTreeModel_->dataField(indexWhere, "rowToParent").toInt();
-    if (how == 1) rowWhere++;
-    idList.insert(rowWhere, feedIdWhat);
-
-    for (int i = 0; i < idList.count(); i++) {
-      q.exec(QString("UPDATE feeds SET rowToParent='%1' WHERE id=='%2'").
-             arg(i).arg(idList.at(i)));
-    }
-
-    q.exec(QString("UPDATE feeds SET parentId='%1' WHERE id=='%2'").
-           arg(feedParIdWhere).arg(feedIdWhat));
-
-    QList<int> categoriesList;
-    categoriesList << feedParIdWhat << feedParIdWhere;
-    recountFeedCategories(categoriesList);
   }
 
   feedsTreeView_->refresh();
 
-  feedsTreeView_->setCurrentIndex(feedsProxyModel_->mapFromSource(feedIdWhat));
+  feedsTreeView_->setCurrentIndex(feedsProxyModel_->mapFromSource(feedIdOld_));
 
   feedsTreeView_->setCursor(Qt::ArrowCursor);
 }

@@ -61,7 +61,7 @@ signals:
   void pressKeyDown();
   void pressKeyHome();
   void pressKeyEnd();
-  void signalDropped(QModelIndex &what, QModelIndex &where, int how);
+  void signalDropped(const QModelIndex &where, int how);
 
 protected:
   virtual void mousePressEvent(QMouseEvent*);

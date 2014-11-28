@@ -433,7 +433,7 @@ private slots:
   void setStayOnTop();
   void showMenuBar();
 
-  void slotMoveIndex(QModelIndex &indexWhat,QModelIndex &indexWhere, int how);
+  void slotMoveIndex(const QModelIndex &indexWhere, int how);
 
   void slotRefreshInfoTray(int newCount, int unreadCount);
 
