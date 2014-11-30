@@ -1063,10 +1063,11 @@ void OptionsDialog::createNotifierWidget()
   showNotifyOn_->setChecked(false);
 
   screenNotify_ = new QComboBox();
+  screenNotify_->addItem("-1");
   for (int i = 0; i < QApplication::desktop()->screenCount(); ++i) {
     screenNotify_->addItem(QString::number(i));
   }
-  screenNotify_->setCurrentIndex(0);
+  screenNotify_->setCurrentIndex(1);
 
   positionNotify_ = new QComboBox();
   QStringList positionList;

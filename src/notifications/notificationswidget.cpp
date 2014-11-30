@@ -72,7 +72,7 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
     showButtonDeleteNotify = mainApp->mainWindow()->showButtonDeleteNotify_;
   } else {
     OptionsDialog *options = qobject_cast<OptionsDialog*>(parentWidget);
-    screen_ = options->screenNotify_->currentIndex();
+    screen_ = options->screenNotify_->currentIndex()-1;
     position_ = options->positionNotify_->currentIndex();
     transparency_ = options->transparencyNotify_->value();
     timeShowNews_ = options->timeShowNewsNotify_->value();
@@ -94,6 +94,10 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
     for (int i = 0; i < 10; i++) {
       cntNewNewsList << 9;
     }
+  }
+
+  if (screen_ == -1) {
+    screen_ = QApplication::desktop()->screenNumber(mainApp->mainWindow());
   }
 
   int transparency = 255*(100-transparency_)/100;

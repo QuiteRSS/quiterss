@@ -3401,7 +3401,7 @@ void MainWindow::showOptionDlg(int index)
   optionsDialog_->soundNotifyBox_->setChecked(soundNewNews_);
   optionsDialog_->editSoundNotifer_->setText(soundNotifyPath_);
   optionsDialog_->showNotifyOn_->setChecked(showNotifyOn_);
-  optionsDialog_->screenNotify_->setCurrentIndex(screenNotify_);
+  optionsDialog_->screenNotify_->setCurrentIndex(screenNotify_+1);
   optionsDialog_->positionNotify_->setCurrentIndex(positionNotify_);
   optionsDialog_->transparencyNotify_->setValue(transparencyNotify_);
   optionsDialog_->countShowNewsNotify_->setValue(countShowNewsNotify_);
@@ -3831,7 +3831,7 @@ void MainWindow::showOptionDlg(int index)
   soundNewNews_ = optionsDialog_->soundNotifyBox_->isChecked();
   soundNotifyPath_ = optionsDialog_->editSoundNotifer_->text();
   showNotifyOn_ = optionsDialog_->showNotifyOn_->isChecked();
-  screenNotify_ = optionsDialog_->screenNotify_->currentIndex();
+  screenNotify_ = optionsDialog_->screenNotify_->currentIndex()-1;
   positionNotify_ = optionsDialog_->positionNotify_->currentIndex();
   transparencyNotify_ = optionsDialog_->transparencyNotify_->value();
   countShowNewsNotify_ = optionsDialog_->countShowNewsNotify_->value();
