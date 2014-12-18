@@ -28,11 +28,19 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
                                        QStringList colorList,
                                        QWidget *parentWidget,
                                        QWidget *parent)
-  : QWidget(parent,  Qt::Tool | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint)
+  : QWidget(parent)
   , idFeedList_(idFeedList)
   , cntAllNews_(0)
   , cntReadNews_(0)
 {
+  Qt::WindowFlags flags;
+#ifdef Q_OS_MAC
+  flags = Qt::FramelessWindowHint | Qt::SplashScreen | Qt::X11BypassWindowManagerHint | Qt::WindowStaysOnTopHint;
+#else
+  flags = Qt::FramelessWindowHint | Qt::Tool | Qt::X11BypassWindowManagerHint | Qt::WindowStaysOnTopHint;
+#endif
+  setWindowFlags(flags);
+
   setAttribute(Qt::WA_TranslucentBackground);
   setFocusPolicy(Qt::NoFocus);
   setAttribute(Qt::WA_AlwaysShowToolTips);
