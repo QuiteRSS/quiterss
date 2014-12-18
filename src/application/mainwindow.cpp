@@ -156,16 +156,7 @@ void MainWindow::quitApp()
   if (updateAppDialog_)
     updateAppDialog_->deleteLater();
 
-  QWidget *widget = new QWidget(0, Qt::Dialog | Qt::WindowStaysOnTopHint | Qt::WindowCloseButtonHint);
-  widget->setFocusPolicy(Qt::NoFocus);
-  QVBoxLayout *layout = new QVBoxLayout(widget);
-  layout->addWidget(new QLabel(tr("Saving data...")));
-  widget->resize(150, 20);
-  widget->show();
-  widget->move(QApplication::desktop()->availableGeometry().width() - widget->frameSize().width(),
-               QApplication::desktop()->availableGeometry().height() - widget->frameSize().height());
-  widget->setFixedSize(widget->size());
-  qApp->processEvents();
+  mainApp->showClosingWidget();
 
   hide();
   traySystem->hide();

@@ -251,10 +251,25 @@ void MainApplication::quitApplication()
 {
   delete mainWindow_;
   delete networkManager_;
+  delete closingWidget_;
 
   qWarning() << "Quit application";
 
   quit();
+}
+
+void MainApplication::showClosingWidget()
+{
+  closingWidget_ = new QWidget(0, Qt::Dialog | Qt::WindowStaysOnTopHint | Qt::WindowCloseButtonHint);
+  closingWidget_->setFocusPolicy(Qt::NoFocus);
+  QVBoxLayout *layout = new QVBoxLayout(closingWidget_);
+  layout->addWidget(new QLabel(tr("Saving data...")));
+  closingWidget_->resize(150, 20);
+  closingWidget_->show();
+  closingWidget_->move(QApplication::desktop()->availableGeometry().width() - closingWidget_->frameSize().width(),
+               QApplication::desktop()->availableGeometry().height() - closingWidget_->frameSize().height());
+  closingWidget_->setFixedSize(closingWidget_->size());
+  qApp->processEvents();
 }
 
 void MainApplication::commitData(QSessionManager &manager)

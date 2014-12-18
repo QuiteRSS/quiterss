@@ -50,6 +50,7 @@ public:
   void setClosing();
   bool isClosing() const;
   bool isNoDebugOutput() const { return noDebugOutput_; }
+  void showClosingWidget();
 
   QString resourcesDir() const;
   QString dataDir() const;
@@ -127,6 +128,7 @@ private:
   QNetworkDiskCache *diskCache_;
   UpdateFeeds *updateFeeds_;
   DownloadManager *downloadManager_;
+  QWidget *closingWidget_;
 
   QStringList c2fWhitelist_;
   bool c2fEnabled_;
