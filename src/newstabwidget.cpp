@@ -2086,12 +2086,6 @@ void NewsTabWidget::openLinkInNewTab()
   mainWindow_->externalBrowserOn_ = externalBrowserOn_;
 }
 
-inline static bool launch(const QUrl &url, const QString &client)
-{
-  return (QProcess::startDetached(QString::fromUtf8(client.toUtf8()) + QLatin1Char(' ') +
-                                  QString::fromUtf8(url.toEncoded().constData())));
-}
-
 /** @brief Open link in browser
  *----------------------------------------------------------------------------*/
 bool NewsTabWidget::openUrl(const QUrl &url)
@@ -2112,9 +2106,13 @@ bool NewsTabWidget::openUrl(const QUrl &url)
           0, SW_SHOWNORMAL);
     if (returnValue > 32)
       return true;
-#elif defined(HAVE_X11)
-    if (launch(url, mainWindow_->externalBrowser_.toUtf8()))
-      return true;
+#elif defined(Q_OS_MAC)
+    return (QProcess::startDetached("open", QStringList() << "-a" <<
+                                    QString::fromUtf8(mainWindow_->externalBrowser_.toUtf8()) <<
+                                    QString::fromUtf8(url.toEncoded().constData())));
+#else
+    return (QProcess::startDetached(QString::fromUtf8(mainWindow_->externalBrowser_.toUtf8()) + QLatin1Char(' ') +
+                                    QString::fromUtf8(url.toEncoded().constData())));
 #endif
   }
   return QDesktopServices::openUrl(url);
