@@ -133,7 +133,9 @@ HEADERS += \
     src/newsfilters/filterrulesdialog.h \
     src/newsfilters/newsfiltersdialog.h \
     src/newsfilters/itemcondition.h \
-    src/newsfilters/itemaction.h
+    src/newsfilters/itemaction.h \
+    src/network/sslerrordialog.h \
+    src/network/networkmanagerproxy.h
 
 SOURCES += \
     src/parseobject.cpp \
@@ -198,7 +200,9 @@ SOURCES += \
     src/newsfilters/filterrulesdialog.cpp \
     src/newsfilters/newsfiltersdialog.cpp \
     src/newsfilters/itemcondition.cpp \
-    src/newsfilters/itemaction.cpp
+    src/newsfilters/itemaction.cpp \
+    src/network/sslerrordialog.cpp \
+    src/network/networkmanagerproxy.cpp
 
 INCLUDEPATH +=  $$PWD/src \
                 $$PWD/src/application \

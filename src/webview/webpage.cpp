@@ -18,7 +18,7 @@
 #include "webpage.h"
 
 #include "mainapplication.h"
-#include "networkmanager.h"
+#include "networkmanagerproxy.h"
 #include "webpluginfactory.h"
 #include "adblockicon.h"
 #include "adblockmanager.h"
@@ -33,7 +33,10 @@ WebPage::WebPage(QObject *parent)
   : QWebPage(parent)
   , loadProgress_(-1)
 {
-  setNetworkAccessManager(mainApp->networkManager());
+  networkProxy = new NetworkManagerProxy(this);
+  networkProxy->setPrimaryNetworkAccessManager(mainApp->networkManager());
+  networkProxy->setPage(this);
+  setNetworkAccessManager(networkProxy);
 
   setPluginFactory(new WebPluginFactory(this));
   setForwardUnsupportedContent(true);
@@ -63,6 +66,9 @@ bool WebPage::acceptNavigationRequest(QWebFrame *frame,
                                       const QNetworkRequest &request,
                                       NavigationType type)
 {
+  lastRequestType_ = type;
+  lastRequestUrl_ = request.url();
+
   return QWebPage::acceptNavigationRequest(frame,request,type);
 }
 
@@ -184,6 +190,21 @@ bool WebPage::isPointerSafeToUse(WebPage* page)
   return page == 0 ? false : livingPages_.contains(page);
 }
 
+void WebPage::populateNetworkRequest(QNetworkRequest &request)
+{
+  WebPage* pagePointer = this;
+
+  QVariant variant = QVariant::fromValue((void*) pagePointer);
+  request.setAttribute((QNetworkRequest::Attribute)(QNetworkRequest::User + 100), variant);
+
+  if (lastRequestUrl_ == request.url()) {
+    request.setAttribute((QNetworkRequest::Attribute)(QNetworkRequest::User + 101), lastRequestType_);
+    if (lastRequestType_ == NavigationTypeLinkClicked) {
+      request.setRawHeader("X-QuiteRSS-UserLoadAction", QByteArray("1"));
+    }
+  }
+}
+
 void WebPage::addAdBlockRule(const AdBlockRule* rule, const QUrl &url)
 {
   AdBlockedEntry entry;
@@ -255,4 +276,30 @@ void WebPage::cleanBlockedObjects()
   if (view() && !view()->isVisible() && !mainFrame()->url().fragment().isEmpty()) {
     mainFrame()->scrollToAnchor(mainFrame()->url().fragment());
   }
+}
+
+void WebPage::addRejectedCerts(const QList<QSslCertificate> &certs)
+{
+  foreach (const QSslCertificate &cert, certs) {
+    if (!rejectedSslCerts_.contains(cert)) {
+      rejectedSslCerts_.append(cert);
+    }
+  }
+}
+
+bool WebPage::containsRejectedCerts(const QList<QSslCertificate> &certs)
+{
+  int matches = 0;
+
+  foreach (const QSslCertificate &cert, certs) {
+    if (rejectedSslCerts_.contains(cert)) {
+      ++matches;
+    }
+
+    if (sslCert_ == cert) {
+      sslCert_.clear();
+    }
+  }
+
+  return matches == certs.count();
 }

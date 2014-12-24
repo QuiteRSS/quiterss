@@ -20,7 +20,9 @@
 
 #include <QNetworkAccessManager>
 #include <QWebPage>
+#include <QSslCertificate>
 
+class NetworkManagerProxy;
 class AdBlockRule;
 
 class WebPage : public QWebPage
@@ -42,12 +44,17 @@ public:
   bool acceptNavigationRequest(QWebFrame *frame,
                                const QNetworkRequest &request,
                                NavigationType type);
+  void populateNetworkRequest(QNetworkRequest &request);
+
   void scheduleAdjustPage();
   bool isLoading() const;
 
   static bool isPointerSafeToUse(WebPage* page);
   void addAdBlockRule(const AdBlockRule* rule, const QUrl &url);
   QVector<AdBlockedEntry> adBlockedEntries() const;
+
+  void addRejectedCerts(const QList<QSslCertificate> &certs);
+  bool containsRejectedCerts(const QList<QSslCertificate> &certs);
 
 protected slots:
   QWebPage *createWindow(WebWindowType type);
@@ -61,6 +68,14 @@ private slots:
   void urlChanged(const QUrl &url);
 
 private:
+  NetworkManagerProxy *networkProxy;
+
+  QSslCertificate sslCert_;
+  QVector<QSslCertificate> rejectedSslCerts_;
+
+  QWebPage::NavigationType lastRequestType_;
+  QUrl lastRequestUrl_;
+
   bool adjustingScheduled_;
   static QList<WebPage*> livingPages_;
   QVector<AdBlockedEntry> adBlockedEntries_;

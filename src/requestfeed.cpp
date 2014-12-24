@@ -17,6 +17,7 @@
 * ============================================================ */
 #include "requestfeed.h"
 #include "VersionNo.h"
+#include "mainapplication.h"
 
 #include <QDebug>
 #ifdef HAVE_QT5
@@ -46,13 +47,10 @@ RequestFeed::RequestFeed(int timeoutRequest, int numberRequests,
   getUrlTimer_->setInterval(50);
   connect(getUrlTimer_, SIGNAL(timeout()), this, SLOT(getQueuedUrl()));
 
-  networkManager_ = new NetworkManager(this);
-  connect(networkManager_, SIGNAL(finished(QNetworkReply*)),
+  networkManagerProxy_ = new NetworkManagerProxy(this);
+  networkManagerProxy_->setPrimaryNetworkAccessManager(mainApp->networkManager());
+  connect(networkManagerProxy_, SIGNAL(finished(QNetworkReply*)),
           this, SLOT(finished(QNetworkReply*)));
-  connect(networkManager_, SIGNAL(authenticationRequired(QNetworkReply*,QAuthenticator*)),
-          this, SIGNAL(authenticationRequired(QNetworkReply*,QAuthenticator*)));
-  connect(networkManager_, SIGNAL(proxyAuthenticationRequired(QNetworkProxy,QAuthenticator*)),
-          this, SIGNAL(proxyAuthenticationRequired(QNetworkProxy,QAuthenticator*)));
 
   connect(this, SIGNAL(signalHead(QUrl,int,QString,QDateTime,int)),
           SLOT(slotHead(QUrl,int,QString,QDateTime,int)),
@@ -144,7 +142,7 @@ void RequestFeed::slotHead(const QUrl &getUrl, const int &id, const QString &fee
   currentHead_.append(true);
   currentTime_.append(timeoutRequest_);
 
-  QNetworkReply *reply = networkManager_->head(request);
+  QNetworkReply *reply = networkManagerProxy_->head(request);
   requestUrl_.append(reply->url());
   networkReply_.append(reply);
 }
@@ -170,7 +168,7 @@ void RequestFeed::slotGet(const QUrl &getUrl, const int &id, const QString &feed
   currentHead_.append(false);
   currentTime_.append(timeoutRequest_);
 
-  QNetworkReply *reply = networkManager_->get(request);
+  QNetworkReply *reply = networkManagerProxy_->get(request);
   requestUrl_.append(reply->url());
   networkReply_.append(reply);
 }

@@ -431,10 +431,6 @@ void NewsTabWidget::createWebWidget()
   connect(webView_, SIGNAL(signalGoHome()),
           this, SLOT(webHomePage()));
 
-  connect(webView_->page()->networkAccessManager(),
-          SIGNAL(authenticationRequired(QNetworkReply*,QAuthenticator*)),
-          mainWindow_, SLOT(slotAuthentication(QNetworkReply*,QAuthenticator*)));
-
   connect(mainWindow_->autoLoadImagesToggle_, SIGNAL(triggered()),
           this, SLOT(setAutoLoadImages()));
   connect(mainWindow_->browserToolbarToggle_, SIGNAL(triggered()),

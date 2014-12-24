@@ -251,6 +251,7 @@ void MainApplication::quitApplication()
 {
   delete mainWindow_;
   delete networkManager_;
+  delete cookieJar_;
   delete closingWidget_;
 
   qWarning() << "Quit application";

@@ -25,7 +25,6 @@
 #include "adblockicon.h"
 #include "addfeedwizard.h"
 #include "addfolderdialog.h"
-#include "authenticationdialog.h"
 #include "cleanupwizard.h"
 #include "customizetoolbardialog.h"
 #include "feedpropertiesdialog.h"
@@ -107,8 +106,6 @@ MainWindow::MainWindow(QWidget *parent)
   connect(&timerLinkOpening_, SIGNAL(timeout()),
           this, SLOT(slotTimerLinkOpening()));
 
-  connect(mainApp->networkManager(), SIGNAL(authenticationRequired(QNetworkReply*,QAuthenticator*)),
-          this, SLOT(slotAuthentication(QNetworkReply*,QAuthenticator*)));
   connect(mainApp->downloadManager(), SIGNAL(signalShowDownloads(bool)),
           this, SLOT(showDownloadManager(bool)));
   connect(mainApp->downloadManager(), SIGNAL(signalUpdateInfo(QString)),
@@ -7355,30 +7352,6 @@ int MainWindow::addTab(NewsTabWidget *widget)
   return indexTab;
 }
 
-/** @brief Request authentification
- *---------------------------------------------------------------------------*/
-void MainWindow::slotAuthentication(QNetworkReply *reply, QAuthenticator *auth)
-{
-  AuthenticationDialog *authenticationDialog =
-      new AuthenticationDialog(reply->url(), auth);
-
-  if (!authenticationDialog->save_->isChecked())
-    authenticationDialog->exec();
-
-  delete authenticationDialog;
-}
-/** @brief Request proxy authentification
- *---------------------------------------------------------------------------*/
-void MainWindow::slotProxyAuthentication(const QNetworkProxy &proxy, QAuthenticator *auth)
-{
-  AuthenticationDialog *authenticationDialog =
-      new AuthenticationDialog(proxy.hostName(), auth);
-
-  if (!authenticationDialog->save_->isChecked())
-    authenticationDialog->exec();
-
-  delete authenticationDialog;
-}
 // ----------------------------------------------------------------------------
 void MainWindow::reduceNewsList()
 {

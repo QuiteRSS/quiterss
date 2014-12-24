@@ -25,7 +25,7 @@
 #include <QTimer>
 #include <QElapsedTimer>
 
-#include "networkmanager.h"
+#include "networkmanagerproxy.h"
 
 class RequestFeed : public QObject
 {
@@ -51,16 +51,13 @@ signals:
                  const QDateTime &date, const int &count = 0);
   void setStatusFeed(int feedId, QString status);
 
-  void authenticationRequired(QNetworkReply*,QAuthenticator*);
-  void proxyAuthenticationRequired(const QNetworkProxy&,QAuthenticator*);
-
 private slots:
   void getQueuedUrl();
   void finished(QNetworkReply *reply);
   void slotRequestTimeout();
 
 private:
-  NetworkManager *networkManager_;
+  NetworkManagerProxy *networkManagerProxy_;
 
   int timeoutRequest_;
   int numberRequests_;

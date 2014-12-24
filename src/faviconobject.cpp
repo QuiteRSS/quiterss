@@ -17,6 +17,7 @@
 * ============================================================ */
 #include "faviconobject.h"
 #include "VersionNo.h"
+#include "mainapplication.h"
 
 #include <QDebug>
 #include <QtSql>
@@ -46,8 +47,9 @@ FaviconObject::FaviconObject(QObject *parent)
   connect(this, SIGNAL(signalGet(QUrl,QString,int)),
           SLOT(slotGet(QUrl,QString,int)));
 
-  networkManager_ = new NetworkManager(this);
-  connect(networkManager_, SIGNAL(finished(QNetworkReply*)),
+  networkManagerProxy_ = new NetworkManagerProxy(this);
+  networkManagerProxy_->setPrimaryNetworkAccessManager(mainApp->networkManager());
+  connect(networkManagerProxy_, SIGNAL(finished(QNetworkReply*)),
           this, SLOT(finished(QNetworkReply*)));
 }
 
@@ -114,7 +116,7 @@ void FaviconObject::slotGet(const QUrl &getUrl, const QString &feedUrl, const in
   currentCntRequests_.append(cnt);
   currentTime_.append(REQUEST_TIMEOUT);
 
-  QNetworkReply *reply = networkManager_->get(request);
+  QNetworkReply *reply = networkManagerProxy_->get(request);
   requestUrl_.append(reply->url());
   networkReply_.append(reply);
 }
