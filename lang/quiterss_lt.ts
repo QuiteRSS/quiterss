@@ -1414,1039 +1414,1042 @@ nerastas!</translation>
     </message>
 </context>
 <context>
+    <name>MainApplication</name>
+    <message>
+        <location filename="../src/application/mainapplication.cpp" line="267"/>
+        <source>Saving data...</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="1794"/>
+        <location filename="../src/application/mainwindow.cpp" line="1782"/>
         <source>&amp;AdBlock</source>
         <translation>&amp;AdBlock</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2233"/>
-        <location filename="../src/application/mainwindow.cpp" line="4993"/>
-        <location filename="../src/application/mainwindow.cpp" line="7251"/>
-        <location filename="../src/application/mainwindow.cpp" line="7273"/>
+        <location filename="../src/application/mainwindow.cpp" line="2221"/>
+        <location filename="../src/application/mainwindow.cpp" line="4981"/>
+        <location filename="../src/application/mainwindow.cpp" line="7243"/>
+        <location filename="../src/application/mainwindow.cpp" line="7265"/>
         <source>Hide Categories</source>
         <translation>Slėpti kategorijas</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2237"/>
-        <location filename="../src/application/mainwindow.cpp" line="4991"/>
-        <location filename="../src/application/mainwindow.cpp" line="7257"/>
+        <location filename="../src/application/mainwindow.cpp" line="2225"/>
+        <location filename="../src/application/mainwindow.cpp" line="4979"/>
+        <location filename="../src/application/mainwindow.cpp" line="7249"/>
         <source>Show Categories</source>
         <translation>Rodyti kategorijas</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2689"/>
-        <location filename="../src/application/mainwindow.cpp" line="2718"/>
+        <location filename="../src/application/mainwindow.cpp" line="2677"/>
+        <location filename="../src/application/mainwindow.cpp" line="2706"/>
         <source>Select OPML-File</source>
         <translation>Pasirinkti OMPL-bylą</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2691"/>
+        <location filename="../src/application/mainwindow.cpp" line="2679"/>
         <source>OPML-Files (*.%1 *.%2)</source>
         <translation>OPML-Rinkmena (*.%1 *.%2)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2695"/>
+        <location filename="../src/application/mainwindow.cpp" line="2683"/>
         <source>Import canceled</source>
         <translation>Importas atšauktas</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2703"/>
+        <location filename="../src/application/mainwindow.cpp" line="2691"/>
         <source>Import: can&apos;t open a file</source>
         <translation>Importas: negaliu atidaryti bylos</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2720"/>
+        <location filename="../src/application/mainwindow.cpp" line="2708"/>
         <source>OPML-Files (*.%1)</source>
         <translation>OPML-Rinkmena (*.%1)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2724"/>
+        <location filename="../src/application/mainwindow.cpp" line="2712"/>
         <source>Export canceled</source>
         <translation>Eksportas atšauktas</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2730"/>
+        <location filename="../src/application/mainwindow.cpp" line="2718"/>
         <source>Export: can&apos;t open a file</source>
         <translation>Eksportas: negaliu atidaryti bylos</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="3002"/>
-        <location filename="../src/application/mainwindow.cpp" line="4130"/>
-        <location filename="../src/application/mainwindow.cpp" line="4768"/>
-        <location filename="../src/application/mainwindow.cpp" line="6198"/>
-        <location filename="../src/application/mainwindow.cpp" line="7222"/>
+        <location filename="../src/application/mainwindow.cpp" line="2990"/>
+        <location filename="../src/application/mainwindow.cpp" line="4118"/>
+        <location filename="../src/application/mainwindow.cpp" line="4756"/>
+        <location filename="../src/application/mainwindow.cpp" line="6186"/>
+        <location filename="../src/application/mainwindow.cpp" line="7214"/>
         <source>Unread: %1</source>
         <translation>Neskaitytų: %1</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="3003"/>
-        <location filename="../src/application/mainwindow.cpp" line="4131"/>
-        <location filename="../src/application/mainwindow.cpp" line="4771"/>
-        <location filename="../src/application/mainwindow.cpp" line="6199"/>
-        <location filename="../src/application/mainwindow.cpp" line="7223"/>
+        <location filename="../src/application/mainwindow.cpp" line="2991"/>
+        <location filename="../src/application/mainwindow.cpp" line="4119"/>
+        <location filename="../src/application/mainwindow.cpp" line="4759"/>
+        <location filename="../src/application/mainwindow.cpp" line="6187"/>
+        <location filename="../src/application/mainwindow.cpp" line="7215"/>
         <source>All: %1</source>
         <translation>Viso: %1</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="3559"/>
-        <location filename="../src/application/mainwindow.cpp" line="3564"/>
-        <location filename="../src/application/mainwindow.cpp" line="3569"/>
+        <location filename="../src/application/mainwindow.cpp" line="3547"/>
+        <location filename="../src/application/mainwindow.cpp" line="3552"/>
+        <location filename="../src/application/mainwindow.cpp" line="3557"/>
         <source>(Browser)</source>
         <translation>(Naršyklė)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4776"/>
-        <location filename="../src/application/mainwindow.cpp" line="5631"/>
+        <location filename="../src/application/mainwindow.cpp" line="4764"/>
+        <location filename="../src/application/mainwindow.cpp" line="5619"/>
         <source>New News: %1</source>
         <translation>Naujienos: %1</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4778"/>
-        <location filename="../src/application/mainwindow.cpp" line="5633"/>
+        <location filename="../src/application/mainwindow.cpp" line="4766"/>
+        <location filename="../src/application/mainwindow.cpp" line="5621"/>
         <source>Unread News: %1</source>
         <translation>Neperskaitytos naujienos: %1</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4783"/>
+        <location filename="../src/application/mainwindow.cpp" line="4771"/>
         <source>&amp;Add</source>
         <translation>&amp;Pridėti</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4784"/>
-        <location filename="../src/application/mainwindow.cpp" line="4787"/>
+        <location filename="../src/application/mainwindow.cpp" line="4772"/>
+        <location filename="../src/application/mainwindow.cpp" line="4775"/>
         <source>Add New Feed</source>
         <translation>Pridėti naują šaltinį</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4786"/>
+        <location filename="../src/application/mainwindow.cpp" line="4774"/>
         <source>&amp;Feed...</source>
         <translation>Šaltinis...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4789"/>
+        <location filename="../src/application/mainwindow.cpp" line="4777"/>
         <source>F&amp;older...</source>
         <translation>A&amp;plankas...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4790"/>
+        <location filename="../src/application/mainwindow.cpp" line="4778"/>
         <source>Add New Folder</source>
         <translation>Pridėti naują aplanką</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4792"/>
-        <location filename="../src/application/mainwindow.cpp" line="4860"/>
+        <location filename="../src/application/mainwindow.cpp" line="4780"/>
+        <location filename="../src/application/mainwindow.cpp" line="4848"/>
         <source>Open in New Tab</source>
         <translation>Atverti naujame skirtuke</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4794"/>
+        <location filename="../src/application/mainwindow.cpp" line="4782"/>
         <source>&amp;Delete...</source>
         <translation>&amp;Ištrinti...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4795"/>
+        <location filename="../src/application/mainwindow.cpp" line="4783"/>
         <source>Delete Selected Feed</source>
         <translation>Ištrinti pasirinktą šaltinį</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4797"/>
+        <location filename="../src/application/mainwindow.cpp" line="4785"/>
         <source>&amp;Import Feeds...</source>
         <translation>&amp;Importuoti šaltinius...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4798"/>
+        <location filename="../src/application/mainwindow.cpp" line="4786"/>
         <source>Import Feeds from OPML File</source>
         <translation>Importuoti šaltinius iš OPML bylos</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4800"/>
+        <location filename="../src/application/mainwindow.cpp" line="4788"/>
         <source>&amp;Export Feeds...</source>
         <translation>&amp;Exportuoti šaltinius...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4801"/>
+        <location filename="../src/application/mainwindow.cpp" line="4789"/>
         <source>Export Feeds to OPML File</source>
         <translation>Eksportuoti šaltinius į OPML bylą</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4806"/>
+        <location filename="../src/application/mainwindow.cpp" line="4794"/>
         <source>E&amp;xit</source>
         <translation>I&amp;šeiti</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4808"/>
+        <location filename="../src/application/mainwindow.cpp" line="4796"/>
         <source>Update Feed</source>
         <translation>Atnaujinti šaltinį</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4809"/>
+        <location filename="../src/application/mainwindow.cpp" line="4797"/>
         <source>Update Current Feed</source>
         <translation>Atnaujinti dabartinį šaltinį</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4811"/>
+        <location filename="../src/application/mainwindow.cpp" line="4799"/>
         <source>Update All</source>
         <translation>Atnaujinti visus</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4812"/>
+        <location filename="../src/application/mainwindow.cpp" line="4800"/>
         <source>Update All Feeds</source>
         <translation>Atnaujinti visus šaltinius</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4814"/>
+        <location filename="../src/application/mainwindow.cpp" line="4802"/>
         <source>Mark All Feeds Read</source>
         <translation>Pažymėti visus šaltinius skaitytais</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4816"/>
+        <location filename="../src/application/mainwindow.cpp" line="4804"/>
         <source>Mark Read/Unread</source>
         <translation>Pažymėti skaityta/neskaityta</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4817"/>
+        <location filename="../src/application/mainwindow.cpp" line="4805"/>
         <source>Mark Current News Read/Unread</source>
         <translation>Pažymėti dabartinį šaltinį skaitytu/neskaitytu</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4819"/>
-        <location filename="../src/application/mainwindow.cpp" line="4820"/>
+        <location filename="../src/application/mainwindow.cpp" line="4807"/>
+        <location filename="../src/application/mainwindow.cpp" line="4808"/>
         <source>Mark All News Read</source>
         <translation>Pažymėti visus šaltinius skaitytais</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4822"/>
-        <location filename="../src/application/mainwindow.cpp" line="7845"/>
-        <location filename="../src/application/mainwindow.cpp" line="7851"/>
-        <location filename="../src/application/mainwindow.cpp" line="7861"/>
+        <location filename="../src/application/mainwindow.cpp" line="4810"/>
+        <location filename="../src/application/mainwindow.cpp" line="7828"/>
+        <location filename="../src/application/mainwindow.cpp" line="7834"/>
+        <location filename="../src/application/mainwindow.cpp" line="7844"/>
         <source>Downloads</source>
         <translation>Siuntiniai</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4824"/>
+        <location filename="../src/application/mainwindow.cpp" line="4812"/>
         <source>Clean Up...</source>
         <translation>Išvalyti...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4826"/>
+        <location filename="../src/application/mainwindow.cpp" line="4814"/>
         <source>News Filters...</source>
         <translation>Naujienų filtrai...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4827"/>
+        <location filename="../src/application/mainwindow.cpp" line="4815"/>
         <source>Filter News...</source>
         <translation>Filtruoti naujienas...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4829"/>
+        <location filename="../src/application/mainwindow.cpp" line="4817"/>
         <source>Options...</source>
         <translation>Parinktys...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4830"/>
+        <location filename="../src/application/mainwindow.cpp" line="4818"/>
         <source>Open Options Dialog</source>
         <translation>Atidaryti pasirinkimo langą</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4832"/>
+        <location filename="../src/application/mainwindow.cpp" line="4820"/>
         <source>Filter Feeds</source>
         <translation>Filtruoti šaltinius</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4833"/>
-        <location filename="../src/application/mainwindow.cpp" line="4840"/>
+        <location filename="../src/application/mainwindow.cpp" line="4821"/>
+        <location filename="../src/application/mainwindow.cpp" line="4828"/>
         <source>Show All</source>
         <translation>Rodyti viską</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4834"/>
-        <location filename="../src/application/mainwindow.cpp" line="4841"/>
+        <location filename="../src/application/mainwindow.cpp" line="4822"/>
+        <location filename="../src/application/mainwindow.cpp" line="4829"/>
         <source>Show New</source>
         <translation>Rodyti naujus</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4835"/>
-        <location filename="../src/application/mainwindow.cpp" line="4842"/>
+        <location filename="../src/application/mainwindow.cpp" line="4823"/>
+        <location filename="../src/application/mainwindow.cpp" line="4830"/>
         <source>Show Unread</source>
         <translation>Rodyti neskaitytus</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4836"/>
+        <location filename="../src/application/mainwindow.cpp" line="4824"/>
         <source>Show Starred Feeds</source>
         <translation>Atidaryti mėgiamus šaltinius</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4837"/>
+        <location filename="../src/application/mainwindow.cpp" line="4825"/>
         <source>Show Not Working Feeds</source>
         <translation>Parodyti neaktyvius šaltinius</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4839"/>
+        <location filename="../src/application/mainwindow.cpp" line="4827"/>
         <source>Filter News</source>
         <translation>Filtruoti naujienas</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4843"/>
+        <location filename="../src/application/mainwindow.cpp" line="4831"/>
         <source>Show Starred</source>
         <translation>Rodyti mėgstamas</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4844"/>
+        <location filename="../src/application/mainwindow.cpp" line="4832"/>
         <source>Show Not Starred</source>
         <translation>Rodyti likusius</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4845"/>
+        <location filename="../src/application/mainwindow.cpp" line="4833"/>
         <source>Show Unread or Starred</source>
         <translation>Rodyti neskaitytus arba mėgstamus</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4846"/>
+        <location filename="../src/application/mainwindow.cpp" line="4834"/>
         <source>Show Last Day</source>
         <translation>Rodyti paskutinę dieną</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4847"/>
+        <location filename="../src/application/mainwindow.cpp" line="4835"/>
         <source>Show Last 7 Days</source>
         <translation>Rodyti paskutines 7 dienas</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4849"/>
+        <location filename="../src/application/mainwindow.cpp" line="4837"/>
         <source>About...</source>
         <translation>Apie...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4850"/>
+        <location filename="../src/application/mainwindow.cpp" line="4838"/>
         <source>Show &apos;About&apos; Dialog</source>
         <translation>Rodyti &apos;Apie&apos; langą</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4852"/>
+        <location filename="../src/application/mainwindow.cpp" line="4840"/>
         <source>Check for Updates...</source>
         <translation>Tinkrinti ar yra atnaujinimai...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4853"/>
+        <location filename="../src/application/mainwindow.cpp" line="4841"/>
         <source>Report a Problem...</source>
         <translation>Pranešti apie problemą...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4855"/>
+        <location filename="../src/application/mainwindow.cpp" line="4843"/>
         <source>Open News</source>
         <translation>Atverti naujienas</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4857"/>
+        <location filename="../src/application/mainwindow.cpp" line="4845"/>
         <source>Open in Browser</source>
         <translation>Atidaryti naršyklėje</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4858"/>
+        <location filename="../src/application/mainwindow.cpp" line="4846"/>
         <source>Open in External Browser</source>
         <translation>Atidaryti išorinėje naršyklėje</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4859"/>
+        <location filename="../src/application/mainwindow.cpp" line="4847"/>
         <source>Open News in External Browser</source>
         <translation>Atidaryti naujienas išorinėje naršyklėje</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4861"/>
+        <location filename="../src/application/mainwindow.cpp" line="4849"/>
         <source>Open News in New Tab</source>
         <translation>Atidaryti naujienas kitame aplanke</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4862"/>
+        <location filename="../src/application/mainwindow.cpp" line="4850"/>
         <source>Open in Background Tab</source>
         <translation>Atidaryti viduje aplanko</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4863"/>
+        <location filename="../src/application/mainwindow.cpp" line="4851"/>
         <source>Open News in Background Tab</source>
         <translation>Atidaryti naujienas viduje aplanko</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4864"/>
+        <location filename="../src/application/mainwindow.cpp" line="4852"/>
         <source>Star</source>
         <translation>Mėgstami</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4865"/>
+        <location filename="../src/application/mainwindow.cpp" line="4853"/>
         <source>Mark News Star</source>
         <translation>Pažymėti naujieną mėgstama</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4866"/>
+        <location filename="../src/application/mainwindow.cpp" line="4854"/>
         <source>Delete</source>
         <translation>Ištrinti</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4867"/>
+        <location filename="../src/application/mainwindow.cpp" line="4855"/>
         <source>Delete Selected News</source>
         <translation>Ištrinti pasirinktas naujienas</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4868"/>
+        <location filename="../src/application/mainwindow.cpp" line="4856"/>
         <source>Delete All News</source>
         <translation>Ištrinti visas naujienas</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4869"/>
+        <location filename="../src/application/mainwindow.cpp" line="4857"/>
         <source>Delete All News from List</source>
         <translation>Ištrinti visas naujienas iš sąrašo</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4870"/>
+        <location filename="../src/application/mainwindow.cpp" line="4858"/>
         <source>Restore</source>
         <translation>Atstatyti</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4871"/>
+        <location filename="../src/application/mainwindow.cpp" line="4859"/>
         <source>Restore News</source>
         <translation>Atstatyti naujienas</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4872"/>
+        <location filename="../src/application/mainwindow.cpp" line="4860"/>
         <source>Copy Link</source>
         <translation>Kopijuoti nuorodą</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4875"/>
+        <location filename="../src/application/mainwindow.cpp" line="4863"/>
         <source>Restore last deleted news</source>
         <translation>Atkurti paskutines pašalintas naujienas</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4877"/>
+        <location filename="../src/application/mainwindow.cpp" line="4865"/>
         <source>Mark Read</source>
         <translation>Pažymėti skaitytu</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4878"/>
+        <location filename="../src/application/mainwindow.cpp" line="4866"/>
         <source>Mark Feed Read</source>
         <translation>Pažymėti šaltinį skaitytu</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4879"/>
-        <location filename="../src/application/mainwindow.cpp" line="4880"/>
+        <location filename="../src/application/mainwindow.cpp" line="4867"/>
+        <location filename="../src/application/mainwindow.cpp" line="4868"/>
         <source>Properties</source>
         <translation>Savybės</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4882"/>
+        <location filename="../src/application/mainwindow.cpp" line="4870"/>
         <source>&amp;File</source>
         <translation>&amp;Byla</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4945"/>
+        <location filename="../src/application/mainwindow.cpp" line="4933"/>
         <source>Count Unread News</source>
         <translation>Skaičiuoti neskaitytas naujienas</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4946"/>
+        <location filename="../src/application/mainwindow.cpp" line="4934"/>
         <source>Count All News</source>
         <translation>Skaičiuoti visas naujienas</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4947"/>
+        <location filename="../src/application/mainwindow.cpp" line="4935"/>
         <source>Last Update</source>
         <translation>Paskutinis atnaujinimas</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4960"/>
+        <location filename="../src/application/mainwindow.cpp" line="4948"/>
         <source>Reset browser zoom</source>
         <translation>Atšaukti priartinimą naršyklėje</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4963"/>
+        <location filename="../src/application/mainwindow.cpp" line="4951"/>
         <source>Print Web Page</source>
         <translation>Spausdinti tinklapį</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4965"/>
+        <location filename="../src/application/mainwindow.cpp" line="4953"/>
         <source>Preview Web Page</source>
         <translation>Peržiūrėti tinklalapį</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4972"/>
+        <location filename="../src/application/mainwindow.cpp" line="4960"/>
         <source>Save page in database</source>
         <translation>Išsaugoti puslapį duomenų bazėje</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4973"/>
+        <location filename="../src/application/mainwindow.cpp" line="4961"/>
         <source>Save page in database instead of news description</source>
         <translation>Išsaugoti puslapį duomenų bazėje vietoj naujienų aprašymo</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="162"/>
-        <source>Saving data...</source>
-        <translation>Saugojami duomenys...</translation>
-    </message>
-    <message>
-        <location filename="../src/application/mainwindow.cpp" line="2584"/>
+        <location filename="../src/application/mainwindow.cpp" line="2572"/>
         <source>Confirm Delete</source>
         <translation>Patvirtinti trynimą</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2585"/>
+        <location filename="../src/application/mainwindow.cpp" line="2573"/>
         <source>Are you sure to delete selected elements?</source>
         <translation>Ar tikrai norite ištrinti pažymėtus elementus?</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4781"/>
+        <location filename="../src/application/mainwindow.cpp" line="4769"/>
         <source>Menu</source>
         <translation>Meniu</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4803"/>
+        <location filename="../src/application/mainwindow.cpp" line="4791"/>
         <source>&amp;Create Backup...</source>
         <translation>&amp;Sukurti atsarginę kopiją...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4804"/>
+        <location filename="../src/application/mainwindow.cpp" line="4792"/>
         <source>S&amp;how Menu Bar</source>
         <translation>R&amp;odyti meniu juostą</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4856"/>
+        <location filename="../src/application/mainwindow.cpp" line="4844"/>
         <source>Open News Description</source>
         <translation>Atidaryti naujienod aprašymą</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4873"/>
+        <location filename="../src/application/mainwindow.cpp" line="4861"/>
         <source>Copy News Link</source>
         <translation>Kopijuoti naujienos nuorodą</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4883"/>
+        <location filename="../src/application/mainwindow.cpp" line="4871"/>
         <source>&amp;View</source>
         <translation>&amp;Rodinys</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4884"/>
+        <location filename="../src/application/mainwindow.cpp" line="4872"/>
         <source>Fee&amp;ds</source>
         <translation>Šaltini&amp;ai</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4885"/>
+        <location filename="../src/application/mainwindow.cpp" line="4873"/>
         <source>&amp;News</source>
         <translation>&amp;Naujienos</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4886"/>
+        <location filename="../src/application/mainwindow.cpp" line="4874"/>
         <source>&amp;Browser</source>
         <translation>&amp;Naršyklė</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4887"/>
+        <location filename="../src/application/mainwindow.cpp" line="4875"/>
         <source>&amp;Tools</source>
         <translation>&amp;Įrankiai</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4888"/>
+        <location filename="../src/application/mainwindow.cpp" line="4876"/>
         <source>&amp;Help</source>
         <translation>Pagalba</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4890"/>
-        <location filename="../src/application/mainwindow.cpp" line="4976"/>
+        <location filename="../src/application/mainwindow.cpp" line="4878"/>
+        <location filename="../src/application/mainwindow.cpp" line="4964"/>
         <source>Main Toolbar</source>
         <translation>Pagrindinė Įrankių juosta</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4891"/>
+        <location filename="../src/application/mainwindow.cpp" line="4879"/>
         <source>Customize Toolbar</source>
         <translation>Redaguoti Įrankių juostą</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4892"/>
+        <location filename="../src/application/mainwindow.cpp" line="4880"/>
         <source>Main Toolbar...</source>
         <translation>Pagrindinė įrankių juosta...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4893"/>
+        <location filename="../src/application/mainwindow.cpp" line="4881"/>
         <source>Customize Toolbar...</source>
         <translation>Redaguoti įrankių juostą...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4894"/>
+        <location filename="../src/application/mainwindow.cpp" line="4882"/>
         <source>Feeds Toolbar...</source>
         <translation>Šaltinių įrankių juosta...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4895"/>
+        <location filename="../src/application/mainwindow.cpp" line="4883"/>
         <source>News Toolbar...</source>
         <translation>Naujienų įrankių juosta...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4897"/>
+        <location filename="../src/application/mainwindow.cpp" line="4885"/>
         <source>Lock Toolbar</source>
         <translation>Užrakinti įrankių juostą</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4898"/>
+        <location filename="../src/application/mainwindow.cpp" line="4886"/>
         <source>Hide Toolbar</source>
         <translation>Paslėpti Įrankių juostą</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4900"/>
-        <location filename="../src/application/mainwindow.cpp" line="4903"/>
+        <location filename="../src/application/mainwindow.cpp" line="4888"/>
+        <location filename="../src/application/mainwindow.cpp" line="4891"/>
         <source>Layout</source>
         <translation>Išdėstymas</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4901"/>
+        <location filename="../src/application/mainwindow.cpp" line="4889"/>
         <source>Classic</source>
         <translation>Klasikinis</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4902"/>
+        <location filename="../src/application/mainwindow.cpp" line="4890"/>
         <source>Newspaper</source>
         <translation>Laikraštinis</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4905"/>
+        <location filename="../src/application/mainwindow.cpp" line="4893"/>
         <source>Application Style</source>
         <translation>Programos stilius</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4906"/>
+        <location filename="../src/application/mainwindow.cpp" line="4894"/>
         <source>System</source>
         <translation>Sistema</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4907"/>
+        <location filename="../src/application/mainwindow.cpp" line="4895"/>
         <source>System2</source>
         <translation>Sistema2</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4908"/>
+        <location filename="../src/application/mainwindow.cpp" line="4896"/>
         <source>Green</source>
         <translation>Žalia</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4909"/>
+        <location filename="../src/application/mainwindow.cpp" line="4897"/>
         <source>Orange</source>
         <translation>Oranžinė</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4910"/>
+        <location filename="../src/application/mainwindow.cpp" line="4898"/>
         <source>Purple</source>
         <translation>Violetinė</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4911"/>
+        <location filename="../src/application/mainwindow.cpp" line="4899"/>
         <source>Pink</source>
         <translation>Rožinė</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4912"/>
+        <location filename="../src/application/mainwindow.cpp" line="4900"/>
         <source>Gray</source>
         <translation>Pilka</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4914"/>
+        <location filename="../src/application/mainwindow.cpp" line="4902"/>
         <source>Browser Position</source>
         <translation>Naršyklės vieta</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4915"/>
+        <location filename="../src/application/mainwindow.cpp" line="4903"/>
         <source>Top</source>
         <translation>Viršus</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4916"/>
+        <location filename="../src/application/mainwindow.cpp" line="4904"/>
         <source>Bottom</source>
         <translation>Apačia</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4917"/>
+        <location filename="../src/application/mainwindow.cpp" line="4905"/>
         <source>Right</source>
         <translation>Dešinė</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4918"/>
+        <location filename="../src/application/mainwindow.cpp" line="4906"/>
         <source>Left</source>
         <translation>Kairė</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4920"/>
+        <location filename="../src/application/mainwindow.cpp" line="4908"/>
         <source>Show Window</source>
         <translation>Rodyti langą</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4922"/>
+        <location filename="../src/application/mainwindow.cpp" line="4910"/>
         <source>Previous Feed</source>
         <translation>Buvęs šaltinis</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4923"/>
+        <location filename="../src/application/mainwindow.cpp" line="4911"/>
         <source>Next Feed</source>
         <translation>Kitas šaltinis</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4924"/>
+        <location filename="../src/application/mainwindow.cpp" line="4912"/>
         <source>Previous News</source>
         <translation>Buvusi naujiena</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4925"/>
+        <location filename="../src/application/mainwindow.cpp" line="4913"/>
         <source>Next News</source>
         <translation>Kita naujiena</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4926"/>
+        <location filename="../src/application/mainwindow.cpp" line="4914"/>
         <source>News Page Up</source>
         <translation>Naujienos puslapiu aukštyn</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4927"/>
+        <location filename="../src/application/mainwindow.cpp" line="4915"/>
         <source>News Page Down</source>
         <translation>Naujienos puslapiu žemyn</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4929"/>
+        <location filename="../src/application/mainwindow.cpp" line="4917"/>
         <source>Next Unread News</source>
         <translation>Sekančios neskaitytos naujienos</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4930"/>
+        <location filename="../src/application/mainwindow.cpp" line="4918"/>
         <source>Previous Unread News</source>
         <translation>Ankstesnės neskaitytos naujienos</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4932"/>
+        <location filename="../src/application/mainwindow.cpp" line="4920"/>
         <source>Switch Focus to Next Panel</source>
         <translation>Žiūrėti kitą skydelį</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4934"/>
+        <location filename="../src/application/mainwindow.cpp" line="4922"/>
         <source>Switch Focus to Next Panel (Tree Feeds, List News, Browser)</source>
         <translation>Žiūrėti kitą skydelį (Šaltinių medis, Naujienų sąrašas, Naršyklė)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4935"/>
+        <location filename="../src/application/mainwindow.cpp" line="4923"/>
         <source>Switch Focus to Previous Panel</source>
         <translation>Žiūrėti kitą skydelį</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4937"/>
+        <location filename="../src/application/mainwindow.cpp" line="4925"/>
         <source>Switch Focus to Previous Panel (Tree Feeds, Browser, List News)</source>
         <translation>Žiūrėti buvusį skydelį (Šaltinių medis, Naujienų sąrašas, Naršyklė)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4939"/>
+        <location filename="../src/application/mainwindow.cpp" line="4927"/>
         <source>Show/Hide Tree Feeds</source>
         <translation>Rodyti/Slėpti šaltinių medį</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4941"/>
+        <location filename="../src/application/mainwindow.cpp" line="4929"/>
         <source>Minimize to Tray</source>
         <translation>Mažinti į dėklą</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4942"/>
+        <location filename="../src/application/mainwindow.cpp" line="4930"/>
         <source>Minimize Application to Tray</source>
         <translation>Mažinti programą į dėklą</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4944"/>
+        <location filename="../src/application/mainwindow.cpp" line="4932"/>
         <source>Columns</source>
         <translation>Stulpeliai</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4949"/>
+        <location filename="../src/application/mainwindow.cpp" line="4937"/>
         <source>Show Indentation</source>
         <translation>Rodyti tarpą</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4951"/>
-        <location filename="../src/application/mainwindow.cpp" line="4952"/>
+        <location filename="../src/application/mainwindow.cpp" line="4939"/>
+        <location filename="../src/application/mainwindow.cpp" line="4940"/>
         <source>Search Feed</source>
         <translation>Ieškoti šaltinio</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4954"/>
+        <location filename="../src/application/mainwindow.cpp" line="4942"/>
         <source>Zoom</source>
         <translation>Priartinimas</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4955"/>
+        <location filename="../src/application/mainwindow.cpp" line="4943"/>
         <source>Zoom In</source>
         <translation>Priartinti</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4956"/>
+        <location filename="../src/application/mainwindow.cpp" line="4944"/>
         <source>Zoom in in browser</source>
         <translation>Priartinti narškyklėje</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4957"/>
+        <location filename="../src/application/mainwindow.cpp" line="4945"/>
         <source>Zoom Out</source>
         <translation>Nutolinti</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4958"/>
+        <location filename="../src/application/mainwindow.cpp" line="4946"/>
         <source>Zoom out in browser</source>
         <translation>Nutolinti naršyklėje</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4959"/>
+        <location filename="../src/application/mainwindow.cpp" line="4947"/>
         <source>100%</source>
         <translation>100%</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4962"/>
+        <location filename="../src/application/mainwindow.cpp" line="4950"/>
         <source>Print...</source>
         <translation>Spausdinti...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4964"/>
+        <location filename="../src/application/mainwindow.cpp" line="4952"/>
         <source>Print Preview...</source>
         <translation>Spaudinio peržiūra</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4967"/>
+        <location filename="../src/application/mainwindow.cpp" line="4955"/>
         <source>Page up (Browser)</source>
         <translation>Puslapiu aukštyn (Naršyklėje)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4968"/>
+        <location filename="../src/application/mainwindow.cpp" line="4956"/>
         <source>Page down (Browser)</source>
         <translation>Puslapiu žemyn (Naršyklėje)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4970"/>
+        <location filename="../src/application/mainwindow.cpp" line="4958"/>
         <source>Save As...</source>
         <translation>Išsaugoti kaip...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4971"/>
+        <location filename="../src/application/mainwindow.cpp" line="4959"/>
         <source>Save Page As...</source>
         <translation>Išsaugoti puslapį kaip...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4975"/>
+        <location filename="../src/application/mainwindow.cpp" line="4963"/>
         <source>Show/Hide</source>
         <translation>Rodyti/Slėpti</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4977"/>
+        <location filename="../src/application/mainwindow.cpp" line="4965"/>
         <source>Feeds Toolbar</source>
         <translation>Šaltinių įrankių juosta</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4978"/>
+        <location filename="../src/application/mainwindow.cpp" line="4966"/>
         <source>News Toolbar</source>
         <translation>Naujienų Įrankių juosta</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4979"/>
+        <location filename="../src/application/mainwindow.cpp" line="4967"/>
         <source>Browser Toolbar</source>
         <translation>Naršyklės Įrankių juosta</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4980"/>
+        <location filename="../src/application/mainwindow.cpp" line="4968"/>
         <source>Panel Categories</source>
         <translation>Skydelio kategorijos</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4981"/>
+        <location filename="../src/application/mainwindow.cpp" line="4969"/>
         <source>Status Bar</source>
         <translation>Būsenos juosta</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4983"/>
-        <location filename="../src/application/mainwindow.cpp" line="4984"/>
+        <location filename="../src/application/mainwindow.cpp" line="4971"/>
+        <location filename="../src/application/mainwindow.cpp" line="4972"/>
         <source>Full Screen</source>
         <translation>Visas ekranas</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4986"/>
-        <location filename="../src/application/mainwindow.cpp" line="4987"/>
+        <location filename="../src/application/mainwindow.cpp" line="4974"/>
+        <location filename="../src/application/mainwindow.cpp" line="4975"/>
         <source>Stay On Top</source>
         <translation>Ant kitų langų</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4989"/>
+        <location filename="../src/application/mainwindow.cpp" line="4977"/>
         <source>Categories</source>
         <translation>Kategorijos</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4995"/>
-        <location filename="../src/application/mainwindow.cpp" line="4996"/>
+        <location filename="../src/application/mainwindow.cpp" line="4983"/>
+        <location filename="../src/application/mainwindow.cpp" line="4984"/>
         <source>Label</source>
         <translation>Etiketė</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4997"/>
+        <location filename="../src/application/mainwindow.cpp" line="4985"/>
         <source>Show labels menu</source>
         <translation>Rodyti etikėtės meniu</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4999"/>
+        <location filename="../src/application/mainwindow.cpp" line="4987"/>
         <source>Close Tab</source>
         <translation>Uždaryti aplanką</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5000"/>
+        <location filename="../src/application/mainwindow.cpp" line="4988"/>
         <source>Close Other Tabs</source>
         <translation>Uždaryti kitus aplankus</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5001"/>
+        <location filename="../src/application/mainwindow.cpp" line="4989"/>
         <source>Close All Tabs</source>
         <translation>Uždaryti visus aplankus</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5002"/>
+        <location filename="../src/application/mainwindow.cpp" line="4990"/>
         <source>Switch to next tab</source>
         <translation>Pereiti į kitą kortelę</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5003"/>
+        <location filename="../src/application/mainwindow.cpp" line="4991"/>
         <source>Switch to previous tab</source>
         <translation>Pereiti prie buvusio aplanko</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5005"/>
+        <location filename="../src/application/mainwindow.cpp" line="4993"/>
         <source>Unread</source>
         <translation>Neskaitytų</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5006"/>
+        <location filename="../src/application/mainwindow.cpp" line="4994"/>
         <source>Starred</source>
         <translation>Mėgstami</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5007"/>
+        <location filename="../src/application/mainwindow.cpp" line="4995"/>
         <source>Deleted</source>
         <translation>Ištrinta</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5008"/>
+        <location filename="../src/application/mainwindow.cpp" line="4996"/>
         <source>Labels</source>
         <translation>Etiketės</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5010"/>
+        <location filename="../src/application/mainwindow.cpp" line="4998"/>
         <source>Decrease news list/increase browser</source>
         <translation>Sumažinti naujienų sąrašą/padidinti naršyklės</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5011"/>
+        <location filename="../src/application/mainwindow.cpp" line="4999"/>
         <source>Increase news list/decrease browser</source>
         <translation>Padidinti naujienų sąrašą/sumažinti naršyklės</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5013"/>
+        <location filename="../src/application/mainwindow.cpp" line="5001"/>
         <source>Find</source>
         <translation>Ieškoti</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5015"/>
+        <location filename="../src/application/mainwindow.cpp" line="5003"/>
         <source>Open Homepage Feed</source>
         <translation>Atidaryti pagrindinį šaltinio puslapį</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5016"/>
+        <location filename="../src/application/mainwindow.cpp" line="5004"/>
         <source>Sort by Name</source>
         <translation>Rikiuoti pagal pavadinimą</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5017"/>
+        <location filename="../src/application/mainwindow.cpp" line="5005"/>
         <source>Collapse All Folders</source>
         <translation>Suskleisti visus aplankus</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5018"/>
+        <location filename="../src/application/mainwindow.cpp" line="5006"/>
         <source>Expand All Folders</source>
         <translation>Išskleisti visus aplankus</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5019"/>
+        <location filename="../src/application/mainwindow.cpp" line="5007"/>
         <source>Next Folder</source>
         <translation>Kitas aplankas</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5020"/>
+        <location filename="../src/application/mainwindow.cpp" line="5008"/>
         <source>Previous Folder</source>
         <translation>Buvęs aplankas</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5021"/>
+        <location filename="../src/application/mainwindow.cpp" line="5009"/>
         <source>Expand Folder</source>
         <translation>Išskleisti aplanką</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5023"/>
+        <location filename="../src/application/mainwindow.cpp" line="5011"/>
         <source>Setting Page: Labels</source>
         <translation>Nustatymų puslapis: Etiketės</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5025"/>
+        <location filename="../src/application/mainwindow.cpp" line="5013"/>
         <source>Share</source>
         <translation>Dalintis</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5027"/>
+        <location filename="../src/application/mainwindow.cpp" line="5015"/>
         <source>Sort By</source>
         <translation>Lygiuoti pagal:</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5028"/>
+        <location filename="../src/application/mainwindow.cpp" line="5016"/>
         <source>Ascending</source>
         <translation>Didėjimo tvarka</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5029"/>
+        <location filename="../src/application/mainwindow.cpp" line="5017"/>
         <source>Descending</source>
         <translation>Mažėjimo tvarka</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5877"/>
+        <location filename="../src/application/mainwindow.cpp" line="5865"/>
         <source>Check for updates</source>
         <translation>Tikrinti ar yra atnaujinimų</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5878"/>
+        <location filename="../src/application/mainwindow.cpp" line="5866"/>
         <source>A new version of QuiteRSS...</source>
         <translation>Nauja QuiteRSS versija...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="6262"/>
+        <location filename="../src/application/mainwindow.cpp" line="6250"/>
         <source>Loading...</source>
         <translation>Kraunasi...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="6847"/>
-        <location filename="../src/application/mainwindow.cpp" line="6864"/>
+        <location filename="../src/application/mainwindow.cpp" line="6835"/>
+        <location filename="../src/application/mainwindow.cpp" line="6852"/>
         <source>Web Page</source>
         <translation>Internetinis puslapis</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="7413"/>
+        <location filename="../src/application/mainwindow.cpp" line="7392"/>
         <source>Save As</source>
         <translation>Įrašyti kaip...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="7415"/>
+        <location filename="../src/application/mainwindow.cpp" line="7394"/>
         <source>HTML-Files (*.%1)</source>
         <translation>HTML-Bylos (*.%1)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="7415"/>
+        <location filename="../src/application/mainwindow.cpp" line="7394"/>
         <source>Text files (*.%2)</source>
         <translation>Tekstinės bylos  (*.%2)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="7421"/>
+        <location filename="../src/application/mainwindow.cpp" line="7400"/>
         <source>Save As: can&apos;t open a file</source>
         <translation>Išsaugoti kaip: negaliu atidaryti bylos</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="7913"/>
+        <location filename="../src/application/mainwindow.cpp" line="7896"/>
         <source>Choose Directory</source>
         <translation>Pasirinkite katalogą</translation>
     </message>
@@ -2479,6 +2482,44 @@ nerastas!</translation>
         <location filename="../src/application/mainwindow.h" line="102"/>
         <source>Amusingly</source>
         <translation>Įdomiai</translation>
+    </message>
+</context>
+<context>
+    <name>NetworkManager</name>
+    <message>
+        <location filename="../src/network/networkmanager.cpp" line="111"/>
+        <source>SSL Certificate Error!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/network/networkmanager.cpp" line="112"/>
+        <source>The page you are trying to access has the following errors in the SSL certificate:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/network/networkmanager.cpp" line="127"/>
+        <source>&lt;b&gt;Organization: &lt;/b&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/network/networkmanager.cpp" line="130"/>
+        <source>&lt;b&gt;Domain Name: &lt;/b&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/network/networkmanager.cpp" line="133"/>
+        <source>&lt;b&gt;Expiration Date: &lt;/b&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/network/networkmanager.cpp" line="140"/>
+        <source>&lt;b&gt;Error: &lt;/b&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/network/networkmanager.cpp" line="148"/>
+        <source>Would you like to continue to the server?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2613,189 +2654,189 @@ nerastas!</translation>
 <context>
     <name>NewsTabWidget</name>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="587"/>
+        <location filename="../src/newstabwidget.cpp" line="589"/>
         <source>Loading... (%p%)</source>
         <translation>Kraunasi... (%p%)</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="589"/>
+        <location filename="../src/newstabwidget.cpp" line="591"/>
         <source>Home</source>
         <translation>Pagrindinis</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="590"/>
+        <location filename="../src/newstabwidget.cpp" line="592"/>
         <source>Open Page in External Browser</source>
         <translation>Atidaryti aplanką išorinėje naršyklėje</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="591"/>
+        <location filename="../src/newstabwidget.cpp" line="593"/>
         <source>Open Link in External Browser</source>
         <translation>Atidaryti nuorodą išorinėje naršyklėje</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="593"/>
+        <location filename="../src/newstabwidget.cpp" line="595"/>
         <source>Open Link</source>
         <translation>Atidaryti nuorodą</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="594"/>
+        <location filename="../src/newstabwidget.cpp" line="596"/>
         <source>Open in New Tab</source>
         <translation>Atidaryti naujame aplanke</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="595"/>
+        <location filename="../src/newstabwidget.cpp" line="597"/>
         <source>Save Link...</source>
         <translation>Išsaugoti nuorodą...</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="596"/>
+        <location filename="../src/newstabwidget.cpp" line="598"/>
         <source>Save Image...</source>
         <translation>Išsaugoti paveikslėlį...</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="597"/>
+        <location filename="../src/newstabwidget.cpp" line="599"/>
         <source>Copy Link</source>
         <translation>Kopijuoti nuorodą</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="598"/>
+        <location filename="../src/newstabwidget.cpp" line="600"/>
         <source>Copy</source>
         <translation>Kopijuoti</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="599"/>
+        <location filename="../src/newstabwidget.cpp" line="601"/>
         <source>Go Back</source>
         <translation>Grįžti</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="600"/>
+        <location filename="../src/newstabwidget.cpp" line="602"/>
         <source>Go Forward</source>
         <translation>Pirmyn</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="601"/>
+        <location filename="../src/newstabwidget.cpp" line="603"/>
         <source>Stop</source>
         <translation>Stop</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="602"/>
+        <location filename="../src/newstabwidget.cpp" line="604"/>
         <source>Reload</source>
         <translation>Perkrauti</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="603"/>
+        <location filename="../src/newstabwidget.cpp" line="605"/>
         <source>Copy Image</source>
         <translation>Kopijuoti paveikslėlį</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="605"/>
+        <location filename="../src/newstabwidget.cpp" line="607"/>
         <source>Copy Image Address</source>
         <translation>Kopijuoti paveikslėlio adresą</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="615"/>
-        <location filename="../src/newstabwidget.cpp" line="636"/>
+        <location filename="../src/newstabwidget.cpp" line="617"/>
+        <location filename="../src/newstabwidget.cpp" line="638"/>
         <source>Load Images</source>
         <translation>Įkelti paveikslėlius</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="616"/>
+        <location filename="../src/newstabwidget.cpp" line="618"/>
         <source>Auto Load Images to News View</source>
         <translation>Automatiškai įkelti paveikslėlius naujienų rodinyje</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="618"/>
+        <location filename="../src/newstabwidget.cpp" line="620"/>
         <source>No Load Images</source>
         <translation>Neįkelti paveikslėlių</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="619"/>
+        <location filename="../src/newstabwidget.cpp" line="621"/>
         <source>No Load Images to News View</source>
         <translation>Neįkelti paveikslėlių naujienų rodinyje</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="624"/>
+        <location filename="../src/newstabwidget.cpp" line="626"/>
         <source>Close Tab</source>
         <translation>Uždaryti aplanką</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="637"/>
+        <location filename="../src/newstabwidget.cpp" line="639"/>
         <source>Auto Load Images in News View</source>
         <translation>Automatiškai įkelti paveikslėlius naujienų rodinyje</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="640"/>
+        <location filename="../src/newstabwidget.cpp" line="642"/>
         <source>Don&apos;t Load Images</source>
         <translation>Neįkelti paveikslėlių</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="641"/>
+        <location filename="../src/newstabwidget.cpp" line="643"/>
         <source>Don&apos;t Load Images in News View</source>
         <translation>Neįkelti paveikslėlių naujienų rodinyje</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1447"/>
-        <location filename="../src/newstabwidget.cpp" line="1666"/>
+        <location filename="../src/newstabwidget.cpp" line="1436"/>
+        <location filename="../src/newstabwidget.cpp" line="1656"/>
         <source>Comments</source>
         <translation>Komentarai:</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1453"/>
-        <location filename="../src/newstabwidget.cpp" line="1672"/>
+        <location filename="../src/newstabwidget.cpp" line="1442"/>
+        <location filename="../src/newstabwidget.cpp" line="1662"/>
         <source>Author: %1</source>
         <translation>Autorius: %1</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1484"/>
-        <location filename="../src/newstabwidget.cpp" line="1703"/>
+        <location filename="../src/newstabwidget.cpp" line="1473"/>
+        <location filename="../src/newstabwidget.cpp" line="1693"/>
         <source>audio</source>
         <translation>audio</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1489"/>
-        <location filename="../src/newstabwidget.cpp" line="1708"/>
+        <location filename="../src/newstabwidget.cpp" line="1478"/>
+        <location filename="../src/newstabwidget.cpp" line="1698"/>
         <source>video</source>
         <translation>video</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1493"/>
-        <location filename="../src/newstabwidget.cpp" line="1712"/>
+        <location filename="../src/newstabwidget.cpp" line="1482"/>
+        <location filename="../src/newstabwidget.cpp" line="1702"/>
         <source>media</source>
         <translation>medija</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1496"/>
-        <location filename="../src/newstabwidget.cpp" line="1715"/>
+        <location filename="../src/newstabwidget.cpp" line="1485"/>
+        <location filename="../src/newstabwidget.cpp" line="1705"/>
         <source>Link to</source>
         <translation>Nuorodą į</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1603"/>
+        <location filename="../src/newstabwidget.cpp" line="1593"/>
         <source>Mark Read/Unread</source>
         <translation>Pažymėti skaitytu/neskaitytu</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1733"/>
+        <location filename="../src/newstabwidget.cpp" line="1723"/>
         <source>Mark News Star</source>
         <translation>Pažymėti naujieną mėgstama</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1737"/>
+        <location filename="../src/newstabwidget.cpp" line="1727"/>
         <source>Label</source>
         <translation>Etiketė</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1741"/>
+        <location filename="../src/newstabwidget.cpp" line="1731"/>
         <source>Share</source>
         <translation>Dalintis</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1745"/>
+        <location filename="../src/newstabwidget.cpp" line="1735"/>
         <source>Open News in External Browser</source>
         <translation>Atidaryti naujienas išorinėje naršyklėje</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1749"/>
+        <location filename="../src/newstabwidget.cpp" line="1739"/>
         <source>Delete</source>
         <translation>Ištrinti</translation>
     </message>
@@ -2803,34 +2844,34 @@ nerastas!</translation>
 <context>
     <name>NotificationWidget</name>
     <message>
-        <location filename="../src/notifications/notificationswidget.cpp" line="113"/>
+        <location filename="../src/notifications/notificationswidget.cpp" line="125"/>
         <source>Close</source>
         <translation>Uždaryti</translation>
     </message>
     <message>
-        <location filename="../src/notifications/notificationswidget.cpp" line="139"/>
+        <location filename="../src/notifications/notificationswidget.cpp" line="151"/>
         <source>Mark All News Read</source>
         <translation>Pažymėti visus šaltinius skaitytais</translation>
     </message>
     <message>
-        <location filename="../src/notifications/notificationswidget.cpp" line="144"/>
+        <location filename="../src/notifications/notificationswidget.cpp" line="156"/>
         <source>Previous Page</source>
         <translation>Ankstesnis puslapis</translation>
     </message>
     <message>
-        <location filename="../src/notifications/notificationswidget.cpp" line="149"/>
+        <location filename="../src/notifications/notificationswidget.cpp" line="161"/>
         <source>Next Page</source>
         <translation>Kitas puslapis</translation>
     </message>
     <message>
-        <location filename="../src/notifications/notificationswidget.cpp" line="199"/>
+        <location filename="../src/notifications/notificationswidget.cpp" line="211"/>
         <source>Incoming News: %1</source>
         <translation>Naujienos: %1</translation>
     </message>
     <message>
-        <location filename="../src/notifications/notificationswidget.cpp" line="346"/>
-        <location filename="../src/notifications/notificationswidget.cpp" line="436"/>
+        <location filename="../src/notifications/notificationswidget.cpp" line="358"/>
         <location filename="../src/notifications/notificationswidget.cpp" line="448"/>
+        <location filename="../src/notifications/notificationswidget.cpp" line="460"/>
         <source>Page %1 of %2</source>
         <translation>Puslapis %1 iš %2</translation>
     </message>
@@ -2866,19 +2907,19 @@ nerastas!</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="77"/>
-        <location filename="../src/optionsdialog.cpp" line="1137"/>
+        <location filename="../src/optionsdialog.cpp" line="1138"/>
         <source>Feeds</source>
         <translation>Šaltiniai</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="80"/>
-        <location filename="../src/optionsdialog.cpp" line="1866"/>
+        <location filename="../src/optionsdialog.cpp" line="1883"/>
         <source>Labels</source>
         <translation>Etiketės</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="83"/>
-        <location filename="../src/optionsdialog.cpp" line="1868"/>
+        <location filename="../src/optionsdialog.cpp" line="1885"/>
         <source>Notifications</source>
         <translation>Pranešimai</translation>
     </message>
@@ -2889,7 +2930,7 @@ nerastas!</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="89"/>
-        <location filename="../src/optionsdialog.cpp" line="1309"/>
+        <location filename="../src/optionsdialog.cpp" line="1310"/>
         <source>Language</source>
         <translation>Kalba</translation>
     </message>
@@ -2905,7 +2946,7 @@ nerastas!</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="264"/>
-        <location filename="../src/optionsdialog.cpp" line="2198"/>
+        <location filename="../src/optionsdialog.cpp" line="2215"/>
         <source>Warning: key is already assigned to</source>
         <translation>Dėmesio: raktas jau priskirtas</translation>
     </message>
@@ -3116,13 +3157,13 @@ nerastas!</translation>
         <location filename="../src/optionsdialog.cpp" line="603"/>
         <location filename="../src/optionsdialog.cpp" line="723"/>
         <location filename="../src/optionsdialog.cpp" line="857"/>
-        <location filename="../src/optionsdialog.cpp" line="1177"/>
+        <location filename="../src/optionsdialog.cpp" line="1178"/>
         <source>Browse...</source>
         <translation>Naršyti...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="510"/>
-        <location filename="../src/optionsdialog.cpp" line="2084"/>
+        <location filename="../src/optionsdialog.cpp" line="2101"/>
         <source>Load images</source>
         <translation>Krauti paveikslėlius</translation>
     </message>
@@ -3284,7 +3325,7 @@ nerastas!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="769"/>
         <location filename="../src/optionsdialog.cpp" line="914"/>
-        <location filename="../src/optionsdialog.cpp" line="1117"/>
+        <location filename="../src/optionsdialog.cpp" line="1118"/>
         <source>seconds</source>
         <translation>sekundės</translation>
     </message>
@@ -3509,57 +3550,57 @@ nerastas!</translation>
         <translation>Perkelti žemyn</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1081"/>
+        <location filename="../src/optionsdialog.cpp" line="1082"/>
         <source>Show when inactive main window</source>
         <translation>Rodyti kai neaktyvus pagrindinis langas</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1096"/>
+        <location filename="../src/optionsdialog.cpp" line="1097"/>
         <source>Screen</source>
         <translation>Ekranas</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1106"/>
+        <location filename="../src/optionsdialog.cpp" line="1107"/>
         <source>Transparency</source>
         <translation>Permatomumas</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1120"/>
+        <location filename="../src/optionsdialog.cpp" line="1121"/>
         <source>Show titles feeds</source>
         <translation>Rodyti šaltinių pavadinimus</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1121"/>
+        <location filename="../src/optionsdialog.cpp" line="1122"/>
         <source>Show icon feed</source>
         <translation>Rodyti naujienų kanalo piktogramą</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1122"/>
+        <location filename="../src/optionsdialog.cpp" line="1123"/>
         <source>Show button &apos;Mark All News Read&apos;</source>
         <translation>Rodyti mygtuką &apos;Pažymėti visus šaltinius skaitytais&apos;</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1123"/>
+        <location filename="../src/optionsdialog.cpp" line="1124"/>
         <source>Show button &apos;Mark Read/Unread&apos;</source>
         <translation>Rodyti mygtuką &apos;Pažymėti skaityta/neskaityta&apos;</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1124"/>
+        <location filename="../src/optionsdialog.cpp" line="1125"/>
         <source>Show button &apos;Open in External Browser&apos;</source>
         <translation>Rodyti mygtuką &apos;Atidaryti išorinėje naršyklėje&apos;</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1125"/>
+        <location filename="../src/optionsdialog.cpp" line="1126"/>
         <source>Show button &apos;Delete News&apos;</source>
         <translation>Rodyti mygtuką &apos;Ištrinti naujienas&apos;</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1172"/>
+        <location filename="../src/optionsdialog.cpp" line="1173"/>
         <source>Play sound for incoming new news</source>
         <translation>Garsinis pranešimas gavus naujieną</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1178"/>
+        <location filename="../src/optionsdialog.cpp" line="1179"/>
         <source>Play</source>
         <translation>Groti</translation>
     </message>
@@ -3569,290 +3610,290 @@ nerastas!</translation>
         <translation>Rodyti naujienų pranešimą</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1073"/>
+        <location filename="../src/optionsdialog.cpp" line="1074"/>
         <source>Top Left</source>
         <translation>Viršutinis kairėje</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1073"/>
+        <location filename="../src/optionsdialog.cpp" line="1074"/>
         <source>Top Right</source>
         <translation>Viršutinis dešinėje</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1074"/>
+        <location filename="../src/optionsdialog.cpp" line="1075"/>
         <source>Bottom Left</source>
         <translation>Apatinis kairėje</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1074"/>
+        <location filename="../src/optionsdialog.cpp" line="1075"/>
         <source>Bottom Right</source>
         <translation>Apatinis dešinėje</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1092"/>
+        <location filename="../src/optionsdialog.cpp" line="1093"/>
         <source>Review</source>
         <translation>Apžvalga</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1099"/>
+        <location filename="../src/optionsdialog.cpp" line="1100"/>
         <source>Position</source>
         <translation>Pozicija</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1109"/>
+        <location filename="../src/optionsdialog.cpp" line="1110"/>
         <source>Show maximum of</source>
         <translation>Maksimaliai rodyti iš</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1111"/>
+        <location filename="../src/optionsdialog.cpp" line="1112"/>
         <source>item on page notification</source>
         <translation>įrašų puslapyje pranešimas</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1112"/>
+        <location filename="../src/optionsdialog.cpp" line="1113"/>
         <source>Width list items</source>
         <translation>Plotis sąrašo elementams</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1114"/>
+        <location filename="../src/optionsdialog.cpp" line="1115"/>
         <source>pixels</source>
         <translation>Taškų</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1115"/>
+        <location filename="../src/optionsdialog.cpp" line="1116"/>
         <source>Close notification after</source>
         <translation>Uždaryti pranešimus po</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1077"/>
+        <location filename="../src/optionsdialog.cpp" line="1078"/>
         <source>Do not show notification in fullscreen mode</source>
         <translation>Nerodyti perspėjimų ekrano režime</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1136"/>
+        <location filename="../src/optionsdialog.cpp" line="1137"/>
         <source>Only show selected feeds:</source>
         <translation>Rodyti tik pasirinktus šaltinius:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1201"/>
+        <location filename="../src/optionsdialog.cpp" line="1202"/>
         <source>Notification</source>
         <translation>Pranešimas</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1202"/>
+        <location filename="../src/optionsdialog.cpp" line="1203"/>
         <source>Sound</source>
         <translation>Garsas</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1213"/>
+        <location filename="../src/optionsdialog.cpp" line="1214"/>
         <source>Selection of feeds</source>
         <translation>Šaltinių parinkimas</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1229"/>
+        <location filename="../src/optionsdialog.cpp" line="1230"/>
         <source>All Feeds</source>
         <translation>Visi šaltiniai</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1256"/>
+        <location filename="../src/optionsdialog.cpp" line="1257"/>
         <source>Site</source>
         <translation>Puslapis</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1256"/>
+        <location filename="../src/optionsdialog.cpp" line="1257"/>
         <source>User</source>
         <translation>Vartotojas</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1256"/>
+        <location filename="../src/optionsdialog.cpp" line="1257"/>
         <source>Password</source>
         <translation>Slaptažodis</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1273"/>
+        <location filename="../src/optionsdialog.cpp" line="1274"/>
         <source>Delete</source>
         <translation>Pašalinti</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1275"/>
+        <location filename="../src/optionsdialog.cpp" line="1276"/>
         <source>Delete All</source>
         <translation>Pašalinti viską</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1277"/>
+        <location filename="../src/optionsdialog.cpp" line="1278"/>
         <source>Show Passwords</source>
         <translation>Rodyti slaptažodžius</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1309"/>
+        <location filename="../src/optionsdialog.cpp" line="1310"/>
         <source>Version</source>
         <translation>Versija</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1310"/>
+        <location filename="../src/optionsdialog.cpp" line="1311"/>
         <source>Author</source>
         <translation>Autorius</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1310"/>
+        <location filename="../src/optionsdialog.cpp" line="1311"/>
         <source>Contact</source>
         <translation>Kontaktai</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1560"/>
+        <location filename="../src/optionsdialog.cpp" line="1577"/>
         <source>Choose language:</source>
         <translation>Pasirinkti kalbą:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1581"/>
+        <location filename="../src/optionsdialog.cpp" line="1598"/>
         <source>Type</source>
         <translation>Turinys</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1581"/>
+        <location filename="../src/optionsdialog.cpp" line="1598"/>
         <source>Font</source>
         <translation>Šriftas</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1585"/>
+        <location filename="../src/optionsdialog.cpp" line="1602"/>
         <source>Feeds list font</source>
         <translation>Šaltinių sąrašo šriftas</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1588"/>
+        <location filename="../src/optionsdialog.cpp" line="1605"/>
         <source>News list font</source>
         <translation>Naujienų sąrašo šriftas</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1591"/>
+        <location filename="../src/optionsdialog.cpp" line="1608"/>
         <source>News title font</source>
         <translation>Naujienų pavadinimo šriftas</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1594"/>
+        <location filename="../src/optionsdialog.cpp" line="1611"/>
         <source>News text font</source>
         <translation>Naujienų teksto šriftas</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1597"/>
+        <location filename="../src/optionsdialog.cpp" line="1614"/>
         <source>Notification font</source>
         <translation>Pranešimų šriftas</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1604"/>
-        <location filename="../src/optionsdialog.cpp" line="1705"/>
+        <location filename="../src/optionsdialog.cpp" line="1621"/>
+        <location filename="../src/optionsdialog.cpp" line="1722"/>
         <source>Change...</source>
         <translation>Keisti...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1606"/>
-        <location filename="../src/optionsdialog.cpp" line="1707"/>
-        <location filename="../src/optionsdialog.cpp" line="1819"/>
+        <location filename="../src/optionsdialog.cpp" line="1623"/>
+        <location filename="../src/optionsdialog.cpp" line="1724"/>
+        <location filename="../src/optionsdialog.cpp" line="1836"/>
         <source>Reset</source>
         <translation>Perkrauti</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1631"/>
+        <location filename="../src/optionsdialog.cpp" line="1648"/>
         <source>Feeds list color</source>
         <translation>Šaltinio sąrašo spalva</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1634"/>
+        <location filename="../src/optionsdialog.cpp" line="1651"/>
         <source>Feeds list background</source>
         <translation>Šaltinio sąrašo fonas</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1637"/>
+        <location filename="../src/optionsdialog.cpp" line="1654"/>
         <source>News list color</source>
         <translation>Naujienų sąrašo spalva</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1640"/>
+        <location filename="../src/optionsdialog.cpp" line="1657"/>
         <source>News list background</source>
         <translation>Naujienų sarašo fonas</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1643"/>
+        <location filename="../src/optionsdialog.cpp" line="1660"/>
         <source>Focused news color</source>
         <translation>Fokusuotos naujienų spalvos</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1646"/>
+        <location filename="../src/optionsdialog.cpp" line="1663"/>
         <source>Focused news background color</source>
         <translation>Fokusuotos naujienų fono spalvos</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1649"/>
+        <location filename="../src/optionsdialog.cpp" line="1666"/>
         <source>Link color</source>
         <translation>Nuorodos spalva</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1652"/>
+        <location filename="../src/optionsdialog.cpp" line="1669"/>
         <source>Title color</source>
         <translation>Pavadinimo spalva</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1655"/>
+        <location filename="../src/optionsdialog.cpp" line="1672"/>
         <source>Date color</source>
         <translation>Datos spalva</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1658"/>
+        <location filename="../src/optionsdialog.cpp" line="1675"/>
         <source>Author color</source>
         <translation>Autoriaus spalva</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1661"/>
+        <location filename="../src/optionsdialog.cpp" line="1678"/>
         <source>News text color</source>
         <translation>Naujienų teksto spalva</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1664"/>
+        <location filename="../src/optionsdialog.cpp" line="1681"/>
         <source>News title background</source>
         <translation>Naujienų pavadinimo fonas</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1667"/>
+        <location filename="../src/optionsdialog.cpp" line="1684"/>
         <source>News background</source>
         <translation>Naujienų fonas</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1670"/>
+        <location filename="../src/optionsdialog.cpp" line="1687"/>
         <source>Feed with new news</source>
         <translation>Šaltinis su naujomis naujienomis</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1673"/>
+        <location filename="../src/optionsdialog.cpp" line="1690"/>
         <source>Count of unread news in feeds tree</source>
         <translation>Neperskaitytų naujienų šaltinių medyje skaičius</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1688"/>
+        <location filename="../src/optionsdialog.cpp" line="1705"/>
         <source>Disabled feed</source>
         <translation>Išjungtas šaltinis</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1691"/>
+        <location filename="../src/optionsdialog.cpp" line="1708"/>
         <source>Alternating row colors</source>
         <translation>Alternatyvios eilučių spalvos</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1694"/>
+        <location filename="../src/optionsdialog.cpp" line="1711"/>
         <source>Notification text color</source>
         <translation>Pranešimų teksto spalva</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1697"/>
+        <location filename="../src/optionsdialog.cpp" line="1714"/>
         <source>Notification background color</source>
         <translation>Pranešimų fono spalva</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2089"/>
+        <location filename="../src/optionsdialog.cpp" line="2106"/>
         <source>Auto load images in news view</source>
         <translation>Automatiškai įkelti paveikslėlius naujienų rodinyje</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1676"/>
+        <location filename="../src/optionsdialog.cpp" line="1693"/>
         <source>Text color of new news</source>
         <translation>Naujų naujienų teksto spalva</translation>
     </message>
@@ -3902,145 +3943,145 @@ nerastas!</translation>
         <translation>Neįkelti viso tinklalapio, o rodyti tik naujienos aprašymą</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1679"/>
+        <location filename="../src/optionsdialog.cpp" line="1696"/>
         <source>Text color of unread news</source>
         <translation>Neskaitytų naujienų teksto spalva</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1682"/>
+        <location filename="../src/optionsdialog.cpp" line="1699"/>
         <source>Focused feed color</source>
         <translation>Fokusuoto šaltinio spalva</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1685"/>
+        <location filename="../src/optionsdialog.cpp" line="1702"/>
         <source>Focused feed background color</source>
         <translation>Fokusuoto šaltinio fono spalva</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1733"/>
+        <location filename="../src/optionsdialog.cpp" line="1750"/>
         <source>Standard</source>
         <translation>Standartinis</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1735"/>
+        <location filename="../src/optionsdialog.cpp" line="1752"/>
         <source>Fixed</source>
         <translation>Fiksuotas</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1737"/>
+        <location filename="../src/optionsdialog.cpp" line="1754"/>
         <source>Serif</source>
         <translation>Serif</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1739"/>
+        <location filename="../src/optionsdialog.cpp" line="1756"/>
         <source>Sans Serif</source>
         <translation>Sans Serif</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1741"/>
+        <location filename="../src/optionsdialog.cpp" line="1758"/>
         <source>Cursive</source>
         <translation>Cursive</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1743"/>
+        <location filename="../src/optionsdialog.cpp" line="1760"/>
         <source>Fantasy</source>
         <translation>Fantasy</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1758"/>
+        <location filename="../src/optionsdialog.cpp" line="1775"/>
         <source>Default font size</source>
         <translation>Numatytas šrifto dydis</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1760"/>
+        <location filename="../src/optionsdialog.cpp" line="1777"/>
         <source>Fixed font size</source>
         <translation>Fiksuotas šrifto dydis</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1762"/>
+        <location filename="../src/optionsdialog.cpp" line="1779"/>
         <source>Minimum font size</source>
         <translation>Mažiausias galimas šrifto dydis</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1764"/>
+        <location filename="../src/optionsdialog.cpp" line="1781"/>
         <source>Minimum logical font size</source>
         <translation>Mažiausias logiškas šrifto dydis</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1768"/>
+        <location filename="../src/optionsdialog.cpp" line="1785"/>
         <source>Font families:</source>
         <translation>Šriftų rūšys:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1770"/>
+        <location filename="../src/optionsdialog.cpp" line="1787"/>
         <source>Font sizes:</source>
         <translation>Šriftų dydžiai:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1779"/>
+        <location filename="../src/optionsdialog.cpp" line="1796"/>
         <source>Fonts</source>
         <translation>Šriftas</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1780"/>
+        <location filename="../src/optionsdialog.cpp" line="1797"/>
         <source>Fonts Browser</source>
         <translation>Šriftų naršyklė</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1781"/>
+        <location filename="../src/optionsdialog.cpp" line="1798"/>
         <source>Colors</source>
         <translation>Spalvos</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1788"/>
+        <location filename="../src/optionsdialog.cpp" line="1805"/>
         <source>Filter</source>
         <translation>Filtras</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1814"/>
+        <location filename="../src/optionsdialog.cpp" line="1831"/>
         <source>Action</source>
         <translation>Veiksmas</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1814"/>
+        <location filename="../src/optionsdialog.cpp" line="1831"/>
         <source>Description</source>
         <translation>Aprašas</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1814"/>
+        <location filename="../src/optionsdialog.cpp" line="1831"/>
         <source>Shortcut</source>
         <translation>Nuoroda</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1822"/>
+        <location filename="../src/optionsdialog.cpp" line="1839"/>
         <source>Shortcut:</source>
         <translation>Nuoroda:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2253"/>
-        <location filename="../src/optionsdialog.cpp" line="2288"/>
+        <location filename="../src/optionsdialog.cpp" line="2270"/>
+        <location filename="../src/optionsdialog.cpp" line="2305"/>
         <source>Open File...</source>
         <translation>Atidaryti bylą...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2273"/>
-        <location filename="../src/optionsdialog.cpp" line="2785"/>
+        <location filename="../src/optionsdialog.cpp" line="2290"/>
+        <location filename="../src/optionsdialog.cpp" line="2802"/>
         <source>Select Style Sheet File</source>
         <translation>Pasirinkti stiliaus bylą</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2794"/>
-        <location filename="../src/optionsdialog.cpp" line="2823"/>
+        <location filename="../src/optionsdialog.cpp" line="2811"/>
+        <location filename="../src/optionsdialog.cpp" line="2840"/>
         <source>Open Directory...</source>
         <translation>Atidaryti katalogą...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2804"/>
+        <location filename="../src/optionsdialog.cpp" line="2821"/>
         <source>Add site to whitelist</source>
         <translation>Pridėti svetainę į Baltąjį sąrašą</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2805"/>
+        <location filename="../src/optionsdialog.cpp" line="2822"/>
         <source>Site without &apos;http://&apos; (ex. youtube.com)</source>
         <translation>Svetainė be &apos;http://&apos; (pvz. youtube.com)</translation>
     </message>
@@ -4048,17 +4089,17 @@ nerastas!</translation>
 <context>
     <name>QAbstractSpinBox</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5053"/>
+        <location filename="../src/application/mainwindow.cpp" line="5041"/>
         <source>&amp;Step up</source>
         <translation>&amp;Perkelti į viršų</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5054"/>
+        <location filename="../src/application/mainwindow.cpp" line="5042"/>
         <source>Step &amp;down</source>
         <translation>Perkelti į &amp;apačią</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5055"/>
+        <location filename="../src/application/mainwindow.cpp" line="5043"/>
         <source>&amp;Select All</source>
         <translation>&amp;Pasirinkti viską</translation>
     </message>
@@ -4066,22 +4107,22 @@ nerastas!</translation>
 <context>
     <name>QDialogButtonBox</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5031"/>
+        <location filename="../src/application/mainwindow.cpp" line="5019"/>
         <source>Close</source>
         <translation>Uždaryti</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5032"/>
+        <location filename="../src/application/mainwindow.cpp" line="5020"/>
         <source>Cancel</source>
         <translation>Atšaukti</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5033"/>
+        <location filename="../src/application/mainwindow.cpp" line="5021"/>
         <source>&amp;Yes</source>
         <translation>&amp;Taip</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5034"/>
+        <location filename="../src/application/mainwindow.cpp" line="5022"/>
         <source>&amp;No</source>
         <translation>%Ne</translation>
     </message>
@@ -4195,37 +4236,37 @@ nerastas!</translation>
 <context>
     <name>QLineEdit</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5036"/>
+        <location filename="../src/application/mainwindow.cpp" line="5024"/>
         <source>&amp;Undo</source>
         <translation>&amp;Grįžti</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5037"/>
+        <location filename="../src/application/mainwindow.cpp" line="5025"/>
         <source>&amp;Redo</source>
         <translation>&amp;Atstatyti</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5038"/>
+        <location filename="../src/application/mainwindow.cpp" line="5026"/>
         <source>Cu&amp;t</source>
         <translation>Išpkirpt&amp;i</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5039"/>
+        <location filename="../src/application/mainwindow.cpp" line="5027"/>
         <source>&amp;Copy</source>
         <translation>&amp;Kopijuoti</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5040"/>
+        <location filename="../src/application/mainwindow.cpp" line="5028"/>
         <source>&amp;Paste</source>
         <translation>%Įkelti</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5041"/>
+        <location filename="../src/application/mainwindow.cpp" line="5029"/>
         <source>Delete</source>
         <translation>Ištrinti</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5042"/>
+        <location filename="../src/application/mainwindow.cpp" line="5030"/>
         <source>Select All</source>
         <translation>Pasirinkti viską</translation>
     </message>
@@ -4233,7 +4274,7 @@ nerastas!</translation>
 <context>
     <name>QMultiInputContext</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5057"/>
+        <location filename="../src/application/mainwindow.cpp" line="5045"/>
         <source>Select IM</source>
         <translation>Pasirinkti IM</translation>
     </message>
@@ -4259,42 +4300,42 @@ nerastas!</translation>
 <context>
     <name>QTextControl</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5044"/>
+        <location filename="../src/application/mainwindow.cpp" line="5032"/>
         <source>&amp;Undo</source>
         <translation>%Atšaukti</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5045"/>
+        <location filename="../src/application/mainwindow.cpp" line="5033"/>
         <source>&amp;Redo</source>
         <translation>&amp;Atstatyti</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5046"/>
+        <location filename="../src/application/mainwindow.cpp" line="5034"/>
         <source>Cu&amp;t</source>
         <translation>Iškirpt&amp;i</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5047"/>
+        <location filename="../src/application/mainwindow.cpp" line="5035"/>
         <source>&amp;Copy</source>
         <translation>&amp;Kopijuoti</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5048"/>
+        <location filename="../src/application/mainwindow.cpp" line="5036"/>
         <source>&amp;Paste</source>
         <translation>&amp;Įkelti</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5049"/>
+        <location filename="../src/application/mainwindow.cpp" line="5037"/>
         <source>Delete</source>
         <translation>Ištrinti</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5050"/>
+        <location filename="../src/application/mainwindow.cpp" line="5038"/>
         <source>Select All</source>
         <translation>Surinkti viską</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5051"/>
+        <location filename="../src/application/mainwindow.cpp" line="5039"/>
         <source>Copy &amp;Link Location</source>
         <translation>Kopijuoti &amp;nuorodos adresą</translation>
     </message>
@@ -4302,22 +4343,22 @@ nerastas!</translation>
 <context>
     <name>QWizard</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5059"/>
+        <location filename="../src/application/mainwindow.cpp" line="5047"/>
         <source>Cancel</source>
         <translation>Atšaukti</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5060"/>
+        <location filename="../src/application/mainwindow.cpp" line="5048"/>
         <source>&lt; &amp;Back</source>
         <translation>&lt; &amp;Grįžti</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5061"/>
+        <location filename="../src/application/mainwindow.cpp" line="5049"/>
         <source>&amp;Finish</source>
         <translation>&amp;Baigti</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5062"/>
+        <location filename="../src/application/mainwindow.cpp" line="5050"/>
         <source>&amp;Next &gt;</source>
         <translation>&amp;Kitas &gt;</translation>
     </message>
@@ -4333,22 +4374,22 @@ nerastas!</translation>
 <context>
     <name>RequestFeed</name>
     <message>
-        <location filename="../src/requestfeed.cpp" line="207"/>
+        <location filename="../src/requestfeed.cpp" line="205"/>
         <source>Server requires authentication!</source>
         <translation>Serveris reikalauja prisijungimo vardo!</translation>
     </message>
     <message>
-        <location filename="../src/requestfeed.cpp" line="209"/>
+        <location filename="../src/requestfeed.cpp" line="207"/>
         <source>Server replied: Not Found!</source>
         <translation>Serverio atsakymas: nerasta!</translation>
     </message>
     <message>
-        <location filename="../src/requestfeed.cpp" line="248"/>
+        <location filename="../src/requestfeed.cpp" line="250"/>
         <source>Redirect error!</source>
         <translation>Peradresavimo klaida!</translation>
     </message>
     <message>
-        <location filename="../src/requestfeed.cpp" line="329"/>
+        <location filename="../src/requestfeed.cpp" line="331"/>
         <source>Request timeout!</source>
         <translation>Užklausos laikas baigėsi!</translation>
     </message>
@@ -4419,6 +4460,14 @@ nerastas!</translation>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="427"/>
         <source>Parameter count mismatch</source>
         <translation>Parametrų skaičius nesutampa</translation>
+    </message>
+</context>
+<context>
+    <name>SslErrorDialog</name>
+    <message>
+        <location filename="../src/network/sslerrordialog.cpp" line="24"/>
+        <source>SSL Certificate Error!</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
