@@ -1,3 +1,19 @@
+Version 0.17.2 (28 Dec 2014)
+  * Added: Save page as HTML in "newspaper" mode
+  * Added: Option to display notification on same as QuiteRSS display (option value: -1)
+  * Added: SSL-certificate check
+  * Added: Language: Bulgarian
+  * Changed: Drag links from embedded browser to Firefox
+  * Fixed: Displaying main menu when using several monitors
+  * Fixed: Value inversion of the transparent option of notifications
+  * Fixed: Updating some feeds (server returns 302)
+  * Fixed: Displaying control buttons in newspaper view when images are disabled
+  * Fixed: Dragging several feeds at once
+  * Fixed: Determine home page of some feeds
+  * Fixed: Displaying notifications (Mac OS)
+  * Fixed: Opening links in external browser (Mac OS)
+  * Fixed: Feed list navigation (Mac OS)
+
 Version 0.17.1 (15 Nov 2014)
   * Added: Button and shortcut to switch layout
   * Added: Ability to delete news in newspaper layout
