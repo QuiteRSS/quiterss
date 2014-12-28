@@ -1418,7 +1418,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainapplication.cpp" line="267"/>
         <source>Saving data...</source>
-        <translation type="unfinished"/>
+        <translation>Съхранявам данните...</translation>
     </message>
 </context>
 <context>
@@ -2489,37 +2489,37 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="111"/>
         <source>SSL Certificate Error!</source>
-        <translation type="unfinished"/>
+        <translation>Грешка в SSL сертификата!</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="112"/>
         <source>The page you are trying to access has the following errors in the SSL certificate:</source>
-        <translation type="unfinished"/>
+        <translation>Страницата, която се опитвате да заредите, дава следните грешки в SSL сертификата:</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="127"/>
         <source>&lt;b&gt;Organization: &lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Организация: &lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="130"/>
         <source>&lt;b&gt;Domain Name: &lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Домейн: &lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="133"/>
         <source>&lt;b&gt;Expiration Date: &lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Дата на валидност: &lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="140"/>
         <source>&lt;b&gt;Error: &lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Грешка: &lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="148"/>
         <source>Would you like to continue to the server?</source>
-        <translation type="unfinished"/>
+        <translation>Желаете ли да продължите?</translation>
     </message>
 </context>
 <context>
@@ -4467,7 +4467,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/network/sslerrordialog.cpp" line="24"/>
         <source>SSL Certificate Error!</source>
-        <translation type="unfinished"/>
+        <translation>Грешка в SSL сертификата!</translation>
     </message>
 </context>
 <context>

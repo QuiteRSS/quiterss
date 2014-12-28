@@ -1418,7 +1418,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainapplication.cpp" line="267"/>
         <source>Saving data...</source>
-        <translation type="unfinished"/>
+        <translation>正在儲存資料…</translation>
     </message>
 </context>
 <context>
@@ -2489,37 +2489,37 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="111"/>
         <source>SSL Certificate Error!</source>
-        <translation type="unfinished"/>
+        <translation>SSL 認證錯誤！</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="112"/>
         <source>The page you are trying to access has the following errors in the SSL certificate:</source>
-        <translation type="unfinished"/>
+        <translation>您正在嘗試存取的頁面在 SSL 認證的部份有以下的錯誤：</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="127"/>
         <source>&lt;b&gt;Organization: &lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;組織： &lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="130"/>
         <source>&lt;b&gt;Domain Name: &lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;網域名稱： &lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="133"/>
         <source>&lt;b&gt;Expiration Date: &lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;失效日期： &lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="140"/>
         <source>&lt;b&gt;Error: &lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;錯誤： &lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="148"/>
         <source>Would you like to continue to the server?</source>
-        <translation type="unfinished"/>
+        <translation>您想要繼續連線到伺服器嗎？</translation>
     </message>
 </context>
 <context>
@@ -4243,7 +4243,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5025"/>
         <source>&amp;Redo</source>
-        <translation>重複(&amp;R)</translation>
+        <translation>重做(&amp;R)</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5026"/>
@@ -4307,7 +4307,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5033"/>
         <source>&amp;Redo</source>
-        <translation>重複(&amp;R)</translation>
+        <translation>重做(&amp;R)</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5034"/>
@@ -4429,7 +4429,7 @@ Ancient news could reappear</source>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="278"/>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="286"/>
         <source>Unable to fetch row</source>
-        <translation>無法取回欄為</translation>
+        <translation>無法取回欄位</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="216"/>
@@ -4467,7 +4467,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/network/sslerrordialog.cpp" line="24"/>
         <source>SSL Certificate Error!</source>
-        <translation type="unfinished"/>
+        <translation>SSL 認證錯誤！</translation>
     </message>
 </context>
 <context>

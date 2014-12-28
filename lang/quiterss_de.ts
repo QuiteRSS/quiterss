@@ -395,7 +395,7 @@
     <message>
         <location filename="../src/network/authenticationdialog.cpp" line="28"/>
         <source>Save password</source>
-        <translation>Passwort merken</translation>
+        <translation>Passwort speichern</translation>
     </message>
     <message>
         <location filename="../src/network/authenticationdialog.cpp" line="46"/>
@@ -1028,7 +1028,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="404"/>
         <source>Long ago ;-)</source>
-        <translation>Vor langer Zeit ;-)</translation>
+        <translation>Vor Ewigkeiten ;-)</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="415"/>
@@ -1416,7 +1416,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainapplication.cpp" line="267"/>
         <source>Saving data...</source>
-        <translation type="unfinished"/>
+        <translation>Speichere...</translation>
     </message>
 </context>
 <context>
@@ -2479,7 +2479,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.h" line="102"/>
         <source>Amusingly</source>
-        <translation>Amüsantes</translation>
+        <translation>Komisches</translation>
     </message>
 </context>
 <context>
@@ -2487,37 +2487,37 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="111"/>
         <source>SSL Certificate Error!</source>
-        <translation type="unfinished"/>
+        <translation>Fehlerhaftes SSL-Zertifikat!</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="112"/>
         <source>The page you are trying to access has the following errors in the SSL certificate:</source>
-        <translation type="unfinished"/>
+        <translation>Die aufzurufende Seite weist folgende Fehler im SSL-Zertifikat auf:</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="127"/>
         <source>&lt;b&gt;Organization: &lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Organisation: &lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="130"/>
         <source>&lt;b&gt;Domain Name: &lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Name der Domain: &lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="133"/>
         <source>&lt;b&gt;Expiration Date: &lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Gültig bis: &lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="140"/>
         <source>&lt;b&gt;Error: &lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Fehler: &lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="148"/>
         <source>Would you like to continue to the server?</source>
-        <translation type="unfinished"/>
+        <translation>Verbindung zum Server herstellen?</translation>
     </message>
 </context>
 <context>
@@ -4465,7 +4465,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/network/sslerrordialog.cpp" line="24"/>
         <source>SSL Certificate Error!</source>
-        <translation type="unfinished"/>
+        <translation>Fehlerhaftes SSL-Zertifikat!</translation>
     </message>
 </context>
 <context>

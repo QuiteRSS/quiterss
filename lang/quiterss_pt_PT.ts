@@ -1418,7 +1418,7 @@ não existe!</translation>
     <message>
         <location filename="../src/application/mainapplication.cpp" line="267"/>
         <source>Saving data...</source>
-        <translation type="unfinished"/>
+        <translation>Gravação de dados...</translation>
     </message>
 </context>
 <context>
@@ -2146,7 +2146,7 @@ não existe!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4929"/>
         <source>Minimize to Tray</source>
-        <translation>MInimizar para a bandeja</translation>
+        <translation>Minimizar para a bandeja</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4930"/>
@@ -2295,7 +2295,7 @@ não existe!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4988"/>
         <source>Close Other Tabs</source>
-        <translation>Fechar os outros  separadores</translation>
+        <translation>Fechar os outros separadores</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4989"/>
@@ -2489,37 +2489,37 @@ não existe!</translation>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="111"/>
         <source>SSL Certificate Error!</source>
-        <translation type="unfinished"/>
+        <translation>Erro de certificado SSL!</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="112"/>
         <source>The page you are trying to access has the following errors in the SSL certificate:</source>
-        <translation type="unfinished"/>
+        <translation>A página a que está a tentar aceder apresenta os seguintes erros no certificado SSL:</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="127"/>
         <source>&lt;b&gt;Organization: &lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Organização: &lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="130"/>
         <source>&lt;b&gt;Domain Name: &lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Nome do domínio: &lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="133"/>
         <source>&lt;b&gt;Expiration Date: &lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Válido até: &lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="140"/>
         <source>&lt;b&gt;Error: &lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Erro: &lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="148"/>
         <source>Would you like to continue to the server?</source>
-        <translation type="unfinished"/>
+        <translation>Tem a certeza que quer aceder ao servidor?</translation>
     </message>
 </context>
 <context>
@@ -4467,7 +4467,7 @@ não existe!</translation>
     <message>
         <location filename="../src/network/sslerrordialog.cpp" line="24"/>
         <source>SSL Certificate Error!</source>
-        <translation type="unfinished"/>
+        <translation>Erro de certificado SSL!</translation>
     </message>
 </context>
 <context>

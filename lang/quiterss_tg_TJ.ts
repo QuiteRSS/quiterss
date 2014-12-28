@@ -528,7 +528,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="524"/>
         <source>Information</source>
-        <translation type="unfinished"/>
+        <translation>Маълумот</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="525"/>
@@ -1155,7 +1155,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/findtext.cpp" line="114"/>
         <source>Find in Links</source>
-        <translation type="unfinished"/>
+        <translation>Пайдо дар Пайвандҳо</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="115"/>
@@ -1418,7 +1418,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainapplication.cpp" line="267"/>
         <source>Saving data...</source>
-        <translation type="unfinished"/>
+        <translation>Сабти маълумот...</translation>
     </message>
 </context>
 <context>
@@ -1996,17 +1996,17 @@ Ancient news could reappear</source>
         <location filename="../src/application/mainwindow.cpp" line="4888"/>
         <location filename="../src/application/mainwindow.cpp" line="4891"/>
         <source>Layout</source>
-        <translation type="unfinished"/>
+        <translation>Тарҳбанди</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4889"/>
         <source>Classic</source>
-        <translation type="unfinished"/>
+        <translation>Классик</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4890"/>
         <source>Newspaper</source>
-        <translation type="unfinished"/>
+        <translation>Рӯзнома</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4893"/>
@@ -2212,12 +2212,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4955"/>
         <source>Page up (Browser)</source>
-        <translation type="unfinished"/>
+        <translation>Саҳифа боло (Браузер)</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4956"/>
         <source>Page down (Browser)</source>
-        <translation type="unfinished"/>
+        <translation>Саҳифа поён (Браузер)</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4958"/>
@@ -2489,7 +2489,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="111"/>
         <source>SSL Certificate Error!</source>
-        <translation type="unfinished"/>
+        <translation>Хатогии Сертификати SSL!</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="112"/>
@@ -2499,12 +2499,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="127"/>
         <source>&lt;b&gt;Organization: &lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;B&gt; Созмони: &lt;/ b&gt;</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="130"/>
         <source>&lt;b&gt;Domain Name: &lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;B&gt; Номи Домен: &lt;/ b&gt;</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="133"/>
@@ -2514,7 +2514,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="140"/>
         <source>&lt;b&gt;Error: &lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;B&gt; Хато: &lt;/ b&gt;</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="148"/>
@@ -2828,7 +2828,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1731"/>
         <source>Share</source>
-        <translation type="unfinished"/>
+        <translation>Ба ҳам дидан</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1735"/>
@@ -2838,7 +2838,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1739"/>
         <source>Delete</source>
-        <translation type="unfinished"/>
+        <translation>Хориҷ</translation>
     </message>
 </context>
 <context>
@@ -3557,7 +3557,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1097"/>
         <source>Screen</source>
-        <translation type="unfinished"/>
+        <translation>Экран</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1107"/>
@@ -3567,7 +3567,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1121"/>
         <source>Show titles feeds</source>
-        <translation type="unfinished"/>
+        <translation>Нишон додани унвонҳои асрор</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1122"/>
@@ -3677,17 +3677,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1202"/>
         <source>Notification</source>
-        <translation type="unfinished"/>
+        <translation>Огоҳи</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1203"/>
         <source>Sound</source>
-        <translation type="unfinished"/>
+        <translation>Овоз</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1214"/>
         <source>Selection of feeds</source>
-        <translation type="unfinished"/>
+        <translation>Интихоби асрор</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1230"/>

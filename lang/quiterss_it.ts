@@ -533,7 +533,7 @@ Le notizie vecchie potrebbero riapparire.</translation>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="525"/>
         <source>Clean Up wizard deleted %1 news</source>
-        <translation type="unfinished"/>
+        <translation>La procedura guidata di pulizia ha cancellato %1 notizie.</translation>
     </message>
 </context>
 <context>
@@ -1418,7 +1418,7 @@ Le notizie vecchie potrebbero riapparire.</translation>
     <message>
         <location filename="../src/application/mainapplication.cpp" line="267"/>
         <source>Saving data...</source>
-        <translation type="unfinished"/>
+        <translation>Salvataggio dei dati...</translation>
     </message>
 </context>
 <context>
@@ -2489,32 +2489,32 @@ Le notizie vecchie potrebbero riapparire.</translation>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="111"/>
         <source>SSL Certificate Error!</source>
-        <translation type="unfinished"/>
+        <translation>Errore del certificato SSL!</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="112"/>
         <source>The page you are trying to access has the following errors in the SSL certificate:</source>
-        <translation type="unfinished"/>
+        <translation>La pagina a cui stai tentando di accedere presenta i seguenti errori nel certificato SSL:</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="127"/>
         <source>&lt;b&gt;Organization: &lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Organizzazione: &lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="130"/>
         <source>&lt;b&gt;Domain Name: &lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Nome dominio: &lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="133"/>
         <source>&lt;b&gt;Expiration Date: &lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Data di scadenza: &lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="140"/>
         <source>&lt;b&gt;Error: &lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Errore: &lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="148"/>
@@ -3567,7 +3567,7 @@ Le notizie vecchie potrebbero riapparire.</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1121"/>
         <source>Show titles feeds</source>
-        <translation type="unfinished"/>
+        <translation>Mostra i titoli delle fonti</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1122"/>
@@ -4467,7 +4467,7 @@ Le notizie vecchie potrebbero riapparire.</translation>
     <message>
         <location filename="../src/network/sslerrordialog.cpp" line="24"/>
         <source>SSL Certificate Error!</source>
-        <translation type="unfinished"/>
+        <translation>Errore del certificato SSL!</translation>
     </message>
 </context>
 <context>

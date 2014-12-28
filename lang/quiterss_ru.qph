@@ -2855,4 +2855,24 @@ Save?</source>
     <source>Notification background color</source>
     <target>Цвет фона уведомления</target>
 </phrase>
+<phrase>
+    <source>SSL Certificate Error!</source>
+    <target>Ошибка сертификата SSL!</target>
+</phrase>
+<phrase>
+    <source>The page you are trying to access has the following errors in the SSL certificate:</source>
+    <target>Страница, которую вы пытаетесь просмотреть, имеет следующие ошибки в сертификате SSL:</target>
+</phrase>
+<phrase>
+    <source>&lt;b&gt;Organization: &lt;/b&gt;</source>
+    <target>&lt;b&gt;Организация: &lt;/b&gt;</target>
+</phrase>
+<phrase>
+    <source>&lt;b&gt;Domain Name: &lt;/b&gt;</source>
+    <target>&lt;b&gt;Имя домена: &lt;/b&gt;</target>
+</phrase>
+<phrase>
+    <source>Would you like to continue to the server?</source>
+    <target>Хотели бы вы продолжить работать с сервером?</target>
+</phrase>
 </QPH>

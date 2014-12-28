@@ -528,12 +528,12 @@ Starsze wiadomości mogą pojawić się ponownie</translation>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="524"/>
         <source>Information</source>
-        <translation type="unfinished"/>
+        <translation>Informacja</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="525"/>
         <source>Clean Up wizard deleted %1 news</source>
-        <translation type="unfinished"/>
+        <translation>Uporządkuj: usunięto %1 wiadomości</translation>
     </message>
 </context>
 <context>
@@ -1155,7 +1155,7 @@ Starsze wiadomości mogą pojawić się ponownie</translation>
     <message>
         <location filename="../src/findtext.cpp" line="114"/>
         <source>Find in Links</source>
-        <translation type="unfinished"/>
+        <translation>Znajdź w linkach</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="115"/>
@@ -1418,7 +1418,7 @@ Starsze wiadomości mogą pojawić się ponownie</translation>
     <message>
         <location filename="../src/application/mainapplication.cpp" line="267"/>
         <source>Saving data...</source>
-        <translation type="unfinished"/>
+        <translation>Zapisywanie danych...</translation>
     </message>
 </context>
 <context>
@@ -2212,12 +2212,12 @@ Starsze wiadomości mogą pojawić się ponownie</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4955"/>
         <source>Page up (Browser)</source>
-        <translation type="unfinished"/>
+        <translation>Przewiń stronę w gorę (Przeglądarka)</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4956"/>
         <source>Page down (Browser)</source>
-        <translation type="unfinished"/>
+        <translation>Przewiń stronę w dół (Przeglądarka)</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4958"/>
@@ -2489,37 +2489,37 @@ Starsze wiadomości mogą pojawić się ponownie</translation>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="111"/>
         <source>SSL Certificate Error!</source>
-        <translation type="unfinished"/>
+        <translation>Błąd certyfikatu SSL!</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="112"/>
         <source>The page you are trying to access has the following errors in the SSL certificate:</source>
-        <translation type="unfinished"/>
+        <translation>Strona, którą próbujesz wyświetlić zawiera następujące błędy w certyfikacie SSL:</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="127"/>
         <source>&lt;b&gt;Organization: &lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Organizacja: &lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="130"/>
         <source>&lt;b&gt;Domain Name: &lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Domena: &lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="133"/>
         <source>&lt;b&gt;Expiration Date: &lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Data wygaśnięcia:&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="140"/>
         <source>&lt;b&gt;Error: &lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Błąd: &lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="148"/>
         <source>Would you like to continue to the server?</source>
-        <translation type="unfinished"/>
+        <translation>Czy chcesz połączyć się z tym serwerem?</translation>
     </message>
 </context>
 <context>
@@ -2838,7 +2838,7 @@ Starsze wiadomości mogą pojawić się ponownie</translation>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1739"/>
         <source>Delete</source>
-        <translation type="unfinished"/>
+        <translation>Usuń</translation>
     </message>
 </context>
 <context>
@@ -3552,47 +3552,47 @@ Starsze wiadomości mogą pojawić się ponownie</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1082"/>
         <source>Show when inactive main window</source>
-        <translation type="unfinished"/>
+        <translation>Pokaż gdy nieaktywne okno główne</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1097"/>
         <source>Screen</source>
-        <translation type="unfinished"/>
+        <translation>Ekran</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1107"/>
         <source>Transparency</source>
-        <translation type="unfinished"/>
+        <translation>Przezroczystość</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1121"/>
         <source>Show titles feeds</source>
-        <translation type="unfinished"/>
+        <translation>Pokaż tytuły kanałów</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1122"/>
         <source>Show icon feed</source>
-        <translation type="unfinished"/>
+        <translation>Pokaż ikonę kanału</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1123"/>
         <source>Show button &apos;Mark All News Read&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Pokaż przycisk &apos;Oznacz wiadomości jako przeczytane&apos;</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1124"/>
         <source>Show button &apos;Mark Read/Unread&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Pokaż przycisk &apos;Oznacz jako Przeczytane/Nieprzeczytane&apos;</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1125"/>
         <source>Show button &apos;Open in External Browser&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Pokaż przycisk &apos;Otwórz w zewnętrznej przegladarce&apos;</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1126"/>
         <source>Show button &apos;Delete News&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Pokaż przycisk &apos;Usuń wiadomości&apos;</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1173"/>
@@ -3677,17 +3677,17 @@ Starsze wiadomości mogą pojawić się ponownie</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1202"/>
         <source>Notification</source>
-        <translation type="unfinished"/>
+        <translation>Powiadomienie</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1203"/>
         <source>Sound</source>
-        <translation type="unfinished"/>
+        <translation>Dźwięk</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1214"/>
         <source>Selection of feeds</source>
-        <translation type="unfinished"/>
+        <translation>Wybór kanałów</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1230"/>
@@ -3880,12 +3880,12 @@ Starsze wiadomości mogą pojawić się ponownie</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1711"/>
         <source>Notification text color</source>
-        <translation type="unfinished"/>
+        <translation>Kolor tekstu powiadomienia</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1714"/>
         <source>Notification background color</source>
-        <translation type="unfinished"/>
+        <translation>Tło powiadomienia</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2106"/>
@@ -4467,7 +4467,7 @@ Starsze wiadomości mogą pojawić się ponownie</translation>
     <message>
         <location filename="../src/network/sslerrordialog.cpp" line="24"/>
         <source>SSL Certificate Error!</source>
-        <translation type="unfinished"/>
+        <translation>Błąd certyfikatu SSL!</translation>
     </message>
 </context>
 <context>
