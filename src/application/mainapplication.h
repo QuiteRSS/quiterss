@@ -50,6 +50,7 @@ public:
   void setClosing();
   bool isClosing() const;
   bool isNoDebugOutput() const { return noDebugOutput_; }
+  bool isNetIgnoreWarnings() const { return netIgnoreWarnings_; }
   void showClosingWidget();
 
   QString resourcesDir() const;
@@ -120,6 +121,7 @@ private:
   bool showSplashScreen_;
   bool updateFeedsStartUp_;
   bool noDebugOutput_;
+  bool netIgnoreWarnings_;
 
   SplashScreen *splashScreen_;
   MainWindow *mainWindow_;

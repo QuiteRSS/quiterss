@@ -74,7 +74,8 @@ static inline uint qHash(const QSslCertificate &cert)
 
 void NetworkManager::slotSslError(QNetworkReply *reply, QList<QSslError> errors)
 {
-  if (reply->property("downReply").toBool()) {
+  if (mainApp->isNetIgnoreWarnings() || reply->property("downloadReply").toBool() ||
+      reply->property("feedReply").toBool()) {
     reply->ignoreSslErrors(errors);
     return;
   }

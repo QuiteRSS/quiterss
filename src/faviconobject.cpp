@@ -117,6 +117,7 @@ void FaviconObject::slotGet(const QUrl &getUrl, const QString &feedUrl, const in
   currentTime_.append(REQUEST_TIMEOUT);
 
   QNetworkReply *reply = networkManagerProxy_->get(request);
+  reply->setProperty("feedReply", QVariant(true));
   requestUrl_.append(reply->url());
   networkReply_.append(reply);
 }

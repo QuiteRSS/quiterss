@@ -214,6 +214,7 @@ void MainApplication::createSettings()
   showSplashScreen_ = settings.value("showSplashScreen", true).toBool();
   updateFeedsStartUp_ = settings.value("autoUpdatefeedsStartUp", false).toBool();
   noDebugOutput_ = settings.value("noDebugOutput", true).toBool();
+  netIgnoreWarnings_ = settings.value("netIgnoreWarnings", false).toBool();
   settings.endGroup();
 }
 

@@ -143,6 +143,7 @@ void RequestFeed::slotHead(const QUrl &getUrl, const int &id, const QString &fee
   currentTime_.append(timeoutRequest_);
 
   QNetworkReply *reply = networkManagerProxy_->head(request);
+  reply->setProperty("feedReply", QVariant(true));
   requestUrl_.append(reply->url());
   networkReply_.append(reply);
 }
@@ -169,6 +170,7 @@ void RequestFeed::slotGet(const QUrl &getUrl, const int &id, const QString &feed
   currentTime_.append(timeoutRequest_);
 
   QNetworkReply *reply = networkManagerProxy_->get(request);
+  reply->setProperty("feedReply", QVariant(true));
   requestUrl_.append(reply->url());
   networkReply_.append(reply);
 }
