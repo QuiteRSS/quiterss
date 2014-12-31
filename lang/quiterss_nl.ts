@@ -2686,7 +2686,7 @@ werd niet gevonden</translation>
     <message>
         <location filename="../src/newstabwidget.cpp" line="597"/>
         <source>Save Link...</source>
-        <translation>Bewaar link...</translation>
+        <translation>Link opslaan...</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="598"/>
@@ -3220,7 +3220,7 @@ werd niet gevonden</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="609"/>
         <source>Store cache in:</source>
-        <translation>Bewaar cache in:</translation>
+        <translation>Cache opslaan in:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="617"/>

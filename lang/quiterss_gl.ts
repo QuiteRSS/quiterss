@@ -533,7 +533,7 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="525"/>
         <source>Clean Up wizard deleted %1 news</source>
-        <translation type="unfinished"/>
+        <translation>O asistente Clean Up eliminou %1 novas</translation>
     </message>
 </context>
 <context>
@@ -1418,7 +1418,7 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/application/mainapplication.cpp" line="267"/>
         <source>Saving data...</source>
-        <translation type="unfinished"/>
+        <translation>A gardar datos...</translation>
     </message>
 </context>
 <context>
@@ -2489,37 +2489,37 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="111"/>
         <source>SSL Certificate Error!</source>
-        <translation type="unfinished"/>
+        <translation>Erro do certificado SSL!</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="112"/>
         <source>The page you are trying to access has the following errors in the SSL certificate:</source>
-        <translation type="unfinished"/>
+        <translation>A páxina á que estás tentando acceder presenta os seguintes erros no certificado SSL:</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="127"/>
         <source>&lt;b&gt;Organization: &lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Organización: &lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="130"/>
         <source>&lt;b&gt;Domain Name: &lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Nome do dominio: &lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="133"/>
         <source>&lt;b&gt;Expiration Date: &lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Data de vencemento: &lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="140"/>
         <source>&lt;b&gt;Error: &lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Erro: &lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="148"/>
         <source>Would you like to continue to the server?</source>
-        <translation type="unfinished"/>
+        <translation>Gustaríache continuar co servidor?</translation>
     </message>
 </context>
 <context>
@@ -3552,7 +3552,7 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1082"/>
         <source>Show when inactive main window</source>
-        <translation type="unfinished"/>
+        <translation>Mostrar cando a xanela principal estea inactiva</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1097"/>
@@ -4467,7 +4467,7 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/network/sslerrordialog.cpp" line="24"/>
         <source>SSL Certificate Error!</source>
-        <translation type="unfinished"/>
+        <translation>Erro do certificado SSL!</translation>
     </message>
 </context>
 <context>
