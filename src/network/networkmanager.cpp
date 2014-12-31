@@ -30,6 +30,9 @@ NetworkManager::NetworkManager(QObject* parent)
   : QNetworkAccessManager(parent)
   , adblockManager_(0)
 {
+  setCookieJar(mainApp->cookieJar());
+  mainApp->cookieJar()->setParent(0);
+
   connect(this, SIGNAL(authenticationRequired(QNetworkReply*,QAuthenticator*)),
           SLOT(slotAuthentication(QNetworkReply*,QAuthenticator*)));
   connect(this, SIGNAL(proxyAuthenticationRequired(QNetworkProxy,QAuthenticator*)),
