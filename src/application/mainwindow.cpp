@@ -6882,6 +6882,8 @@ void MainWindow::setFullScreen()
 // ----------------------------------------------------------------------------
 void MainWindow::setStayOnTop()
 {
+  isMinimizeToTray_ = true;
+
   int state = windowState();
 
   if (stayOnTopAct_->isChecked())
@@ -6895,6 +6897,8 @@ void MainWindow::setStayOnTop()
   }
   setWindowState((Qt::WindowState)state);
   show();
+
+  isMinimizeToTray_ = false;
 }
 
 void MainWindow::showMenuBar()
