@@ -36,6 +36,11 @@ void NetworkManagerProxy::setPrimaryNetworkAccessManager(NetworkManager* manager
 {
   Q_ASSERT(manager);
 
+#ifndef QT_NO_NETWORKPROXY
+  qRegisterMetaType<QNetworkProxy>("QNetworkProxy");
+  qRegisterMetaType<QList<QSslError> >("QList<QSslError>");
+#endif
+
   connect(this, SIGNAL(authenticationRequired(QNetworkReply*,QAuthenticator*)),
           manager, SLOT(slotAuthentication(QNetworkReply*,QAuthenticator*)),
           Qt::BlockingQueuedConnection);
