@@ -367,31 +367,31 @@ void ParseObject::addAtomNewsIntoBase(NewsItemStruct &newsItem)
   qDebug() << "title:" << newsItem.title;
   qDebug() << "published:" << newsItem.updated;
 
-  if (!newsItem.updated.isEmpty()) {  // search by pubDate
-    if (!duplicateNewsMode_)
+  if (!newsItem.updated.isEmpty()) {    // search by pubDate if present
+    if (!duplicateNewsMode_)            // and autodelete dupl. news disabled,
       qStr.append("AND published=:published");
-  } else {
+  } else {                              // ... or search by title
     qStr.append("AND title LIKE :title");
   }
 
-  if (!newsItem.id.isEmpty()) {       // search by guid
-    if (duplicateNewsMode_) {
+  if (!newsItem.id.isEmpty()) {     // search by guid if present
+    if (duplicateNewsMode_) {           // autodelete duplicate news enabled
       q.prepare("SELECT * FROM news WHERE feedId=:id AND guid=:guid");
-    } else {
+    } else {                            // autodelete dupl. news disabled
       q.prepare(QString("SELECT * FROM news WHERE feedId=:id AND guid=:guid %1").arg(qStr));
-      if (!newsItem.updated.isEmpty()) {    // search by pubDate
+      if (!newsItem.updated.isEmpty()) {    // search by pubDate if present
         q.bindValue(":published", newsItem.updated);
-      } else {
+      } else {                              // ... or by title
         q.bindValue(":title", newsItem.title);
       }
     }
     q.bindValue(":guid", newsItem.id);
-  } else {
+  } else {                          // guid is absent
     q.prepare(QString("SELECT * FROM news WHERE feedId=:id %1").arg(qStr));
-    if (!newsItem.updated.isEmpty()) {    // search by pubDate
-      if (!duplicateNewsMode_)
+    if (!newsItem.updated.isEmpty()) {  // search by pubDate if present
+      if (!duplicateNewsMode_)          // and autodelete dupl. news disabled,
         q.bindValue(":published", newsItem.updated);
-    } else {
+    } else {                            // ... or search by title
       q.bindValue(":title", newsItem.title);
     }
   }
