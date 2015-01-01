@@ -152,7 +152,8 @@ private:
   LineEdit *editTitle; //!< Feed title
   QLabel *labelHomepage; //!< Link to feed's homepage
   QToolButton *selectIconButton_;
-  QCheckBox *disableUpdate_;
+//  QCheckBox *disableUpdate_;
+  QGroupBox *disableUpdate_;
   QCheckBox *updateEnable_;
   QSpinBox *updateInterval_;
   QComboBox *updateIntervalType_;

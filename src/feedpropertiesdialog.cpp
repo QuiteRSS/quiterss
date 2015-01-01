@@ -82,7 +82,9 @@ QWidget *FeedPropertiesDialog::createGeneralTab()
   layoutGeneralTitle->addWidget(selectIconButton_);
   editURL = new LineEdit();
 
-  disableUpdate_ = new QCheckBox(tr("Disable update"));
+//  disableUpdate_ = new QCheckBox(tr("Disable update"));
+  disableUpdate_ = new QGroupBox(tr("Enable update"));
+  disableUpdate_->setCheckable(true);
   disableUpdate_->setChecked(false);
 
   updateEnable_ = new QCheckBox(tr("Automatically update every"));
@@ -101,18 +103,19 @@ QWidget *FeedPropertiesDialog::createGeneralTab()
           updateIntervalType_, SLOT(setEnabled(bool)));
 
   QHBoxLayout *updateFeedsLayout = new QHBoxLayout();
-  updateFeedsLayout->setMargin(0);
+//  updateFeedsLayout->setMargin(0);
   updateFeedsLayout->addWidget(updateEnable_);
   updateFeedsLayout->addWidget(updateInterval_);
   updateFeedsLayout->addWidget(updateIntervalType_);
   updateFeedsLayout->addStretch();
 
-  connect(disableUpdate_, SIGNAL(toggled(bool)),
-          updateEnable_, SLOT(setDisabled(bool)));
-  connect(disableUpdate_, SIGNAL(toggled(bool)),
-          updateInterval_, SLOT(setDisabled(bool)));
-  connect(disableUpdate_, SIGNAL(toggled(bool)),
-          updateIntervalType_, SLOT(setDisabled(bool)));
+  disableUpdate_->setLayout(updateFeedsLayout);
+//  connect(disableUpdate_, SIGNAL(toggled(bool)),
+//          updateEnable_, SLOT(setDisabled(bool)));
+//  connect(disableUpdate_, SIGNAL(toggled(bool)),
+//          updateInterval_, SLOT(setDisabled(bool)));
+//  connect(disableUpdate_, SIGNAL(toggled(bool)),
+//          updateIntervalType_, SLOT(setDisabled(bool)));
 
   starredOn_ = new QCheckBox(tr("Starred"));
   displayOnStartup = new QCheckBox(tr("Display in new tab on startup"));
@@ -136,7 +139,7 @@ QWidget *FeedPropertiesDialog::createGeneralTab()
   tabLayout->addLayout(layoutGeneralHomepage);
   tabLayout->addSpacing(15);
   tabLayout->addWidget(disableUpdate_);
-  tabLayout->addLayout(updateFeedsLayout);
+//  tabLayout->addLayout(updateFeedsLayout);
   tabLayout->addSpacing(15);
   tabLayout->addWidget(starredOn_);
   tabLayout->addWidget(displayOnStartup);
@@ -359,7 +362,7 @@ QWidget *FeedPropertiesDialog::createStatusTab()
   updateEnable_->setChecked(feedProperties.general.updateEnable);
   updateInterval_->setValue(feedProperties.general.updateInterval);
   updateIntervalType_->setCurrentIndex(feedProperties.general.intervalType + 1);
-  disableUpdate_->setChecked(feedProperties.general.disableUpdate);
+  disableUpdate_->setChecked(!feedProperties.general.disableUpdate);
 
   displayOnStartup->setChecked(feedProperties.general.displayOnStartup);
   starredOn_->setChecked(feedProperties.general.starred);
@@ -493,7 +496,7 @@ FEED_PROPERTIES FeedPropertiesDialog::getFeedProperties()
   feedProperties.general.text = editTitle->text();
   feedProperties.general.url = editURL->text();
 
-  feedProperties.general.disableUpdate = disableUpdate_->isChecked();
+  feedProperties.general.disableUpdate = !disableUpdate_->isChecked();
   feedProperties.general.updateEnable = updateEnable_->isChecked();
   feedProperties.general.updateInterval = updateInterval_->value();
   feedProperties.general.intervalType = updateIntervalType_->currentIndex() - 1;
