@@ -33,10 +33,8 @@ WebPage::WebPage(QObject *parent)
   : QWebPage(parent)
   , loadProgress_(-1)
 {
-  networkProxy = new NetworkManagerProxy(this);
-  networkProxy->setPrimaryNetworkAccessManager(mainApp->networkManager());
-  networkProxy->setPage(this);
-  setNetworkAccessManager(networkProxy);
+  networkManagerProxy_ = new NetworkManagerProxy(this, this);
+  setNetworkAccessManager(networkManagerProxy_);
 
   setPluginFactory(new WebPluginFactory(this));
   setForwardUnsupportedContent(true);

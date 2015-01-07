@@ -77,6 +77,8 @@ public:
   explicit ParseObject(QObject *parent = 0);
   ~ParseObject();
 
+  void disconnectObjects();
+
 public slots:
   void parseXml(QByteArray data, int feedId,
                 QDateTime dtReply, QString codecName);

@@ -22,19 +22,13 @@
 
 #include <QNetworkRequest>
 
-NetworkManagerProxy::NetworkManagerProxy(QObject* parent)
+NetworkManagerProxy::NetworkManagerProxy(WebPage *page, QObject* parent)
   : QNetworkAccessManager(parent)
-  , page_(0)
+  , page_(page)
 {
   setCookieJar(mainApp->cookieJar());
-
   // CookieJar is shared between NetworkManagers
   mainApp->cookieJar()->setParent(0);
-}
-
-void NetworkManagerProxy::setPrimaryNetworkAccessManager(NetworkManager* manager)
-{
-  Q_ASSERT(manager);
 
 #ifndef QT_NO_NETWORKPROXY
   qRegisterMetaType<QNetworkProxy>("QNetworkProxy");
@@ -42,16 +36,13 @@ void NetworkManagerProxy::setPrimaryNetworkAccessManager(NetworkManager* manager
 #endif
 
   connect(this, SIGNAL(authenticationRequired(QNetworkReply*,QAuthenticator*)),
-          manager, SLOT(slotAuthentication(QNetworkReply*,QAuthenticator*)),
-          Qt::BlockingQueuedConnection);
+          mainApp->networkManager(), SIGNAL(authenticationRequired(QNetworkReply*,QAuthenticator*)));
   connect(this, SIGNAL(proxyAuthenticationRequired(QNetworkProxy,QAuthenticator*)),
-          manager, SLOT(slotProxyAuthentication(QNetworkProxy,QAuthenticator*)),
-          Qt::BlockingQueuedConnection);
+          mainApp->networkManager(), SIGNAL(proxyAuthenticationRequired(QNetworkProxy,QAuthenticator*)));
   connect(this, SIGNAL(finished(QNetworkReply*)),
-          manager, SIGNAL(finished(QNetworkReply*)));
+          mainApp->networkManager(), SIGNAL(finished(QNetworkReply*)));
   connect(this, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)),
-          manager, SLOT(slotSslError(QNetworkReply*,QList<QSslError>)),
-          Qt::BlockingQueuedConnection);
+          mainApp->networkManager(), SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)));
 }
 
 QNetworkReply* NetworkManagerProxy::createRequest(QNetworkAccessManager::Operation op,

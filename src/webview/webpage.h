@@ -68,7 +68,7 @@ private slots:
   void urlChanged(const QUrl &url);
 
 private:
-  NetworkManagerProxy *networkProxy;
+  NetworkManagerProxy *networkManagerProxy_;
 
   QSslCertificate sslCert_;
   QVector<QSslCertificate> rejectedSslCerts_;

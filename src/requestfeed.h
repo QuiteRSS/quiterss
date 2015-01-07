@@ -25,7 +25,7 @@
 #include <QTimer>
 #include <QElapsedTimer>
 
-#include "networkmanagerproxy.h"
+#include "networkmanager.h"
 
 class RequestFeed : public QObject
 {
@@ -33,6 +33,8 @@ class RequestFeed : public QObject
 public:
   explicit RequestFeed(int timeoutRequest, int numberRequests,
                        int numberRepeats, QObject *parent = 0);
+
+  void disconnectObjects();
 
 public slots:
   void requestUrl(int id, QString urlString, QDateTime date, QString userInfo = "");
@@ -57,7 +59,7 @@ private slots:
   void slotRequestTimeout();
 
 private:
-  NetworkManagerProxy *networkManagerProxy_;
+  NetworkManager *networkManager_;
 
   int timeoutRequest_;
   int numberRequests_;

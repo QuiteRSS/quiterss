@@ -47,9 +47,8 @@ RequestFeed::RequestFeed(int timeoutRequest, int numberRequests,
   getUrlTimer_->setInterval(50);
   connect(getUrlTimer_, SIGNAL(timeout()), this, SLOT(getQueuedUrl()));
 
-  networkManagerProxy_ = new NetworkManagerProxy(this);
-  networkManagerProxy_->setPrimaryNetworkAccessManager(mainApp->networkManager());
-  connect(networkManagerProxy_, SIGNAL(finished(QNetworkReply*)),
+  networkManager_ = new NetworkManager(true, this);
+  connect(networkManager_, SIGNAL(finished(QNetworkReply*)),
           this, SLOT(finished(QNetworkReply*)));
 
   connect(this, SIGNAL(signalHead(QUrl,int,QString,QDateTime,int)),
@@ -58,6 +57,12 @@ RequestFeed::RequestFeed(int timeoutRequest, int numberRequests,
   connect(this, SIGNAL(signalGet(QUrl,int,QString,QDateTime,int)),
           SLOT(slotGet(QUrl,int,QString,QDateTime,int)),
           Qt::QueuedConnection);
+}
+
+void RequestFeed::disconnectObjects()
+{
+  disconnect(this);
+  networkManager_->disconnect(networkManager_);
 }
 
 /** @brief Put URL in request queue
@@ -142,7 +147,7 @@ void RequestFeed::slotHead(const QUrl &getUrl, const int &id, const QString &fee
   currentHead_.append(true);
   currentTime_.append(timeoutRequest_);
 
-  QNetworkReply *reply = networkManagerProxy_->head(request);
+  QNetworkReply *reply = networkManager_->head(request);
   reply->setProperty("feedReply", QVariant(true));
   requestUrl_.append(reply->url());
   networkReply_.append(reply);
@@ -169,7 +174,7 @@ void RequestFeed::slotGet(const QUrl &getUrl, const int &id, const QString &feed
   currentHead_.append(false);
   currentTime_.append(timeoutRequest_);
 
-  QNetworkReply *reply = networkManagerProxy_->get(request);
+  QNetworkReply *reply = networkManager_->get(request);
   reply->setProperty("feedReply", QVariant(true));
   requestUrl_.append(reply->url());
   networkReply_.append(reply);

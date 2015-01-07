@@ -24,7 +24,7 @@
 #include <QNetworkReply>
 #include <QTimer>
 
-#include "networkmanagerproxy.h"
+#include "networkmanager.h"
 
 class FaviconObject : public QObject
 {
@@ -32,7 +32,8 @@ class FaviconObject : public QObject
 
 public:
   explicit FaviconObject(QObject *parent = 0);
-  NetworkManagerProxy *networkManagerProxy_;
+
+  void disconnectObjects();
 
 public slots:
   void requestUrl(QString urlString, QString feedUrl);
@@ -49,6 +50,8 @@ private slots:
   void slotRequestTimeout();
 
 private:
+  NetworkManager *networkManager_;
+
   QQueue<QString> urlsQueue_;
   QQueue<QString> feedsQueue_;
 

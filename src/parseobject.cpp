@@ -51,6 +51,11 @@ ParseObject::~ParseObject()
 {
 }
 
+void ParseObject::disconnectObjects()
+{
+  disconnect(this);
+}
+
 /** @brief Queueing xml-data
  *----------------------------------------------------------------------------*/
 void ParseObject::parseXml(QByteArray data, int feedId,

@@ -47,10 +47,15 @@ FaviconObject::FaviconObject(QObject *parent)
   connect(this, SIGNAL(signalGet(QUrl,QString,int)),
           SLOT(slotGet(QUrl,QString,int)));
 
-  networkManagerProxy_ = new NetworkManagerProxy(this);
-  networkManagerProxy_->setPrimaryNetworkAccessManager(mainApp->networkManager());
-  connect(networkManagerProxy_, SIGNAL(finished(QNetworkReply*)),
+  networkManager_ = new NetworkManager(true, this);
+  connect(networkManager_, SIGNAL(finished(QNetworkReply*)),
           this, SLOT(finished(QNetworkReply*)));
+}
+
+void FaviconObject::disconnectObjects()
+{
+  disconnect(this);
+  networkManager_->disconnect(networkManager_);
 }
 
 /** @brief Put requested URL in request queue
@@ -116,7 +121,7 @@ void FaviconObject::slotGet(const QUrl &getUrl, const QString &feedUrl, const in
   currentCntRequests_.append(cnt);
   currentTime_.append(REQUEST_TIMEOUT);
 
-  QNetworkReply *reply = networkManagerProxy_->get(request);
+  QNetworkReply *reply = networkManager_->get(request);
   reply->setProperty("feedReply", QVariant(true));
   requestUrl_.append(reply->url());
   networkReply_.append(reply);

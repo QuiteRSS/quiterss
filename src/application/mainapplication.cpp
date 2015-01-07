@@ -405,7 +405,7 @@ MainWindow *MainApplication::mainWindow()
 NetworkManager *MainApplication::networkManager()
 {
   if (!networkManager_) {
-    networkManager_ = new NetworkManager(this);
+    networkManager_ = new NetworkManager(false, this);
     setDiskCache();
   }
   return networkManager_;

@@ -27,10 +27,7 @@ class WebPage;
 class NetworkManagerProxy : public QNetworkAccessManager
 {
 public:
-  explicit NetworkManagerProxy(QObject* parent = 0);
-
-  void setPage(WebPage* page) { page_ = page; }
-  void setPrimaryNetworkAccessManager(NetworkManager* manager);
+  explicit NetworkManagerProxy(WebPage* page, QObject* parent = 0);
 
   QNetworkReply* createRequest(QNetworkAccessManager::Operation op, const QNetworkRequest &request, QIODevice* outgoingData);
 

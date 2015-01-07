@@ -217,9 +217,13 @@ UpdateFeeds::~UpdateFeeds()
 void UpdateFeeds::disconnectObjects()
 {
   updateObject_->disconnect(updateObject_);
-  requestFeed_->disconnect(requestFeed_);
-  parseObject_->disconnect(parseObject_);
-  faviconObject_->disconnect(faviconObject_);
+  updateObject_->disconnect(parseObject_);
+  updateObject_->disconnect(requestFeed_);
+  updateObject_->disconnect(mainApp->mainWindow());
+  requestFeed_->disconnectObjects();
+  requestFeed_->disconnect(mainApp->mainWindow());
+  parseObject_->disconnectObjects();
+  faviconObject_->disconnectObjects();
 }
 
 void UpdateFeeds::startSaveTimer()

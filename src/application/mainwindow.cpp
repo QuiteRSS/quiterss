@@ -62,6 +62,7 @@ MainWindow::MainWindow(QWidget *parent)
   , recountCategoryCountsOn_(false)
   , optionsDialog_(NULL)
 {
+  setObjectName("mainWindow");
   setWindowTitle("QuiteRSS");
   setContextMenuPolicy(Qt::CustomContextMenu);
 

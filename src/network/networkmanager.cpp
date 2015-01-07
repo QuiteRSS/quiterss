@@ -26,19 +26,37 @@
 #include <QNetworkReply>
 #include <QDebug>
 
-NetworkManager::NetworkManager(QObject* parent)
+NetworkManager::NetworkManager(bool isThread, QObject* parent)
   : QNetworkAccessManager(parent)
   , adblockManager_(0)
 {
   setCookieJar(mainApp->cookieJar());
+  // CookieJar is shared between NetworkManagers
   mainApp->cookieJar()->setParent(0);
 
-  connect(this, SIGNAL(authenticationRequired(QNetworkReply*,QAuthenticator*)),
-          SLOT(slotAuthentication(QNetworkReply*,QAuthenticator*)));
-  connect(this, SIGNAL(proxyAuthenticationRequired(QNetworkProxy,QAuthenticator*)),
-          SLOT(slotProxyAuthentication(QNetworkProxy,QAuthenticator*)));
-  connect(this, SIGNAL(sslErrors(QNetworkReply*, QList<QSslError>)),
-          SLOT(slotSslError(QNetworkReply*, QList<QSslError>)));
+#ifndef QT_NO_NETWORKPROXY
+  qRegisterMetaType<QNetworkProxy>("QNetworkProxy");
+  qRegisterMetaType<QList<QSslError> >("QList<QSslError>");
+#endif
+
+  if (isThread) {
+    connect(this, SIGNAL(authenticationRequired(QNetworkReply*,QAuthenticator*)),
+            mainApp->networkManager(), SLOT(slotAuthentication(QNetworkReply*,QAuthenticator*)),
+            Qt::BlockingQueuedConnection);
+    connect(this, SIGNAL(proxyAuthenticationRequired(QNetworkProxy,QAuthenticator*)),
+            mainApp->networkManager(), SLOT(slotProxyAuthentication(QNetworkProxy,QAuthenticator*)),
+            Qt::BlockingQueuedConnection);
+    connect(this, SIGNAL(sslErrors(QNetworkReply*, QList<QSslError>)),
+            mainApp->networkManager(), SLOT(slotSslError(QNetworkReply*, QList<QSslError>)),
+            Qt::BlockingQueuedConnection);
+  } else {
+    connect(this, SIGNAL(authenticationRequired(QNetworkReply*,QAuthenticator*)),
+            SLOT(slotAuthentication(QNetworkReply*,QAuthenticator*)));
+    connect(this, SIGNAL(proxyAuthenticationRequired(QNetworkProxy,QAuthenticator*)),
+            SLOT(slotProxyAuthentication(QNetworkProxy,QAuthenticator*)));
+    connect(this, SIGNAL(sslErrors(QNetworkReply*, QList<QSslError>)),
+            SLOT(slotSslError(QNetworkReply*, QList<QSslError>)));
+  }
 }
 
 NetworkManager::~NetworkManager()
@@ -87,6 +105,7 @@ void NetworkManager::slotSslError(QNetworkReply *reply, QList<QSslError> errors)
   QVariant v = request.attribute((QNetworkRequest::Attribute)(QNetworkRequest::User + 100));
   WebPage* webPage = static_cast<WebPage*>(v.value<void*>());
   if (!WebPage::isPointerSafeToUse(webPage)) {
+    reply->ignoreSslErrors(errors);
     return;
   }
 
