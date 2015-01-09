@@ -67,9 +67,11 @@ AboutDialog::AboutDialog(const QString &lang, QWidget *parent) :
       + "<BR>"
       + tr("QuiteRSS is a open-source cross-platform RSS/Atom news reader")
       + "<P>" + tr("Includes:")
-      + QString(" Qt-%1, SQLite-%2, QyurSqlTreeView-%3, WebKit-%4").
+      + QString(" Qt-%1, SQLite-%2, QyurSqlTreeView-%3,").
       arg(QT_VERSION_STR).arg(SQLITE_VERSION).
-      arg(treeView.metaObject()->classInfo(treeView.metaObject()->indexOfClassInfo("Version")).value()).
+      arg(treeView.metaObject()->classInfo(treeView.metaObject()->indexOfClassInfo("Version")).value())
+      + "<BR>"
+      + QString(" WebKit-%4, QupZilla-1.7.0").
       arg(qWebKitVersion())
       + "</P>"
       + QString("<a href=\"%1\">%1</a>").arg("http://quiterss.org") +
