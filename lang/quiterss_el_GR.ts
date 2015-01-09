@@ -13,8 +13,8 @@
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="64"/>
-        <location filename="../src/aboutdialog.cpp" line="139"/>
-        <location filename="../src/aboutdialog.cpp" line="174"/>
+        <location filename="../src/aboutdialog.cpp" line="141"/>
+        <location filename="../src/aboutdialog.cpp" line="176"/>
         <source>Version</source>
         <translation>Έκδοση</translation>
     </message>
@@ -29,57 +29,57 @@
         <translation>Συμπεριλαμβάνει:</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="142"/>
+        <location filename="../src/aboutdialog.cpp" line="144"/>
         <source>Application directory:</source>
         <translation>Κατάλογος Εφαρμογών:</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="145"/>
+        <location filename="../src/aboutdialog.cpp" line="147"/>
         <source>Resource directory:</source>
         <translation>Κατάλογος πηγών:</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="148"/>
+        <location filename="../src/aboutdialog.cpp" line="150"/>
         <source>Data directory:</source>
         <translation>Κατάλογος δεδομένων:</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="151"/>
+        <location filename="../src/aboutdialog.cpp" line="153"/>
         <source>Backup directory:</source>
         <translation>Τοποθεσία αντιγράφων ασφαλείας:</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="154"/>
+        <location filename="../src/aboutdialog.cpp" line="156"/>
         <source>Database file:</source>
         <translation>Αρχείο βάσης δεδομένων:</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="157"/>
+        <location filename="../src/aboutdialog.cpp" line="159"/>
         <source>Settings file:</source>
         <translation>Αρχείο ρυθμίσεων:</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="160"/>
+        <location filename="../src/aboutdialog.cpp" line="162"/>
         <source>Log file:</source>
         <translation>Αρχείο καταγραφών:</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="175"/>
+        <location filename="../src/aboutdialog.cpp" line="177"/>
         <source>Authors</source>
         <translation>Συγγραφείς</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="176"/>
+        <location filename="../src/aboutdialog.cpp" line="178"/>
         <source>History</source>
         <translation>Ιστορικό</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="177"/>
+        <location filename="../src/aboutdialog.cpp" line="179"/>
         <source>License</source>
         <translation>Άδεια</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="178"/>
+        <location filename="../src/aboutdialog.cpp" line="180"/>
         <source>Information</source>
         <translation>Πληροφορίες</translation>
     </message>
@@ -1424,1032 +1424,1032 @@ Ancient news could reappear</source>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="1782"/>
+        <location filename="../src/application/mainwindow.cpp" line="1783"/>
         <source>&amp;AdBlock</source>
         <translation>&amp;AdBlock</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2221"/>
-        <location filename="../src/application/mainwindow.cpp" line="4981"/>
-        <location filename="../src/application/mainwindow.cpp" line="7243"/>
-        <location filename="../src/application/mainwindow.cpp" line="7265"/>
+        <location filename="../src/application/mainwindow.cpp" line="2222"/>
+        <location filename="../src/application/mainwindow.cpp" line="4982"/>
+        <location filename="../src/application/mainwindow.cpp" line="7248"/>
+        <location filename="../src/application/mainwindow.cpp" line="7270"/>
         <source>Hide Categories</source>
         <translation>Απόκρυψη Κατηγοριών</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2225"/>
-        <location filename="../src/application/mainwindow.cpp" line="4979"/>
-        <location filename="../src/application/mainwindow.cpp" line="7249"/>
+        <location filename="../src/application/mainwindow.cpp" line="2226"/>
+        <location filename="../src/application/mainwindow.cpp" line="4980"/>
+        <location filename="../src/application/mainwindow.cpp" line="7254"/>
         <source>Show Categories</source>
         <translation>Εμφάνιση Κατηγοριών</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2677"/>
-        <location filename="../src/application/mainwindow.cpp" line="2706"/>
+        <location filename="../src/application/mainwindow.cpp" line="2678"/>
+        <location filename="../src/application/mainwindow.cpp" line="2707"/>
         <source>Select OPML-File</source>
         <translation>Επιλογή OPML αρχείου</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2679"/>
+        <location filename="../src/application/mainwindow.cpp" line="2680"/>
         <source>OPML-Files (*.%1 *.%2)</source>
         <translation>Αρχεία OPLM (*.%1 *.%2)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2683"/>
+        <location filename="../src/application/mainwindow.cpp" line="2684"/>
         <source>Import canceled</source>
         <translation>Η εισαγωγή ακυρώθηκε</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2691"/>
+        <location filename="../src/application/mainwindow.cpp" line="2692"/>
         <source>Import: can&apos;t open a file</source>
         <translation>Εισαγωγή: σφάλμα κατα το άνοιγμα αρχείου</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2708"/>
+        <location filename="../src/application/mainwindow.cpp" line="2709"/>
         <source>OPML-Files (*.%1)</source>
         <translation>Αρχείο OPML (*.%1)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2712"/>
+        <location filename="../src/application/mainwindow.cpp" line="2713"/>
         <source>Export canceled</source>
         <translation>Η εξαγωγή ακυρώθηκε</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2718"/>
+        <location filename="../src/application/mainwindow.cpp" line="2719"/>
         <source>Export: can&apos;t open a file</source>
         <translation>Εξαγωγή: σφάλμα κατά το άνοιγμα του αρχείου</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2990"/>
-        <location filename="../src/application/mainwindow.cpp" line="4118"/>
-        <location filename="../src/application/mainwindow.cpp" line="4756"/>
-        <location filename="../src/application/mainwindow.cpp" line="6186"/>
-        <location filename="../src/application/mainwindow.cpp" line="7214"/>
+        <location filename="../src/application/mainwindow.cpp" line="2991"/>
+        <location filename="../src/application/mainwindow.cpp" line="4119"/>
+        <location filename="../src/application/mainwindow.cpp" line="4757"/>
+        <location filename="../src/application/mainwindow.cpp" line="6187"/>
+        <location filename="../src/application/mainwindow.cpp" line="7219"/>
         <source>Unread: %1</source>
         <translation>Μη αναγνωσμένα: %1</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2991"/>
-        <location filename="../src/application/mainwindow.cpp" line="4119"/>
-        <location filename="../src/application/mainwindow.cpp" line="4759"/>
-        <location filename="../src/application/mainwindow.cpp" line="6187"/>
-        <location filename="../src/application/mainwindow.cpp" line="7215"/>
+        <location filename="../src/application/mainwindow.cpp" line="2992"/>
+        <location filename="../src/application/mainwindow.cpp" line="4120"/>
+        <location filename="../src/application/mainwindow.cpp" line="4760"/>
+        <location filename="../src/application/mainwindow.cpp" line="6188"/>
+        <location filename="../src/application/mainwindow.cpp" line="7220"/>
         <source>All: %1</source>
         <translation>Όλα: %1</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="3547"/>
-        <location filename="../src/application/mainwindow.cpp" line="3552"/>
-        <location filename="../src/application/mainwindow.cpp" line="3557"/>
+        <location filename="../src/application/mainwindow.cpp" line="3548"/>
+        <location filename="../src/application/mainwindow.cpp" line="3553"/>
+        <location filename="../src/application/mainwindow.cpp" line="3558"/>
         <source>(Browser)</source>
         <translation>(Περιηγητής)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4764"/>
-        <location filename="../src/application/mainwindow.cpp" line="5619"/>
+        <location filename="../src/application/mainwindow.cpp" line="4765"/>
+        <location filename="../src/application/mainwindow.cpp" line="5620"/>
         <source>New News: %1</source>
         <translation>Νέα: %1</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4766"/>
-        <location filename="../src/application/mainwindow.cpp" line="5621"/>
+        <location filename="../src/application/mainwindow.cpp" line="4767"/>
+        <location filename="../src/application/mainwindow.cpp" line="5622"/>
         <source>Unread News: %1</source>
         <translation>Μη αναγνωσμένα νέα: %1</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4771"/>
+        <location filename="../src/application/mainwindow.cpp" line="4772"/>
         <source>&amp;Add</source>
         <translation>&amp;Προσθήκη</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4772"/>
-        <location filename="../src/application/mainwindow.cpp" line="4775"/>
+        <location filename="../src/application/mainwindow.cpp" line="4773"/>
+        <location filename="../src/application/mainwindow.cpp" line="4776"/>
         <source>Add New Feed</source>
         <translation>Προσθήκη νέας ροής</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4774"/>
+        <location filename="../src/application/mainwindow.cpp" line="4775"/>
         <source>&amp;Feed...</source>
         <translation>&amp;Ροή...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4777"/>
+        <location filename="../src/application/mainwindow.cpp" line="4778"/>
         <source>F&amp;older...</source>
         <translation>Φά&amp;κελος...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4778"/>
+        <location filename="../src/application/mainwindow.cpp" line="4779"/>
         <source>Add New Folder</source>
         <translation>Προσθήκη νέου φακέλου</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4780"/>
-        <location filename="../src/application/mainwindow.cpp" line="4848"/>
+        <location filename="../src/application/mainwindow.cpp" line="4781"/>
+        <location filename="../src/application/mainwindow.cpp" line="4849"/>
         <source>Open in New Tab</source>
         <translation>Άνοιγμα σε νέα καρτέλα</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4782"/>
+        <location filename="../src/application/mainwindow.cpp" line="4783"/>
         <source>&amp;Delete...</source>
         <translation>&amp;Διαγραφή...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4783"/>
+        <location filename="../src/application/mainwindow.cpp" line="4784"/>
         <source>Delete Selected Feed</source>
         <translation>Διαγραφή της επιλεγμένης ροής</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4785"/>
+        <location filename="../src/application/mainwindow.cpp" line="4786"/>
         <source>&amp;Import Feeds...</source>
         <translation>&amp;Εισαγωγή ροών...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4786"/>
+        <location filename="../src/application/mainwindow.cpp" line="4787"/>
         <source>Import Feeds from OPML File</source>
         <translation>Εισαγωγή ροής από αρχείο OPML</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4788"/>
+        <location filename="../src/application/mainwindow.cpp" line="4789"/>
         <source>&amp;Export Feeds...</source>
         <translation>&amp;Εξαγωγή ροής...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4789"/>
+        <location filename="../src/application/mainwindow.cpp" line="4790"/>
         <source>Export Feeds to OPML File</source>
         <translation>Εξαγωγή σε αρχείο OPML</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4794"/>
+        <location filename="../src/application/mainwindow.cpp" line="4795"/>
         <source>E&amp;xit</source>
         <translation>&amp;Έξοδος</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4796"/>
+        <location filename="../src/application/mainwindow.cpp" line="4797"/>
         <source>Update Feed</source>
         <translation>Ενημέρωση της ροής</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4797"/>
+        <location filename="../src/application/mainwindow.cpp" line="4798"/>
         <source>Update Current Feed</source>
         <translation>Ενημέρωση της επιλεγμένης ροής</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4799"/>
+        <location filename="../src/application/mainwindow.cpp" line="4800"/>
         <source>Update All</source>
         <translation>Ενημέρωση όλων</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4800"/>
+        <location filename="../src/application/mainwindow.cpp" line="4801"/>
         <source>Update All Feeds</source>
         <translation>Ενημέρωση όλων των ροών</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4802"/>
+        <location filename="../src/application/mainwindow.cpp" line="4803"/>
         <source>Mark All Feeds Read</source>
         <translation>Σημείωση των ροών ως αναγνωσμένες</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4804"/>
+        <location filename="../src/application/mainwindow.cpp" line="4805"/>
         <source>Mark Read/Unread</source>
         <translation>Σημείωση ως αναγνωσμένο/μη αναγνωσμένο</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4805"/>
+        <location filename="../src/application/mainwindow.cpp" line="4806"/>
         <source>Mark Current News Read/Unread</source>
         <translation>Σημείωση της επιλεγμένης είδησης ως αναγνωσμένη/μη αναγνωσμένη</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4807"/>
         <location filename="../src/application/mainwindow.cpp" line="4808"/>
+        <location filename="../src/application/mainwindow.cpp" line="4809"/>
         <source>Mark All News Read</source>
         <translation>Σημείωση όλων των ειδήσεων ως αναγνωσμένες</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4810"/>
-        <location filename="../src/application/mainwindow.cpp" line="7828"/>
-        <location filename="../src/application/mainwindow.cpp" line="7834"/>
-        <location filename="../src/application/mainwindow.cpp" line="7844"/>
+        <location filename="../src/application/mainwindow.cpp" line="4811"/>
+        <location filename="../src/application/mainwindow.cpp" line="7833"/>
+        <location filename="../src/application/mainwindow.cpp" line="7839"/>
+        <location filename="../src/application/mainwindow.cpp" line="7849"/>
         <source>Downloads</source>
         <translation>Λήψεις</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4812"/>
+        <location filename="../src/application/mainwindow.cpp" line="4813"/>
         <source>Clean Up...</source>
         <translation>Καθαρισμός...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4814"/>
+        <location filename="../src/application/mainwindow.cpp" line="4815"/>
         <source>News Filters...</source>
         <translation>Φίλτρα ειδήσεων...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4815"/>
+        <location filename="../src/application/mainwindow.cpp" line="4816"/>
         <source>Filter News...</source>
         <translation>Φιλτράρισμα ειδήσεων...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4817"/>
+        <location filename="../src/application/mainwindow.cpp" line="4818"/>
         <source>Options...</source>
         <translation>Επιλογές...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4818"/>
+        <location filename="../src/application/mainwindow.cpp" line="4819"/>
         <source>Open Options Dialog</source>
         <translation>Άνοιγμα επιλογών</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4820"/>
+        <location filename="../src/application/mainwindow.cpp" line="4821"/>
         <source>Filter Feeds</source>
         <translation>Φίλτρο ροών</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4821"/>
-        <location filename="../src/application/mainwindow.cpp" line="4828"/>
+        <location filename="../src/application/mainwindow.cpp" line="4822"/>
+        <location filename="../src/application/mainwindow.cpp" line="4829"/>
         <source>Show All</source>
         <translation>Εμφάνιση όλων</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4822"/>
-        <location filename="../src/application/mainwindow.cpp" line="4829"/>
+        <location filename="../src/application/mainwindow.cpp" line="4823"/>
+        <location filename="../src/application/mainwindow.cpp" line="4830"/>
         <source>Show New</source>
         <translation>Εμφάνιση νέων</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4823"/>
-        <location filename="../src/application/mainwindow.cpp" line="4830"/>
+        <location filename="../src/application/mainwindow.cpp" line="4824"/>
+        <location filename="../src/application/mainwindow.cpp" line="4831"/>
         <source>Show Unread</source>
         <translation>Εμφάνιση μη αναγνωσμένων</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4824"/>
+        <location filename="../src/application/mainwindow.cpp" line="4825"/>
         <source>Show Starred Feeds</source>
         <translation>Εμφάνιση των ροών με αστερίσκο</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4825"/>
+        <location filename="../src/application/mainwindow.cpp" line="4826"/>
         <source>Show Not Working Feeds</source>
         <translation>Εμφάνιση μη λειτουργικών ροών</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4827"/>
+        <location filename="../src/application/mainwindow.cpp" line="4828"/>
         <source>Filter News</source>
         <translation>Φίλτρο Ειδήσεων</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4831"/>
+        <location filename="../src/application/mainwindow.cpp" line="4832"/>
         <source>Show Starred</source>
         <translation>Εμφάνιση αυτών με αστερίσκο</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4832"/>
+        <location filename="../src/application/mainwindow.cpp" line="4833"/>
         <source>Show Not Starred</source>
         <translation>Εμφάνιση αυτών χωρίς αστερίσκο</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4833"/>
+        <location filename="../src/application/mainwindow.cpp" line="4834"/>
         <source>Show Unread or Starred</source>
         <translation>Εμφάνιση των μη αναγνωσμένων ή των σημειωμένων με αστερίσκο</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4834"/>
+        <location filename="../src/application/mainwindow.cpp" line="4835"/>
         <source>Show Last Day</source>
         <translation>Εμφάνιση της τελευταίας ημέρας</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4835"/>
+        <location filename="../src/application/mainwindow.cpp" line="4836"/>
         <source>Show Last 7 Days</source>
         <translation>Εμφάνιση των τελευταίων 7 ημερών</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4837"/>
+        <location filename="../src/application/mainwindow.cpp" line="4838"/>
         <source>About...</source>
         <translation>Σχετικά...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4838"/>
+        <location filename="../src/application/mainwindow.cpp" line="4839"/>
         <source>Show &apos;About&apos; Dialog</source>
         <translation>Εμφάνιση του διαλόγου «Σχετικα»</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4840"/>
+        <location filename="../src/application/mainwindow.cpp" line="4841"/>
         <source>Check for Updates...</source>
         <translation>Έλεγχος για ενημερώσεις...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4841"/>
+        <location filename="../src/application/mainwindow.cpp" line="4842"/>
         <source>Report a Problem...</source>
         <translation>Αναφορά προβλήματος...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4843"/>
+        <location filename="../src/application/mainwindow.cpp" line="4844"/>
         <source>Open News</source>
         <translation>Άνοιγμα της είδησης</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4845"/>
+        <location filename="../src/application/mainwindow.cpp" line="4846"/>
         <source>Open in Browser</source>
         <translation>Άνοιγμα στον περιηγητή</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4846"/>
+        <location filename="../src/application/mainwindow.cpp" line="4847"/>
         <source>Open in External Browser</source>
         <translation>Άνοιγμα σε εξωτερικό περιηγητή</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4847"/>
+        <location filename="../src/application/mainwindow.cpp" line="4848"/>
         <source>Open News in External Browser</source>
         <translation>Άνοιγμα των ειδήσεων σε εξωτερικό περιηγητή</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4849"/>
+        <location filename="../src/application/mainwindow.cpp" line="4850"/>
         <source>Open News in New Tab</source>
         <translation>Άνοιγμα των ειδήσεων σε νέα καρτέλα</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4850"/>
+        <location filename="../src/application/mainwindow.cpp" line="4851"/>
         <source>Open in Background Tab</source>
         <translation>Άνοιγμα σε καρτέλα παρασκηνίου</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4851"/>
+        <location filename="../src/application/mainwindow.cpp" line="4852"/>
         <source>Open News in Background Tab</source>
         <translation>Άνοιγμα των ειδήσεων σε καρτέλα στο παρασκήνιο</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4852"/>
+        <location filename="../src/application/mainwindow.cpp" line="4853"/>
         <source>Star</source>
         <translation>Αστερίσκος</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4853"/>
+        <location filename="../src/application/mainwindow.cpp" line="4854"/>
         <source>Mark News Star</source>
         <translation>Σημείωση της είδησης με αστερίσκο</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4854"/>
+        <location filename="../src/application/mainwindow.cpp" line="4855"/>
         <source>Delete</source>
         <translation>Διαγραφή</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4855"/>
+        <location filename="../src/application/mainwindow.cpp" line="4856"/>
         <source>Delete Selected News</source>
         <translation>Διαγραφή επιλεγμένων ειδήσεων</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4856"/>
+        <location filename="../src/application/mainwindow.cpp" line="4857"/>
         <source>Delete All News</source>
         <translation>Διαγραφή όλων των ειδήσεων</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4857"/>
+        <location filename="../src/application/mainwindow.cpp" line="4858"/>
         <source>Delete All News from List</source>
         <translation>Διαγραφή όλων των ειδήσεων από τη λίστα</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4858"/>
+        <location filename="../src/application/mainwindow.cpp" line="4859"/>
         <source>Restore</source>
         <translation>Επαναφορά</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4859"/>
+        <location filename="../src/application/mainwindow.cpp" line="4860"/>
         <source>Restore News</source>
         <translation>Επαναφορά ειδήσεων</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4860"/>
+        <location filename="../src/application/mainwindow.cpp" line="4861"/>
         <source>Copy Link</source>
         <translation>Αντιγραφή Συνδέσμου</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4863"/>
+        <location filename="../src/application/mainwindow.cpp" line="4864"/>
         <source>Restore last deleted news</source>
         <translation>Ανάκτηση τελευταίων διαγραμμένων ειδήσεων</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4865"/>
+        <location filename="../src/application/mainwindow.cpp" line="4866"/>
         <source>Mark Read</source>
         <translation>Σημείωση ως αναγνωσμένο</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4866"/>
+        <location filename="../src/application/mainwindow.cpp" line="4867"/>
         <source>Mark Feed Read</source>
         <translation>Σημείωση ροής ως αναγνωσμένη</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4867"/>
         <location filename="../src/application/mainwindow.cpp" line="4868"/>
+        <location filename="../src/application/mainwindow.cpp" line="4869"/>
         <source>Properties</source>
         <translation>Ιδιότητες</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4870"/>
+        <location filename="../src/application/mainwindow.cpp" line="4871"/>
         <source>&amp;File</source>
         <translation>&amp;Αρχείο</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4933"/>
+        <location filename="../src/application/mainwindow.cpp" line="4934"/>
         <source>Count Unread News</source>
         <translation>Καταμέτρηση των μη αναγνωσμένων ειδήσεων</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4934"/>
+        <location filename="../src/application/mainwindow.cpp" line="4935"/>
         <source>Count All News</source>
         <translation>Καταμέτρηση όλων των ειδήσεων</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4935"/>
+        <location filename="../src/application/mainwindow.cpp" line="4936"/>
         <source>Last Update</source>
         <translation>Τελευταία ενημέρωση</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4948"/>
+        <location filename="../src/application/mainwindow.cpp" line="4949"/>
         <source>Reset browser zoom</source>
         <translation>Επαναφορά εστίασης στον περιηγητή</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4951"/>
+        <location filename="../src/application/mainwindow.cpp" line="4952"/>
         <source>Print Web Page</source>
         <translation>Εκτύπωση ιστοσελίδας</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4953"/>
+        <location filename="../src/application/mainwindow.cpp" line="4954"/>
         <source>Preview Web Page</source>
         <translation>Προεπισκόπηση Σελίδας</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4960"/>
+        <location filename="../src/application/mainwindow.cpp" line="4961"/>
         <source>Save page in database</source>
         <translation>Αποθήκευση της σελίδας στη βάση δεδομένων</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4961"/>
+        <location filename="../src/application/mainwindow.cpp" line="4962"/>
         <source>Save page in database instead of news description</source>
         <translation>Αποθήκευση σελίδας στην Βάση Δεδομένων αντί για περιγραφή νέων</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2572"/>
+        <location filename="../src/application/mainwindow.cpp" line="2573"/>
         <source>Confirm Delete</source>
         <translation>Επιβεβαίωση Διαγραφής</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2573"/>
+        <location filename="../src/application/mainwindow.cpp" line="2574"/>
         <source>Are you sure to delete selected elements?</source>
         <translation>Είστε σίγουρος-η ότι θέλετε να διαγράψετε τα επιλεγμένα στοιχεία;</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4769"/>
+        <location filename="../src/application/mainwindow.cpp" line="4770"/>
         <source>Menu</source>
         <translation>Μενού</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4791"/>
+        <location filename="../src/application/mainwindow.cpp" line="4792"/>
         <source>&amp;Create Backup...</source>
         <translation>&amp;Δημιουργία Αντιγράφου Ασφαλείας...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4792"/>
+        <location filename="../src/application/mainwindow.cpp" line="4793"/>
         <source>S&amp;how Menu Bar</source>
         <translation>&amp;Εμφάνιση γραμμής μενού</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4844"/>
+        <location filename="../src/application/mainwindow.cpp" line="4845"/>
         <source>Open News Description</source>
         <translation>Άνοιγμα περιγραφής ειδήσεων</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4861"/>
+        <location filename="../src/application/mainwindow.cpp" line="4862"/>
         <source>Copy News Link</source>
         <translation>Αντιγραφή συνδέσμου ειδήσεων</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4871"/>
+        <location filename="../src/application/mainwindow.cpp" line="4872"/>
         <source>&amp;View</source>
         <translation>Π&amp;ροβολή</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4872"/>
+        <location filename="../src/application/mainwindow.cpp" line="4873"/>
         <source>Fee&amp;ds</source>
         <translation>&amp;Ροές</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4873"/>
+        <location filename="../src/application/mainwindow.cpp" line="4874"/>
         <source>&amp;News</source>
         <translation>&amp;Ειδήσεις</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4874"/>
+        <location filename="../src/application/mainwindow.cpp" line="4875"/>
         <source>&amp;Browser</source>
         <translation>&amp;Περιηγητής</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4875"/>
+        <location filename="../src/application/mainwindow.cpp" line="4876"/>
         <source>&amp;Tools</source>
         <translation>Ερ&amp;γαλεία</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4876"/>
+        <location filename="../src/application/mainwindow.cpp" line="4877"/>
         <source>&amp;Help</source>
         <translation>&amp;Βοήθεια</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4878"/>
-        <location filename="../src/application/mainwindow.cpp" line="4964"/>
+        <location filename="../src/application/mainwindow.cpp" line="4879"/>
+        <location filename="../src/application/mainwindow.cpp" line="4965"/>
         <source>Main Toolbar</source>
         <translation>Κύρια γραμμή εργαλείων</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4879"/>
+        <location filename="../src/application/mainwindow.cpp" line="4880"/>
         <source>Customize Toolbar</source>
         <translation>Παραμετροποίηση της γραμμής εργαλείων</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4880"/>
+        <location filename="../src/application/mainwindow.cpp" line="4881"/>
         <source>Main Toolbar...</source>
         <translation>Κύρια γραμμή εργαλείων...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4881"/>
+        <location filename="../src/application/mainwindow.cpp" line="4882"/>
         <source>Customize Toolbar...</source>
         <translation>Παραμετροποίηση της γραμμής εργαλείων...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4882"/>
+        <location filename="../src/application/mainwindow.cpp" line="4883"/>
         <source>Feeds Toolbar...</source>
         <translation>Γραμμή εργαλείων ροών...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4883"/>
+        <location filename="../src/application/mainwindow.cpp" line="4884"/>
         <source>News Toolbar...</source>
         <translation>Γραμμή εργαλείων ειδήσεων...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4885"/>
+        <location filename="../src/application/mainwindow.cpp" line="4886"/>
         <source>Lock Toolbar</source>
         <translation>Κλείδωμα της γραμμής εργαλείων</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4886"/>
+        <location filename="../src/application/mainwindow.cpp" line="4887"/>
         <source>Hide Toolbar</source>
         <translation>Απόκρυψη της γραμμής εργαλείων</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4888"/>
-        <location filename="../src/application/mainwindow.cpp" line="4891"/>
+        <location filename="../src/application/mainwindow.cpp" line="4889"/>
+        <location filename="../src/application/mainwindow.cpp" line="4892"/>
         <source>Layout</source>
         <translation>Διάταξη</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4889"/>
+        <location filename="../src/application/mainwindow.cpp" line="4890"/>
         <source>Classic</source>
         <translation>Κλασική</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4890"/>
+        <location filename="../src/application/mainwindow.cpp" line="4891"/>
         <source>Newspaper</source>
         <translation>Εφημερίδα</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4893"/>
+        <location filename="../src/application/mainwindow.cpp" line="4894"/>
         <source>Application Style</source>
         <translation>Στιλ εφαρμογής</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4894"/>
+        <location filename="../src/application/mainwindow.cpp" line="4895"/>
         <source>System</source>
         <translation>Σύστημα</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4895"/>
+        <location filename="../src/application/mainwindow.cpp" line="4896"/>
         <source>System2</source>
         <translation>Σύστημα2</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4896"/>
+        <location filename="../src/application/mainwindow.cpp" line="4897"/>
         <source>Green</source>
         <translation>Πράσινο</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4897"/>
+        <location filename="../src/application/mainwindow.cpp" line="4898"/>
         <source>Orange</source>
         <translation>Πορτοκαλί</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4898"/>
+        <location filename="../src/application/mainwindow.cpp" line="4899"/>
         <source>Purple</source>
         <translation>Μώβ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4899"/>
+        <location filename="../src/application/mainwindow.cpp" line="4900"/>
         <source>Pink</source>
         <translation>Ρόζ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4900"/>
+        <location filename="../src/application/mainwindow.cpp" line="4901"/>
         <source>Gray</source>
         <translation>Γκρί</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4902"/>
+        <location filename="../src/application/mainwindow.cpp" line="4903"/>
         <source>Browser Position</source>
         <translation>Θέση περιηγητή</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4903"/>
+        <location filename="../src/application/mainwindow.cpp" line="4904"/>
         <source>Top</source>
         <translation>Κορυφή</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4904"/>
+        <location filename="../src/application/mainwindow.cpp" line="4905"/>
         <source>Bottom</source>
         <translation>Κάτω μέρος</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4905"/>
+        <location filename="../src/application/mainwindow.cpp" line="4906"/>
         <source>Right</source>
         <translation>Δεξιά</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4906"/>
+        <location filename="../src/application/mainwindow.cpp" line="4907"/>
         <source>Left</source>
         <translation>Αριστερά</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4908"/>
+        <location filename="../src/application/mainwindow.cpp" line="4909"/>
         <source>Show Window</source>
         <translation>Εμφάνιση παραθύρου</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4910"/>
+        <location filename="../src/application/mainwindow.cpp" line="4911"/>
         <source>Previous Feed</source>
         <translation>Προηγούμενο feed</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4911"/>
+        <location filename="../src/application/mainwindow.cpp" line="4912"/>
         <source>Next Feed</source>
         <translation>Επόμενη ροή</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4912"/>
+        <location filename="../src/application/mainwindow.cpp" line="4913"/>
         <source>Previous News</source>
         <translation>Προηγούμενη είδηση</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4913"/>
+        <location filename="../src/application/mainwindow.cpp" line="4914"/>
         <source>Next News</source>
         <translation>Επόμενη είδηση</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4914"/>
+        <location filename="../src/application/mainwindow.cpp" line="4915"/>
         <source>News Page Up</source>
         <translation>Προηγούμενη σελίδα</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4915"/>
+        <location filename="../src/application/mainwindow.cpp" line="4916"/>
         <source>News Page Down</source>
         <translation>Επόμενη σελίδα</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4917"/>
+        <location filename="../src/application/mainwindow.cpp" line="4918"/>
         <source>Next Unread News</source>
         <translation>Επόμενη μη αναγνωσμένη είδηση</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4918"/>
+        <location filename="../src/application/mainwindow.cpp" line="4919"/>
         <source>Previous Unread News</source>
         <translation>Προηγούμενη μη αναγνωσμένη είδηση</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4920"/>
+        <location filename="../src/application/mainwindow.cpp" line="4921"/>
         <source>Switch Focus to Next Panel</source>
         <translation>Εναλλαγή εστίασης στον επόμενο πίνακα</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4922"/>
+        <location filename="../src/application/mainwindow.cpp" line="4923"/>
         <source>Switch Focus to Next Panel (Tree Feeds, List News, Browser)</source>
         <translation>Εναλλαγή εστίασης στον επόμενο πίνακα (Δέντρο ροών, λίστα ειδήσεων, περιηγητής)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4923"/>
+        <location filename="../src/application/mainwindow.cpp" line="4924"/>
         <source>Switch Focus to Previous Panel</source>
         <translation>Εναλλαγή εστίασης στον προηγούμενο πίνακα</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4925"/>
+        <location filename="../src/application/mainwindow.cpp" line="4926"/>
         <source>Switch Focus to Previous Panel (Tree Feeds, Browser, List News)</source>
         <translation>Εναλλαγή εστίασης στον προηγούμενο πίνακα (Δέντρο ροών, λίστα ειδήσεων, περιηγητής)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4927"/>
+        <location filename="../src/application/mainwindow.cpp" line="4928"/>
         <source>Show/Hide Tree Feeds</source>
         <translation>Εμφάνιση/Απόκρυψη δέντρου ροών</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4929"/>
+        <location filename="../src/application/mainwindow.cpp" line="4930"/>
         <source>Minimize to Tray</source>
         <translation>Ελαχιστοποίηση στο πλαίσιο συστήματος</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4930"/>
+        <location filename="../src/application/mainwindow.cpp" line="4931"/>
         <source>Minimize Application to Tray</source>
         <translation>Ελαχιστοποίηση της εφαρμογής στο πλαίσιο συστήματος</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4932"/>
+        <location filename="../src/application/mainwindow.cpp" line="4933"/>
         <source>Columns</source>
         <translation>Στήλες</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4937"/>
+        <location filename="../src/application/mainwindow.cpp" line="4938"/>
         <source>Show Indentation</source>
         <translation>Εμφάνιση εσοχών</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4939"/>
         <location filename="../src/application/mainwindow.cpp" line="4940"/>
+        <location filename="../src/application/mainwindow.cpp" line="4941"/>
         <source>Search Feed</source>
         <translation>Αναζήτηση ροής</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4942"/>
+        <location filename="../src/application/mainwindow.cpp" line="4943"/>
         <source>Zoom</source>
         <translation>Εστίαση</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4943"/>
+        <location filename="../src/application/mainwindow.cpp" line="4944"/>
         <source>Zoom In</source>
         <translation>Μεγέθυνση</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4944"/>
+        <location filename="../src/application/mainwindow.cpp" line="4945"/>
         <source>Zoom in in browser</source>
         <translation>Μεγέθυνση στον περιηγητή</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4945"/>
+        <location filename="../src/application/mainwindow.cpp" line="4946"/>
         <source>Zoom Out</source>
         <translation>Σμίκρυνση</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4946"/>
+        <location filename="../src/application/mainwindow.cpp" line="4947"/>
         <source>Zoom out in browser</source>
         <translation>Σμίκρυνση στον περιηγητή</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4947"/>
+        <location filename="../src/application/mainwindow.cpp" line="4948"/>
         <source>100%</source>
         <translation>100%</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4950"/>
+        <location filename="../src/application/mainwindow.cpp" line="4951"/>
         <source>Print...</source>
         <translation>Εκτύπωση...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4952"/>
+        <location filename="../src/application/mainwindow.cpp" line="4953"/>
         <source>Print Preview...</source>
         <translation>Προεπισκόπηση Εκτύπωσης...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4955"/>
+        <location filename="../src/application/mainwindow.cpp" line="4956"/>
         <source>Page up (Browser)</source>
         <translation>Προηγούμενη σελίδα (Περιηγητής)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4956"/>
+        <location filename="../src/application/mainwindow.cpp" line="4957"/>
         <source>Page down (Browser)</source>
         <translation>Επόμενη σελίδα (Περιηγητής)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4958"/>
+        <location filename="../src/application/mainwindow.cpp" line="4959"/>
         <source>Save As...</source>
         <translation>Αποθήκευση ως...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4959"/>
+        <location filename="../src/application/mainwindow.cpp" line="4960"/>
         <source>Save Page As...</source>
         <translation>Αποθήκευση σελίδας ως...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4963"/>
+        <location filename="../src/application/mainwindow.cpp" line="4964"/>
         <source>Show/Hide</source>
         <translation>Εμφάνιση/Απόκρυψη</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4965"/>
+        <location filename="../src/application/mainwindow.cpp" line="4966"/>
         <source>Feeds Toolbar</source>
         <translation>Γραμμή εργαλείων ροών</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4966"/>
+        <location filename="../src/application/mainwindow.cpp" line="4967"/>
         <source>News Toolbar</source>
         <translation>Γραμμή εργαλείων ειδήσεων</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4967"/>
+        <location filename="../src/application/mainwindow.cpp" line="4968"/>
         <source>Browser Toolbar</source>
         <translation>Γραμμή εργαλείων περιηγητή</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4968"/>
+        <location filename="../src/application/mainwindow.cpp" line="4969"/>
         <source>Panel Categories</source>
         <translation>Κατηγορίες πινάκων</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4969"/>
+        <location filename="../src/application/mainwindow.cpp" line="4970"/>
         <source>Status Bar</source>
         <translation>Γραμμή κατάστασης</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4971"/>
         <location filename="../src/application/mainwindow.cpp" line="4972"/>
+        <location filename="../src/application/mainwindow.cpp" line="4973"/>
         <source>Full Screen</source>
         <translation>Πλήρης οθόνη</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4974"/>
         <location filename="../src/application/mainwindow.cpp" line="4975"/>
+        <location filename="../src/application/mainwindow.cpp" line="4976"/>
         <source>Stay On Top</source>
         <translation>Παραμονή στο προσκήνιο</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4977"/>
+        <location filename="../src/application/mainwindow.cpp" line="4978"/>
         <source>Categories</source>
         <translation>Κατηγορίες</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4983"/>
         <location filename="../src/application/mainwindow.cpp" line="4984"/>
+        <location filename="../src/application/mainwindow.cpp" line="4985"/>
         <source>Label</source>
         <translation>Ετικέτα</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4985"/>
+        <location filename="../src/application/mainwindow.cpp" line="4986"/>
         <source>Show labels menu</source>
         <translation>Εμφάνιση μενού ετικετών</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4987"/>
+        <location filename="../src/application/mainwindow.cpp" line="4988"/>
         <source>Close Tab</source>
         <translation>Κλείσιμο καρτέλας</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4988"/>
+        <location filename="../src/application/mainwindow.cpp" line="4989"/>
         <source>Close Other Tabs</source>
         <translation>Κλείσιμο των άλλων καρτελών</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4989"/>
+        <location filename="../src/application/mainwindow.cpp" line="4990"/>
         <source>Close All Tabs</source>
         <translation>Κλείσιμο όλων των καρτελών</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4990"/>
+        <location filename="../src/application/mainwindow.cpp" line="4991"/>
         <source>Switch to next tab</source>
         <translation>Μετάβαση στην επόμενη καρτέλα</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4991"/>
+        <location filename="../src/application/mainwindow.cpp" line="4992"/>
         <source>Switch to previous tab</source>
         <translation>Μετάβαση στην προηγούμενη καρτέλα</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4993"/>
+        <location filename="../src/application/mainwindow.cpp" line="4994"/>
         <source>Unread</source>
         <translation>Μη αναγνωσμένο</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4994"/>
+        <location filename="../src/application/mainwindow.cpp" line="4995"/>
         <source>Starred</source>
         <translation>Με αστερίσκο</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4995"/>
+        <location filename="../src/application/mainwindow.cpp" line="4996"/>
         <source>Deleted</source>
         <translation>Διαγραμμένο</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4996"/>
+        <location filename="../src/application/mainwindow.cpp" line="4997"/>
         <source>Labels</source>
         <translation>Ετικέτες</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4998"/>
+        <location filename="../src/application/mainwindow.cpp" line="4999"/>
         <source>Decrease news list/increase browser</source>
         <translation>Μείωση της λίστας ειδήσεων / αύξηση του περιηγητή</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4999"/>
+        <location filename="../src/application/mainwindow.cpp" line="5000"/>
         <source>Increase news list/decrease browser</source>
         <translation>Αύξηση της λίστας ειδήσεων / μείωση του περιηγητή</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5001"/>
+        <location filename="../src/application/mainwindow.cpp" line="5002"/>
         <source>Find</source>
         <translation>Αναζήτηση</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5003"/>
+        <location filename="../src/application/mainwindow.cpp" line="5004"/>
         <source>Open Homepage Feed</source>
         <translation>Άνοιγμα αρχικής ροής</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5004"/>
+        <location filename="../src/application/mainwindow.cpp" line="5005"/>
         <source>Sort by Name</source>
         <translation>Ταξινόμηση ανά όνομα</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5005"/>
+        <location filename="../src/application/mainwindow.cpp" line="5006"/>
         <source>Collapse All Folders</source>
         <translation>Σύμπτυξη όλων των φακέλων</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5006"/>
+        <location filename="../src/application/mainwindow.cpp" line="5007"/>
         <source>Expand All Folders</source>
         <translation>Ανάπτυξη όλων των φακέλων</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5007"/>
+        <location filename="../src/application/mainwindow.cpp" line="5008"/>
         <source>Next Folder</source>
         <translation>Επόμενος φάκελος</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5008"/>
+        <location filename="../src/application/mainwindow.cpp" line="5009"/>
         <source>Previous Folder</source>
         <translation>Προηγούμενος φάκελος</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5009"/>
+        <location filename="../src/application/mainwindow.cpp" line="5010"/>
         <source>Expand Folder</source>
         <translation>Ανάπτυξη φακέλου</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5011"/>
+        <location filename="../src/application/mainwindow.cpp" line="5012"/>
         <source>Setting Page: Labels</source>
         <translation>Σελίδα επιλογών: Ετικέτες</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5013"/>
+        <location filename="../src/application/mainwindow.cpp" line="5014"/>
         <source>Share</source>
         <translation>Διαμοιρασμός</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5015"/>
+        <location filename="../src/application/mainwindow.cpp" line="5016"/>
         <source>Sort By</source>
         <translation>Ταξινόμηση κατά</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5016"/>
+        <location filename="../src/application/mainwindow.cpp" line="5017"/>
         <source>Ascending</source>
         <translation>Αύξουσα</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5017"/>
+        <location filename="../src/application/mainwindow.cpp" line="5018"/>
         <source>Descending</source>
         <translation>Φθίνουσα</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5865"/>
+        <location filename="../src/application/mainwindow.cpp" line="5866"/>
         <source>Check for updates</source>
         <translation>Έλεγχος για ενημερώσεις</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5866"/>
+        <location filename="../src/application/mainwindow.cpp" line="5867"/>
         <source>A new version of QuiteRSS...</source>
         <translation>Μία νέα έκδοση του QuiteRSS...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="6250"/>
+        <location filename="../src/application/mainwindow.cpp" line="6251"/>
         <source>Loading...</source>
         <translation>Φόρτωση...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="6835"/>
-        <location filename="../src/application/mainwindow.cpp" line="6852"/>
+        <location filename="../src/application/mainwindow.cpp" line="6836"/>
+        <location filename="../src/application/mainwindow.cpp" line="6853"/>
         <source>Web Page</source>
         <translation>Ιστοσελίδα</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="7392"/>
+        <location filename="../src/application/mainwindow.cpp" line="7397"/>
         <source>Save As</source>
         <translation>Αποθήκευση ως</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="7394"/>
+        <location filename="../src/application/mainwindow.cpp" line="7399"/>
         <source>HTML-Files (*.%1)</source>
         <translation>Αρχεία HTML (*.%1)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="7394"/>
+        <location filename="../src/application/mainwindow.cpp" line="7399"/>
         <source>Text files (*.%2)</source>
         <translation>Αρχεία κειμένου (*.%2)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="7400"/>
+        <location filename="../src/application/mainwindow.cpp" line="7405"/>
         <source>Save As: can&apos;t open a file</source>
         <translation>Αποθήκευση ως: σφάλμα κατά το άνοιγμα αρχείου</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="7896"/>
+        <location filename="../src/application/mainwindow.cpp" line="7901"/>
         <source>Choose Directory</source>
         <translation>Επιλογή φακέλου</translation>
     </message>
@@ -2487,39 +2487,39 @@ Ancient news could reappear</source>
 <context>
     <name>NetworkManager</name>
     <message>
-        <location filename="../src/network/networkmanager.cpp" line="111"/>
+        <location filename="../src/network/networkmanager.cpp" line="239"/>
         <source>SSL Certificate Error!</source>
         <translation>Σφάλμα πιστοποιητικού SSL!</translation>
     </message>
     <message>
-        <location filename="../src/network/networkmanager.cpp" line="112"/>
+        <location filename="../src/network/networkmanager.cpp" line="240"/>
         <source>The page you are trying to access has the following errors in the SSL certificate:</source>
         <translation>Η σελίδα που προσπαθείτε να προσπελάσετε εμφανίζει τα παρακάτω σφάλματα στο πιστοποιητικό SSL:</translation>
     </message>
     <message>
-        <location filename="../src/network/networkmanager.cpp" line="127"/>
+        <location filename="../src/network/networkmanager.cpp" line="255"/>
         <source>&lt;b&gt;Organization: &lt;/b&gt;</source>
         <translation>&lt;b&gt;Οργάνωση: &lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/network/networkmanager.cpp" line="130"/>
+        <location filename="../src/network/networkmanager.cpp" line="258"/>
         <source>&lt;b&gt;Domain Name: &lt;/b&gt;</source>
         <translation>&lt;b&gt;Όνομα τομέα: &lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/network/networkmanager.cpp" line="133"/>
+        <location filename="../src/network/networkmanager.cpp" line="261"/>
         <source>&lt;b&gt;Expiration Date: &lt;/b&gt;</source>
         <translation>&lt;b&gt;Ημερομηνία λήξης: &lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/network/networkmanager.cpp" line="140"/>
+        <location filename="../src/network/networkmanager.cpp" line="268"/>
         <source>&lt;b&gt;Error: &lt;/b&gt;</source>
         <translation>&lt;b&gt;Σφάλμα: &lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/network/networkmanager.cpp" line="148"/>
-        <source>Would you like to continue to the server?</source>
-        <translation>Θέλετε να συνεχίσετε στον εξυπηρετητή;</translation>
+        <location filename="../src/network/networkmanager.cpp" line="276"/>
+        <source>Would you like to make an exception for this certificate?</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4089,17 +4089,17 @@ Ancient news could reappear</source>
 <context>
     <name>QAbstractSpinBox</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5041"/>
+        <location filename="../src/application/mainwindow.cpp" line="5042"/>
         <source>&amp;Step up</source>
         <translation>&amp;Βήμα πάνω</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5042"/>
+        <location filename="../src/application/mainwindow.cpp" line="5043"/>
         <source>Step &amp;down</source>
         <translation>Βήμα &amp;κάτω</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5043"/>
+        <location filename="../src/application/mainwindow.cpp" line="5044"/>
         <source>&amp;Select All</source>
         <translation>&amp;Όλα</translation>
     </message>
@@ -4107,22 +4107,22 @@ Ancient news could reappear</source>
 <context>
     <name>QDialogButtonBox</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5019"/>
+        <location filename="../src/application/mainwindow.cpp" line="5020"/>
         <source>Close</source>
         <translation>Κλείσιμο</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5020"/>
+        <location filename="../src/application/mainwindow.cpp" line="5021"/>
         <source>Cancel</source>
         <translation>Άκυρο</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5021"/>
+        <location filename="../src/application/mainwindow.cpp" line="5022"/>
         <source>&amp;Yes</source>
         <translation>&amp;Ναι</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5022"/>
+        <location filename="../src/application/mainwindow.cpp" line="5023"/>
         <source>&amp;No</source>
         <translation>&amp;Όχι</translation>
     </message>
@@ -4236,37 +4236,37 @@ Ancient news could reappear</source>
 <context>
     <name>QLineEdit</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5024"/>
+        <location filename="../src/application/mainwindow.cpp" line="5025"/>
         <source>&amp;Undo</source>
         <translation>&amp;Αναίρεση</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5025"/>
+        <location filename="../src/application/mainwindow.cpp" line="5026"/>
         <source>&amp;Redo</source>
         <translation>Επανα&amp;φορά</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5026"/>
+        <location filename="../src/application/mainwindow.cpp" line="5027"/>
         <source>Cu&amp;t</source>
         <translation>&amp;Αποκοπή</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5027"/>
+        <location filename="../src/application/mainwindow.cpp" line="5028"/>
         <source>&amp;Copy</source>
         <translation>&amp;Αντιγραφή</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5028"/>
+        <location filename="../src/application/mainwindow.cpp" line="5029"/>
         <source>&amp;Paste</source>
         <translation>&amp;Επικόλληση</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5029"/>
+        <location filename="../src/application/mainwindow.cpp" line="5030"/>
         <source>Delete</source>
         <translation>Διαγραφή</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5030"/>
+        <location filename="../src/application/mainwindow.cpp" line="5031"/>
         <source>Select All</source>
         <translation>Επιλογή όλων</translation>
     </message>
@@ -4274,7 +4274,7 @@ Ancient news could reappear</source>
 <context>
     <name>QMultiInputContext</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5045"/>
+        <location filename="../src/application/mainwindow.cpp" line="5046"/>
         <source>Select IM</source>
         <translation>Επιλογή μεθόδου εισαγωγής
 </translation>
@@ -4301,42 +4301,42 @@ Ancient news could reappear</source>
 <context>
     <name>QTextControl</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5032"/>
+        <location filename="../src/application/mainwindow.cpp" line="5033"/>
         <source>&amp;Undo</source>
         <translation>&amp;Αναίρεση</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5033"/>
+        <location filename="../src/application/mainwindow.cpp" line="5034"/>
         <source>&amp;Redo</source>
         <translation>Επανα&amp;φορά</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5034"/>
+        <location filename="../src/application/mainwindow.cpp" line="5035"/>
         <source>Cu&amp;t</source>
         <translation>&amp;Αποκοπή</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5035"/>
+        <location filename="../src/application/mainwindow.cpp" line="5036"/>
         <source>&amp;Copy</source>
         <translation>&amp;Αντιγραφή</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5036"/>
+        <location filename="../src/application/mainwindow.cpp" line="5037"/>
         <source>&amp;Paste</source>
         <translation>&amp;Επικόλληση</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5037"/>
+        <location filename="../src/application/mainwindow.cpp" line="5038"/>
         <source>Delete</source>
         <translation>Διαγραφή</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5038"/>
+        <location filename="../src/application/mainwindow.cpp" line="5039"/>
         <source>Select All</source>
         <translation>Επιλογή Όλων</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5039"/>
+        <location filename="../src/application/mainwindow.cpp" line="5040"/>
         <source>Copy &amp;Link Location</source>
         <translation>Αντιγραφή &amp;διεύθυνσης δεσμού</translation>
     </message>
@@ -4344,22 +4344,22 @@ Ancient news could reappear</source>
 <context>
     <name>QWizard</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5047"/>
+        <location filename="../src/application/mainwindow.cpp" line="5048"/>
         <source>Cancel</source>
         <translation>Άκυρο</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5048"/>
+        <location filename="../src/application/mainwindow.cpp" line="5049"/>
         <source>&lt; &amp;Back</source>
         <translation>&lt; &amp;Πίσω</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5049"/>
+        <location filename="../src/application/mainwindow.cpp" line="5050"/>
         <source>&amp;Finish</source>
         <translation>&amp;Ολοκλήρωση</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5050"/>
+        <location filename="../src/application/mainwindow.cpp" line="5051"/>
         <source>&amp;Next &gt;</source>
         <translation>&amp;Επόμενο &gt;</translation>
     </message>
@@ -4375,22 +4375,22 @@ Ancient news could reappear</source>
 <context>
     <name>RequestFeed</name>
     <message>
-        <location filename="../src/requestfeed.cpp" line="205"/>
+        <location filename="../src/requestfeed.cpp" line="212"/>
         <source>Server requires authentication!</source>
         <translation>Ο διακομιστής απαιτεί ταυτοποίηση!</translation>
     </message>
     <message>
-        <location filename="../src/requestfeed.cpp" line="207"/>
+        <location filename="../src/requestfeed.cpp" line="214"/>
         <source>Server replied: Not Found!</source>
         <translation>Ο διακομιστής απάντησε: Δεν βρέθηκε!</translation>
     </message>
     <message>
-        <location filename="../src/requestfeed.cpp" line="250"/>
+        <location filename="../src/requestfeed.cpp" line="257"/>
         <source>Redirect error!</source>
         <translation>Σφάλμα ανακατεύθυνσης!</translation>
     </message>
     <message>
-        <location filename="../src/requestfeed.cpp" line="331"/>
+        <location filename="../src/requestfeed.cpp" line="338"/>
         <source>Request timeout!</source>
         <translation>Η σύνδεση έληξε!</translation>
     </message>
@@ -4469,6 +4469,11 @@ Ancient news could reappear</source>
         <location filename="../src/network/sslerrordialog.cpp" line="24"/>
         <source>SSL Certificate Error!</source>
         <translation>Σφάλμα πιστοποιητικού SSL!</translation>
+    </message>
+    <message>
+        <location filename="../src/network/sslerrordialog.cpp" line="34"/>
+        <source>Only for this session</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
