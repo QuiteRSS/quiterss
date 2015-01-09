@@ -27,6 +27,7 @@
 #include "cabundleupdater.h"
 
 #include <QNetworkReply>
+#include <QSslSocket>
 #include <QDebug>
 
 static QString fileNameForCert(const QSslCertificate &cert)
