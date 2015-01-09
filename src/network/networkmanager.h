@@ -35,14 +35,23 @@ public:
                                const QNetworkRequest &request,
                                QIODevice *outgoingData);
 
+  void loadSettings();
+  void loadCertificates();
+
 private slots:
   void slotAuthentication(QNetworkReply *reply, QAuthenticator *auth);
   void slotProxyAuthentication(const QNetworkProxy &proxy, QAuthenticator *auth);
   void slotSslError(QNetworkReply *reply, QList<QSslError> errors);
 
 private:
+  void addLocalCertificate(const QSslCertificate &cert);
+  void removeLocalCertificate(const QSslCertificate &cert);
+
+  QStringList certPaths_;
+  QList<QSslCertificate> caCerts_;
   QList<QSslCertificate> localCerts_;
   QList<QSslCertificate> tempAllowedCerts_;
+  bool ignoreAllWarnings_;
 
   AdBlockManager *adblockManager_;
 

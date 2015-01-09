@@ -18,16 +18,34 @@
 #include "networkmanager.h"
 
 #include "mainapplication.h"
+#include "common.h"
+#include "settings.h"
 #include "authenticationdialog.h"
 #include "adblockmanager.h"
 #include "webpage.h"
 #include "sslerrordialog.h"
+#include "cabundleupdater.h"
 
 #include <QNetworkReply>
 #include <QDebug>
 
+static QString fileNameForCert(const QSslCertificate &cert)
+{
+  QString certFileName = SslErrorDialog::certificateItemText(cert);
+  certFileName.remove(QLatin1Char(' '));
+  certFileName.append(QLatin1String(".crt"));
+  certFileName = Common::filterCharsFromFilename(certFileName);
+
+  while (certFileName.startsWith(QLatin1Char('.'))) {
+    certFileName = certFileName.mid(1);
+  }
+
+  return certFileName;
+}
+
 NetworkManager::NetworkManager(bool isThread, QObject* parent)
   : QNetworkAccessManager(parent)
+  , ignoreAllWarnings_(false)
   , adblockManager_(0)
 {
   setCookieJar(mainApp->cookieJar());
@@ -56,11 +74,97 @@ NetworkManager::NetworkManager(bool isThread, QObject* parent)
             SLOT(slotProxyAuthentication(QNetworkProxy,QAuthenticator*)));
     connect(this, SIGNAL(sslErrors(QNetworkReply*, QList<QSslError>)),
             SLOT(slotSslError(QNetworkReply*, QList<QSslError>)));
+
+    loadSettings();
   }
 }
 
 NetworkManager::~NetworkManager()
 {
+}
+
+void NetworkManager::loadSettings()
+{
+#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
+  QString certDir = mainApp->dataDir() + "/certificates";
+  QString bundlePath = certDir + "/ca-bundle.crt";
+  QString bundleVersionPath = certDir + "/bundle_version";
+
+  if (!QDir(certDir).exists()) {
+    QDir dir;
+    dir.mkdir(certDir);
+  }
+
+  if (!QFile::exists(bundlePath)) {
+    QFile(":data/data/ca-bundle.crt").copy(bundlePath);
+    QFile(bundlePath).setPermissions(QFile::ReadUser | QFile::WriteUser);
+
+    QFile(":data/data/bundle_version").copy(bundleVersionPath);
+    QFile(bundleVersionPath).setPermissions(QFile::ReadUser | QFile::WriteUser);
+  }
+
+  QSslSocket::setDefaultCaCertificates(QSslCertificate::fromPath(bundlePath));
+#else
+  QSslSocket::setDefaultCaCertificates(QSslSocket::systemCaCertificates());
+#endif
+
+  loadCertificates();
+}
+
+void NetworkManager::loadCertificates()
+{
+  Settings settings;
+  settings.beginGroup("SSL-Configuration");
+  certPaths_ = settings.value("CACertPaths", QStringList()).toStringList();
+  ignoreAllWarnings_ = settings.value("IgnoreAllSSLWarnings", false).toBool();
+  settings.endGroup();
+
+  // CA Certificates
+  caCerts_ = QSslSocket::defaultCaCertificates();
+
+  foreach (const QString &path, certPaths_) {
+#ifdef Q_OS_WIN
+    // Used from Qt 4.7.4 qsslcertificate.cpp and modified because QSslCertificate::fromPath
+    // is kind of a bugged on Windows, it does work only with full path to cert file
+    QDirIterator it(path, QDir::Files, QDirIterator::FollowSymlinks | QDirIterator::Subdirectories);
+    while (it.hasNext()) {
+      QString filePath = it.next();
+      if (!filePath.endsWith(QLatin1String(".crt"))) {
+        continue;
+      }
+
+      QFile file(filePath);
+      if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        caCerts_ += QSslCertificate::fromData(file.readAll(), QSsl::Pem);
+      }
+    }
+#else
+    caCerts_ += QSslCertificate::fromPath(path + "/*.crt", QSsl::Pem, QRegExp::Wildcard);
+#endif
+  }
+  // Local Certificates
+#ifdef Q_OS_WIN
+  QDirIterator it_(mainApp->dataDir() + "/certificates", QDir::Files, QDirIterator::FollowSymlinks | QDirIterator::Subdirectories);
+  while (it_.hasNext()) {
+    QString filePath = it_.next();
+    if (!filePath.endsWith(QLatin1String(".crt"))) {
+      continue;
+    }
+
+    QFile file(filePath);
+    if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+      localCerts_ += QSslCertificate::fromData(file.readAll(), QSsl::Pem);
+    }
+  }
+#else
+  localCerts_ = QSslCertificate::fromPath(mainApp->dataDir() + "/certificates/*.crt", QSsl::Pem, QRegExp::Wildcard);
+#endif
+
+  QSslSocket::setDefaultCaCertificates(caCerts_ + localCerts_);
+
+#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
+  new CaBundleUpdater(this, this);
+#endif
 }
 
 /** @brief Request authentification
@@ -95,7 +199,7 @@ static inline uint qHash(const QSslCertificate &cert)
 
 void NetworkManager::slotSslError(QNetworkReply *reply, QList<QSslError> errors)
 {
-  if (mainApp->isNetIgnoreWarnings() || reply->property("downloadReply").toBool() ||
+  if (ignoreAllWarnings_ || reply->property("downloadReply").toBool() ||
       reply->property("feedReply").toBool()) {
     reply->ignoreSslErrors(errors);
     return;
@@ -168,20 +272,30 @@ void NetworkManager::slotSslError(QNetworkReply *reply, QList<QSslError> errors)
     ++i;
   }
 
-  QString text2 = tr("Would you like to continue to the server?");
+  QString text2 = tr("Would you like to make an exception for this certificate?");
   QString message = QString("<b>%1</b><p>%2</p>%3<p>%4</p><br>").arg(title, text1, certs, text2);
 
   if (!certs.isEmpty())  {
     SslErrorDialog dialog(webPage->view());
     dialog.setText(message);
-    int result = dialog.exec();
-    if (result == QDialog::Accepted) {
+    dialog.exec();
+
+    switch (dialog.result()) {
+    case SslErrorDialog::Yes:
+      foreach (const QSslCertificate &cert, errorHash.keys()) {
+        if (!localCerts_.contains(cert)) {
+          addLocalCertificate(cert);
+        }
+      }
+      break;
+    case SslErrorDialog::OnlyForThisSession:
       foreach (const QSslCertificate &cert, errorHash.keys()) {
         if (!tempAllowedCerts_.contains(cert)) {
           tempAllowedCerts_.append(cert);
         }
       }
-    } else {
+      break;
+    default:
       // To prevent asking user more than once for the same certificate
       webPage->addRejectedCerts(errorHash.keys());
       return;
@@ -212,4 +326,62 @@ QNetworkReply *NetworkManager::createRequest(QNetworkAccessManager::Operation op
   }
 
   return QNetworkAccessManager::createRequest(op, request, outgoingData);
+}
+
+void NetworkManager::addLocalCertificate(const QSslCertificate &cert)
+{
+  localCerts_.append(cert);
+  QSslSocket::addDefaultCaCertificate(cert);
+
+  QDir dir(mainApp->dataDir());
+  if (!dir.exists("certificates")) {
+    dir.mkdir("certificates");
+  }
+
+  QString certFileName = fileNameForCert(cert);
+  QString fileName = Common::ensureUniqueFilename(mainApp->dataDir() + "/certificates/" + certFileName);
+
+  QFile file(fileName);
+  if (file.open(QFile::WriteOnly)) {
+    file.write(cert.toPem());
+    file.close();
+  }
+  else {
+    qWarning() << "NetworkManager::addLocalCertificate cannot write to file: " << fileName;
+  }
+}
+
+void NetworkManager::removeLocalCertificate(const QSslCertificate &cert)
+{
+  localCerts_.removeOne(cert);
+
+  QList<QSslCertificate> certs = QSslSocket::defaultCaCertificates();
+  certs.removeOne(cert);
+  QSslSocket::setDefaultCaCertificates(certs);
+
+  // Delete cert file from profile
+  bool deleted = false;
+  QDirIterator it(mainApp->dataDir() + "/certificates", QDir::Files, QDirIterator::FollowSymlinks | QDirIterator::Subdirectories);
+  while (it.hasNext()) {
+    const QString filePath = it.next();
+    const QList<QSslCertificate> &certs = QSslCertificate::fromPath(filePath);
+    if (certs.isEmpty()) {
+      continue;
+    }
+
+    const QSslCertificate cert_ = certs.at(0);
+    if (cert == cert_) {
+      QFile file(filePath);
+      if (!file.remove()) {
+        qWarning() << "NetworkManager::removeLocalCertificate cannot remove file" << filePath;
+      }
+
+      deleted = true;
+      break;
+    }
+  }
+
+  if (!deleted) {
+    qWarning() << "NetworkManager::removeLocalCertificate cannot remove certificate";
+  }
 }

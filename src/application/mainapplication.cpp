@@ -214,7 +214,6 @@ void MainApplication::createSettings()
   showSplashScreen_ = settings.value("showSplashScreen", true).toBool();
   updateFeedsStartUp_ = settings.value("autoUpdatefeedsStartUp", false).toBool();
   noDebugOutput_ = settings.value("noDebugOutput", true).toBool();
-  netIgnoreWarnings_ = settings.value("netIgnoreWarnings", false).toBool();
   settings.endGroup();
 }
 
@@ -559,7 +558,7 @@ QUrl MainApplication::userStyleSheet(const QString &filePath) const
 {
   QString userStyle;
 
-#ifndef QZ_WS_X11
+#ifndef HAVE_X11
   // Don't grey out selection on losing focus (to prevent graying out found text)
   QString highlightColor;
   QString highlightedTextColor;

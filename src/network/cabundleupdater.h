@@ -32,27 +32,41 @@
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
-#ifndef NETWORKMANAGERPROXY_H
-#define NETWORKMANAGERPROXY_H
+#ifndef CABUNDLEUPDATER_H
+#define CABUNDLEUPDATER_H
 
-#include <QNetworkAccessManager>
+#include <QObject>
 
-#include "networkmanager.h"
+class QNetworkReply;
 
-class WebPage;
+class NetworkManager;
 
-class NetworkManagerProxy : public QNetworkAccessManager
+class CaBundleUpdater : public QObject
 {
+  Q_OBJECT
 public:
-  explicit NetworkManagerProxy(WebPage* page, QObject* parent = 0);
+  explicit CaBundleUpdater(NetworkManager* manager, QObject* parent = 0);
 
-  QNetworkReply* createRequest(QNetworkAccessManager::Operation op, const QNetworkRequest &request, QIODevice* outgoingData);
+signals:
 
-  void disconnectObjects();
+public slots:
+
+private slots:
+  void start();
+  void replyFinished();
 
 private:
-  WebPage* page_;
+  enum Progress { Start, CheckLastUpdate, LoadBundle };
 
+  NetworkManager* m_manager;
+  Progress m_progress;
+  QNetworkReply* m_reply;
+
+  QString m_bundleVersionFileName;
+  QString m_bundleFileName;
+  QString m_lastUpdateFileName;
+
+  int m_latestBundleVersion;
 };
 
-#endif // NETWORKMANAGERPROXY_H
+#endif // CABUNDLEUPDATER_H

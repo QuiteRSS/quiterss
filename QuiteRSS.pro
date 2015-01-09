@@ -135,7 +135,8 @@ HEADERS += \
     src/newsfilters/itemcondition.h \
     src/newsfilters/itemaction.h \
     src/network/sslerrordialog.h \
-    src/network/networkmanagerproxy.h
+    src/network/networkmanagerproxy.h \
+    src/network/cabundleupdater.h
 
 SOURCES += \
     src/parseobject.cpp \
@@ -202,7 +203,8 @@ SOURCES += \
     src/newsfilters/itemcondition.cpp \
     src/newsfilters/itemaction.cpp \
     src/network/sslerrordialog.cpp \
-    src/network/networkmanagerproxy.cpp
+    src/network/networkmanagerproxy.cpp \
+    src/network/cabundleupdater.cpp
 
 INCLUDEPATH +=  $$PWD/src \
                 $$PWD/src/application \

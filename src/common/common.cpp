@@ -131,3 +131,21 @@ void Common::createFileBackup(const QString &oldFilename, const QString &oldVers
                         .arg(QDateTime::currentDateTime().toString("yyyy-MM-dd_hh-mm-ss")));
   QFile::copy(oldFilename, backupFilename);
 }
+
+QString Common::readAllFileContents(const QString &filename)
+{
+  return QString::fromUtf8(readAllFileByteContents(filename));
+}
+
+QByteArray Common::readAllFileByteContents(const QString &filename)
+{
+  QFile file(filename);
+
+  if (!filename.isEmpty() && file.open(QFile::ReadOnly)) {
+    const QByteArray a = file.readAll();
+    file.close();
+    return a;
+  }
+
+  return QByteArray();
+}

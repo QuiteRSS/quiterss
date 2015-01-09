@@ -25,11 +25,16 @@
 
 namespace Common
 {
+  static const QString Qz_WWWADDRESS = "http://www.qupzilla.com";
+
   bool removePath(const QString &path);
   bool matchDomain(const QString &pattern, const QString &domain);
   QString filterCharsFromFilename(const QString &name);
   QString ensureUniqueFilename(const QString &name, const QString &appendFormat = QString("(%1)"));
   void createFileBackup(const QString &oldFilename, const QString &oldVersion);
+
+  QString readAllFileContents(const QString &filename);
+  QByteArray readAllFileByteContents(const QString &filename);
 }
 
 #endif // COMMON_H

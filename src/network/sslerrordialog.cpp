@@ -29,10 +29,12 @@ SslErrorDialog::SslErrorDialog(QWidget* parent)
 
   pageLayout->addWidget(errorLabel_);
 
-  buttonBox->addButton(QDialogButtonBox::Ok);
-  buttonBox->addButton(QDialogButtonBox::Cancel);
-  buttonBox->button(QDialogButtonBox::Cancel)->setFocus();
-  connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
+  buttonBox->addButton(QDialogButtonBox::Yes);
+  buttonBox->addButton(QDialogButtonBox::No);
+  buttonBox->addButton(tr("Only for this session"), QDialogButtonBox::ApplyRole);
+  buttonBox->button(QDialogButtonBox::No)->setFocus();
+  connect(buttonBox, SIGNAL(clicked(QAbstractButton*)),
+          this, SLOT(buttonClicked(QAbstractButton*)));
 }
 
 SslErrorDialog::~SslErrorDialog()
@@ -43,6 +45,48 @@ SslErrorDialog::~SslErrorDialog()
 void SslErrorDialog::setText(const QString &text)
 {
   errorLabel_->setText(text);
+}
+
+SslErrorDialog::Result SslErrorDialog::result()
+{
+  return result_;
+}
+
+void SslErrorDialog::buttonClicked(QAbstractButton* button)
+{
+  switch (buttonBox->buttonRole(button)) {
+  case QDialogButtonBox::YesRole:
+    result_ = Yes;
+    accept();
+    break;
+
+  case QDialogButtonBox::ApplyRole:
+    result_ = OnlyForThisSession;
+    accept();
+    break;
+
+  default:
+    result_ = No;
+    reject();
+    break;
+  }
+}
+
+QString SslErrorDialog::certificateItemText(const QSslCertificate &cert)
+{
+#if QT_VERSION >= 0x050000
+    QString commonName = cert.subjectInfo(QSslCertificate::CommonName).isEmpty() ? QString() : cert.subjectInfo(QSslCertificate::CommonName).at(0);
+    QString organization = cert.subjectInfo(QSslCertificate::Organization).isEmpty() ? QString() : cert.subjectInfo(QSslCertificate::Organization).at(0);
+#else
+    QString commonName = cert.subjectInfo(QSslCertificate::CommonName);
+    QString organization = cert.subjectInfo(QSslCertificate::Organization);
+#endif
+
+    if (commonName.isEmpty()) {
+        return clearCertSpecialSymbols(organization);
+    }
+
+    return clearCertSpecialSymbols(commonName);
 }
 
 QString SslErrorDialog::clearCertSpecialSymbols(const QString &string)
