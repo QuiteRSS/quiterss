@@ -44,6 +44,8 @@ private slots:
   void slotSslError(QNetworkReply *reply, QList<QSslError> errors);
 
 private:
+  void addRejectedCerts(const QList<QSslCertificate> &certs);
+  bool containsRejectedCerts(const QList<QSslCertificate> &certs);
   void addLocalCertificate(const QSslCertificate &cert);
   void removeLocalCertificate(const QSslCertificate &cert);
 
@@ -52,6 +54,7 @@ private:
   QList<QSslCertificate> localCerts_;
   QList<QSslCertificate> tempAllowedCerts_;
   bool ignoreAllWarnings_;
+  QList<QSslCertificate> rejectedSslCerts_;
 
   AdBlockManager *adblockManager_;
 

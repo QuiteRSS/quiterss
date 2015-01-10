@@ -164,6 +164,7 @@ void NetworkManager::loadCertificates()
   QSslSocket::setDefaultCaCertificates(caCerts_ + localCerts_);
 
 #if defined(Q_OS_WIN) || defined(Q_OS_OS2)
+  qCritical() << "Create CaBundleUpdater";
   new CaBundleUpdater(this, this);
 #endif
 }
@@ -200,16 +201,7 @@ static inline uint qHash(const QSslCertificate &cert)
 
 void NetworkManager::slotSslError(QNetworkReply *reply, QList<QSslError> errors)
 {
-  if (ignoreAllWarnings_ || reply->property("downloadReply").toBool() ||
-      reply->property("feedReply").toBool()) {
-    reply->ignoreSslErrors(errors);
-    return;
-  }
-
-  QNetworkRequest request = reply->request();
-  QVariant v = request.attribute((QNetworkRequest::Attribute)(QNetworkRequest::User + 100));
-  WebPage* webPage = static_cast<WebPage*>(v.value<void*>());
-  if (!WebPage::isPointerSafeToUse(webPage)) {
+  if (ignoreAllWarnings_ || reply->property("downloadReply").toBool()) {
     reply->ignoreSslErrors(errors);
     return;
   }
@@ -231,13 +223,14 @@ void NetworkManager::slotSslError(QNetworkReply *reply, QList<QSslError> errors)
     }
   }
 
-  // User already rejected those certs on this page
-  if (webPage->containsRejectedCerts(errorHash.keys())) {
+  // User already rejected those certs
+  if (containsRejectedCerts(errorHash.keys())) {
     return;
   }
 
   QString title = tr("SSL Certificate Error!");
-  QString text1 = tr("The page you are trying to access has the following errors in the SSL certificate:");
+  QString text1 = QString(tr("The server \"%1\" has the following errors in the SSL certificate:")).
+      arg(reply->url().host());
 
   QString certs;
 
@@ -277,7 +270,7 @@ void NetworkManager::slotSslError(QNetworkReply *reply, QList<QSslError> errors)
   QString message = QString("<b>%1</b><p>%2</p>%3<p>%4</p><br>").arg(title, text1, certs, text2);
 
   if (!certs.isEmpty())  {
-    SslErrorDialog dialog(webPage->view());
+    SslErrorDialog dialog(mainApp->mainWindow());
     dialog.setText(message);
     dialog.exec();
 
@@ -298,7 +291,7 @@ void NetworkManager::slotSslError(QNetworkReply *reply, QList<QSslError> errors)
       break;
     default:
       // To prevent asking user more than once for the same certificate
-      webPage->addRejectedCerts(errorHash.keys());
+      addRejectedCerts(errorHash.keys());
       return;
     }
   }
@@ -327,6 +320,28 @@ QNetworkReply *NetworkManager::createRequest(QNetworkAccessManager::Operation op
   }
 
   return QNetworkAccessManager::createRequest(op, request, outgoingData);
+}
+
+void NetworkManager::addRejectedCerts(const QList<QSslCertificate> &certs)
+{
+  foreach (const QSslCertificate &cert, certs) {
+    if (!rejectedSslCerts_.contains(cert)) {
+      rejectedSslCerts_.append(cert);
+    }
+  }
+}
+
+bool NetworkManager::containsRejectedCerts(const QList<QSslCertificate> &certs)
+{
+  int matches = 0;
+
+  foreach (const QSslCertificate &cert, certs) {
+    if (rejectedSslCerts_.contains(cert)) {
+      ++matches;
+    }
+  }
+
+  return matches == certs.count();
 }
 
 void NetworkManager::addLocalCertificate(const QSslCertificate &cert)

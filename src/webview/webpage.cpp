@@ -60,6 +60,14 @@ WebPage::~WebPage()
   livingPages_.removeOne(this);
 }
 
+void WebPage::disconnectObjects()
+{
+  livingPages_.removeOne(this);
+
+  disconnect(this);
+  networkManagerProxy_->disconnectObjects();
+}
+
 bool WebPage::acceptNavigationRequest(QWebFrame *frame,
                                       const QNetworkRequest &request,
                                       NavigationType type)
@@ -274,30 +282,4 @@ void WebPage::cleanBlockedObjects()
   if (view() && !view()->isVisible() && !mainFrame()->url().fragment().isEmpty()) {
     mainFrame()->scrollToAnchor(mainFrame()->url().fragment());
   }
-}
-
-void WebPage::addRejectedCerts(const QList<QSslCertificate> &certs)
-{
-  foreach (const QSslCertificate &cert, certs) {
-    if (!rejectedSslCerts_.contains(cert)) {
-      rejectedSslCerts_.append(cert);
-    }
-  }
-}
-
-bool WebPage::containsRejectedCerts(const QList<QSslCertificate> &certs)
-{
-  int matches = 0;
-
-  foreach (const QSslCertificate &cert, certs) {
-    if (rejectedSslCerts_.contains(cert)) {
-      ++matches;
-    }
-
-    if (sslCert_ == cert) {
-      sslCert_.clear();
-    }
-  }
-
-  return matches == certs.count();
 }

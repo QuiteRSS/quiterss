@@ -40,6 +40,11 @@ WebView::WebView(QWidget *parent)
   connect(this, SIGNAL(loadFinished(bool)), this, SLOT(slotLoadFinished()));
 }
 
+void WebView::disconnectObjects()
+{
+  disconnect(this);
+}
+
 /*virtual*/ void WebView::mousePressEvent(QMouseEvent *event)
 {
   buttonClick_ = 0;

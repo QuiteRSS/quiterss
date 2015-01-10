@@ -68,6 +68,8 @@ public:
   explicit NewsTabWidget(QWidget *parent, TabType type, int feedId = -1, int feedParId = -1);
   ~NewsTabWidget();
 
+  void disconnectObjects();
+
   void retranslateStrings();
   void setSettings(bool init = true, bool newTab = true);
   void setNewsLayout();

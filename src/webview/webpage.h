@@ -41,6 +41,8 @@ public:
   explicit WebPage(QObject *parent);
   ~WebPage();
 
+  void disconnectObjects();
+
   bool acceptNavigationRequest(QWebFrame *frame,
                                const QNetworkRequest &request,
                                NavigationType type);
@@ -69,9 +71,6 @@ private slots:
 
 private:
   NetworkManagerProxy *networkManagerProxy_;
-
-  QSslCertificate sslCert_;
-  QVector<QSslCertificate> rejectedSslCerts_;
 
   QWebPage::NavigationType lastRequestType_;
   QUrl lastRequestUrl_;

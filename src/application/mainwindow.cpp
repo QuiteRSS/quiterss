@@ -161,6 +161,11 @@ void MainWindow::quitApp()
 
   saveSettings();
 
+  for (int i = 0; i < stackedWidget_->count(); i++) {
+    NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(i);
+    widget->disconnectObjects();
+  }
+
   mainApp->networkManager()->disconnect(mainApp->networkManager());
   mainApp->updateFeeds()->disconnectObjects();
   mainApp->updateFeeds()->quitApp();
@@ -6077,6 +6082,7 @@ void MainWindow::slotCloseTab(int index)
 
     stackedWidget_->removeWidget(widget);
     tabBar_->removeTab(index);
+    widget->disconnectObjects();
     widget->newsTitleLabel_->deleteLater();
     widget->deleteLater();
   }

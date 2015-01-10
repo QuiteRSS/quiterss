@@ -20,6 +20,7 @@
 #include "mainapplication.h"
 #include "adblockicon.h"
 #include "settings.h"
+#include "webpage.h"
 
 #if defined(Q_OS_WIN)
 #include <qt_windows.h>
@@ -144,6 +145,16 @@ NewsTabWidget::~NewsTabWidget()
   if (type_ == TabTypeDownloads) {
     mainApp->downloadManager()->hide();
     mainApp->downloadManager()->setParent(mainWindow_);
+  }
+}
+
+void NewsTabWidget::disconnectObjects()
+{
+  disconnect(this);
+  if (type_ != TabTypeDownloads) {
+    webView_->disconnect(this);
+    webView_->disconnectObjects();
+    qobject_cast<WebPage*>(webView_->page())->disconnectObjects();
   }
 }
 
@@ -2438,6 +2449,7 @@ int NewsTabWidget::findUnreadNews(bool next)
 void NewsTabWidget::setTextTab(const QString &text)
 {
   int padding = 15;
+
   if (closeButton_->isHidden())
     padding = 0;
 

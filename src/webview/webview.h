@@ -37,6 +37,8 @@ class WebView : public QWebView
 public:
   explicit WebView(QWidget *parent);
 
+  void disconnectObjects();
+
   int buttonClick_;
 
   bool isLoading() { return isLoading_; }
