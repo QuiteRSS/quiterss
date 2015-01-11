@@ -927,6 +927,7 @@ void MainWindow::createActions()
 
   showCleanUpWizardAct_ = new QAction(this);
   showCleanUpWizardAct_->setObjectName("showCleanUpWizardAct");
+  showCleanUpWizardAct_->setIcon(QIcon(":/images/cleanup"));
   this->addAction(showCleanUpWizardAct_);
   connect(showCleanUpWizardAct_, SIGNAL(triggered()), this, SLOT(cleanUp()));
 
