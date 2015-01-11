@@ -29,6 +29,10 @@ SplashScreen::SplashScreen(const QPixmap &pixmap, Qt::WindowFlags flag)
               Qt::AlignRight | Qt::AlignTop, Qt::darkGray);
   setAttribute(Qt::WA_DeleteOnClose);
 
+  QFont font = this->font();
+  font.setPixelSize(12);
+  setFont(font);
+
   splashProgress_.setObjectName("splashProgress");
   splashProgress_.setTextVisible(false);
   splashProgress_.setFixedHeight(10);
