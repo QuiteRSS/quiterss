@@ -1952,11 +1952,28 @@ void NewsTabWidget::openInExternalBrowserNews()
 
   if (type_ != TabTypeWeb) {
     QList<QModelIndex> indexes = newsView_->selectionModel()->selectedRows(0);
+    QStringList feedIdList;
 
     int cnt = indexes.count();
     if (cnt == 0) return;
 
     for (int i = cnt-1; i >= 0; --i) {
+      QSqlQuery q;
+      QModelIndex curIndex = indexes.at(i);
+      if (newsModel_->dataField(curIndex.row(), "read").toInt() == 0) {
+        newsModel_->setData(
+              newsModel_->index(curIndex.row(), newsModel_->fieldIndex("new")),
+              0);
+        newsModel_->setData(
+              newsModel_->index(curIndex.row(), newsModel_->fieldIndex("read")),
+              1);
+
+        int newsId = newsModel_->dataField(curIndex.row(), "id").toInt();
+        q.exec(QString("UPDATE news SET new=0, read=1 WHERE id=='%2'").arg(newsId));
+        QString feedId = newsModel_->dataField(i, "feedId").toString();
+        if (!feedIdList.contains(feedId)) feedIdList.append(feedId);
+      }
+
       QUrl url = QUrl::fromEncoded(getLinkNews(indexes.at(i).row()).toUtf8());
       if (url.host().isEmpty()) {
         QString feedId = newsModel_->dataField(indexes.at(i).row(), "feedId").toString();
@@ -1966,7 +1983,16 @@ void NewsTabWidget::openInExternalBrowserNews()
         url.setScheme(hostUrl.scheme());
         url.setHost(hostUrl.host());
       }
+
       openUrl(url);
+    }
+
+    if (!feedIdList.isEmpty()) {
+      foreach (QString feedId, feedIdList) {
+        mainWindow_->slotUpdateStatus(feedId.toInt());
+      }
+      mainWindow_->recountCategoryCounts();
+      newsView_->viewport()->update();
     }
   } else {
     openUrl(webView_->url());
