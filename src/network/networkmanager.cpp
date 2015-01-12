@@ -229,7 +229,7 @@ void NetworkManager::slotSslError(QNetworkReply *reply, QList<QSslError> errors)
   }
 
   QString title = tr("SSL Certificate Error!");
-  QString text1 = QString(tr("The server \"%1\" has the following errors in the SSL certificate:")).
+  QString text1 = QString(tr("The \"%1\" server has the following errors in the SSL certificate:")).
       arg(reply->url().host());
 
   QString certs;
