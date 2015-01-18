@@ -164,7 +164,6 @@ void NetworkManager::loadCertificates()
   QSslSocket::setDefaultCaCertificates(caCerts_ + localCerts_);
 
 #if defined(Q_OS_WIN) || defined(Q_OS_OS2)
-  qCritical() << "Create CaBundleUpdater";
   new CaBundleUpdater(this, this);
 #endif
 }
