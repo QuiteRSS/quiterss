@@ -78,19 +78,19 @@ MainApplication::MainApplication(int &argc, char **argv)
 
   connectDatabase();
   setProgressSplashScreen(30);
-  qCritical() << "Run application 2";
+  qWarning() << "Run application 2";
   mainWindow_ = new MainWindow();
-  qCritical() << "Run application 3";
+  qWarning() << "Run application 3";
   setProgressSplashScreen(60);
 
   loadSettings();
-  qCritical() << "Run application 4";
+  qWarning() << "Run application 4";
   updateFeeds_ = new UpdateFeeds(mainWindow_);
   setProgressSplashScreen(90);
-  qCritical() << "Run application 5";
+  qWarning() << "Run application 5";
   mainWindow_->restoreFeedsOnStartUp();
   setProgressSplashScreen(100);
-  qCritical() << "Run application 6";
+  qWarning() << "Run application 6";
   if (!mainWindow_->startingTray_ || !mainWindow_->showTrayIcon_) {
     mainWindow_->show();
   }
@@ -250,9 +250,9 @@ void MainApplication::loadSettings()
 
 void MainApplication::quitApplication()
 {
-  qCritical() << "quitApplication 1";
+  qWarning() << "quitApplication 1";
   delete mainWindow_;
-  qCritical() << "quitApplication 2";
+  qWarning() << "quitApplication 2";
   delete networkManager_;
   delete cookieJar_;
   delete closingWidget_;
