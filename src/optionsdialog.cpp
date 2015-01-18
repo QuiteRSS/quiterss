@@ -1385,7 +1385,7 @@ void OptionsDialog::createLanguageWidget()
 
   treeItem.clear();
   treeItem << "fr" << QString::fromUtf8("Français [FR]")
-           << "0.17.4"
+           << "0.17.5"
            << "Glad Deschrijver" << "glad.deschrijver@gmail.com";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/flags/flag_FR"));
@@ -1449,7 +1449,7 @@ void OptionsDialog::createLanguageWidget()
 
   treeItem.clear();
   treeItem << "nl" << QString::fromUtf8("Nederlands [NL]")
-           << "0.17.4"
+           << "0.17.5"
            << "TeLLie" << "elbert.pol@gmail.com";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/flags/flag_NL"));
@@ -1481,7 +1481,7 @@ void OptionsDialog::createLanguageWidget()
 
   treeItem.clear();
   treeItem << "ro_RO" << QString::fromUtf8("Limba română [ro_RO]")
-           << "0.17.4"
+           << "0.17.5"
            << QString::fromUtf8("Jaff (Oprea Nicolae)") << "Jaff2002@yahoo.com";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/flags/flag_RO"));
@@ -1537,7 +1537,7 @@ void OptionsDialog::createLanguageWidget()
 
   treeItem.clear();
   treeItem << "uk" << QString::fromUtf8("Українська [UK]")
-           << "0.16.2"
+           << "0.17.5"
            << QString::fromUtf8("Сергій Левицький") << "leon21sl@yandex.ua";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/flags/flag_UK"));
@@ -1553,7 +1553,7 @@ void OptionsDialog::createLanguageWidget()
 
   treeItem.clear();
   treeItem << "zh_CN" << QString::fromUtf8("中文 (China) [zh_CN]")
-           << "0.17.1"
+           << "0.17.5"
            << QString::fromUtf8("wwj402") << "";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/flags/flag_CN"));

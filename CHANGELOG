@@ -1,3 +1,7 @@
+Version 0.17.5 (18 Jan 2015)
+  * Added: Button "Clean Up"
+  * Fixed: Application crash
+
 Version 0.17.4 (09 Jan 2015)
   * Added: Saving SSL Certificates
   * Fixed: Application crash
