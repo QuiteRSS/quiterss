@@ -2519,7 +2519,7 @@ werd niet gevonden</translation>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="276"/>
         <source>Would you like to make an exception for this certificate?</source>
-        <translation type="unfinished"/>
+        <translation>Zou je graag een uitzondering maken voor dit certificaat?</translation>
     </message>
 </context>
 <context>
@@ -4472,7 +4472,7 @@ werd niet gevonden</translation>
     <message>
         <location filename="../src/network/sslerrordialog.cpp" line="34"/>
         <source>Only for this session</source>
-        <translation type="unfinished"/>
+        <translation>Alleen voor deze sessie</translation>
     </message>
 </context>
 <context>

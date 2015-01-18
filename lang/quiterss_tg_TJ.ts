@@ -2509,7 +2509,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="261"/>
         <source>&lt;b&gt;Expiration Date: &lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Муҳлати Тамомшави: &lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="268"/>
@@ -2519,7 +2519,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="276"/>
         <source>Would you like to make an exception for this certificate?</source>
-        <translation type="unfinished"/>
+        <translation>Оё шумо мехоҳед ин сертификатро истисно кунед?</translation>
     </message>
 </context>
 <context>
@@ -2813,17 +2813,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1593"/>
         <source>Mark Read/Unread</source>
-        <translation type="unfinished"/>
+        <translation>Қайд ҳамчун хондашуда/хонданашуда</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1723"/>
         <source>Mark News Star</source>
-        <translation type="unfinished"/>
+        <translation>Қайди хабар бо ситорача</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1727"/>
         <source>Label</source>
-        <translation type="unfinished"/>
+        <translation>Нишона</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1731"/>
@@ -2833,7 +2833,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1735"/>
         <source>Open News in External Browser</source>
-        <translation type="unfinished"/>
+        <translation>Кушодани хабар дар браузери беруна</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1739"/>
@@ -3552,7 +3552,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1082"/>
         <source>Show when inactive main window</source>
-        <translation type="unfinished"/>
+        <translation>Нишон додан вақти равзанаи асосӣ ғайрифаъол аст</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1097"/>
@@ -3562,7 +3562,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1107"/>
         <source>Transparency</source>
-        <translation type="unfinished"/>
+        <translation>Шаффофият</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1121"/>
@@ -3572,27 +3572,27 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1122"/>
         <source>Show icon feed</source>
-        <translation type="unfinished"/>
+        <translation>Нишон додани тасвири тасма</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1123"/>
         <source>Show button &apos;Mark All News Read&apos;</source>
-        <translation type="unfinished"/>
+        <translation> Нишон додани тугмаи &quot;Қайди ҳамаи хабарҳо ҳамчун хондашуда&quot;</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1124"/>
         <source>Show button &apos;Mark Read/Unread&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Нишон додани тугмаи &quot;Қайд ҳамчун хондашуда/хонданашуда&quot;</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1125"/>
         <source>Show button &apos;Open in External Browser&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Нишон додани тугмаи &quot;Кушодан дар браузери берунӣ&quot;</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1126"/>
         <source>Show button &apos;Delete News&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Нишон додани тугмаи &quot;Хориҷи хабарҳо&quot;</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1173"/>
@@ -3880,12 +3880,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1711"/>
         <source>Notification text color</source>
-        <translation type="unfinished"/>
+        <translation>Ранги матни огоҳӣ</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1714"/>
         <source>Notification background color</source>
-        <translation type="unfinished"/>
+        <translation>Ранги пасзаминаи огоҳинома</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2106"/>
@@ -4467,12 +4467,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/network/sslerrordialog.cpp" line="24"/>
         <source>SSL Certificate Error!</source>
-        <translation type="unfinished"/>
+        <translation>Хатогии Сертификати SSL!</translation>
     </message>
     <message>
         <location filename="../src/network/sslerrordialog.cpp" line="34"/>
         <source>Only for this session</source>
-        <translation type="unfinished"/>
+        <translation>Танҳо барои ин ҷаласа</translation>
     </message>
 </context>
 <context>

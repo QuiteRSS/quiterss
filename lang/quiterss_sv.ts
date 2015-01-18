@@ -2519,7 +2519,7 @@ kunde inte hittas!</translation>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="276"/>
         <source>Would you like to make an exception for this certificate?</source>
-        <translation type="unfinished"/>
+        <translation>Vill du göra undantag för detta certifikat?</translation>
     </message>
 </context>
 <context>
@@ -4472,7 +4472,7 @@ kunde inte hittas!</translation>
     <message>
         <location filename="../src/network/sslerrordialog.cpp" line="34"/>
         <source>Only for this session</source>
-        <translation type="unfinished"/>
+        <translation>Endast för den här sessionen</translation>
     </message>
 </context>
 <context>

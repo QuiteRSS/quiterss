@@ -2517,7 +2517,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="276"/>
         <source>Would you like to make an exception for this certificate?</source>
-        <translation type="unfinished"/>
+        <translation>Ausnahme für dieses Zertifikat machen?</translation>
     </message>
 </context>
 <context>
@@ -4470,7 +4470,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/network/sslerrordialog.cpp" line="34"/>
         <source>Only for this session</source>
-        <translation type="unfinished"/>
+        <translation>Nur für diese Sitzung</translation>
     </message>
 </context>
 <context>

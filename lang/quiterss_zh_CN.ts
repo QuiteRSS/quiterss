@@ -4,7 +4,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="45"/>
         <source>About</source>
-        <translation>关于 QuiteRSS</translation>
+        <translation>关于</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="56"/>
@@ -1418,7 +1418,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainapplication.cpp" line="267"/>
         <source>Saving data...</source>
-        <translation type="unfinished"/>
+        <translation>保存数据...</translation>
     </message>
 </context>
 <context>
@@ -2489,37 +2489,37 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="239"/>
         <source>SSL Certificate Error!</source>
-        <translation type="unfinished"/>
+        <translation>SSL证书错误!</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="240"/>
         <source>The page you are trying to access has the following errors in the SSL certificate:</source>
-        <translation type="unfinished"/>
+        <translation>您尝试访问的页面时SSL证书发现下列错误:</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="255"/>
         <source>&lt;b&gt;Organization: &lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;组织: &lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="258"/>
         <source>&lt;b&gt;Domain Name: &lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;域名: &lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="261"/>
         <source>&lt;b&gt;Expiration Date: &lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;过期时间: &lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="268"/>
         <source>&lt;b&gt;Error: &lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;错误: &lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="276"/>
         <source>Would you like to make an exception for this certificate?</source>
-        <translation type="unfinished"/>
+        <translation>您想要为此证书设置一个例外吗?</translation>
     </message>
 </context>
 <context>
@@ -4467,12 +4467,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/network/sslerrordialog.cpp" line="24"/>
         <source>SSL Certificate Error!</source>
-        <translation type="unfinished"/>
+        <translation>SSL证书错误!</translation>
     </message>
     <message>
         <location filename="../src/network/sslerrordialog.cpp" line="34"/>
         <source>Only for this session</source>
-        <translation type="unfinished"/>
+        <translation>仅用于此次会话</translation>
     </message>
 </context>
 <context>

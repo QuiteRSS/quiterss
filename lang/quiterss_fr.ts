@@ -2519,7 +2519,7 @@ Les anciens articles pourraient réapparaître</translation>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="276"/>
         <source>Would you like to make an exception for this certificate?</source>
-        <translation type="unfinished"/>
+        <translation>Voulez-vous faire une exception pour ce certificat ?</translation>
     </message>
 </context>
 <context>
@@ -4472,7 +4472,7 @@ Les anciens articles pourraient réapparaître</translation>
     <message>
         <location filename="../src/network/sslerrordialog.cpp" line="34"/>
         <source>Only for this session</source>
-        <translation type="unfinished"/>
+        <translation>Seulement pour cette session</translation>
     </message>
 </context>
 <context>

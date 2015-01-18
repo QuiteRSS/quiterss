@@ -528,12 +528,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="524"/>
         <source>Information</source>
-        <translation type="unfinished"/>
+        <translation>Інформація</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="525"/>
         <source>Clean Up wizard deleted %1 news</source>
-        <translation type="unfinished"/>
+        <translation>Майстер очищення видалив %1 новин</translation>
     </message>
 </context>
 <context>
@@ -1153,7 +1153,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/findtext.cpp" line="114"/>
         <source>Find in Links</source>
-        <translation type="unfinished"/>
+        <translation>Знайти у посиланнях</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="115"/>
@@ -1416,7 +1416,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainapplication.cpp" line="267"/>
         <source>Saving data...</source>
-        <translation type="unfinished"/>
+        <translation>Збереження даних...</translation>
     </message>
 </context>
 <context>
@@ -1994,17 +1994,17 @@ Ancient news could reappear</source>
         <location filename="../src/application/mainwindow.cpp" line="4889"/>
         <location filename="../src/application/mainwindow.cpp" line="4892"/>
         <source>Layout</source>
-        <translation type="unfinished"/>
+        <translation>Схема</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4890"/>
         <source>Classic</source>
-        <translation type="unfinished"/>
+        <translation>Класична</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4891"/>
         <source>Newspaper</source>
-        <translation type="unfinished"/>
+        <translation>Газета</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4894"/>
@@ -2210,12 +2210,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4956"/>
         <source>Page up (Browser)</source>
-        <translation type="unfinished"/>
+        <translation>Сторінка вгору (Браузер)</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4957"/>
         <source>Page down (Browser)</source>
-        <translation type="unfinished"/>
+        <translation>Сторінка вниз (Браузер)</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4959"/>
@@ -2487,37 +2487,37 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="239"/>
         <source>SSL Certificate Error!</source>
-        <translation type="unfinished"/>
+        <translation>Помилка SSL сертифіката!</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="240"/>
         <source>The page you are trying to access has the following errors in the SSL certificate:</source>
-        <translation type="unfinished"/>
+        <translation>Сторінка, яку ви намагаєтесь відкрити, має наступні помилки в сертифікаті SSL:</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="255"/>
         <source>&lt;b&gt;Organization: &lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Організація: &lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="258"/>
         <source>&lt;b&gt;Domain Name: &lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Доменне ім&apos;я: &lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="261"/>
         <source>&lt;b&gt;Expiration Date: &lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Дата закінчення строку: &lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="268"/>
         <source>&lt;b&gt;Error: &lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Помилка: &lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="276"/>
         <source>Would you like to make an exception for this certificate?</source>
-        <translation type="unfinished"/>
+        <translation>Бажаєте зробити виняток для цього сертифіката?</translation>
     </message>
 </context>
 <context>
@@ -2811,32 +2811,32 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1593"/>
         <source>Mark Read/Unread</source>
-        <translation type="unfinished"/>
+        <translation>Позначити прочитаною/непрочитаною</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1723"/>
         <source>Mark News Star</source>
-        <translation type="unfinished"/>
+        <translation>Позначити новину зіркою</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1727"/>
         <source>Label</source>
-        <translation type="unfinished"/>
+        <translation>Мітка</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1731"/>
         <source>Share</source>
-        <translation type="unfinished"/>
+        <translation>Поділитися</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1735"/>
         <source>Open News in External Browser</source>
-        <translation type="unfinished"/>
+        <translation>Відкрити новину в зовнішньому браузері</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1739"/>
         <source>Delete</source>
-        <translation type="unfinished"/>
+        <translation>Видалити</translation>
     </message>
 </context>
 <context>
@@ -3460,7 +3460,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="908"/>
         <source>Automatically mark identical news as read</source>
-        <translation>Автоматично відмітити однакові новини як прочитані</translation>
+        <translation>Автоматично позначити однакові новини як прочитані</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="935"/>
@@ -3550,47 +3550,47 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1082"/>
         <source>Show when inactive main window</source>
-        <translation type="unfinished"/>
+        <translation>Показати при неактивності головного вікна</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1097"/>
         <source>Screen</source>
-        <translation type="unfinished"/>
+        <translation>Екран</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1107"/>
         <source>Transparency</source>
-        <translation type="unfinished"/>
+        <translation>Прозорість</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1121"/>
         <source>Show titles feeds</source>
-        <translation type="unfinished"/>
+        <translation>Показувати заголовки каналів</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1122"/>
         <source>Show icon feed</source>
-        <translation type="unfinished"/>
+        <translation>Показувати іконку каналу</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1123"/>
         <source>Show button &apos;Mark All News Read&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Показувати кнопку &apos;Позначити всі новини прочитаними&apos;</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1124"/>
         <source>Show button &apos;Mark Read/Unread&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Показувати кнопку &apos;Позначити прочитаною/непрочитаною&apos;</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1125"/>
         <source>Show button &apos;Open in External Browser&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Показувати кнопку &apos;Відкрити у зовнішньому браузері&apos;</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1126"/>
         <source>Show button &apos;Delete News&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Показувати кнопку &apos;Видалити новину&apos;</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1173"/>
@@ -3675,17 +3675,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1202"/>
         <source>Notification</source>
-        <translation type="unfinished"/>
+        <translation>Сповіщення</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1203"/>
         <source>Sound</source>
-        <translation type="unfinished"/>
+        <translation>Звук</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1214"/>
         <source>Selection of feeds</source>
-        <translation type="unfinished"/>
+        <translation>Вибір каналів</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1230"/>
@@ -3878,12 +3878,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1711"/>
         <source>Notification text color</source>
-        <translation type="unfinished"/>
+        <translation>Колір тексту сповіщення</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1714"/>
         <source>Notification background color</source>
-        <translation type="unfinished"/>
+        <translation>Колір фону сповіщення</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2106"/>
@@ -4456,12 +4456,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/network/sslerrordialog.cpp" line="24"/>
         <source>SSL Certificate Error!</source>
-        <translation type="unfinished"/>
+        <translation>Помилка SSL сертифіката!</translation>
     </message>
     <message>
         <location filename="../src/network/sslerrordialog.cpp" line="34"/>
         <source>Only for this session</source>
-        <translation type="unfinished"/>
+        <translation>Тільки для цієї сесії</translation>
     </message>
 </context>
 <context>
