@@ -5620,6 +5620,8 @@ void MainWindow::slotRefreshInfoTray(int newCount, int unreadCount)
     font.setBold(false);
   categoriesTree_->topLevelItem(CategoriesTreeWidget::UnreadItem)->setFont(0, font);
 
+  if (!showTrayIcon_) return;
+
   // Setting tooltip text
   QString info =
       "QuiteRSS\n" +

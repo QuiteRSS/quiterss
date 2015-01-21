@@ -1125,8 +1125,6 @@ void UpdateObject::slotMarkAllFeedsOld()
 
 void UpdateObject::slotRefreshInfoTray()
 {
-  if (!mainWindow_->showTrayIcon_) return;
-
   // Calculate new and unread news number
   int newCount = 0;
   int unreadCount = 0;
