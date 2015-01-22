@@ -151,8 +151,10 @@ void MainWindow::quitApp()
   mainApp->setClosing();
   isMinimizeToTray_ = true;
   disconnect(this);
-  if (updateAppDialog_)
+  if (updateAppDialog_) {
+    updateAppDialog_->disconnectObjects();
     updateAppDialog_->deleteLater();
+  }
 
   mainApp->showClosingWidget();
 
@@ -5867,6 +5869,7 @@ void MainWindow::slotUpdateAppCheck()
 // ----------------------------------------------------------------------------
 void MainWindow::slotNewVersion(const QString &newVersion)
 {
+  updateAppDialog_->disconnectObjects();
   delete updateAppDialog_;
   updateAppDialog_ = NULL;
 

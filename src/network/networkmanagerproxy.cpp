@@ -58,8 +58,14 @@ NetworkManagerProxy::NetworkManagerProxy(WebPage *page, QObject* parent)
           mainApp->networkManager(), SIGNAL(proxyAuthenticationRequired(QNetworkProxy,QAuthenticator*)));
   connect(this, SIGNAL(finished(QNetworkReply*)),
           mainApp->networkManager(), SIGNAL(finished(QNetworkReply*)));
-  connect(this, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)),
-          mainApp->networkManager(), SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)));
+
+  if (page_) {
+    connect(this, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)),
+            mainApp->networkManager(), SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)));
+  } else {
+    connect(this, SIGNAL(sslErrors(QNetworkReply*, QList<QSslError>)),
+            SLOT(slotSslError(QNetworkReply*, QList<QSslError>)));
+  }
 }
 
 QNetworkReply* NetworkManagerProxy::createRequest(QNetworkAccessManager::Operation op,
@@ -74,9 +80,15 @@ QNetworkReply* NetworkManagerProxy::createRequest(QNetworkAccessManager::Operati
   return QNetworkAccessManager::createRequest(op, request, outgoingData);
 }
 
+void NetworkManagerProxy::slotSslError(QNetworkReply *reply, QList<QSslError> errors)
+{
+  reply->ignoreSslErrors(errors);
+}
+
 void NetworkManagerProxy::disconnectObjects()
 {
   page_ = 0;
 
+  disconnect(this);
   disconnect(mainApp->networkManager());
 }

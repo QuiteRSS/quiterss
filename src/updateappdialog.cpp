@@ -18,7 +18,6 @@
 #include "updateappdialog.h"
 
 #include "mainapplication.h"
-#include "networkmanager.h"
 #include "VersionNo.h"
 #include "settings.h"
 
@@ -33,6 +32,8 @@ UpdateAppDialog::UpdateAppDialog(const QString &lang, QWidget *parent, bool show
   , showDialog_(show)
 {
   Settings settings;
+
+  networkManagerProxy_ = new NetworkManagerProxy(0, this);
 
   if (showDialog_) {
     setWindowTitle(tr("Check for Updates"));
@@ -70,7 +71,7 @@ UpdateAppDialog::UpdateAppDialog(const QString &lang, QWidget *parent, bool show
     if (lang_.contains("ru", Qt::CaseInsensitive))
       urlHistory = "https://quite-rss.googlecode.com/hg/HISTORY_RU";
     else urlHistory = "https://quite-rss.googlecode.com/hg/HISTORY_EN";
-    historyReply_ = mainApp->networkManager()->get(QNetworkRequest(QUrl(urlHistory)));
+    historyReply_ = networkManagerProxy_->get(QNetworkRequest(QUrl(urlHistory)));
     connect(historyReply_, SIGNAL(finished()), this, SLOT(slotFinishHistoryReply()));
 
     connect(this, SIGNAL(finished(int)), this, SLOT(closeDialog()));
@@ -80,7 +81,7 @@ UpdateAppDialog::UpdateAppDialog(const QString &lang, QWidget *parent, bool show
     bool statisticsEnabled = settings.value("Settings/statisticsEnabled", true).toBool();
     if (statisticsEnabled) {
       page_ = new QWebPage(this);
-      page_->setNetworkAccessManager(mainApp->networkManager());
+      page_->setNetworkAccessManager(networkManagerProxy_);
       page_->mainFrame()->load(QUrl("https://code.google.com/p/quite-rss/wiki/runAplication"));
       connect(page_, SIGNAL(loadFinished(bool)), this, SLOT(renderStatistics()));
     } else {
@@ -91,6 +92,17 @@ UpdateAppDialog::UpdateAppDialog(const QString &lang, QWidget *parent, bool show
 
 UpdateAppDialog::~UpdateAppDialog()
 {
+
+}
+
+void UpdateAppDialog::disconnectObjects()
+{
+  disconnect(this);
+  networkManagerProxy_->disconnectObjects();
+  page_->disconnect(this);
+
+  delete page_;
+  delete networkManagerProxy_;
 }
 
 void UpdateAppDialog::closeDialog()
@@ -213,7 +225,7 @@ void UpdateAppDialog::renderStatistics()
   bool updateCheckEnabled = settings.value("Settings/updateCheckEnabled", true).toBool();
   if (updateCheckEnabled || showDialog_) {
     QNetworkRequest request(QUrl("https://quite-rss.googlecode.com/hg/src/VersionNo.h"));
-    reply_ = mainApp->networkManager()->get(request);
+    reply_ = networkManagerProxy_->get(request);
     connect(reply_, SIGNAL(finished()), this, SLOT(finishUpdatesChecking()));
   } else {
     emit signalNewVersion();

@@ -23,6 +23,7 @@
 #include <QWebFrame>
 
 #include "dialog.h"
+#include "networkmanagerproxy.h"
 
 class UpdateAppDialog : public Dialog
 {
@@ -30,6 +31,8 @@ class UpdateAppDialog : public Dialog
 public:
   explicit UpdateAppDialog(const QString &lang, QWidget *parent, bool show = true);
   ~UpdateAppDialog();
+
+  void disconnectObjects();
 
 signals:
   void signalNewVersion(const QString &newVersion = QString());
@@ -46,6 +49,7 @@ private:
   bool showDialog_;
 
   QWebPage *page_;
+  NetworkManagerProxy *networkManagerProxy_;
   QNetworkReply *reply_;
   QNetworkReply *historyReply_;
 
