@@ -21,6 +21,7 @@
 #include "networkmanager.h"
 #include "authenticationdialog.h"
 #include "downloaditem.h"
+#include "settings.h"
 
 DownloadManager::DownloadManager(QWidget *parent)
   : QWidget(parent)
@@ -77,17 +78,27 @@ void DownloadManager::download(const QNetworkRequest &request)
 
 void DownloadManager::handleUnsupportedContent(QNetworkReply* reply, bool askDownloadLocation)
 {
+  Settings settings;
+  QString downloadLocation = mainApp->mainWindow()->downloadLocation_;
+  if (askDownloadLocation || !QFile::exists(downloadLocation))
+    downloadLocation = settings.value("Settings/curDownloadLocation", downloadLocation).toString();
+
   QString fileName(getFileName(reply));
-  fileName = mainApp->mainWindow()->downloadLocation_ + "/" + fileName;
+  fileName = downloadLocation + "/" + fileName;
   QFileInfo fileInfo(fileName);
   if (askDownloadLocation || fileInfo.exists() ||
-      !QFile::exists(mainApp->mainWindow()->downloadLocation_)) {
+      !QFile::exists(downloadLocation)) {
     QString filter = QString(tr("File %1 (*.%2)") + ";;" + tr("All Files (*.*)")).
         arg(fileInfo.suffix().toUpper()).
         arg(fileInfo.suffix().toLower());
     fileName = QFileDialog::getSaveFileName(mainApp->mainWindow(),
                                             tr("Save As..."),
                                             fileName, filter);
+
+    fileInfo.setFile(fileName);
+    if (!fileName.isEmpty())
+      settings.setValue("Settings/curDownloadLocation", fileInfo.absolutePath());
+
   }
   if (fileName.isNull()) {
     reply->abort();
