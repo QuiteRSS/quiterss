@@ -4077,7 +4077,7 @@ void MainWindow::slotGetFeed()
         }
       }
 
-    } else if (!feedsTreeModel_->dataField(index, "disableUpdate").toBool()) {
+    } else {
       int idFeed = feedsTreeModel_->dataField(index, "id").toInt();
       if (!idList.contains(idFeed)) {
         idList.append(idFeed);
