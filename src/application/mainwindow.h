@@ -279,6 +279,7 @@ public slots:
   void setFeedsFilter(bool clicked = true);
   void slotGetFeed();
   void slotGetAllFeeds();
+  void slotStopUpdate();
   void showProgressBar(int addToMaximum);
   void slotSetValue(int value);
   void showMessageStatusBar(QString message, int timeout = 0);
@@ -310,6 +311,7 @@ signals:
   void signalGetFeed(int feedId, QString feedUrl, QDateTime date, int auth);
   void signalGetFeedsFolder(QString query);
   void signalGetAllFeeds();
+  void signalStopUpdate();
   void signalImportFeeds(QByteArray xmlData);
   void signalRequestUrl(int feedId, QString urlString,
                         QDateTime date, QString userInfo);
@@ -564,6 +566,7 @@ private:
   QAction *setFilterNewsAct_;
   QAction *optionsAct_;
   QAction *updateAllFeedsAct_;
+  QAction *stopUpdateAct_;
   QAction *markAllFeedsRead_;
   QAction *indentationFeedsTreeAct_;
   QAction *sortedByTitleFeedsTreeAct_;

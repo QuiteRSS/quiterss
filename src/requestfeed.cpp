@@ -84,6 +84,18 @@ void RequestFeed::requestUrl(int id, QString urlString,
   qDebug() << "urlsQueue_ <<" << urlString << "count=" << feedsQueue_.count();
 }
 
+void RequestFeed::stopRequest()
+{
+  while (!feedsQueue_.isEmpty()) {
+    int feedId = idsQueue_.dequeue();
+    QString feedUrl = feedsQueue_.dequeue();
+    dateQueue_.clear();
+    userInfo_.clear();
+
+    emit getUrlDone(feedsQueue_.count(), feedId, feedUrl);
+  }
+}
+
 /** @brief Process request queue on timer timeouts
  *----------------------------------------------------------------------------*/
 void RequestFeed::getQueuedUrl()

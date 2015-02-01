@@ -555,6 +555,20 @@ void MainWindow::createStatusBar()
   progressBar_->setValue(0);
   progressBar_->setVisible(false);
 
+  QToolButton *stopUpdateButton_ = new QToolButton(progressBar_);
+  stopUpdateButton_->setFocusPolicy(Qt::NoFocus);
+  stopUpdateButton_->setToolButtonStyle(Qt::ToolButtonIconOnly);
+  stopUpdateButton_->setFixedSize(15, 15);
+  stopUpdateButton_->setCursor(Qt::ArrowCursor);
+  stopUpdateButton_->setDefaultAction(stopUpdateAct_);
+  stopUpdateButton_->setStyleSheet(
+        "QToolButton { border: none; padding: 0px; }"
+        "QToolButton:hover { background: rgba(150, 150, 150, 60) }"
+        );
+  stopUpdateButton_->move(progressBar_->rect().right() - stopUpdateButton_->sizeHint().width(),
+                          progressBar_->rect().top());
+
+
   adblockIcon_ = new AdBlockIcon(this);
 
   QToolButton *loadImagesButton = new QToolButton(this);
@@ -881,6 +895,12 @@ void MainWindow::createActions()
   updateAllFeedsAct_->setIcon(QIcon(":/images/updateAllFeeds"));
   this->addAction(updateAllFeedsAct_);
   connect(updateAllFeedsAct_, SIGNAL(triggered()), this, SLOT(slotGetAllFeeds()));
+
+  stopUpdateAct_ = new QAction(this);
+  stopUpdateAct_->setObjectName("stopUpdateAct");
+  stopUpdateAct_->setIcon(QIcon(":/images/close"));
+  this->addAction(stopUpdateAct_);
+  connect(stopUpdateAct_, SIGNAL(triggered()), this, SLOT(slotStopUpdate()));
 
   markAllFeedsRead_ = new QAction(this);
   markAllFeedsRead_->setObjectName("markAllFeedRead");
@@ -1420,6 +1440,7 @@ void MainWindow::createShortcut()
   listActions_.append(updateFeedAct_);
   updateAllFeedsAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_F5));
   listActions_.append(updateAllFeedsAct_);
+  listActions_.append(stopUpdateAct_);
   listActions_.append(openHomeFeedAct_);
   listActions_.append(showDownloadManagerAct_);
   listActions_.append(showCleanUpWizardAct_);
@@ -4097,6 +4118,12 @@ void MainWindow::slotGetAllFeeds()
   emit signalGetAllFeeds();
 }
 
+void MainWindow::slotStopUpdate()
+{
+  progressBar_->hide();
+  emit signalStopUpdate();
+}
+
 /** @brief Show update progress bar after feed update has started
  *---------------------------------------------------------------------------*/
 void MainWindow::showProgressBar(int maximum)
@@ -4116,7 +4143,8 @@ void MainWindow::showProgressBar(int maximum)
 }
 void MainWindow::slotSetValue(int value)
 {
-  progressBar_->setValue(progressBar_->maximum() - value);
+  if (progressBar_->isVisible())
+    progressBar_->setValue(progressBar_->maximum() - value);
 }
 void MainWindow::showMessageStatusBar(QString message, int timeout)
 {
@@ -4807,6 +4835,9 @@ void MainWindow::retranslateStrings()
 
   updateAllFeedsAct_->setText(tr("Update All"));
   updateAllFeedsAct_->setToolTip(tr("Update All Feeds"));
+
+  stopUpdateAct_->setText("Stop Update Feeds");
+  stopUpdateAct_->setToolTip("Stop Update Feeds");
 
   markAllFeedsRead_->setText(tr("Mark All Feeds Read"));
 

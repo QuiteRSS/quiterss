@@ -38,6 +38,7 @@ public:
 
 public slots:
   void requestUrl(int id, QString urlString, QDateTime date, QString userInfo = "");
+  void stopRequest();
   void slotHead(const QUrl &getUrl, const int &id, const QString &feedUrl,
                 const QDateTime &date, const int &count);
   void slotGet(const QUrl &getUrl, const int &id, const QString &feedUrl,
