@@ -784,6 +784,7 @@ void ParseObject::runUserFilter(int feedId, int filterId)
     QString qStr1;
     QString qStr2;
     QString whereStr;
+    QList<int> idLabelsList;
     QStringList soundList;
     QStringList colorList;
 
@@ -807,7 +808,7 @@ void ParseObject::runUserFilter(int feedId, int filterId)
                      arg(QDateTime::currentDateTime().toString(Qt::ISODate)));
         break;
       case 3: // action -> Add Label
-        qStr2.append(QString("%1,").arg(q1.value(1).toInt()));
+        idLabelsList.append(q1.value(1).toInt());
         break;
       case 4: // action -> Play Sound
         soundList.append(q1.value(1).toString());
@@ -816,11 +817,6 @@ void ParseObject::runUserFilter(int feedId, int filterId)
         colorList.append(q1.value(1).toString());
         break;
       }
-    }
-
-    if (!qStr2.isEmpty()) {
-      if (!qStr1.isNull()) qStr1.append(",");
-      qStr1.append(QString(" label=',%1'").arg(qStr2));
     }
 
     if (qStr1.isEmpty())
@@ -991,38 +987,47 @@ void ParseObject::runUserFilter(int feedId, int filterId)
       whereStr.append(qStr1).append(")");
     }
 
-    if (!qStr.isEmpty()) {
-      qStr.append(whereStr);
-      if (!q1.exec(qStr)) {
-        qWarning() << __PRETTY_FUNCTION__ << __LINE__
-                   << "q.lastError(): " << q1.lastError().text();
-      }
-    }
+    if (q1.exec(QString("SELECT id, label FROM news").append(whereStr))) {
+      QSqlQuery q2(db_);
+      bool isPlaySound = false;
 
-    if (!soundList.isEmpty()) {
-      qStr = "SELECT * FROM news";
-      qStr.append(whereStr);
-      if (q1.exec(qStr)) {
-        if (q1.first()) {
-          emit signalPlaySound(soundList.at(0));
+      while (q1.next()) {
+        if (!qStr.isEmpty()) {
+          qStr1 = qStr % QString(" WHERE id='%1'").arg(q1.value(0).toInt());
+          if (!q2.exec(qStr1)) {
+            qWarning() << __PRETTY_FUNCTION__ << __LINE__
+                       << "q.lastError(): " << q2.lastError().text();
+          }
         }
-      } else {
-        qWarning() << __PRETTY_FUNCTION__ << __LINE__
-                   << "q.lastError(): " << q1.lastError().text();
-      }
-    }
 
-    if (!colorList.isEmpty()) {
-      qStr = "SELECT id FROM news";
-      qStr.append(whereStr);
-      if (q1.exec(qStr)) {
-        while (q1.next()) {
+        if (!idLabelsList.isEmpty()) {
+          QString idLabelsStr = q1.value(1).toString();
+          foreach (int idLabel, idLabelsList) {
+            if (idLabelsStr.contains(QString(",%1,").arg(idLabel))) continue;
+            if (idLabelsStr.isEmpty()) idLabelsStr.append(",");
+            idLabelsStr.append(QString("%1,").arg(idLabel));
+
+          }
+          qStr1 = QString("UPDATE news SET label='%1' WHERE id='%2'").arg(idLabelsStr).
+              arg(q1.value(0).toInt());
+          if (!q2.exec(qStr1)) {
+            qWarning() << __PRETTY_FUNCTION__ << __LINE__
+                       << "q.lastError(): " << q2.lastError().text();
+          }
+        }
+
+        if (!colorList.isEmpty()) {
           emit signalAddColorList(q1.value(0).toInt(), colorList.at(0));
         }
-      } else {
-        qWarning() << __PRETTY_FUNCTION__ << __LINE__
-                   << "q.lastError(): " << q1.lastError().text();
+
+        isPlaySound = true;
       }
+
+      if (isPlaySound && !soundList.isEmpty())
+        emit signalPlaySound(soundList.at(0));
+    } else {
+      qWarning() << __PRETTY_FUNCTION__ << __LINE__
+                 << "q.lastError(): " << q1.lastError().text();
     }
 
   }
