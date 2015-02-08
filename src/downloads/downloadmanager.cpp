@@ -22,6 +22,7 @@
 #include "authenticationdialog.h"
 #include "downloaditem.h"
 #include "settings.h"
+#include "common.h"
 
 DownloadManager::DownloadManager(QWidget *parent)
   : QWidget(parent)
@@ -84,7 +85,7 @@ void DownloadManager::handleUnsupportedContent(QNetworkReply* reply, bool askDow
     downloadLocation = settings.value("Settings/curDownloadLocation", downloadLocation).toString();
 
   QString fileName(getFileName(reply));
-  fileName = downloadLocation + "/" + fileName;
+  fileName = Common::ensureUniqueFilename(downloadLocation + "/" + fileName);
   QFileInfo fileInfo(fileName);
   if (askDownloadLocation || fileInfo.exists() ||
       !QFile::exists(downloadLocation)) {
