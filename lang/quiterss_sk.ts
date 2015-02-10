@@ -2517,7 +2517,7 @@ Staré správy sa môžu znova objaviť</translation>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="276"/>
         <source>Would you like to make an exception for this certificate?</source>
-        <translation type="unfinished"/>
+        <translation>Chcete udeliť výnimku tomuto certifikátu?</translation>
     </message>
 </context>
 <context>
@@ -4461,7 +4461,7 @@ Staré správy sa môžu znova objaviť</translation>
     <message>
         <location filename="../src/network/sslerrordialog.cpp" line="34"/>
         <source>Only for this session</source>
-        <translation type="unfinished"/>
+        <translation>Len pre túto reláciu</translation>
     </message>
 </context>
 <context>

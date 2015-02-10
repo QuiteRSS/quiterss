@@ -2519,7 +2519,7 @@ nerastas!</translation>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="276"/>
         <source>Would you like to make an exception for this certificate?</source>
-        <translation type="unfinished"/>
+        <translation>Ar norėtumėte padaryti išimtį šiam sertifikatui?</translation>
     </message>
 </context>
 <context>
@@ -3905,7 +3905,7 @@ nerastas!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="383"/>
         <source>Clear new status when minimize to tray</source>
-        <translation>Išvalyti &apos;nauja&apos; statusą kai mažinama į dėklą</translation>
+        <translation>Išvalyti atnaujintą statusą kai mažinama į dėklą</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="781"/>
@@ -4472,7 +4472,7 @@ nerastas!</translation>
     <message>
         <location filename="../src/network/sslerrordialog.cpp" line="34"/>
         <source>Only for this session</source>
-        <translation type="unfinished"/>
+        <translation>Tik šiam prisijungimui</translation>
     </message>
 </context>
 <context>

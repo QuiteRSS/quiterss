@@ -56,7 +56,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="159"/>
         <source>Settings file:</source>
-        <translation>Einstellungsdatei:</translation>
+        <translation>Konfigurationsdatei:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="162"/>
@@ -2479,7 +2479,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.h" line="102"/>
         <source>Amusingly</source>
-        <translation>Witziges</translation>
+        <translation>Amüsantes</translation>
     </message>
 </context>
 <context>
@@ -2517,7 +2517,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="276"/>
         <source>Would you like to make an exception for this certificate?</source>
-        <translation>Ausnahme für dieses Zertifikat machen?</translation>
+        <translation>SSL-Zertifikat akzeptieren?</translation>
     </message>
 </context>
 <context>
@@ -2940,7 +2940,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="95"/>
         <source>Keyboard Shortcuts</source>
-        <translation>Tastenkombinationen</translation>
+        <translation>Tastaturkürzel</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="264"/>
@@ -3288,7 +3288,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="737"/>
         <source>Download location:</source>
-        <translation>Downloadpfad:</translation>
+        <translation>Speicherort:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="746"/>
@@ -4048,12 +4048,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1831"/>
         <source>Shortcut</source>
-        <translation>Tastenkombination</translation>
+        <translation>Tastaturkürzel</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1839"/>
         <source>Shortcut:</source>
-        <translation>Tastenkombination:</translation>
+        <translation>Tastaturkürzel:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2270"/>
@@ -4353,7 +4353,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5050"/>
         <source>&amp;Finish</source>
-        <translation>&amp;Beenden</translation>
+        <translation>&amp;Abschließen</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5051"/>
