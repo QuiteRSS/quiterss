@@ -1,3 +1,12 @@
+Version 0.17.6 (10 Feb 015)
+  * Added: Progress bar button and shortcut for "Stop feeds updating"
+  * Changed: Storing the path of files being loaded
+  * Changed: Unique filename for files being loaded
+  * Changed: Ability to update disabled feed manually
+  * Fixed: SSL certificates checking at startup
+  * Fixed: News filter. Labels assignment
+  * Fixed: Unread category counter displaying
+
 Version 0.17.5 (18 Jan 2015)
   * Added: Button "Clean Up"
   * Fixed: Application crash
