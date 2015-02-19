@@ -118,6 +118,16 @@ void WebView::mouseMoveEvent(QMouseEvent* event)
     return;
   }
 
+  QSize viewSize;
+  viewSize.setWidth(page()->viewportSize().width() -
+                    page()->mainFrame()->scrollBarGeometry(Qt::Vertical).width());
+  viewSize.setHeight(page()->viewportSize().height() -
+                     page()->mainFrame()->scrollBarGeometry(Qt::Horizontal).height());
+  if ((dragStartPos_.x() > viewSize.width()) || (dragStartPos_.y() > viewSize.height())) {
+    QWebView::mouseMoveEvent(event);
+    return;
+  }
+
   int manhattanLength = (event->pos() - dragStartPos_).manhattanLength();
   if (manhattanLength <= QApplication::startDragDistance()) {
     QWebView::mouseMoveEvent(event);
