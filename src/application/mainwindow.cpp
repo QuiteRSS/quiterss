@@ -218,6 +218,9 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
       recountCategoryCounts();
     }
   }
+  else if (event->type() == QEvent::WindowActivate) {
+    activationStateChangedTime_ = QDateTime::currentMSecsSinceEpoch();
+  }
   // Process  open link in browser in background
   else if (event->type() == QEvent::WindowDeactivate) {
     if (isOpeningLink_ && openLinkInBackground_) {
@@ -332,8 +335,8 @@ void MainWindow::slotActivationTray(QSystemTrayIcon::ActivationReason reason)
     break;
   case QSystemTrayIcon::Trigger:
     if (singleClickTray_) {
-      if ((QDateTime::currentMSecsSinceEpoch() - activationStateChangedTime_ < 200) ||
-          isActiveWindow())
+      if (((QDateTime::currentMSecsSinceEpoch() - activationStateChangedTime_ < 200) && !isActiveWindow()) ||
+          (!(QDateTime::currentMSecsSinceEpoch() - activationStateChangedTime_ < 200) && isActiveWindow()))
         activated = true;
       showWindows(activated);
     }
