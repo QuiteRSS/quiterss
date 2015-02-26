@@ -51,7 +51,10 @@
 #include <sqlite3.h>
 #endif
 
+Q_DECLARE_OPAQUE_POINTER(sqlite3*)
 Q_DECLARE_METATYPE(sqlite3*)
+
+Q_DECLARE_OPAQUE_POINTER(sqlite3_stmt*)
 Q_DECLARE_METATYPE(sqlite3_stmt*)
 
 static QString _q_escapeIdentifier(const QString &identifier) 
@@ -536,6 +539,8 @@ bool SQLiteDriver::hasFeature(DriverFeature f) const
     case EventNotifications:
     case MultipleResultSets:
         return false;
+    default:
+      break;
     }
     return false;
 }
@@ -775,6 +780,7 @@ QStringList SQLiteDriverPlugin::keys() const
     return l;
 }
 
+#ifndef HAVE_QT5
 #if defined(SQLITEDRIVER_EXPORT)
 
 Q_EXPORT_STATIC_PLUGIN(SQLiteDriverPlugin)
@@ -792,4 +798,5 @@ QObject* qt_plugin_instance_sqlitex()
 
 Q_IMPORT_PLUGIN(sqlitex)
 
+#endif
 #endif
