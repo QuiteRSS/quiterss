@@ -267,6 +267,17 @@ SqlCachedResult::ValueCache &SqlCachedResult::cache()
     return d->cache;
 }
 
+#ifdef HAVE_QT5
+void SqlCachedResult::detachFromResultSet()
+{
+  cleanup();
+}
+
+void SqlCachedResult::setNumericalPrecisionPolicy(QSql::NumericalPrecisionPolicy)
+{
+  cleanup();
+}
+#else
 void SqlCachedResult::virtual_hook(int id, void *data)
 {
     switch (id) {
@@ -278,3 +289,6 @@ void SqlCachedResult::virtual_hook(int id, void *data)
         QSqlResult::virtual_hook(id, data);
     }
 }
+#endif
+
+

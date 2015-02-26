@@ -21,6 +21,8 @@
 #include <QApplication>
 #include <QInputEvent>
 #include <QDebug>
+#include <QDrag>
+#include <QMimeData>
 
 WebView::WebView(QWidget *parent)
   : QWebView(parent)

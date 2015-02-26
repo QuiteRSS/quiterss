@@ -55,7 +55,12 @@ protected:
     int colCount() const;
     ValueCache &cache();
 
+#ifdef HAVE_QT5
+    void detachFromResultSet();
+    void setNumericalPrecisionPolicy(QSql::NumericalPrecisionPolicy policy);
+#else
     void virtual_hook(int id, void *data);
+#endif
 private:
     bool cacheNext();
     SqlCachedResultPrivate *d;

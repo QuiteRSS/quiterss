@@ -50,7 +50,11 @@ protected:
     int numRowsAffected();
     QVariant lastInsertId() const;
     QSqlRecord record() const;
+#ifdef HAVE_QT5
+    void detachFromResultSet();
+#else
     void virtual_hook(int id, void *data);
+#endif
     void setLastError(const QSqlError& e);
 
 private:

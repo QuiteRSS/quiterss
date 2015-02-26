@@ -305,6 +305,13 @@ SQLiteResult::~SQLiteResult()
     delete d;
 }
 
+#ifdef HAVE_QT5
+void SQLiteResult::detachFromResultSet()
+{
+  if (d->stmt)
+    sqlite3_reset(d->stmt);
+}
+#else
 void SQLiteResult::virtual_hook(int id, void *data)
 {
     switch (id) {
@@ -316,6 +323,8 @@ void SQLiteResult::virtual_hook(int id, void *data)
         SqlCachedResult::virtual_hook(id, data);
     }
 }
+#endif
+
 
 bool SQLiteResult::reset(const QString &query)
 {
