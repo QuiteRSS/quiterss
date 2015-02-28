@@ -51,10 +51,11 @@
 #include <sqlite3.h>
 #endif
 
+#ifdef HAVE_QT5
 Q_DECLARE_OPAQUE_POINTER(sqlite3*)
-Q_DECLARE_METATYPE(sqlite3*)
-
 Q_DECLARE_OPAQUE_POINTER(sqlite3_stmt*)
+#endif
+Q_DECLARE_METATYPE(sqlite3*)
 Q_DECLARE_METATYPE(sqlite3_stmt*)
 
 static QString _q_escapeIdentifier(const QString &identifier) 
