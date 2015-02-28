@@ -100,6 +100,7 @@ MainWindow::MainWindow(QWidget *parent)
   connect(this, SIGNAL(signalPlaySoundNewNews()),
           SLOT(slotPlaySoundNewNews()), Qt::QueuedConnection);
 
+  qRegisterMetaType<QList<int> >("QList<int>");
   connect(this, SIGNAL(setFeedRead(int,int,int,QList<int>)),
           SIGNAL(signalSetFeedRead(int,int,int,QList<int>)),
           Qt::QueuedConnection);
