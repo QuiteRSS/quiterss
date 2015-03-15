@@ -9,4 +9,13 @@ HEADERS += \
 SOURCES += \
     $$PWD/qxtglobal.cpp \
     $$PWD/qxtglobalshortcut.cpp \
-    $$PWD/qxtglobalshortcut_win.cpp
+
+unix:!macx {
+    SOURCES += $$PWD/qxtglobalshortcut_x11.cpp
+}
+macx {
+    SOURCES += $$PWD/qxtglobalshortcut_mac.cpp
+}
+win32 {
+    SOURCES += $$PWD/qxtglobalshortcut_win.cpp
+}
