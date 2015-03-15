@@ -39,7 +39,6 @@
 #endif
 #include <QMainWindow>
 #include <QStatusBar>
-#include <qxtglobalshortcut.h>
 
 // ---------------------------------------------------------------------------
 MainWindow::MainWindow(QWidget *parent)
@@ -1433,10 +1432,6 @@ void MainWindow::createActions()
 // ---------------------------------------------------------------------------
 void MainWindow::createShortcut()
 {
-    QxtGlobalShortcut* shortcut = new QxtGlobalShortcut(this);
-    connect(shortcut, SIGNAL(activated()), SLOT(toggleVisibility()));
-    shortcut->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::Key_R));
-
   addFeedAct_->setShortcut(QKeySequence(QKeySequence::New));
   listActions_.append(addFeedAct_);
   addFolderAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_N));
@@ -7975,9 +7970,4 @@ void MainWindow::createBackup()
         arg(timeStr);
     QFile::copy(settings.fileName(), backupFileName);
   }
-}
-
-void MainWindow::toggleVisibility()
-{
-    showWindows();
 }

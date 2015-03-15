@@ -242,7 +242,6 @@ isEmpty(SYSTEMQTSA) {
 } else {
   CONFIG += qtsingleapplication
 }
-include(3rdparty/libqxt/libqxt.pri)
 include(3rdparty/sqlite.pri)
 include(3rdparty/qyursqltreeview/qyursqltreeview.pri)
 include(lang/lang.pri)
