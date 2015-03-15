@@ -7979,5 +7979,8 @@ void MainWindow::createBackup()
 
 void MainWindow::toggleVisibility()
 {
-    showWindows();
+    if (isHidden())
+        showWindows();
+    else
+        emit signalPlaceToTray();
 }
