@@ -486,6 +486,7 @@ private slots:
   void showSettingPageLabels();
 
   void createBackup();
+  void toggleVisibility();
 
 private:
   void closeEvent(QCloseEvent *event);
