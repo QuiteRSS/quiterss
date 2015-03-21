@@ -1,1 +1,9 @@
+*.user
+*.bak
+*.orig
+_build
+.directory
+debug
+release
+Makefile*
 src/VersionRev.h

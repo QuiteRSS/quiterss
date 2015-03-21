@@ -83,7 +83,7 @@ UpdateAppDialog::UpdateAppDialog(const QString &lang, QWidget *parent, bool show
     if (statisticsEnabled) {
       page_ = new QWebPage(this);
       page_->setNetworkAccessManager(networkManagerProxy_);
-      page_->mainFrame()->load(QUrl("https://code.google.com/p/quite-rss/wiki/runAplication"));
+      page_->mainFrame()->load(QUrl("http://quiterss.org/en/runAplication"));
       connect(page_, SIGNAL(loadFinished(bool)), this, SLOT(renderStatistics()));
     } else {
       renderStatistics();

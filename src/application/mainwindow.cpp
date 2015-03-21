@@ -6870,7 +6870,7 @@ void MainWindow::browserZoom(QAction *action)
  *---------------------------------------------------------------------------*/
 void MainWindow::slotReportProblem()
 {
-  QDesktopServices::openUrl(QUrl("https://code.google.com/p/quite-rss/issues/list"));
+  QDesktopServices::openUrl(QUrl("https://github.com/QuiteRSS/quiterss/issues"));
 }
 
 /** @brief Print browser page

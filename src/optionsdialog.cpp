@@ -1568,15 +1568,15 @@ void OptionsDialog::createLanguageWidget()
   languageFileList_->addTopLevelItem(languageItem);
 
   QString linkWikiStr =
-      QString("<a href='https://code.google.com/p/quite-rss/wiki/Translations'>Wiki for translators</a>");
-  QLabel *linkWiki = new QLabel(linkWikiStr);
-  linkWiki->setOpenExternalLinks(true);
+      QString("<a href='http://quiterss.org/en/development'>Link for translators</a>");
+  QLabel *linkTranslators = new QLabel(linkWikiStr);
+  linkTranslators->setOpenExternalLinks(true);
 
   QVBoxLayout *languageLayout = new QVBoxLayout();
   languageLayout->setMargin(0);
   languageLayout->addWidget(new QLabel(tr("Choose language:")));
   languageLayout->addWidget(languageFileList_);
-  languageLayout->addWidget(linkWiki);
+  languageLayout->addWidget(linkTranslators);
 
   languageWidget_ = new QWidget();
   languageWidget_->setLayout(languageLayout);
