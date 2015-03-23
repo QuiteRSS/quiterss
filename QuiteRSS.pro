@@ -1,20 +1,14 @@
 # VCS revision info
 REVFILE = src/VersionRev.h
 QMAKE_DISTCLEAN += $$REVFILE
-# tortoisehg-2.8 running in win32 hangs with 3 \ in sources, but works fine in linux
-THG_WIN32_FIXME = '\\\"'
-exists(.hg) {
-  mac {
-    HG_MAC_PATH ='/usr/local/bin/'
-  }
-
-  VERSION_REV = $$system($${HG_MAC_PATH}hg parents --template '{rev}')
+exists(.git) {
+  VERSION_REV = $$system(git rev-list master --count)
   count(VERSION_REV, 1) {
     os2|win32|mac {
       # FIXME
       VERSION_REV = $$VERSION_REV
     } else {
-      VERSION_REV = hg-$$VERSION_REV-$$system(hg parents --template '{node\\|short}')
+      VERSION_REV = git-$$VERSION_REV-$$system(git rev-parse --short HEAD)
     }
   } else {
     VERSION_REV = 0
@@ -24,21 +18,7 @@ exists(.hg) {
   os2|win32 {
     system(echo $${LITERAL_HASH}define VCS_REVISION $$VERSION_REV > $$REVFILE)
   } else {
-    system(echo \\$${LITERAL_HASH}define VCS_REVISION $$THG_WIN32_FIXME$$VERSION_REV$$THG_WIN32_FIXME > $$REVFILE)
-  }
-} else:exists(.git) {
-  VERSION_REV = $$system(git rev-list --count HEAD)
-  count(VERSION_REV, 1) {
-  VERSION_REV = git-$$VERSION_REV-$$system(git rev-parse --short HEAD)
-  } else {
-    VERSION_REV = 0
-  }
-  !build_pass:message(VCS revision: $$VERSION_REV)
-
-  os2|win32 {
-    system(echo $${LITERAL_HASH}define VCS_REVISION $$VERSION_REV > $$REVFILE)
-  } else {
-    system(echo \\$${LITERAL_HASH}define VCS_REVISION $$THG_WIN32_FIXME$$VERSION_REV$$THG_WIN32_FIXME > $$REVFILE)
+    system(echo \\$${LITERAL_HASH}define VCS_REVISION \\\"$$VERSION_REV\\\" > $$REVFILE)
   }
 } else:!exists($$REVFILE) {
   VERSION_REV = 0
@@ -47,7 +27,7 @@ exists(.hg) {
   os2|win32 {
     system(echo $${LITERAL_HASH}define VCS_REVISION $$VERSION_REV > $$REVFILE)
   } else {
-    system(echo \\$${LITERAL_HASH}define VCS_REVISION $$THG_WIN32_FIXME$$VERSION_REV$$THG_WIN32_FIXME > $$REVFILE)
+    system(echo \\$${LITERAL_HASH}define VCS_REVISION \\\"$$VERSION_REV\\\" > $$REVFILE)
   }
 }
 
