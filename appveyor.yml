@@ -1,0 +1,7 @@
+os: unstable
+install:
+  - set QTDIR=C:\Qt\4.8.5
+  - set PATH=%PATH%;%QTDIR%\bin;C:\MinGW\bin
+build_script:
+  - qmake QuiteRSS.pro
+  - mingw32-make
