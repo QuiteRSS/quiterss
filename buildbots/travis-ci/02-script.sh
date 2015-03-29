@@ -17,7 +17,7 @@ export LDFLAGS='-fPIE -pie -Wl,-z,relro -Wl,-z,now -Wl,--hash-style=gnu -Wl,--as
 
 mkdir _build &&
 cd _build &&
-qmake \
+/usr/lib/x86_64-linux-gnu/qt"${QT}"/bin/qmake \
 	QMAKE_CC=$CC \
 	QMAKE_CXX=$CXX \
 	QMAKE_CFLAGS="${CFLAGS} ${CPPFLAGS}" \
