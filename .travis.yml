@@ -6,6 +6,8 @@ env:
  - CONFIG=release
  - CONFIG=debug
 before_install:
+ - sudo ls -la /etc/apt/sources.list.d/
+ - sudo rm -f /etc/apt/sources.list.d/rabbitmq-source.list
  - sudo apt-get update -qq
  - sudo apt-get install -qq gdb libsqlite3-dev libqt4-dev qt4-dev-tools libqtcore4 libqtgui4 libqt4-sql-sqlite libqtwebkit-dev libphonon-dev
 script: mkdir _build && cd _build && qmake QMAKE_CC=$CC QMAKE_CXX=$CXX CONFIG+=$CONFIG PREFIX=/usr ../QuiteRSS.pro && make -j2 && sudo make install && objdump -p /usr/bin/quiterss|grep NEEDED|sort && du -sc /usr/bin/quiterss /usr/share/quiterss/*
