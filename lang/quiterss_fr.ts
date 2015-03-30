@@ -728,7 +728,7 @@ Les anciens articles pourraient réapparaître</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="353"/>
-        <source>Do you want to also delete dowloaded file?</source>
+        <source>Do you want to also delete downloaded file?</source>
         <translation>Voulez-vous supprimer aussi le fichier téléchargé ?</translation>
     </message>
     <message>

@@ -728,7 +728,7 @@ Starsze wiadomości mogą pojawić się ponownie</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="353"/>
-        <source>Do you want to also delete dowloaded file?</source>
+        <source>Do you want to also delete downloaded file?</source>
         <translation>Czy chcesz również usunąć pobrany plik?</translation>
     </message>
     <message>

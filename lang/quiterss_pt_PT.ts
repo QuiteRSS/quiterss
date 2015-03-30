@@ -728,7 +728,7 @@ As notícias antigas poderão reaparecer.</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="353"/>
-        <source>Do you want to also delete dowloaded file?</source>
+        <source>Do you want to also delete downloaded file?</source>
         <translation>Quer eliminar o ficheiro transferido?</translation>
     </message>
     <message>

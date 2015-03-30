@@ -728,7 +728,7 @@ Ancient news could reappear</source>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="353"/>
-        <source>Do you want to also delete dowloaded file?</source>
+        <source>Do you want to also delete downloaded file?</source>
         <translation>您要一併刪除已下載的檔案嗎？</translation>
     </message>
     <message>
