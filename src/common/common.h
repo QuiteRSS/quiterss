@@ -25,7 +25,7 @@
 
 namespace Common
 {
-  static const QString Qz_WWWADDRESS = "http://www.qupzilla.com";
+  static const QString Qz_RAWVCS = "https://raw.githubusercontent.com/QupZilla/qupzilla/v1.8";
 
   bool removePath(const QString &path);
   bool matchDomain(const QString &pattern, const QString &domain);
