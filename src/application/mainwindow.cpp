@@ -714,6 +714,10 @@ void MainWindow::createActions()
   this->addAction(addFeedAct_);
   connect(addFeedAct_, SIGNAL(triggered()), this, SLOT(addFeed()));
 
+  addFeedTrayAct_ = new QAction(this);
+  addFeedTrayAct_->setIcon(QIcon(":/images/feed"));
+  connect(addFeedTrayAct_, SIGNAL(triggered()), this, SLOT(addFeed()));
+
   addFolderAct_ = new QAction(this);
   addFolderAct_->setObjectName("addFolderAct");
   addFolderAct_->setIcon(QIcon(":/images/folder"));
@@ -2521,7 +2525,10 @@ void MainWindow::addFeed()
     curFolderId = feedsTreeModel_->getParidByIndex(curIndex);
   }
 
-  AddFeedWizard *addFeedWizard = new AddFeedWizard(this, curFolderId);
+  AddFeedWizard *addFeedWizard = new AddFeedWizard(0, curFolderId);
+  addFeedWizard->show();
+  addFeedWizard->raise();
+  addFeedWizard->activateWindow();
 
   int result = addFeedWizard->exec();
   if (result == QDialog::Rejected) {
@@ -3992,6 +3999,7 @@ void MainWindow::createTrayMenu()
   font_.setBold(true);
   showWindowAct_->setFont(font_);
   trayMenu_->addAction(showWindowAct_);
+  trayMenu_->addAction(addFeedTrayAct_);
   trayMenu_->addAction(updateAllFeedsAct_);
   trayMenu_->addAction(markAllFeedsRead_);
   trayMenu_->addSeparator();
@@ -4814,6 +4822,8 @@ void MainWindow::retranslateStrings()
 
   addFeedAct_->setText(tr("&Feed..."));
   addFeedAct_->setToolTip(tr("Add New Feed"));
+
+  addFeedTrayAct_->setText(tr("Add Feed..."));
 
   addFolderAct_->setText(tr("F&older..."));
   addFolderAct_->setToolTip(tr("Add New Folder"));
