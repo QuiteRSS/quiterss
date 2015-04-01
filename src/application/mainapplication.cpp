@@ -142,7 +142,6 @@ void MainApplication::receiveMessage(const QString &message)
           param.remove(0, 7);
           clipboard->setText("http://" + param);
         }
-        mainWindow_->showWindows();
         mainWindow_->addFeed();
       }
     }

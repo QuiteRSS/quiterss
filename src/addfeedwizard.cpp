@@ -31,6 +31,7 @@ AddFeedWizard::AddFeedWizard(QWidget *parent, int curFolderId)
   : QWizard(parent),
     curFolderId_(curFolderId)
 {
+  setModal(true);
   setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
   setWindowTitle(tr("Add Feed"));
   setWizardStyle(QWizard::ModernStyle);

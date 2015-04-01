@@ -169,8 +169,4 @@
         <file>images/share/twitter.png</file>
         <file>images/share/vk.png</file>
     </qresource>
-    <qresource prefix="/data">
-        <file>data/bundle_version</file>
-        <file>data/ca-bundle.crt</file>
-    </qresource>
 </RCC>

@@ -97,10 +97,10 @@ void NetworkManager::loadSettings()
   }
 
   if (!QFile::exists(bundlePath)) {
-    QFile(":data/data/ca-bundle.crt").copy(bundlePath);
+    QFile(":data/ca-bundle.crt").copy(bundlePath);
     QFile(bundlePath).setPermissions(QFile::ReadUser | QFile::WriteUser);
 
-    QFile(":data/data/bundle_version").copy(bundleVersionPath);
+    QFile(":data/bundle_version").copy(bundleVersionPath);
     QFile(bundleVersionPath).setPermissions(QFile::ReadUser | QFile::WriteUser);
   }
 

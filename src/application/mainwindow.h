@@ -535,6 +535,7 @@ private:
 
   QAction *addAct_;
   QAction *addFeedAct_;
+  QAction *addFeedTrayAct_;
   QAction *addFolderAct_;
   QAction *deleteFeedAct_;
   QAction *importFeedsAct_;

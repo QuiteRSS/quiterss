@@ -728,7 +728,7 @@ Staré novinky se mohou znovu objevit</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="353"/>
-        <source>Do you want to also delete dowloaded file?</source>
+        <source>Do you want to also delete downloaded file?</source>
         <translation>Chcete také smazat stažený soubor?</translation>
     </message>
     <message>

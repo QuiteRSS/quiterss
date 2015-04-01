@@ -115,8 +115,7 @@ HEADERS += \
     src/newsfilters/itemcondition.h \
     src/newsfilters/itemaction.h \
     src/network/sslerrordialog.h \
-    src/network/networkmanagerproxy.h \
-    src/network/cabundleupdater.h
+    src/network/networkmanagerproxy.h
 
 SOURCES += \
     src/parseobject.cpp \
@@ -183,8 +182,7 @@ SOURCES += \
     src/newsfilters/itemcondition.cpp \
     src/newsfilters/itemaction.cpp \
     src/network/sslerrordialog.cpp \
-    src/network/networkmanagerproxy.cpp \
-    src/network/cabundleupdater.cpp
+    src/network/networkmanagerproxy.cpp
 
 INCLUDEPATH +=  $$PWD/src \
                 $$PWD/src/application \
@@ -222,7 +220,6 @@ isEmpty(SYSTEMQTSA) {
 } else {
   CONFIG += qtsingleapplication
 }
-include(3rdparty/libqxt/libqxt.pri)
 include(3rdparty/sqlite.pri)
 include(3rdparty/qyursqltreeview/qyursqltreeview.pri)
 include(lang/lang.pri)
@@ -251,6 +248,12 @@ win32-msvc* {
 
 os2 {
   RC_FILE = quiterss_os2.rc
+}
+
+os2|win32 {
+  SOURCES += src/network/cabundleupdater.cpp
+  HEADERS += src/network/cabundleupdater.h
+  RESOURCES += data/ca-bundle.qrc
 }
 
 DISTFILES += \

@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/data">
+        <file>bundle_version</file>
+        <file>ca-bundle.crt</file>
+    </qresource>
+</RCC>

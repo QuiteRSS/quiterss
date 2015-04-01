@@ -728,7 +728,7 @@ Erittäin vanhoja uutisia saattaa ilmestyä uudelleen.</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="353"/>
-        <source>Do you want to also delete dowloaded file?</source>
+        <source>Do you want to also delete downloaded file?</source>
         <translation>Haluatko poistaa myös ladatun tiedoston?</translation>
     </message>
     <message>
