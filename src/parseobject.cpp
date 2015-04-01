@@ -982,6 +982,19 @@ void ParseObject::runUserFilter(int feedId, int filterId)
             break;
           }
           break;
+        case 6: // field -> News
+          switch (q1.value(1).toInt()) {
+          case 0: // condition -> contains
+            qStr1.append(QString("(UPPER(title) LIKE '%%1%' OR UPPER(description) LIKE '%%1%') ").arg(content.toUpper()));
+            break;
+          case 1: // condition -> doesn't contains
+            qStr1.append(QString("(UPPER(title) NOT LIKE '%%1%' OR UPPER(description) NOT LIKE '%%1%') ").arg(content.toUpper()));
+            break;
+          case 2: // condition -> regExp
+            qStr1.append(QString("(title REGEXP '%1' OR description REGEXP '%1') ").arg(content));
+            break;
+          }
+          break;
         }
       }
       whereStr.append(qStr1).append(")");
