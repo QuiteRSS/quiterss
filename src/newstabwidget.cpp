@@ -1522,6 +1522,8 @@ void NewsTabWidget::updateWebView(QModelIndex index)
       htmlStr = content;
     }
 
+    htmlStr = htmlStr.replace("src=\"//", "src=\"http://");
+
     QUrl url;
     url.setScheme(newsUrl.scheme());
     url.setHost(newsUrl.host());
@@ -1773,6 +1775,8 @@ void NewsTabWidget::loadNewspaper(int refresh)
       }
       htmlStr = content;
     }
+
+    htmlStr = htmlStr.replace("src=\"//", "src=\"http://");
 
     QWebElement document = webView_->page()->mainFrame()->documentElement();
     QWebElement element = document.findFirst("body");
