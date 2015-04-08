@@ -332,6 +332,7 @@ signals:
   void signalRefreshNewsView(int nextUnread);
   void signalSetFeedsFilter(bool clicked = false);
   void signalMarkAllFeedsOld();
+  void signalMarkReadCategory(int type, int idLabel);
 
 private slots:
   void showMainMenu();
@@ -439,6 +440,7 @@ private slots:
 
   void slotCategoriesClicked(QTreeWidgetItem *item, int, bool createTab = false);
   void clearDeleted();
+  void slotMarkReadCategory(QTreeWidgetItem *item);
   void showNewsCategoriesTree();
   void feedsSplitterMoved(int pos, int);
 
