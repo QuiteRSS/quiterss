@@ -56,6 +56,7 @@ public:
 signals:
   void signalMiddleClicked();
   void signalClearDeleted();
+  void signalMarkRead(QTreeWidgetItem *item);
 //  void pressKeyUp();
 //  void pressKeyDown();
 
@@ -66,6 +67,8 @@ protected:
 private slots:
   void showContextMenuCategory(const QPoint &pos);
   void openCategoryNewTab();
+
+  void slotMarkRead();
 
 private:
   QTreeWidgetItem *itemClicked_;

@@ -138,6 +138,9 @@ void CategoriesTreeWidget::showContextMenuCategory(const QPoint &pos)
       if (itemClicked_ == topLevelItem(2)) {
         menu.addSeparator();
         menu.addAction(tr("Clear 'Deleted'"), this, SIGNAL(signalClearDeleted()));
+      } else {
+        menu.addSeparator();
+        menu.addAction(tr("Mark Read"), this, SLOT(slotMarkRead()));
       }
       menu.exec(viewport()->mapToGlobal(pos));
     }
@@ -148,4 +151,9 @@ void CategoriesTreeWidget::openCategoryNewTab()
 {
   setCurrentItem(itemClicked_);
   emit signalMiddleClicked();
+}
+
+void CategoriesTreeWidget::slotMarkRead()
+{
+  emit signalMarkRead(itemClicked_);
 }

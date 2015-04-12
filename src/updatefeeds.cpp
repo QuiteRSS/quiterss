@@ -151,6 +151,8 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool addFeed)
             updateObject_, SLOT(slotUpdateStatus(int,bool)));
     connect(parent, SIGNAL(signalMarkAllFeedsRead()),
             updateObject_, SLOT(slotMarkAllFeedsRead()));
+    connect(parent, SIGNAL(signalMarkReadCategory(int,int)),
+            updateObject_, SLOT(slotMarkReadCategory(int,int)));
     connect(parent, SIGNAL(signalRefreshNewsView(int)),
             updateObject_, SIGNAL(signalMarkAllFeedsRead(int)));
     connect(updateObject_, SIGNAL(signalMarkAllFeedsRead(int)),
@@ -647,7 +649,7 @@ void UpdateObject::slotRecountCategoryCounts()
     readList.append(q.value(2).toInt());
     labelList.append(q.value(3).toString());
   }
-
+qCritical() << readList.count();
   emit signalRecountCategoryCounts(deletedList, starredList, readList, labelList);
 }
 
@@ -1072,6 +1074,41 @@ void UpdateObject::slotMarkAllFeedsRead()
   slotRefreshInfoTray();
 
   emit signalMarkAllFeedsRead();
+}
+
+void UpdateObject::slotMarkReadCategory(int type, int idLabel)
+{
+  QString qStr;
+  switch (type) {
+  case NewsTabWidget::TabTypeUnread:
+    qStr = "feedId > 0 AND deleted = 0 AND read < 2";
+    break;
+  case NewsTabWidget::TabTypeStar:
+    qStr = "feedId > 0 AND deleted = 0 AND starred = 1";
+    break;
+  case NewsTabWidget::TabTypeLabel:
+    if (idLabel != 0) {
+      qStr = QString("feedId > 0 AND deleted = 0 AND label LIKE '%,%1,%'").
+          arg(idLabel);
+    } else {
+      qStr = QString("feedId > 0 AND deleted = 0 AND label!='' AND label!=','");
+    }
+    break;
+  }
+
+  QSqlQuery q;
+  q.exec(QString("UPDATE news SET read=1 WHERE %1").arg(qStr));
+  q.exec(QString("UPDATE news SET new=0 WHERE %1").arg(qStr));
+
+  QList<int> idList;
+  q.exec("SELECT id FROM feeds WHERE unread!=0");
+  while (q.next()) {
+    idList.append(q.value(0).toInt());
+  }
+  emit signalMarkAllFeedsRead(0);
+  foreach (int id, idList) {
+    slotUpdateStatus(id, true);
+  }
 }
 
 /** @brief Save icon in DB and emit signal to update it

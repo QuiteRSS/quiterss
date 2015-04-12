@@ -1522,6 +1522,8 @@ void NewsTabWidget::updateWebView(QModelIndex index)
       htmlStr = content;
     }
 
+    htmlStr = htmlStr.replace("src=\"//", "src=\"http://");
+
     QUrl url;
     url.setScheme(newsUrl.scheme());
     url.setHost(newsUrl.host());
@@ -1602,6 +1604,13 @@ void NewsTabWidget::loadNewspaper(int refresh)
       QString readImg = QString("<a href=\"quiterss://read.action.ui?#%1\" title='%3'>"
                                 "<img class='quiterss-img' id=\"readAction%1\" src=\"%2\"/></a>").
           arg(newsId).arg(iconStr).arg(tr("Mark Read/Unread"));
+
+      QString feedImg;
+      QByteArray byteArray = feedsTreeModel_->dataField(feedIndex, "image").toByteArray();
+      if (!byteArray.isEmpty())
+        feedImg = QString("<img class='quiterss-img' src=\"data:image/png;base64,") % byteArray % "\"/>";
+      else
+        feedImg = QString("<img class='quiterss-img' src=\"qrc:/images/feed\"/>");
 
       QString titleString = newsModel_->dataField(index.row(), "title").toString();
       if (!linkString.isEmpty()) {
@@ -1754,10 +1763,10 @@ void NewsTabWidget::loadNewspaper(int refresh)
       QString border = "0";
       if (i != 0) border = "1";
       if (ltr) {
-        htmlStr = newspaperHtml_.arg(newsId, border, readImg, titleString,
+        htmlStr = newspaperHtml_.arg(newsId, border, readImg, feedImg, titleString,
                                      dateString, authorString, content, actionNews);
       } else {
-        htmlStr = newspaperHtmlRtl_.arg(newsId, border, readImg, titleString,
+        htmlStr = newspaperHtmlRtl_.arg(newsId, border, readImg, feedImg, titleString,
                                         dateString, authorString, content, actionNews);
       }
     } else {
@@ -1766,6 +1775,8 @@ void NewsTabWidget::loadNewspaper(int refresh)
       }
       htmlStr = content;
     }
+
+    htmlStr = htmlStr.replace("src=\"//", "src=\"http://");
 
     QWebElement document = webView_->page()->mainFrame()->documentElement();
     QWebElement element = document.findFirst("body");

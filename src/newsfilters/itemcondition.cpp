@@ -28,7 +28,7 @@ ItemCondition::ItemCondition(QWidget * parent)
   QStringList itemList;
   itemList << tr("Title")  << tr("Description")
            << tr("Author") << tr("Category") << tr("State")
-           << tr("Link")
+           << tr("Link") << tr("News")
               /*<< tr("Published") << tr("Received")*/;
   comboBox1_->addItems(itemList);
 
@@ -107,6 +107,10 @@ void ItemCondition::currentIndexChanged(const QString &str)
     itemList << tr("contains") << tr("doesn't contains")
              << tr("is") << tr("isn't")
              << tr("begins with") << tr("ends with")
+             << tr("Regular expressions");
+    comboBox2_->addItems(itemList);
+  } else if (str == tr("News")) {
+    itemList << tr("contains") << tr("doesn't contains")
              << tr("Regular expressions");
     comboBox2_->addItems(itemList);
   } /*else if (str == "Published") {

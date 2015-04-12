@@ -510,6 +510,8 @@ void MainWindow::createFeedsWidget()
           this, SLOT(slotOpenCategoryNewTab()));
   connect(categoriesTree_, SIGNAL(signalClearDeleted()),
           this, SLOT(clearDeleted()));
+  connect(categoriesTree_, SIGNAL(signalMarkRead(QTreeWidgetItem*)),
+          this, SLOT(slotMarkReadCategory(QTreeWidgetItem*)));
   connect(showCategoriesButton_, SIGNAL(clicked()),
           this, SLOT(showNewsCategoriesTree()));
   connect(feedsSplitter_, SIGNAL(splitterMoved(int,int)),
@@ -7299,6 +7301,19 @@ void MainWindow::clearDeleted()
   }
 
   recountCategoryCounts();
+}
+
+void MainWindow::slotMarkReadCategory(QTreeWidgetItem *item)
+{
+  int type = item->text(1).toInt();
+
+  if (currentNewsTab->type_ == type) {
+    currentNewsTab->markAllNewsRead();
+  }
+  else {
+    emit signalMarkReadCategory(type, item->text(2).toInt());
+    recountCategoryCounts();
+  }
 }
 
 /** @brief Show/Hide categories tree

@@ -86,6 +86,7 @@ public slots:
   void slotMarkFeedRead(int id, bool isFolder, bool openFeed);
   void slotUpdateStatus(int feedId, bool changed);
   void slotMarkAllFeedsRead();
+  void slotMarkReadCategory(int type, int idLabel);
   void slotIconSave(QString feedUrl, QByteArray faviconData);
   void slotSqlQueryExec(QString query);
   void slotMarkAllFeedsOld();
