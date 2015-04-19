@@ -1,3 +1,15 @@
+Version 0.17.7 (19 Apr 2015)
+  * Added: Tray menu item "Add feed..."
+  * Added: News filter. Condition "News" (title + description)
+  * Added: Displaying feed icon beside feed title when using newspaper mode
+  * Added: Catefories. Popup menu item "Mark as Read"
+  * Changed: CA sertificate loading
+  * Changed: Icons correction
+  * Changed: Displaying the wizard only if feed is added from Firefox
+  * Fixed: Occasional capturing of links while scrolling
+  * Fixed: Restoring application from system tray by WIN+B (Windows)
+  * Fixed: Some content links of the news description has no "http" schema
+
 Version 0.17.6 (10 Feb 015)
   * Added: Progress bar button and shortcut for "Stop feeds updating"
   * Changed: Storing the path of files being loaded
