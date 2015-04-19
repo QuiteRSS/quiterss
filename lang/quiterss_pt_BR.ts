@@ -458,7 +458,7 @@
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="143"/>
         <source>Mark Read</source>
-        <translation type="unfinished"/>
+        <translation>Marcar como Lido</translation>
     </message>
 </context>
 <context>
@@ -734,7 +734,7 @@ Notícias antigas podem reaparecer</translation>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="353"/>
         <source>Do you want to also delete downloaded file?</source>
-        <translation type="unfinished"/>
+        <translation>Deseja apagar o arquivo baixado também?</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="370"/>
@@ -1277,7 +1277,7 @@ não foi encontrado!</translation>
         <location filename="../src/newsfilters/itemcondition.cpp" line="31"/>
         <location filename="../src/newsfilters/itemcondition.cpp" line="112"/>
         <source>News</source>
-        <translation type="unfinished"/>
+        <translation>Notícias</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/itemcondition.cpp" line="36"/>
@@ -1918,7 +1918,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4828"/>
         <source>Add Feed...</source>
-        <translation type="unfinished"/>
+        <translation>Adicionar Feed...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4844"/>
@@ -2513,7 +2513,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="231"/>
         <source>The &quot;%1&quot; server has the following errors in the SSL certificate:</source>
-        <translation type="unfinished"/>
+        <translation>O servidor &quot;%1&quot; tem os seguintes erros no certificado SSL:</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="247"/>

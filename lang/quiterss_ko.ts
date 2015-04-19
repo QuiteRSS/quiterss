@@ -458,7 +458,7 @@
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="143"/>
         <source>Mark Read</source>
-        <translation type="unfinished"/>
+        <translation>읽음으로 표시</translation>
     </message>
 </context>
 <context>
@@ -734,7 +734,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="353"/>
         <source>Do you want to also delete downloaded file?</source>
-        <translation type="unfinished"/>
+        <translation>다운로드 한 파일을 삭제하시겠습니까?</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="370"/>
@@ -1277,7 +1277,7 @@ Ancient news could reappear</source>
         <location filename="../src/newsfilters/itemcondition.cpp" line="31"/>
         <location filename="../src/newsfilters/itemcondition.cpp" line="112"/>
         <source>News</source>
-        <translation type="unfinished"/>
+        <translation>뉴스</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/itemcondition.cpp" line="36"/>
@@ -1918,7 +1918,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4828"/>
         <source>Add Feed...</source>
-        <translation type="unfinished"/>
+        <translation>피드 추가...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4844"/>
@@ -2513,7 +2513,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="231"/>
         <source>The &quot;%1&quot; server has the following errors in the SSL certificate:</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; 서버의 SSL 인증서에 다음가 같은 오류가 있습니다:</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="247"/>

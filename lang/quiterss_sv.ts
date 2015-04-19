@@ -458,7 +458,7 @@
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="143"/>
         <source>Mark Read</source>
-        <translation type="unfinished"/>
+        <translation>Markera som läst</translation>
     </message>
 </context>
 <context>
@@ -734,7 +734,7 @@ Gamla nyheter kan återuppstå</translation>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="353"/>
         <source>Do you want to also delete downloaded file?</source>
-        <translation type="unfinished"/>
+        <translation>Vill du ta bort den nedladdade filen också?</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="370"/>
@@ -1277,7 +1277,7 @@ kunde inte hittas!</translation>
         <location filename="../src/newsfilters/itemcondition.cpp" line="31"/>
         <location filename="../src/newsfilters/itemcondition.cpp" line="112"/>
         <source>News</source>
-        <translation type="unfinished"/>
+        <translation>Nyheter</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/itemcondition.cpp" line="36"/>
@@ -1918,7 +1918,7 @@ kunde inte hittas!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4828"/>
         <source>Add Feed...</source>
-        <translation type="unfinished"/>
+        <translation>Lägg till flöde...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4844"/>
@@ -2513,7 +2513,7 @@ kunde inte hittas!</translation>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="231"/>
         <source>The &quot;%1&quot; server has the following errors in the SSL certificate:</source>
-        <translation type="unfinished"/>
+        <translation>Servern &quot;%1&quot; har följande fel i SSL-certifikatet:</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="247"/>

@@ -26,7 +26,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="69"/>
         <source>Includes:</source>
-        <translation>使用:</translation>
+        <translation>包含:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="144"/>
@@ -312,7 +312,7 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="152"/>
         <source>Feed URL or website address:</source>
-        <translation>Feed 的 URL 或者網頁位址：</translation>
+        <translation>Feed 或網站網址：</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="185"/>
@@ -354,7 +354,7 @@
         <location filename="../src/addfeedwizard.cpp" line="520"/>
         <location filename="../src/addfeedwizard.cpp" line="542"/>
         <source>Can&apos;t find feed URL!</source>
-        <translation>Feed 的 URL 不存在！</translation>
+        <translation>找不到 Feed 的網址！</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="561"/>
@@ -438,7 +438,7 @@
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="67"/>
         <source>Deleted</source>
-        <translation> 刪除的</translation>
+        <translation>已刪除</translation>
     </message>
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="72"/>
@@ -453,12 +453,12 @@
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="140"/>
         <source>Clear &apos;Deleted&apos;</source>
-        <translation> 清空「刪除的」</translation>
+        <translation> 清空「已刪除」</translation>
     </message>
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="143"/>
         <source>Mark Read</source>
-        <translation type="unfinished"/>
+        <translation>標記為已讀</translation>
     </message>
 </context>
 <context>
@@ -734,7 +734,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="353"/>
         <source>Do you want to also delete downloaded file?</source>
-        <translation type="unfinished"/>
+        <translation>您要一併刪除已下載的檔案嗎？</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="370"/>
@@ -1277,7 +1277,7 @@ Ancient news could reappear</source>
         <location filename="../src/newsfilters/itemcondition.cpp" line="31"/>
         <location filename="../src/newsfilters/itemcondition.cpp" line="112"/>
         <source>News</source>
-        <translation type="unfinished"/>
+        <translation>訊息</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/itemcondition.cpp" line="36"/>
@@ -1476,7 +1476,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2734"/>
         <source>Import: can&apos;t open a file</source>
-        <translation>匯入: 不能開啟檔案</translation>
+        <translation>匯入: 無法開啟檔案</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2751"/>
@@ -1491,7 +1491,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2761"/>
         <source>Export: can&apos;t open a file</source>
-        <translation>匯出: 不能開啟檔案</translation>
+        <translation>匯出: 無法開啟檔案</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="3033"/>
@@ -1727,7 +1727,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4890"/>
         <source>Show Last Day</source>
-        <translation>顯示最近一天</translation>
+        <translation>顯示最近 1 天</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4891"/>
@@ -1918,7 +1918,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4828"/>
         <source>Add Feed...</source>
-        <translation type="unfinished"/>
+        <translation>加入 Feed...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4844"/>
@@ -2145,7 +2145,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4978"/>
         <source>Switch Focus to Next Panel (Tree Feeds, List News, Browser)</source>
-        <translation>焦點切換到下一個面板 (Feeds 樹，訊息列表，瀏覽器)</translation>
+        <translation>焦點切換到下一個面板 (Feeds 樹、訊息列表、瀏覽器)</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4979"/>
@@ -2155,7 +2155,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4981"/>
         <source>Switch Focus to Previous Panel (Tree Feeds, Browser, List News)</source>
-        <translation>焦點切換到前一個面板 (Feeds 樹，訊息列表，瀏覽器)</translation>
+        <translation>焦點切換到前一個面板 (Feeds 樹、訊息列表、瀏覽器)</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4983"/>
@@ -2513,7 +2513,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="231"/>
         <source>The &quot;%1&quot; server has the following errors in the SSL certificate:</source>
-        <translation type="unfinished"/>
+        <translation>「%1」伺服器有以下的 SSL 憑證錯誤：</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="247"/>
@@ -2538,7 +2538,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="268"/>
         <source>Would you like to make an exception for this certificate?</source>
-        <translation type="unfinished"/>
+        <translation>您想要將這個憑證作為例外嗎？</translation>
     </message>
 </context>
 <context>
@@ -4491,7 +4491,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/network/sslerrordialog.cpp" line="34"/>
         <source>Only for this session</source>
-        <translation type="unfinished"/>
+        <translation>僅此工作階段</translation>
     </message>
 </context>
 <context>

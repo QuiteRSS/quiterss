@@ -458,7 +458,7 @@
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="143"/>
         <source>Mark Read</source>
-        <translation type="unfinished"/>
+        <translation>Označiť ako prečítané</translation>
     </message>
 </context>
 <context>
@@ -734,7 +734,7 @@ Staré správy sa môžu znova objaviť</translation>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="353"/>
         <source>Do you want to also delete downloaded file?</source>
-        <translation type="unfinished"/>
+        <translation>Chcete tiež vymazať stiahnutý súbor?</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="370"/>
@@ -1275,7 +1275,7 @@ Staré správy sa môžu znova objaviť</translation>
         <location filename="../src/newsfilters/itemcondition.cpp" line="31"/>
         <location filename="../src/newsfilters/itemcondition.cpp" line="112"/>
         <source>News</source>
-        <translation type="unfinished"/>
+        <translation>Novinky</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/itemcondition.cpp" line="36"/>
@@ -1916,7 +1916,7 @@ Staré správy sa môžu znova objaviť</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4828"/>
         <source>Add Feed...</source>
-        <translation type="unfinished"/>
+        <translation>Pridať kanál...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4844"/>
@@ -2511,7 +2511,7 @@ Staré správy sa môžu znova objaviť</translation>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="231"/>
         <source>The &quot;%1&quot; server has the following errors in the SSL certificate:</source>
-        <translation type="unfinished"/>
+        <translation>Server &quot;%1&quot;, na ktorý sa pokúšate pristúpiť má nasledujúce chyby v SSL certifikáte:</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="247"/>
