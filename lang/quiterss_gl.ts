@@ -458,7 +458,7 @@
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="143"/>
         <source>Mark Read</source>
-        <translation type="unfinished"/>
+        <translation>Marcar como lida</translation>
     </message>
 </context>
 <context>
@@ -734,7 +734,7 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="353"/>
         <source>Do you want to also delete downloaded file?</source>
-        <translation type="unfinished"/>
+        <translation>Queres tamén eliminar o ficheiro descargado?</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="370"/>
@@ -1277,7 +1277,7 @@ As novas antigas poderían reaparecer</translation>
         <location filename="../src/newsfilters/itemcondition.cpp" line="31"/>
         <location filename="../src/newsfilters/itemcondition.cpp" line="112"/>
         <source>News</source>
-        <translation type="unfinished"/>
+        <translation>Novas</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/itemcondition.cpp" line="36"/>
@@ -1918,7 +1918,7 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4828"/>
         <source>Add Feed...</source>
-        <translation type="unfinished"/>
+        <translation>Engadir canle...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4844"/>
@@ -2513,7 +2513,7 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="231"/>
         <source>The &quot;%1&quot; server has the following errors in the SSL certificate:</source>
-        <translation type="unfinished"/>
+        <translation>O servidor &quot;%1&quot; ten os seguintes erros no certificado SSL:</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="247"/>

@@ -458,7 +458,7 @@
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="143"/>
         <source>Mark Read</source>
-        <translation type="unfinished"/>
+        <translation>Segna come letto</translation>
     </message>
 </context>
 <context>
@@ -734,7 +734,7 @@ Le notizie vecchie potrebbero riapparire.</translation>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="353"/>
         <source>Do you want to also delete downloaded file?</source>
-        <translation type="unfinished"/>
+        <translation>Vuoi eliminare anche il file scaricato?</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="370"/>
@@ -1277,7 +1277,7 @@ Le notizie vecchie potrebbero riapparire.</translation>
         <location filename="../src/newsfilters/itemcondition.cpp" line="31"/>
         <location filename="../src/newsfilters/itemcondition.cpp" line="112"/>
         <source>News</source>
-        <translation type="unfinished"/>
+        <translation>Notizie</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/itemcondition.cpp" line="36"/>
@@ -1918,7 +1918,7 @@ Le notizie vecchie potrebbero riapparire.</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4828"/>
         <source>Add Feed...</source>
-        <translation type="unfinished"/>
+        <translation>Aggiungi fonte...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4844"/>
@@ -2513,7 +2513,7 @@ Le notizie vecchie potrebbero riapparire.</translation>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="231"/>
         <source>The &quot;%1&quot; server has the following errors in the SSL certificate:</source>
-        <translation type="unfinished"/>
+        <translation>Il server &quot;%1&quot; presenta i seguenti errori nel certificato SSL:</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="247"/>
@@ -2538,7 +2538,7 @@ Le notizie vecchie potrebbero riapparire.</translation>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="268"/>
         <source>Would you like to make an exception for this certificate?</source>
-        <translation type="unfinished"/>
+        <translation>Vuoi fare un&apos;eccezione per questo certificato?</translation>
     </message>
 </context>
 <context>
@@ -3571,7 +3571,7 @@ Le notizie vecchie potrebbero riapparire.</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1082"/>
         <source>Show when inactive main window</source>
-        <translation type="unfinished"/>
+        <translation>Mostra quando la finestra principale non è attiva</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1097"/>
@@ -4491,7 +4491,7 @@ Le notizie vecchie potrebbero riapparire.</translation>
     <message>
         <location filename="../src/network/sslerrordialog.cpp" line="34"/>
         <source>Only for this session</source>
-        <translation type="unfinished"/>
+        <translation>Solo per questa sessione</translation>
     </message>
 </context>
 <context>
