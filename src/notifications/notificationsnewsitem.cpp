@@ -24,7 +24,6 @@ NewsItem::NewsItem(int idFeed, int idNews, int width, QWidget * parent)
   , read_(false)
 {
   setCursor(Qt::PointingHandCursor);
-  setMinimumHeight(17);
 
   iconLabel_ = new QLabel(this);
   iconLabel_->setFixedWidth(19);
