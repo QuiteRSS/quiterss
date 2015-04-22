@@ -611,7 +611,7 @@ void OptionsDialog::createBrowserWidget()
   historyLayout2->addWidget(dirDiskCacheButton_);
 
   maxDiskCache_ = new QSpinBox();
-  maxDiskCache_->setRange(10, 99);
+  maxDiskCache_->setRange(10, 300);
 
   QHBoxLayout *historyLayout3 = new QHBoxLayout();
   historyLayout3->addWidget(new QLabel(tr("Maximum size of disk cache")));
