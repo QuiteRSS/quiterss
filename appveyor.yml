@@ -1,7 +1,52 @@
 os: unstable
+
+environment:
+  PRO_FILE: 'C:\projects\quiterss\QuiteRSS.pro'
+
+  matrix:
+  - BUILD: Qt4.8.6-x86-msvc2010
+    QMAKE_OPTIONS: "CONFIG+=NO_QSM_POSTGRES"
+    COMPILERBAT: '"C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat" x86'
+    PRO_MAKE: nmake release
+#    PRO_CHECK: 'cd ..\..\bin && dir && tst_SqliteTest.exe'
+    QMAKESPEC: win32-msvc2010
+    QTMOVE: '$OUTDIR\bin 4.8.6-msvc2010'
+    QTSUB: '4.8.6-msvc2010'
+    QTDOWNLOAD1: http://download.qt.io/archive/qt/4.8/4.8.6/qt-opensource-windows-x86-vs2010-4.8.6.exe
+    QTARCHIVE1: 'qt-opensource-windows-x86-vs2010-4.8.6.exe'
+    QTARCHIVE1_OPTS: '"-ir!?OUTDIR\*" "-xr!*doc\*" "-xr!*examples\*" "-xr!*demos\*"'
+
 install:
-  - set QTDIR=C:\Qt\Qt5.4.1\5.4\mingw482_32
-  - set PATH=%PATH%;%QTDIR%\bin;C:\MinGW\bin
+# prepare extern install
+- choco install curl 7zip # dependencywalker
+- mkdir extern
+- cd extern
+
+# install Qt
+- mkdir Qt
+- cd Qt
+- if defined QTDOWNLOAD1 curl -kLO %QTDOWNLOAD1%
+- if defined QTARCHIVE1 7z x %QTARCHIVE1_OPTS% %QTARCHIVE1% >nul
+- if defined QTDOWNLOAD2 curl -kLO %QTDOWNLOAD2%
+- if defined QTARCHIVE2 7z x %QTARCHIVE2_OPTS% %QTARCHIVE2% >nul
+- if defined QTMOVE move %QTMOVE%
+- if defined QTSUB set "QTDIR=%CD%\%QTSUB%"
+- if defined QTDOWNLOAD1 (echo [Paths]&& echo Prefix=..) >%QTDIR%\bin\qt.conf
+- set QT_PLUGIN_PATH=%QTDIR%\plugins
+- cd ..
+
+# finish install
+- cd ..
+- set "PATH=%QTDIR%\bin;%PATH%"
+- if defined COMPILERDIR set "PATH=%COMPILERDIR%;%PATH%"
+- '%COMPILERBAT%'
+
 build_script:
-  - qmake QuiteRSS.pro
-  - make
+- echo "building %BUILD%"
+- mkdir build
+- mkdir "build\%BUILD%"
+- cd "build\%BUILD%"
+- set
+- qmake -r "CONFIG+=NO_QSM_FIREBIRD" %QMAKE_OPTIONS% %PRO_FILE%
+- '%PRO_MAKE%'
+- cd ..\..
