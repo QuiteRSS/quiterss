@@ -1,5 +1,9 @@
 os: unstable
 
+branches:
+  only:
+  - master
+
 environment:
   PRO_FILE: 'C:\projects\quiterss\QuiteRSS.pro'
 
@@ -8,13 +12,25 @@ environment:
     QMAKE_OPTIONS: "CONFIG+=NO_QSM_POSTGRES"
     COMPILERBAT: '"C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat" x86'
     PRO_MAKE: nmake release
-#    PRO_CHECK: 'cd ..\..\bin && dir && tst_SqliteTest.exe'
+#    PRO_CHECK: 'cd build\%BUILD%\release\target && dir && QuiteRSS.exe'
+    PRO_CHECK: 'cd release\target && dir && cd ..\..'
     QMAKESPEC: win32-msvc2010
     QTMOVE: '$OUTDIR\bin 4.8.6-msvc2010'
     QTSUB: '4.8.6-msvc2010'
     QTDOWNLOAD1: http://download.qt.io/archive/qt/4.8/4.8.6/qt-opensource-windows-x86-vs2010-4.8.6.exe
     QTARCHIVE1: 'qt-opensource-windows-x86-vs2010-4.8.6.exe'
     QTARCHIVE1_OPTS: '"-ir!?OUTDIR\*" "-xr!*doc\*" "-xr!*examples\*" "-xr!*demos\*"'
+    
+  - BUILD: 'Qt5.4.1-x86-msvc2013'
+    COMPILERBAT: '"C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat" x86'
+    PRO_MAKE: nmake
+    PRO_CHECK: nmake check
+    QMAKESPEC: win32-msvc2013
+    QTSUB: '5.4\msvc2013_opengl'
+    QTDOWNLOAD1: http://download.qt.io/online/qtsdkrepository/windows_x86/desktop/qt5_54/qt.54.win32_msvc2013_opengl/5.4.1-0qt5_essentials.7z
+    QTARCHIVE1: '5.4.1-0qt5_essentials.7z'
+    QTDOWNLOAD2: http://download.qt.io/online/qtsdkrepository/windows_x86/desktop/qt5_54/qt.54.win32_msvc2013_opengl/5.4.1-0icu_53_1_msvc_2013_32.7z
+    QTARCHIVE2: '5.4.1-0icu_53_1_msvc_2013_32.7z'
 
 install:
 # prepare extern install
@@ -49,4 +65,9 @@ build_script:
 - set
 - qmake -r "CONFIG+=NO_QSM_FIREBIRD" %QMAKE_OPTIONS% %PRO_FILE%
 - '%PRO_MAKE%'
+- cd ..\..
+
+test_script:
+- cd "build\%BUILD%"
+- '%PRO_CHECK%'
 - cd ..\..
