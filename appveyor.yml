@@ -33,12 +33,12 @@ environment:
 #    QTARCHIVE1: 'qt-opensource-windows-x86-vs2010-4.8.6.exe'
 #    QTARCHIVE1_OPTS: '"-ir!?OUTDIR\*" "-xr!*doc\*" "-xr!*examples\*" "-xr!*demos\*"'
     
- - BUILD: Qt5.4.1-mingw32
-   QTDIR: 'c:\qt\5.4\mingw491_32'
-   COMPILERDIR: 'c:\qt\tools\mingw491_32\bin'
-   QMAKESPEC: win32-g++
-   PRO_MAKE: mingw32-make
-   PRO_CHECK: mingw32-make check
+  - BUILD: Qt5.4.1-mingw32
+    QTDIR: 'c:\qt\5.4\mingw491_32'
+    COMPILERDIR: 'c:\qt\tools\mingw491_32\bin'
+    QMAKESPEC: win32-g++
+    PRO_MAKE: mingw32-make
+    PRO_CHECK: mingw32-make check
     
   - BUILD: 'Qt5.4.1-x86-msvc2013'
     COMPILERBAT: '"C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat" x86'
