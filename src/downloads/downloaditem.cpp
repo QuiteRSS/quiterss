@@ -38,8 +38,8 @@
 #include "networkmanager.h"
 #include "webpage.h"
 
-#ifdef Q_OS_WIN
-#include "Shlwapi.h"
+#if defined(Q_OS_WIN)
+#include <qt_windows.h>
 #endif
 
 DownloadItem::DownloadItem(QListWidgetItem *item,
