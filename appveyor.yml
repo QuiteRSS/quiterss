@@ -20,25 +20,25 @@ environment:
     QTARCHIVE1: 'qt-win-opensource-4.8.5-mingw.exe'
     QTARCHIVE1_OPTS: '"-ir!?OUTDIR\*" "-xr!*doc\*" "-xr!*examples\*" "-xr!*demos\*"'
     
-  - BUILD: Qt4.8.6-x86-msvc2010
-    QMAKE_OPTIONS: "CONFIG+=NO_QSM_POSTGRES"
-    COMPILERBAT: '"C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat" x86'
-    PRO_MAKE: nmake release
-#    PRO_CHECK: 'cd build\%BUILD%\release\target && dir && QuiteRSS.exe'
-    PRO_CHECK: 'cd release\target && dir && cd ..\..'
-    QMAKESPEC: win32-msvc2010
-    QTMOVE: '$OUTDIR\bin 4.8.6-msvc2010'
-    QTSUB: '4.8.6-msvc2010'
-    QTDOWNLOAD1: http://download.qt.io/archive/qt/4.8/4.8.6/qt-opensource-windows-x86-vs2010-4.8.6.exe
-    QTARCHIVE1: 'qt-opensource-windows-x86-vs2010-4.8.6.exe'
-    QTARCHIVE1_OPTS: '"-ir!?OUTDIR\*" "-xr!*doc\*" "-xr!*examples\*" "-xr!*demos\*"'
+#  - BUILD: Qt4.8.6-x86-msvc2010
+#    QMAKE_OPTIONS: "CONFIG+=NO_QSM_POSTGRES"
+#    COMPILERBAT: '"C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat" x86'
+#    PRO_MAKE: nmake release
+##    PRO_CHECK: 'cd build\%BUILD%\release\target && dir && QuiteRSS.exe'
+#    PRO_CHECK: 'cd release\target && dir && cd ..\..'
+#    QMAKESPEC: win32-msvc2010
+#    QTMOVE: '$OUTDIR\bin 4.8.6-msvc2010'
+#    QTSUB: '4.8.6-msvc2010'
+#    QTDOWNLOAD1: http://download.qt.io/archive/qt/4.8/4.8.6/qt-opensource-windows-x86-vs2010-4.8.6.exe
+#    QTARCHIVE1: 'qt-opensource-windows-x86-vs2010-4.8.6.exe'
+#    QTARCHIVE1_OPTS: '"-ir!?OUTDIR\*" "-xr!*doc\*" "-xr!*examples\*" "-xr!*demos\*"'
     
-  - BUILD: Qt5.4.1-mingw32
-    QTDIR: 'C:\Qt\Qt5.4.1\5.4\mingw482_32'
-    COMPILERDIR: 'C:\Qt\Qt5.4.1\Tools\mingw482_32\bin'
-    QMAKESPEC: win32-g++
-    PRO_MAKE: mingw32-make
-    PRO_CHECK: mingw32-make check
+#  - BUILD: Qt5.4.1-mingw32
+#    QTDIR: 'C:\Qt\Qt5.4.1\5.4\mingw482_32'
+#    COMPILERDIR: 'C:\Qt\Qt5.4.1\Tools\mingw482_32\bin'
+#    QMAKESPEC: win32-g++
+#    PRO_MAKE: mingw32-make
+#    PRO_CHECK: mingw32-make check
     
   - BUILD: 'Qt5.4.1-x86-msvc2013'
     COMPILERBAT: '"C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat" x86'
@@ -63,9 +63,6 @@ environment:
     QTARCHIVE2: '5.4.1-0icu_53_1_msvc_2013_64.7z'
 
 install:
-- dir "c:\"
-- dir "c:\qt"
-
 # prepare extern install
 - choco install curl 7zip # dependencywalker
 - mkdir extern
@@ -89,6 +86,15 @@ install:
 - set "PATH=%QTDIR%\bin;%PATH%"
 - if defined COMPILERDIR set "PATH=%COMPILERDIR%;%PATH%"
 - '%COMPILERBAT%'
+
+- dir "c:\"
+- dir "c:\projects"
+- dir "c:\mingw"
+- dir "c:\qt\4.8.5"
+- dir "c:\qt\4.8.6"
+- dir "c:\qt\5.3"
+- dir "c:\qt\5.4"
+- dir "c:\qt\tools"
 
 build_script:
 - echo "building %BUILD%"
