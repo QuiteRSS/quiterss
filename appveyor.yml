@@ -1,3 +1,5 @@
+version: 0.17.7_{build}
+
 os: unstable
 
 branches:
@@ -21,10 +23,44 @@ environment:
     QTARCHIVE1: 'qt-opensource-windows-x86-vs2010-4.8.6.exe'
     QTARCHIVE1_OPTS: '"-ir!?OUTDIR\*" "-xr!*doc\*" "-xr!*examples\*" "-xr!*demos\*"'
     
+  - BUILD: Qt5.3.2-mingw32
+    QTDIR: 'C:\Qt\Qt5.3.2\5.3\mingw482_32'
+    COMPILERDIR: 'C:\Qt\Qt5.3.2\Tools\mingw482_32\bin'
+    QMAKESPEC: win32-g++
+    PRO_MAKE: mingw32-make
+#    PRO_CHECK: mingw32-make check
+
+  - BUILD: 'Qt5.3.2-x86-msvc2013'
+    COMPILERBAT: '"C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat" x86'
+    PRO_MAKE: nmake
+#    PRO_CHECK: nmake check
+    QMAKESPEC: win32-msvc2013
+    QTSUB: '5.3\msvc2013_opengl'
+    QTDOWNLOAD1: http://download.qt-project.org/online/qtsdkrepository/windows_x86/desktop/qt5_53/qt.53.win32_msvc2013_opengl/5.3.2-0qt5_essentials.7z
+    QTARCHIVE1: '5.3.2-0qt5_essentials.7z'
+    QTDOWNLOAD2: http://download.qt-project.org/online/qtsdkrepository/windows_x86/desktop/qt5_53/qt.53.win32_msvc2013_opengl/5.3.2-0icu_52_1_msvc_2013_32.7z
+    QTARCHIVE2: '5.3.2-0icu_52_1_msvc_2013_32.7z'
+
+  - BUILD: 'Qt5.3.2-x64-msvc2013'
+    COMPILERBAT: '"C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat" x86_amd64'
+    PRO_MAKE: nmake
+#    PRO_CHECK: nmake check
+    QMAKESPEC: win32-msvc2013
+    QTSUB: '5.3\msvc2013_64_opengl'
+    QTDOWNLOAD1: http://download.qt-project.org/online/qtsdkrepository/windows_x86/desktop/qt5_53/qt.53.win64_msvc2013_64_opengl/5.3.2-0qt5_essentials.7z
+    QTARCHIVE1: '5.3.2-0qt5_essentials.7z'
+    QTDOWNLOAD2: http://download.qt-project.org/online/qtsdkrepository/windows_x86/desktop/qt5_53/qt.53.win64_msvc2013_64_opengl/5.3.2-0icu_52_1_msvc_2013_64.7z
+    QTARCHIVE2: '5.3.2-0icu_52_1_msvc_2013_64.7z'
+    MYSQL_DRIVER_URL: https://dev.mysql.com/get/Downloads/Connector-C/mysql-connector-c-6.1.5-winx64.zip
+    MYSQL_DRIVER_ARCHIVE: mysql-connector-c-6.1.5-winx64.zip
+    MYSQL_DRIVER_NAME: mysql-connector-c-6.1.5-winx64
+    POSTGRES_DRIVER_URL: http://get.enterprisedb.com/postgresql/postgresql-9.3.5-1-windows-x64-binaries.zip
+    POSTGRES_DRIVER_ARCHIVE: postgresql-9.3.5-1-windows-x64-binaries.zip
+    
   - BUILD: 'Qt5.4.1-x86-msvc2013'
     COMPILERBAT: '"C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat" x86'
     PRO_MAKE: nmake
-    PRO_CHECK: nmake check
+#    PRO_CHECK: nmake check
     QMAKESPEC: win32-msvc2013
     QTSUB: '5.4\msvc2013_opengl'
     QTDOWNLOAD1: http://download.qt.io/online/qtsdkrepository/windows_x86/desktop/qt5_54/qt.54.win32_msvc2013_opengl/5.4.1-0qt5_essentials.7z
