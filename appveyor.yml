@@ -89,9 +89,7 @@ install:
 
 - dir "c:\"
 - dir "c:\projects"
-- dir "c:\mingw"
-- dir "c:\qt\4.8.5"
-- dir "c:\qt\4.8.6"
+- dir "c:\projects\quiterss"
 - dir "c:\qt\5.3"
 - dir "c:\qt\5.4"
 - dir "c:\qt\tools"
