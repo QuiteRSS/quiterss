@@ -33,12 +33,12 @@ environment:
 #    QTARCHIVE1: 'qt-opensource-windows-x86-vs2010-4.8.6.exe'
 #    QTARCHIVE1_OPTS: '"-ir!?OUTDIR\*" "-xr!*doc\*" "-xr!*examples\*" "-xr!*demos\*"'
     
-#  - BUILD: Qt5.4.1-mingw32
-#    QTDIR: 'C:\Qt\Qt5.4.1\5.4\mingw482_32'
-#    COMPILERDIR: 'C:\Qt\Qt5.4.1\Tools\mingw482_32\bin'
-#    QMAKESPEC: win32-g++
-#    PRO_MAKE: mingw32-make
-#    PRO_CHECK: mingw32-make check
+ - BUILD: Qt5.4.1-mingw32
+   QTDIR: 'c:\qt\5.4\mingw491_32'
+   COMPILERDIR: 'c:\qt\tools\mingw491_32\bin'
+   QMAKESPEC: win32-g++
+   PRO_MAKE: mingw32-make
+   PRO_CHECK: mingw32-make check
     
   - BUILD: 'Qt5.4.1-x86-msvc2013'
     COMPILERBAT: '"C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat" x86'
@@ -87,9 +87,9 @@ install:
 - if defined COMPILERDIR set "PATH=%COMPILERDIR%;%PATH%"
 - '%COMPILERBAT%'
 
-- dir "c:\"
-- dir "c:\projects"
-- dir "c:\projects\quiterss"
+- dir "c:\projects\quiterss\extern"
+- dir "c:\projects\quiterss\extern\qt"
+- dir "c:\projects\quiterss\buildbots"
 - dir "c:\qt\5.3"
 - dir "c:\qt\5.4"
 - dir "c:\qt\tools"
