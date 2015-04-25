@@ -11,7 +11,7 @@ environment:
 
   matrix:
   - BUILD: Qt4.8.5-x86-mingw32
-    QTDIR: 'C:\Qt\4.8.5\bin'
+    QTDIR: 'C:\Qt\4.8.5'
     COMPILERDIR: 'C:\mingw\bin'
     QMAKESPEC: win32-g++
     PRO_MAKE: mingw32-make
@@ -63,6 +63,9 @@ environment:
     QTARCHIVE2: '5.4.1-0icu_53_1_msvc_2013_64.7z'
 
 install:
+- dir "c:\"
+- dir "c:\qt"
+
 # prepare extern install
 - choco install curl 7zip # dependencywalker
 - mkdir extern
