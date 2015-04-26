@@ -94,7 +94,7 @@ install:
 - '%COMPILERBAT%'
 
 after_build:
-- 7z a %BUILD%.zip ".\build\%BUILD%\release\target\*"
+- 7z a "%BUILD%.zip" ".\build\%BUILD%\release\target\*"
 
 build_script:
 - echo "building %BUILD%"
@@ -112,7 +112,7 @@ test_script:
 - cd ..\..
 
 artifacts:
-- path: %BUILD%.zip
+- path: '%BUILD%.zip'
 
 deploy:
 # FTP deployment provider settings
