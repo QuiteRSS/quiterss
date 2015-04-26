@@ -104,12 +104,14 @@ build_script:
 - cd ..\..
 
 test_script:
+- dir "c:\projects\quiterss\build"
+- dir "c:\projects\quiterss\build\%BUILD%"
 - cd "build\%BUILD%"
 - '%PRO_CHECK%'
 - cd ..\..
 
 artifacts:
-- path: 'quiterss\build\%BUILD%\release\target'
+- path: 'build'
 
 deploy:
 # FTP deployment provider settings
