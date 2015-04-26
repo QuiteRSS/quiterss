@@ -259,10 +259,10 @@ os2|win32 {
 DISTFILES += \
     HISTORY_RU \
     HISTORY_EN \
-    README \
     COPYING \
     AUTHORS \
-    CHANGELOG
+    CHANGELOG \
+    README.md
 
 unix:!mac {
   TARGET = quiterss
@@ -319,7 +319,7 @@ mac {
   bundle_target.files += AUTHORS
   bundle_target.files += COPYING
   bundle_target.files += CHANGELOG
-  bundle_target.files += README
+  bundle_target.files += README.md
   bundle_target.files += sound
   bundle_target.files += style
   bundle_target.path = Contents/Resources
@@ -341,7 +341,6 @@ CODECFORSRC = UTF-8
 OTHER_FILES += \
     HISTORY_RU \
     HISTORY_EN \
-    README \
     COPYING \
     AUTHORS \
     CHANGELOG \
