@@ -10,19 +10,19 @@ environment:
   PRO_FILE: 'C:\projects\quiterss\QuiteRSS.pro'
 
   matrix:
-  - BUILD: Qt4.8.5-x86-mingw32
-    COMPILERDIR: 'C:\projects\quiterss\extern\Qt\mingw\bin'
-    QMAKESPEC: win32-g++
-    PRO_MAKE: mingw32-make
-    PRO_CHECK: mingw32-make check
-    QTMOVE: '$OUTDIR\bin 4.8.5-x86-mingw32'
-    QTSUB: '4.8.5-x86-mingw32'
-    QTDOWNLOAD1: http://download.qt.io/archive/qt/4.8/4.8.5/qt-win-opensource-4.8.5-mingw.exe
-    QTARCHIVE1: 'qt-win-opensource-4.8.5-mingw.exe'
-    QTARCHIVE1_OPTS: '"-ir!?OUTDIR\*" "-xr!*doc\*" "-xr!*examples\*" "-xr!*demos\*"'
-# MinGW 4.4
-    QTDOWNLOAD2: http://quiterss.org/files/updates/mingw.7z
-    QTARCHIVE2: 'mingw.7z'
+#  - BUILD: Qt4.8.5-x86-mingw32
+#    COMPILERDIR: 'C:\projects\quiterss\extern\Qt\mingw\bin'
+#    QMAKESPEC: win32-g++
+#    PRO_MAKE: mingw32-make
+#    PRO_CHECK: mingw32-make check
+#    QTMOVE: '$OUTDIR\bin 4.8.5-x86-mingw32'
+#    QTSUB: '4.8.5-x86-mingw32'
+#    QTDOWNLOAD1: http://download.qt.io/archive/qt/4.8/4.8.5/qt-win-opensource-4.8.5-mingw.exe
+#    QTARCHIVE1: 'qt-win-opensource-4.8.5-mingw.exe'
+#    QTARCHIVE1_OPTS: '"-ir!?OUTDIR\*" "-xr!*doc\*" "-xr!*examples\*" "-xr!*demos\*"'
+## MinGW 4.4
+#    QTDOWNLOAD2: http://quiterss.org/files/updates/mingw.7z
+#    QTARCHIVE2: 'mingw.7z'
     
 #  - BUILD: Qt4.8.6-x86-msvc2010
 #    COMPILERBAT: '"C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat" x86'
@@ -61,12 +61,12 @@ environment:
 #    QTDOWNLOAD2: http://download.qt.io/online/qtsdkrepository/windows_x86/desktop/qt5_54/qt.54.win32_msvc2013_opengl/5.4.1-0icu_53_1_msvc_2013_32.7z
 #    QTARCHIVE2: '5.4.1-0icu_53_1_msvc_2013_32.7z'
     
-#  - BUILD: Qt5.4.1-x64-msvc2013
-#    QTDIR: 'c:\qt\5.4\msvc2013_64_opengl'
-#    COMPILERBAT: '"C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat" x86_amd64'
-#    QMAKESPEC: win32-msvc2013
-#    PRO_MAKE: nmake
-#    PRO_CHECK: nmake check
+ - BUILD: Qt5.4.1-x64-msvc2013
+   QTDIR: 'c:\qt\5.4\msvc2013_64_opengl'
+   COMPILERBAT: '"C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat" x86_amd64'
+   QMAKESPEC: win32-msvc2013
+   PRO_MAKE: nmake
+#   PRO_CHECK: nmake check
 
 install:
 # prepare extern install
@@ -95,6 +95,8 @@ install:
 
 after_build:
 - 7z a "%BUILD%.zip" ".\build\%BUILD%\release\target\*"
+- dir "c:\projects\quiterss"
+- dir "c:\projects\quiterss\build"
 
 build_script:
 - echo "building %BUILD%"
@@ -112,7 +114,7 @@ test_script:
 - cd ..\..
 
 artifacts:
-- path: '%BUILD%.zip'
+- path: $(BUILD).zip
 
 deploy:
 # FTP deployment provider settings
