@@ -61,12 +61,12 @@ environment:
 #    QTDOWNLOAD2: http://download.qt.io/online/qtsdkrepository/windows_x86/desktop/qt5_54/qt.54.win32_msvc2013_opengl/5.4.1-0icu_53_1_msvc_2013_32.7z
 #    QTARCHIVE2: '5.4.1-0icu_53_1_msvc_2013_32.7z'
     
- - BUILD: Qt5.4.1-x64-msvc2013
-   QTDIR: 'c:\qt\5.4\msvc2013_64_opengl'
-   COMPILERBAT: '"C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat" x86_amd64'
-   QMAKESPEC: win32-msvc2013
-   PRO_MAKE: nmake
-#   PRO_CHECK: nmake check
+  - BUILD: Qt5.4.1-x64-msvc2013
+    QTDIR: 'c:\qt\5.4\msvc2013_64_opengl'
+    COMPILERBAT: '"C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat" x86_amd64'
+    QMAKESPEC: win32-msvc2013
+    PRO_MAKE: nmake
+#    PRO_CHECK: nmake check
 
 install:
 # prepare extern install
