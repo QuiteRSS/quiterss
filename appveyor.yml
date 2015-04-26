@@ -109,7 +109,7 @@ test_script:
 - cd ..\..
 
 artifacts:
-- path: 'quiterss\build\%BUILD%\release\target\*'
+- path: 'quiterss\build\%BUILD%\release\target'
 
 deploy:
 # FTP deployment provider settings
@@ -119,6 +119,4 @@ deploy:
   username: quitefuncy
   password:
     secure: GUuFDbSezZ7LmK+pzK1w930brvyL+MmmU4B+ItMsa+8=
-  folder: '/files'
-  application:
-  active_mode: true
+  folder: 'files'
