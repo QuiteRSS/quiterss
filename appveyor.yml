@@ -93,16 +93,13 @@ install:
 - if defined COMPILERDIR set "PATH=%COMPILERDIR%;%PATH%"
 - '%COMPILERBAT%'
 
-- dir "c:\"
-- dir "c:\projects\quiterss\extern\qt\"
-
 build_script:
 - echo "building %BUILD%"
 - mkdir build
 - mkdir "build\%BUILD%"
 - cd "build\%BUILD%"
 - set
-- qmake -r %QMAKE_OPTIONS% %PRO_FILE%
+- qmake -r CONFIG+=release %QMAKE_OPTIONS% %PRO_FILE%
 - '%PRO_MAKE%'
 - cd ..\..
 
@@ -110,3 +107,18 @@ test_script:
 - cd "build\%BUILD%"
 - '%PRO_CHECK%'
 - cd ..\..
+
+artifacts:
+- path: 'quiterss\build\%BUILD%\release\target\*'
+
+deploy:
+# FTP deployment provider settings
+- provider: FTP
+  protocol: ftps
+  host: prokudin.org
+  username: quitefuncy
+  password:
+    secure: GUuFDbSezZ7LmK+pzK1w930brvyL+MmmU4B+ItMsa+8=
+  folder: '/files'
+  application:
+  active_mode: true
