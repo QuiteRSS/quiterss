@@ -315,6 +315,9 @@ QWidget *FeedPropertiesDialog::createStatusTab()
   lastUpdateFeed_ = new QLabel();
   newsCount_ = new QLabel();
 
+  QLabel *feedsCountLabel = new QLabel(tr("Feeds count:"));
+  feedsCount_ = new QLabel();
+
   QLabel *descriptionLabel = new QLabel(tr("Description:"));
 
   descriptionText_ = new QTextEdit();
@@ -330,8 +333,10 @@ QWidget *FeedPropertiesDialog::createStatusTab()
   layoutGrid->addWidget(lastUpdateFeed_, 2, 1);
   layoutGrid->addWidget(new QLabel(tr("News count:")), 3, 0);
   layoutGrid->addWidget(newsCount_, 3, 1);
-  layoutGrid->addWidget(descriptionLabel, 4, 0, 1, 1, Qt::AlignTop);
-  layoutGrid->addWidget(descriptionText_, 4, 1, 1, 1, Qt::AlignTop);
+  layoutGrid->addWidget(feedsCountLabel, 4, 0);
+  layoutGrid->addWidget(feedsCount_, 4, 1);
+  layoutGrid->addWidget(descriptionLabel, 5, 0, 1, 1, Qt::AlignTop);
+  layoutGrid->addWidget(descriptionText_, 5, 1, 1, 1, Qt::AlignTop);
 
   QVBoxLayout *tabLayout = new QVBoxLayout(tab);
   tabLayout->setMargin(10);
@@ -342,6 +347,9 @@ QWidget *FeedPropertiesDialog::createStatusTab()
   if (!isFeed_) {
     descriptionLabel->hide();
     descriptionText_->hide();
+  } else {
+    feedsCountLabel->hide();
+    feedsCount_->hide();
   }
 
   return tab;
@@ -415,6 +423,7 @@ QWidget *FeedPropertiesDialog::createStatusTab()
                       arg(tr("new")).
                       arg(feedProperties.status.unreadCount).
                       arg(tr("unread")));
+  feedsCount_->setText(QString("%1").arg(feedProperties.status.feedsCount));
 }
 //------------------------------------------------------------------------------
 void FeedPropertiesDialog::setDefaultTitle()

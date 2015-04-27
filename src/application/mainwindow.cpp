@@ -5363,6 +5363,23 @@ void MainWindow::showFeedPropertiesDlg()
   properties.status.unreadCount   = feedsTreeModel_->dataField(index, "unread").toInt();
   properties.status.description   = feedsTreeModel_->dataField(index, "description").toString();
 
+  properties.status.feedsCount = 0;
+  if (!isFeed) {
+    QQueue<int> parentIds;
+    parentIds.enqueue(feedId);
+    while (!parentIds.empty()) {
+      int parentId = parentIds.dequeue();
+      q.exec(QString("SELECT id, xmlUrl FROM feeds WHERE parentId='%1'").arg(parentId));
+      while (q.next()) {
+        QString xmlUrl = q.value(1).toString();
+        if (xmlUrl.isEmpty())
+          parentIds.enqueue(q.value(0).toInt());
+        else
+          properties.status.feedsCount++;
+      }
+    }
+  }
+
   feedPropertiesDialog->setFeedProperties(properties);
   properties_tmp = properties;
 

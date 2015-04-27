@@ -109,6 +109,7 @@ typedef struct {
     int undeleteCount; //!< Number of all news
     int newCount; //!< Number of new news
     int unreadCount; //!< Number of unread news
+    int feedsCount; //!< Number of feeds
   } status;
 
 } FEED_PROPERTIES;
@@ -195,6 +196,7 @@ private:
   QLabel *createdFeed_;
   QLabel *lastUpdateFeed_;
   QLabel *newsCount_;
+  QLabel *feedsCount_;
   QWidget *createStatusTab();
 
   FEED_PROPERTIES feedProperties;
