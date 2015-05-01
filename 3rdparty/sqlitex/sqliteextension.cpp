@@ -24,17 +24,7 @@
 #include <QRegExp>
 #include <QDebug>
 
-#if defined(Q_OS_WIN) || defined(Q_OS_OS2) || defined(Q_OS_MAC)
-#if QT_VERSION >= 0x050400
-#include <sqlite_qt54x/sqlite3.h>
-#elif QT_VERSION >= 0x040800
-#include <sqlite_qt48x/sqlite3.h>
-#else
-#include <sqlite_qt47x/sqlite3.h>
-#endif
-#else
 #include <sqlite3.h>
-#endif
 
 static int localeCompare( void* /*arg*/, int len1, const void* data1, int len2, const void* data2 )
 {

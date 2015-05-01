@@ -649,7 +649,7 @@ void UpdateObject::slotRecountCategoryCounts()
     readList.append(q.value(2).toInt());
     labelList.append(q.value(3).toString());
   }
-qCritical() << readList.count();
+
   emit signalRecountCategoryCounts(deletedList, starredList, readList, labelList);
 }
 
