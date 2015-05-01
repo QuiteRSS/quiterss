@@ -110,7 +110,7 @@ void FindTextContent::retranslateStrings()
   findTitleAct_->setText(tr("Find in Titles"));
   findAuthorAct_->setText(tr("Find in Authors"));
   findCategoryAct_->setText(tr("Find in Categories"));
-  findContentAct_->setText(tr("Find in Content"));
+  findContentAct_->setText(tr("Find in Descriptions"));
   findLinkAct_->setText(tr("Find in Links"));
   findInBrowserAct_->setText(tr("Find in Browser"));
   findLabel_->setText(findGroup_->checkedAction()->text());
