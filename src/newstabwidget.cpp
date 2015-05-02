@@ -981,7 +981,7 @@ void NewsTabWidget::markNewsRead()
       int newsId = newsModel_->dataField(curIndex.row(), "id").toInt();
       q.exec(QString("UPDATE news SET new=0, read='%1' WHERE id=='%2'").
              arg(markRead).arg(newsId));
-      QString feedId = newsModel_->dataField(i, "feedId").toString();
+      QString feedId = newsModel_->dataField(curIndex.row(), "feedId").toString();
       if (!feedIdList.contains(feedId)) feedIdList.append(feedId);
     }
     db_.commit();
@@ -1067,9 +1067,10 @@ void NewsTabWidget::markNewsStar()
 
     db_.transaction();
     for (int i = cnt-1; i >= 0; --i) {
-      newsModel_->setData(indexes.at(i), markStar);
+      curIndex = indexes.at(i);
+      newsModel_->setData(curIndex, markStar);
 
-      int newsId = newsModel_->dataField(i, "id").toInt();
+      int newsId = newsModel_->dataField(curIndex.row(), "id").toInt();
       QSqlQuery q;
       q.exec(QString("UPDATE news SET starred='%1' WHERE id=='%2'").
              arg(markStar).arg(newsId));
@@ -1981,7 +1982,7 @@ void NewsTabWidget::openInExternalBrowserNews()
 
         int newsId = newsModel_->dataField(curIndex.row(), "id").toInt();
         q.exec(QString("UPDATE news SET new=0, read=1 WHERE id=='%2'").arg(newsId));
-        QString feedId = newsModel_->dataField(i, "feedId").toString();
+        QString feedId = newsModel_->dataField(curIndex.row(), "feedId").toString();
         if (!feedIdList.contains(feedId)) feedIdList.append(feedId);
       }
 
