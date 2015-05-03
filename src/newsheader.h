@@ -67,7 +67,6 @@ private:
   NewsModel *model_;
   QActionGroup *columnVisibleActGroup_;
   QPushButton *buttonColumnView_;
-  bool show_;
   bool move_;
   int idxCol_;
   int posX_;

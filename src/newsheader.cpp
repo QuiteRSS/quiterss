@@ -23,7 +23,6 @@
 NewsHeader::NewsHeader(NewsModel *model, QWidget *parent)
   : QHeaderView(Qt::Horizontal, parent)
   , model_(model)
-  , show_(false)
   , move_(false)
 {
   setObjectName("newsHeader");
@@ -152,13 +151,8 @@ bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
 {
   Q_UNUSED(obj)
 
-  if (event->type() == QEvent::Show) {
-    if (!show_)
-      adjustAllColumnsWidths(size().width()+1);
-    show_ = true;
-    return false;
-  } else if (event->type() == QEvent::Resize) {
-    if ((count() == 0) || !show_) return false;
+  if (event->type() == QEvent::Resize) {
+    if ((count() == 0) || !isVisible()) return false;
 
     if (buttonColumnView_->height() != height())
       buttonColumnView_->setFixedHeight(height());
