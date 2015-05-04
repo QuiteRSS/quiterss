@@ -312,12 +312,18 @@ void ParseObject::parseAtom(const QString &feedUrl, const QDomDocument &doc)
     }
 
     newsItem.description = newsList.item(i).namedItem("summary").toElement().text();
-    newsItem.content = newsList.item(i).namedItem("content").toElement().text();
-    if (newsItem.content.isEmpty() || (newsItem.description.length() > newsItem.content.length())) {
-      newsItem.content.clear();
+    QDomNode nodeContent = newsList.item(i).namedItem("content");
+    if (nodeContent.toElement().attribute("type") == "xhtml") {
+      QTextStream in(&newsItem.content);
+      nodeContent.save(in, 0);
     } else {
+      newsItem.content = nodeContent.toElement().text();
+    }
+    if (!(newsItem.content.isEmpty() ||
+          (newsItem.description.length() > newsItem.content.length()))) {
       newsItem.description = newsItem.content;
     }
+    newsItem.content.clear();
 
     QDomNodeList categoryElem = newsList.item(i).toElement().elementsByTagName("category");
     for (int j = 0; j < categoryElem.size(); j++) {
