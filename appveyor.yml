@@ -10,19 +10,19 @@ environment:
   PRO_FILE: 'C:\projects\quiterss\QuiteRSS.pro'
 
   matrix:
-#  - BUILD: Qt4.8.5-x86-mingw32
-#    COMPILERDIR: 'C:\projects\quiterss\extern\Qt\mingw\bin'
-#    QMAKESPEC: win32-g++
-#    PRO_MAKE: mingw32-make
-#    PRO_CHECK: mingw32-make check
-#    QTMOVE: '$OUTDIR\bin 4.8.5-x86-mingw32'
-#    QTSUB: '4.8.5-x86-mingw32'
-#    QTDOWNLOAD1: http://download.qt.io/archive/qt/4.8/4.8.5/qt-win-opensource-4.8.5-mingw.exe
-#    QTARCHIVE1: 'qt-win-opensource-4.8.5-mingw.exe'
-#    QTARCHIVE1_OPTS: '"-ir!?OUTDIR\*" "-xr!*doc\*" "-xr!*examples\*" "-xr!*demos\*"'
-## MinGW 4.4
-#    QTDOWNLOAD2: http://quiterss.org/files/updates/mingw.7z
-#    QTARCHIVE2: 'mingw.7z'
+  - BUILD: Qt4.8.6-x86-mingw32
+    COMPILERDIR: 'C:\projects\quiterss\extern\Qt\mingw\bin'
+    QMAKESPEC: win32-g++
+    PRO_MAKE: mingw32-make
+    PRO_CHECK: mingw32-make check
+    QTMOVE: '$OUTDIR\bin 4.8.6-x86-mingw32'
+    QTSUB: '4.8.6-x86-mingw32'
+    QTDOWNLOAD1: http://download.qt.io/archive/qt/4.8/4.8.6/qt-opensource-windows-x86-mingw482-4.8.6-1.exe
+    QTARCHIVE1: 'qt-opensource-windows-x86-mingw482-4.8.6-1.exe'
+    QTARCHIVE1_OPTS: '"-ir!?OUTDIR\*" "-xr!*doc\*" "-xr!*examples\*" "-xr!*demos\*"'
+# MinGW 4.4
+    QTDOWNLOAD2: http://quiterss.org/files/updates/mingw.7z
+    QTARCHIVE2: 'mingw.7z'
     
 #  - BUILD: Qt4.8.6-x86-msvc2010
 #    COMPILERBAT: '"C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat" x86'
@@ -73,6 +73,8 @@ install:
 - choco install curl 7zip # dependencywalker
 - mkdir extern
 - cd extern
+- dir "c:\"
+- dir "c:\mingw"
 
 # install Qt
 - mkdir Qt
