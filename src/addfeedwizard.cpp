@@ -595,15 +595,12 @@ void AddFeedWizard::slotUpdateFeed(int feedId, bool, int newCount, QString)
 
 void AddFeedWizard::finish()
 {
-  int parentId = 0;
-
   QSqlQuery q;
   q.exec(QString("SELECT htmlUrl FROM feeds WHERE id=='%1'").arg(feedId_));
   if (q.first())
     htmlUrlString_ = q.value(0).toString();
 
-  if (foldersTree_->currentItem()->text(1) != "0")
-    parentId = foldersTree_->currentItem()->text(1).toInt();
+  feedParentId_ = foldersTree_->currentItem()->text(1).toInt();
 
   // Correct rowToParent field
   QList<int> idList;
@@ -620,7 +617,7 @@ void AddFeedWizard::finish()
   // Calculate row number to insert feed
   int rowToParent = 0;
   q.exec(QString("SELECT count(id) FROM feeds WHERE parentId='%1' AND id!='%2'").
-         arg(parentId).arg(feedId_));
+         arg(feedParentId_).arg(feedId_));
   if (q.next()) rowToParent = q.value(0).toInt();
 
   int auth = 0;
@@ -628,7 +625,7 @@ void AddFeedWizard::finish()
 
   q.prepare("UPDATE feeds SET text = ?, parentId = ?, rowToParent = ?, authentication = ? WHERE id == ?");
   q.addBindValue(nameFeedEdit_->text());
-  q.addBindValue(parentId);
+  q.addBindValue(feedParentId_);
   q.addBindValue(rowToParent);
   q.addBindValue(auth);
   q.addBindValue(feedId_);
@@ -651,7 +648,35 @@ void AddFeedWizard::finish()
     }
   }
 
-  feedParentId_ = parentId;
+  if (feedParentId_) {
+    q.prepare("SELECT columns, sort, sortType, "
+              "updateIntervalEnable, updateInterval, updateIntervalType, "
+              "displayEmbeddedImages, displayNews, layoutDirection, "
+              "javaScriptEnable "
+              "FROM feeds WHERE id=?");
+    q.addBindValue(feedParentId_);
+    q.exec();
+    if (q.next()) {
+      QSqlQuery q1;
+      q1.prepare("UPDATE feeds SET columns = ?, sort = ?, sortType = ?, "
+                 "updateIntervalEnable = ?, updateInterval = ?, updateIntervalType = ?, "
+                 "displayEmbeddedImages = ?, displayNews = ?, layoutDirection = ?, "
+                 "javaScriptEnable = ? "
+                 "WHERE id == ?");
+      q1.addBindValue(q.value(0).toString());
+      q1.addBindValue(q.value(1).toInt());
+      q1.addBindValue(q.value(2).toInt());
+      q1.addBindValue(q.value(3).toInt());
+      q1.addBindValue(q.value(4).toInt());
+      q1.addBindValue(q.value(5).toInt());
+      q1.addBindValue(q.value(6).toInt());
+      q1.addBindValue(q.value(7).toInt());
+      q1.addBindValue(q.value(8).toInt());
+      q1.addBindValue(q.value(9).toInt());
+      q1.addBindValue(feedId_);
+      q1.exec();
+    }
+  }
 
   accept();
 }
