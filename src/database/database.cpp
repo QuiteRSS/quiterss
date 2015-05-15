@@ -405,7 +405,7 @@ QSqlDatabase Database::connection(const QString &connectionName)
     db = QSqlDatabase::database(connectionName, true);
     if (!db.isValid()) {
       SQLiteDriver *driver = new SQLiteDriver();
-      QSqlDatabase db = QSqlDatabase::addDatabase(driver, connectionName);
+      db = QSqlDatabase::addDatabase(driver, connectionName);
       db.setDatabaseName(mainApp->dbFileName());
       db.open();
       setPragma(db);
