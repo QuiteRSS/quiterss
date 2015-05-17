@@ -119,6 +119,11 @@ private:
   bool duplicateNewsMode_;
   bool feedChanged_;
 
+  QStringList guidList_;
+  QStringList linkList_;
+  QStringList titleList_;
+  QStringList publishedList_;
+
 };
 
 #endif // PARSEOBJECT_H
