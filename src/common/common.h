@@ -37,6 +37,8 @@ namespace Common
 
   QString readAllFileContents(const QString &filename);
   QByteArray readAllFileByteContents(const QString &filename);
+
+  void sleep(int ms);
 }
 
 #endif // COMMON_H

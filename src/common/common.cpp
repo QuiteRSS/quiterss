@@ -18,6 +18,12 @@
 #include "common.h"
 
 #include <QtCore>
+#if defined Q_OS_WIN
+#include <qt_windows.h>
+#else
+#include <time.h>
+#include <unistd.h>
+#endif
 
 bool Common::removePath(const QString &path)
 {
@@ -148,4 +154,14 @@ QByteArray Common::readAllFileByteContents(const QString &filename)
   }
 
   return QByteArray();
+}
+
+void Common::sleep(int ms)
+{
+#if defined(Q_OS_WIN)
+  Sleep(DWORD(ms));
+#else
+  struct timespec ts = { ms / 1000, (ms % 1000) * 1000 * 1000 };
+  nanosleep(&ts, NULL);
+#endif
 }

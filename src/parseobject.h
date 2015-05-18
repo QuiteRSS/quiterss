@@ -96,8 +96,8 @@ private slots:
   void getQueuedXml();
   void slotParse(const QByteArray &xmlData, const int &feedId,
                  const QDateTime &dtReply, const QString &codecName);
-  void addAtomNewsIntoBase(NewsItemStruct &newsItem);
-  void addRssNewsIntoBase(NewsItemStruct &newsItem);
+  void addAtomNewsIntoBase(NewsItemStruct *newsItem);
+  void addRssNewsIntoBase(NewsItemStruct *newsItem);
 
 private:
   void parseAtom(const QString &feedUrl, const QDomDocument &doc);
