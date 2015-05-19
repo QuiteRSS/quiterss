@@ -237,7 +237,7 @@ void ParseObject::slotParse(const QByteArray &xmlData, const int &feedId,
     linkList_.clear();
   }
 
-  // Set feed update time and recieve data from server time
+  // Set feed update time and receive data from server time
   QString updated = QLocale::c().toString(QDateTime::currentDateTimeUtc(),
                                           "yyyy-MM-ddTHH:mm:ss");
   QString lastBuildDate = dtReply.toString(Qt::ISODate);
