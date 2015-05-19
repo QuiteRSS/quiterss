@@ -67,7 +67,7 @@
         <file alias="zoomIn">images/zoom_in.png</file>
         <file alias="zoomOut">images/zoom_out.png</file>
         <file>images/fullScreen.png</file>
-        <file>images/quiterss_debug.ico</file>
+        <file>images/quiterss_debug.png</file>
         <file alias="loading">images/loading.gif</file>
         <file>images/trash.png</file>
         <file>images/panel_hide.png</file>
