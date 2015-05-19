@@ -47,7 +47,6 @@
         <file alias="close">images/close.png</file>
         <file alias="closeHover">images/close_hover.png</file>
         <file alias="webPage">images/world.png</file>
-        <file alias="quiterssDebug">images/quiterss_debug.png</file>
         <file alias="addFolder">images/folder_add.png</file>
         <file alias="deleteFolder">images/folder_delete.png</file>
         <file alias="moveDown">images/arrow_down.png</file>
@@ -67,7 +66,6 @@
         <file alias="zoomIn">images/zoom_in.png</file>
         <file alias="zoomOut">images/zoom_out.png</file>
         <file>images/fullScreen.png</file>
-        <file>images/quiterss_debug.ico</file>
         <file alias="loading">images/loading.gif</file>
         <file>images/trash.png</file>
         <file>images/panel_hide.png</file>
