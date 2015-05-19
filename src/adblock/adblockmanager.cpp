@@ -238,7 +238,7 @@ void AdBlockManager::load()
   }
 
   QDir adblockDir(mainApp->dataDir() + "/adblock");
-  // Create if neccessary
+  // Create if necessary
   if (!adblockDir.exists()) {
     QDir(mainApp->dataDir()).mkdir("adblock");
   }

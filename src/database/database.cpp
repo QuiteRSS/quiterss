@@ -71,7 +71,7 @@ const QString kCreateFeedsTableQuery(
     "updateIntervalEnable int, "    // auto update enable flag
     "updateInterval int, "          // auto update interval
     "updateIntervalType varchar, "  // auto update interval type(minutes, hours,...)
-    "updateOnStartup int, "         // update the feed on aplication startup
+    "updateOnStartup int, "         // update the feed on application startup
     "displayOnStartup int, "        // show the feed in separate tab in application startup
     // --- Reading ---
     "markReadAfterSecondsEnable int, "    // Enable "Read" timer
@@ -129,7 +129,7 @@ const QString kCreateNewsTableQuery(
     "title varchar, "                      // title
     "published varchar, "                  // publish timestamp
     "modified varchar, "                   // modification timestamp
-    "received varchar, "                   // recieve news timestamp (set on recieve)
+    "received varchar, "                   // receive news timestamp (set on receive)
     "author_name varchar, "                // author name
     "author_uri varchar, "                 // author web page (atom)
     "author_email varchar, "               // author e-mail (atom)
