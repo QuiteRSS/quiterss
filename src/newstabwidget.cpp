@@ -523,12 +523,16 @@ void NewsTabWidget::setSettings(bool init, bool newTab)
     webView_->page()->action(QWebPage::Back)->setShortcut(mainWindow_->backWebPageAct_->shortcut());
     webView_->page()->action(QWebPage::Forward)->setShortcut(mainWindow_->forwardWebPageAct_->shortcut());
     webView_->page()->action(QWebPage::Reload)->setShortcut(mainWindow_->reloadWebPageAct_->shortcut());
+
+    QWebSettings::setObjectCacheCapacities(0, 0, 0);
   }
 
   QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId_);
 
   if (mainWindow_->currentNewsTab == this) {
     if (init) {
+      QWebSettings::clearMemoryCaches();
+
       if (type_ == TabTypeFeed) {
         int displayEmbeddedImages = feedsTreeModel_->dataField(feedIndex, "displayEmbeddedImages").toInt();
         if (displayEmbeddedImages == 2) {
