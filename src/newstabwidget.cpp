@@ -529,47 +529,45 @@ void NewsTabWidget::setSettings(bool init, bool newTab)
 
   QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId_);
 
-  if (mainWindow_->currentNewsTab == this) {
-    if (init) {
-      QWebSettings::clearMemoryCaches();
-
-      if (type_ == TabTypeFeed) {
-        int displayEmbeddedImages = feedsTreeModel_->dataField(feedIndex, "displayEmbeddedImages").toInt();
-        if (displayEmbeddedImages == 2) {
-          autoLoadImages_ = true;
-        } else if (displayEmbeddedImages == 1) {
-          autoLoadImages_ = mainWindow_->autoLoadImages_;
-        } else {
-          autoLoadImages_ = false;
-        }
-      } else {
-        autoLoadImages_ = mainWindow_->autoLoadImages_;
-      }
-      webView_->settings()->setAttribute(QWebSettings::AutoLoadImages, autoLoadImages_);
-
-      webView_->setZoomFactor(qreal(mainWindow_->defaultZoomPages_)/100.0);
-    }
-    setAutoLoadImages(false);
+  if (init) {
+    QWebSettings::clearMemoryCaches();
 
     if (type_ == TabTypeFeed) {
-      int javaScriptEnable = feedsTreeModel_->dataField(feedIndex, "javaScriptEnable").toInt();
-      if (javaScriptEnable == 2) {
-        webView_->settings()->setAttribute(QWebSettings::JavascriptEnabled, true);
-      } else if (javaScriptEnable == 1) {
-        webView_->settings()->setAttribute(QWebSettings::JavascriptEnabled, mainWindow_->javaScriptEnable_);
-      } else if (javaScriptEnable == 0) {
-        webView_->settings()->setAttribute(QWebSettings::JavascriptEnabled, false);
-      }
-
-      int layoutDirection = feedsTreeModel_->dataField(feedIndex, "layoutDirection").toInt();
-      if (!layoutDirection) {
-        newsView_->setLayoutDirection(Qt::LeftToRight);
+      int displayEmbeddedImages = feedsTreeModel_->dataField(feedIndex, "displayEmbeddedImages").toInt();
+      if (displayEmbeddedImages == 2) {
+        autoLoadImages_ = true;
+      } else if (displayEmbeddedImages == 1) {
+        autoLoadImages_ = mainWindow_->autoLoadImages_;
       } else {
-        newsView_->setLayoutDirection(Qt::RightToLeft);
+        autoLoadImages_ = false;
       }
     } else {
-      webView_->settings()->setAttribute(QWebSettings::JavascriptEnabled, mainWindow_->javaScriptEnable_);
+      autoLoadImages_ = mainWindow_->autoLoadImages_;
     }
+    webView_->settings()->setAttribute(QWebSettings::AutoLoadImages, autoLoadImages_);
+
+    webView_->setZoomFactor(qreal(mainWindow_->defaultZoomPages_)/100.0);
+  }
+  setAutoLoadImages(false);
+
+  if (type_ == TabTypeFeed) {
+    int javaScriptEnable = feedsTreeModel_->dataField(feedIndex, "javaScriptEnable").toInt();
+    if (javaScriptEnable == 2) {
+      webView_->settings()->setAttribute(QWebSettings::JavascriptEnabled, true);
+    } else if (javaScriptEnable == 1) {
+      webView_->settings()->setAttribute(QWebSettings::JavascriptEnabled, mainWindow_->javaScriptEnable_);
+    } else if (javaScriptEnable == 0) {
+      webView_->settings()->setAttribute(QWebSettings::JavascriptEnabled, false);
+    }
+
+    int layoutDirection = feedsTreeModel_->dataField(feedIndex, "layoutDirection").toInt();
+    if (!layoutDirection) {
+      newsView_->setLayoutDirection(Qt::LeftToRight);
+    } else {
+      newsView_->setLayoutDirection(Qt::RightToLeft);
+    }
+  } else {
+    webView_->settings()->setAttribute(QWebSettings::JavascriptEnabled, mainWindow_->javaScriptEnable_);
   }
 
   if (type_ < TabTypeWeb) {

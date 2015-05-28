@@ -6353,7 +6353,7 @@ void MainWindow::creatFeedTab(int feedId, int feedParId)
   if (q.next()) {
     NewsTabWidget *widget = new NewsTabWidget(this, NewsTabWidget::TabTypeFeed, feedId, feedParId);
     addTab(widget);
-    widget->setSettings(false);
+    widget->setSettings();
     widget->retranslateStrings();
     widget->setBrowserPosition();
 
