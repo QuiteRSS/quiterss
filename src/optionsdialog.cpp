@@ -236,7 +236,10 @@ bool OptionsDialog::eventFilter(QObject *obj, QEvent *event)
             (keyEvent->modifiers() & Qt::ControlModifier) ||
             (keyEvent->modifiers() & Qt::AltModifier))
           str.append(QKeySequence(keyEvent->modifiers()).toString());
-        str.append(QKeySequence(keyEvent->key()).toString());
+        if (keyEvent->key() == Qt::Key_Backtab)
+          str.append(QKeySequence(Qt::Key_Tab).toString());
+        else
+          str.append(QKeySequence(keyEvent->key()).toString());
         editShortcut_->setText(str);
 
         QModelIndex index = shortcutProxyModel_->mapToSource(shortcutTree_->currentIndex());
