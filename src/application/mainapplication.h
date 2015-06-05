@@ -81,6 +81,10 @@ public:
   void c2fSetWhitelist(QStringList whitelist);
   void c2fAddWhitelist(const QString &site);
 
+  void setTranslateApplication();
+  QString language() const { return langFileName_; }
+  void setLanguage(const QString &lang) { langFileName_ = lang; }
+
 public slots:
   void receiveMessage(const QString &message);
   void quitApplication();
@@ -121,6 +125,8 @@ private:
   bool updateFeedsStartUp_;
   bool noDebugOutput_;
 
+  QTranslator *translator_;
+  QString langFileName_;
   SplashScreen *splashScreen_;
   MainWindow *mainWindow_;
   NetworkManager *networkManager_;

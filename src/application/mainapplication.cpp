@@ -33,6 +33,7 @@ MainApplication::MainApplication(int &argc, char **argv)
   , isPortableAppsCom_(false)
   , isClosing_(false)
   , dbFileExists_(false)
+  , translator_(0)
   , mainWindow_(0)
   , networkManager_(0)
   , cookieJar_(0)
@@ -73,7 +74,7 @@ MainApplication::MainApplication(int &argc, char **argv)
   qWarning() << "Run application!";
 
   setStyleApplication();
-
+  setTranslateApplication();
   showSplashScreen();
 
   connectDatabase();
@@ -214,6 +215,34 @@ void MainApplication::createSettings()
   showSplashScreen_ = settings.value("showSplashScreen", true).toBool();
   updateFeedsStartUp_ = settings.value("autoUpdatefeedsStartUp", false).toBool();
   noDebugOutput_ = settings.value("noDebugOutput", true).toBool();
+
+  QString strLang;
+  QString strLocalLang = QLocale::system().name();
+  bool findLang = false;
+  QDir langDir(resourcesDir_ + "/lang");
+  foreach (QString file, langDir.entryList(QStringList("*.qm"), QDir::Files)) {
+    strLang = file.section('.', 0, 0).section('_', 1);
+    if (strLocalLang == strLang) {
+      strLang = strLocalLang;
+      findLang = true;
+      break;
+    }
+  }
+  if (!findLang) {
+    strLocalLang = strLocalLang.left(2);
+    foreach (QString file, langDir.entryList(QStringList("*.qm"), QDir::Files)) {
+      strLang = file.section('.', 0, 0).section('_', 1);
+      if (strLocalLang.contains(strLang, Qt::CaseInsensitive)) {
+        strLang = strLocalLang;
+        findLang = true;
+        break;
+      }
+    }
+  }
+  if (!findLang) strLang = "en";
+
+  langFileName_ = settings.value("langFileName", strLang).toString();
+
   settings.endGroup();
 }
 
@@ -242,7 +271,6 @@ void MainApplication::connectDatabase()
 
 void MainApplication::loadSettings()
 {
-
   c2fLoadSettings();
   reloadUserStyleBrowser();
 }
@@ -364,6 +392,15 @@ void MainApplication::setStyleApplication()
   file.close();
 
   setStyle(new QProxyStyle);
+}
+
+void MainApplication::setTranslateApplication()
+{
+  if (!translator_)
+    translator_ = new QTranslator(this);
+  removeTranslator(translator_);
+  translator_->load(resourcesDir_ + QString("/lang/quiterss_%1").arg(langFileName_));
+  installTranslator(translator_);
 }
 
 void MainApplication::showSplashScreen()

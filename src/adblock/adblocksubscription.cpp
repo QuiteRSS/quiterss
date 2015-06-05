@@ -86,6 +86,11 @@ QString AdBlockSubscription::title() const
   return m_title;
 }
 
+void AdBlockSubscription::setTitle(const QString &title)
+{
+  m_title = title;
+}
+
 QString AdBlockSubscription::filePath() const
 {
   return m_filePath;
@@ -484,6 +489,11 @@ AdBlockCustomList::AdBlockCustomList(QObject* parent)
   : AdBlockSubscription(tr("Custom Rules"), parent)
 {
   setFilePath(mainApp->dataDir() + "/adblock/customlist.txt");
+}
+
+void AdBlockCustomList::retranslateStrings()
+{
+  setTitle(tr("Custom Rules"));
 }
 
 void AdBlockCustomList::saveSubscription()

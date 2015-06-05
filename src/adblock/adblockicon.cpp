@@ -59,6 +59,8 @@ AdBlockIcon::AdBlockIcon(MainWindow *window, QWidget *parent)
 void AdBlockIcon::retranslateStrings()
 {
   setToolTip(tr("AdBlock lets you block unwanted content on web pages"));
+
+  AdBlockManager::instance()->customList()->retranslateStrings();
 }
 
 void AdBlockIcon::popupBlocked(const QString &ruleString, const QUrl &url)

@@ -113,8 +113,7 @@ MainWindow::MainWindow(QWidget *parent)
   connect(mainApp->downloadManager(), SIGNAL(signalUpdateInfo(QString)),
           this, SLOT(updateInfoDownloads(QString)));
 
-  translator_ = new QTranslator(this);
-  appInstallTranslator();
+  retranslateStrings();
 
   installEventFilter(this);
 }
@@ -1922,33 +1921,6 @@ void MainWindow::loadSettings()
   clearStatusNew_ = settings.value("clearStatusNew", true).toBool();
   emptyWorking_ = settings.value("emptyWorking", true).toBool();
 
-  QString strLang;
-  QString strLocalLang = QLocale::system().name();
-  bool findLang = false;
-  QDir langDir(mainApp->resourcesDir() + "/lang");
-  foreach (QString file, langDir.entryList(QStringList("*.qm"), QDir::Files)) {
-    strLang = file.section('.', 0, 0).section('_', 1);
-    if (strLocalLang == strLang) {
-      strLang = strLocalLang;
-      findLang = true;
-      break;
-    }
-  }
-  if (!findLang) {
-    strLocalLang = strLocalLang.left(2);
-    foreach (QString file, langDir.entryList(QStringList("*.qm"), QDir::Files)) {
-      strLang = file.section('.', 0, 0).section('_', 1);
-      if (strLocalLang.contains(strLang, Qt::CaseInsensitive)) {
-        strLang = strLocalLang;
-        findLang = true;
-        break;
-      }
-    }
-  }
-  if (!findLang) strLang = "en";
-
-  langFileName_ = settings.value("langFileName", strLang).toString();
-
   QString fontFamily = settings.value("feedsFontFamily", qApp->font().family()).toString();
   int fontSize = settings.value("feedsFontSize", qApp->font().pointSize()).toInt();
   feedsTreeView_->setFont(QFont(fontFamily, fontSize));
@@ -2306,7 +2278,7 @@ void MainWindow::saveSettings()
   settings.setValue("clearStatusNew", clearStatusNew_);
   settings.setValue("emptyWorking", emptyWorking_);
 
-  settings.setValue("langFileName", langFileName_);
+  settings.setValue("langFileName", mainApp->language());
 
   QString fontFamily = feedsTreeView_->font().family();
   settings.setValue("feedsFontFamily", fontFamily);
@@ -3448,7 +3420,7 @@ void MainWindow::showOptionDlg(int index)
   optionsDialog_->showButtonExBrowserNotify_->setChecked(showButtonExBrowserNotify_);
   optionsDialog_->showButtonDeleteNotify_->setChecked(showButtonDeleteNotify_);
 
-  optionsDialog_->setLanguage(langFileName_);
+  optionsDialog_->setLanguage(mainApp->language());
 
   QString strFont = QString("%1, %2").
       arg(feedsTreeView_->font().family()).
@@ -3878,8 +3850,8 @@ void MainWindow::showOptionDlg(int index)
   showButtonExBrowserNotify_ = optionsDialog_->showButtonExBrowserNotify_->isChecked();
   showButtonDeleteNotify_ = optionsDialog_->showButtonDeleteNotify_->isChecked();
 
-  langFileName_ = optionsDialog_->language();
-  appInstallTranslator();
+  mainApp->setLanguage(optionsDialog_->language());
+  mainApp->setTranslateApplication();
 
   QFont font = feedsTreeView_->font();
   font.setFamily(
@@ -4596,7 +4568,7 @@ void MainWindow::slotRefreshNewsView(int nextUnread)
 // ----------------------------------------------------------------------------
 void MainWindow::slotShowAboutDlg()
 {
-  AboutDialog *aboutDialog = new AboutDialog(langFileName_, this);
+  AboutDialog *aboutDialog = new AboutDialog(mainApp->language(), this);
   aboutDialog->exec();
   delete aboutDialog;
 }
@@ -4772,32 +4744,10 @@ void MainWindow::slotNewsFilter()
 // ----------------------------------------------------------------------------
 void MainWindow::slotShowUpdateAppDlg()
 {
-  UpdateAppDialog *updateAppDialog = new UpdateAppDialog(langFileName_, this);
+  UpdateAppDialog *updateAppDialog = new UpdateAppDialog(mainApp->language(), this);
   updateAppDialog->activateWindow();
   updateAppDialog->exec();
   delete updateAppDialog;
-}
-// ----------------------------------------------------------------------------
-void MainWindow::appInstallTranslator()
-{
-  bool translatorLoad;
-  qApp->removeTranslator(translator_);
-  translatorLoad = translator_->load(mainApp->resourcesDir() +
-                                     QString("/lang/quiterss_%1").arg(langFileName_));
-  if (translatorLoad) qApp->installTranslator(translator_);
-  else retranslateStrings();
-
-  if ((langFileName_ == "ar") || (langFileName_ == "fa")) {
-    QApplication::setLayoutDirection(Qt::RightToLeft);
-    mainMenuButton_->setStyleSheet("#mainMenuButton { border: none; padding: 0px 5px 0px 0px; }");
-  } else {
-    QApplication::setLayoutDirection(Qt::LeftToRight);
-    mainMenuButton_->setStyleSheet("#mainMenuButton { border: none; padding: 0px 0px 0px 5px; }");
-  }
-
-  /** Hack **/
-  int indexTab = tabBar_->addTab("");
-  tabBar_->removeTab(indexTab);
 }
 // ----------------------------------------------------------------------------
 void MainWindow::retranslateStrings()
@@ -4852,8 +4802,8 @@ void MainWindow::retranslateStrings()
   updateAllFeedsAct_->setText(tr("Update All"));
   updateAllFeedsAct_->setToolTip(tr("Update All Feeds"));
 
-  stopUpdateAct_->setText("Stop Update Feeds");
-  stopUpdateAct_->setToolTip("Stop Update Feeds");
+  stopUpdateAct_->setText(tr("Stop Update Feeds"));
+  stopUpdateAct_->setToolTip(tr("Stop Update Feeds"));
 
   markAllFeedsRead_->setText(tr("Mark All Feeds Read"));
 
@@ -5140,6 +5090,20 @@ void MainWindow::retranslateStrings()
   findFeeds_->retranslateStrings();
   mainApp->downloadManager()->retranslateStrings();
   adblockIcon_->retranslateStrings();
+  QApplication::translate("AdBlockCustomList", "Custom Rules");
+
+
+  if ((mainApp->language() == "ar") || (mainApp->language() == "fa")) {
+    QApplication::setLayoutDirection(Qt::RightToLeft);
+    mainMenuButton_->setStyleSheet("#mainMenuButton { border: none; padding: 0px 5px 0px 0px; }");
+  } else {
+    QApplication::setLayoutDirection(Qt::LeftToRight);
+    mainMenuButton_->setStyleSheet("#mainMenuButton { border: none; padding: 0px 0px 0px 5px; }");
+  }
+
+  /** Hack ltr <-> rtl**/
+  int indexTab = tabBar_->addTab("");
+  tabBar_->removeTab(indexTab);
 }
 // ----------------------------------------------------------------------------
 void MainWindow::setToolBarStyle(const QString &styleStr)
@@ -5926,7 +5890,7 @@ void MainWindow::showFilterRulesDlg()
 // ----------------------------------------------------------------------------
 void MainWindow::slotUpdateAppCheck()
 {
-  updateAppDialog_ = new UpdateAppDialog(langFileName_, this, false);
+  updateAppDialog_ = new UpdateAppDialog(mainApp->language(), this, false);
   connect(updateAppDialog_, SIGNAL(signalNewVersion(QString)),
           this, SLOT(slotNewVersion(QString)), Qt::QueuedConnection);
 }
@@ -7963,7 +7927,7 @@ void MainWindow::addOurFeed()
   buffer.close();
 
   QString xmlUrl = "http://quiterss.org/en/rss.xml";
-  if (langFileName_ == "ru")
+  if (mainApp->language() == "ru")
     xmlUrl = "http://quiterss.org/ru/rss.xml";
 
   QSqlQuery q;

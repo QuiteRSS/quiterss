@@ -512,7 +512,6 @@ private:
   void createTabBarWidget();
   void createCentralWidget();
   void loadSettingsFeeds();
-  void appInstallTranslator();
   void retranslateStrings();
   void recountFeedCategories(const QList<int> &categoriesList);
   void creatFeedTab(int feedId, int feedParId);
@@ -681,9 +680,6 @@ private:
   QList<int> feedIdList_;
   QMap<int,int> updateFeedsIntervalSec_;
   QMap<int,int> updateFeedsTimeCount_;
-
-  QTranslator *translator_;
-  QString langFileName_;
 
   bool minimizingTray_;
   bool closingTray_;

@@ -83,6 +83,7 @@ public:
   ~AdBlockSubscription();
 
   QString title() const;
+  void setTitle(const QString &title);
 
   QString filePath() const;
   void setFilePath(const QString &path);
@@ -157,6 +158,8 @@ class AdBlockCustomList : public AdBlockSubscription
   Q_OBJECT
 public:
   explicit AdBlockCustomList(QObject* parent = 0);
+
+  void retranslateStrings();
 
   void saveSubscription();
 
