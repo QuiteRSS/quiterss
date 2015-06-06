@@ -303,7 +303,7 @@ void MainWindow::slotPlaceToTray()
   if (markReadMinimize_)
     setFeedRead(currentNewsTab->type_, currentNewsTab->feedId_, FeedReadPlaceToTray, currentNewsTab);
   if (clearStatusNew_)
-    emit signalMarkAllFeedsOld();
+    QTimer::singleShot(0, this, SIGNAL(signalMarkAllFeedsOld()));
   clearNotification();
 
   saveSettings();
@@ -643,7 +643,7 @@ void MainWindow::createTabBarWidget()
   connect(tabBar_, SIGNAL(closeTab(int)),
           this, SLOT(slotCloseTab(int)));
   connect(tabBar_, SIGNAL(currentChanged(int)),
-          this, SLOT(slotTabCurrentChanged(int)));
+          this, SLOT(slotTabCurrentChanged(int)), Qt::QueuedConnection);
   connect(tabBar_, SIGNAL(tabMoved(int,int)),
           SLOT(slotTabMoved(int,int)));
   connect(this, SIGNAL(signalSetCurrentTab(int,bool)),

@@ -940,7 +940,7 @@ void UpdateObject::slotSetFeedRead(int readType, int feedId, int idException, QL
       if (idFeedsStr == "feedId=-1") {
         q.exec(QString("UPDATE news SET read=2 WHERE feedId='%1' AND read!=2").arg(feedId));
       } else {
-        q.exec(QString("UPDATE news SET read=2 WHERE (%1) AND read=1").arg(idFeedsStr));
+        q.exec(QString("UPDATE news SET read=2 WHERE (%1) AND read!=2").arg(idFeedsStr));
       }
     } else {
       if (idFeedsStr == "feedId=-1") {
@@ -960,6 +960,8 @@ void UpdateObject::slotSetFeedRead(int readType, int feedId, int idException, QL
 
     slotRecountFeedCounts(feedId);
     slotRecountCategoryCounts();
+
+    emit signalUpdateNews();
 
     if (readType != FeedReadPlaceToTray) {
       slotRefreshInfoTray();
