@@ -249,7 +249,7 @@ void UpdateFeeds::saveMemoryDatabase()
   if (!mainApp->storeDBMemory()) return;
   if (updateObject_->isSaveMemoryDatabase) return;
 
-  QTimer::singleShot(0, updateObject_, SLOT(saveMemoryDatabase()));
+  QTimer::singleShot(100, updateObject_, SLOT(saveMemoryDatabase()));
 }
 
 void UpdateFeeds::quitApp()
