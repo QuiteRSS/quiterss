@@ -118,17 +118,15 @@ QModelIndex FeedsProxyModel::index(int row, const QString& fieldName, const QMod
 }
 
 // ----------------------------------------------------------------------------
-FeedsTreeModel::FeedsTreeModel(const QString& tableName,
-                               const QStringList& captions,
-                               const QStringList& fieldNames,
-                               int rootParentId,
-                               QObject *parent)
-  : QyurSqlTreeModel(tableName, captions, fieldNames, rootParentId, parent)
+FeedsTreeModel::FeedsTreeModel(QObject *parent)
+  : QyurSqlTreeModel("feeds",
+                     QStringList() << "text" << "unread" << "undeleteCount" << "updated",
+                     parent)
   , view_(0)
 {
 }
 
-void FeedsTreeModel::setView(QyurSqlTreeView *view)
+void FeedsTreeModel::setView(QTreeView *view)
 {
   view_ = view;
 }

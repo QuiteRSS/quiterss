@@ -25,7 +25,7 @@
 #endif
 #include <feedstreemodel.h>
 
-class FeedsTreeView : public QyurSqlTreeView
+class FeedsTreeView : public QTreeView
 {
   Q_OBJECT
 public:
@@ -36,6 +36,8 @@ public:
 
   void setSourceModel(FeedsTreeModel *sourceModel);
   void refresh();
+  void setColumnHidden(const QString& column, bool hide);
+  int columnIndex(const QString& fieldName) const;
   bool isFolder(const QModelIndex &index) const;
   QModelIndex indexNextUnread(const QModelIndex &indexCur, int nextCondition = 0);
   QModelIndex firstFeedInFolder(const QModelIndex &indexFolder);

@@ -50,12 +50,8 @@ class FeedsTreeModel : public QyurSqlTreeModel
 {
   Q_OBJECT
 public:
-  FeedsTreeModel(const QString &tableName,
-      const QStringList &captions,
-      const QStringList &fieldNames,
-      int rootParentId = 0,
-      QObject* parent = 0);
-  void setView(QyurSqlTreeView *view);
+  explicit FeedsTreeModel(QObject* parent = 0);
+  void setView(QTreeView *view);
   QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
   QVariant dataField(const QModelIndex &index, const QString &fieldName) const;
   bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
@@ -76,7 +72,7 @@ public:
   QString feedDisabledUpdateColor_;
 
 private:
-  QyurSqlTreeView *view_;
+  QTreeView *view_;
 
 };
 

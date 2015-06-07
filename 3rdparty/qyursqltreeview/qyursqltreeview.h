@@ -30,14 +30,14 @@
 ********************************************************/
 #ifndef QyurSqlTreeView_H
 #define QyurSqlTreeView_H
-#include <QAbstractProxyModel>
+#include <QAbstractItemModel>
 #include <QSqlRecord>
 #include <QTreeView>
 
 typedef  QPair<int, int> QyurIntPair;
 class QSqlTableModel;
 class QyurSqlTreeModelPrivate;
-class QyurSqlTreeModel: public QAbstractProxyModel {
+class QyurSqlTreeModel: public QAbstractItemModel {
   Q_OBJECT
   Q_DECLARE_PRIVATE(QyurSqlTreeModel)
   Q_DISABLE_COPY(QyurSqlTreeModel)
@@ -50,34 +50,25 @@ public:
   enum FieldOrder {Id, ParentId};
   /*
   tableName-		table name itself.
-  captions-		friendly captions, must match to fieldNames.
   fieldNames-		real field names in table. id and parentId must lead list!
   rootParentId-	parentId value for top level nodes.
   decoratedField-	makes this field expandedable, i.e. move it to first column.
   */
-  QyurSqlTreeModel(const QString& tableName, const QStringList& captions,
-                   const QStringList& fieldNames, int rootParentId = 0,
+  explicit QyurSqlTreeModel(const QString& tableName,
+                   const QStringList& fieldNames,
                    QObject* parent = 0);
   ~QyurSqlTreeModel();
-  QModelIndex mapFromSource(const QModelIndex& sourceIndex) const;
-  QModelIndex mapToSource(const QModelIndex& proxyIndex) const;
-  bool hasChildren(const QModelIndex& index=QModelIndex()) const;
   int columnCount(const QModelIndex& parent=QModelIndex()) const;
   QModelIndex index(int row, int column, const QModelIndex& parent=QModelIndex()) const;
   QModelIndex parent(const QModelIndex& index) const;
   int rowCount(const QModelIndex& parent=QModelIndex()) const;
   bool setData(const QModelIndex& index, const QVariant& value, int role =Qt::EditRole);
-  void sort(int column, Qt::SortOrder order=Qt::AscendingOrder);
-  void setFilter(const QString &filter);
-  QString filter();
-  QVariant headerData(int section, Qt::Orientation orientation, int role=Qt::DisplayRole) const;
-  QSqlTableModel* getSourceModel();
+  QVariant data(const QModelIndex &index, int role) const;
 
+  QModelIndex mapToSource(const QModelIndex &proxyIndex) const;
   int getIdByIndex(const QModelIndex&) const;
   QModelIndex getIndexById(int id) const;
   int getParidByIndex(const QModelIndex&) const;
-  int getFieldPosition(FieldOrder) const;
-  bool removeRecords(QModelIndexList&);
   int getRootParentId() const;
   int originalColumnByProxy(int proxyColumn) const;
   int proxyColumnByOriginal(int originalColumn) const;
@@ -88,29 +79,4 @@ public slots:
 
 };
 
-class QyurSqlTreeViewPrivate;
-class QyurSqlTreeView: public QTreeView {
-  Q_OBJECT
-  Q_DECLARE_PRIVATE(QyurSqlTreeView)
-  Q_DISABLE_COPY(QyurSqlTreeView)
-  Q_CLASSINFO("Author", "Yuri Yurachkovsky")
-  Q_CLASSINFO("e-mail", "yura_79@mail.ru")
-  Q_CLASSINFO("Version", "0.92")
-  Q_CLASSINFO("Qt version", "4.3.3")
-  QyurSqlTreeViewPrivate* d_ptr;
-public:
-  QyurSqlTreeView(QWidget * parent = 0);
-  ~QyurSqlTreeView();
-  void setSourceModel(QyurSqlTreeModel *model);
-  void setColumnHidden(const QString& column, bool hide);
-  int columnIndex(const QString& fieldName) const;
-
-protected slots:
-  //Use this handle when row inserted.
-  virtual void onInsertRow(QSqlRecord&);
-
-private:
-  QyurSqlTreeModel *sourceModel_;
-
-};
 #endif

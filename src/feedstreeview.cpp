@@ -26,7 +26,7 @@
 
 // ----------------------------------------------------------------------------
 FeedsTreeView::FeedsTreeView(QWidget * parent)
-  : QyurSqlTreeView(parent)
+  : QTreeView(parent)
   , selectIdEn_(true)
   , autocollapseFolder_(false)
   , sourceModel_(0)
@@ -63,7 +63,6 @@ FeedsTreeView::FeedsTreeView(QWidget * parent)
 void FeedsTreeView::setSourceModel(FeedsTreeModel *sourceModel)
 {
   sourceModel_ = sourceModel;
-  QyurSqlTreeView::setSourceModel(sourceModel_);
 
   QSqlQuery q;
   q.exec("SELECT id FROM feeds WHERE f_Expanded=1 AND (xmlUrl='' OR xmlUrl IS NULL)");
@@ -78,6 +77,16 @@ void FeedsTreeView::refresh()
   sourceModel_->refresh();
   ((FeedsProxyModel*)model())->reset();
   restoreExpanded();
+}
+
+void FeedsTreeView::setColumnHidden(const QString& column, bool hide)
+{
+  QTreeView::setColumnHidden(columnIndex(column),hide);
+}
+
+int FeedsTreeView::columnIndex(const QString& fieldName) const
+{
+  return sourceModel_->proxyColumnByOriginal(fieldName);
 }
 
 bool FeedsTreeView::isFolder(const QModelIndex &index) const
@@ -137,7 +146,7 @@ void FeedsTreeView::slotCollapsed(const QModelIndex &index)
 void FeedsTreeView::expandAll()
 {
   expandedList.clear();
-  QyurSqlTreeView::expandAll();
+  QTreeView::expandAll();
 
 
   QSqlQuery q;
@@ -152,7 +161,7 @@ void FeedsTreeView::expandAll()
 void FeedsTreeView::collapseAll()
 {
   expandedList.clear();
-  QyurSqlTreeView::collapseAll();
+  QTreeView::collapseAll();
 
   mainApp->sqlQueryExec("UPDATE feeds SET f_Expanded=0 WHERE (xmlUrl='' OR xmlUrl IS NULL)");
 }
@@ -397,7 +406,7 @@ void FeedsTreeView::mousePressEvent(QMouseEvent *event)
 
   if (!index.isValid()) return;
   if (!(event->pos().x() >= rectText.x())) {
-    QyurSqlTreeView::mousePressEvent(event);
+    QTreeView::mousePressEvent(event);
     return;
   }
 
@@ -409,7 +418,7 @@ void FeedsTreeView::mousePressEvent(QMouseEvent *event)
     emit signalMiddleClicked();
   } else if (event->buttons() & Qt::LeftButton) {
     dragStartPos_ = event->pos();
-    QyurSqlTreeView::mousePressEvent(event);
+    QTreeView::mousePressEvent(event);
   }
 }
 
@@ -417,7 +426,7 @@ void FeedsTreeView::mousePressEvent(QMouseEvent *event)
 void FeedsTreeView::mouseReleaseEvent(QMouseEvent *event)
 {
   dragStartPos_ = QPoint();
-  QyurSqlTreeView::mouseReleaseEvent(event);
+  QTreeView::mouseReleaseEvent(event);
 }
 
 // ----------------------------------------------------------------------------
@@ -451,7 +460,7 @@ void FeedsTreeView::mouseReleaseEvent(QMouseEvent *event)
   if (!index.isValid()) return;
   if (!(event->pos().x() >= rectText.x()) ||
       (isFolder(index))) {
-    QyurSqlTreeView::mouseDoubleClickEvent(event);
+    QTreeView::mouseDoubleClickEvent(event);
     return;
   }
 
@@ -480,7 +489,7 @@ void FeedsTreeView::mouseReleaseEvent(QMouseEvent *event)
   }
   selectIdEn_ = true;
 
-  QyurSqlTreeView::currentChanged(current, previous);
+  QTreeView::currentChanged(current, previous);
 }
 
 // ----------------------------------------------------------------------------
@@ -588,7 +597,7 @@ void FeedsTreeView::dropEvent(QDropEvent *event)
 // ----------------------------------------------------------------------------
 void FeedsTreeView::paintEvent(QPaintEvent *event)
 {
-  QyurSqlTreeView::paintEvent(event);
+  QTreeView::paintEvent(event);
 
   if (dragPos_.isNull()) return;
 

@@ -371,11 +371,7 @@ void MainWindow::showWindows(bool trayClick)
 // ---------------------------------------------------------------------------
 void MainWindow::createFeedsWidget()
 {
-  feedsTreeModel_ = new FeedsTreeModel("feeds",
-                                       QStringList() << "" << "" << "" << "",
-                                       QStringList() << "text" << "unread" << "undeleteCount" << "updated",
-                                       0,
-                                       this);
+  feedsTreeModel_ = new FeedsTreeModel(this);
   feedsTreeModel_->setObjectName("feedsTreeModel_");
 
   feedsProxyModel_ = new FeedsProxyModel(feedsTreeModel_);
@@ -2748,10 +2744,7 @@ void MainWindow::slotExportFeeds()
 
   // Create model and view for export
   // Expand the view to step on every item
-  FeedsTreeModel exportTreeModel("feeds",
-                                 QStringList() << "" << "" << "",
-                                 QStringList() << "id" << "text" << "parentId",
-                                 0);
+  FeedsTreeModel exportTreeModel;
   FeedsTreeView exportTreeView(this);
   exportTreeView.setModel(&exportTreeModel);
   exportTreeModel.setView(feedsTreeView_);

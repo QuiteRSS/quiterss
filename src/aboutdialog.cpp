@@ -21,7 +21,6 @@
 #include "VersionNo.h"
 
 #include <sqlite3.h>
-#include <qyursqltreeview.h>
 #ifdef HAVE_QT5
 #include <QWebPage>
 #else
@@ -37,8 +36,6 @@ AboutDialog::AboutDialog(const QString &lang, QWidget *parent) :
   setMinimumWidth(480);
 
   QTabWidget *tabWidget = new QTabWidget();
-
-  QyurSqlTreeView treeView;
 
   QString revisionStr;
   if (QString("%1").arg(VCS_REVISION) != "0") {
@@ -56,12 +53,8 @@ AboutDialog::AboutDialog(const QString &lang, QWidget *parent) :
       + "<BR>"
       + tr("QuiteRSS is a open-source cross-platform RSS/Atom news reader")
       + "<P>" + tr("Includes:")
-      + QString(" Qt-%1, SQLite-%2, QyurSqlTreeView-%3,").
-      arg(QT_VERSION_STR).arg(SQLITE_VERSION).
-      arg(treeView.metaObject()->classInfo(treeView.metaObject()->indexOfClassInfo("Version")).value())
-      + "<BR>"
-      + QString(" WebKit-%4, QupZilla-1.7.0").
-      arg(qWebKitVersion())
+      + QString(" Qt-%1, SQLite-%2, WebKit-%4").
+      arg(QT_VERSION_STR).arg(SQLITE_VERSION).arg(qWebKitVersion())
       + "</P>"
       + QString("<a href=\"%1\">%1</a>").arg("http://quiterss.org") +
       "<P>Copyright &copy; 2011-2015 QuiteRSS Team "

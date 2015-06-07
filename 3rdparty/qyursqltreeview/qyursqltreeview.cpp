@@ -110,7 +110,7 @@ class QyurSqlTreeModelPrivate {
   mutable QMap<QPair<int,int>,int> row2id;
   mutable QMap<int,UserData*> id2UserData;
   mutable QMap<QModelIndex,QModelIndex> proxy2source;
-  mutable QMap<int,int> proxyColumn2Original;
+  mutable QHash<int,int> proxyColumn2Original;
 
   QMap<QObject*,QSet<int> > expandedSet;
 
@@ -178,33 +178,32 @@ int QyurSqlTreeModelPrivate::getRowByParid(int parid) const {
 }
 
 QyurSqlTreeModel::QyurSqlTreeModel(const QString& tableName,
-                                   const QStringList& captions,
                                    const QStringList& fieldNames,
-                                   int rootParentId,
                                    QObject* parent)
-  : QAbstractProxyModel(parent)
+  : QAbstractItemModel(parent)
   , d_ptr(new QyurSqlTreeModelPrivate)
 {
   Q_D(QyurSqlTreeModel);
   d->q_ptr = this;
-  d->rootParentId = rootParentId;
-  setSourceModel(&d->sourceModel);
+  d->rootParentId = 0;
   d->sourceModel.setTable(tableName);
   d->indexOfId = d->sourceModel.record().indexOf("id");
   Q_ASSERT(d->indexOfId >= 0);
   d->indexOfParid = d->sourceModel.record().indexOf("parentId");
   Q_ASSERT(d->indexOfParid >= 0);
-  for (int i = 0; i < qMin(fieldNames.size(),captions.size()); i++)
-    d->sourceModel.setHeaderData(d->sourceModel.record().indexOf(fieldNames[i]),Qt::Horizontal,captions[i]);
-  for (int i = 0; i < d->sourceModel.record().count(); i++) {
+  for (int i = 0; i < d->sourceModel.columnCount(); i++) {
     d->proxyColumn2Original[i] = i;
   }
   d->proxyColumn2Original[0] = d->sourceModel.record().indexOf(fieldNames[0]);
   d->proxyColumn2Original[d->sourceModel.record().indexOf(fieldNames[0])] = 0;
 
   d->sourceModel.setSort(d->indexOfParid, (Qt::SortOrder)DROP_MULTIORDER);
-  d->sourceModel.setSort(d->sourceModel.fieldIndex("rowToParent"), Qt::AscendingOrder);
+  d->sourceModel.setSort(d->sourceModel.record().indexOf("rowToParent"), Qt::AscendingOrder);
   refresh();
+}
+
+QyurSqlTreeModel::~QyurSqlTreeModel() {
+  delete d_ptr;
 }
 
 int QyurSqlTreeModel::originalColumnByProxy(int proxyColumn) const {
@@ -214,25 +213,12 @@ int QyurSqlTreeModel::originalColumnByProxy(int proxyColumn) const {
 
 int QyurSqlTreeModel::proxyColumnByOriginal(int originalColumn) const {
   Q_D(const QyurSqlTreeModel);
-  foreach(int proxy,d->proxyColumn2Original) {
-    if (d->proxyColumn2Original[proxy]==originalColumn)
-      return proxy;
-  }
-  return originalColumn;
+  return d->proxyColumn2Original.value(originalColumn, originalColumn);
 }
 
 int QyurSqlTreeModel::proxyColumnByOriginal(const QString& field) const {
   Q_D(const QyurSqlTreeModel);
-  return proxyColumnByOriginal(d->sourceModel.fieldIndex(field));
-}
-
-QVariant QyurSqlTreeModel::headerData(int section, Qt::Orientation orientation, int role) const {
-#if QT_VERSION >= 0x040400
-  return QAbstractProxyModel::headerData(section,orientation,role);
-#else
-  Q_D(const QyurSqlTreeModel);
-  return QAbstractProxyModel::headerData(d->originalColumnByProxy(section),orientation,role);
-#endif
+  return proxyColumnByOriginal(d->sourceModel.record().indexOf(field));
 }
 
 void QyurSqlTreeModel::refresh() {
@@ -258,106 +244,15 @@ void QyurSqlTreeModel::refresh() {
   }
 }
 
-void QyurSqlTreeModel::sort(int column, Qt::SortOrder order) {
-  Q_D(QyurSqlTreeModel);
-  d->sourceModel.setSort(d->indexOfParid,(Qt::SortOrder)DROP_MULTIORDER);
-  d->sourceModel.setSort(originalColumnByProxy(column),order);
-  d->sourceModel.select();
-  while (d->sourceModel.canFetchMore())
-    d->sourceModel.fetchMore();
-#ifdef HAVE_QT5
-  beginResetModel();
-  d->clear();
-  endResetModel();
-#else
-  reset();
-  d->clear();
-#endif
-
-  for (int i = 0; i < d->sourceModel.rowCount(); i++) {
-    int id = d->sourceModel.index(i,d->indexOfId).data().toInt();
-    d->id2row[id] = i;
-    int parid = d->sourceModel.index(i,d->indexOfParid).data().toInt();
-    d->parid2row[parid] = i;
-    d->id2UserData[id] = new UserData(id,parid);
-  }
-}
-
-void QyurSqlTreeModel::setFilter(const QString &filter) {
-  Q_D(QyurSqlTreeModel);
-  d->sourceModel.setFilter(filter);
-  while (d->sourceModel.canFetchMore())
-    d->sourceModel.fetchMore();
-#ifdef HAVE_QT5
-  beginResetModel();
-  d->clear();
-  endResetModel();
-#else
-  reset();
-  d->clear();
-#endif
-
-  for (int i = 0; i < d->sourceModel.rowCount(); i++) {
-    int id = d->sourceModel.index(i,d->indexOfId).data().toInt();
-    d->id2row[id] = i;
-    int parid = d->sourceModel.index(i,d->indexOfParid).data().toInt();
-    d->parid2row[parid] = i;
-    d->id2UserData[id] = new UserData(id,parid);
-  }
-}
-
-QString QyurSqlTreeModel::filter() {
-  Q_D(QyurSqlTreeModel);
-  return d->sourceModel.filter();
+QVariant QyurSqlTreeModel::data(const QModelIndex &index, int role) const
+{
+  Q_D(const QyurSqlTreeModel);
+  return d->sourceModel.data(mapToSource(index), role);
 }
 
 bool QyurSqlTreeModel::setData(const QModelIndex& index, const QVariant& value, int role) {
   Q_D(QyurSqlTreeModel);
   return d->sourceModel.setData(mapToSource(index),value,role);
-}
-
-QyurSqlTreeModel::~QyurSqlTreeModel() {
-  delete d_ptr;
-}
-
-QSqlTableModel* QyurSqlTreeModel::getSourceModel() {
-  Q_D(QyurSqlTreeModel);
-  return &d->sourceModel;
-}
-
-int QyurSqlTreeModel::getFieldPosition(FieldOrder index) const {
-  Q_D(const QyurSqlTreeModel);
-  if (index==Id)
-    return d->indexOfId;
-  else if (index==ParentId)
-    return d->indexOfParid;
-  else return index;
-}
-
-QModelIndex QyurSqlTreeModel::mapFromSource(const QModelIndex& sourceIndex) const {
-  Q_D(const QyurSqlTreeModel);
-  const int parid = sourceIndex.sibling(sourceIndex.row(), d->indexOfParid).data().toInt();
-  const int id = sourceIndex.sibling(sourceIndex.row(), d->indexOfId).data().toInt();
-  const int rowOfParid = d->getRowByParid(parid);
-  int i = rowOfParid;
-  for (; i < d->sourceModel.rowCount(); i++)
-    if (d->sourceModel.index(i,d->indexOfId).data().toInt() == id)
-      break;
-  return createIndex(i-rowOfParid, proxyColumnByOriginal(sourceIndex.column()), d->getUserDataById(id));
-}
-
-QModelIndex QyurSqlTreeModel::mapToSource(const QModelIndex& proxyIndex) const {
-  Q_D(const QyurSqlTreeModel);
-  if (!d->proxy2source.contains(proxyIndex))
-    d->proxy2source[proxyIndex]= d->sourceModel.index(d->getRowById(getIdByIndex(proxyIndex)),d->originalColumnByProxy(proxyIndex.column()));
-  return d->proxy2source[proxyIndex];
-}
-
-bool QyurSqlTreeModel::hasChildren(const QModelIndex& index) const {
-  Q_D(const QyurSqlTreeModel);
-  if (!index.isValid())
-    return true;
-  return -1!=d->getRowByParid(getIdByIndex(index));
 }
 
 int QyurSqlTreeModel::columnCount(const QModelIndex&) const {
@@ -369,7 +264,7 @@ QModelIndex QyurSqlTreeModel::index(int row, int column, const QModelIndex& pare
   Q_D(const QyurSqlTreeModel);
   if (d->sourceModel.rowCount()==0)
     return QModelIndex();
-  int id= parent.isValid()?getIdByIndex(parent):getRootParentId();
+  int id = parent.isValid()?getIdByIndex(parent):getRootParentId();
   if (!d->row2id.contains(QPair<int,int>(id,row))) {
     int i= 0;
     if (parent.isValid())
@@ -380,8 +275,7 @@ QModelIndex QyurSqlTreeModel::index(int row, int column, const QModelIndex& pare
       return QModelIndex();
   }
   UserData *userData = d->getUserDataById(d->row2id[QPair<int,int>(id,row)]);
-  QModelIndex index = createIndex(row,column,userData);
-  return index;
+  return createIndex(row,column,userData);
 }
 
 QModelIndex QyurSqlTreeModel::parent(const QModelIndex& index) const {
@@ -442,24 +336,11 @@ int QyurSqlTreeModel::rowCount(const QModelIndex& parent) const {
   return d->id2rowCount[id];
 }
 
-bool QyurSqlTreeModel::removeRecords(QModelIndexList& list) {
-  Q_D(QyurSqlTreeModel);
-  //sort list desc
-  for(int i=1; i<list.size(); i++) {
-    QModelIndex index= list[i];
-    int j=i-1;
-    while(j>=0&&mapToSource(list[j]).row()<mapToSource(index).row()) {
-      list[j+1]=list[j];
-      j--;
-    }
-    list[j+1]= index;
-  }
-  for (int i=0; i<list.size(); i++)
-    if (list[i].isValid())
-      d->sourceModel.removeRows(mapToSource(list[i]).row(),1);
-  d->sourceModel.submitAll();
-  refresh();
-  return true;
+QModelIndex QyurSqlTreeModel::mapToSource(const QModelIndex& proxyIndex) const {
+  Q_D(const QyurSqlTreeModel);
+  if (!d->proxy2source.contains(proxyIndex))
+    d->proxy2source[proxyIndex]= d->sourceModel.index(d->getRowById(getIdByIndex(proxyIndex)),d->originalColumnByProxy(proxyIndex.column()));
+  return d->proxy2source[proxyIndex];
 }
 
 QModelIndex QyurSqlTreeModel::getIndexById(int id) const {
@@ -489,50 +370,6 @@ int QyurSqlTreeModel::getParidByIndex(const QModelIndex& index) const {
 int QyurSqlTreeModel::getRootParentId() const {
   Q_D(const QyurSqlTreeModel);
   return d->rootParentId;
-}
-
-class QyurSqlTreeViewPrivate {
-public:
-  QyurSqlTreeViewPrivate();
-};
-
-QyurSqlTreeViewPrivate::QyurSqlTreeViewPrivate()
-{
-}
-
-QyurSqlTreeView::QyurSqlTreeView(QWidget * parent)
-  : QTreeView(parent)
-  , d_ptr(new QyurSqlTreeViewPrivate)
-  , sourceModel_(0)
-{
-  setSortingEnabled(false);
-  setContextMenuPolicy(Qt::CustomContextMenu);
-  setSelectionMode(QAbstractItemView::ExtendedSelection);
-}
-
-QyurSqlTreeView::~QyurSqlTreeView()
-{
-  delete d_ptr;
-}
-
-void QyurSqlTreeView::setSourceModel(QyurSqlTreeModel *model)
-{
-  sourceModel_ = model;
-}
-
-void QyurSqlTreeView::onInsertRow(QSqlRecord&)
-{
-
-}
-
-void QyurSqlTreeView::setColumnHidden(const QString& column, bool hide)
-{
-  QTreeView::setColumnHidden(columnIndex(column),hide);
-}
-
-int QyurSqlTreeView::columnIndex(const QString& fieldName) const
-{
-  return sourceModel_->proxyColumnByOriginal(fieldName);
 }
 
 #include "qyursqltreeview.moc"
