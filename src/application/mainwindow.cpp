@@ -5771,6 +5771,8 @@ void MainWindow::slotPlaySound(const QString &path)
       mediaPlayer_->setPlaylist(playlist_);
       connect(mediaPlayer_, SIGNAL(mediaStatusChanged(QMediaPlayer::MediaStatus)),
               this, SLOT(mediaStatusChanged(QMediaPlayer::MediaStatus)));
+      connect(mediaPlayer_, SIGNAL(error(QMediaPlayer::Error)),
+              this, SLOT(mediaError(QMediaPlayer::Error)));
     }
 
     playlist_->addMedia(QUrl::fromLocalFile(soundPath));
@@ -5814,11 +5816,19 @@ void MainWindow::slotPlaySound(const QString &path)
 }
 
 #ifdef HAVE_QT5
-void MainWindow::mediaStatusChanged(const QMediaPlayer::MediaStatus &status)
+void MainWindow::mediaStatusChanged(QMediaPlayer::MediaStatus status)
 {
   if (status == QMediaPlayer::EndOfMedia) {
     playlist_->removeMedia(0);
   }
+}
+
+void MainWindow::mediaError(QMediaPlayer::Error error)
+{
+  QTextCodec *codec = QTextCodec::codecForLocale();
+  qCritical() << QString("Error Media: %1 - %2").
+                 arg(error).
+                 arg(codec->toUnicode(mediaPlayer_->errorString().toUtf8()));
 }
 #endif
 

@@ -348,7 +348,8 @@ private slots:
   void slotPlaySoundNewNews();
 
 #ifdef HAVE_QT5
-  void mediaStatusChanged(const QMediaPlayer::MediaStatus &status);
+  void mediaStatusChanged(QMediaPlayer::MediaStatus status);
+  void mediaError(QMediaPlayer::Error error);
 #endif
  #ifdef HAVE_PHONON
   void mediaStateChanged(Phonon::State newstate, Phonon::State oldstate);
