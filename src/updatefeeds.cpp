@@ -361,7 +361,7 @@ void UpdateObject::slotImportFeeds(QByteArray xmlData)
 
   QRegExp rx("&(?!([a-z0-9#]+;))", Qt::CaseInsensitive, QRegExp::RegExp2);
   int pos = 0;
-  while ((pos = rx.indexIn(xmlData, pos)) != -1) {
+  while ((pos = rx.indexIn(QString::fromLatin1(xmlData), pos)) != -1) {
     xmlData.replace(pos, 1, "&amp;");
     pos += 1;
   }

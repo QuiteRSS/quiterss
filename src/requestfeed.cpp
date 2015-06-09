@@ -292,7 +292,7 @@ void RequestFeed::finished(QNetworkReply *reply)
 
           rx.setPattern("&(?!([a-z0-9#]+;))");
           pos = 0;
-          while ((pos = rx.indexIn(data, pos)) != -1) {
+          while ((pos = rx.indexIn(QString::fromLatin1(data), pos)) != -1) {
             data.replace(pos, 1, "&amp;");
             pos += 1;
           }
