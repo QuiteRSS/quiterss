@@ -2744,8 +2744,8 @@ void MainWindow::slotExportFeeds()
 
   // Create model and view for export
   // Expand the view to step on every item
-  FeedsTreeModel exportTreeModel;
-  FeedsTreeView exportTreeView(this);
+  FeedsTreeModel exportTreeModel(this);
+  QTreeView exportTreeView;
   exportTreeView.setModel(&exportTreeModel);
   exportTreeModel.setView(feedsTreeView_);
   exportTreeView.expandAll();
