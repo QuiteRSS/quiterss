@@ -79,9 +79,10 @@ install:
 - if defined QTARCHIVE1 7z x %QTARCHIVE1_OPTS% %QTARCHIVE1% >nul
 - if defined QTDOWNLOAD2 curl -kLO %QTDOWNLOAD2%
 - if defined QTARCHIVE2 7z x %QTARCHIVE2_OPTS% %QTARCHIVE2% >nul
-- if defined QTMOVE dir %QTMOVE%
+- dir "c:\projects\quiterss"
+- dir "c:\projects\quiterss\build"
+- if defined QTMOVE dir $OUTDIR
 - if defined QTMOVE move %QTMOVE%
-- dir "c:\mingw\bin"
 - if defined QTSUB set "QTDIR=%CD%\%QTSUB%"
 - if defined QTDOWNLOAD1 (echo [Paths]&& echo Prefix=..) >%QTDIR%\bin\qt.conf
 - set QT_PLUGIN_PATH=%QTDIR%\plugins
