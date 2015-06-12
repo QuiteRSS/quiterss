@@ -17,7 +17,7 @@
 * ============================================================ */
 /* ============================================================
 * QupZilla - WebKit based browser
-* Copyright (C) 2010-2014  David Rosca <nowrep@gmail.com>
+* Copyright (C) 2014  David Rosca <nowrep@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -32,53 +32,54 @@
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
-#ifndef ADBLOCKICON_H
-#define ADBLOCKICON_H
+#ifndef ADBLOCKMATCHER_H
+#define ADBLOCKMATCHER_H
 
-#include <QToolButton>
+#include <QUrl>
+#include <QObject>
+#include <QVector>
 
-#include "adblockrule.h"
+#include "adblocksearchtree.h"
 
-class QMenu;
-class QUrl;
-class MainWindow;
+class AdBlockManager;
+class AdBlockRule;
 
-class AdBlockIcon : public QToolButton
+class AdBlockMatcher : public QObject
 {
   Q_OBJECT
+
 public:
-  explicit AdBlockIcon(MainWindow *window, QWidget *parent = 0);
-  ~AdBlockIcon();
+  explicit AdBlockMatcher(AdBlockManager* manager);
+  ~AdBlockMatcher();
 
-  void retranslateStrings();
-  void popupBlocked(const QString &ruleString, const QUrl &url);
-  QAction* menuAction();
+  const AdBlockRule* match(const QNetworkRequest &request, const QString &urlDomain, const QString &urlString) const;
 
-signals:
-  void clicked(QPoint);
+  bool adBlockDisabledForUrl(const QUrl &url) const;
+  bool elemHideDisabledForUrl(const QUrl &url) const;
+
+  QString elementHidingRules() const;
+  QString elementHidingRulesForDomain(const QString &domain) const;
 
 public slots:
-  void setEnabled(bool enabled);
-  void createMenu(QMenu* menu = 0);
+  void update();
+  void clear();
 
 private slots:
-  void showMenu(const QPoint &pos);
-  void toggleCustomFilter();
-
-  void animateIcon();
-  void stopAnimation();
+  void enabledChanged(bool enabled);
 
 private:
-  void mouseReleaseEvent(QMouseEvent* event);
+  AdBlockManager* m_manager;
 
-  MainWindow *m_window;
-  QAction* m_menuAction;
+  QVector<AdBlockRule*> m_createdRules;
+  QVector<const AdBlockRule*> m_networkExceptionRules;
+  QVector<const AdBlockRule*> m_networkBlockRules;
+  QVector<const AdBlockRule*> m_domainRestrictedCssRules;
+  QVector<const AdBlockRule*> m_documentRules;
+  QVector<const AdBlockRule*> m_elemhideRules;
 
-  QVector<QPair<AdBlockRule*, QUrl> > m_blockedPopups;
-  QTimer* m_flashTimer;
-
-  int m_timerTicks;
-  bool m_enabled;
+  QString m_elementHidingRules;
+  AdBlockSearchTree m_networkBlockTree;
+  AdBlockSearchTree m_networkExceptionTree;
 };
 
-#endif // ADBLOCKICON_H
+#endif // ADBLOCKMATCHER_H

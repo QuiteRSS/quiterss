@@ -88,18 +88,25 @@ void AdBlockAddSubscriptionDialog::indexChanged(int index)
 {
   const Subscription subscription = m_knownSubscriptions.at(index);
 
-  int pos = subscription.title.indexOf(QLatin1Char('('));
-  QString title = subscription.title;
-
-  if (pos > 0) {
-    title = title.left(pos).trimmed();
+  // "Other..." entry
+  if (subscription.url.isEmpty()) {
+    ui->title->clear();
+    ui->url->clear();
   }
+  else {
+    int pos = subscription.title.indexOf(QLatin1Char('('));
+    QString title = subscription.title;
 
-  ui->title->setText(title);
-  ui->title->setCursorPosition(0);
+    if (pos > 0) {
+      title = title.left(pos).trimmed();
+    }
 
-  ui->url->setText(subscription.url);
-  ui->url->setCursorPosition(0);
+    ui->title->setText(title);
+    ui->title->setCursorPosition(0);
+
+    ui->url->setText(subscription.url);
+    ui->url->setCursorPosition(0);
+  }
 }
 
 AdBlockAddSubscriptionDialog::~AdBlockAddSubscriptionDialog()

@@ -77,6 +77,8 @@ public:
   AdBlockRule(const QString &filter = QString(), AdBlockSubscription* subscription = 0);
   ~AdBlockRule();
 
+  AdBlockRule* copy() const;
+
   AdBlockSubscription* subscription() const;
   void setSubscription(AdBlockSubscription* subscription);
 
@@ -112,7 +114,7 @@ public:
 protected:
   bool isMatchingDomain(const QString &domain, const QString &filter) const;
   bool isMatchingRegExpStrings(const QString &url) const;
-  QStringList parseRegExpFilter(const QString &parsedFilter) const;
+  QStringList parseRegExpFilter(const QString &filter) const;
 
 private:
   enum RuleType {
@@ -147,6 +149,10 @@ private:
 
   void parseFilter();
   void parseDomains(const QString &domains, const QChar &separator);
+  bool filterIsOnlyDomain(const QString &filter) const;
+  bool filterIsOnlyEndsMatch(const QString &filter) const;
+  QString createRegExpFromFilter(const QString &filter) const;
+  QList<QStringMatcher> createStringMatchers(const QStringList &filters) const;
 
   AdBlockSubscription* m_subscription;
 
@@ -154,22 +160,31 @@ private:
   RuleOptions m_options;
   RuleOptions m_exceptions;
 
+  // Original rule filter
   QString m_filter;
-  QString m_cssSelector;
+  // Parsed rule for string matching (CSS Selector for CSS rules)
   QString m_matchString;
+  // Case sensitivity for string matching
   Qt::CaseSensitivity m_caseSensitivity;
 
   bool m_isEnabled;
   bool m_isException;
   bool m_isInternalDisabled;
 
-  QRegExp* m_regExp;
-  QStringList m_regExpStrings;
-
   QStringList m_allowedDomains;
   QStringList m_blockedDomains;
 
+  struct RegExp {
+    QRegExp regExp;
+    QList<QStringMatcher> matchers;
+  };
+
+  // Use dynamic allocation to save memory
+  RegExp* m_regExp;
+
+  friend class AdBlockMatcher;
   friend class AdBlockSearchTree;
+  friend class AdBlockSubscription;
 };
 
 #endif // ADBLOCKRULE_H

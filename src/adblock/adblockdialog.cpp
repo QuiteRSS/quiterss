@@ -60,7 +60,7 @@ AdBlockDialog::AdBlockDialog(QWidget* parent)
   const QRect screen = QApplication::desktop()->screenGeometry();
   const QRect size = geometry();
   move((screen.width() - size.width()) / 2, (screen.height() - size.height()) / 2);
-tabWidget->setDocumentMode(false);
+  tabWidget->setDocumentMode(false);
 #ifdef Q_OS_MAC
   tabWidget->setDocumentMode(false);
 #endif

@@ -23,6 +23,22 @@
 
 #define ADBLOCK_EASYLIST_URL "https://easylist-downloads.adblockplus.org/easylist.txt"
 
+#ifndef QSL
+#if QT_VERSION >= 0x050000
+#define QSL(x) QStringLiteral(x)
+#else
+#define QSL(x) QLatin1String(x)
+#endif
+#endif
+
+#ifndef QL1S
+#define QL1S(x) QLatin1String(x)
+#endif
+
+#ifndef QL1C
+#define QL1C(x) QLatin1Char(x)
+#endif
+
 namespace Common
 {
 #if defined(Q_OS_WIN) || defined(Q_OS_OS2)

@@ -73,7 +73,7 @@ class AdBlockBlockedNetworkReply : public QNetworkReply
   Q_OBJECT
 
 public:
-  AdBlockBlockedNetworkReply(const AdBlockSubscription* subscription, const AdBlockRule* rule, QObject* parent = 0);
+  AdBlockBlockedNetworkReply(const AdBlockRule* rule, QObject* parent = 0);
   void abort() {}
 
   void setRequest(const QNetworkRequest &request);

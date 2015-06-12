@@ -43,7 +43,9 @@ class QUrl;
 class QNetworkReply;
 class QNetworkRequest;
 
+class AdBlockRule;
 class AdBlockDialog;
+class AdBlockMatcher;
 class AdBlockCustomList;
 class AdBlockSubscription;
 
@@ -83,6 +85,9 @@ public:
 
   AdBlockCustomList* customList() const;
 
+signals:
+  void enabledChanged(bool enabled);
+
 public slots:
   void setEnabled(bool enabled);
   void showRule();
@@ -93,13 +98,14 @@ public slots:
 
 private:
   inline bool canBeBlocked(const QUrl &url) const;
-  static AdBlockManager* s_adBlockManager;
 
   bool m_loaded;
   bool m_enabled;
   bool m_useLimitedEasyList;
 
   QList<AdBlockSubscription*> m_subscriptions;
+  static AdBlockManager* s_adBlockManager;
+  AdBlockMatcher* m_matcher;
   QStringList m_disabledRules;
 
   QPointer<AdBlockDialog> m_adBlockDialog;
