@@ -29,7 +29,7 @@ environment:
     QMAKESPEC: win32-msvc2010
     QTMOVE: '$OUTDIR\bin 4.8.6-msvc2010'
     QTSUB: '4.8.6-msvc2010'
-    QTDOWNLOAD1: http://download.qt.io/archive/qt/4.8/4.8.6/qt-opensource-windows-x86-vs2010-4.8.6.exe
+    QTDOWNLOAD1: 
     QTARCHIVE1: 'qt-opensource-windows-x86-vs2010-4.8.6.exe'
     QTARCHIVE1_OPTS: '"-ir!?OUTDIR\*" "-xr!*doc\*" "-xr!*examples\*" "-xr!*demos\*"'
     
@@ -79,7 +79,9 @@ install:
 - if defined QTARCHIVE1 7z x %QTARCHIVE1_OPTS% %QTARCHIVE1% >nul
 - if defined QTDOWNLOAD2 curl -kLO %QTDOWNLOAD2%
 - if defined QTARCHIVE2 7z x %QTARCHIVE2_OPTS% %QTARCHIVE2% >nul
+- if defined QTMOVE dir %QTMOVE%
 - if defined QTMOVE move %QTMOVE%
+- dir "c:\mingw\bin"
 - if defined QTSUB set "QTDIR=%CD%\%QTSUB%"
 - if defined QTDOWNLOAD1 (echo [Paths]&& echo Prefix=..) >%QTDIR%\bin\qt.conf
 - set QT_PLUGIN_PATH=%QTDIR%\plugins
