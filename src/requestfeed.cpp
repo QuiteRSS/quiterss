@@ -59,6 +59,11 @@ RequestFeed::RequestFeed(int timeoutRequest, int numberRequests,
           Qt::QueuedConnection);
 }
 
+RequestFeed::~RequestFeed()
+{
+
+}
+
 void RequestFeed::disconnectObjects()
 {
   disconnect(this);

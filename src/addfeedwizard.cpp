@@ -63,6 +63,7 @@ AddFeedWizard::~AddFeedWizard()
   Settings settings;
   settings.setValue("addFeedWizard/geometry", saveGeometry());
 
+  updateFeeds_->disconnectObjects();
   delete updateFeeds_;
 }
 

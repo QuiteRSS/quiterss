@@ -197,6 +197,18 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool addFeed)
 
 UpdateFeeds::~UpdateFeeds()
 {
+  requestFeed_->deleteLater();
+  parseObject_->deleteLater();
+
+  if (!addFeed_) {
+    updateObject_->deleteLater();
+    faviconObject_->deleteLater();
+
+    getFaviconThread_->exit();
+    getFaviconThread_->wait();
+    delete getFaviconThread_;
+  }
+
   getFeedThread_->exit();
   getFeedThread_->wait();
   delete getFeedThread_;
@@ -204,30 +216,21 @@ UpdateFeeds::~UpdateFeeds()
   updateFeedThread_->exit();
   updateFeedThread_->wait();
   delete updateFeedThread_;
-
-  delete requestFeed_;
-  delete parseObject_;
-
-  if (!addFeed_) {
-    getFaviconThread_->exit();
-    getFaviconThread_->wait();
-    delete getFaviconThread_;
-
-    delete updateObject_;
-    delete faviconObject_;
-  }
 }
 
 void UpdateFeeds::disconnectObjects()
 {
-  updateObject_->disconnect(updateObject_);
-  updateObject_->disconnect(parseObject_);
-  updateObject_->disconnect(requestFeed_);
-  updateObject_->disconnect(mainApp->mainWindow());
+  if (!addFeed_) {
+    updateObject_->disconnect(updateObject_);
+    updateObject_->disconnect(parseObject_);
+    updateObject_->disconnect(requestFeed_);
+    updateObject_->disconnect(parent());
+    faviconObject_->disconnectObjects();
+  }
+
   requestFeed_->disconnectObjects();
-  requestFeed_->disconnect(mainApp->mainWindow());
+  requestFeed_->disconnect(parent());
   parseObject_->disconnectObjects();
-  faviconObject_->disconnectObjects();
 }
 
 void UpdateFeeds::startSaveTimer()
@@ -276,10 +279,12 @@ UpdateObject::UpdateObject(QObject *parent)
   timerUpdateNews_ = new QTimer(this);
   timerUpdateNews_->setSingleShot(true);
   connect(timerUpdateNews_, SIGNAL(timeout()), this, SIGNAL(signalUpdateNews()));
+
 }
 
 UpdateObject::~UpdateObject()
 {
+
 }
 
 void UpdateObject::slotGetFeedTimer(int feedId)

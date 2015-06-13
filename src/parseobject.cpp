@@ -50,6 +50,7 @@ ParseObject::ParseObject(QObject *parent)
 
 ParseObject::~ParseObject()
 {
+
 }
 
 void ParseObject::disconnectObjects()

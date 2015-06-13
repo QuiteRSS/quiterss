@@ -33,6 +33,7 @@ class RequestFeed : public QObject
 public:
   explicit RequestFeed(int timeoutRequest, int numberRequests,
                        int numberRepeats, QObject *parent = 0);
+  ~RequestFeed();
 
   void disconnectObjects();
 
