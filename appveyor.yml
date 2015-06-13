@@ -79,8 +79,9 @@ install:
 - if defined QTARCHIVE1 7z x %QTARCHIVE1_OPTS% %QTARCHIVE1% >nul
 - if defined QTDOWNLOAD2 curl -kLO %QTDOWNLOAD2%
 - if defined QTARCHIVE2 7z x %QTARCHIVE2_OPTS% %QTARCHIVE2% >nul
-- dir "c:\projects\quiterss"
-- dir "c:\projects\quiterss\build"
+- dir "C:\projects"
+- dir "C:\projects\quiterss"
+- dir "C:\projects\quiterss\buildbots"
 - if defined QTMOVE dir $OUTDIR
 - if defined QTMOVE move %QTMOVE%
 - if defined QTSUB set "QTDIR=%CD%\%QTSUB%"
