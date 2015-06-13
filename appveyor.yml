@@ -75,7 +75,7 @@ install:
 - mkdir Qt
 - cd Qt
 - if defined QTDOWNLOAD1 curl -kLO %QTDOWNLOAD1%
-- if defined QTARCHIVE1 7z x %QTARCHIVE1_OPTS% %QTARCHIVE1% >nul
+- if defined QTARCHIVE1 7z x %QTARCHIVE1_OPTS% %QTARCHIVE1%
 - if defined QTDOWNLOAD2 curl -kLO %QTDOWNLOAD2%
 - if defined QTARCHIVE2 7z x %QTARCHIVE2_OPTS% %QTARCHIVE2% >nul
 - dir "C:\projects\quiterss\extern"
