@@ -23,6 +23,10 @@
 
 #define ADBLOCK_EASYLIST_URL "https://easylist-downloads.adblockplus.org/easylist.txt"
 
+#ifndef Q_UNLIKELY
+#define Q_UNLIKELY(x) x
+#endif
+
 #ifndef QSL
 #if QT_VERSION >= 0x050000
 #define QSL(x) QStringLiteral(x)

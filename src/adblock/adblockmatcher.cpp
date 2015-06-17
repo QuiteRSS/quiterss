@@ -36,6 +36,7 @@
 #include "adblockmanager.h"
 #include "adblockrule.h"
 #include "adblocksubscription.h"
+#include "common.h"
 
 AdBlockMatcher::AdBlockMatcher(AdBlockManager* manager)
   : QObject(manager)
