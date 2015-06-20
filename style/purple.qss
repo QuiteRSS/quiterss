@@ -37,11 +37,11 @@ QMenuBar::item:pressed {
 	color: white;
 }
 
-#feedsTreeView_, #newsCategoriesTree_ {
+#feedsView_, #newsCategoriesTree_ {
 	background: #F9F9FF;
 }
 
-#feedsTreeView_::item, #newsView_::item, #newsCategoriesTree_::item {
+#feedsView_::item, #newsView_::item, #newsCategoriesTree_::item {
 	min-height: 20px;
 }
 

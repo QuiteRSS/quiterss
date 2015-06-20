@@ -371,31 +371,31 @@ void MainWindow::showWindows(bool trayClick)
 // ---------------------------------------------------------------------------
 void MainWindow::createFeedsWidget()
 {
-  feedsTreeModel_ = new FeedsTreeModel(this);
-  feedsTreeModel_->setObjectName("feedsTreeModel_");
+  feedsModel_ = new FeedsModel(this);
+  feedsModel_->setObjectName("feedsModel_");
 
-  feedsProxyModel_ = new FeedsProxyModel(feedsTreeModel_);
+  feedsProxyModel_ = new FeedsProxyModel(feedsModel_);
   feedsProxyModel_->setObjectName("feedsProxyModel_");
-  feedsProxyModel_->setSourceModel(feedsTreeModel_);
+  feedsProxyModel_->setSourceModel(feedsModel_);
 
-  feedsTreeView_ = new FeedsTreeView(this);
-  feedsTreeView_->setModel(feedsProxyModel_);
-  feedsTreeView_->setSourceModel(feedsTreeModel_);
-  feedsTreeModel_->setView(feedsTreeView_);
+  feedsView_ = new FeedsView(this);
+  feedsView_->setModel(feedsProxyModel_);
+  feedsView_->setSourceModel(feedsModel_);
+  feedsModel_->setView(feedsView_);
 
-  for (int i = 0; i < feedsTreeModel_->columnCount(); ++i)
-    feedsTreeView_->hideColumn(i);
-  feedsTreeView_->showColumn(feedsTreeModel_->proxyColumnByOriginal("text"));
+  for (int i = 0; i < feedsModel_->columnCount(); ++i)
+    feedsView_->hideColumn(i);
+  feedsView_->showColumn(feedsModel_->proxyColumnByOriginal("text"));
 #ifdef HAVE_QT5
-  feedsTreeView_->header()->setSectionResizeMode(feedsTreeModel_->proxyColumnByOriginal("text"), QHeaderView::Stretch);
-  feedsTreeView_->header()->setSectionResizeMode(feedsTreeModel_->proxyColumnByOriginal("unread"), QHeaderView::ResizeToContents);
-  feedsTreeView_->header()->setSectionResizeMode(feedsTreeModel_->proxyColumnByOriginal("undeleteCount"), QHeaderView::ResizeToContents);
-  feedsTreeView_->header()->setSectionResizeMode(feedsTreeModel_->proxyColumnByOriginal("updated"), QHeaderView::ResizeToContents);
+  feedsView_->header()->setSectionResizeMode(feedsModel_->proxyColumnByOriginal("text"), QHeaderView::Stretch);
+  feedsView_->header()->setSectionResizeMode(feedsModel_->proxyColumnByOriginal("unread"), QHeaderView::ResizeToContents);
+  feedsView_->header()->setSectionResizeMode(feedsModel_->proxyColumnByOriginal("undeleteCount"), QHeaderView::ResizeToContents);
+  feedsView_->header()->setSectionResizeMode(feedsModel_->proxyColumnByOriginal("updated"), QHeaderView::ResizeToContents);
 #else
-  feedsTreeView_->header()->setResizeMode(feedsTreeModel_->proxyColumnByOriginal("text"), QHeaderView::Stretch);
-  feedsTreeView_->header()->setResizeMode(feedsTreeModel_->proxyColumnByOriginal("unread"), QHeaderView::ResizeToContents);
-  feedsTreeView_->header()->setResizeMode(feedsTreeModel_->proxyColumnByOriginal("undeleteCount"), QHeaderView::ResizeToContents);
-  feedsTreeView_->header()->setResizeMode(feedsTreeModel_->proxyColumnByOriginal("updated"), QHeaderView::ResizeToContents);
+  feedsView_->header()->setResizeMode(feedsModel_->proxyColumnByOriginal("text"), QHeaderView::Stretch);
+  feedsView_->header()->setResizeMode(feedsModel_->proxyColumnByOriginal("unread"), QHeaderView::ResizeToContents);
+  feedsView_->header()->setResizeMode(feedsModel_->proxyColumnByOriginal("undeleteCount"), QHeaderView::ResizeToContents);
+  feedsView_->header()->setResizeMode(feedsModel_->proxyColumnByOriginal("updated"), QHeaderView::ResizeToContents);
 #endif
 
   feedsToolBar_ = new QToolBar(this);
@@ -456,7 +456,7 @@ void MainWindow::createFeedsWidget()
   feedsSplitter_->setStyleSheet(
         QString("QSplitter::handle {background: %1;}").
         arg(qApp->palette().color(QPalette::Dark).name()));
-  feedsSplitter_->addWidget(feedsTreeView_);
+  feedsSplitter_->addWidget(feedsView_);
   feedsSplitter_->addWidget(categoriesWidget_);
   feedsSplitter_->setStretchFactor(0, 1);
 
@@ -476,19 +476,19 @@ void MainWindow::createFeedsWidget()
   feedsWidget_->setFrameStyle(QFrame::NoFrame);
   feedsWidget_->setLayout(feedsLayout);
 
-  connect(feedsTreeView_, SIGNAL(pressed(QModelIndex)),
+  connect(feedsView_, SIGNAL(pressed(QModelIndex)),
           this, SLOT(slotFeedClicked(QModelIndex)));
-  connect(feedsTreeView_, SIGNAL(signalMiddleClicked()),
+  connect(feedsView_, SIGNAL(signalMiddleClicked()),
           this, SLOT(slotOpenFeedNewTab()));
-  connect(feedsTreeView_, SIGNAL(signalDoubleClicked()),
+  connect(feedsView_, SIGNAL(signalDoubleClicked()),
           this, SLOT(slotGetFeed()));
-  connect(feedsTreeView_, SIGNAL(pressKeyUp()), this, SLOT(slotFeedUpPressed()));
-  connect(feedsTreeView_, SIGNAL(pressKeyDown()), this, SLOT(slotFeedDownPressed()));
-  connect(feedsTreeView_, SIGNAL(pressKeyHome()), this, SLOT(slotFeedHomePressed()));
-  connect(feedsTreeView_, SIGNAL(pressKeyEnd()), this, SLOT(slotFeedEndPressed()));
-  connect(feedsTreeView_, SIGNAL(signalDropped(QModelIndex,int)),
+  connect(feedsView_, SIGNAL(pressKeyUp()), this, SLOT(slotFeedUpPressed()));
+  connect(feedsView_, SIGNAL(pressKeyDown()), this, SLOT(slotFeedDownPressed()));
+  connect(feedsView_, SIGNAL(pressKeyHome()), this, SLOT(slotFeedHomePressed()));
+  connect(feedsView_, SIGNAL(pressKeyEnd()), this, SLOT(slotFeedEndPressed()));
+  connect(feedsView_, SIGNAL(signalDropped(QModelIndex,int)),
           this, SLOT(slotMoveIndex(QModelIndex,int)));
-  connect(feedsTreeView_, SIGNAL(customContextMenuRequested(QPoint)),
+  connect(feedsView_, SIGNAL(customContextMenuRequested(QPoint)),
           this, SLOT(showContextMenuFeed(const QPoint &)));
 
   connect(findFeeds_, SIGNAL(textChanged(QString)),
@@ -927,14 +927,14 @@ void MainWindow::createActions()
   collapseAllFoldersAct_->setIcon(QIcon(":/images/bulletMinus"));
   this->addAction(collapseAllFoldersAct_);
   connect(collapseAllFoldersAct_, SIGNAL(triggered()),
-          feedsTreeView_, SLOT(collapseAll()));
+          feedsView_, SLOT(collapseAll()));
 
   expandAllFoldersAct_ = new QAction(this);
   expandAllFoldersAct_->setObjectName("expandAllFolderAct");
   expandAllFoldersAct_->setIcon(QIcon(":/images/bulletPlus"));
   this->addAction(expandAllFoldersAct_);
   connect(expandAllFoldersAct_, SIGNAL(triggered()),
-          feedsTreeView_, SLOT(expandAll()));
+          feedsView_, SLOT(expandAll()));
 
   markNewsRead_ = new QAction(this);
   markNewsRead_->setObjectName("markNewsRead");
@@ -1148,13 +1148,13 @@ void MainWindow::createActions()
   this->addAction(feedsWidgetVisibleAct_);
 
   showUnreadCount_ = new QAction(this);
-  showUnreadCount_->setData(feedsTreeModel_->proxyColumnByOriginal("unread"));
+  showUnreadCount_->setData(feedsModel_->proxyColumnByOriginal("unread"));
   showUnreadCount_->setCheckable(true);
   showUndeleteCount_ = new QAction(this);
-  showUndeleteCount_->setData(feedsTreeModel_->proxyColumnByOriginal("undeleteCount"));
+  showUndeleteCount_->setData(feedsModel_->proxyColumnByOriginal("undeleteCount"));
   showUndeleteCount_->setCheckable(true);
   showLastUpdated_ = new QAction(this);
-  showLastUpdated_->setData(feedsTreeModel_->proxyColumnByOriginal("updated"));
+  showLastUpdated_->setData(feedsModel_->proxyColumnByOriginal("updated"));
   showLastUpdated_->setCheckable(true);
 
   openDescriptionNewsAct_ = new QAction(this);
@@ -1919,8 +1919,8 @@ void MainWindow::loadSettings()
 
   QString fontFamily = settings.value("feedsFontFamily", qApp->font().family()).toString();
   int fontSize = settings.value("feedsFontSize", qApp->font().pointSize()).toInt();
-  feedsTreeView_->setFont(QFont(fontFamily, fontSize));
-  feedsTreeModel_->font_ = feedsTreeView_->font();
+  feedsView_->setFont(QFont(fontFamily, fontSize));
+  feedsModel_->font_ = feedsView_->font();
 
   newsListFontFamily_ = settings.value("newsFontFamily", qApp->font().family()).toString();
   newsListFontSize_ = settings.value("newsFontSize", qApp->font().pointSize()).toInt();
@@ -1992,8 +1992,8 @@ void MainWindow::loadSettings()
 
   formatDate_ = settings.value("formatData", "dd.MM.yy").toString();
   formatTime_ = settings.value("formatTime", "hh:mm").toString();
-  feedsTreeModel_->formatDate_ = formatDate_;
-  feedsTreeModel_->formatTime_ = formatTime_;
+  feedsModel_->formatDate_ = formatDate_;
+  feedsModel_->formatTime_ = formatTime_;
 
   alternatingRowColorsNews_ = settings.value("alternatingColorsNews", false).toBool();
   changeBehaviorActionNUN_ = settings.value("changeBehaviorActionNUN", false).toBool();
@@ -2165,8 +2165,8 @@ void MainWindow::loadSettings()
   pushButtonNull_->setVisible(showToggleFeedsTree_);
 
   defaultIconFeeds_ = settings.value("defaultIconFeeds", false).toBool();
-  feedsTreeModel_->defaultIconFeeds_ = defaultIconFeeds_;
-  feedsTreeView_->autocollapseFolder_ =
+  feedsModel_->defaultIconFeeds_ = defaultIconFeeds_;
+  feedsView_->autocollapseFolder_ =
       settings.value("autocollapseFolder", false).toBool();
 
 #ifndef Q_OS_MAC
@@ -2180,9 +2180,9 @@ void MainWindow::loadSettings()
   settings.beginGroup("Color");
   QString windowTextColor = qApp->palette().brush(QPalette::WindowText).color().name();
   QString linkTextColor = qApp->palette().brush(QPalette::Link).color().name();
-  feedsTreeModel_->textColor_ = settings.value("feedsListTextColor", windowTextColor).toString();
-  feedsTreeModel_->backgroundColor_ = settings.value("feedsListBackgroundColor", "").toString();
-  feedsTreeView_->setStyleSheet(QString("#feedsTreeView_ {background: %1;}").arg(feedsTreeModel_->backgroundColor_));
+  feedsModel_->textColor_ = settings.value("feedsListTextColor", windowTextColor).toString();
+  feedsModel_->backgroundColor_ = settings.value("feedsListBackgroundColor", "").toString();
+  feedsView_->setStyleSheet(QString("#feedsView_ {background: %1;}").arg(feedsModel_->backgroundColor_));
   newsListTextColor_ = settings.value("newsListTextColor", windowTextColor).toString();
   newsListBackgroundColor_ = settings.value("newsListBackgroundColor", "").toString();
   newNewsTextColor_ = settings.value("newNewsTextColor", windowTextColor).toString();
@@ -2196,11 +2196,11 @@ void MainWindow::loadSettings()
   newsTextColor_ = settings.value("newsTextColor", "#000000").toString();
   newsTitleBackgroundColor_ = settings.value("newsTitleBackgroundColor", "#FFFFFF").toString();
   newsBackgroundColor_ = settings.value("newsBackgroundColor", "#FFFFFF").toString();
-  feedsTreeModel_->feedWithNewNewsColor_ = settings.value("feedWithNewNewsColor", linkTextColor).toString();
-  feedsTreeModel_->countNewsUnreadColor_ = settings.value("countNewsUnreadColor", linkTextColor).toString();
-  feedsTreeModel_->focusedFeedTextColor_ = settings.value("focusedFeedTextColor", windowTextColor).toString();
-  feedsTreeModel_->focusedFeedBGColor_ = settings.value("focusedFeedBGColor", "").toString();
-  feedsTreeModel_->feedDisabledUpdateColor_ = settings.value("feedDisabledUpdateColor", "#999999").toString();
+  feedsModel_->feedWithNewNewsColor_ = settings.value("feedWithNewNewsColor", linkTextColor).toString();
+  feedsModel_->countNewsUnreadColor_ = settings.value("countNewsUnreadColor", linkTextColor).toString();
+  feedsModel_->focusedFeedTextColor_ = settings.value("focusedFeedTextColor", windowTextColor).toString();
+  feedsModel_->focusedFeedBGColor_ = settings.value("focusedFeedBGColor", "").toString();
+  feedsModel_->feedDisabledUpdateColor_ = settings.value("feedDisabledUpdateColor", "#999999").toString();
   alternatingRowColors_ = settings.value("alternatingRowColors", qApp->palette().color(QPalette::AlternateBase).name()).toString();
   notifierTextColor_ = settings.value("notifierTextColor", windowTextColor).toString();
   notifierBackgroundColor_ = settings.value("notifierBackgroundColor", "#FFFFFF").toString();
@@ -2276,9 +2276,9 @@ void MainWindow::saveSettings()
 
   settings.setValue("langFileName", mainApp->language());
 
-  QString fontFamily = feedsTreeView_->font().family();
+  QString fontFamily = feedsView_->font().family();
   settings.setValue("feedsFontFamily", fontFamily);
-  int fontSize = feedsTreeView_->font().pointSize();
+  int fontSize = feedsView_->font().pointSize();
   settings.setValue("feedsFontSize", fontSize);
 
   settings.setValue("newsFontFamily", newsListFontFamily_);
@@ -2391,15 +2391,15 @@ void MainWindow::saveSettings()
   settings.setValue("showToggleFeedsTree", showToggleFeedsTree_);
 
   settings.setValue("defaultIconFeeds", defaultIconFeeds_);
-  settings.setValue("autocollapseFolder", feedsTreeView_->autocollapseFolder_);
+  settings.setValue("autocollapseFolder", feedsView_->autocollapseFolder_);
 
   settings.setValue("showMenuBar", showMenuBarAct_->isChecked());
 
   settings.endGroup();
 
   settings.beginGroup("Color");
-  settings.setValue("feedsListTextColor", feedsTreeModel_->textColor_);
-  settings.setValue("feedsListBackgroundColor", feedsTreeModel_->backgroundColor_);
+  settings.setValue("feedsListTextColor", feedsModel_->textColor_);
+  settings.setValue("feedsListBackgroundColor", feedsModel_->backgroundColor_);
   settings.setValue("newsListTextColor", newsListTextColor_);
   settings.setValue("newsListBackgroundColor", newsListBackgroundColor_);
   settings.setValue("newNewsTextColor", newNewsTextColor_);
@@ -2413,11 +2413,11 @@ void MainWindow::saveSettings()
   settings.setValue("newsTextColor", newsTextColor_);
   settings.setValue("newsTitleBackgroundColor", newsTitleBackgroundColor_);
   settings.setValue("newsBackgroundColor", newsBackgroundColor_);
-  settings.setValue("feedWithNewNewsColor", feedsTreeModel_->feedWithNewNewsColor_);
-  settings.setValue("countNewsUnreadColor", feedsTreeModel_->countNewsUnreadColor_);
-  settings.setValue("focusedFeedTextColor", feedsTreeModel_->focusedFeedTextColor_);
-  settings.setValue("focusedFeedBGColor", feedsTreeModel_->focusedFeedBGColor_);
-  settings.setValue("feedDisabledUpdateColor", feedsTreeModel_->feedDisabledUpdateColor_);
+  settings.setValue("feedWithNewNewsColor", feedsModel_->feedWithNewNewsColor_);
+  settings.setValue("countNewsUnreadColor", feedsModel_->countNewsUnreadColor_);
+  settings.setValue("focusedFeedTextColor", feedsModel_->focusedFeedTextColor_);
+  settings.setValue("focusedFeedBGColor", feedsModel_->focusedFeedBGColor_);
+  settings.setValue("feedDisabledUpdateColor", feedsModel_->feedDisabledUpdateColor_);
   settings.setValue("alternatingRowColors", alternatingRowColors_);
   settings.setValue("notifierTextColor", notifierTextColor_);
   settings.setValue("notifierBackgroundColor", notifierBackgroundColor_);
@@ -2488,11 +2488,11 @@ void MainWindow::showMainMenu()
 void MainWindow::addFeed()
 {
   int curFolderId = 0;
-  QPersistentModelIndex curIndex = feedsTreeView_->selectIndex();
-  if (feedsTreeModel_->isFolder(curIndex)) {
-    curFolderId = feedsTreeModel_->getIdByIndex(curIndex);
+  QPersistentModelIndex curIndex = feedsView_->selectIndex();
+  if (feedsModel_->isFolder(curIndex)) {
+    curFolderId = feedsModel_->getIdByIndex(curIndex);
   } else {
-    curFolderId = feedsTreeModel_->getParidByIndex(curIndex);
+    curFolderId = feedsModel_->getParidByIndex(curIndex);
   }
 
   AddFeedWizard *addFeedWizard = new AddFeedWizard(0, curFolderId);
@@ -2513,11 +2513,11 @@ void MainWindow::addFeed()
   recountFeedCategories(categoriesList);
 
   QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
-  feedsTreeView_->setCurrentIndex(QModelIndex());
+  feedsView_->setCurrentIndex(QModelIndex());
   feedsModelReload();
   QModelIndex index = feedsProxyModel_->mapFromSource(addFeedWizard->feedId_);
-  feedsTreeView_->selectIdEn_ = true;
-  feedsTreeView_->setCurrentIndex(index);
+  feedsView_->selectIdEn_ = true;
+  feedsView_->setCurrentIndex(index);
   slotFeedClicked(index);
   QApplication::restoreOverrideCursor();
   slotUpdateFeed(addFeedWizard->feedId_, true, addFeedWizard->newCount_, false);
@@ -2530,11 +2530,11 @@ void MainWindow::addFeed()
 void MainWindow::addFolder()
 {
   int curFolderId = 0;
-  QPersistentModelIndex curIndex = feedsTreeView_->selectIndex();
-  if (feedsTreeModel_->isFolder(curIndex)) {
-    curFolderId = feedsTreeModel_->getIdByIndex(curIndex);
+  QPersistentModelIndex curIndex = feedsView_->selectIndex();
+  if (feedsModel_->isFolder(curIndex)) {
+    curFolderId = feedsModel_->getIdByIndex(curIndex);
   } else {
-    curFolderId = feedsTreeModel_->getParidByIndex(curIndex);
+    curFolderId = feedsModel_->getParidByIndex(curIndex);
   }
 
   AddFolderDialog *addFolderDialog = new AddFolderDialog(this, curFolderId);
@@ -2576,7 +2576,7 @@ void MainWindow::addFolder()
  *---------------------------------------------------------------------------*/
 void MainWindow::deleteItemFeedsTree()
 {
-  if (!feedsTreeView_->selectIndex().isValid()) return;
+  if (!feedsView_->selectIndex().isValid()) return;
 
   QMessageBox msgBox(this);
   msgBox.setIcon(QMessageBox::Question);
@@ -2587,13 +2587,13 @@ void MainWindow::deleteItemFeedsTree()
 
   if (msgBox.exec() == QMessageBox::No) return;
 
-  QModelIndex currentIndex = feedsProxyModel_->mapToSource(feedsTreeView_->currentIndex());
-  int feedIdCur = feedsTreeModel_->getIdByIndex(currentIndex);
+  QModelIndex currentIndex = feedsProxyModel_->mapToSource(feedsView_->currentIndex());
+  int feedIdCur = feedsModel_->getIdByIndex(currentIndex);
 
-  QModelIndexList indexList = feedsTreeView_->selectionModel()->selectedRows(0);
+  QModelIndexList indexList = feedsView_->selectionModel()->selectedRows(0);
   if (indexList.count() <= 1) {
     indexList.clear();
-    indexList.append(feedsProxyModel_->mapFromSource(feedsTreeView_->selectIndex()));
+    indexList.append(feedsProxyModel_->mapFromSource(feedsView_->selectIndex()));
   }
 
   QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
@@ -2602,9 +2602,9 @@ void MainWindow::deleteItemFeedsTree()
   QList<int> parentIdList;
   for (int i = indexList.count()-1; i >= 0; --i) {
     QModelIndex index = feedsProxyModel_->mapToSource(indexList[i]);
-    if (feedsTreeModel_->isFolder(index)) {
-      idList.append(feedsTreeModel_->dataField(index, "id").toInt());
-      int parentId = feedsTreeModel_->dataField(index, "parentId").toInt();
+    if (feedsModel_->isFolder(index)) {
+      idList.append(feedsModel_->dataField(index, "id").toInt());
+      int parentId = feedsModel_->dataField(index, "parentId").toInt();
       if (!parentIdList.contains(parentId)) {
         parentIdList.append(parentId);
       }
@@ -2613,10 +2613,10 @@ void MainWindow::deleteItemFeedsTree()
   }
   for (int i = indexList.count()-1; i >= 0; --i) {
     QModelIndex index = feedsProxyModel_->mapToSource(indexList[i]);
-    int parentId = feedsTreeModel_->dataField(index, "parentId").toInt();
+    int parentId = feedsModel_->dataField(index, "parentId").toInt();
     if (!idList.contains(parentId)) {
-      idList.append(feedsTreeModel_->dataField(index, "id").toInt());
-      int parentId = feedsTreeModel_->dataField(index, "parentId").toInt();
+      idList.append(feedsModel_->dataField(index, "id").toInt());
+      int parentId = feedsModel_->dataField(index, "parentId").toInt();
       if (!parentIdList.contains(parentId)) {
         parentIdList.append(parentId);
       }
@@ -2672,7 +2672,7 @@ void MainWindow::deleteItemFeedsTree()
   recountFeedCategories(parentIdList);
   feedsModelReload();
   currentIndex = feedsProxyModel_->mapFromSource(feedIdCur);
-  feedsTreeView_->setCurrentIndex(currentIndex);
+  feedsView_->setCurrentIndex(currentIndex);
   slotFeedClicked(currentIndex);
 
   QApplication::restoreOverrideCursor();
@@ -2744,10 +2744,10 @@ void MainWindow::slotExportFeeds()
 
   // Create model and view for export
   // Expand the view to step on every item
-  FeedsTreeModel exportTreeModel(this);
+  FeedsModel exportTreeModel(this);
   QTreeView exportTreeView;
   exportTreeView.setModel(&exportTreeModel);
-  exportTreeModel.setView(feedsTreeView_);
+  exportTreeModel.setView(feedsView_);
   exportTreeView.expandAll();
 
   QModelIndex index = exportTreeModel.index(0, 0);
@@ -2791,47 +2791,47 @@ void MainWindow::slotExportFeeds()
 // ----------------------------------------------------------------------------
 void MainWindow::slotFeedsViewportUpdate()
 {
-  feedsTreeView_->viewport()->update();
+  feedsView_->viewport()->update();
 #ifdef HAVE_QT5
-  feedsTreeView_->header()->setSectionResizeMode(feedsTreeModel_->proxyColumnByOriginal("unread"), QHeaderView::ResizeToContents);
-  feedsTreeView_->header()->setSectionResizeMode(feedsTreeModel_->proxyColumnByOriginal("undeleteCount"), QHeaderView::ResizeToContents);
-  feedsTreeView_->header()->setSectionResizeMode(feedsTreeModel_->proxyColumnByOriginal("updated"), QHeaderView::ResizeToContents);
+  feedsView_->header()->setSectionResizeMode(feedsModel_->proxyColumnByOriginal("unread"), QHeaderView::ResizeToContents);
+  feedsView_->header()->setSectionResizeMode(feedsModel_->proxyColumnByOriginal("undeleteCount"), QHeaderView::ResizeToContents);
+  feedsView_->header()->setSectionResizeMode(feedsModel_->proxyColumnByOriginal("updated"), QHeaderView::ResizeToContents);
 #else
-  feedsTreeView_->header()->setResizeMode(feedsTreeModel_->proxyColumnByOriginal("unread"), QHeaderView::ResizeToContents);
-  feedsTreeView_->header()->setResizeMode(feedsTreeModel_->proxyColumnByOriginal("undeleteCount"), QHeaderView::ResizeToContents);
-  feedsTreeView_->header()->setResizeMode(feedsTreeModel_->proxyColumnByOriginal("updated"), QHeaderView::ResizeToContents);
+  feedsView_->header()->setResizeMode(feedsModel_->proxyColumnByOriginal("unread"), QHeaderView::ResizeToContents);
+  feedsView_->header()->setResizeMode(feedsModel_->proxyColumnByOriginal("undeleteCount"), QHeaderView::ResizeToContents);
+  feedsView_->header()->setResizeMode(feedsModel_->proxyColumnByOriginal("updated"), QHeaderView::ResizeToContents);
 #endif
 }
 // ----------------------------------------------------------------------------
 void MainWindow::slotFeedCountsUpdate(FeedCountStruct counts)
 {
-  QModelIndex index = feedsTreeModel_->getIndexById(counts.feedId);
+  QModelIndex index = feedsModel_->getIndexById(counts.feedId);
   if (index.isValid()) {
-    QModelIndex indexUnread   = feedsTreeModel_->indexSibling(index, "unread");
-    QModelIndex indexNew      = feedsTreeModel_->indexSibling(index, "newCount");
-    QModelIndex indexUndelete = feedsTreeModel_->indexSibling(index, "undeleteCount");
-    feedsTreeModel_->setData(indexUnread, counts.unreadCount);
-    feedsTreeModel_->setData(indexNew, counts.newCount);
-    feedsTreeModel_->setData(indexUndelete, counts.undeleteCount);
+    QModelIndex indexUnread   = feedsModel_->indexSibling(index, "unread");
+    QModelIndex indexNew      = feedsModel_->indexSibling(index, "newCount");
+    QModelIndex indexUndelete = feedsModel_->indexSibling(index, "undeleteCount");
+    feedsModel_->setData(indexUnread, counts.unreadCount);
+    feedsModel_->setData(indexNew, counts.newCount);
+    feedsModel_->setData(indexUndelete, counts.undeleteCount);
 
     if (!counts.updated.isEmpty()) {
-      QModelIndex indexUpdated  = feedsTreeModel_->indexSibling(index, "updated");
-      feedsTreeModel_->setData(indexUpdated, counts.updated);
+      QModelIndex indexUpdated  = feedsModel_->indexSibling(index, "updated");
+      feedsModel_->setData(indexUpdated, counts.updated);
     }
 
     if (!counts.lastBuildDate.isEmpty()) {
-      QModelIndex indexLastBuildDate = feedsTreeModel_->indexSibling(index, "lastBuildDate");
-      feedsTreeModel_->setData(indexLastBuildDate, counts.lastBuildDate);
+      QModelIndex indexLastBuildDate = feedsModel_->indexSibling(index, "lastBuildDate");
+      feedsModel_->setData(indexLastBuildDate, counts.lastBuildDate);
     }
 
     if (!counts.htmlUrl.isEmpty()) {
-      QModelIndex indexHtmlUrl = feedsTreeModel_->indexSibling(index, "htmlUrl");
-      feedsTreeModel_->setData(indexHtmlUrl, counts.htmlUrl);
+      QModelIndex indexHtmlUrl = feedsModel_->indexSibling(index, "htmlUrl");
+      feedsModel_->setData(indexHtmlUrl, counts.htmlUrl);
     }
 
     if (!counts.title.isEmpty()) {
-      QModelIndex indexTitle = feedsTreeModel_->indexSibling(index, "title");
-      feedsTreeModel_->setData(indexTitle, counts.title);
+      QModelIndex indexTitle = feedsModel_->indexSibling(index, "title");
+      feedsModel_->setData(indexTitle, counts.title);
     }
   }
 
@@ -3095,9 +3095,9 @@ void MainWindow::slotUpdateNews(int refresh)
  *---------------------------------------------------------------------------*/
 void MainWindow::slotFeedClicked(QModelIndex index)
 {
-  if (feedsTreeView_->selectionModel()->selectedRows(0).count() > 1) return;
+  if (feedsView_->selectionModel()->selectedRows(0).count() > 1) return;
 
-  int feedIdCur = feedsTreeModel_->getIdByIndex(feedsProxyModel_->mapToSource(index));
+  int feedIdCur = feedsModel_->getIdByIndex(feedsProxyModel_->mapToSource(index));
 
   if (stackedWidget_->count() && currentNewsTab->type_ < NewsTabWidget::TabTypeWeb) {
     currentNewsTab->newsHeader_->saveStateColumns(currentNewsTab);
@@ -3121,7 +3121,7 @@ void MainWindow::slotFeedClicked(QModelIndex index)
       tabBar_->setCurrentIndex(TAB_WIDGET_PERMANENT);
       updateCurrentTab_ = true;
       QModelIndex currentIndex = feedsProxyModel_->mapFromSource(feedIdCur);
-      feedsTreeView_->setCurrentIndex(currentIndex);
+      feedsView_->setCurrentIndex(currentIndex);
 
       currentNewsTab = (NewsTabWidget*)stackedWidget_->widget(TAB_WIDGET_PERMANENT);
       newsModel_ = currentNewsTab->newsModel_;
@@ -3137,8 +3137,8 @@ void MainWindow::slotFeedClicked(QModelIndex index)
       categoriesTree_->setCurrentIndex(QModelIndex());
     }
 
-    slotFeedSelected(feedsTreeModel_->getIndexById(feedIdCur));
-    feedsTreeView_->repaint();
+    slotFeedSelected(feedsModel_->getIndexById(feedIdCur));
+    feedsView_->repaint();
   } else if (indexTab != -1) {
     tabBar_->setCurrentIndex(indexTab);
   }
@@ -3149,8 +3149,8 @@ void MainWindow::slotFeedClicked(QModelIndex index)
  *---------------------------------------------------------------------------*/
 void MainWindow::slotFeedSelected(QModelIndex index, bool createTab)
 {
-  int feedId = feedsTreeModel_->getIdByIndex(index);
-  int feedParId = feedsTreeModel_->getParidByIndex(index);
+  int feedId = feedsModel_->getIdByIndex(index);
+  int feedParId = feedsModel_->getParidByIndex(index);
 
   // Open or create feed tab
   if (!stackedWidget_->count() || createTab) {
@@ -3176,10 +3176,10 @@ void MainWindow::slotFeedSelected(QModelIndex index, bool createTab)
   statusAll_->setVisible(index.isValid());
 
   // Set icon for tab has opened
-  bool isFeed = (index.isValid() && feedsTreeModel_->isFolder(index)) ? false : true;
+  bool isFeed = (index.isValid() && feedsModel_->isFolder(index)) ? false : true;
 
   QPixmap iconTab;
-  QByteArray byteArray = feedsTreeModel_->dataField(index, "image").toByteArray();
+  QByteArray byteArray = feedsModel_->dataField(index, "image").toByteArray();
   if (!isFeed) {
     iconTab.load(":/images/folder");
   } else {
@@ -3192,7 +3192,7 @@ void MainWindow::slotFeedSelected(QModelIndex index, bool createTab)
   currentNewsTab->newsIconTitle_->setPixmap(iconTab);
 
   // Set title for tab has opened
-  currentNewsTab->setTextTab(feedsTreeModel_->dataField(index, "text").toString());
+  currentNewsTab->setTextTab(feedsModel_->dataField(index, "text").toString());
 
   feedProperties_->setEnabled(index.isValid());
 
@@ -3201,8 +3201,8 @@ void MainWindow::slotFeedSelected(QModelIndex index, bool createTab)
   // Search feed news that displayed before
   int newsRow = -1;
   if (openingFeedAction_ == 0) {
-    QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId);
-    int newsIdCur = feedsTreeModel_->dataField(feedIndex, "currentNews").toInt();
+    QModelIndex feedIndex = feedsModel_->getIndexById(feedId);
+    int newsIdCur = feedsModel_->dataField(feedIndex, "currentNews").toInt();
     QModelIndex index = newsModel_->index(0, newsModel_->fieldIndex("id"));
     QModelIndexList indexList = newsModel_->match(index, Qt::EditRole, newsIdCur);
 
@@ -3232,8 +3232,8 @@ void MainWindow::slotFeedSelected(QModelIndex index, bool createTab)
     int newsId = newsModel_->index(newsRow, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
     QString qStr = QString("UPDATE feeds SET currentNews='%1' WHERE id=='%2'").arg(newsId).arg(feedId);
     mainApp->sqlQueryExec(qStr);
-    QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId);
-    feedsTreeModel_->setData(feedsTreeModel_->indexSibling(feedIndex, "currentNews"),
+    QModelIndex feedIndex = feedsModel_->getIndexById(feedId);
+    feedsModel_->setData(feedsModel_->indexSibling(feedIndex, "currentNews"),
                              newsId);
   }
 }
@@ -3263,7 +3263,7 @@ void MainWindow::showOptionDlg(int index)
   optionsDialog_->hideFeedsOpenTab_->setChecked(hideFeedsOpenTab_);
   optionsDialog_->showToggleFeedsTree_->setChecked(showToggleFeedsTree_);
   optionsDialog_->defaultIconFeeds_->setChecked(defaultIconFeeds_);
-  optionsDialog_->autocollapseFolder_->setChecked(feedsTreeView_->autocollapseFolder_);
+  optionsDialog_->autocollapseFolder_->setChecked(feedsView_->autocollapseFolder_);
   bool showCloseButtonTab = settings.value("Settings/showCloseButtonTab", true).toBool();
   optionsDialog_->showCloseButtonTab_->setChecked(showCloseButtonTab);
 
@@ -3416,8 +3416,8 @@ void MainWindow::showOptionDlg(int index)
   optionsDialog_->setLanguage(mainApp->language());
 
   QString strFont = QString("%1, %2").
-      arg(feedsTreeView_->font().family()).
-      arg(feedsTreeView_->font().pointSize());
+      arg(feedsView_->font().family()).
+      arg(feedsView_->font().pointSize());
   optionsDialog_->fontsTree_->topLevelItem(0)->setText(2, strFont);
   strFont = QString("%1, %2").arg(newsListFontFamily_).arg(newsListFontSize_);
   optionsDialog_->fontsTree_->topLevelItem(1)->setText(2, strFont);
@@ -3463,15 +3463,15 @@ void MainWindow::showOptionDlg(int index)
   optionsDialog_->browserMinLogFontSize_->setValue(browserMinLogFontSize);
 
   QPixmap pixmapColor(14, 14);
-  pixmapColor.fill(feedsTreeModel_->textColor_);
+  pixmapColor.fill(feedsModel_->textColor_);
   optionsDialog_->colorsTree_->topLevelItem(0)->setIcon(0, pixmapColor);
-  optionsDialog_->colorsTree_->topLevelItem(0)->setText(1, feedsTreeModel_->textColor_);
-  if (feedsTreeModel_->backgroundColor_.isEmpty())
+  optionsDialog_->colorsTree_->topLevelItem(0)->setText(1, feedsModel_->textColor_);
+  if (feedsModel_->backgroundColor_.isEmpty())
     pixmapColor.fill(QColor(0, 0, 0, 0));
   else
-    pixmapColor.fill(feedsTreeModel_->backgroundColor_);
+    pixmapColor.fill(feedsModel_->backgroundColor_);
   optionsDialog_->colorsTree_->topLevelItem(1)->setIcon(0, pixmapColor);
-  optionsDialog_->colorsTree_->topLevelItem(1)->setText(1, feedsTreeModel_->backgroundColor_);
+  optionsDialog_->colorsTree_->topLevelItem(1)->setText(1, feedsModel_->backgroundColor_);
   pixmapColor.fill(newsListTextColor_);
   optionsDialog_->colorsTree_->topLevelItem(2)->setIcon(0, pixmapColor);
   optionsDialog_->colorsTree_->topLevelItem(2)->setText(1, newsListTextColor_);
@@ -3512,12 +3512,12 @@ void MainWindow::showOptionDlg(int index)
   pixmapColor.fill(newsBackgroundColor_);
   optionsDialog_->colorsTree_->topLevelItem(12)->setIcon(0, pixmapColor);
   optionsDialog_->colorsTree_->topLevelItem(12)->setText(1, newsBackgroundColor_);
-  pixmapColor.fill(feedsTreeModel_->feedWithNewNewsColor_);
+  pixmapColor.fill(feedsModel_->feedWithNewNewsColor_);
   optionsDialog_->colorsTree_->topLevelItem(13)->setIcon(0, pixmapColor);
-  optionsDialog_->colorsTree_->topLevelItem(13)->setText(1, feedsTreeModel_->feedWithNewNewsColor_);
-  pixmapColor.fill(feedsTreeModel_->countNewsUnreadColor_);
+  optionsDialog_->colorsTree_->topLevelItem(13)->setText(1, feedsModel_->feedWithNewNewsColor_);
+  pixmapColor.fill(feedsModel_->countNewsUnreadColor_);
   optionsDialog_->colorsTree_->topLevelItem(14)->setIcon(0, pixmapColor);
-  optionsDialog_->colorsTree_->topLevelItem(14)->setText(1, feedsTreeModel_->countNewsUnreadColor_);
+  optionsDialog_->colorsTree_->topLevelItem(14)->setText(1, feedsModel_->countNewsUnreadColor_);
 
   pixmapColor.fill(newNewsTextColor_);
   optionsDialog_->colorsTree_->topLevelItem(15)->setIcon(0, pixmapColor);
@@ -3526,18 +3526,18 @@ void MainWindow::showOptionDlg(int index)
   optionsDialog_->colorsTree_->topLevelItem(16)->setIcon(0, pixmapColor);
   optionsDialog_->colorsTree_->topLevelItem(16)->setText(1, unreadNewsTextColor_);
 
-  pixmapColor.fill(feedsTreeModel_->focusedFeedTextColor_);
+  pixmapColor.fill(feedsModel_->focusedFeedTextColor_);
   optionsDialog_->colorsTree_->topLevelItem(17)->setIcon(0, pixmapColor);
-  optionsDialog_->colorsTree_->topLevelItem(17)->setText(1, feedsTreeModel_->focusedFeedTextColor_);
-  if (feedsTreeModel_->focusedFeedBGColor_.isEmpty())
+  optionsDialog_->colorsTree_->topLevelItem(17)->setText(1, feedsModel_->focusedFeedTextColor_);
+  if (feedsModel_->focusedFeedBGColor_.isEmpty())
     pixmapColor.fill(QColor(0, 0, 0, 0));
   else
-    pixmapColor.fill(feedsTreeModel_->focusedFeedBGColor_);
+    pixmapColor.fill(feedsModel_->focusedFeedBGColor_);
   optionsDialog_->colorsTree_->topLevelItem(18)->setIcon(0, pixmapColor);
-  optionsDialog_->colorsTree_->topLevelItem(18)->setText(1, feedsTreeModel_->focusedFeedBGColor_);
-  pixmapColor.fill(feedsTreeModel_->feedDisabledUpdateColor_);
+  optionsDialog_->colorsTree_->topLevelItem(18)->setText(1, feedsModel_->focusedFeedBGColor_);
+  pixmapColor.fill(feedsModel_->feedDisabledUpdateColor_);
   optionsDialog_->colorsTree_->topLevelItem(19)->setIcon(0, pixmapColor);
-  optionsDialog_->colorsTree_->topLevelItem(19)->setText(1, feedsTreeModel_->feedDisabledUpdateColor_);
+  optionsDialog_->colorsTree_->topLevelItem(19)->setText(1, feedsModel_->feedDisabledUpdateColor_);
 
   pixmapColor.fill(alternatingRowColors_);
   optionsDialog_->colorsTree_->topLevelItem(20)->setIcon(0, pixmapColor);
@@ -3661,8 +3661,8 @@ void MainWindow::showOptionDlg(int index)
   hideFeedsOpenTab_ = optionsDialog_->hideFeedsOpenTab_->isChecked();
   showToggleFeedsTree_ = optionsDialog_->showToggleFeedsTree_->isChecked();
   defaultIconFeeds_ = optionsDialog_->defaultIconFeeds_->isChecked();
-  feedsTreeModel_->defaultIconFeeds_ = defaultIconFeeds_;
-  feedsTreeView_->autocollapseFolder_ = optionsDialog_->autocollapseFolder_->isChecked();
+  feedsModel_->defaultIconFeeds_ = defaultIconFeeds_;
+  feedsView_->autocollapseFolder_ = optionsDialog_->autocollapseFolder_->isChecked();
 
   showCloseButtonTab = optionsDialog_->showCloseButtonTab_->isChecked();
   settings.setValue("Settings/showCloseButtonTab", showCloseButtonTab);
@@ -3793,10 +3793,10 @@ void MainWindow::showOptionDlg(int index)
 
   formatDate_ = optionsDialog_->formatDate_->itemData(
         optionsDialog_->formatDate_->currentIndex()).toString();
-  feedsTreeModel_->formatDate_ = formatDate_;
+  feedsModel_->formatDate_ = formatDate_;
   formatTime_ = optionsDialog_->formatTime_->itemData(
         optionsDialog_->formatTime_->currentIndex()).toString();
-  feedsTreeModel_->formatTime_ = formatTime_;
+  feedsModel_->formatTime_ = formatTime_;
 
   alternatingRowColorsNews_ = optionsDialog_->alternatingRowColorsNews_->isChecked();
   changeBehaviorActionNUN_ = optionsDialog_->changeBehaviorActionNUN_->isChecked();
@@ -3846,13 +3846,13 @@ void MainWindow::showOptionDlg(int index)
   mainApp->setLanguage(optionsDialog_->language());
   mainApp->setTranslateApplication();
 
-  QFont font = feedsTreeView_->font();
+  QFont font = feedsView_->font();
   font.setFamily(
         optionsDialog_->fontsTree_->topLevelItem(0)->text(2).section(", ", 0, 0));
   font.setPointSize(
         optionsDialog_->fontsTree_->topLevelItem(0)->text(2).section(", ", 1).toInt());
-  feedsTreeView_->setFont(font);
-  feedsTreeModel_->font_ = font;
+  feedsView_->setFont(font);
+  feedsModel_->font_ = font;
 
   newsListFontFamily_ = optionsDialog_->fontsTree_->topLevelItem(1)->text(2).section(", ", 0, 0);
   newsListFontSize_ = optionsDialog_->fontsTree_->topLevelItem(1)->text(2).section(", ", 1).toInt();
@@ -3908,9 +3908,9 @@ void MainWindow::showOptionDlg(int index)
   settings.setValue("browserMinLogFontSize", browserMinLogFontSize);
   settings.endGroup();
 
-  feedsTreeModel_->textColor_ = optionsDialog_->colorsTree_->topLevelItem(0)->text(1);
-  feedsTreeModel_->backgroundColor_ = optionsDialog_->colorsTree_->topLevelItem(1)->text(1);
-  feedsTreeView_->setStyleSheet(QString("#feedsTreeView_ {background: %1;}").arg(feedsTreeModel_->backgroundColor_));
+  feedsModel_->textColor_ = optionsDialog_->colorsTree_->topLevelItem(0)->text(1);
+  feedsModel_->backgroundColor_ = optionsDialog_->colorsTree_->topLevelItem(1)->text(1);
+  feedsView_->setStyleSheet(QString("#feedsView_ {background: %1;}").arg(feedsModel_->backgroundColor_));
   newsListTextColor_ = optionsDialog_->colorsTree_->topLevelItem(2)->text(1);
   newsListBackgroundColor_ = optionsDialog_->colorsTree_->topLevelItem(3)->text(1);
   focusedNewsTextColor_ = optionsDialog_->colorsTree_->topLevelItem(4)->text(1);
@@ -3922,13 +3922,13 @@ void MainWindow::showOptionDlg(int index)
   newsTextColor_ = optionsDialog_->colorsTree_->topLevelItem(10)->text(1);
   newsTitleBackgroundColor_ = optionsDialog_->colorsTree_->topLevelItem(11)->text(1);
   newsBackgroundColor_ = optionsDialog_->colorsTree_->topLevelItem(12)->text(1);
-  feedsTreeModel_->feedWithNewNewsColor_ = optionsDialog_->colorsTree_->topLevelItem(13)->text(1);
-  feedsTreeModel_->countNewsUnreadColor_ = optionsDialog_->colorsTree_->topLevelItem(14)->text(1);
+  feedsModel_->feedWithNewNewsColor_ = optionsDialog_->colorsTree_->topLevelItem(13)->text(1);
+  feedsModel_->countNewsUnreadColor_ = optionsDialog_->colorsTree_->topLevelItem(14)->text(1);
   newNewsTextColor_ = optionsDialog_->colorsTree_->topLevelItem(15)->text(1);
   unreadNewsTextColor_ = optionsDialog_->colorsTree_->topLevelItem(16)->text(1);
-  feedsTreeModel_->focusedFeedTextColor_ = optionsDialog_->colorsTree_->topLevelItem(17)->text(1);
-  feedsTreeModel_->focusedFeedBGColor_ = optionsDialog_->colorsTree_->topLevelItem(18)->text(1);
-  feedsTreeModel_->feedDisabledUpdateColor_ = optionsDialog_->colorsTree_->topLevelItem(19)->text(1);
+  feedsModel_->focusedFeedTextColor_ = optionsDialog_->colorsTree_->topLevelItem(17)->text(1);
+  feedsModel_->focusedFeedBGColor_ = optionsDialog_->colorsTree_->topLevelItem(18)->text(1);
+  feedsModel_->feedDisabledUpdateColor_ = optionsDialog_->colorsTree_->topLevelItem(19)->text(1);
   alternatingRowColors_ = optionsDialog_->colorsTree_->topLevelItem(20)->text(1);
   notifierTextColor_ = optionsDialog_->colorsTree_->topLevelItem(21)->text(1);
   notifierBackgroundColor_ = optionsDialog_->colorsTree_->topLevelItem(22)->text(1);
@@ -4054,37 +4054,37 @@ void MainWindow::slotGetFeedsTimer()
  *---------------------------------------------------------------------------*/
 void MainWindow::slotGetFeed()
 {
-  QModelIndexList indexList = feedsTreeView_->selectionModel()->selectedRows(0);
+  QModelIndexList indexList = feedsView_->selectionModel()->selectedRows(0);
   if (indexList.count() <= 1) {
     indexList.clear();
-    indexList.append(feedsProxyModel_->mapFromSource(feedsTreeView_->selectIndex()));
+    indexList.append(feedsProxyModel_->mapFromSource(feedsView_->selectIndex()));
   }
   QList<int> idList;
   foreach (QModelIndex indexProxy, indexList) {
     QModelIndex index = feedsProxyModel_->mapToSource(indexProxy);
-    if (feedsTreeModel_->isFolder(index)) {
-      QList<int> list = UpdateObject::getIdFeedsInList(feedsTreeModel_->dataField(index, "id").toInt());
+    if (feedsModel_->isFolder(index)) {
+      QList<int> list = UpdateObject::getIdFeedsInList(feedsModel_->dataField(index, "id").toInt());
       foreach (int idFeed, list) {
         if (!idList.contains(idFeed)) {
           idList.append(idFeed);
-          index = feedsTreeModel_->getIndexById(idFeed);
-          if (!feedsTreeModel_->dataField(index, "disableUpdate").toBool()) {
-            emit signalGetFeed(feedsTreeModel_->dataField(index, "id").toInt(),
-                               feedsTreeModel_->dataField(index, "xmlUrl").toString(),
-                               feedsTreeModel_->dataField(index, "lastBuildDate").toDateTime(),
-                               feedsTreeModel_->dataField(index, "authentication").toInt());
+          index = feedsModel_->getIndexById(idFeed);
+          if (!feedsModel_->dataField(index, "disableUpdate").toBool()) {
+            emit signalGetFeed(feedsModel_->dataField(index, "id").toInt(),
+                               feedsModel_->dataField(index, "xmlUrl").toString(),
+                               feedsModel_->dataField(index, "lastBuildDate").toDateTime(),
+                               feedsModel_->dataField(index, "authentication").toInt());
           }
         }
       }
 
     } else {
-      int idFeed = feedsTreeModel_->dataField(index, "id").toInt();
+      int idFeed = feedsModel_->dataField(index, "id").toInt();
       if (!idList.contains(idFeed)) {
         idList.append(idFeed);
-        emit signalGetFeed(feedsTreeModel_->dataField(index, "id").toInt(),
-                           feedsTreeModel_->dataField(index, "xmlUrl").toString(),
-                           feedsTreeModel_->dataField(index, "lastBuildDate").toDateTime(),
-                           feedsTreeModel_->dataField(index, "authentication").toInt());
+        emit signalGetFeed(feedsModel_->dataField(index, "id").toInt(),
+                           feedsModel_->dataField(index, "xmlUrl").toString(),
+                           feedsModel_->dataField(index, "lastBuildDate").toDateTime(),
+                           feedsModel_->dataField(index, "authentication").toInt());
       }
     }
   }
@@ -4177,20 +4177,20 @@ void MainWindow::setFeedsFilter(bool clicked)
   QAction* filterAct = feedsFilterGroup_->checkedAction();
 
   if (filterAct->objectName() == "filterFeedsNew_") {
-    QModelIndex index = feedsProxyModel_->mapToSource(feedsTreeView_->currentIndex());
-    int newCount = feedsTreeModel_->dataField(index, "newCount").toInt();
+    QModelIndex index = feedsProxyModel_->mapToSource(feedsView_->currentIndex());
+    int newCount = feedsModel_->dataField(index, "newCount").toInt();
     if (!(clicked && !newCount)) {
       while (index.isValid()) {
-        idList << feedsTreeModel_->getIdByIndex(index);
+        idList << feedsModel_->getIdByIndex(index);
         index = index.parent();
       }
     }
   } else if (filterAct->objectName() == "filterFeedsUnread_") {
-    QModelIndex index = feedsProxyModel_->mapToSource(feedsTreeView_->currentIndex());
-    int unRead = feedsTreeModel_->dataField(index, "unread").toInt();
+    QModelIndex index = feedsProxyModel_->mapToSource(feedsView_->currentIndex());
+    int unRead = feedsModel_->dataField(index, "unread").toInt();
     if (!(clicked && !unRead)) {
       while (index.isValid()) {
-        idList << feedsTreeModel_->getIdByIndex(index);
+        idList << feedsModel_->getIdByIndex(index);
         index = index.parent();
       }
     }
@@ -4237,9 +4237,9 @@ void MainWindow::setFeedsFilter(bool clicked)
       NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(i);
       if (!idList.contains(widget->feedId_)) {
         idList.append(widget->feedId_);
-        QModelIndex index = feedsTreeModel_->getIndexById(widget->feedId_).parent();
+        QModelIndex index = feedsModel_->getIndexById(widget->feedId_).parent();
         while (index.isValid()) {
-          int id = feedsTreeModel_->getIdByIndex(index);
+          int id = feedsModel_->getIdByIndex(index);
           if (!idList.contains(id))
             idList.append(id);
           index = index.parent();
@@ -4253,13 +4253,13 @@ void MainWindow::setFeedsFilter(bool clicked)
                               findFeeds_->findGroup_->checkedAction()->objectName(),
                               findFeeds_->text());
 
-  feedsTreeView_->restoreExpanded();
+  feedsView_->restoreExpanded();
 
-  feedsTreeView_->clearSelection();
-  feedsTreeView_->setCurrentIndex(feedsTreeView_->currentIndex());
+  feedsView_->clearSelection();
+  feedsView_->setCurrentIndex(feedsView_->currentIndex());
 
   if (clicked && (tabBar_->currentIndex() == TAB_WIDGET_PERMANENT)) {
-    slotFeedClicked(feedsTreeView_->currentIndex());
+    slotFeedClicked(feedsView_->currentIndex());
   }
 
   if (filterAct->objectName() == "filterFeedsAll_") feedsFilter_->setIcon(QIcon(":/images/filterOff"));
@@ -4302,7 +4302,7 @@ void MainWindow::setNewsFilter(QAction* pAct, bool clicked)
   }
 
   // Create filter for category or for feed
-  if (feedsTreeModel_->isFolder(feedsTreeModel_->getIndexById(feedId))) {
+  if (feedsModel_->isFolder(feedsModel_->getIndexById(feedId))) {
     newsFilterStr = QString("(%1) AND ").arg(getIdFeedsString(feedId));
   } else {
     newsFilterStr = QString("feedId=%1 AND ").arg(feedId);
@@ -4449,31 +4449,31 @@ void MainWindow::markFeedRead()
   bool openFeed = false;
   bool isFolder = false;
 
-  QModelIndexList indexList = feedsTreeView_->selectionModel()->selectedRows(0);
+  QModelIndexList indexList = feedsView_->selectionModel()->selectedRows(0);
   if (indexList.count() <= 1) {
     indexList.clear();
-    indexList.append(feedsProxyModel_->mapFromSource(feedsTreeView_->selectIndex()));
+    indexList.append(feedsProxyModel_->mapFromSource(feedsView_->selectIndex()));
   }
   QList<int> idList;
   for (int i = indexList.count()-1; i >= 0; --i) {
     QModelIndex index = feedsProxyModel_->mapToSource(indexList[i]);
-    if (feedsTreeModel_->isFolder(index)) {
-      idList.append(feedsTreeModel_->dataField(index, "id").toInt());
+    if (feedsModel_->isFolder(index)) {
+      idList.append(feedsModel_->dataField(index, "id").toInt());
       indexList.removeAt(i);
     }
   }
   for (int i = indexList.count()-1; i >= 0; --i) {
     QModelIndex index = feedsProxyModel_->mapToSource(indexList[i]);
-    int parentId = feedsTreeModel_->dataField(index, "parentId").toInt();
+    int parentId = feedsModel_->dataField(index, "parentId").toInt();
     if (!idList.contains(parentId)) {
-      idList.append(feedsTreeModel_->dataField(index, "id").toInt());
+      idList.append(feedsModel_->dataField(index, "id").toInt());
     }
     indexList.removeAt(i);
   }
   foreach (int id, idList) {
     bool openFeedT = false;
-    QModelIndex index = feedsTreeModel_->getIndexById(id);
-    int parentId = feedsTreeModel_->dataField(index, "parentId").toInt();
+    QModelIndex index = feedsModel_->getIndexById(id);
+    int parentId = feedsModel_->dataField(index, "parentId").toInt();
     if ((currentNewsTab->feedId_ == id)) {
       openFeedT = true;
       openFeed = true;
@@ -4485,20 +4485,20 @@ void MainWindow::markFeedRead()
       openFeed = true;
       isFolder = true;
     }
-    if (feedsTreeModel_->isFolder(index)) {
+    if (feedsModel_->isFolder(index)) {
       if (currentNewsTab->feedId_ == id) {
         isFolder = true;
       }
       QList<int> list = UpdateObject::getIdFeedsInList(id);
       foreach (int id1, list) {
-        QModelIndex index1 = feedsTreeModel_->getIndexById(id1);
-        QModelIndex indexUnread = feedsTreeModel_->indexSibling(index1, "unread");
-        QModelIndex indexNew    = feedsTreeModel_->indexSibling(index1, "newCount");
-        feedsTreeModel_->setData(indexUnread, 0);
-        feedsTreeModel_->setData(indexNew, 0);
+        QModelIndex index1 = feedsModel_->getIndexById(id1);
+        QModelIndex indexUnread = feedsModel_->indexSibling(index1, "unread");
+        QModelIndex indexNew    = feedsModel_->indexSibling(index1, "newCount");
+        feedsModel_->setData(indexUnread, 0);
+        feedsModel_->setData(indexNew, 0);
 
         if (!openFeed) {
-          int parentId1 = feedsTreeModel_->dataField(index1, "parentId").toInt();
+          int parentId1 = feedsModel_->dataField(index1, "parentId").toInt();
           if ((currentNewsTab->feedId_ == id1) || (currentNewsTab->feedId_ == parentId1)) {
             openFeed = true;
           }
@@ -4506,11 +4506,11 @@ void MainWindow::markFeedRead()
       }
     }
 
-    QModelIndex indexUnread = feedsTreeModel_->indexSibling(index, "unread");
-    QModelIndex indexNew    = feedsTreeModel_->indexSibling(index, "newCount");
-    feedsTreeModel_->setData(indexUnread, 0);
-    feedsTreeModel_->setData(indexNew, 0);
-    emit signalMarkFeedRead(id, feedsTreeModel_->isFolder(index), openFeedT);
+    QModelIndex indexUnread = feedsModel_->indexSibling(index, "unread");
+    QModelIndex indexNew    = feedsModel_->indexSibling(index, "newCount");
+    feedsModel_->setData(indexUnread, 0);
+    feedsModel_->setData(indexNew, 0);
+    emit signalMarkFeedRead(id, feedsModel_->isFolder(index), openFeedT);
   }
 
   // Update feed view with focus
@@ -4535,14 +4535,14 @@ void MainWindow::markFeedRead()
 void MainWindow::slotRefreshNewsView(int nextUnread)
 {
   if (nextUnread == 1) {
-    feedsTreeView_->clearSelection();
+    feedsView_->clearSelection();
     QModelIndex indexNextUnread =
-        feedsTreeView_->indexNextUnread(feedsTreeView_->currentIndex());
-    feedsTreeView_->setCurrentIndex(indexNextUnread);
+        feedsView_->indexNextUnread(feedsView_->currentIndex());
+    feedsView_->setCurrentIndex(indexNextUnread);
     slotFeedClicked(indexNextUnread);
   } else if ((tabBar_->currentIndex() == TAB_WIDGET_PERMANENT) && (nextUnread == -1)) {
     QModelIndex index = feedsProxyModel_->index(-1, "text");
-    feedsTreeView_->setCurrentIndex(index);
+    feedsView_->setCurrentIndex(index);
     slotFeedClicked(index);
   } else {
     int currentRow = newsView_->currentIndex().row();
@@ -4572,9 +4572,9 @@ void MainWindow::showContextMenuFeed(const QPoint &pos)
 {
   slotFeedMenuShow();
 
-  QModelIndex index = feedsTreeView_->indexAt(pos);
+  QModelIndex index = feedsView_->indexAt(pos);
   if (index.isValid()) {
-    QRect rectText = feedsTreeView_->visualRect(index);
+    QRect rectText = feedsView_->visualRect(index);
     if (pos.x() >= rectText.x()) {
       QMenu menu;
       menu.addAction(addAct_);
@@ -4590,24 +4590,24 @@ void MainWindow::showContextMenuFeed(const QPoint &pos)
       menu.addAction(setFilterNewsAct_);
       menu.addAction(feedProperties_);
 
-      menu.exec(feedsTreeView_->viewport()->mapToGlobal(pos));
+      menu.exec(feedsView_->viewport()->mapToGlobal(pos));
     }
   } else {
     QMenu menu;
     menu.addAction(addAct_);
 
-    menu.exec(feedsTreeView_->viewport()->mapToGlobal(pos));
+    menu.exec(feedsView_->viewport()->mapToGlobal(pos));
   }
 
-  index = feedsProxyModel_->mapToSource(feedsTreeView_->currentIndex());
-  feedsTreeView_->selectId_ = feedsTreeModel_->getIdByIndex(index);
+  index = feedsProxyModel_->mapToSource(feedsView_->currentIndex());
+  feedsView_->selectId_ = feedsModel_->getIdByIndex(index);
 
-  feedProperties_->setEnabled(feedsTreeView_->selectIndex().isValid());
+  feedProperties_->setEnabled(feedsView_->selectIndex().isValid());
 }
 // ----------------------------------------------------------------------------
 void MainWindow::slotFeedMenuShow()
 {
-  feedProperties_->setEnabled(feedsTreeView_->selectIndex().isValid());
+  feedProperties_->setEnabled(feedsView_->selectIndex().isValid());
 }
 // ----------------------------------------------------------------------------
 void MainWindow::loadSettingsFeeds()
@@ -4649,7 +4649,7 @@ void MainWindow::restoreFeedsOnStartUp()
     int feedId = settings.value("feedSettings/currentId", 0).toInt();
     feedIndex = feedsProxyModel_->mapFromSource(feedId);
   }
-  feedsTreeView_->setCurrentIndex(feedIndex);
+  feedsView_->setCurrentIndex(feedIndex);
   updateCurrentTab_ = false;
   slotFeedClicked(feedIndex);
   currentNewsTab->webView_->setFocus();
@@ -5153,21 +5153,21 @@ void MainWindow::hideMainToolbar()
 // ----------------------------------------------------------------------------
 void MainWindow::showFeedPropertiesDlg()
 {
-  if (!feedsTreeView_->selectIndex().isValid()) {
+  if (!feedsView_->selectIndex().isValid()) {
     feedProperties_->setEnabled(false);
     return;
   }
 
-  QPersistentModelIndex index = feedsTreeView_->selectIndex();
-  int feedId = feedsTreeModel_->getIdByIndex(index);
-  bool isFeed = (index.isValid() && feedsTreeModel_->isFolder(index)) ? false : true;
+  QPersistentModelIndex index = feedsView_->selectIndex();
+  int feedId = feedsModel_->getIdByIndex(index);
+  bool isFeed = (index.isValid() && feedsModel_->isFolder(index)) ? false : true;
 
   FeedPropertiesDialog *feedPropertiesDialog = new FeedPropertiesDialog(isFeed, this);
 
   FEED_PROPERTIES properties;
   FEED_PROPERTIES properties_tmp;
 
-  QByteArray byteArray = feedsTreeModel_->dataField(index, "image").toByteArray();
+  QByteArray byteArray = feedsModel_->dataField(index, "image").toByteArray();
   if (!byteArray.isNull()) {
     QPixmap icon;
     icon.loadFromData(QByteArray::fromBase64(byteArray));
@@ -5181,56 +5181,56 @@ void MainWindow::showFeedPropertiesDlg()
 
   QString str(feedPropertiesDialog->windowTitle() +
               " '" +
-              feedsTreeModel_->dataField(index, "text").toString() +
+              feedsModel_->dataField(index, "text").toString() +
               "'");
   feedPropertiesDialog->setWindowTitle(str);
 
   properties.general.text =
-      feedsTreeModel_->dataField(index, "text").toString();
+      feedsModel_->dataField(index, "text").toString();
   properties.general.title =
-      feedsTreeModel_->dataField(index, "title").toString();
+      feedsModel_->dataField(index, "title").toString();
   properties.general.url =
-      feedsTreeModel_->dataField(index, "xmlUrl").toString();
+      feedsModel_->dataField(index, "xmlUrl").toString();
   properties.general.homepage =
-      feedsTreeModel_->dataField(index, "htmlUrl").toString();
+      feedsModel_->dataField(index, "htmlUrl").toString();
   properties.general.displayOnStartup =
-      feedsTreeModel_->dataField(index, "displayOnStartup").toInt();
+      feedsModel_->dataField(index, "displayOnStartup").toInt();
   properties.display.displayEmbeddedImages =
-      feedsTreeModel_->dataField(index, "displayEmbeddedImages").toInt();
+      feedsModel_->dataField(index, "displayEmbeddedImages").toInt();
   properties.display.javaScriptEnable =
-      feedsTreeModel_->dataField(index, "javaScriptEnable").toInt();
-  if (feedsTreeModel_->dataField(index, "displayNews").toString().isEmpty())
+      feedsModel_->dataField(index, "javaScriptEnable").toInt();
+  if (feedsModel_->dataField(index, "displayNews").toString().isEmpty())
     properties.display.displayNews = !showDescriptionNews_;
   else
     properties.display.displayNews =
-        feedsTreeModel_->dataField(index, "displayNews").toInt();
+        feedsModel_->dataField(index, "displayNews").toInt();
   properties.display.layoutDirection =
-      feedsTreeModel_->dataField(index, "layoutDirection").toInt();
+      feedsModel_->dataField(index, "layoutDirection").toInt();
 
   properties.general.disableUpdate =
-      feedsTreeModel_->dataField(index, "disableUpdate").toBool();
+      feedsModel_->dataField(index, "disableUpdate").toBool();
 
-  if (feedsTreeModel_->dataField(index, "updateIntervalEnable").isNull() ||
-      (feedsTreeModel_->dataField(index, "updateIntervalEnable").toInt() == -1)) {
+  if (feedsModel_->dataField(index, "updateIntervalEnable").isNull() ||
+      (feedsModel_->dataField(index, "updateIntervalEnable").toInt() == -1)) {
     properties.general.updateEnable = updateFeedsEnable_;
     properties.general.updateInterval = updateFeedsInterval_;
     properties.general.intervalType = updateFeedsIntervalType_;
   } else {
     properties.general.updateEnable =
-        feedsTreeModel_->dataField(index, "updateIntervalEnable").toBool();
+        feedsModel_->dataField(index, "updateIntervalEnable").toBool();
     properties.general.updateInterval =
-        feedsTreeModel_->dataField(index, "updateInterval").toInt();
+        feedsModel_->dataField(index, "updateInterval").toInt();
     properties.general.intervalType =
-        feedsTreeModel_->dataField(index, "updateIntervalType").toInt();
+        feedsModel_->dataField(index, "updateIntervalType").toInt();
   }
 
-  if (feedsTreeModel_->dataField(index, "label").toString().contains("starred"))
+  if (feedsModel_->dataField(index, "label").toString().contains("starred"))
     properties.general.starred = true;
   else
     properties.general.starred = false;
 
   properties.general.duplicateNewsMode =
-      feedsTreeModel_->dataField(index, "duplicateNewsMode").toBool();
+      feedsModel_->dataField(index, "duplicateNewsMode").toBool();
 
   Settings settings;
   settings.beginGroup("NewsHeader");
@@ -5246,7 +5246,7 @@ void MainWindow::showFeedPropertiesDlg()
   properties.columnDefault.sortType = sortType;
   settings.endGroup();
 
-  if (feedsTreeModel_->dataField(index, "columns").toString().isEmpty()) {
+  if (feedsModel_->dataField(index, "columns").toString().isEmpty()) {
     widget = (NewsTabWidget*)stackedWidget_->widget(TAB_WIDGET_PERMANENT);
     QListIterator<QAction *> iter(widget->newsHeader_->viewMenu_->actions());
     while (iter.hasNext()) {
@@ -5271,20 +5271,20 @@ void MainWindow::showFeedPropertiesDlg()
       properties.column.indexList.append(nextAction->data().toInt());
       properties.column.nameList.append(nextAction->text());
     }
-    indexColumnsStr = feedsTreeModel_->dataField(index, "columns").toString();
+    indexColumnsStr = feedsModel_->dataField(index, "columns").toString();
     indexColumnsList = indexColumnsStr.split(",", QString::SkipEmptyParts);
     foreach (QString indexStr, indexColumnsList) {
       properties.column.columns.append(indexStr.toInt());
     }
-    properties.column.sortBy = feedsTreeModel_->dataField(index, "sort").toInt();
-    properties.column.sortType = feedsTreeModel_->dataField(index, "sortType").toInt();
+    properties.column.sortBy = feedsModel_->dataField(index, "sort").toInt();
+    properties.column.sortType = feedsModel_->dataField(index, "sortType").toInt();
   }
 
   properties.authentication.on = false;
-  if (feedsTreeModel_->dataField(index, "authentication").toInt() == 1) {
+  if (feedsModel_->dataField(index, "authentication").toInt() == 1) {
     properties.authentication.on = true;
   }
-  QUrl url(feedsTreeModel_->dataField(index, "xmlUrl").toString());
+  QUrl url(feedsModel_->dataField(index, "xmlUrl").toString());
   QSqlQuery q;
   q.prepare("SELECT username, password FROM passwords WHERE server=?");
   q.addBindValue(url.host());
@@ -5294,31 +5294,31 @@ void MainWindow::showFeedPropertiesDlg()
     properties.authentication.pass = QString::fromUtf8(QByteArray::fromBase64(q.value(1).toByteArray()));
   }
 
-  properties.status.feedStatus = feedsTreeModel_->dataField(index, "status").toString();
+  properties.status.feedStatus = feedsModel_->dataField(index, "status").toString();
 
   QDateTime dtLocalTime = QDateTime::currentDateTime();
   QDateTime dtUTC = QDateTime(dtLocalTime.date(), dtLocalTime.time(), Qt::UTC);
   int nTimeShift = dtLocalTime.secsTo(dtUTC);
 
   QDateTime dt = QDateTime::fromString(
-        feedsTreeModel_->dataField(index, "created").toString(),
+        feedsModel_->dataField(index, "created").toString(),
         Qt::ISODate);
   properties.status.createdTime = dt.addSecs(nTimeShift);
 
   dt = QDateTime::fromString(
-        feedsTreeModel_->dataField(index, "updated").toString(),
+        feedsModel_->dataField(index, "updated").toString(),
         Qt::ISODate);
   properties.status.lastUpdate = dt.addSecs(nTimeShift);
 
   dt = QDateTime::fromString(
-        feedsTreeModel_->dataField(index, "lastBuildDate").toString(),
+        feedsModel_->dataField(index, "lastBuildDate").toString(),
         Qt::ISODate);
   properties.status.lastBuildDate = dt.addSecs(nTimeShift);
 
-  properties.status.undeleteCount = feedsTreeModel_->dataField(index, "undeleteCount").toInt();
-  properties.status.newCount      = feedsTreeModel_->dataField(index, "newCount").toInt();
-  properties.status.unreadCount   = feedsTreeModel_->dataField(index, "unread").toInt();
-  properties.status.description   = feedsTreeModel_->dataField(index, "description").toString();
+  properties.status.undeleteCount = feedsModel_->dataField(index, "undeleteCount").toInt();
+  properties.status.newCount      = feedsModel_->dataField(index, "newCount").toInt();
+  properties.status.unreadCount   = feedsModel_->dataField(index, "unread").toInt();
+  properties.status.description   = feedsModel_->dataField(index, "description").toString();
 
   properties.status.feedsCount = 0;
   if (!isFeed) {
@@ -5352,7 +5352,7 @@ void MainWindow::showFeedPropertiesDlg()
   properties = feedPropertiesDialog->getFeedProperties();
   delete feedPropertiesDialog;
 
-  index = feedsTreeModel_->getIndexById(feedId);
+  index = feedsModel_->getIndexById(feedId);
 
   q.prepare("UPDATE feeds SET text = ?, xmlUrl = ?, displayOnStartup = ?, "
             "displayEmbeddedImages = ?, displayNews = ?, layoutDirection = ?, "
@@ -5398,12 +5398,12 @@ void MainWindow::showFeedPropertiesDlg()
   q.addBindValue(feedId);
   q.exec();
 
-  QModelIndex indexColumns = feedsTreeModel_->indexSibling(index, "columns");
-  QModelIndex indexSort = feedsTreeModel_->indexSibling(index, "sort");
-  QModelIndex indexSortType = feedsTreeModel_->indexSibling(index, "sortType");
-  feedsTreeModel_->setData(indexColumns, indexColumnsStr);
-  feedsTreeModel_->setData(indexSort, properties.column.sortBy);
-  feedsTreeModel_->setData(indexSortType, properties.column.sortType);
+  QModelIndex indexColumns = feedsModel_->indexSibling(index, "columns");
+  QModelIndex indexSort = feedsModel_->indexSibling(index, "sort");
+  QModelIndex indexSortType = feedsModel_->indexSibling(index, "sortType");
+  feedsModel_->setData(indexColumns, indexColumnsStr);
+  feedsModel_->setData(indexSort, properties.column.sortBy);
+  feedsModel_->setData(indexSortType, properties.column.sortType);
 
   if (!isFeed) {
     QQueue<int> parentIds;
@@ -5424,13 +5424,13 @@ void MainWindow::showFeedPropertiesDlg()
         q1.addBindValue(id);
         q1.exec();
 
-        QPersistentModelIndex index1 = feedsTreeModel_->getIndexById(id);
-        indexColumns = feedsTreeModel_->indexSibling(index1, "columns");
-        indexSort = feedsTreeModel_->indexSibling(index1, "sort");
-        indexSortType = feedsTreeModel_->indexSibling(index1, "sortType");
-        feedsTreeModel_->setData(indexColumns, indexColumnsStr);
-        feedsTreeModel_->setData(indexSort, properties.column.sortBy);
-        feedsTreeModel_->setData(indexSortType, properties.column.sortType);
+        QPersistentModelIndex index1 = feedsModel_->getIndexById(id);
+        indexColumns = feedsModel_->indexSibling(index1, "columns");
+        indexSort = feedsModel_->indexSibling(index1, "sort");
+        indexSortType = feedsModel_->indexSibling(index1, "sortType");
+        feedsModel_->setData(indexColumns, indexColumnsStr);
+        feedsModel_->setData(indexSort, properties.column.sortBy);
+        feedsModel_->setData(indexSortType, properties.column.sortType);
 
         if (currentNewsTab->feedId_ == id)
           currentNewsTab->newsHeader_->setColumns(index1);
@@ -5445,7 +5445,7 @@ void MainWindow::showFeedPropertiesDlg()
     currentNewsTab->newsHeader_->setColumns(index);
 
 
-  if (!(!feedsTreeModel_->dataField(index, "authentication").toInt() && !properties.authentication.on)) {
+  if (!(!feedsModel_->dataField(index, "authentication").toInt() && !properties.authentication.on)) {
     q.prepare("SELECT * FROM passwords WHERE server=?");
     q.addBindValue(url.host());
     q.exec();
@@ -5465,28 +5465,28 @@ void MainWindow::showFeedPropertiesDlg()
     }
   }
 
-  QPersistentModelIndex indexText    = feedsTreeModel_->indexSibling(index, "text");
-  QPersistentModelIndex indexUrl     = feedsTreeModel_->indexSibling(index, "xmlUrl");
-  QPersistentModelIndex indexStartup = feedsTreeModel_->indexSibling(index, "displayOnStartup");
-  QModelIndex indexImages  = feedsTreeModel_->indexSibling(index, "displayEmbeddedImages");
-  QModelIndex indexNews    = feedsTreeModel_->indexSibling(index, "displayNews");
-  QModelIndex indexRTL     = feedsTreeModel_->indexSibling(index, "layoutDirection");
-  QModelIndex indexLabel   = feedsTreeModel_->indexSibling(index, "label");
-  QModelIndex indexDuplicate = feedsTreeModel_->indexSibling(index, "duplicateNewsMode");
-  QModelIndex indexAuthentication = feedsTreeModel_->indexSibling(index, "authentication");
-  QModelIndex indexDisableUpdate = feedsTreeModel_->indexSibling(index, "disableUpdate");
-  QModelIndex indexJavaScript = feedsTreeModel_->indexSibling(index, "javaScriptEnable");
-  feedsTreeModel_->setData(indexText, properties.general.text);
-  feedsTreeModel_->setData(indexUrl, properties.general.url);
-  feedsTreeModel_->setData(indexStartup, properties.general.displayOnStartup);
-  feedsTreeModel_->setData(indexImages, properties.display.displayEmbeddedImages);
-  feedsTreeModel_->setData(indexNews, properties.display.displayNews);
-  feedsTreeModel_->setData(indexRTL, properties.display.layoutDirection);
-  feedsTreeModel_->setData(indexLabel, properties.general.starred ? "starred" : "");
-  feedsTreeModel_->setData(indexDuplicate, properties.general.duplicateNewsMode ? 1 : 0);
-  feedsTreeModel_->setData(indexAuthentication, properties.authentication.on ? 1 : 0);
-  feedsTreeModel_->setData(indexDisableUpdate, properties.general.disableUpdate ? 1 : 0);
-  feedsTreeModel_->setData(indexJavaScript, properties.display.javaScriptEnable);
+  QPersistentModelIndex indexText    = feedsModel_->indexSibling(index, "text");
+  QPersistentModelIndex indexUrl     = feedsModel_->indexSibling(index, "xmlUrl");
+  QPersistentModelIndex indexStartup = feedsModel_->indexSibling(index, "displayOnStartup");
+  QModelIndex indexImages  = feedsModel_->indexSibling(index, "displayEmbeddedImages");
+  QModelIndex indexNews    = feedsModel_->indexSibling(index, "displayNews");
+  QModelIndex indexRTL     = feedsModel_->indexSibling(index, "layoutDirection");
+  QModelIndex indexLabel   = feedsModel_->indexSibling(index, "label");
+  QModelIndex indexDuplicate = feedsModel_->indexSibling(index, "duplicateNewsMode");
+  QModelIndex indexAuthentication = feedsModel_->indexSibling(index, "authentication");
+  QModelIndex indexDisableUpdate = feedsModel_->indexSibling(index, "disableUpdate");
+  QModelIndex indexJavaScript = feedsModel_->indexSibling(index, "javaScriptEnable");
+  feedsModel_->setData(indexText, properties.general.text);
+  feedsModel_->setData(indexUrl, properties.general.url);
+  feedsModel_->setData(indexStartup, properties.general.displayOnStartup);
+  feedsModel_->setData(indexImages, properties.display.displayEmbeddedImages);
+  feedsModel_->setData(indexNews, properties.display.displayNews);
+  feedsModel_->setData(indexRTL, properties.display.layoutDirection);
+  feedsModel_->setData(indexLabel, properties.general.starred ? "starred" : "");
+  feedsModel_->setData(indexDuplicate, properties.general.duplicateNewsMode ? 1 : 0);
+  feedsModel_->setData(indexAuthentication, properties.authentication.on ? 1 : 0);
+  feedsModel_->setData(indexDisableUpdate, properties.general.disableUpdate ? 1 : 0);
+  feedsModel_->setData(indexJavaScript, properties.display.javaScriptEnable);
 
   if (!properties.general.updateEnable ||
       (properties.general.updateEnable != updateFeedsEnable_) ||
@@ -5500,12 +5500,12 @@ void MainWindow::showFeedPropertiesDlg()
     q.addBindValue(feedId);
     q.exec();
 
-    QPersistentModelIndex indexUpdateEnable   = feedsTreeModel_->indexSibling(index, "updateIntervalEnable");
-    QPersistentModelIndex indexUpdateInterval = feedsTreeModel_->indexSibling(index, "updateInterval");
-    QPersistentModelIndex indexIntervalType   = feedsTreeModel_->indexSibling(index, "updateIntervalType");
-    feedsTreeModel_->setData(indexUpdateEnable, properties.general.updateEnable ? 1 : 0);
-    feedsTreeModel_->setData(indexUpdateInterval, properties.general.updateInterval);
-    feedsTreeModel_->setData(indexIntervalType, properties.general.intervalType);
+    QPersistentModelIndex indexUpdateEnable   = feedsModel_->indexSibling(index, "updateIntervalEnable");
+    QPersistentModelIndex indexUpdateInterval = feedsModel_->indexSibling(index, "updateInterval");
+    QPersistentModelIndex indexIntervalType   = feedsModel_->indexSibling(index, "updateIntervalType");
+    feedsModel_->setData(indexUpdateEnable, properties.general.updateEnable ? 1 : 0);
+    feedsModel_->setData(indexUpdateInterval, properties.general.updateInterval);
+    feedsModel_->setData(indexIntervalType, properties.general.intervalType);
 
     int updateInterval = properties.general.updateInterval;
     int updateIntervalType = properties.general.intervalType;
@@ -5534,13 +5534,13 @@ void MainWindow::showFeedPropertiesDlg()
           q1.addBindValue(id);
           q1.exec();
 
-          QPersistentModelIndex index1 = feedsTreeModel_->getIndexById(id);
-          indexUpdateEnable   = feedsTreeModel_->indexSibling(index1, "updateIntervalEnable");
-          indexUpdateInterval = feedsTreeModel_->indexSibling(index1, "updateInterval");
-          indexIntervalType   = feedsTreeModel_->indexSibling(index1, "updateIntervalType");
-          feedsTreeModel_->setData(indexUpdateEnable, properties.general.updateEnable ? 1 : 0);
-          feedsTreeModel_->setData(indexUpdateInterval, properties.general.updateInterval);
-          feedsTreeModel_->setData(indexIntervalType, properties.general.intervalType);
+          QPersistentModelIndex index1 = feedsModel_->getIndexById(id);
+          indexUpdateEnable   = feedsModel_->indexSibling(index1, "updateIntervalEnable");
+          indexUpdateInterval = feedsModel_->indexSibling(index1, "updateInterval");
+          indexIntervalType   = feedsModel_->indexSibling(index1, "updateIntervalType");
+          feedsModel_->setData(indexUpdateEnable, properties.general.updateEnable ? 1 : 0);
+          feedsModel_->setData(indexUpdateInterval, properties.general.updateInterval);
+          feedsModel_->setData(indexIntervalType, properties.general.intervalType);
 
           if (!xmlUrl.isEmpty()) {
             if (properties.general.updateEnable) {
@@ -5569,8 +5569,8 @@ void MainWindow::showFeedPropertiesDlg()
     q.addBindValue(feedId);
     q.exec();
 
-    QPersistentModelIndex indexUpdateEnable = feedsTreeModel_->indexSibling(index, "updateIntervalEnable");
-    feedsTreeModel_->setData(indexUpdateEnable, "-1");
+    QPersistentModelIndex indexUpdateEnable = feedsModel_->indexSibling(index, "updateIntervalEnable");
+    feedsModel_->setData(indexUpdateEnable, "-1");
 
     updateFeedsIntervalSec_.remove(feedId);
     updateFeedsTimeCount_.remove(feedId);
@@ -5614,9 +5614,9 @@ void MainWindow::showFeedPropertiesDlg()
         q1.addBindValue(id);
         q1.exec();
 
-        QPersistentModelIndex index1 = feedsTreeModel_->getIndexById(id);
-        indexDisableUpdate = feedsTreeModel_->indexSibling(index1, "disableUpdate");
-        feedsTreeModel_->setData(indexDisableUpdate, properties.general.disableUpdate ? 1 : 0);
+        QPersistentModelIndex index1 = feedsModel_->getIndexById(id);
+        indexDisableUpdate = feedsModel_->indexSibling(index1, "disableUpdate");
+        feedsModel_->setData(indexDisableUpdate, properties.general.disableUpdate ? 1 : 0);
 
         if (xmlUrl.isEmpty())
           parentIds.enqueue(id);
@@ -5725,11 +5725,11 @@ void MainWindow::slotIconFeedPreparing(QString feedUrl, QByteArray byteArray,
  *---------------------------------------------------------------------------*/
 void MainWindow::slotIconFeedUpdate(int feedId, QByteArray faviconData)
 {
-  QModelIndex index = feedsTreeModel_->getIndexById(feedId);
+  QModelIndex index = feedsModel_->getIndexById(feedId);
   if (index.isValid()) {
-    QModelIndex indexImage = feedsTreeModel_->indexSibling(index, "image");
-    feedsTreeModel_->setData(indexImage, faviconData.toBase64());
-    feedsTreeView_->viewport()->update();
+    QModelIndex indexImage = feedsModel_->indexSibling(index, "image");
+    feedsModel_->setData(indexImage, faviconData.toBase64());
+    feedsView_->viewport()->update();
   }
 
   if (defaultIconFeeds_) return;
@@ -5869,15 +5869,15 @@ void MainWindow::showNewsFiltersDlg(bool newFilter)
 // ----------------------------------------------------------------------------
 void MainWindow::showFilterRulesDlg()
 {
-  if (!feedsTreeView_->selectIndex().isValid()) return;
+  if (!feedsView_->selectIndex().isValid()) return;
 
-  int feedId = feedsTreeView_->selectId_;
+  int feedId = feedsView_->selectId_;
 
   FilterRulesDialog *filterRulesDialog = new FilterRulesDialog(
         this, -1, feedId);
 
-  QModelIndex index = feedsTreeModel_->getIndexById(feedId);
-  QString text = feedsTreeModel_->dataField(index, "text").toString();
+  QModelIndex index = feedsModel_->getIndexById(feedId);
+  QString text = feedsModel_->dataField(index, "text").toString();
   filterRulesDialog->filterName_->setText(QString("'%1'").arg(text));
 
   int result = filterRulesDialog->exec();
@@ -5916,19 +5916,19 @@ void MainWindow::slotNewVersion(const QString &newVersion)
  *---------------------------------------------------------------------------*/
 void MainWindow::slotFeedUpPressed()
 {
-  QModelIndex indexBefore = feedsTreeView_->currentIndex();
+  QModelIndex indexBefore = feedsView_->currentIndex();
   QModelIndex indexAfter;
 
   // Jump to bottom in case of the most top index
   if (!indexBefore.isValid())
     indexAfter = feedsProxyModel_->index(feedsProxyModel_->rowCount()-1, "text");
   else
-    indexAfter = feedsTreeView_->indexAbove(indexBefore);
+    indexAfter = feedsView_->indexAbove(indexBefore);
 
   // There is no "upper" index
   if (!indexAfter.isValid()) return;
 
-  feedsTreeView_->setCurrentIndex(indexAfter);
+  feedsView_->setCurrentIndex(indexAfter);
   slotFeedClicked(indexAfter);
 }
 
@@ -5936,19 +5936,19 @@ void MainWindow::slotFeedUpPressed()
  *---------------------------------------------------------------------------*/
 void MainWindow::slotFeedDownPressed()
 {
-  QModelIndex indexBefore = feedsTreeView_->currentIndex();
+  QModelIndex indexBefore = feedsView_->currentIndex();
   QModelIndex indexAfter;
 
   // Jump to top in case of the most bottom index
   if (!indexBefore.isValid())
     indexAfter = feedsProxyModel_->index(0, "text");
   else
-    indexAfter = feedsTreeView_->indexBelow(indexBefore);
+    indexAfter = feedsView_->indexBelow(indexBefore);
 
   // There is no "downer" index
   if (!indexAfter.isValid()) return;
 
-  feedsTreeView_->setCurrentIndex(indexAfter);
+  feedsView_->setCurrentIndex(indexAfter);
   slotFeedClicked(indexAfter);
 }
 
@@ -5956,20 +5956,20 @@ void MainWindow::slotFeedDownPressed()
  *---------------------------------------------------------------------------*/
 void MainWindow::slotFeedPrevious()
 {
-  QModelIndex indexBefore = feedsTreeView_->currentIndex();
+  QModelIndex indexBefore = feedsView_->currentIndex();
   QModelIndex indexAfter;
 
   // Jump to bottom in case of the most top index
   if (!indexBefore.isValid())
-    indexAfter = feedsTreeModel_->index(feedsTreeModel_->rowCount()-1, feedsTreeView_->columnIndex("text"));
+    indexAfter = feedsModel_->index(feedsModel_->rowCount()-1, feedsView_->columnIndex("text"));
   else
-    indexAfter = feedsTreeView_->indexPrevious(indexBefore);
+    indexAfter = feedsView_->indexPrevious(indexBefore);
 
   // There is no "upper" index
   if (!indexAfter.isValid()) return;
-  feedsTreeView_->clearSelection();
+  feedsView_->clearSelection();
 
-  feedsTreeView_->setCurrentIndex(indexAfter);
+  feedsView_->setCurrentIndex(indexAfter);
   slotFeedClicked(indexAfter);
 }
 
@@ -5977,20 +5977,20 @@ void MainWindow::slotFeedPrevious()
  *---------------------------------------------------------------------------*/
 void MainWindow::slotFeedNext()
 {
-  QModelIndex indexBefore = feedsTreeView_->currentIndex();
+  QModelIndex indexBefore = feedsView_->currentIndex();
   QModelIndex indexAfter;
 
   // Jump to top in case of the most bottom index
   if (!indexBefore.isValid())
-    indexAfter = feedsTreeModel_->index(0, feedsTreeView_->columnIndex("text"));
+    indexAfter = feedsModel_->index(0, feedsView_->columnIndex("text"));
   else
-    indexAfter = feedsTreeView_->indexNext(indexBefore);
+    indexAfter = feedsView_->indexNext(indexBefore);
 
   // There is no "downer" index
   if (!indexAfter.isValid()) return;
-  feedsTreeView_->clearSelection();
+  feedsView_->clearSelection();
 
-  feedsTreeView_->setCurrentIndex(indexAfter);
+  feedsView_->setCurrentIndex(indexAfter);
   slotFeedClicked(indexAfter);
 }
 
@@ -5999,7 +5999,7 @@ void MainWindow::slotFeedNext()
 void MainWindow::slotFeedHomePressed()
 {
   QModelIndex index = feedsProxyModel_->index(0, "text");
-  feedsTreeView_->setCurrentIndex(index);
+  feedsView_->setCurrentIndex(index);
   slotFeedClicked(index);
 }
 
@@ -6008,7 +6008,7 @@ void MainWindow::slotFeedHomePressed()
 void MainWindow::slotFeedEndPressed()
 {
   QModelIndex index = feedsProxyModel_->index(feedsProxyModel_->rowCount()-1, "text");
-  feedsTreeView_->setCurrentIndex(index);
+  feedsView_->setCurrentIndex(index);
   slotFeedClicked(index);
 }
 
@@ -6053,12 +6053,12 @@ void MainWindow::setStyleApp(QAction *pAct)
  *---------------------------------------------------------------------------*/
 void MainWindow::slotSwitchFocus()
 {
-  if (feedsTreeView_->hasFocus()) {
+  if (feedsView_->hasFocus()) {
     newsView_->setFocus();
   } else if (newsView_->hasFocus()) {
     currentNewsTab->webView_->setFocus();
   } else {
-    feedsTreeView_->setFocus();
+    feedsView_->setFocus();
   }
 }
 
@@ -6066,12 +6066,12 @@ void MainWindow::slotSwitchFocus()
  *---------------------------------------------------------------------------*/
 void MainWindow::slotSwitchPrevFocus()
 {
-  if (feedsTreeView_->hasFocus()) {
+  if (feedsView_->hasFocus()) {
     currentNewsTab->webView_->setFocus();
   } else if (currentNewsTab->webView_->hasFocus()) {
     newsView_->setFocus();
   } else {
-    feedsTreeView_->setFocus();
+    feedsView_->setFocus();
   }
 }
 
@@ -6086,20 +6086,20 @@ void MainWindow::slotOpenFeedNewTab()
     settings.setValue("NewsTabSplitterState", currentNewsTab->newsTabWidgetSplitter_->saveState());
   }
 
-  QModelIndexList indexList = feedsTreeView_->selectionModel()->selectedRows(0);
+  QModelIndexList indexList = feedsView_->selectionModel()->selectedRows(0);
   if (indexList.count() <= 1) {
     indexList.clear();
-    indexList.append(feedsProxyModel_->mapFromSource(feedsTreeView_->selectIndex()));
+    indexList.append(feedsProxyModel_->mapFromSource(feedsView_->selectIndex()));
   }
   QModelIndex index = indexList.takeFirst();
-  feedsTreeView_->selectIdEn_ = false;
-  feedsTreeView_->setCurrentIndex(index);
+  feedsView_->selectIdEn_ = false;
+  feedsView_->setCurrentIndex(index);
   slotFeedSelected(feedsProxyModel_->mapToSource(index), true);
 
   foreach (QModelIndex indexProxy, indexList) {
     QModelIndex index = feedsProxyModel_->mapToSource(indexProxy);
-    creatFeedTab(feedsTreeModel_->dataField(index, "id").toInt(),
-                 feedsTreeModel_->dataField(index, "parentId").toInt());
+    creatFeedTab(feedsModel_->dataField(index, "id").toInt(),
+                 feedsModel_->dataField(index, "parentId").toInt());
   }
 }
 
@@ -6137,7 +6137,7 @@ void MainWindow::slotTabCurrentChanged(int index)
   if ((widget->type_ == NewsTabWidget::TabTypeFeed) || (widget->type_ >= NewsTabWidget::TabTypeWeb))
     categoriesTree_->setCurrentIndex(QModelIndex());
   if (widget->type_ != NewsTabWidget::TabTypeFeed) {
-    feedsTreeView_->setCurrentIndex(QModelIndex());
+    feedsView_->setCurrentIndex(QModelIndex());
     feedProperties_->setEnabled(false);
   }
 
@@ -6174,8 +6174,8 @@ void MainWindow::slotTabCurrentChanged(int index)
     newsModel_ = currentNewsTab->newsModel_;
     newsView_ = currentNewsTab->newsView_;
 
-    QModelIndex feedIndex = feedsProxyModel_->mapFromSource(feedsTreeModel_->getIndexById(widget->feedId_));
-    feedsTreeView_->setCurrentIndex(feedIndex);
+    QModelIndex feedIndex = feedsProxyModel_->mapFromSource(feedsModel_->getIndexById(widget->feedId_));
+    feedsView_->setCurrentIndex(feedIndex);
     feedProperties_->setEnabled(feedIndex.isValid());
 
     setFeedsFilter(false);
@@ -6184,7 +6184,7 @@ void MainWindow::slotTabCurrentChanged(int index)
     if (widget->isVisible())
       newsView_->setFocus();
     else
-      feedsTreeView_->setFocus();
+      feedsView_->setFocus();
 
     statusUnread_->setVisible(widget->feedId_);
     statusAll_->setVisible(widget->feedId_);
@@ -6250,9 +6250,9 @@ void MainWindow::feedsColumnVisible(QAction *action)
 {
   int idx = action->data().toInt();
   if (action->isChecked())
-    feedsTreeView_->showColumn(idx);
+    feedsView_->showColumn(idx);
   else
-    feedsTreeView_->hideColumn(idx);
+    feedsView_->hideColumn(idx);
 }
 
 void MainWindow::setNewsLayout(QAction *action)
@@ -6344,7 +6344,7 @@ void MainWindow::creatFeedTab(int feedId, int feedParId)
     widget->setTextTab(q.value(0).toString());
 
     QString feedIdFilter;
-    if (feedsTreeModel_->isFolder(feedsTreeModel_->getIndexById(feedId))) {
+    if (feedsModel_->isFolder(feedsModel_->getIndexById(feedId))) {
       feedIdFilter = QString("(%1) AND ").arg(getIdFeedsString(feedId));
     } else {
       feedIdFilter = QString("feedId=%1 AND ").arg(feedId);
@@ -6516,16 +6516,16 @@ void MainWindow::feedsModelReload(bool checkFilter)
     return;
   }
 
-  int topRow = feedsTreeView_->verticalScrollBar()->value();
-  QModelIndex feedIndex = feedsProxyModel_->mapToSource(feedsTreeView_->currentIndex());
-  int feedId = feedsTreeModel_->getIdByIndex(feedIndex);
+  int topRow = feedsView_->verticalScrollBar()->value();
+  QModelIndex feedIndex = feedsProxyModel_->mapToSource(feedsView_->currentIndex());
+  int feedId = feedsModel_->getIdByIndex(feedIndex);
 
-  feedsTreeView_->refresh();
+  feedsView_->refresh();
 
   feedIndex = feedsProxyModel_->mapFromSource(feedId);
-  feedsTreeView_->selectIdEn_ = false;
-  feedsTreeView_->setCurrentIndex(feedIndex);
-  feedsTreeView_->verticalScrollBar()->setValue(topRow);
+  feedsView_->selectIdEn_ = false;
+  feedsView_->setCurrentIndex(feedIndex);
+  feedsView_->verticalScrollBar()->setValue(topRow);
 }
 // ----------------------------------------------------------------------------
 void MainWindow::setCurrentTab(int index, bool updateCurrentTab)
@@ -6634,9 +6634,9 @@ void MainWindow::slotOpenNew(int feedId, int newsId)
   QSqlQuery q;
   q.exec(QString("UPDATE feeds SET currentNews='%1' WHERE id=='%2'").arg(newsId).arg(feedId));
 
-  QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId);
-  feedsTreeView_->setCurrentIndex(feedsProxyModel_->mapFromSource(feedIndex));
-  feedsTreeModel_->setData(feedsTreeModel_->indexSibling(feedIndex, "currentNews"),
+  QModelIndex feedIndex = feedsModel_->getIndexById(feedId);
+  feedsView_->setCurrentIndex(feedsProxyModel_->mapFromSource(feedIndex));
+  feedsModel_->setData(feedsModel_->indexSibling(feedIndex, "currentNews"),
                            newsId);
 
   if (stackedWidget_->count() && currentNewsTab->type_ < NewsTabWidget::TabTypeWeb) {
@@ -6678,7 +6678,7 @@ void MainWindow::slotOpenNew(int feedId, int newsId)
     tabBar_->setCurrentIndex(indexTab);
   }
   slotFeedSelected(feedIndex);
-  feedsTreeView_->repaint();
+  feedsView_->repaint();
   feedIdOld_ = feedId;
 
   Settings settings;
@@ -6965,15 +6965,15 @@ void MainWindow::showMenuBar()
  *---------------------------------------------------------------------------*/
 void MainWindow::slotMoveIndex(const QModelIndex &indexWhere, int how)
 {
-  feedsTreeView_->setCursor(Qt::WaitCursor);
+  feedsView_->setCursor(Qt::WaitCursor);
 
-  QModelIndexList indexList = feedsTreeView_->selectionModel()->selectedRows(0);
+  QModelIndexList indexList = feedsView_->selectionModel()->selectedRows(0);
   for (int i = 0; i < indexList.count(); i++) {
     QModelIndex indexWhat = feedsProxyModel_->mapToSource(indexList[i]);
-    int feedIdWhat = feedsTreeModel_->getIdByIndex(indexWhat);
-    int feedParIdWhat = feedsTreeModel_->getParidByIndex(indexWhat);
-    int feedIdWhere = feedsTreeModel_->getIdByIndex(indexWhere);
-    int feedParIdWhere = feedsTreeModel_->getParidByIndex(indexWhere);
+    int feedIdWhat = feedsModel_->getIdByIndex(indexWhat);
+    int feedParIdWhat = feedsModel_->getParidByIndex(indexWhat);
+    int feedIdWhere = feedsModel_->getIdByIndex(indexWhere);
+    int feedParIdWhere = feedsModel_->getParidByIndex(indexWhere);
 
     // Repair rowToParent
     QSqlQuery q;
@@ -7011,8 +7011,8 @@ void MainWindow::slotMoveIndex(const QModelIndex &indexWhere, int how)
         idList << q.value(0).toInt();
       }
 
-      int rowWhat = feedsTreeModel_->dataField(indexWhat, "rowToParent").toInt();
-      int rowWhere = feedsTreeModel_->dataField(indexWhere, "rowToParent").toInt();
+      int rowWhat = feedsModel_->dataField(indexWhat, "rowToParent").toInt();
+      int rowWhere = feedsModel_->dataField(indexWhere, "rowToParent").toInt();
       if ((rowWhat < rowWhere) && (how != 1)) rowWhere--;
       else if (how == 1) rowWhere++;
       idList.insert(rowWhere, idList.takeAt(rowWhat));
@@ -7044,7 +7044,7 @@ void MainWindow::slotMoveIndex(const QModelIndex &indexWhere, int how)
         idList << q.value(0).toInt();
       }
 
-      int rowWhere = feedsTreeModel_->dataField(indexWhere, "rowToParent").toInt();
+      int rowWhere = feedsModel_->dataField(indexWhere, "rowToParent").toInt();
       if (how == 1) rowWhere++;
       idList.insert(rowWhere, feedIdWhat);
 
@@ -7062,11 +7062,11 @@ void MainWindow::slotMoveIndex(const QModelIndex &indexWhere, int how)
     }
   }
 
-  feedsTreeView_->refresh();
+  feedsView_->refresh();
 
-  feedsTreeView_->setCurrentIndex(feedsProxyModel_->mapFromSource(feedIdOld_));
+  feedsView_->setCurrentIndex(feedsProxyModel_->mapFromSource(feedIdOld_));
 
-  feedsTreeView_->setCursor(Qt::ArrowCursor);
+  feedsView_->setCursor(Qt::ArrowCursor);
 }
 
 /** @brief Process clicks in feeds tree
@@ -7112,7 +7112,7 @@ void MainWindow::slotCategoriesClicked(QTreeWidgetItem *item, int, bool createTa
       createNewsTab(indexTab);
     }
     else {
-      feedsTreeView_->setCurrentIndex(QModelIndex());
+      feedsView_->setCurrentIndex(QModelIndex());
       feedProperties_->setEnabled(false);
 
       if (tabBar_->currentIndex() != TAB_WIDGET_PERMANENT) {
@@ -7438,9 +7438,9 @@ void MainWindow::slotSavePageAs()
     }
   } else {
     if (currentNewsTab->type_ == NewsTabWidget::TabTypeFeed) {
-      QModelIndex feedIndex = feedsTreeView_->currentIndex();
+      QModelIndex feedIndex = feedsView_->currentIndex();
       feedIndex = feedsProxyModel_->mapToSource(feedIndex);
-      fileName = feedsTreeModel_->dataField(feedIndex, "text").toString();
+      fileName = feedsModel_->dataField(feedIndex, "text").toString();
     } else {
       fileName = categoriesTree_->currentItem()->text(0);
     }
@@ -7528,18 +7528,18 @@ void MainWindow::nextUnreadNews()
     if (currentNewsTab->type_ != NewsTabWidget::TabTypeFeed) return;
 
     QModelIndex indexPrevUnread = QModelIndex();
-    if (feedsTreeView_->currentIndex().isValid())
-      indexPrevUnread = feedsTreeView_->indexNextUnread(feedsTreeView_->currentIndex(), 1);
+    if (feedsView_->currentIndex().isValid())
+      indexPrevUnread = feedsView_->indexNextUnread(feedsView_->currentIndex(), 1);
     if (!indexPrevUnread.isValid()) {
-      indexPrevUnread = feedsTreeView_->indexNextUnread(QModelIndex(), 1);
+      indexPrevUnread = feedsView_->indexNextUnread(QModelIndex(), 1);
     }
     if (indexPrevUnread.isValid()) {
       if (changeBehaviorActionNUN_)
         openingFeedAction_ = 4;
       else
         openingFeedAction_ = 3;
-      feedsTreeView_->clearSelection();
-      feedsTreeView_->setCurrentIndex(indexPrevUnread);
+      feedsView_->clearSelection();
+      feedsView_->setCurrentIndex(indexPrevUnread);
       slotFeedClicked(indexPrevUnread);
 
       if (tabBar_->currentIndex() != TAB_WIDGET_PERMANENT) {
@@ -7593,11 +7593,11 @@ void MainWindow::prevUnreadNews()
     if (currentNewsTab->type_ != NewsTabWidget::TabTypeFeed) return;
 
     QModelIndex indexNextUnread =
-        feedsTreeView_->indexNextUnread(feedsTreeView_->currentIndex(), 2);
+        feedsView_->indexNextUnread(feedsView_->currentIndex(), 2);
     if (indexNextUnread.isValid()) {
       openingFeedAction_ = 3;
-      feedsTreeView_->clearSelection();
-      feedsTreeView_->setCurrentIndex(indexNextUnread);
+      feedsView_->clearSelection();
+      feedsView_->setCurrentIndex(indexNextUnread);
       slotFeedClicked(indexNextUnread);
       Settings settings;
       openingFeedAction_ = settings.value("/Settings/openingFeedAction", 0).toInt();
@@ -7648,7 +7648,7 @@ void MainWindow::setTextTitle(const QString &text, NewsTabWidget *widget)
  *---------------------------------------------------------------------------*/
 void MainWindow::slotIndentationFeedsTree()
 {
-  feedsTreeView_->setRootIsDecorated(indentationFeedsTreeAct_->isChecked());
+  feedsView_->setRootIsDecorated(indentationFeedsTreeAct_->isChecked());
 }
 
 // ----------------------------------------------------------------------------
@@ -7716,11 +7716,11 @@ void MainWindow::showMenuShareNews()
  *---------------------------------------------------------------------------*/
 void MainWindow::slotOpenHomeFeed()
 {
-  QModelIndex index = feedsTreeView_->currentIndex();
+  QModelIndex index = feedsView_->currentIndex();
   if (!index.isValid()) return;
   index = feedsProxyModel_->mapToSource(index);
 
-  QString homePage = feedsTreeModel_->dataField(index, "htmlUrl").toString();
+  QString homePage = feedsModel_->dataField(index, "htmlUrl").toString();
   QDesktopServices::openUrl(homePage);
 }
 
@@ -7818,49 +7818,49 @@ void MainWindow::setNewsSortByColumn()
 // ----------------------------------------------------------------------------
 void MainWindow::slotPrevFolder()
 {
-  QModelIndex indexBefore = feedsTreeView_->currentIndex();
+  QModelIndex indexBefore = feedsView_->currentIndex();
   QModelIndex indexAfter;
 
   // Set to bottom folder, if there's no above folder
   if (!indexBefore.isValid())
-    indexAfter = feedsTreeView_->lastFolderInFolder(QModelIndex());
+    indexAfter = feedsView_->lastFolderInFolder(QModelIndex());
   else
-    indexAfter = feedsTreeView_->indexPreviousFolder(indexBefore);
+    indexAfter = feedsView_->indexPreviousFolder(indexBefore);
 
   // there's no "upper" index
   if (!indexAfter.isValid()) return;
-  feedsTreeView_->clearSelection();
+  feedsView_->clearSelection();
 
-  feedsTreeView_->setCurrentIndex(indexAfter);
+  feedsView_->setCurrentIndex(indexAfter);
   slotFeedClicked(indexAfter);
 }
 // ----------------------------------------------------------------------------
 void MainWindow::slotNextFolder()
 {
-  QModelIndex indexBefore = feedsTreeView_->currentIndex();
+  QModelIndex indexBefore = feedsView_->currentIndex();
   QModelIndex indexAfter;
 
   // Set to top index, if there's no below index
   if (!indexBefore.isValid())
-    indexAfter = feedsTreeView_->firstFolderInFolder(QModelIndex());
+    indexAfter = feedsView_->firstFolderInFolder(QModelIndex());
   else
-    indexAfter = feedsTreeView_->indexNextFolder(indexBefore);
+    indexAfter = feedsView_->indexNextFolder(indexBefore);
 
   // there's no "downer" index
   if (!indexAfter.isValid()) return;
-  feedsTreeView_->clearSelection();
+  feedsView_->clearSelection();
 
-  feedsTreeView_->setCurrentIndex(indexAfter);
+  feedsView_->setCurrentIndex(indexAfter);
   slotFeedClicked(indexAfter);
 }
 // ----------------------------------------------------------------------------
 void MainWindow::slotExpandFolder()
 {
-  QModelIndex index = feedsTreeView_->currentIndex();
-  if (!feedsTreeModel_->isFolder(index)) {
-    index = feedsTreeModel_->parent(index);
+  QModelIndex index = feedsView_->currentIndex();
+  if (!feedsModel_->isFolder(index)) {
+    index = feedsModel_->parent(index);
   }
-  feedsTreeView_->setExpanded(index, !feedsTreeView_->isExpanded(index));
+  feedsView_->setExpanded(index, !feedsView_->isExpanded(index));
 }
 // ----------------------------------------------------------------------------
 void MainWindow::showDownloadManager(bool activate)
@@ -7910,11 +7910,11 @@ void MainWindow::updateInfoDownloads(const QString &text)
 
 void MainWindow::setStatusFeed(int feedId, QString status)
 {
-  QModelIndex index = feedsTreeModel_->getIndexById(feedId);
+  QModelIndex index = feedsModel_->getIndexById(feedId);
   if (index.isValid()) {
-    QModelIndex indexStatus = feedsTreeModel_->indexSibling(index, "status");
-    feedsTreeModel_->setData(indexStatus, status);
-    feedsTreeView_->viewport()->update();
+    QModelIndex indexStatus = feedsModel_->indexSibling(index, "status");
+    feedsModel_->setData(indexStatus, status);
+    feedsView_->viewport()->update();
   }
 }
 

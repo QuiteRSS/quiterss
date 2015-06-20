@@ -15,17 +15,17 @@
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
-#include "feedstreeview.h"
+#include "feedsview.h"
 
 #include "mainapplication.h"
-#include "feedstreemodel.h"
+#include "feedsmodel.h"
 #include "delegatewithoutfocus.h"
 
 #include <QSqlTableModel>
 #include <QSqlQuery>
 
 // ----------------------------------------------------------------------------
-FeedsTreeView::FeedsTreeView(QWidget * parent)
+FeedsView::FeedsView(QWidget * parent)
   : QTreeView(parent)
   , selectIdEn_(true)
   , autocollapseFolder_(false)
@@ -34,7 +34,7 @@ FeedsTreeView::FeedsTreeView(QWidget * parent)
   , dragStartPos_(QPoint())
   , expandedOldId_(-1)
 {
-  setObjectName("feedsTreeView_");
+  setObjectName("feedsView_");
   setFrameStyle(QFrame::NoFrame);
   setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
   setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -60,7 +60,7 @@ FeedsTreeView::FeedsTreeView(QWidget * parent)
   connect(this, SIGNAL(collapsed(QModelIndex)), SLOT(slotCollapsed(QModelIndex)));
 }
 
-void FeedsTreeView::setSourceModel(FeedsTreeModel *sourceModel)
+void FeedsView::setSourceModel(FeedsModel *sourceModel)
 {
   sourceModel_ = sourceModel;
 
@@ -72,31 +72,31 @@ void FeedsTreeView::setSourceModel(FeedsTreeModel *sourceModel)
   }
 }
 
-void FeedsTreeView::refresh()
+void FeedsView::refresh()
 {
   sourceModel_->refresh();
   ((FeedsProxyModel*)model())->reset();
   restoreExpanded();
 }
 
-void FeedsTreeView::setColumnHidden(const QString& column, bool hide)
+void FeedsView::setColumnHidden(const QString& column, bool hide)
 {
   QTreeView::setColumnHidden(columnIndex(column),hide);
 }
 
-int FeedsTreeView::columnIndex(const QString& fieldName) const
+int FeedsView::columnIndex(const QString& fieldName) const
 {
   return sourceModel_->proxyColumnByOriginal(fieldName);
 }
 
-bool FeedsTreeView::isFolder(const QModelIndex &index) const
+bool FeedsView::isFolder(const QModelIndex &index) const
 {
   if (!index.isValid())
     return false;
   return sourceModel_->isFolder(((FeedsProxyModel*)model())->mapToSource(index));
 }
 
-void FeedsTreeView::restoreExpanded()
+void FeedsView::restoreExpanded()
 {
   foreach (int id, expandedList) {
     QModelIndex index = ((FeedsProxyModel*)model())->mapFromSource(id);
@@ -107,7 +107,7 @@ void FeedsTreeView::restoreExpanded()
 
 /** @brief Process item expanding
  *----------------------------------------------------------------------------*/
-void FeedsTreeView::slotExpanded(const QModelIndex &index)
+void FeedsView::slotExpanded(const QModelIndex &index)
 {
   int feedId = sourceModel_->getIdByIndex(((FeedsProxyModel*)model())->mapToSource(index));
   if (!expandedList.contains(feedId)) {
@@ -136,14 +136,14 @@ void FeedsTreeView::slotExpanded(const QModelIndex &index)
 
 /** @brief Process item collapsing
  *----------------------------------------------------------------------------*/
-void FeedsTreeView::slotCollapsed(const QModelIndex &index)
+void FeedsView::slotCollapsed(const QModelIndex &index)
 {
   int feedId = sourceModel_->getIdByIndex(((FeedsProxyModel*)model())->mapToSource(index));
   expandedList.removeOne(feedId);
   mainApp->sqlQueryExec(QString("UPDATE feeds SET f_Expanded=0 WHERE id=='%1'").arg(feedId));
 }
 
-void FeedsTreeView::expandAll()
+void FeedsView::expandAll()
 {
   expandedList.clear();
   QTreeView::expandAll();
@@ -158,7 +158,7 @@ void FeedsTreeView::expandAll()
   mainApp->sqlQueryExec("UPDATE feeds SET f_Expanded=1 WHERE (xmlUrl='' OR xmlUrl IS NULL)");
 }
 
-void FeedsTreeView::collapseAll()
+void FeedsView::collapseAll()
 {
   expandedList.clear();
   QTreeView::collapseAll();
@@ -175,7 +175,7 @@ void FeedsTreeView::collapseAll()
  *  0 - find next. If fails, find previous (default)
  * @return finded index or QModelIndex()
  *---------------------------------------------------------------------------*/
-QModelIndex FeedsTreeView::indexNextUnread(const QModelIndex &indexCur, int nextCondition)
+QModelIndex FeedsView::indexNextUnread(const QModelIndex &indexCur, int nextCondition)
 {
   if (nextCondition != 2) {
     // find next
@@ -206,7 +206,7 @@ QModelIndex FeedsTreeView::indexNextUnread(const QModelIndex &indexCur, int next
 }
 
 // ----------------------------------------------------------------------------
-QModelIndex FeedsTreeView::lastFeedInFolder(const QModelIndex &indexFolder)
+QModelIndex FeedsView::lastFeedInFolder(const QModelIndex &indexFolder)
 {
   QModelIndex index = QModelIndex();
 
@@ -226,7 +226,7 @@ QModelIndex FeedsTreeView::lastFeedInFolder(const QModelIndex &indexFolder)
  * @param isParent Start search from parent excluding him
  * @return finded index or QModelIndex()
  *---------------------------------------------------------------------------*/
-QModelIndex FeedsTreeView::indexPrevious(const QModelIndex &indexCur, bool isParent)
+QModelIndex FeedsView::indexPrevious(const QModelIndex &indexCur, bool isParent)
 {
   QModelIndex index = QModelIndex();
   if (isFolder(indexCur) && !isParent) {
@@ -251,7 +251,7 @@ QModelIndex FeedsTreeView::indexPrevious(const QModelIndex &indexCur, bool isPar
 }
 
 // ----------------------------------------------------------------------------
-QModelIndex FeedsTreeView::firstFeedInFolder(const QModelIndex &indexFolder)
+QModelIndex FeedsView::firstFeedInFolder(const QModelIndex &indexFolder)
 {
   QModelIndex index = QModelIndex();
 
@@ -271,7 +271,7 @@ QModelIndex FeedsTreeView::firstFeedInFolder(const QModelIndex &indexFolder)
  * @param isParent Start search from parent excluding him
  * @return finded index or QModelIndex()
  ******************************************************************************/
-QModelIndex FeedsTreeView::indexNext(const QModelIndex &indexCur, bool isParent)
+QModelIndex FeedsView::indexNext(const QModelIndex &indexCur, bool isParent)
 {
   QModelIndex index = QModelIndex();
   if (isFolder(indexCur) && !isParent) {
@@ -298,7 +298,7 @@ QModelIndex FeedsTreeView::indexNext(const QModelIndex &indexCur, bool isParent)
 }
 
 // ----------------------------------------------------------------------------
-QModelIndex FeedsTreeView::lastFolderInFolder(const QModelIndex &indexFolder)
+QModelIndex FeedsView::lastFolderInFolder(const QModelIndex &indexFolder)
 {
   if (indexFolder.isValid()) {
     for(int i = model()->rowCount(indexFolder)-1; i >= 0; --i) {
@@ -319,7 +319,7 @@ QModelIndex FeedsTreeView::lastFolderInFolder(const QModelIndex &indexFolder)
 }
 
 // -----------------------------------------------------------------------------
-QModelIndex FeedsTreeView::indexPreviousFolder(const QModelIndex &indexCur)
+QModelIndex FeedsView::indexPreviousFolder(const QModelIndex &indexCur)
 {
   QModelIndex index = QModelIndex();
 
@@ -337,7 +337,7 @@ QModelIndex FeedsTreeView::indexPreviousFolder(const QModelIndex &indexCur)
 }
 
 // -----------------------------------------------------------------------------
-QModelIndex FeedsTreeView::firstFolderInFolder(const QModelIndex &indexFolder)
+QModelIndex FeedsView::firstFolderInFolder(const QModelIndex &indexFolder)
 {
   if (indexFolder.isValid()) {
     for(int i = 0; i < model()->rowCount(indexFolder); i++) {
@@ -358,7 +358,7 @@ QModelIndex FeedsTreeView::firstFolderInFolder(const QModelIndex &indexFolder)
 }
 
 // -----------------------------------------------------------------------------
-QModelIndex FeedsTreeView::indexNextFolder(const QModelIndex &indexCur, bool isParent)
+QModelIndex FeedsView::indexNextFolder(const QModelIndex &indexCur, bool isParent)
 {
   QModelIndex index = QModelIndex();
   if ((isFolder(indexCur) && !isParent)) {
@@ -391,7 +391,7 @@ QModelIndex FeedsTreeView::indexNextFolder(const QModelIndex &indexCur, bool isP
  * @param event Event data structure
  * @sa selectedIndex_
  *---------------------------------------------------------------------------*/
-void FeedsTreeView::mousePressEvent(QMouseEvent *event)
+void FeedsView::mousePressEvent(QMouseEvent *event)
 {
   QModelIndex index = indexAt(event->pos());
   QRect rectText = visualRect(index);
@@ -423,14 +423,14 @@ void FeedsTreeView::mousePressEvent(QMouseEvent *event)
 }
 
 // ----------------------------------------------------------------------------
-void FeedsTreeView::mouseReleaseEvent(QMouseEvent *event)
+void FeedsView::mouseReleaseEvent(QMouseEvent *event)
 {
   dragStartPos_ = QPoint();
   QTreeView::mouseReleaseEvent(event);
 }
 
 // ----------------------------------------------------------------------------
-/*virtual*/ void FeedsTreeView::mouseMoveEvent(QMouseEvent *event)
+/*virtual*/ void FeedsView::mouseMoveEvent(QMouseEvent *event)
 {
   if (dragStartPos_.isNull()) return;
 
@@ -452,7 +452,7 @@ void FeedsTreeView::mouseReleaseEvent(QMouseEvent *event)
 }
 
 // ----------------------------------------------------------------------------
-/*virtual*/ void FeedsTreeView::mouseDoubleClickEvent(QMouseEvent *event)
+/*virtual*/ void FeedsView::mouseDoubleClickEvent(QMouseEvent *event)
 {
   QModelIndex index = indexAt(event->pos());
   QRect rectText = visualRect(index);
@@ -471,7 +471,7 @@ void FeedsTreeView::mouseReleaseEvent(QMouseEvent *event)
 }
 
 // ----------------------------------------------------------------------------
-/*virtual*/ void FeedsTreeView::keyPressEvent(QKeyEvent *event)
+/*virtual*/ void FeedsView::keyPressEvent(QKeyEvent *event)
 {
   if (event->key() == Qt::Key_Up)         emit pressKeyUp();
   else if (event->key() == Qt::Key_Down)  emit pressKeyDown();
@@ -480,7 +480,7 @@ void FeedsTreeView::mouseReleaseEvent(QMouseEvent *event)
 }
 
 // ----------------------------------------------------------------------------
-/*virtual*/ void FeedsTreeView::currentChanged(const QModelIndex &current,
+/*virtual*/ void FeedsView::currentChanged(const QModelIndex &current,
                                            const QModelIndex &previous)
 {
   if (selectIdEn_) {
@@ -493,7 +493,7 @@ void FeedsTreeView::mouseReleaseEvent(QMouseEvent *event)
 }
 
 // ----------------------------------------------------------------------------
-void FeedsTreeView::dragEnterEvent(QDragEnterEvent *event)
+void FeedsView::dragEnterEvent(QDragEnterEvent *event)
 {
   event->accept();
   dragPos_ = event->pos();
@@ -501,7 +501,7 @@ void FeedsTreeView::dragEnterEvent(QDragEnterEvent *event)
 }
 
 // ----------------------------------------------------------------------------
-void FeedsTreeView::dragLeaveEvent(QDragLeaveEvent *event)
+void FeedsView::dragLeaveEvent(QDragLeaveEvent *event)
 {
   event->accept();
   dragPos_ = QPoint();
@@ -509,7 +509,7 @@ void FeedsTreeView::dragLeaveEvent(QDragLeaveEvent *event)
 }
 
 // ----------------------------------------------------------------------------
-void FeedsTreeView::dragMoveEvent(QDragMoveEvent *event)
+void FeedsView::dragMoveEvent(QDragMoveEvent *event)
 {
   if (dragPos_.isNull()) {
     event->ignore();
@@ -572,7 +572,7 @@ void FeedsTreeView::dragMoveEvent(QDragMoveEvent *event)
 }
 
 // ----------------------------------------------------------------------------
-bool FeedsTreeView::shouldAutoScroll(const QPoint &pos) const
+bool FeedsView::shouldAutoScroll(const QPoint &pos) const
 {
     if (!hasAutoScroll())
         return false;
@@ -584,7 +584,7 @@ bool FeedsTreeView::shouldAutoScroll(const QPoint &pos) const
 }
 
 // ----------------------------------------------------------------------------
-void FeedsTreeView::dropEvent(QDropEvent *event)
+void FeedsView::dropEvent(QDropEvent *event)
 {
   dragPos_ = QPoint();
   viewport()->update();
@@ -595,7 +595,7 @@ void FeedsTreeView::dropEvent(QDropEvent *event)
 }
 
 // ----------------------------------------------------------------------------
-void FeedsTreeView::paintEvent(QPaintEvent *event)
+void FeedsView::paintEvent(QPaintEvent *event)
 {
   QTreeView::paintEvent(event);
 
@@ -682,14 +682,14 @@ void FeedsTreeView::paintEvent(QPaintEvent *event)
 }
 
 // ----------------------------------------------------------------------------
-QPersistentModelIndex FeedsTreeView::selectIndex()
+QPersistentModelIndex FeedsView::selectIndex()
 {
   return sourceModel_->getIndexById(selectId_);
 }
 
 /** @brief Update cursor without list scrolling
  *---------------------------------------------------------------------------*/
-void FeedsTreeView::updateCurrentIndex(const QModelIndex &index)
+void FeedsView::updateCurrentIndex(const QModelIndex &index)
 {
   setUpdatesEnabled(false);
   int topRow = verticalScrollBar()->value();
@@ -699,7 +699,7 @@ void FeedsTreeView::updateCurrentIndex(const QModelIndex &index)
 }
 
 // ----------------------------------------------------------------------------
-void FeedsTreeView::handleDrop(QDropEvent *e)
+void FeedsView::handleDrop(QDropEvent *e)
 {
   QModelIndex dropIndex = indexAt(e->pos());
 

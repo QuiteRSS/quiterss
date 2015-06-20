@@ -15,26 +15,26 @@
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
-#ifndef FEEDSTREEVIEW_H
-#define FEEDSTREEVIEW_H
+#ifndef FEEDSVIEW_H
+#define FEEDSVIEW_H
 
 #ifdef HAVE_QT5
 #include <QtWidgets>
 #else
 #include <QtGui>
 #endif
-#include <feedstreemodel.h>
+#include <feedsmodel.h>
 
-class FeedsTreeView : public QTreeView
+class FeedsView : public QTreeView
 {
   Q_OBJECT
 public:
-  explicit FeedsTreeView(QWidget * parent = 0);
+  explicit FeedsView(QWidget * parent = 0);
   int selectId_;
   bool selectIdEn_;
   bool autocollapseFolder_;
 
-  void setSourceModel(FeedsTreeModel *sourceModel);
+  void setSourceModel(FeedsModel *sourceModel);
   void refresh();
   void setColumnHidden(const QString& column, bool hide);
   int columnIndex(const QString& fieldName) const;
@@ -84,7 +84,7 @@ private slots:
   void slotCollapsed(const QModelIndex&index);
 
 private:
-  FeedsTreeModel *sourceModel_;
+  FeedsModel *sourceModel_;
   QPoint dragPos_;
   QPoint dragStartPos_;
   QList<int> expandedList;
@@ -96,4 +96,4 @@ private:
 
 };
 
-#endif // FEEDSTREEVIEW_H
+#endif // FEEDSVIEW_H

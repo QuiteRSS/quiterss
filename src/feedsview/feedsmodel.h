@@ -15,42 +15,17 @@
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
-#ifndef FEEDSTREEMODEL_H
-#define FEEDSTREEMODEL_H
+#ifndef FEEDSMODEL_H
+#define FEEDSMODEL_H
 
-#include <QSortFilterProxyModel>
-#include <QSqlTableModel>
 #include <qyursqltreeview.h>
 
-class FeedsProxyModel : public QSortFilterProxyModel
+class FeedsModel : public QyurSqlTreeModel
 {
   Q_OBJECT
 public:
-  FeedsProxyModel(QObject *parent = 0);
-  ~FeedsProxyModel();
-  void reset();
-  void setFilter(const QString &filterAct, const QList<int> &idList,
-                 const QString &findAct, const QString &findText);
-  QModelIndex mapFromSource(const QModelIndex & sourceIndex) const;
-  QModelIndex mapFromSource(int id) const;
-  QModelIndex index(int row, int column, const QModelIndex & parent = QModelIndex()) const;
-  QModelIndex index(int row, const QString &fieldName, const QModelIndex & parent = QModelIndex()) const;
+  explicit FeedsModel(QObject* parent = 0);
 
-private:
-  bool filterAcceptsRow(int source_row, const QModelIndex &sourceParent) const;
-  QString filterAct_;
-  QList<int> idList_;
-  QString findAct_;
-  QString findText_;
-
-};
-
-
-class FeedsTreeModel : public QyurSqlTreeModel
-{
-  Q_OBJECT
-public:
-  explicit FeedsTreeModel(QObject* parent = 0);
   void setView(QTreeView *view);
   QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
   QVariant dataField(const QModelIndex &index, const QString &fieldName) const;
@@ -59,6 +34,7 @@ public:
   Qt::DropActions supportedDropActions() const;
   bool isFolder(const QModelIndex &index) const;
   QModelIndex indexSibling(const QModelIndex &index, const QString &fieldName) const;
+
   QFont font_;
   QString formatDate_;
   QString formatTime_;
@@ -76,4 +52,4 @@ private:
 
 };
 
-#endif  // FEEDSTREEMODEL_H
+#endif  // FEEDSMODEL_H

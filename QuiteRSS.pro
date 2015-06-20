@@ -63,8 +63,8 @@ HEADERS += \
     src/newstabwidget.h \
     src/findtext.h \
     src/findfeed.h \
-    src/feedstreeview.h \
-    src/feedstreemodel.h \
+    src/feedsview/feedsview.h \
+    src/feedsview/feedsmodel.h \
     src/VersionRev.h \
     src/addfolderdialog.h \
     src/labeldialog.h \
@@ -116,7 +116,8 @@ HEADERS += \
     src/newsfilters/itemaction.h \
     src/network/sslerrordialog.h \
     src/network/networkmanagerproxy.h \
-    src/adblock/adblockmatcher.h
+    src/adblock/adblockmatcher.h \
+    src/feedsview/feedsproxymodel.h
 
 SOURCES += \
     src/parseobject.cpp \
@@ -131,8 +132,8 @@ SOURCES += \
     src/newstabwidget.cpp \
     src/findtext.cpp \
     src/findfeed.cpp \
-    src/feedstreeview.cpp \
-    src/feedstreemodel.cpp \
+    src/feedsview/feedsview.cpp \
+    src/feedsview/feedsmodel.cpp \
     src/addfolderdialog.cpp \
     src/labeldialog.cpp \
     src/faviconobject.cpp \
@@ -184,7 +185,8 @@ SOURCES += \
     src/newsfilters/itemaction.cpp \
     src/network/sslerrordialog.cpp \
     src/network/networkmanagerproxy.cpp \
-    src/adblock/adblockmatcher.cpp
+    src/adblock/adblockmatcher.cpp \
+    src/feedsview/feedsproxymodel.cpp
 
 INCLUDEPATH +=  $$PWD/src \
                 $$PWD/src/application \
@@ -192,6 +194,7 @@ INCLUDEPATH +=  $$PWD/src \
                 $$PWD/src/main \
                 $$PWD/src/database \
                 $$PWD/src/downloads \
+                $$PWD/src/feedsview \
                 $$PWD/src/newsfilters \
                 $$PWD/src/notifications \
                 $$PWD/src/plugins \

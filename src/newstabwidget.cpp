@@ -36,8 +36,8 @@ NewsTabWidget::NewsTabWidget(QWidget *parent, TabType type, int feedId, int feed
 {
   mainWindow_ = mainApp->mainWindow();
   db_ = QSqlDatabase::database();
-  feedsTreeView_ = mainWindow_->feedsTreeView_;
-  feedsTreeModel_ = mainWindow_->feedsTreeModel_;
+  feedsView_ = mainWindow_->feedsView_;
+  feedsModel_ = mainWindow_->feedsModel_;
   feedsProxyModel_ = mainWindow_->feedsProxyModel_;
 
   newsIconTitle_ = new QLabel();
@@ -527,13 +527,13 @@ void NewsTabWidget::setSettings(bool init, bool newTab)
     QWebSettings::setObjectCacheCapacities(0, 0, 0);
   }
 
-  QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId_);
+  QModelIndex feedIndex = feedsModel_->getIndexById(feedId_);
 
   if (init) {
     QWebSettings::clearMemoryCaches();
 
     if (type_ == TabTypeFeed) {
-      int displayEmbeddedImages = feedsTreeModel_->dataField(feedIndex, "displayEmbeddedImages").toInt();
+      int displayEmbeddedImages = feedsModel_->dataField(feedIndex, "displayEmbeddedImages").toInt();
       if (displayEmbeddedImages == 2) {
         autoLoadImages_ = true;
       } else if (displayEmbeddedImages == 1) {
@@ -551,7 +551,7 @@ void NewsTabWidget::setSettings(bool init, bool newTab)
   setAutoLoadImages(false);
 
   if (type_ == TabTypeFeed) {
-    int javaScriptEnable = feedsTreeModel_->dataField(feedIndex, "javaScriptEnable").toInt();
+    int javaScriptEnable = feedsModel_->dataField(feedIndex, "javaScriptEnable").toInt();
     if (javaScriptEnable == 2) {
       webView_->settings()->setAttribute(QWebSettings::JavascriptEnabled, true);
     } else if (javaScriptEnable == 1) {
@@ -560,7 +560,7 @@ void NewsTabWidget::setSettings(bool init, bool newTab)
       webView_->settings()->setAttribute(QWebSettings::JavascriptEnabled, false);
     }
 
-    int layoutDirection = feedsTreeModel_->dataField(feedIndex, "layoutDirection").toInt();
+    int layoutDirection = feedsModel_->dataField(feedIndex, "layoutDirection").toInt();
     if (!layoutDirection) {
       newsView_->setLayoutDirection(Qt::LeftToRight);
     } else {
@@ -722,8 +722,8 @@ void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
           arg(newsId).arg(feedId_);
       mainApp->sqlQueryExec(qStr);
 
-      QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId_);
-      feedsTreeModel_->setData(feedsTreeModel_->indexSibling(feedIndex, "currentNews"), newsId);
+      QModelIndex feedIndex = feedsModel_->getIndexById(feedId_);
+      feedsModel_->setData(feedsModel_->indexSibling(feedIndex, "currentNews"), newsId);
     } else if (type_ == TabTypeLabel) {
       QString qStr = QString("UPDATE labels SET currentNews='%1' WHERE id=='%2'").
           arg(newsId).
@@ -1319,7 +1319,7 @@ void NewsTabWidget::slotCopyLinkNews()
 void NewsTabWidget::slotSort(int column, int/* order*/)
 {
   QString strId;
-  if (feedsTreeModel_->isFolder(feedsTreeModel_->getIndexById(feedId_))) {
+  if (feedsModel_->isFolder(feedsModel_->getIndexById(feedId_))) {
     strId = QString("(%1)").arg(mainWindow_->getIdFeedsString(feedId_));
   } else {
     strId = QString("feedId='%1'").arg(feedId_);
@@ -1356,8 +1356,8 @@ void NewsTabWidget::updateWebView(QModelIndex index)
 
   bool showDescriptionNews_ = mainWindow_->showDescriptionNews_;
 
-  QModelIndex currentIndex = feedsProxyModel_->mapToSource(feedsTreeView_->currentIndex());
-  QVariant displayNews = feedsTreeModel_->dataField(currentIndex, "displayNews");
+  QModelIndex currentIndex = feedsProxyModel_->mapToSource(feedsView_->currentIndex());
+  QVariant displayNews = feedsModel_->dataField(currentIndex, "displayNews");
   if (!displayNews.toString().isEmpty())
     showDescriptionNews_ = !displayNews.toInt();
 
@@ -1384,7 +1384,7 @@ void NewsTabWidget::updateWebView(QModelIndex index)
       }
 
       QString feedId = newsModel_->dataField(index.row(), "feedId").toString();
-      QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId.toInt());
+      QModelIndex feedIndex = feedsModel_->getIndexById(feedId.toInt());
 
       QString titleString = newsModel_->dataField(index.row(), "title").toString();
       if (!linkString.isEmpty()) {
@@ -1433,9 +1433,9 @@ void NewsTabWidget::updateWebView(QModelIndex index)
       // @note(arhohryakov:2012.01.03) Author is got from current feed, because
       //   news is belong to it
       if (authorString.isEmpty()) {
-        authorName  = feedsTreeModel_->dataField(feedIndex, "author_name").toString();
-        authorEmail = feedsTreeModel_->dataField(feedIndex, "author_email").toString();
-        authorUri   = feedsTreeModel_->dataField(feedIndex, "author_uri").toString();
+        authorName  = feedsModel_->dataField(feedIndex, "author_name").toString();
+        authorEmail = feedsModel_->dataField(feedIndex, "author_email").toString();
+        authorUri   = feedsModel_->dataField(feedIndex, "author_uri").toString();
 
         authorString = authorName;
         if (!authorEmail.isEmpty())
@@ -1502,7 +1502,7 @@ void NewsTabWidget::updateWebView(QModelIndex index)
 
       content = enclosureStr + content;
 
-      bool ltr = !feedsTreeModel_->dataField(feedIndex, "layoutDirection").toInt();
+      bool ltr = !feedsModel_->dataField(feedIndex, "layoutDirection").toInt();
       QString cssStr = cssString_.
           arg(ltr ? "left" : "right"). // text-align
           arg(ltr ? "ltr" : "rtl"). // direction
@@ -1550,9 +1550,9 @@ void NewsTabWidget::loadNewspaper(int refresh)
   bool ltr = true;
 
   if (type_ == TabTypeFeed) {
-    QModelIndex feedIndex = feedsProxyModel_->mapToSource(feedsTreeView_->currentIndex());
-    hostUrl = feedsTreeModel_->dataField(feedIndex, "htmlUrl").toString();
-    ltr = !feedsTreeModel_->dataField(feedIndex, "layoutDirection").toInt();
+    QModelIndex feedIndex = feedsProxyModel_->mapToSource(feedsView_->currentIndex());
+    hostUrl = feedsModel_->dataField(feedIndex, "htmlUrl").toString();
+    ltr = !feedsModel_->dataField(feedIndex, "layoutDirection").toInt();
   }
 
   if ((refresh == RefreshAll) || (refresh == RefreshWithPos)) {
@@ -1593,7 +1593,7 @@ void NewsTabWidget::loadNewspaper(int refresh)
 //            content, Qt::ElideRight, 1500);
 
       QString feedId = newsModel_->dataField(index.row(), "feedId").toString();
-      QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId.toInt());
+      QModelIndex feedIndex = feedsModel_->getIndexById(feedId.toInt());
 
       QString iconStr = "qrc:/images/bulletRead";
       QString titleStyle = "read";
@@ -1609,7 +1609,7 @@ void NewsTabWidget::loadNewspaper(int refresh)
           arg(newsId).arg(iconStr).arg(tr("Mark Read/Unread"));
 
       QString feedImg;
-      QByteArray byteArray = feedsTreeModel_->dataField(feedIndex, "image").toByteArray();
+      QByteArray byteArray = feedsModel_->dataField(feedIndex, "image").toByteArray();
       if (!byteArray.isEmpty())
         feedImg = QString("<img class='quiterss-img' src=\"data:image/png;base64,") % byteArray % "\"/>";
       else
@@ -1662,9 +1662,9 @@ void NewsTabWidget::loadNewspaper(int refresh)
       // @note(arhohryakov:2012.01.03) Author is got from current feed, because
       //   news is belong to it
       if (authorString.isEmpty()) {
-        authorName  = feedsTreeModel_->dataField(feedIndex, "author_name").toString();
-        authorEmail = feedsTreeModel_->dataField(feedIndex, "author_email").toString();
-        authorUri   = feedsTreeModel_->dataField(feedIndex, "author_uri").toString();
+        authorName  = feedsModel_->dataField(feedIndex, "author_name").toString();
+        authorEmail = feedsModel_->dataField(feedIndex, "author_email").toString();
+        authorUri   = feedsModel_->dataField(feedIndex, "author_uri").toString();
 
         authorString = authorName;
         if (!authorEmail.isEmpty())
@@ -1826,8 +1826,8 @@ void NewsTabWidget::slotLinkClicked(QUrl url)
     if (url.host().isEmpty() && newsView_->currentIndex().isValid()) {
       int row = newsView_->currentIndex().row();
       int feedId = newsModel_->dataField(row, "feedId").toInt();
-      QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId);
-      QUrl hostUrl = feedsTreeModel_->dataField(feedIndex, "htmlUrl").toString();
+      QModelIndex feedIndex = feedsModel_->getIndexById(feedId);
+      QUrl hostUrl = feedsModel_->dataField(feedIndex, "htmlUrl").toString();
 
       url.setScheme(hostUrl.scheme());
       url.setHost(hostUrl.host());
@@ -1991,8 +1991,8 @@ void NewsTabWidget::openInExternalBrowserNews()
       QUrl url = QUrl::fromEncoded(getLinkNews(indexes.at(i).row()).toUtf8());
       if (url.host().isEmpty()) {
         QString feedId = newsModel_->dataField(indexes.at(i).row(), "feedId").toString();
-        QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId.toInt());
-        QUrl hostUrl = feedsTreeModel_->dataField(feedIndex, "htmlUrl").toString();
+        QModelIndex feedIndex = feedsModel_->getIndexById(feedId.toInt());
+        QUrl hostUrl = feedsModel_->dataField(feedIndex, "htmlUrl").toString();
 
         url.setScheme(hostUrl.scheme());
         url.setHost(hostUrl.host());
@@ -2098,8 +2098,8 @@ void NewsTabWidget::openNewsNewTab()
     QUrl url = QUrl::fromEncoded(getLinkNews(row).toUtf8());
     if (url.host().isEmpty()) {
       int feedId = newsModel_->dataField(row, "feedId").toInt();
-      QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId);
-      QUrl hostUrl = feedsTreeModel_->dataField(feedIndex, "htmlUrl").toString();
+      QModelIndex feedIndex = feedsModel_->getIndexById(feedId);
+      QUrl hostUrl = feedsModel_->dataField(feedIndex, "htmlUrl").toString();
 
       url.setScheme(hostUrl.scheme());
       url.setHost(hostUrl.host());
@@ -2296,8 +2296,8 @@ void NewsTabWidget::openUrlInExternalBrowser()
     if (linkUrl_.host().isEmpty() && newsView_->currentIndex().isValid()) {
       int row = newsView_->currentIndex().row();
       int feedId = newsModel_->dataField(row, "feedId").toInt();
-      QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId);
-      QUrl hostUrl = feedsTreeModel_->dataField(feedIndex, "htmlUrl").toString();
+      QModelIndex feedIndex = feedsModel_->getIndexById(feedId);
+      QUrl hostUrl = feedsModel_->dataField(feedIndex, "htmlUrl").toString();
 
       linkUrl_.setScheme(hostUrl.scheme());
       linkUrl_.setHost(hostUrl.host());
@@ -2798,8 +2798,8 @@ void NewsTabWidget::actionNewspaper(QUrl url)
       QUrl url = QUrl::fromEncoded(getLinkNews(indexList.first().row()).toUtf8());
       if (url.host().isEmpty()) {
         QString feedId = newsModel_->dataField(indexList.first().row(), "feedId").toString();
-        QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId.toInt());
-        QUrl hostUrl = feedsTreeModel_->dataField(feedIndex, "htmlUrl").toString();
+        QModelIndex feedIndex = feedsModel_->getIndexById(feedId.toInt());
+        QUrl hostUrl = feedsModel_->dataField(feedIndex, "htmlUrl").toString();
 
         url.setScheme(hostUrl.scheme());
         url.setHost(hostUrl.host());

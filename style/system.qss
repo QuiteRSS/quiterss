@@ -8,7 +8,7 @@
 	border-bottom: 1px solid gray;
 }
 
-#feedsTreeView_::item, #newsView_::item, #newsCategoriesTree_::item {
+#feedsView_::item, #newsView_::item, #newsCategoriesTree_::item {
 	min-height: 20px;
 }
 

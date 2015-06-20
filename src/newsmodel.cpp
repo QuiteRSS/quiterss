@@ -52,11 +52,11 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
     } else if (QSqlTableModel::fieldIndex("feedId") == index.column()) {
       QPixmap icon;
       int feedId = QSqlTableModel::index(index.row(), fieldIndex("feedId")).data(Qt::EditRole).toInt();
-      QModelIndex feedIndex = mainWindow->feedsTreeModel_->getIndexById(feedId);
-      bool isFeed = (feedIndex.isValid() && mainWindow->feedsTreeModel_->isFolder(feedIndex)) ? false : true;
+      QModelIndex feedIndex = mainWindow->feedsModel_->getIndexById(feedId);
+      bool isFeed = (feedIndex.isValid() && mainWindow->feedsModel_->isFolder(feedIndex)) ? false : true;
 
       if (feedIndex.isValid()) {
-        QByteArray byteArray = mainWindow->feedsTreeModel_->dataField(feedIndex, "image").toByteArray();
+        QByteArray byteArray = mainWindow->feedsModel_->dataField(feedIndex, "image").toByteArray();
         if (!byteArray.isNull()) {
           icon.loadFromData(QByteArray::fromBase64(byteArray));
         } else if (isFeed) {
@@ -83,8 +83,8 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
   } else if (role == Qt::ToolTipRole) {
     if (QSqlTableModel::fieldIndex("feedId") == index.column()) {
       int feedId = QSqlTableModel::index(index.row(), fieldIndex("feedId")).data(Qt::EditRole).toInt();
-      QModelIndex feedIndex = mainWindow->feedsTreeModel_->getIndexById(feedId);
-      return mainWindow->feedsTreeModel_->dataField(feedIndex, "text").toString();
+      QModelIndex feedIndex = mainWindow->feedsModel_->getIndexById(feedId);
+      return mainWindow->feedsModel_->dataField(feedIndex, "text").toString();
     } else if (QSqlTableModel::fieldIndex("title") == index.column()) {
       QString title = index.data(Qt::EditRole).toString();
       if ((view_->header()->sectionSize(index.column()) - 14) < view_->header()->fontMetrics().width(title))
@@ -100,8 +100,8 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
       return QVariant();
     } else if (QSqlTableModel::fieldIndex("rights") == index.column()) {
       int feedId = QSqlTableModel::index(index.row(), fieldIndex("feedId")).data(Qt::EditRole).toInt();
-      QModelIndex feedIndex = mainWindow->feedsTreeModel_->getIndexById(feedId);
-      return mainWindow->feedsTreeModel_->dataField(feedIndex, "text").toString();
+      QModelIndex feedIndex = mainWindow->feedsModel_->getIndexById(feedId);
+      return mainWindow->feedsModel_->dataField(feedIndex, "text").toString();
     } else if (QSqlTableModel::fieldIndex("published") == index.column()) {
       QDateTime dtLocal;
       QString strDate = index.data(Qt::EditRole).toString();

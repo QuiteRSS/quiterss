@@ -438,7 +438,7 @@ void NewsHeader::setColumns(const QModelIndex &indexFeed)
   int sortBy = 0;
   int sortType = 0;
   MainWindow *mainWindow = mainApp->mainWindow();
-  indexColumnsStr = mainWindow->feedsTreeModel_->dataField(indexFeed, "columns").toString();
+  indexColumnsStr = mainWindow->feedsModel_->dataField(indexFeed, "columns").toString();
   if (!indexColumnsStr.isEmpty()) {
     QStringList indexColumnsList = indexColumnsStr.split(",", QString::SkipEmptyParts);
     if (indexColumnsList.count()) {
@@ -451,8 +451,8 @@ void NewsHeader::setColumns(const QModelIndex &indexFeed)
       QString indexStr = indexColumnsList.at(i);
       moveSection(visualIndex(indexStr.toInt()), i);
     }
-    sortBy = mainWindow->feedsTreeModel_->dataField(indexFeed, "sort").toInt();
-    sortType = mainWindow->feedsTreeModel_->dataField(indexFeed, "sortType").toInt();
+    sortBy = mainWindow->feedsModel_->dataField(indexFeed, "sort").toInt();
+    sortType = mainWindow->feedsModel_->dataField(indexFeed, "sortType").toInt();
   } else {
     indexColumnsStr = settings.value("columns").toString();
     QStringList indexColumnsList = indexColumnsStr.split(",", QString::SkipEmptyParts);
@@ -511,12 +511,12 @@ void NewsHeader::saveStateColumns(NewsTabWidget *newsTabWidget)
 
   int feedId = newsTabWidget->feedId_;
   MainWindow *mainWindow = mainApp->mainWindow();
-  QModelIndex indexOld = mainWindow->feedsTreeModel_->getIndexById(feedId);
+  QModelIndex indexOld = mainWindow->feedsModel_->getIndexById(feedId);
 
   Settings settings;
   settings.beginGroup("NewsHeader");
   settings.setValue("state", saveState());
-  if (mainWindow->feedsTreeModel_->dataField(indexOld, "columns").toString().isEmpty()) {
+  if (mainWindow->feedsModel_->dataField(indexOld, "columns").toString().isEmpty()) {
     settings.setValue("columns", columnsList());
     settings.setValue("sortBy", sortIndicatorSection());
     settings.setValue("sortOrder", sortIndicatorOrder());

@@ -26,8 +26,9 @@
 #include <QtSql>
 #include <QtWebKit>
 
-#include "feedstreemodel.h"
-#include "feedstreeview.h"
+#include "feedsproxymodel.h"
+#include "feedsmodel.h"
+#include "feedsview.h"
 #include "findtext.h"
 #include "lineedit.h"
 #include "locationbar.h"
@@ -199,9 +200,9 @@ private:
   QSqlDatabase db_;
   QWidget *newsWidget_;
 
-  FeedsTreeModel *feedsTreeModel_;
+  FeedsModel *feedsModel_;
   FeedsProxyModel *feedsProxyModel_;
-  FeedsTreeView *feedsTreeView_;
+  FeedsView *feedsView_;
 
   QFrame *lineWebWidget;
   QWidget *webWidget_;

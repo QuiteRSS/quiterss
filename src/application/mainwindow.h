@@ -38,8 +38,8 @@
 #include <QSound>
 
 #include "categoriestreewidget.h"
-#include "feedstreemodel.h"
-#include "feedstreeview.h"
+#include "feedsmodel.h"
+#include "feedsview.h"
 #include "findfeed.h"
 #include "newsheader.h"
 #include "newsmodel.h"
@@ -104,9 +104,9 @@ public:
   }
 
   QSqlDatabase db_;
-  FeedsTreeModel *feedsTreeModel_;
+  FeedsModel *feedsModel_;
   FeedsProxyModel *feedsProxyModel_;
-  FeedsTreeView *feedsTreeView_;
+  FeedsView *feedsView_;
   CategoriesTreeWidget *categoriesTree_;
 #define TAB_WIDGET_PERMANENT 0
   QStackedWidget *stackedWidget_;
