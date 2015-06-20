@@ -5957,13 +5957,10 @@ void MainWindow::slotFeedDownPressed()
 void MainWindow::slotFeedPrevious()
 {
   QModelIndex indexBefore = feedsView_->currentIndex();
-  QModelIndex indexAfter;
-
-  // Jump to bottom in case of the most top index
   if (!indexBefore.isValid())
-    indexAfter = feedsModel_->index(feedsModel_->rowCount()-1, feedsView_->columnIndex("text"));
-  else
-    indexAfter = feedsView_->indexPrevious(indexBefore);
+    indexBefore = feedsProxyModel_->index(feedsProxyModel_->rowCount()-1, feedsView_->columnIndex("text"));
+
+  QModelIndex indexAfter = feedsView_->indexPrevious(indexBefore);
 
   // There is no "upper" index
   if (!indexAfter.isValid()) return;
@@ -5978,13 +5975,10 @@ void MainWindow::slotFeedPrevious()
 void MainWindow::slotFeedNext()
 {
   QModelIndex indexBefore = feedsView_->currentIndex();
-  QModelIndex indexAfter;
-
-  // Jump to top in case of the most bottom index
   if (!indexBefore.isValid())
-    indexAfter = feedsModel_->index(0, feedsView_->columnIndex("text"));
-  else
-    indexAfter = feedsView_->indexNext(indexBefore);
+    indexBefore = feedsProxyModel_->index(0, feedsView_->columnIndex("text"));
+
+  QModelIndex indexAfter = feedsView_->indexNext(indexBefore);
 
   // There is no "downer" index
   if (!indexAfter.isValid()) return;
