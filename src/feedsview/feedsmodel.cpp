@@ -41,13 +41,13 @@ QVariant FeedsModel::data(const QModelIndex &index, int role) const
 {
   if (role == Qt::FontRole) {
     QFont font = font_;
-    if (QyurSqlTreeModel::proxyColumnByOriginal("text") == index.column()) {
+    if (proxyColumnByOriginal("text") == index.column()) {
       if (0 < indexSibling(index, "unread").data(Qt::EditRole).toInt())
         font.setBold(true);
     }
     return font;
   } else if (role == Qt::DisplayRole){
-    if (QyurSqlTreeModel::proxyColumnByOriginal("unread") == index.column()) {
+    if (proxyColumnByOriginal("unread") == index.column()) {
       int unread = indexSibling(index, "unread").data(Qt::EditRole).toInt();
       if (0 == unread) {
         return QVariant();
@@ -55,11 +55,11 @@ QVariant FeedsModel::data(const QModelIndex &index, int role) const
         QString qStr = QString("(%1)").arg(unread);
         return qStr;
       }
-    } else if (QyurSqlTreeModel::proxyColumnByOriginal("undeleteCount") == index.column()) {
+    } else if (proxyColumnByOriginal("undeleteCount") == index.column()) {
       QString qStr = QString("(%1)").
           arg(indexSibling(index, "undeleteCount").data(Qt::EditRole).toInt());
       return qStr;
-    } else if (QyurSqlTreeModel::proxyColumnByOriginal("updated") == index.column()) {
+    } else if (proxyColumnByOriginal("updated") == index.column()) {
       QDateTime dtLocal;
       QString strDate = indexSibling(index, "updated").data(Qt::EditRole).toString();
 
@@ -82,7 +82,7 @@ QVariant FeedsModel::data(const QModelIndex &index, int role) const
       }
     }
   } else if (role == Qt::TextColorRole) {
-    if (QyurSqlTreeModel::proxyColumnByOriginal("unread") == index.column()) {
+    if (proxyColumnByOriginal("unread") == index.column()) {
       return QColor(countNewsUnreadColor_);
     }
 
@@ -92,13 +92,13 @@ QVariant FeedsModel::data(const QModelIndex &index, int role) const
       return QColor(focusedFeedTextColor_);
     }
 
-    if (QyurSqlTreeModel::proxyColumnByOriginal("text") == index.column()) {
+    if (proxyColumnByOriginal("text") == index.column()) {
       if (indexSibling(index, "newCount").data(Qt::EditRole).toInt() > 0) {
         return QColor(feedWithNewNewsColor_);
       }
     }
 
-    if (QyurSqlTreeModel::proxyColumnByOriginal("text") == index.column()) {
+    if (proxyColumnByOriginal("text") == index.column()) {
       if (indexSibling(index, "disableUpdate").data(Qt::EditRole).toBool()) {
         return QColor(feedDisabledUpdateColor_);
       }
@@ -113,7 +113,7 @@ QVariant FeedsModel::data(const QModelIndex &index, int role) const
         return QColor(focusedFeedBGColor_);
     }
   } else if (role == Qt::DecorationRole) {
-    if (QyurSqlTreeModel::proxyColumnByOriginal("text") == index.column()) {
+    if (proxyColumnByOriginal("text") == index.column()) {
       if (isFolder(index)) {
         return QPixmap(":/images/folder");
       } else {
@@ -156,12 +156,12 @@ QVariant FeedsModel::data(const QModelIndex &index, int role) const
       }
     }
   } else if (role == Qt::TextAlignmentRole) {
-    if (QyurSqlTreeModel::proxyColumnByOriginal("id") == index.column()) {
+    if (proxyColumnByOriginal("id") == index.column()) {
       int flag = Qt::AlignRight|Qt::AlignVCenter;
       return flag;
     }
   } else if (role == Qt::ToolTipRole) {
-    if (QyurSqlTreeModel::proxyColumnByOriginal("text") == index.column()) {
+    if (proxyColumnByOriginal("text") == index.column()) {
       QString title = index.data(Qt::EditRole).toString();
       QRect rectText = view_->visualRect(index);
       int width = rectText.width() - 16 - 12;

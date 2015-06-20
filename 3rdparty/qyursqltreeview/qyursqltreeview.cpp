@@ -43,7 +43,8 @@ Invariant: source model is always sorted asc by parid column. Then real user sor
 class QSqlTableModelEx take care about it;
 */
 const int DROP_MULTIORDER=-2;
-class QSqlTableModelEx: public QSqlTableModel {
+class QSqlTableModelEx: public QSqlTableModel
+{
   Q_OBJECT
 public:
   QSqlTableModelEx(QObject* parent=0, QSqlDatabase db = QSqlDatabase());
@@ -61,22 +62,28 @@ protected:
   QVector<SortingStruct> sortingFields;
 };
 
-QSqlTableModelEx::QSqlTableModelEx(QObject* parent, QSqlDatabase db):QSqlTableModel(parent, db) {
+QSqlTableModelEx::QSqlTableModelEx(QObject* parent, QSqlDatabase db)
+  : QSqlTableModel(parent, db)
+{
   setEditStrategy(QSqlTableModel::OnManualSubmit);
 }
 
-QString QSqlTableModelEx::orderByClause() const {
+QString QSqlTableModelEx::orderByClause() const
+{
   QString s;
   if (sortingFields.isEmpty())
     return s;
   s.append("ORDER BY ");
   foreach(SortingStruct sortingField,sortingFields)
-    s.append(record().fieldName(sortingField.field)).append(sortingField.sortingOrder==Qt::AscendingOrder?" ASC":" DESC").append(",");
+    s.append(record().fieldName(sortingField.field)).
+        append(sortingField.sortingOrder==Qt::AscendingOrder?" ASC":" DESC").
+        append(",");
   s.chop(1);
   return s;
 }
 
-void QSqlTableModelEx::setSort(int column, Qt::SortOrder order) {
+void QSqlTableModelEx::setSort(int column, Qt::SortOrder order)
+{
   if (!record().field(column).isValid())
     return;
   if (order==DROP_MULTIORDER) {
