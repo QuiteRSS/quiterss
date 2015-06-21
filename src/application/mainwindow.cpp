@@ -372,10 +372,8 @@ void MainWindow::showWindows(bool trayClick)
 void MainWindow::createFeedsWidget()
 {
   feedsModel_ = new FeedsModel(this);
-  feedsModel_->setObjectName("feedsModel_");
 
   feedsProxyModel_ = new FeedsProxyModel(feedsModel_);
-  feedsProxyModel_->setObjectName("feedsProxyModel_");
   feedsProxyModel_->setSourceModel(feedsModel_);
 
   feedsView_ = new FeedsView(this);
@@ -383,19 +381,19 @@ void MainWindow::createFeedsWidget()
   feedsView_->setSourceModel(feedsModel_);
   feedsModel_->setView(feedsView_);
 
-  for (int i = 0; i < feedsModel_->columnCount(); ++i)
+  for (int i = 0; i < feedsView_->model()->columnCount(); ++i)
     feedsView_->hideColumn(i);
-  feedsView_->showColumn(feedsModel_->proxyColumnByOriginal("text"));
+  feedsView_->showColumn(feedsView_->columnIndex("text"));
 #ifdef HAVE_QT5
-  feedsView_->header()->setSectionResizeMode(feedsModel_->proxyColumnByOriginal("text"), QHeaderView::Stretch);
-  feedsView_->header()->setSectionResizeMode(feedsModel_->proxyColumnByOriginal("unread"), QHeaderView::ResizeToContents);
-  feedsView_->header()->setSectionResizeMode(feedsModel_->proxyColumnByOriginal("undeleteCount"), QHeaderView::ResizeToContents);
-  feedsView_->header()->setSectionResizeMode(feedsModel_->proxyColumnByOriginal("updated"), QHeaderView::ResizeToContents);
+  feedsView_->header()->setSectionResizeMode(feedsView_->columnIndex("text"), QHeaderView::Stretch);
+  feedsView_->header()->setSectionResizeMode(feedsView_->columnIndex("unread"), QHeaderView::ResizeToContents);
+  feedsView_->header()->setSectionResizeMode(feedsView_->columnIndex("undeleteCount"), QHeaderView::ResizeToContents);
+  feedsView_->header()->setSectionResizeMode(feedsView_->columnIndex("updated"), QHeaderView::ResizeToContents);
 #else
-  feedsView_->header()->setResizeMode(feedsModel_->proxyColumnByOriginal("text"), QHeaderView::Stretch);
-  feedsView_->header()->setResizeMode(feedsModel_->proxyColumnByOriginal("unread"), QHeaderView::ResizeToContents);
-  feedsView_->header()->setResizeMode(feedsModel_->proxyColumnByOriginal("undeleteCount"), QHeaderView::ResizeToContents);
-  feedsView_->header()->setResizeMode(feedsModel_->proxyColumnByOriginal("updated"), QHeaderView::ResizeToContents);
+  feedsView_->header()->setResizeMode(feedsView_->columnIndex("text"), QHeaderView::Stretch);
+  feedsView_->header()->setResizeMode(feedsView_->columnIndex("unread"), QHeaderView::ResizeToContents);
+  feedsView_->header()->setResizeMode(feedsView_->columnIndex("undeleteCount"), QHeaderView::ResizeToContents);
+  feedsView_->header()->setResizeMode(feedsView_->columnIndex("updated"), QHeaderView::ResizeToContents);
 #endif
 
   feedsToolBar_ = new QToolBar(this);
@@ -1148,13 +1146,13 @@ void MainWindow::createActions()
   this->addAction(feedsWidgetVisibleAct_);
 
   showUnreadCount_ = new QAction(this);
-  showUnreadCount_->setData(feedsModel_->proxyColumnByOriginal("unread"));
+  showUnreadCount_->setData(feedsView_->columnIndex("unread"));
   showUnreadCount_->setCheckable(true);
   showUndeleteCount_ = new QAction(this);
-  showUndeleteCount_->setData(feedsModel_->proxyColumnByOriginal("undeleteCount"));
+  showUndeleteCount_->setData(feedsView_->columnIndex("undeleteCount"));
   showUndeleteCount_->setCheckable(true);
   showLastUpdated_ = new QAction(this);
-  showLastUpdated_->setData(feedsModel_->proxyColumnByOriginal("updated"));
+  showLastUpdated_->setData(feedsView_->columnIndex("updated"));
   showLastUpdated_->setCheckable(true);
 
   openDescriptionNewsAct_ = new QAction(this);
@@ -2490,9 +2488,9 @@ void MainWindow::addFeed()
   int curFolderId = 0;
   QPersistentModelIndex curIndex = feedsView_->selectIndex();
   if (feedsModel_->isFolder(curIndex)) {
-    curFolderId = feedsModel_->getIdByIndex(curIndex);
+    curFolderId = feedsModel_->idByIndex(curIndex);
   } else {
-    curFolderId = feedsModel_->getParidByIndex(curIndex);
+    curFolderId = feedsModel_->paridByIndex(curIndex);
   }
 
   AddFeedWizard *addFeedWizard = new AddFeedWizard(0, curFolderId);
@@ -2532,9 +2530,9 @@ void MainWindow::addFolder()
   int curFolderId = 0;
   QPersistentModelIndex curIndex = feedsView_->selectIndex();
   if (feedsModel_->isFolder(curIndex)) {
-    curFolderId = feedsModel_->getIdByIndex(curIndex);
+    curFolderId = feedsModel_->idByIndex(curIndex);
   } else {
-    curFolderId = feedsModel_->getParidByIndex(curIndex);
+    curFolderId = feedsModel_->paridByIndex(curIndex);
   }
 
   AddFolderDialog *addFolderDialog = new AddFolderDialog(this, curFolderId);
@@ -2588,7 +2586,7 @@ void MainWindow::deleteItemFeedsTree()
   if (msgBox.exec() == QMessageBox::No) return;
 
   QModelIndex currentIndex = feedsProxyModel_->mapToSource(feedsView_->currentIndex());
-  int feedIdCur = feedsModel_->getIdByIndex(currentIndex);
+  int feedIdCur = feedsModel_->idByIndex(currentIndex);
 
   QModelIndexList indexList = feedsView_->selectionModel()->selectedRows(0);
   if (indexList.count() <= 1) {
@@ -2754,8 +2752,8 @@ void MainWindow::slotExportFeeds()
   QStack<int> parentIdsStack;
   parentIdsStack.push(0);
   while (index.isValid()) {
-    int feedId = exportTreeModel.getIdByIndex(index);
-    int feedParId = exportTreeModel.getParidByIndex(index);
+    int feedId = exportTreeModel.idByIndex(index);
+    int feedParId = exportTreeModel.paridByIndex(index);
 
     // Parent differs from previouse one - close folder
     while (feedParId != parentIdsStack.top()) {
@@ -2793,19 +2791,19 @@ void MainWindow::slotFeedsViewportUpdate()
 {
   feedsView_->viewport()->update();
 #ifdef HAVE_QT5
-  feedsView_->header()->setSectionResizeMode(feedsModel_->proxyColumnByOriginal("unread"), QHeaderView::ResizeToContents);
-  feedsView_->header()->setSectionResizeMode(feedsModel_->proxyColumnByOriginal("undeleteCount"), QHeaderView::ResizeToContents);
-  feedsView_->header()->setSectionResizeMode(feedsModel_->proxyColumnByOriginal("updated"), QHeaderView::ResizeToContents);
+  feedsView_->header()->setSectionResizeMode(feedsView_->columnIndex("unread"), QHeaderView::ResizeToContents);
+  feedsView_->header()->setSectionResizeMode(feedsView_->columnIndex("undeleteCount"), QHeaderView::ResizeToContents);
+  feedsView_->header()->setSectionResizeMode(feedsView_->columnIndex("updated"), QHeaderView::ResizeToContents);
 #else
-  feedsView_->header()->setResizeMode(feedsModel_->proxyColumnByOriginal("unread"), QHeaderView::ResizeToContents);
-  feedsView_->header()->setResizeMode(feedsModel_->proxyColumnByOriginal("undeleteCount"), QHeaderView::ResizeToContents);
-  feedsView_->header()->setResizeMode(feedsModel_->proxyColumnByOriginal("updated"), QHeaderView::ResizeToContents);
+  feedsView_->header()->setResizeMode(feedsView_->columnIndex("unread"), QHeaderView::ResizeToContents);
+  feedsView_->header()->setResizeMode(feedsView_->columnIndex("undeleteCount"), QHeaderView::ResizeToContents);
+  feedsView_->header()->setResizeMode(feedsView_->columnIndex("updated"), QHeaderView::ResizeToContents);
 #endif
 }
 // ----------------------------------------------------------------------------
 void MainWindow::slotFeedCountsUpdate(FeedCountStruct counts)
 {
-  QModelIndex index = feedsModel_->getIndexById(counts.feedId);
+  QModelIndex index = feedsModel_->indexById(counts.feedId);
   if (index.isValid()) {
     QModelIndex indexUnread   = feedsModel_->indexSibling(index, "unread");
     QModelIndex indexNew      = feedsModel_->indexSibling(index, "newCount");
@@ -3097,7 +3095,7 @@ void MainWindow::slotFeedClicked(QModelIndex index)
 {
   if (feedsView_->selectionModel()->selectedRows(0).count() > 1) return;
 
-  int feedIdCur = feedsModel_->getIdByIndex(feedsProxyModel_->mapToSource(index));
+  int feedIdCur = feedsModel_->idByIndex(feedsProxyModel_->mapToSource(index));
 
   if (stackedWidget_->count() && currentNewsTab->type_ < NewsTabWidget::TabTypeWeb) {
     currentNewsTab->newsHeader_->saveStateColumns(currentNewsTab);
@@ -3137,7 +3135,7 @@ void MainWindow::slotFeedClicked(QModelIndex index)
       categoriesTree_->setCurrentIndex(QModelIndex());
     }
 
-    slotFeedSelected(feedsModel_->getIndexById(feedIdCur));
+    slotFeedSelected(feedsModel_->indexById(feedIdCur));
     feedsView_->repaint();
   } else if (indexTab != -1) {
     tabBar_->setCurrentIndex(indexTab);
@@ -3149,8 +3147,8 @@ void MainWindow::slotFeedClicked(QModelIndex index)
  *---------------------------------------------------------------------------*/
 void MainWindow::slotFeedSelected(QModelIndex index, bool createTab)
 {
-  int feedId = feedsModel_->getIdByIndex(index);
-  int feedParId = feedsModel_->getParidByIndex(index);
+  int feedId = feedsModel_->idByIndex(index);
+  int feedParId = feedsModel_->paridByIndex(index);
 
   // Open or create feed tab
   if (!stackedWidget_->count() || createTab) {
@@ -3201,7 +3199,7 @@ void MainWindow::slotFeedSelected(QModelIndex index, bool createTab)
   // Search feed news that displayed before
   int newsRow = -1;
   if (openingFeedAction_ == 0) {
-    QModelIndex feedIndex = feedsModel_->getIndexById(feedId);
+    QModelIndex feedIndex = feedsModel_->indexById(feedId);
     int newsIdCur = feedsModel_->dataField(feedIndex, "currentNews").toInt();
     QModelIndex index = newsModel_->index(0, newsModel_->fieldIndex("id"));
     QModelIndexList indexList = newsModel_->match(index, Qt::EditRole, newsIdCur);
@@ -3232,7 +3230,7 @@ void MainWindow::slotFeedSelected(QModelIndex index, bool createTab)
     int newsId = newsModel_->index(newsRow, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
     QString qStr = QString("UPDATE feeds SET currentNews='%1' WHERE id=='%2'").arg(newsId).arg(feedId);
     mainApp->sqlQueryExec(qStr);
-    QModelIndex feedIndex = feedsModel_->getIndexById(feedId);
+    QModelIndex feedIndex = feedsModel_->indexById(feedId);
     feedsModel_->setData(feedsModel_->indexSibling(feedIndex, "currentNews"),
                              newsId);
   }
@@ -4067,7 +4065,7 @@ void MainWindow::slotGetFeed()
       foreach (int idFeed, list) {
         if (!idList.contains(idFeed)) {
           idList.append(idFeed);
-          index = feedsModel_->getIndexById(idFeed);
+          index = feedsModel_->indexById(idFeed);
           if (!feedsModel_->dataField(index, "disableUpdate").toBool()) {
             emit signalGetFeed(feedsModel_->dataField(index, "id").toInt(),
                                feedsModel_->dataField(index, "xmlUrl").toString(),
@@ -4181,7 +4179,7 @@ void MainWindow::setFeedsFilter(bool clicked)
     int newCount = feedsModel_->dataField(index, "newCount").toInt();
     if (!(clicked && !newCount)) {
       while (index.isValid()) {
-        idList << feedsModel_->getIdByIndex(index);
+        idList << feedsModel_->idByIndex(index);
         index = index.parent();
       }
     }
@@ -4190,7 +4188,7 @@ void MainWindow::setFeedsFilter(bool clicked)
     int unRead = feedsModel_->dataField(index, "unread").toInt();
     if (!(clicked && !unRead)) {
       while (index.isValid()) {
-        idList << feedsModel_->getIdByIndex(index);
+        idList << feedsModel_->idByIndex(index);
         index = index.parent();
       }
     }
@@ -4237,9 +4235,9 @@ void MainWindow::setFeedsFilter(bool clicked)
       NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(i);
       if (!idList.contains(widget->feedId_)) {
         idList.append(widget->feedId_);
-        QModelIndex index = feedsModel_->getIndexById(widget->feedId_).parent();
+        QModelIndex index = feedsModel_->indexById(widget->feedId_).parent();
         while (index.isValid()) {
-          int id = feedsModel_->getIdByIndex(index);
+          int id = feedsModel_->idByIndex(index);
           if (!idList.contains(id))
             idList.append(id);
           index = index.parent();
@@ -4302,7 +4300,7 @@ void MainWindow::setNewsFilter(QAction* pAct, bool clicked)
   }
 
   // Create filter for category or for feed
-  if (feedsModel_->isFolder(feedsModel_->getIndexById(feedId))) {
+  if (feedsModel_->isFolder(feedsModel_->indexById(feedId))) {
     newsFilterStr = QString("(%1) AND ").arg(getIdFeedsString(feedId));
   } else {
     newsFilterStr = QString("feedId=%1 AND ").arg(feedId);
@@ -4472,7 +4470,7 @@ void MainWindow::markFeedRead()
   }
   foreach (int id, idList) {
     bool openFeedT = false;
-    QModelIndex index = feedsModel_->getIndexById(id);
+    QModelIndex index = feedsModel_->indexById(id);
     int parentId = feedsModel_->dataField(index, "parentId").toInt();
     if ((currentNewsTab->feedId_ == id)) {
       openFeedT = true;
@@ -4491,7 +4489,7 @@ void MainWindow::markFeedRead()
       }
       QList<int> list = UpdateObject::getIdFeedsInList(id);
       foreach (int id1, list) {
-        QModelIndex index1 = feedsModel_->getIndexById(id1);
+        QModelIndex index1 = feedsModel_->indexById(id1);
         QModelIndex indexUnread = feedsModel_->indexSibling(index1, "unread");
         QModelIndex indexNew    = feedsModel_->indexSibling(index1, "newCount");
         feedsModel_->setData(indexUnread, 0);
@@ -4600,7 +4598,7 @@ void MainWindow::showContextMenuFeed(const QPoint &pos)
   }
 
   index = feedsProxyModel_->mapToSource(feedsView_->currentIndex());
-  feedsView_->selectId_ = feedsModel_->getIdByIndex(index);
+  feedsView_->selectId_ = feedsModel_->idByIndex(index);
 
   feedProperties_->setEnabled(feedsView_->selectIndex().isValid());
 }
@@ -5159,7 +5157,7 @@ void MainWindow::showFeedPropertiesDlg()
   }
 
   QPersistentModelIndex index = feedsView_->selectIndex();
-  int feedId = feedsModel_->getIdByIndex(index);
+  int feedId = feedsModel_->idByIndex(index);
   bool isFeed = (index.isValid() && feedsModel_->isFolder(index)) ? false : true;
 
   FeedPropertiesDialog *feedPropertiesDialog = new FeedPropertiesDialog(isFeed, this);
@@ -5352,7 +5350,7 @@ void MainWindow::showFeedPropertiesDlg()
   properties = feedPropertiesDialog->getFeedProperties();
   delete feedPropertiesDialog;
 
-  index = feedsModel_->getIndexById(feedId);
+  index = feedsModel_->indexById(feedId);
 
   q.prepare("UPDATE feeds SET text = ?, xmlUrl = ?, displayOnStartup = ?, "
             "displayEmbeddedImages = ?, displayNews = ?, layoutDirection = ?, "
@@ -5424,7 +5422,7 @@ void MainWindow::showFeedPropertiesDlg()
         q1.addBindValue(id);
         q1.exec();
 
-        QPersistentModelIndex index1 = feedsModel_->getIndexById(id);
+        QPersistentModelIndex index1 = feedsModel_->indexById(id);
         indexColumns = feedsModel_->indexSibling(index1, "columns");
         indexSort = feedsModel_->indexSibling(index1, "sort");
         indexSortType = feedsModel_->indexSibling(index1, "sortType");
@@ -5534,7 +5532,7 @@ void MainWindow::showFeedPropertiesDlg()
           q1.addBindValue(id);
           q1.exec();
 
-          QPersistentModelIndex index1 = feedsModel_->getIndexById(id);
+          QPersistentModelIndex index1 = feedsModel_->indexById(id);
           indexUpdateEnable   = feedsModel_->indexSibling(index1, "updateIntervalEnable");
           indexUpdateInterval = feedsModel_->indexSibling(index1, "updateInterval");
           indexIntervalType   = feedsModel_->indexSibling(index1, "updateIntervalType");
@@ -5614,7 +5612,7 @@ void MainWindow::showFeedPropertiesDlg()
         q1.addBindValue(id);
         q1.exec();
 
-        QPersistentModelIndex index1 = feedsModel_->getIndexById(id);
+        QPersistentModelIndex index1 = feedsModel_->indexById(id);
         indexDisableUpdate = feedsModel_->indexSibling(index1, "disableUpdate");
         feedsModel_->setData(indexDisableUpdate, properties.general.disableUpdate ? 1 : 0);
 
@@ -5725,7 +5723,7 @@ void MainWindow::slotIconFeedPreparing(QString feedUrl, QByteArray byteArray,
  *---------------------------------------------------------------------------*/
 void MainWindow::slotIconFeedUpdate(int feedId, QByteArray faviconData)
 {
-  QModelIndex index = feedsModel_->getIndexById(feedId);
+  QModelIndex index = feedsModel_->indexById(feedId);
   if (index.isValid()) {
     QModelIndex indexImage = feedsModel_->indexSibling(index, "image");
     feedsModel_->setData(indexImage, faviconData.toBase64());
@@ -5876,7 +5874,7 @@ void MainWindow::showFilterRulesDlg()
   FilterRulesDialog *filterRulesDialog = new FilterRulesDialog(
         this, -1, feedId);
 
-  QModelIndex index = feedsModel_->getIndexById(feedId);
+  QModelIndex index = feedsModel_->indexById(feedId);
   QString text = feedsModel_->dataField(index, "text").toString();
   filterRulesDialog->filterName_->setText(QString("'%1'").arg(text));
 
@@ -6168,7 +6166,7 @@ void MainWindow::slotTabCurrentChanged(int index)
     newsModel_ = currentNewsTab->newsModel_;
     newsView_ = currentNewsTab->newsView_;
 
-    QModelIndex feedIndex = feedsProxyModel_->mapFromSource(feedsModel_->getIndexById(widget->feedId_));
+    QModelIndex feedIndex = feedsProxyModel_->mapFromSource(feedsModel_->indexById(widget->feedId_));
     feedsView_->setCurrentIndex(feedIndex);
     feedProperties_->setEnabled(feedIndex.isValid());
 
@@ -6338,7 +6336,7 @@ void MainWindow::creatFeedTab(int feedId, int feedParId)
     widget->setTextTab(q.value(0).toString());
 
     QString feedIdFilter;
-    if (feedsModel_->isFolder(feedsModel_->getIndexById(feedId))) {
+    if (feedsModel_->isFolder(feedsModel_->indexById(feedId))) {
       feedIdFilter = QString("(%1) AND ").arg(getIdFeedsString(feedId));
     } else {
       feedIdFilter = QString("feedId=%1 AND ").arg(feedId);
@@ -6512,7 +6510,7 @@ void MainWindow::feedsModelReload(bool checkFilter)
 
   int topRow = feedsView_->verticalScrollBar()->value();
   QModelIndex feedIndex = feedsProxyModel_->mapToSource(feedsView_->currentIndex());
-  int feedId = feedsModel_->getIdByIndex(feedIndex);
+  int feedId = feedsModel_->idByIndex(feedIndex);
 
   feedsView_->refresh();
 
@@ -6628,7 +6626,7 @@ void MainWindow::slotOpenNew(int feedId, int newsId)
   QSqlQuery q;
   q.exec(QString("UPDATE feeds SET currentNews='%1' WHERE id=='%2'").arg(newsId).arg(feedId));
 
-  QModelIndex feedIndex = feedsModel_->getIndexById(feedId);
+  QModelIndex feedIndex = feedsModel_->indexById(feedId);
   feedsView_->setCurrentIndex(feedsProxyModel_->mapFromSource(feedIndex));
   feedsModel_->setData(feedsModel_->indexSibling(feedIndex, "currentNews"),
                            newsId);
@@ -6964,10 +6962,10 @@ void MainWindow::slotMoveIndex(const QModelIndex &indexWhere, int how)
   QModelIndexList indexList = feedsView_->selectionModel()->selectedRows(0);
   for (int i = 0; i < indexList.count(); i++) {
     QModelIndex indexWhat = feedsProxyModel_->mapToSource(indexList[i]);
-    int feedIdWhat = feedsModel_->getIdByIndex(indexWhat);
-    int feedParIdWhat = feedsModel_->getParidByIndex(indexWhat);
-    int feedIdWhere = feedsModel_->getIdByIndex(indexWhere);
-    int feedParIdWhere = feedsModel_->getParidByIndex(indexWhere);
+    int feedIdWhat = feedsModel_->idByIndex(indexWhat);
+    int feedParIdWhat = feedsModel_->paridByIndex(indexWhat);
+    int feedIdWhere = feedsModel_->idByIndex(indexWhere);
+    int feedParIdWhere = feedsModel_->paridByIndex(indexWhere);
 
     // Repair rowToParent
     QSqlQuery q;
@@ -7904,7 +7902,7 @@ void MainWindow::updateInfoDownloads(const QString &text)
 
 void MainWindow::setStatusFeed(int feedId, QString status)
 {
-  QModelIndex index = feedsModel_->getIndexById(feedId);
+  QModelIndex index = feedsModel_->indexById(feedId);
   if (index.isValid()) {
     QModelIndex indexStatus = feedsModel_->indexSibling(index, "status");
     feedsModel_->setData(indexStatus, status);

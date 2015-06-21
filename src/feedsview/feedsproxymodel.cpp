@@ -5,7 +5,7 @@ FeedsProxyModel::FeedsProxyModel(QObject *parent)
   : QSortFilterProxyModel(parent)
   , filterAct_("filterFeedsAll_")
 {
-
+  setObjectName("FeedsProxyModel");
 }
 
 FeedsProxyModel::~FeedsProxyModel()
@@ -45,28 +45,28 @@ bool FeedsProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceP
   if (filterAct_ == "filterFeedsAll_") {
     accept = true;
   } else if (filterAct_ == "filterFeedsNew_") {
-    index = sourceModel()->index(sourceRow, ((FeedsModel*)sourceModel())->proxyColumnByOriginal("newCount"), sourceParent);
+    index = sourceModel()->index(sourceRow, ((FeedsModel*)sourceModel())->indexColumnOf("newCount"), sourceParent);
     if (sourceModel()->data(index, Qt::EditRole).toInt() > 0)
       accept = true;
   } else if (filterAct_ == "filterFeedsUnread_") {
-    index = sourceModel()->index(sourceRow, ((FeedsModel*)sourceModel())->proxyColumnByOriginal("unread"), sourceParent);
+    index = sourceModel()->index(sourceRow, ((FeedsModel*)sourceModel())->indexColumnOf("unread"), sourceParent);
     if (sourceModel()->data(index, Qt::EditRole).toInt() > 0)
       accept = true;
   }
 
   if (idList_.count()) {
-    index = sourceModel()->index(sourceRow, ((FeedsModel*)sourceModel())->proxyColumnByOriginal("id"), sourceParent);
+    index = sourceModel()->index(sourceRow, ((FeedsModel*)sourceModel())->indexColumnOf("id"), sourceParent);
     if (idList_.contains(sourceModel()->data(index, Qt::EditRole).toInt()))
       accept = true;
   }
 
   if (accept && !findText_.isEmpty()) {
-    index = sourceModel()->index(sourceRow, ((FeedsModel*)sourceModel())->proxyColumnByOriginal("xmlUrl"), sourceParent);
+    index = sourceModel()->index(sourceRow, ((FeedsModel*)sourceModel())->indexColumnOf("xmlUrl"), sourceParent);
     if (!sourceModel()->data(index, Qt::EditRole).toString().isEmpty()) {
       if (findAct_ == "findLinkAct") {
         accept = sourceModel()->data(index, Qt::EditRole).toString().contains(findText_, Qt::CaseInsensitive);
       } else {
-        index = sourceModel()->index(sourceRow, ((FeedsModel*)sourceModel())->proxyColumnByOriginal("text"), sourceParent);
+        index = sourceModel()->index(sourceRow, ((FeedsModel*)sourceModel())->indexColumnOf("text"), sourceParent);
         accept = sourceModel()->data(index, Qt::EditRole).toString().contains(findText_, Qt::CaseInsensitive);
       }
     }
@@ -82,7 +82,7 @@ QModelIndex FeedsProxyModel::mapFromSource(const QModelIndex & sourceIndex) cons
 
 QModelIndex FeedsProxyModel::mapFromSource(int id) const
 {
-  return QSortFilterProxyModel::mapFromSource(((FeedsModel*)sourceModel())->getIndexById(id));
+  return QSortFilterProxyModel::mapFromSource(((FeedsModel*)sourceModel())->indexById(id));
 }
 
 QModelIndex FeedsProxyModel::index(int row, int column, const QModelIndex & parent) const
@@ -92,6 +92,6 @@ QModelIndex FeedsProxyModel::index(int row, int column, const QModelIndex & pare
 
 QModelIndex FeedsProxyModel::index(int row, const QString& fieldName, const QModelIndex & parent) const
 {
-  int column = ((FeedsModel*)sourceModel())->proxyColumnByOriginal(fieldName);
+  int column = ((FeedsModel*)sourceModel())->indexColumnOf(fieldName);
   return QSortFilterProxyModel::index(row, column, parent);
 }

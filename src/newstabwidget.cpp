@@ -527,7 +527,7 @@ void NewsTabWidget::setSettings(bool init, bool newTab)
     QWebSettings::setObjectCacheCapacities(0, 0, 0);
   }
 
-  QModelIndex feedIndex = feedsModel_->getIndexById(feedId_);
+  QModelIndex feedIndex = feedsModel_->indexById(feedId_);
 
   if (init) {
     QWebSettings::clearMemoryCaches();
@@ -722,7 +722,7 @@ void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
           arg(newsId).arg(feedId_);
       mainApp->sqlQueryExec(qStr);
 
-      QModelIndex feedIndex = feedsModel_->getIndexById(feedId_);
+      QModelIndex feedIndex = feedsModel_->indexById(feedId_);
       feedsModel_->setData(feedsModel_->indexSibling(feedIndex, "currentNews"), newsId);
     } else if (type_ == TabTypeLabel) {
       QString qStr = QString("UPDATE labels SET currentNews='%1' WHERE id=='%2'").
@@ -1319,7 +1319,7 @@ void NewsTabWidget::slotCopyLinkNews()
 void NewsTabWidget::slotSort(int column, int/* order*/)
 {
   QString strId;
-  if (feedsModel_->isFolder(feedsModel_->getIndexById(feedId_))) {
+  if (feedsModel_->isFolder(feedsModel_->indexById(feedId_))) {
     strId = QString("(%1)").arg(mainWindow_->getIdFeedsString(feedId_));
   } else {
     strId = QString("feedId='%1'").arg(feedId_);
@@ -1384,7 +1384,7 @@ void NewsTabWidget::updateWebView(QModelIndex index)
       }
 
       QString feedId = newsModel_->dataField(index.row(), "feedId").toString();
-      QModelIndex feedIndex = feedsModel_->getIndexById(feedId.toInt());
+      QModelIndex feedIndex = feedsModel_->indexById(feedId.toInt());
 
       QString titleString = newsModel_->dataField(index.row(), "title").toString();
       if (!linkString.isEmpty()) {
@@ -1593,7 +1593,7 @@ void NewsTabWidget::loadNewspaper(int refresh)
 //            content, Qt::ElideRight, 1500);
 
       QString feedId = newsModel_->dataField(index.row(), "feedId").toString();
-      QModelIndex feedIndex = feedsModel_->getIndexById(feedId.toInt());
+      QModelIndex feedIndex = feedsModel_->indexById(feedId.toInt());
 
       QString iconStr = "qrc:/images/bulletRead";
       QString titleStyle = "read";
@@ -1826,7 +1826,7 @@ void NewsTabWidget::slotLinkClicked(QUrl url)
     if (url.host().isEmpty() && newsView_->currentIndex().isValid()) {
       int row = newsView_->currentIndex().row();
       int feedId = newsModel_->dataField(row, "feedId").toInt();
-      QModelIndex feedIndex = feedsModel_->getIndexById(feedId);
+      QModelIndex feedIndex = feedsModel_->indexById(feedId);
       QUrl hostUrl = feedsModel_->dataField(feedIndex, "htmlUrl").toString();
 
       url.setScheme(hostUrl.scheme());
@@ -1991,7 +1991,7 @@ void NewsTabWidget::openInExternalBrowserNews()
       QUrl url = QUrl::fromEncoded(getLinkNews(indexes.at(i).row()).toUtf8());
       if (url.host().isEmpty()) {
         QString feedId = newsModel_->dataField(indexes.at(i).row(), "feedId").toString();
-        QModelIndex feedIndex = feedsModel_->getIndexById(feedId.toInt());
+        QModelIndex feedIndex = feedsModel_->indexById(feedId.toInt());
         QUrl hostUrl = feedsModel_->dataField(feedIndex, "htmlUrl").toString();
 
         url.setScheme(hostUrl.scheme());
@@ -2098,7 +2098,7 @@ void NewsTabWidget::openNewsNewTab()
     QUrl url = QUrl::fromEncoded(getLinkNews(row).toUtf8());
     if (url.host().isEmpty()) {
       int feedId = newsModel_->dataField(row, "feedId").toInt();
-      QModelIndex feedIndex = feedsModel_->getIndexById(feedId);
+      QModelIndex feedIndex = feedsModel_->indexById(feedId);
       QUrl hostUrl = feedsModel_->dataField(feedIndex, "htmlUrl").toString();
 
       url.setScheme(hostUrl.scheme());
@@ -2296,7 +2296,7 @@ void NewsTabWidget::openUrlInExternalBrowser()
     if (linkUrl_.host().isEmpty() && newsView_->currentIndex().isValid()) {
       int row = newsView_->currentIndex().row();
       int feedId = newsModel_->dataField(row, "feedId").toInt();
-      QModelIndex feedIndex = feedsModel_->getIndexById(feedId);
+      QModelIndex feedIndex = feedsModel_->indexById(feedId);
       QUrl hostUrl = feedsModel_->dataField(feedIndex, "htmlUrl").toString();
 
       linkUrl_.setScheme(hostUrl.scheme());
@@ -2798,7 +2798,7 @@ void NewsTabWidget::actionNewspaper(QUrl url)
       QUrl url = QUrl::fromEncoded(getLinkNews(indexList.first().row()).toUtf8());
       if (url.host().isEmpty()) {
         QString feedId = newsModel_->dataField(indexList.first().row(), "feedId").toString();
-        QModelIndex feedIndex = feedsModel_->getIndexById(feedId.toInt());
+        QModelIndex feedIndex = feedsModel_->indexById(feedId.toInt());
         QUrl hostUrl = feedsModel_->dataField(feedIndex, "htmlUrl").toString();
 
         url.setScheme(hostUrl.scheme());

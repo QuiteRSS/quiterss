@@ -226,7 +226,6 @@ isEmpty(SYSTEMQTSA) {
   CONFIG += qtsingleapplication
 }
 include(3rdparty/sqlite.pri)
-include(3rdparty/qyursqltreeview/qyursqltreeview.pri)
 include(lang/lang.pri)
 
 os2|win32|mac {

@@ -86,7 +86,7 @@ void FeedsView::setColumnHidden(const QString& column, bool hide)
 
 int FeedsView::columnIndex(const QString& fieldName) const
 {
-  return sourceModel_->proxyColumnByOriginal(fieldName);
+  return sourceModel_->indexColumnOf(fieldName);
 }
 
 bool FeedsView::isFolder(const QModelIndex &index) const
@@ -109,7 +109,7 @@ void FeedsView::restoreExpanded()
  *----------------------------------------------------------------------------*/
 void FeedsView::slotExpanded(const QModelIndex &index)
 {
-  int feedId = sourceModel_->getIdByIndex(((FeedsProxyModel*)model())->mapToSource(index));
+  int feedId = sourceModel_->idByIndex(((FeedsProxyModel*)model())->mapToSource(index));
   if (!expandedList.contains(feedId)) {
     expandedList.append(feedId);
     mainApp->sqlQueryExec(QString("UPDATE feeds SET f_Expanded=1 WHERE id=='%1'").arg(feedId));
@@ -138,7 +138,7 @@ void FeedsView::slotExpanded(const QModelIndex &index)
  *----------------------------------------------------------------------------*/
 void FeedsView::slotCollapsed(const QModelIndex &index)
 {
-  int feedId = sourceModel_->getIdByIndex(((FeedsProxyModel*)model())->mapToSource(index));
+  int feedId = sourceModel_->idByIndex(((FeedsProxyModel*)model())->mapToSource(index));
   expandedList.removeOne(feedId);
   mainApp->sqlQueryExec(QString("UPDATE feeds SET f_Expanded=0 WHERE id=='%1'").arg(feedId));
 }
@@ -399,7 +399,7 @@ void FeedsView::mousePressEvent(QMouseEvent *event)
   if (event->buttons() & Qt::RightButton) {
     if (event->pos().x() >= rectText.x()) {
       index = ((FeedsProxyModel*)model())->mapToSource(index);
-      selectId_ = sourceModel_->getIdByIndex(index);
+      selectId_ = sourceModel_->idByIndex(index);
     }
     return;
   }
@@ -412,7 +412,7 @@ void FeedsView::mousePressEvent(QMouseEvent *event)
 
   indexClicked_ = index;
   index = ((FeedsProxyModel*)model())->mapToSource(index);
-  selectId_ = sourceModel_->getIdByIndex(index);
+  selectId_ = sourceModel_->idByIndex(index);
 
   if ((event->buttons() & Qt::MiddleButton)) {
     emit signalMiddleClicked();
@@ -485,7 +485,7 @@ void FeedsView::mouseReleaseEvent(QMouseEvent *event)
 {
   if (selectIdEn_) {
     QModelIndex index = ((FeedsProxyModel*)model())->mapToSource(current);
-    selectId_ = sourceModel_->getIdByIndex(index);
+    selectId_ = sourceModel_->idByIndex(index);
   }
   selectIdEn_ = true;
 
@@ -684,7 +684,7 @@ void FeedsView::paintEvent(QPaintEvent *event)
 // ----------------------------------------------------------------------------
 QPersistentModelIndex FeedsView::selectIndex()
 {
-  return sourceModel_->getIndexById(selectId_);
+  return sourceModel_->indexById(selectId_);
 }
 
 /** @brief Update cursor without list scrolling

@@ -52,7 +52,7 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
     } else if (QSqlTableModel::fieldIndex("feedId") == index.column()) {
       QPixmap icon;
       int feedId = QSqlTableModel::index(index.row(), fieldIndex("feedId")).data(Qt::EditRole).toInt();
-      QModelIndex feedIndex = mainWindow->feedsModel_->getIndexById(feedId);
+      QModelIndex feedIndex = mainWindow->feedsModel_->indexById(feedId);
       bool isFeed = (feedIndex.isValid() && mainWindow->feedsModel_->isFolder(feedIndex)) ? false : true;
 
       if (feedIndex.isValid()) {
@@ -83,7 +83,7 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
   } else if (role == Qt::ToolTipRole) {
     if (QSqlTableModel::fieldIndex("feedId") == index.column()) {
       int feedId = QSqlTableModel::index(index.row(), fieldIndex("feedId")).data(Qt::EditRole).toInt();
-      QModelIndex feedIndex = mainWindow->feedsModel_->getIndexById(feedId);
+      QModelIndex feedIndex = mainWindow->feedsModel_->indexById(feedId);
       return mainWindow->feedsModel_->dataField(feedIndex, "text").toString();
     } else if (QSqlTableModel::fieldIndex("title") == index.column()) {
       QString title = index.data(Qt::EditRole).toString();
@@ -100,7 +100,7 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
       return QVariant();
     } else if (QSqlTableModel::fieldIndex("rights") == index.column()) {
       int feedId = QSqlTableModel::index(index.row(), fieldIndex("feedId")).data(Qt::EditRole).toInt();
-      QModelIndex feedIndex = mainWindow->feedsModel_->getIndexById(feedId);
+      QModelIndex feedIndex = mainWindow->feedsModel_->indexById(feedId);
       return mainWindow->feedsModel_->dataField(feedIndex, "text").toString();
     } else if (QSqlTableModel::fieldIndex("published") == index.column()) {
       QDateTime dtLocal;

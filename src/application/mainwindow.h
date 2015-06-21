@@ -53,6 +53,8 @@
 #include "parseobject.h"
 #include "toolbutton.h"
 
+#define TAB_WIDGET_PERMANENT 0
+
 #define NEW_TAB_FOREGROUND 1
 #define NEW_TAB_BACKGROUND 2
 
@@ -108,7 +110,6 @@ public:
   FeedsProxyModel *feedsProxyModel_;
   FeedsView *feedsView_;
   CategoriesTreeWidget *categoriesTree_;
-#define TAB_WIDGET_PERMANENT 0
   QStackedWidget *stackedWidget_;
 
   bool showFeedsTabPermanent_;

@@ -511,7 +511,7 @@ void NewsHeader::saveStateColumns(NewsTabWidget *newsTabWidget)
 
   int feedId = newsTabWidget->feedId_;
   MainWindow *mainWindow = mainApp->mainWindow();
-  QModelIndex indexOld = mainWindow->feedsModel_->getIndexById(feedId);
+  QModelIndex indexOld = mainWindow->feedsModel_->indexById(feedId);
 
   Settings settings;
   settings.beginGroup("NewsHeader");
