@@ -12,7 +12,7 @@
 * GNU Lesser General Public License for more details.
 *
 * You should have received a copy of the GNU Lesser General Public License
-* along with this library.  If not, see <http://www.gnu.org/licenses/>.
+* along with this library.  If not, see <https://www.gnu.org/licenses/>.
 *
 * This library is based on the QtSql module of the Qt Toolkit
 * Copyright (C) 2012 Nokia Corporation and/or its subsidiary(-ies).
@@ -48,7 +48,7 @@ Q_DECLARE_OPAQUE_POINTER(sqlite3_stmt*)
 Q_DECLARE_METATYPE(sqlite3*)
 Q_DECLARE_METATYPE(sqlite3_stmt*)
 
-static QString _q_escapeIdentifier(const QString &identifier) 
+static QString _q_escapeIdentifier(const QString &identifier)
 {
     QString res = identifier;
     if(!identifier.isEmpty() && identifier.left(1) != QString(QLatin1Char('"')) && identifier.right(1) != QString(QLatin1Char('"')) ) {
