@@ -184,7 +184,7 @@ void AdBlockDialog::aboutToShowMenu()
 void AdBlockDialog::learnAboutRules()
 {
   mainApp->mainWindow()->openNewsTab_ = NEW_TAB_FOREGROUND;
-  mainApp->mainWindow()->createWebTab(QUrl("http://adblockplus.org/en/filters"));
+  mainApp->mainWindow()->createWebTab(QUrl("https://adblockplus.org/en/filters"));
 }
 
 void AdBlockDialog::loadSubscriptions()
