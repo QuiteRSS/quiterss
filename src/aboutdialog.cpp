@@ -56,7 +56,7 @@ AboutDialog::AboutDialog(const QString &lang, QWidget *parent) :
       + QString(" Qt-%1, SQLite-%2, WebKit-%4").
       arg(QT_VERSION_STR).arg(SQLITE_VERSION).arg(qWebKitVersion())
       + "</P>"
-      + QString("<a href=\"%1\">%1</a>").arg("http://quiterss.org") +
+      + QString("<a href=\"%1\">%1</a>").arg("https://quiterss.org") +
       "<P>Copyright &copy; 2011-2015 QuiteRSS Team "
       + QString("<a href=\"%1\">E-mail</a>").arg("mailto:quiterssteam@gmail.com") + "</P>"
       "</CENTER></body></html>";
