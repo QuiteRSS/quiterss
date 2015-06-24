@@ -13,7 +13,7 @@
 * GNU General Public License for more details.
 *
 * You should have received a copy of the GNU General Public License
-* along with this program.  If not, see <http://www.gnu.org/licenses/>.
+* along with this program.  If not, see <https://www.gnu.org/licenses/>.
 * ============================================================ */
 #include "mainwindow.h"
 
@@ -7921,9 +7921,9 @@ void MainWindow::addOurFeed()
   icon.save(&buffer, "PNG");
   buffer.close();
 
-  QString xmlUrl = "http://quiterss.org/en/rss.xml";
+  QString xmlUrl = "https://quiterss.org/en/rss.xml";
   if (mainApp->language() == "ru")
-    xmlUrl = "http://quiterss.org/ru/rss.xml";
+    xmlUrl = "https://quiterss.org/ru/rss.xml";
 
   QSqlQuery q;
   q.prepare("INSERT INTO feeds(text, title, xmlUrl, htmlUrl, created, parentId, rowToParent, image) "
@@ -7931,7 +7931,7 @@ void MainWindow::addOurFeed()
   q.addBindValue("QuiteRSS");
   q.addBindValue("QuiteRSS");
   q.addBindValue(xmlUrl);
-  q.addBindValue("http://quiterss.org");
+  q.addBindValue("https://quiterss.org");
   q.addBindValue(QDateTime::currentDateTimeUtc().toString(Qt::ISODate));
   q.addBindValue(0);
   q.addBindValue(0);

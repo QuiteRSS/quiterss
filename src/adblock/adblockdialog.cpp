@@ -13,7 +13,7 @@
 * GNU General Public License for more details.
 *
 * You should have received a copy of the GNU General Public License
-* along with this program.  If not, see <http://www.gnu.org/licenses/>.
+* along with this program.  If not, see <https://www.gnu.org/licenses/>.
 * ============================================================ */
 /* ============================================================
 * QupZilla - WebKit based browser
@@ -30,7 +30,7 @@
 * GNU General Public License for more details.
 *
 * You should have received a copy of the GNU General Public License
-* along with this program.  If not, see <http://www.gnu.org/licenses/>.
+* along with this program.  If not, see <https://www.gnu.org/licenses/>.
 * ============================================================ */
 #include "adblockdialog.h"
 #include "adblockmanager.h"
@@ -184,7 +184,7 @@ void AdBlockDialog::aboutToShowMenu()
 void AdBlockDialog::learnAboutRules()
 {
   mainApp->mainWindow()->openNewsTab_ = NEW_TAB_FOREGROUND;
-  mainApp->mainWindow()->createWebTab(QUrl("http://adblockplus.org/en/filters"));
+  mainApp->mainWindow()->createWebTab(QUrl("https://adblockplus.org/en/filters"));
 }
 
 void AdBlockDialog::loadSubscriptions()

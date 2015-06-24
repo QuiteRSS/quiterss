@@ -13,7 +13,7 @@
 * GNU General Public License for more details.
 *
 * You should have received a copy of the GNU General Public License
-* along with this program.  If not, see <http://www.gnu.org/licenses/>.
+* along with this program.  If not, see <https://www.gnu.org/licenses/>.
 * ============================================================ */
 #include "optionsdialog.h"
 
@@ -1571,7 +1571,7 @@ void OptionsDialog::createLanguageWidget()
   languageFileList_->addTopLevelItem(languageItem);
 
   QString linkWikiStr =
-      QString("<a href='http://quiterss.org/en/development'>Link for translators</a>");
+      QString("<a href='https://quiterss.org/en/development'>Link for translators</a>");
   QLabel *linkTranslators = new QLabel(linkWikiStr);
   linkTranslators->setOpenExternalLinks(true);
 

@@ -13,7 +13,7 @@
 * GNU General Public License for more details.
 *
 * You should have received a copy of the GNU General Public License
-* along with this program.  If not, see <http://www.gnu.org/licenses/>.
+* along with this program.  If not, see <https://www.gnu.org/licenses/>.
 * ============================================================ */
 #include "newstabwidget.h"
 
@@ -2632,7 +2632,7 @@ void NewsTabWidget::slotShareNews(QAction *action)
         url.addQueryItem("image", "");
 #endif
       } else if (action->objectName() == "linkedinShareAct") {
-        url.setUrl("http://www.linkedin.com/shareArticle?mini=true");
+        url.setUrl("https://www.linkedin.com/shareArticle?mini=true");
 #ifdef HAVE_QT5
         QUrlQuery urlQuery;
         urlQuery.addQueryItem("url", linkString);
@@ -2643,7 +2643,7 @@ void NewsTabWidget::slotShareNews(QAction *action)
         url.addQueryItem("title", title);
 #endif
       } else if (action->objectName() == "bloggerShareAct") {
-        url.setUrl("http://www.blogger.com/blog_this.pyra?t");
+        url.setUrl("https://www.blogger.com/blog_this.pyra?t");
 #ifdef HAVE_QT5
         QUrlQuery urlQuery;
         urlQuery.addQueryItem("u", linkString);
@@ -2654,7 +2654,7 @@ void NewsTabWidget::slotShareNews(QAction *action)
         url.addQueryItem("n", title);
 #endif
       } else if (action->objectName() == "printfriendlyShareAct") {
-        url.setUrl("http://www.printfriendly.com/print");
+        url.setUrl("https://www.printfriendly.com/print");
 #ifdef HAVE_QT5
         QUrlQuery urlQuery;
         urlQuery.addQueryItem("url", linkString);

@@ -13,7 +13,7 @@
 * GNU General Public License for more details.
 *
 * You should have received a copy of the GNU General Public License
-* along with this program.  If not, see <http://www.gnu.org/licenses/>.
+* along with this program.  If not, see <https://www.gnu.org/licenses/>.
 * ============================================================ */
 /* ============================================================
 * QupZilla - WebKit based browser
@@ -30,7 +30,7 @@
 * GNU General Public License for more details.
 *
 * You should have received a copy of the GNU General Public License
-* along with this program.  If not, see <http://www.gnu.org/licenses/>.
+* along with this program.  If not, see <https://www.gnu.org/licenses/>.
 * ============================================================ */
 #include "adblockaddsubscriptiondialog.h"
 #include "ui_adblockaddsubscriptiondialog.h"
@@ -44,22 +44,22 @@ AdBlockAddSubscriptionDialog::AdBlockAddSubscriptionDialog(QWidget* parent)
   ui->setupUi(this);
 
   m_knownSubscriptions << Subscription("EasyList (English)", ADBLOCK_EASYLIST_URL)
-                       << Subscription("Fanboy's List (English)", "http://www.fanboy.co.nz/adblock/fanboy-adblock.txt")
-                       << Subscription("Adversity (English)", "http://adversity.googlecode.com/hg/Adversity.txt")
+                       << Subscription("Fanboy's List (English)", "https://www.fanboy.co.nz/adblock/fanboy-adblock.txt")
+                       << Subscription("Adversity (English)", "https://adversity.googlecode.com/hg/Adversity.txt")
                        << Subscription("BSI Lista Polska (Polish)", "http://www.bsi.info.pl/filtrABP.txt")
                        << Subscription("Czech List (Czech)", "http://adblock.dajbych.net/adblock.txt")
                        << Subscription("dutchblock (Dutch)", "http://groenewoudt.net/dutchblock/list.txt")
                        << Subscription("Filtros Nauscopicos (Spanish)", "http://abp.mozilla-hispano.org/nauscopio/filtros.txt")
                        << Subscription("hufilter (Hungarian)", "http://www.hufilter.hu/hufilter.txt")
-                       << Subscription("IsraelList (Hebrew)", "http://secure.fanboy.co.nz/israelilist/IsraelList.txt")
-                       << Subscription("Lista Basa (Polish)", "http://plok.studentlive.pl/abp.txt")
+                       << Subscription("IsraelList (Hebrew)", "https://www.fanboy.co.nz/israelilist/IsraelList.txt")
+                       << Subscription("Lista Basa (Polish)", "https://plok.studentlive.pl/abp.txt")
                        << Subscription("NLBlock (Dutch)", "http://www.verzijlbergh.com/adblock/nlblock.txt")
                        << Subscription("Peter Lowe's list (English)", "http://pgl.yoyo.org/adservers/serverlist.php?hostformat=adblockplus&mimetype=plaintext")
                        << Subscription("PLgeneral (Polish)", "http://www.niecko.pl/adblock/adblock.txt")
-                       << Subscription("Schacks Adblock Plus liste (Danish)", "http://adblock.schack.dk/block.txt")
+                       << Subscription("Schacks Adblock Plus liste (Danish)", "https://adblock.schack.dk/block.txt")
                        << Subscription("Xfiles (Italian)", "http://mozilla.gfsolone.com/filtri.txt")
-                       << Subscription("EasyPrivacy (English)", "http://easylist-downloads.adblockplus.org/easyprivacy.txt")
-                       << Subscription("Antisocial (English)", "http://adversity.googlecode.com/hg/Antisocial.txt")
+                       << Subscription("EasyPrivacy (English)", "https://easylist-downloads.adblockplus.org/easyprivacy.txt")
+                       << Subscription("Antisocial (English)", "https://adversity.googlecode.com/hg/Antisocial.txt")
                        << Subscription("RuAdList+EasyList (Russian, Ukrainian)", "https://easylist-downloads.adblockplus.org/ruadlist+easylist.txt")
                        << Subscription("RU AdList (Russian, Ukrainian)", "https://easylist-downloads.adblockplus.org/advblock.txt")
                        << Subscription("ABPindo (Indonesian)", "https://indonesianadblockrules.googlecode.com/hg/subscriptions/abpindo.txt")
