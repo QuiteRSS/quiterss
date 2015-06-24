@@ -21,17 +21,17 @@ environment:
 #    QTARCHIVE1: 'qt-opensource-windows-x86-mingw482-4.8.6-1.exe'
 #    QTARCHIVE1_OPTS: '"-ir!?OUTDIR\*" "-xr!*doc\*" "-xr!*examples\*" "-xr!*demos\*"'
     
-  - BUILD: Qt4.8.6-x86-msvc2010
-    COMPILERBAT: '"C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat" x86'
-    PRO_MAKE: nmake release
-#    PRO_CHECK: 'cd build\%BUILD%\release\target && dir && QuiteRSS.exe'
-    PRO_CHECK: 'cd release\target && dir && cd ..\..'
-    QMAKESPEC: win32-msvc2010
-    QTMOVE: '$OUTDIR\bin 4.8.6-msvc2010'
-    QTSUB: '4.8.6-msvc2010'
-    QTDOWNLOAD1: http://download.qt.io/archive/qt/4.8/4.8.6/qt-opensource-windows-x86-vs2010-4.8.6.exe
-    QTARCHIVE1: 'qt-opensource-windows-x86-vs2010-4.8.6.exe'
-    QTARCHIVE1_OPTS: '"-ir!?OUTDIR\*" "-xr!*doc\*" "-xr!*examples\*" "-xr!*demos\*"'
+#  - BUILD: Qt4.8.6-x86-msvc2010
+#    COMPILERBAT: '"C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat" x86'
+#    PRO_MAKE: nmake release
+##    PRO_CHECK: 'cd build\%BUILD%\release\target && dir && QuiteRSS.exe'
+#    PRO_CHECK: 'cd release\target && dir && cd ..\..'
+#    QMAKESPEC: win32-msvc2010
+#    QTMOVE: '$OUTDIR\bin 4.8.6-msvc2010'
+#    QTSUB: '4.8.6-msvc2010'
+#    QTDOWNLOAD1: http://download.qt.io/archive/qt/4.8/4.8.6/qt-opensource-windows-x86-vs2010-4.8.6.exe
+#    QTARCHIVE1: 'qt-opensource-windows-x86-vs2010-4.8.6.exe'
+#    QTARCHIVE1_OPTS: '"-ir!?OUTDIR\*" "-xr!*doc\*" "-xr!*examples\*" "-xr!*demos\*"'
     
   - BUILD: Qt5.4.1-mingw32
     QTDIR: 'c:\qt\5.4\mingw491_32'
