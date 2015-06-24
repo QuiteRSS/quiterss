@@ -7921,9 +7921,9 @@ void MainWindow::addOurFeed()
   icon.save(&buffer, "PNG");
   buffer.close();
 
-  QString xmlUrl = "https://quiterss.org/en/rss.xml";
+  QString xmlUrl = "http://quiterss.org/en/rss.xml";
   if (mainApp->language() == "ru")
-    xmlUrl = "https://quiterss.org/ru/rss.xml";
+    xmlUrl = "http://quiterss.org/ru/rss.xml";
 
   QSqlQuery q;
   q.prepare("INSERT INTO feeds(text, title, xmlUrl, htmlUrl, created, parentId, rowToParent, image) "
@@ -7931,7 +7931,7 @@ void MainWindow::addOurFeed()
   q.addBindValue("QuiteRSS");
   q.addBindValue("QuiteRSS");
   q.addBindValue(xmlUrl);
-  q.addBindValue("https://quiterss.org");
+  q.addBindValue("http://quiterss.org");
   q.addBindValue(QDateTime::currentDateTimeUtc().toString(Qt::ISODate));
   q.addBindValue(0);
   q.addBindValue(0);
