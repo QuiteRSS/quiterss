@@ -10,16 +10,16 @@ environment:
   PRO_FILE: 'C:\projects\quiterss\QuiteRSS.pro'
 
   matrix:
-  - BUILD: Qt4.8.6-x86-mingw32
-    COMPILERDIR: 'c:\mingw\bin'
-    QMAKESPEC: win32-g++
-    PRO_MAKE: mingw32-make
-    PRO_CHECK: mingw32-make check
-    QTMOVE: '$OUTDIR\bin 4.8.6-x86-mingw32'
-    QTSUB: '4.8.6-x86-mingw32'
-    QTDOWNLOAD1: https://download.qt.io/archive/qt/4.8/4.8.6/qt-opensource-windows-x86-mingw482-4.8.6-1.exe
-    QTARCHIVE1: 'qt-opensource-windows-x86-mingw482-4.8.6-1.exe'
-    QTARCHIVE1_OPTS: '"-ir!?OUTDIR\*" "-xr!*doc\*" "-xr!*examples\*" "-xr!*demos\*"'
+#  - BUILD: Qt4.8.6-x86-mingw32
+#    COMPILERDIR: 'c:\mingw\bin'
+#    QMAKESPEC: win32-g++
+#    PRO_MAKE: mingw32-make
+#    PRO_CHECK: mingw32-make check
+#    QTMOVE: '$OUTDIR\bin 4.8.6-x86-mingw32'
+#    QTSUB: '4.8.6-x86-mingw32'
+#    QTDOWNLOAD1: http://download.qt.io/archive/qt/4.8/4.8.6/qt-opensource-windows-x86-mingw482-4.8.6-1.exe
+#    QTARCHIVE1: 'qt-opensource-windows-x86-mingw482-4.8.6-1.exe'
+#    QTARCHIVE1_OPTS: '"-ir!?OUTDIR\*" "-xr!*doc\*" "-xr!*examples\*" "-xr!*demos\*"'
     
   - BUILD: Qt4.8.6-x86-msvc2010
     COMPILERBAT: '"C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat" x86'
@@ -29,7 +29,7 @@ environment:
     QMAKESPEC: win32-msvc2010
     QTMOVE: '$OUTDIR\bin 4.8.6-msvc2010'
     QTSUB: '4.8.6-msvc2010'
-    QTDOWNLOAD1: 
+    QTDOWNLOAD1: http://download.qt.io/archive/qt/4.8/4.8.6/qt-opensource-windows-x86-vs2010-4.8.6.exe
     QTARCHIVE1: 'qt-opensource-windows-x86-vs2010-4.8.6.exe'
     QTARCHIVE1_OPTS: '"-ir!?OUTDIR\*" "-xr!*doc\*" "-xr!*examples\*" "-xr!*demos\*"'
     
@@ -60,9 +60,9 @@ environment:
 #    PRO_CHECK: nmake check
 #    QMAKESPEC: win32-msvc2013
 #    QTSUB: '5.4\msvc2013_opengl'
-#    QTDOWNLOAD1: https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/qt5_54/qt.54.win32_msvc2013_opengl/5.4.1-0qt5_essentials.7z
+#    QTDOWNLOAD1: http://download.qt.io/online/qtsdkrepository/windows_x86/desktop/qt5_54/qt.54.win32_msvc2013_opengl/5.4.1-0qt5_essentials.7z
 #    QTARCHIVE1: '5.4.1-0qt5_essentials.7z'
-#    QTDOWNLOAD2: https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/qt5_54/qt.54.win32_msvc2013_opengl/5.4.1-0icu_53_1_msvc_2013_32.7z
+#    QTDOWNLOAD2: http://download.qt.io/online/qtsdkrepository/windows_x86/desktop/qt5_54/qt.54.win32_msvc2013_opengl/5.4.1-0icu_53_1_msvc_2013_32.7z
 #    QTARCHIVE2: '5.4.1-0icu_53_1_msvc_2013_32.7z'
 
 install:
@@ -75,7 +75,7 @@ install:
 - mkdir Qt
 - cd Qt
 - if defined QTDOWNLOAD1 curl -kLO %QTDOWNLOAD1%
-- if defined QTARCHIVE1 7z x %QTARCHIVE1_OPTS% %QTARCHIVE1%
+- if defined QTARCHIVE1 7z x %QTARCHIVE1_OPTS% %QTARCHIVE1% >nul
 - if defined QTDOWNLOAD2 curl -kLO %QTDOWNLOAD2%
 - if defined QTARCHIVE2 7z x %QTARCHIVE2_OPTS% %QTARCHIVE2% >nul
 - dir "C:\projects\quiterss\extern"
