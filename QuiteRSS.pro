@@ -53,9 +53,9 @@ HEADERS += \
     src/VersionNo.h \
     src/parseobject.h \
     src/optionsdialog.h \
-    src/newsview.h \
-    src/newsmodel.h \
-    src/newsheader.h \
+    src/newsview/newsview.h \
+    src/newsview/newsmodel.h \
+    src/newsview/newsheader.h \
     src/aboutdialog.h \
     src/updateappdialog.h \
     src/feedpropertiesdialog.h \
@@ -122,9 +122,9 @@ HEADERS += \
 SOURCES += \
     src/parseobject.cpp \
     src/optionsdialog.cpp \
-    src/newsview.cpp \
-    src/newsmodel.cpp \
-    src/newsheader.cpp \
+    src/newsview/newsview.cpp \
+    src/newsview/newsmodel.cpp \
+    src/newsview/newsheader.cpp \
     src/aboutdialog.cpp \
     src/updateappdialog.cpp \
     src/feedpropertiesdialog.cpp \
@@ -196,6 +196,7 @@ INCLUDEPATH +=  $$PWD/src \
                 $$PWD/src/downloads \
                 $$PWD/src/feedsview \
                 $$PWD/src/newsfilters \
+                $$PWD/src/newsview \
                 $$PWD/src/notifications \
                 $$PWD/src/plugins \
                 $$PWD/src/adblock \
