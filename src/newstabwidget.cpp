@@ -605,21 +605,6 @@ void NewsTabWidget::retranslateStrings() {
     webExternalBrowserAct_->setText(tr("Open Page in External Browser"));
     urlExternalBrowserAct_->setText(tr("Open Link in External Browser"));
 
-    webView_->page()->action(QWebPage::OpenLink)->setText(tr("Open Link"));
-    webView_->page()->action(QWebPage::OpenLinkInNewWindow)->setText(tr("Open in New Tab"));
-    webView_->page()->action(QWebPage::DownloadLinkToDisk)->setText(tr("Save Link..."));
-    webView_->page()->action(QWebPage::DownloadImageToDisk)->setText(tr("Save Image..."));
-    webView_->page()->action(QWebPage::CopyLinkToClipboard)->setText(tr("Copy Link"));
-    webView_->page()->action(QWebPage::Copy)->setText(tr("Copy"));
-    webView_->page()->action(QWebPage::Back)->setText(tr("Go Back"));
-    webView_->page()->action(QWebPage::Forward)->setText(tr("Go Forward"));
-    webView_->page()->action(QWebPage::Stop)->setText(tr("Stop"));
-    webView_->page()->action(QWebPage::Reload)->setText(tr("Reload"));
-    webView_->page()->action(QWebPage::CopyImageToClipboard)->setText(tr("Copy Image"));
-#if QT_VERSION >= 0x040800
-    webView_->page()->action(QWebPage::CopyImageUrlToClipboard)->setText(tr("Copy Image Address"));
-#endif
-
     if (type_ != TabTypeWeb) {
       findText_->retranslateStrings();
       newsHeader_->retranslateStrings();
@@ -2241,6 +2226,21 @@ void NewsTabWidget::showContextWebPage(const QPoint &p)
   QMenu *pageMenu = webView_->page()->createStandardContextMenu();
   if (pageMenu) {
     menu.addActions(pageMenu->actions());
+
+    webView_->page()->action(QWebPage::OpenLink)->setText(tr("Open Link"));
+    webView_->page()->action(QWebPage::OpenLinkInNewWindow)->setText(tr("Open in New Tab"));
+    webView_->page()->action(QWebPage::DownloadLinkToDisk)->setText(tr("Save Link..."));
+    webView_->page()->action(QWebPage::DownloadImageToDisk)->setText(tr("Save Image..."));
+    webView_->page()->action(QWebPage::CopyLinkToClipboard)->setText(tr("Copy Link"));
+    webView_->page()->action(QWebPage::Copy)->setText(tr("Copy"));
+    webView_->page()->action(QWebPage::Back)->setText(tr("Go Back"));
+    webView_->page()->action(QWebPage::Forward)->setText(tr("Go Forward"));
+    webView_->page()->action(QWebPage::Stop)->setText(tr("Stop"));
+    webView_->page()->action(QWebPage::Reload)->setText(tr("Reload"));
+    webView_->page()->action(QWebPage::CopyImageToClipboard)->setText(tr("Copy Image"));
+#if QT_VERSION >= 0x040800
+    webView_->page()->action(QWebPage::CopyImageUrlToClipboard)->setText(tr("Copy Image Address"));
+#endif
 
     const QWebHitTestResult &hitTest = webView_->page()->mainFrame()->hitTestContent(p);
     if (!hitTest.linkUrl().isEmpty() && hitTest.linkUrl().scheme() != "javascript") {

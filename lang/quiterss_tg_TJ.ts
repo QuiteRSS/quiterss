@@ -2,84 +2,84 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="45"/>
+        <location filename="../src/aboutdialog.cpp" line="33"/>
         <source>About</source>
         <translation>Оиди замима</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="56"/>
+        <location filename="../src/aboutdialog.cpp" line="42"/>
         <source>Revision</source>
         <translation>Ревизия</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="64"/>
-        <location filename="../src/aboutdialog.cpp" line="141"/>
-        <location filename="../src/aboutdialog.cpp" line="176"/>
+        <location filename="../src/aboutdialog.cpp" line="50"/>
+        <location filename="../src/aboutdialog.cpp" line="123"/>
+        <location filename="../src/aboutdialog.cpp" line="158"/>
         <source>Version</source>
         <translation>Нашр</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="68"/>
+        <location filename="../src/aboutdialog.cpp" line="54"/>
         <source>QuiteRSS is a open-source cross-platform RSS/Atom news reader</source>
         <translation>QuiteRSS замимаи кросс-платформавии хондани RSS/Atom тасмаи хабарҳо бо коди кушод</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="69"/>
+        <location filename="../src/aboutdialog.cpp" line="55"/>
         <source>Includes:</source>
         <translation>Дарбар мегирад:</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="144"/>
+        <location filename="../src/aboutdialog.cpp" line="126"/>
         <source>Application directory:</source>
         <translation>Суроғаи замима:</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="147"/>
+        <location filename="../src/aboutdialog.cpp" line="129"/>
         <source>Resource directory:</source>
         <translation>Суроғаи манбаъ:</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="150"/>
+        <location filename="../src/aboutdialog.cpp" line="132"/>
         <source>Data directory:</source>
         <translation>Суроғаи маълумот:</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="153"/>
+        <location filename="../src/aboutdialog.cpp" line="135"/>
         <source>Backup directory:</source>
         <translation>Суроғаи захиравӣ:</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="156"/>
+        <location filename="../src/aboutdialog.cpp" line="138"/>
         <source>Database file:</source>
         <translation>Суроғаи БМ:</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="159"/>
+        <location filename="../src/aboutdialog.cpp" line="141"/>
         <source>Settings file:</source>
         <translation>Файли танзимот:</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="162"/>
+        <location filename="../src/aboutdialog.cpp" line="144"/>
         <source>Log file:</source>
         <translation>Файли қайдҳо</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="177"/>
+        <location filename="../src/aboutdialog.cpp" line="159"/>
         <source>Authors</source>
         <translation>Муаллифон</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="178"/>
+        <location filename="../src/aboutdialog.cpp" line="160"/>
         <source>History</source>
         <translation>Таърих</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="179"/>
+        <location filename="../src/aboutdialog.cpp" line="161"/>
         <source>License</source>
         <translation>Литсензия</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="180"/>
+        <location filename="../src/aboutdialog.cpp" line="162"/>
         <source>Information</source>
         <translation>Маълумот</translation>
     </message>
@@ -110,7 +110,9 @@
 <context>
     <name>AdBlockCustomList</name>
     <message>
-        <location filename="../src/adblock/adblocksubscription.cpp" line="484"/>
+        <location filename="../src/adblock/adblocksubscription.cpp" line="323"/>
+        <location filename="../src/adblock/adblocksubscription.cpp" line="330"/>
+        <location filename="../src/application/mainwindow.cpp" line="5084"/>
         <source>Custom Rules</source>
         <translation>Қоида шахсӣ</translation>
     </message>
@@ -181,48 +183,48 @@
 <context>
     <name>AdBlockIcon</name>
     <message>
-        <location filename="../src/adblock/adblockicon.cpp" line="61"/>
+        <location filename="../src/adblock/adblockicon.cpp" line="62"/>
         <source>AdBlock lets you block unwanted content on web pages</source>
         <translation>AdBlock имконияти маҳдудкунии мӯҳтавои нохондаро дар саҳифаҳо фароҳам меоварад</translation>
     </message>
     <message>
-        <location filename="../src/adblock/adblockicon.cpp" line="102"/>
+        <location filename="../src/adblock/adblockicon.cpp" line="103"/>
         <source>AdBlock</source>
         <translation>AdBlock</translation>
     </message>
     <message>
-        <location filename="../src/adblock/adblockicon.cpp" line="129"/>
+        <location filename="../src/adblock/adblockicon.cpp" line="130"/>
         <source>Show AdBlock &amp;Settings</source>
         <translation>Нишондоди &amp;танзимоти AdBlock</translation>
     </message>
     <message>
-        <location filename="../src/adblock/adblockicon.cpp" line="137"/>
+        <location filename="../src/adblock/adblockicon.cpp" line="138"/>
         <source>Disable on %1</source>
         <translation>Хомӯш дар %1</translation>
     </message>
     <message>
-        <location filename="../src/adblock/adblockicon.cpp" line="143"/>
+        <location filename="../src/adblock/adblockicon.cpp" line="144"/>
         <source>Disable only on this page</source>
         <translation>Хомӯш танҳо дар саҳифаи зерин</translation>
     </message>
     <message>
-        <location filename="../src/adblock/adblockicon.cpp" line="153"/>
+        <location filename="../src/adblock/adblockicon.cpp" line="154"/>
         <source>Blocked Popup Windows</source>
         <translation>Маҳдудкунии равзанаҳои нохонда</translation>
     </message>
     <message>
-        <location filename="../src/adblock/adblockicon.cpp" line="158"/>
-        <location filename="../src/adblock/adblockicon.cpp" line="175"/>
+        <location filename="../src/adblock/adblockicon.cpp" line="159"/>
+        <location filename="../src/adblock/adblockicon.cpp" line="176"/>
         <source>%1 with (%2)</source>
         <translation>%1 бо (%2)</translation>
     </message>
     <message>
-        <location filename="../src/adblock/adblockicon.cpp" line="169"/>
+        <location filename="../src/adblock/adblockicon.cpp" line="170"/>
         <source>No content blocked</source>
         <translation>Маҳдуд накардани мӯҳтаво</translation>
     </message>
     <message>
-        <location filename="../src/adblock/adblockicon.cpp" line="172"/>
+        <location filename="../src/adblock/adblockicon.cpp" line="173"/>
         <source>Blocked URL (AdBlock Rule) - click to edit rule</source>
         <translation>URL-ҳои маҳдудшуда(Қоидаҳои Adblock) - барои таҳрири қоида пахш кунед</translation>
     </message>
@@ -230,7 +232,7 @@
 <context>
     <name>AdBlockManager</name>
     <message>
-        <location filename="../src/adblock/adblockmanager.cpp" line="277"/>
+        <location filename="../src/adblock/adblockmanager.cpp" line="281"/>
         <source>EasyList</source>
         <translation>EasyList</translation>
     </message>
@@ -238,7 +240,7 @@
 <context>
     <name>AdBlockSubscription</name>
     <message>
-        <location filename="../src/adblock/adblocksubscription.cpp" line="190"/>
+        <location filename="../src/adblock/adblocksubscription.cpp" line="195"/>
         <source>Cannot load subscription!</source>
         <translation>Обуна бор нашуд!</translation>
     </message>
@@ -284,80 +286,80 @@
         <translation>Иловаи тасма</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="99"/>
-        <location filename="../src/addfeedwizard.cpp" line="173"/>
+        <location filename="../src/addfeedwizard.cpp" line="100"/>
+        <location filename="../src/addfeedwizard.cpp" line="174"/>
         <source>Create New Feed</source>
         <translation>Эъҷоди тасмаи нав</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="108"/>
+        <location filename="../src/addfeedwizard.cpp" line="109"/>
         <source>Use title of the feed as displayed name</source>
         <translation>Истифодаи сарлавҳаи тасма ҳамчун номи нишондода мешуда</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="112"/>
+        <location filename="../src/addfeedwizard.cpp" line="113"/>
         <source>Server requires authentication:</source>
         <translation>Сервер авторизатсияро талаб мекунад:</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="121"/>
+        <location filename="../src/addfeedwizard.cpp" line="122"/>
         <source>Username:</source>
         <translation>Номи истифодабаранда:</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="123"/>
+        <location filename="../src/addfeedwizard.cpp" line="124"/>
         <source>Password:</source>
         <translation>Парол:</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="152"/>
+        <location filename="../src/addfeedwizard.cpp" line="153"/>
         <source>Feed URL or website address:</source>
         <translation>URL-и тасма ё суроғаи веб-сомона</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="185"/>
+        <location filename="../src/addfeedwizard.cpp" line="186"/>
         <source>Feeds</source>
         <translation>Тасмаҳо</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="189"/>
+        <location filename="../src/addfeedwizard.cpp" line="190"/>
         <source>All Feeds</source>
         <translation>Ҳамаи тасмаҳо</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="229"/>
+        <location filename="../src/addfeedwizard.cpp" line="230"/>
         <source>New Folder...</source>
         <translation>Папкаи нав...</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="244"/>
+        <location filename="../src/addfeedwizard.cpp" line="245"/>
         <source>Displayed name:</source>
         <translation>Номи намоиш мешуда:</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="246"/>
+        <location filename="../src/addfeedwizard.cpp" line="247"/>
         <source>Location:</source>
         <translation>Мавқеъ:</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="341"/>
+        <location filename="../src/addfeedwizard.cpp" line="342"/>
         <source>URL error!</source>
         <translation>Хатогии URL!</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="355"/>
-        <location filename="../src/addfeedwizard.cpp" line="518"/>
+        <location filename="../src/addfeedwizard.cpp" line="356"/>
+        <location filename="../src/addfeedwizard.cpp" line="519"/>
         <source>Duplicate feed!</source>
         <translation>Такрори тасма!</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="520"/>
-        <location filename="../src/addfeedwizard.cpp" line="542"/>
+        <location filename="../src/addfeedwizard.cpp" line="521"/>
+        <location filename="../src/addfeedwizard.cpp" line="543"/>
         <source>Can&apos;t find feed URL!</source>
         <translation>URL-и тасма дарёфт нашуд!</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="561"/>
+        <location filename="../src/addfeedwizard.cpp" line="562"/>
         <source>Request failed!</source>
         <translation>Дархост иҷро нагардид!</translation>
     </message>
@@ -1004,61 +1006,66 @@ Ancient news could reappear</source>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="318"/>
+        <source>Feeds count:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/feedpropertiesdialog.cpp" line="321"/>
         <source>Description:</source>
         <translation>Тавсиф:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="325"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="328"/>
         <source>Status:</source>
         <translation>Ҳолат:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="327"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="330"/>
         <source>Created:</source>
         <translation>Эъҷод шудааст:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="329"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="332"/>
         <source>Last update:</source>
         <translation>Охирон тағйирдиҳӣ:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="331"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="334"/>
         <source>News count:</source>
         <translation>Миқдори хабарҳо:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="396"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="404"/>
         <source>Good</source>
         <translation>Хуб</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="404"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="412"/>
         <source>Long ago ;-)</source>
         <translation>Ким-кай ;-)</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="415"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="423"/>
         <source>new</source>
         <translation>нав</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="417"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="425"/>
         <source>unread</source>
         <translation>нахонда</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="437"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="446"/>
         <source>Image files</source>
         <translation>Файлҳои тасвир</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="439"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="448"/>
         <source>Select Image</source>
         <translation>Тасвирро интихоб кунед</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="446"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="455"/>
         <source>Load icon: can&apos;t open a file!</source>
         <translation>Гирифтори тасвир: файл кушода нашуд!</translation>
     </message>
@@ -1154,8 +1161,8 @@ Ancient news could reappear</source>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="113"/>
-        <source>Find in Content</source>
-        <translation>Ҷустуҷӯ дар мӯҳтаво</translation>
+        <source>Find in Descriptions</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="114"/>
@@ -1430,7 +1437,7 @@ Ancient news could reappear</source>
 <context>
     <name>MainApplication</name>
     <message>
-        <location filename="../src/application/mainapplication.cpp" line="269"/>
+        <location filename="../src/application/mainapplication.cpp" line="297"/>
         <source>Saving data...</source>
         <translation>Сабти маълумот...</translation>
     </message>
@@ -1438,1067 +1445,1073 @@ Ancient news could reappear</source>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="1822"/>
+        <location filename="../src/application/mainwindow.cpp" line="1815"/>
         <source>&amp;AdBlock</source>
         <translation>&amp;AdBlock</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2261"/>
-        <location filename="../src/application/mainwindow.cpp" line="5037"/>
-        <location filename="../src/application/mainwindow.cpp" line="7320"/>
-        <location filename="../src/application/mainwindow.cpp" line="7342"/>
+        <location filename="../src/application/mainwindow.cpp" line="2227"/>
+        <location filename="../src/application/mainwindow.cpp" line="4978"/>
+        <location filename="../src/application/mainwindow.cpp" line="7296"/>
+        <location filename="../src/application/mainwindow.cpp" line="7318"/>
         <source>Hide Categories</source>
         <translation>Пинҳони зумраҳо</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2265"/>
-        <location filename="../src/application/mainwindow.cpp" line="5035"/>
-        <location filename="../src/application/mainwindow.cpp" line="7326"/>
+        <location filename="../src/application/mainwindow.cpp" line="2231"/>
+        <location filename="../src/application/mainwindow.cpp" line="4976"/>
+        <location filename="../src/application/mainwindow.cpp" line="7302"/>
         <source>Show Categories</source>
         <translation>Нишондоди зумраҳо</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2720"/>
-        <location filename="../src/application/mainwindow.cpp" line="2749"/>
+        <location filename="../src/application/mainwindow.cpp" line="2686"/>
+        <location filename="../src/application/mainwindow.cpp" line="2715"/>
         <source>Select OPML-File</source>
         <translation>OPML-Файлро интихоб кунед</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2722"/>
+        <location filename="../src/application/mainwindow.cpp" line="2688"/>
         <source>OPML-Files (*.%1 *.%2)</source>
         <translation>OPML-Файлҳо (*.%1 *.%2)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2726"/>
+        <location filename="../src/application/mainwindow.cpp" line="2692"/>
         <source>Import canceled</source>
         <translation>Рафъи воридот</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2734"/>
+        <location filename="../src/application/mainwindow.cpp" line="2700"/>
         <source>Import: can&apos;t open a file</source>
         <translation>Воридот: файл кушода нашуд</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2751"/>
+        <location filename="../src/application/mainwindow.cpp" line="2717"/>
         <source>OPML-Files (*.%1)</source>
         <translation>OPML-Файлҳо (*.%1)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2755"/>
+        <location filename="../src/application/mainwindow.cpp" line="2721"/>
         <source>Export canceled</source>
         <translation>Рафъи содирот</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2761"/>
+        <location filename="../src/application/mainwindow.cpp" line="2727"/>
         <source>Export: can&apos;t open a file</source>
         <translation>Содирот: файл кушода нашуд</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="3033"/>
-        <location filename="../src/application/mainwindow.cpp" line="4169"/>
-        <location filename="../src/application/mainwindow.cpp" line="4807"/>
-        <location filename="../src/application/mainwindow.cpp" line="6246"/>
-        <location filename="../src/application/mainwindow.cpp" line="7278"/>
+        <location filename="../src/application/mainwindow.cpp" line="2996"/>
+        <location filename="../src/application/mainwindow.cpp" line="4132"/>
+        <location filename="../src/application/mainwindow.cpp" line="4748"/>
+        <location filename="../src/application/mainwindow.cpp" line="6222"/>
+        <location filename="../src/application/mainwindow.cpp" line="7254"/>
         <source>Unread: %1</source>
         <translation>Нахонда: %1</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="3034"/>
-        <location filename="../src/application/mainwindow.cpp" line="4170"/>
-        <location filename="../src/application/mainwindow.cpp" line="4810"/>
-        <location filename="../src/application/mainwindow.cpp" line="6247"/>
-        <location filename="../src/application/mainwindow.cpp" line="7279"/>
+        <location filename="../src/application/mainwindow.cpp" line="2997"/>
+        <location filename="../src/application/mainwindow.cpp" line="4133"/>
+        <location filename="../src/application/mainwindow.cpp" line="4751"/>
+        <location filename="../src/application/mainwindow.cpp" line="6223"/>
+        <location filename="../src/application/mainwindow.cpp" line="7255"/>
         <source>All: %1</source>
         <translation>Ҳамагӣ: %1</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="3590"/>
-        <location filename="../src/application/mainwindow.cpp" line="3595"/>
-        <location filename="../src/application/mainwindow.cpp" line="3600"/>
+        <location filename="../src/application/mainwindow.cpp" line="3553"/>
+        <location filename="../src/application/mainwindow.cpp" line="3558"/>
+        <location filename="../src/application/mainwindow.cpp" line="3563"/>
         <source>(Browser)</source>
         <translation>(Браузер)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4815"/>
-        <location filename="../src/application/mainwindow.cpp" line="5677"/>
+        <location filename="../src/application/mainwindow.cpp" line="4756"/>
+        <location filename="../src/application/mainwindow.cpp" line="5649"/>
         <source>New News: %1</source>
         <translation>Хабарҳои нав: %1</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4817"/>
-        <location filename="../src/application/mainwindow.cpp" line="5679"/>
+        <location filename="../src/application/mainwindow.cpp" line="4758"/>
+        <location filename="../src/application/mainwindow.cpp" line="5651"/>
         <source>Unread News: %1</source>
         <translation>Хабарҳои нахонда: %1</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4822"/>
+        <location filename="../src/application/mainwindow.cpp" line="4763"/>
         <source>&amp;Add</source>
         <translation>&amp;Илова</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4823"/>
-        <location filename="../src/application/mainwindow.cpp" line="4826"/>
+        <location filename="../src/application/mainwindow.cpp" line="4764"/>
+        <location filename="../src/application/mainwindow.cpp" line="4767"/>
         <source>Add New Feed</source>
         <translation>Иловаи тасмаи нав</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4825"/>
+        <location filename="../src/application/mainwindow.cpp" line="4766"/>
         <source>&amp;Feed...</source>
         <translation>&amp;Тасма...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4830"/>
+        <location filename="../src/application/mainwindow.cpp" line="4771"/>
         <source>F&amp;older...</source>
         <translation>&amp;Папка...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4831"/>
+        <location filename="../src/application/mainwindow.cpp" line="4772"/>
         <source>Add New Folder</source>
         <translation>Иловаи папкаи нав</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4833"/>
-        <location filename="../src/application/mainwindow.cpp" line="4904"/>
+        <location filename="../src/application/mainwindow.cpp" line="4774"/>
+        <location filename="../src/application/mainwindow.cpp" line="4845"/>
         <source>Open in New Tab</source>
         <translation>Кушодан дар варақаи нав</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4835"/>
+        <location filename="../src/application/mainwindow.cpp" line="4776"/>
         <source>&amp;Delete...</source>
         <translation>&amp;Хориҷ...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4836"/>
+        <location filename="../src/application/mainwindow.cpp" line="4777"/>
         <source>Delete Selected Feed</source>
         <translation>Хориҷи тасмаи интихобшуда</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4838"/>
+        <location filename="../src/application/mainwindow.cpp" line="4779"/>
         <source>&amp;Import Feeds...</source>
         <translation>&amp;Воридоти тасмаҳо...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4839"/>
+        <location filename="../src/application/mainwindow.cpp" line="4780"/>
         <source>Import Feeds from OPML File</source>
         <translation>Воридоти тасмаҳо аз OPML файл</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4841"/>
+        <location filename="../src/application/mainwindow.cpp" line="4782"/>
         <source>&amp;Export Feeds...</source>
         <translation>&amp;Содироти тасмаҳо...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4842"/>
+        <location filename="../src/application/mainwindow.cpp" line="4783"/>
         <source>Export Feeds to OPML File</source>
         <translation>Содироти тасмаҳо аз OPML файл</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4847"/>
+        <location filename="../src/application/mainwindow.cpp" line="4788"/>
         <source>E&amp;xit</source>
         <translation>&amp;Баромад</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4849"/>
+        <location filename="../src/application/mainwindow.cpp" line="4790"/>
         <source>Update Feed</source>
         <translation>Азнавкунии тасма</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4850"/>
+        <location filename="../src/application/mainwindow.cpp" line="4791"/>
         <source>Update Current Feed</source>
         <translation>Азнавкунии тасмаи ҷорӣ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4852"/>
+        <location filename="../src/application/mainwindow.cpp" line="4793"/>
         <source>Update All</source>
         <translation>Азнавкунии ҳама</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4853"/>
+        <location filename="../src/application/mainwindow.cpp" line="4794"/>
         <source>Update All Feeds</source>
         <translation>Азнавкунии ҳамаи тасмаҳо</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4858"/>
+        <location filename="../src/application/mainwindow.cpp" line="4799"/>
         <source>Mark All Feeds Read</source>
         <translation>Қайди ҳамаи тасмаҳо ҳамчун хондашуда</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4860"/>
+        <location filename="../src/application/mainwindow.cpp" line="4801"/>
         <source>Mark Read/Unread</source>
         <translation>Қайд ҳамчун хондашуда/хонданашуда</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4861"/>
+        <location filename="../src/application/mainwindow.cpp" line="4802"/>
         <source>Mark Current News Read/Unread</source>
         <translation>Қайди хабари ҷорӣ ҳамчун хондашуда/хонданашуда</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4863"/>
-        <location filename="../src/application/mainwindow.cpp" line="4864"/>
+        <location filename="../src/application/mainwindow.cpp" line="4804"/>
+        <location filename="../src/application/mainwindow.cpp" line="4805"/>
         <source>Mark All News Read</source>
         <translation>Қайди ҳамаи хабарҳо ҳамчун хондашуда</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4866"/>
-        <location filename="../src/application/mainwindow.cpp" line="7905"/>
-        <location filename="../src/application/mainwindow.cpp" line="7911"/>
-        <location filename="../src/application/mainwindow.cpp" line="7921"/>
+        <location filename="../src/application/mainwindow.cpp" line="4807"/>
+        <location filename="../src/application/mainwindow.cpp" line="7881"/>
+        <location filename="../src/application/mainwindow.cpp" line="7887"/>
+        <location filename="../src/application/mainwindow.cpp" line="7897"/>
         <source>Downloads</source>
         <translation>Гирифторҳо</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4868"/>
+        <location filename="../src/application/mainwindow.cpp" line="4809"/>
         <source>Clean Up...</source>
         <translation>Тоза кардан...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4870"/>
+        <location filename="../src/application/mainwindow.cpp" line="4811"/>
         <source>News Filters...</source>
         <translation>Филтри хабарҳо...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4871"/>
+        <location filename="../src/application/mainwindow.cpp" line="4812"/>
         <source>Filter News...</source>
         <translation>Филтри хабарҳо...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4873"/>
+        <location filename="../src/application/mainwindow.cpp" line="4814"/>
         <source>Options...</source>
         <translation>Танзимот...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4874"/>
+        <location filename="../src/application/mainwindow.cpp" line="4815"/>
         <source>Open Options Dialog</source>
         <translation>Кушодани равзанаи танзимот</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4876"/>
+        <location filename="../src/application/mainwindow.cpp" line="4817"/>
         <source>Filter Feeds</source>
         <translation>Филтри тасмаҳо</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4877"/>
-        <location filename="../src/application/mainwindow.cpp" line="4884"/>
+        <location filename="../src/application/mainwindow.cpp" line="4818"/>
+        <location filename="../src/application/mainwindow.cpp" line="4825"/>
         <source>Show All</source>
         <translation>Нишондоди ҳама</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4878"/>
-        <location filename="../src/application/mainwindow.cpp" line="4885"/>
+        <location filename="../src/application/mainwindow.cpp" line="4819"/>
+        <location filename="../src/application/mainwindow.cpp" line="4826"/>
         <source>Show New</source>
         <translation>Нишондоди нав</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4879"/>
-        <location filename="../src/application/mainwindow.cpp" line="4886"/>
+        <location filename="../src/application/mainwindow.cpp" line="4820"/>
+        <location filename="../src/application/mainwindow.cpp" line="4827"/>
         <source>Show Unread</source>
         <translation>Нишондоди нахонда</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4880"/>
+        <location filename="../src/application/mainwindow.cpp" line="4821"/>
         <source>Show Starred Feeds</source>
         <translation>Нишондоди тасмаҳои интихобшуда</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4881"/>
+        <location filename="../src/application/mainwindow.cpp" line="4822"/>
         <source>Show Not Working Feeds</source>
         <translation>Нишондоди тасмаҳои бекор</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4883"/>
+        <location filename="../src/application/mainwindow.cpp" line="4824"/>
         <source>Filter News</source>
         <translation>Филтри хабарҳо</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4887"/>
+        <location filename="../src/application/mainwindow.cpp" line="4828"/>
         <source>Show Starred</source>
         <translation>Нишондоди бо ситорача қайд шуда</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4888"/>
+        <location filename="../src/application/mainwindow.cpp" line="4829"/>
         <source>Show Not Starred</source>
         <translation>Нишондоди қайд нашуда</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4889"/>
+        <location filename="../src/application/mainwindow.cpp" line="4830"/>
         <source>Show Unread or Starred</source>
         <translation>Нишондоди нахонда ё бо ситорача</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4890"/>
+        <location filename="../src/application/mainwindow.cpp" line="4831"/>
         <source>Show Last Day</source>
         <translation>Нишондод барои рӯзи гузашта</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4891"/>
+        <location filename="../src/application/mainwindow.cpp" line="4832"/>
         <source>Show Last 7 Days</source>
         <translation>Нишондод барои 7 рӯзи гузашта</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4893"/>
+        <location filename="../src/application/mainwindow.cpp" line="4834"/>
         <source>About...</source>
         <translation>Оиди замима...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4894"/>
+        <location filename="../src/application/mainwindow.cpp" line="4835"/>
         <source>Show &apos;About&apos; Dialog</source>
         <translation>Нишондоди равзанаи &apos;Оиди замима&apos;</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4896"/>
+        <location filename="../src/application/mainwindow.cpp" line="4837"/>
         <source>Check for Updates...</source>
         <translation>Тафтиши навовариҳо...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4897"/>
+        <location filename="../src/application/mainwindow.cpp" line="4838"/>
         <source>Report a Problem...</source>
         <translation>Ҳисобот оиди хатогиҳо...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4899"/>
+        <location filename="../src/application/mainwindow.cpp" line="4840"/>
         <source>Open News</source>
         <translation>Кушодани хабар</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4901"/>
+        <location filename="../src/application/mainwindow.cpp" line="4842"/>
         <source>Open in Browser</source>
         <translation>Кушодан дар браузер</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4902"/>
+        <location filename="../src/application/mainwindow.cpp" line="4843"/>
         <source>Open in External Browser</source>
         <translation>Кушодан дар браузери берунӣ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4903"/>
+        <location filename="../src/application/mainwindow.cpp" line="4844"/>
         <source>Open News in External Browser</source>
         <translation>Кушодани хабар дар браузери беруна</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4905"/>
+        <location filename="../src/application/mainwindow.cpp" line="4846"/>
         <source>Open News in New Tab</source>
         <translation>Кушодани хабар дар варақаи нав</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4906"/>
+        <location filename="../src/application/mainwindow.cpp" line="4847"/>
         <source>Open in Background Tab</source>
         <translation>Кушодан дар варақаи фонӣ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4907"/>
+        <location filename="../src/application/mainwindow.cpp" line="4848"/>
         <source>Open News in Background Tab</source>
         <translation>Кушодани хабар дар варақаи фонӣ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4908"/>
+        <location filename="../src/application/mainwindow.cpp" line="4849"/>
         <source>Star</source>
         <translation>Ситорача</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4909"/>
+        <location filename="../src/application/mainwindow.cpp" line="4850"/>
         <source>Mark News Star</source>
         <translation>Қайди хабар бо ситорача</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4910"/>
+        <location filename="../src/application/mainwindow.cpp" line="4851"/>
         <source>Delete</source>
         <translation>Хориҷ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4911"/>
+        <location filename="../src/application/mainwindow.cpp" line="4852"/>
         <source>Delete Selected News</source>
         <translation>Хориҷи хабари интихобшуда</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4912"/>
+        <location filename="../src/application/mainwindow.cpp" line="4853"/>
         <source>Delete All News</source>
         <translation>Хориҷи ҳамаи хабарҳо</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4913"/>
+        <location filename="../src/application/mainwindow.cpp" line="4854"/>
         <source>Delete All News from List</source>
         <translation>Хориҷи ҳамаи хабарҳо аз рӯйхат</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4914"/>
+        <location filename="../src/application/mainwindow.cpp" line="4855"/>
         <source>Restore</source>
         <translation>Барқароркунӣ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4915"/>
+        <location filename="../src/application/mainwindow.cpp" line="4856"/>
         <source>Restore News</source>
         <translation>Барқароркунии хабар</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4916"/>
+        <location filename="../src/application/mainwindow.cpp" line="4857"/>
         <source>Copy Link</source>
         <translation>Нусхабардории суроғаи линк</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4919"/>
+        <location filename="../src/application/mainwindow.cpp" line="4860"/>
         <source>Restore last deleted news</source>
         <translation>Барқароркунии охирон хабари хориҷшуда</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4921"/>
+        <location filename="../src/application/mainwindow.cpp" line="4862"/>
         <source>Mark Read</source>
         <translation>Қайд ҳамчун хондашуда</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4922"/>
+        <location filename="../src/application/mainwindow.cpp" line="4863"/>
         <source>Mark Feed Read</source>
         <translation>Қайди тасма ҳамчун хондашуда</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4923"/>
-        <location filename="../src/application/mainwindow.cpp" line="4924"/>
+        <location filename="../src/application/mainwindow.cpp" line="4864"/>
+        <location filename="../src/application/mainwindow.cpp" line="4865"/>
         <source>Properties</source>
         <translation>Хосиятҳо</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4926"/>
+        <location filename="../src/application/mainwindow.cpp" line="4867"/>
         <source>&amp;File</source>
         <translation>&amp;Файл</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4989"/>
+        <location filename="../src/application/mainwindow.cpp" line="4930"/>
         <source>Count Unread News</source>
         <translation>Миқдори хабарҳои нахонда</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4990"/>
+        <location filename="../src/application/mainwindow.cpp" line="4931"/>
         <source>Count All News</source>
         <translation>Миқдори ҳамаи хабарҳо</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4991"/>
+        <location filename="../src/application/mainwindow.cpp" line="4932"/>
         <source>Last Update</source>
         <translation>Охирон азнавкунӣ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5004"/>
+        <location filename="../src/application/mainwindow.cpp" line="4945"/>
         <source>Reset browser zoom</source>
         <translation>Партофтани миқёс дар браузер</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5007"/>
+        <location filename="../src/application/mainwindow.cpp" line="4948"/>
         <source>Print Web Page</source>
         <translation>Чопи веб-саҳифа</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5009"/>
+        <location filename="../src/application/mainwindow.cpp" line="4950"/>
         <source>Preview Web Page</source>
         <translation>Аз назар гузаронии веб-саҳифа</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5016"/>
+        <location filename="../src/application/mainwindow.cpp" line="4957"/>
         <source>Save page in database</source>
         <translation>Сабти саҳифа дар ММ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5017"/>
+        <location filename="../src/application/mainwindow.cpp" line="4958"/>
         <source>Save page in database instead of news description</source>
         <translation>Сабти саҳифа да ММ бар замми тавсифи хабарҳо</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2615"/>
+        <location filename="../src/application/mainwindow.cpp" line="2581"/>
         <source>Confirm Delete</source>
         <translation>Тасдиқи хориҷкунӣ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2616"/>
+        <location filename="../src/application/mainwindow.cpp" line="2582"/>
         <source>Are you sure to delete selected elements?</source>
         <translation>Шумо дар воқеъ мехоҳед элементҳои интихоб шударо  хориҷ кунед?</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4820"/>
+        <location filename="../src/application/mainwindow.cpp" line="4761"/>
         <source>Menu</source>
         <translation>Меню</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4828"/>
+        <location filename="../src/application/mainwindow.cpp" line="4769"/>
         <source>Add Feed...</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4844"/>
+        <location filename="../src/application/mainwindow.cpp" line="4785"/>
         <source>&amp;Create Backup...</source>
         <translation>Захиракунӣ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4845"/>
+        <location filename="../src/application/mainwindow.cpp" line="4786"/>
         <source>S&amp;how Menu Bar</source>
         <translation>Н&amp;ишондоди сатри меню</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4900"/>
+        <location filename="../src/application/mainwindow.cpp" line="4796"/>
+        <location filename="../src/application/mainwindow.cpp" line="4797"/>
+        <source>Stop Update Feeds</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/application/mainwindow.cpp" line="4841"/>
         <source>Open News Description</source>
         <translation>Кушодани тавсифи хабар</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4917"/>
+        <location filename="../src/application/mainwindow.cpp" line="4858"/>
         <source>Copy News Link</source>
         <translation>Нусхабардории суроғаи линки хабар</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4927"/>
+        <location filename="../src/application/mainwindow.cpp" line="4868"/>
         <source>&amp;View</source>
         <translation>&amp;Намуд</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4928"/>
+        <location filename="../src/application/mainwindow.cpp" line="4869"/>
         <source>Fee&amp;ds</source>
         <translation>Тас&amp;маҳо</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4929"/>
+        <location filename="../src/application/mainwindow.cpp" line="4870"/>
         <source>&amp;News</source>
         <translation>&amp;Хабарҳо</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4930"/>
+        <location filename="../src/application/mainwindow.cpp" line="4871"/>
         <source>&amp;Browser</source>
         <translation>&amp;Браузер</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4931"/>
+        <location filename="../src/application/mainwindow.cpp" line="4872"/>
         <source>&amp;Tools</source>
         <translation>&amp;Асбобҳо</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4932"/>
+        <location filename="../src/application/mainwindow.cpp" line="4873"/>
         <source>&amp;Help</source>
         <translation>&amp;Кӯмак</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4934"/>
-        <location filename="../src/application/mainwindow.cpp" line="5020"/>
+        <location filename="../src/application/mainwindow.cpp" line="4875"/>
+        <location filename="../src/application/mainwindow.cpp" line="4961"/>
         <source>Main Toolbar</source>
         <translation>Панели асосӣ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4935"/>
+        <location filename="../src/application/mainwindow.cpp" line="4876"/>
         <source>Customize Toolbar</source>
         <translation>Танзими панели асбобҳо</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4936"/>
+        <location filename="../src/application/mainwindow.cpp" line="4877"/>
         <source>Main Toolbar...</source>
         <translation>Панели асосӣ...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4937"/>
+        <location filename="../src/application/mainwindow.cpp" line="4878"/>
         <source>Customize Toolbar...</source>
         <translation>Танзими панели асбобҳо...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4938"/>
+        <location filename="../src/application/mainwindow.cpp" line="4879"/>
         <source>Feeds Toolbar...</source>
         <translation>Панели тасмаҳо...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4939"/>
+        <location filename="../src/application/mainwindow.cpp" line="4880"/>
         <source>News Toolbar...</source>
         <translation>Панели хабарҳо...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4941"/>
+        <location filename="../src/application/mainwindow.cpp" line="4882"/>
         <source>Lock Toolbar</source>
         <translation>Мустаҳкам кардани панели асбобҳо</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4942"/>
+        <location filename="../src/application/mainwindow.cpp" line="4883"/>
         <source>Hide Toolbar</source>
         <translation>Пинҳони панели асбобҳо</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4944"/>
-        <location filename="../src/application/mainwindow.cpp" line="4947"/>
+        <location filename="../src/application/mainwindow.cpp" line="4885"/>
+        <location filename="../src/application/mainwindow.cpp" line="4888"/>
         <source>Layout</source>
         <translation>Тарҳбанди</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4945"/>
+        <location filename="../src/application/mainwindow.cpp" line="4886"/>
         <source>Classic</source>
         <translation>Классик</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4946"/>
+        <location filename="../src/application/mainwindow.cpp" line="4887"/>
         <source>Newspaper</source>
         <translation>Рӯзнома</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4949"/>
+        <location filename="../src/application/mainwindow.cpp" line="4890"/>
         <source>Application Style</source>
         <translation>Услуби замима</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4950"/>
+        <location filename="../src/application/mainwindow.cpp" line="4891"/>
         <source>System</source>
         <translation>Системавӣ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4951"/>
+        <location filename="../src/application/mainwindow.cpp" line="4892"/>
         <source>System2</source>
         <translation>Системавӣ 2</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4952"/>
+        <location filename="../src/application/mainwindow.cpp" line="4893"/>
         <source>Green</source>
         <translation>Сабз</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4953"/>
+        <location filename="../src/application/mainwindow.cpp" line="4894"/>
         <source>Orange</source>
         <translation>Норанҷӣ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4954"/>
+        <location filename="../src/application/mainwindow.cpp" line="4895"/>
         <source>Purple</source>
         <translation>Бунафш</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4955"/>
+        <location filename="../src/application/mainwindow.cpp" line="4896"/>
         <source>Pink</source>
         <translation>Гулдор</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4956"/>
+        <location filename="../src/application/mainwindow.cpp" line="4897"/>
         <source>Gray</source>
         <translation>Хокистарӣ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4958"/>
+        <location filename="../src/application/mainwindow.cpp" line="4899"/>
         <source>Browser Position</source>
         <translation>Мавқеъи браузер</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4959"/>
+        <location filename="../src/application/mainwindow.cpp" line="4900"/>
         <source>Top</source>
         <translation>Дар боло</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4960"/>
+        <location filename="../src/application/mainwindow.cpp" line="4901"/>
         <source>Bottom</source>
         <translation>Дар поён</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4961"/>
+        <location filename="../src/application/mainwindow.cpp" line="4902"/>
         <source>Right</source>
         <translation>Аз рост</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4962"/>
+        <location filename="../src/application/mainwindow.cpp" line="4903"/>
         <source>Left</source>
         <translation>Аз чап</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4964"/>
+        <location filename="../src/application/mainwindow.cpp" line="4905"/>
         <source>Show Window</source>
         <translation>Нишондоди равзана</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4966"/>
+        <location filename="../src/application/mainwindow.cpp" line="4907"/>
         <source>Previous Feed</source>
         <translation>Тасмаи пешгузашта</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4967"/>
+        <location filename="../src/application/mainwindow.cpp" line="4908"/>
         <source>Next Feed</source>
         <translation>Тасмаи оянда</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4968"/>
+        <location filename="../src/application/mainwindow.cpp" line="4909"/>
         <source>Previous News</source>
         <translation>Хабари пешгузашта</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4969"/>
+        <location filename="../src/application/mainwindow.cpp" line="4910"/>
         <source>Next News</source>
         <translation>Хабари оянда</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4970"/>
+        <location filename="../src/application/mainwindow.cpp" line="4911"/>
         <source>News Page Up</source>
         <translation>Саҳифаи ахборот боло</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4971"/>
+        <location filename="../src/application/mainwindow.cpp" line="4912"/>
         <source>News Page Down</source>
         <translation>Саҳифаи ахборот поён</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4973"/>
+        <location filename="../src/application/mainwindow.cpp" line="4914"/>
         <source>Next Unread News</source>
         <translation>Хабари ояндаи нахонда</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4974"/>
+        <location filename="../src/application/mainwindow.cpp" line="4915"/>
         <source>Previous Unread News</source>
         <translation>Хабари пешгузаштаи нахонда</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4976"/>
+        <location filename="../src/application/mainwindow.cpp" line="4917"/>
         <source>Switch Focus to Next Panel</source>
         <translation>Гузариш ба панели оянда</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4978"/>
+        <location filename="../src/application/mainwindow.cpp" line="4919"/>
         <source>Switch Focus to Next Panel (Tree Feeds, List News, Browser)</source>
         <translation>Гузариш ба панели оянда (Дарахти тасмахо, рӯйхати хабарҳо, браузер)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4979"/>
+        <location filename="../src/application/mainwindow.cpp" line="4920"/>
         <source>Switch Focus to Previous Panel</source>
         <translation>Гузариш ба панели пешгузашта</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4981"/>
+        <location filename="../src/application/mainwindow.cpp" line="4922"/>
         <source>Switch Focus to Previous Panel (Tree Feeds, Browser, List News)</source>
         <translation>Гузариш ба панели пешгузашта (Дарахти тасмахо, рӯйхати хабарҳо, браузер)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4983"/>
+        <location filename="../src/application/mainwindow.cpp" line="4924"/>
         <source>Show/Hide Tree Feeds</source>
         <translation>Нишондод/Пинҳони дарахти тасмаҳо</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4985"/>
+        <location filename="../src/application/mainwindow.cpp" line="4926"/>
         <source>Minimize to Tray</source>
         <translation>Минимизатсия ба трей</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4986"/>
+        <location filename="../src/application/mainwindow.cpp" line="4927"/>
         <source>Minimize Application to Tray</source>
         <translation>Минимизатсияи замима ба трей</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4988"/>
+        <location filename="../src/application/mainwindow.cpp" line="4929"/>
         <source>Columns</source>
         <translation>Сутунҳо</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4993"/>
+        <location filename="../src/application/mainwindow.cpp" line="4934"/>
         <source>Show Indentation</source>
         <translation>Нишондоди фосила</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4995"/>
-        <location filename="../src/application/mainwindow.cpp" line="4996"/>
+        <location filename="../src/application/mainwindow.cpp" line="4936"/>
+        <location filename="../src/application/mainwindow.cpp" line="4937"/>
         <source>Search Feed</source>
         <translation>Ҷустуҷӯи тасма</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4998"/>
+        <location filename="../src/application/mainwindow.cpp" line="4939"/>
         <source>Zoom</source>
         <translation>Миқёс</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4999"/>
+        <location filename="../src/application/mainwindow.cpp" line="4940"/>
         <source>Zoom In</source>
         <translation>Калонкунӣ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5000"/>
+        <location filename="../src/application/mainwindow.cpp" line="4941"/>
         <source>Zoom in in browser</source>
         <translation>Калонкунии миқёс дар браузер</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5001"/>
+        <location filename="../src/application/mainwindow.cpp" line="4942"/>
         <source>Zoom Out</source>
         <translation>Хурдкунӣ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5002"/>
+        <location filename="../src/application/mainwindow.cpp" line="4943"/>
         <source>Zoom out in browser</source>
         <translation>Хурдкунии миқёс дар браузер</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5003"/>
+        <location filename="../src/application/mainwindow.cpp" line="4944"/>
         <source>100%</source>
         <translation>100%</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5006"/>
+        <location filename="../src/application/mainwindow.cpp" line="4947"/>
         <source>Print...</source>
         <translation>Чоп...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5008"/>
+        <location filename="../src/application/mainwindow.cpp" line="4949"/>
         <source>Print Preview...</source>
         <translation>Аз назар гузаронии пеш аз чоп...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5011"/>
+        <location filename="../src/application/mainwindow.cpp" line="4952"/>
         <source>Page up (Browser)</source>
         <translation>Саҳифа боло (Браузер)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5012"/>
+        <location filename="../src/application/mainwindow.cpp" line="4953"/>
         <source>Page down (Browser)</source>
         <translation>Саҳифа поён (Браузер)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5014"/>
+        <location filename="../src/application/mainwindow.cpp" line="4955"/>
         <source>Save As...</source>
         <translation>Сабт ҳамчун...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5015"/>
+        <location filename="../src/application/mainwindow.cpp" line="4956"/>
         <source>Save Page As...</source>
         <translation>Сабти саҳифа ҳамчун...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5019"/>
+        <location filename="../src/application/mainwindow.cpp" line="4960"/>
         <source>Show/Hide</source>
         <translation>Нишондод/Пинҳон</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5021"/>
+        <location filename="../src/application/mainwindow.cpp" line="4962"/>
         <source>Feeds Toolbar</source>
         <translation>Панели тасмаҳо</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5022"/>
+        <location filename="../src/application/mainwindow.cpp" line="4963"/>
         <source>News Toolbar</source>
         <translation>Панели рӯйхати ахборот</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5023"/>
+        <location filename="../src/application/mainwindow.cpp" line="4964"/>
         <source>Browser Toolbar</source>
         <translation>Панели браузер</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5024"/>
+        <location filename="../src/application/mainwindow.cpp" line="4965"/>
         <source>Panel Categories</source>
         <translation>Панели зумраҳо</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5025"/>
+        <location filename="../src/application/mainwindow.cpp" line="4966"/>
         <source>Status Bar</source>
         <translation>Сатри ҳолат</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5027"/>
-        <location filename="../src/application/mainwindow.cpp" line="5028"/>
+        <location filename="../src/application/mainwindow.cpp" line="4968"/>
+        <location filename="../src/application/mainwindow.cpp" line="4969"/>
         <source>Full Screen</source>
         <translation>Ба тамоми экран</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5030"/>
-        <location filename="../src/application/mainwindow.cpp" line="5031"/>
+        <location filename="../src/application/mainwindow.cpp" line="4971"/>
+        <location filename="../src/application/mainwindow.cpp" line="4972"/>
         <source>Stay On Top</source>
         <translation>Аз болои ҳамаи равзанаҳо</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5033"/>
+        <location filename="../src/application/mainwindow.cpp" line="4974"/>
         <source>Categories</source>
         <translation>Зумраҳо</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5039"/>
-        <location filename="../src/application/mainwindow.cpp" line="5040"/>
+        <location filename="../src/application/mainwindow.cpp" line="4980"/>
+        <location filename="../src/application/mainwindow.cpp" line="4981"/>
         <source>Label</source>
         <translation>Нишона</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5041"/>
+        <location filename="../src/application/mainwindow.cpp" line="4982"/>
         <source>Show labels menu</source>
         <translation>Нишондоди менюи нишонҳо</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5043"/>
+        <location filename="../src/application/mainwindow.cpp" line="4984"/>
         <source>Close Tab</source>
         <translation>Пӯшидани варақа</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5044"/>
+        <location filename="../src/application/mainwindow.cpp" line="4985"/>
         <source>Close Other Tabs</source>
         <translation>Пӯшидани дигар варақаҳо</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5045"/>
+        <location filename="../src/application/mainwindow.cpp" line="4986"/>
         <source>Close All Tabs</source>
         <translation>Пӯшидани ҳамаи варақаҳо</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5046"/>
+        <location filename="../src/application/mainwindow.cpp" line="4987"/>
         <source>Switch to next tab</source>
         <translation>Гузариш ба саҳифаи оянда</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5047"/>
+        <location filename="../src/application/mainwindow.cpp" line="4988"/>
         <source>Switch to previous tab</source>
         <translation>Гузариш ба саҳифаи пешгузашта</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5049"/>
+        <location filename="../src/application/mainwindow.cpp" line="4990"/>
         <source>Unread</source>
         <translation>Нахонда</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5050"/>
+        <location filename="../src/application/mainwindow.cpp" line="4991"/>
         <source>Starred</source>
         <translation>Қайдшуда</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5051"/>
+        <location filename="../src/application/mainwindow.cpp" line="4992"/>
         <source>Deleted</source>
         <translation>Хориҷшуда</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5052"/>
+        <location filename="../src/application/mainwindow.cpp" line="4993"/>
         <source>Labels</source>
         <translation>Нишонаҳо</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5054"/>
+        <location filename="../src/application/mainwindow.cpp" line="4995"/>
         <source>Decrease news list/increase browser</source>
         <translation>Хурдкунии рӯйхати ахборот/калон кардани браузер</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5055"/>
+        <location filename="../src/application/mainwindow.cpp" line="4996"/>
         <source>Increase news list/decrease browser</source>
         <translation>Калонкунии рӯйхати ахборот/хурд кардани браузер</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5057"/>
+        <location filename="../src/application/mainwindow.cpp" line="4998"/>
         <source>Find</source>
         <translation>Ҷустуҷӯ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5059"/>
+        <location filename="../src/application/mainwindow.cpp" line="5000"/>
         <source>Open Homepage Feed</source>
         <translation>Кушодани сомонаи тасма</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5060"/>
+        <location filename="../src/application/mainwindow.cpp" line="5001"/>
         <source>Sort by Name</source>
         <translation>Яккачин аз рӯи ном</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5061"/>
+        <location filename="../src/application/mainwindow.cpp" line="5002"/>
         <source>Collapse All Folders</source>
         <translation>Печонидани ҳамаи папкаҳо</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5062"/>
+        <location filename="../src/application/mainwindow.cpp" line="5003"/>
         <source>Expand All Folders</source>
         <translation>Паҳни ҳамаи папкаҳо</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5063"/>
+        <location filename="../src/application/mainwindow.cpp" line="5004"/>
         <source>Next Folder</source>
         <translation>Папкаи оянда</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5064"/>
+        <location filename="../src/application/mainwindow.cpp" line="5005"/>
         <source>Previous Folder</source>
         <translation>Папкаи пешгузашта</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5065"/>
+        <location filename="../src/application/mainwindow.cpp" line="5006"/>
         <source>Expand Folder</source>
         <translation>Паҳни папка</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5067"/>
+        <location filename="../src/application/mainwindow.cpp" line="5008"/>
         <source>Setting Page: Labels</source>
         <translation>Саҳифаи танзимот: нишонҳо</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5069"/>
+        <location filename="../src/application/mainwindow.cpp" line="5010"/>
         <source>Share</source>
         <translation>Ба ҳам дидан</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5071"/>
+        <location filename="../src/application/mainwindow.cpp" line="5012"/>
         <source>Sort By</source>
         <translation>Яккачин аз рӯи</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5072"/>
+        <location filename="../src/application/mainwindow.cpp" line="5013"/>
         <source>Ascending</source>
         <translation>Афзоиш</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5073"/>
+        <location filename="../src/application/mainwindow.cpp" line="5014"/>
         <source>Descending</source>
         <translation>Камшавӣ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5924"/>
+        <location filename="../src/application/mainwindow.cpp" line="5906"/>
         <source>Check for updates</source>
         <translation>Тафтиши навовариҳо</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5925"/>
+        <location filename="../src/application/mainwindow.cpp" line="5907"/>
         <source>A new version of QuiteRSS...</source>
         <translation>Нашри нави QuiteRSS...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="6310"/>
+        <location filename="../src/application/mainwindow.cpp" line="6286"/>
         <source>Loading...</source>
         <translation>Гирифтор...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="6895"/>
-        <location filename="../src/application/mainwindow.cpp" line="6912"/>
+        <location filename="../src/application/mainwindow.cpp" line="6871"/>
+        <location filename="../src/application/mainwindow.cpp" line="6888"/>
         <source>Web Page</source>
         <translation>Веб-саҳифа</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="7469"/>
+        <location filename="../src/application/mainwindow.cpp" line="7445"/>
         <source>Save As</source>
         <translation>Сабт ҳамчун</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="7471"/>
+        <location filename="../src/application/mainwindow.cpp" line="7447"/>
         <source>HTML-Files (*.%1)</source>
         <translation>HTML-файлҳо (*.%1)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="7471"/>
+        <location filename="../src/application/mainwindow.cpp" line="7447"/>
         <source>Text files (*.%2)</source>
         <translation>Файлҳои матнӣ (*.%2)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="7477"/>
+        <location filename="../src/application/mainwindow.cpp" line="7453"/>
         <source>Save As: can&apos;t open a file</source>
         <translation>Сабт ҳамчун: файл кушода нашуд</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="7973"/>
+        <location filename="../src/application/mainwindow.cpp" line="7949"/>
         <source>Choose Directory</source>
         <translation>Интихоби каталог</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.h" line="101"/>
+        <location filename="../src/application/mainwindow.h" line="103"/>
         <source>Important</source>
         <translation>Муҳим</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.h" line="101"/>
+        <location filename="../src/application/mainwindow.h" line="103"/>
         <source>Work</source>
         <translation>Кор</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.h" line="101"/>
+        <location filename="../src/application/mainwindow.h" line="103"/>
         <source>Personal</source>
         <translation>Шахсӣ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.h" line="102"/>
+        <location filename="../src/application/mainwindow.h" line="104"/>
         <source>To Do</source>
         <translation>Бояд кард</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.h" line="102"/>
+        <location filename="../src/application/mainwindow.h" line="104"/>
         <source>Later</source>
         <translation>Баъдтар</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.h" line="102"/>
+        <location filename="../src/application/mainwindow.h" line="104"/>
         <source>Amusingly</source>
         <translation>Шавқовар</translation>
     </message>
@@ -2602,57 +2615,57 @@ Ancient news could reappear</source>
 <context>
     <name>NewsHeader</name>
     <message>
-        <location filename="../src/newsheader.cpp" line="402"/>
+        <location filename="../src/newsview/newsheader.cpp" line="396"/>
         <source>Icon Feed</source>
         <translation>Тасвири тасма</translation>
     </message>
     <message>
-        <location filename="../src/newsheader.cpp" line="403"/>
+        <location filename="../src/newsview/newsheader.cpp" line="397"/>
         <source>Title</source>
         <translation>Сарлавҳа</translation>
     </message>
     <message>
-        <location filename="../src/newsheader.cpp" line="404"/>
+        <location filename="../src/newsview/newsheader.cpp" line="398"/>
         <source>Published</source>
         <translation>Нашр шудааст</translation>
     </message>
     <message>
-        <location filename="../src/newsheader.cpp" line="405"/>
+        <location filename="../src/newsview/newsheader.cpp" line="399"/>
         <source>Received</source>
         <translation>Қабул шудааст</translation>
     </message>
     <message>
-        <location filename="../src/newsheader.cpp" line="406"/>
+        <location filename="../src/newsview/newsheader.cpp" line="400"/>
         <source>Author</source>
         <translation>Муаллиф</translation>
     </message>
     <message>
-        <location filename="../src/newsheader.cpp" line="407"/>
+        <location filename="../src/newsview/newsheader.cpp" line="401"/>
         <source>Category</source>
         <translation>Зумра</translation>
     </message>
     <message>
-        <location filename="../src/newsheader.cpp" line="408"/>
+        <location filename="../src/newsview/newsheader.cpp" line="402"/>
         <source>Read</source>
         <translation>Хондашуда</translation>
     </message>
     <message>
-        <location filename="../src/newsheader.cpp" line="409"/>
+        <location filename="../src/newsview/newsheader.cpp" line="403"/>
         <source>Star</source>
         <translation>Ситорача</translation>
     </message>
     <message>
-        <location filename="../src/newsheader.cpp" line="410"/>
+        <location filename="../src/newsview/newsheader.cpp" line="404"/>
         <source>Label</source>
         <translation>Нишон</translation>
     </message>
     <message>
-        <location filename="../src/newsheader.cpp" line="411"/>
+        <location filename="../src/newsview/newsheader.cpp" line="405"/>
         <source>Feed Title</source>
         <translation>Сарлавҳаи тасма</translation>
     </message>
     <message>
-        <location filename="../src/newsheader.cpp" line="412"/>
+        <location filename="../src/newsview/newsheader.cpp" line="406"/>
         <source>Link</source>
         <translation>Линк</translation>
     </message>
@@ -2660,12 +2673,12 @@ Ancient news could reappear</source>
 <context>
     <name>NewsItem</name>
     <message>
-        <location filename="../src/notifications/notificationsnewsitem.cpp" line="38"/>
+        <location filename="../src/notifications/notificationsnewsitem.cpp" line="37"/>
         <source>Mark Read/Unread</source>
         <translation>Қайд ҳамчун хондашуда/хонданашуда</translation>
     </message>
     <message>
-        <location filename="../src/notifications/notificationsnewsitem.cpp" line="47"/>
+        <location filename="../src/notifications/notificationsnewsitem.cpp" line="46"/>
         <source>Delete News</source>
         <translation>Хориҷи хабарҳо</translation>
     </message>
@@ -2673,189 +2686,190 @@ Ancient news could reappear</source>
 <context>
     <name>NewsTabWidget</name>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="600"/>
+        <location filename="../src/newstabwidget.cpp" line="602"/>
         <source>Loading... (%p%)</source>
         <translation>Гирифтор... (%p%)</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="602"/>
+        <location filename="../src/newstabwidget.cpp" line="604"/>
         <source>Home</source>
         <translation>Саҳифаи аввал</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="603"/>
+        <location filename="../src/newstabwidget.cpp" line="605"/>
         <source>Open Page in External Browser</source>
         <translation>Кушодани саҳифа дар браузери беруна</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="604"/>
+        <location filename="../src/newstabwidget.cpp" line="606"/>
         <source>Open Link in External Browser</source>
         <translation>Кушодани линк дар браузери беруна</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="606"/>
+        <location filename="../src/newstabwidget.cpp" line="608"/>
         <source>Open Link</source>
         <translation>Кушодани линк</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="607"/>
+        <location filename="../src/newstabwidget.cpp" line="609"/>
+        <location filename="../src/newstabwidget.cpp" line="610"/>
         <source>Open in New Tab</source>
         <translation>Кушодан дар варақаи нав</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="608"/>
+        <location filename="../src/newstabwidget.cpp" line="611"/>
         <source>Save Link...</source>
         <translation>Сабт аз линк ҳамчун...</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="609"/>
+        <location filename="../src/newstabwidget.cpp" line="612"/>
         <source>Save Image...</source>
         <translation>Сабти тасвир...</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="610"/>
+        <location filename="../src/newstabwidget.cpp" line="613"/>
         <source>Copy Link</source>
         <translation>Нусхабардории суроғаи линк</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="611"/>
+        <location filename="../src/newstabwidget.cpp" line="614"/>
         <source>Copy</source>
         <translation>Нусхагирӣ</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="612"/>
+        <location filename="../src/newstabwidget.cpp" line="615"/>
         <source>Go Back</source>
         <translation>Ба қафо</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="613"/>
+        <location filename="../src/newstabwidget.cpp" line="616"/>
         <source>Go Forward</source>
         <translation>Ба пеш</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="614"/>
+        <location filename="../src/newstabwidget.cpp" line="617"/>
         <source>Stop</source>
         <translation>Манъ</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="615"/>
+        <location filename="../src/newstabwidget.cpp" line="618"/>
         <source>Reload</source>
         <translation>Азнавкунӣ</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="616"/>
+        <location filename="../src/newstabwidget.cpp" line="619"/>
         <source>Copy Image</source>
         <translation>Нусхагирии тасвир</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="618"/>
+        <location filename="../src/newstabwidget.cpp" line="621"/>
         <source>Copy Image Address</source>
         <translation>Нусхагирии суроғаи тасвир</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="628"/>
-        <location filename="../src/newstabwidget.cpp" line="649"/>
+        <location filename="../src/newstabwidget.cpp" line="631"/>
+        <location filename="../src/newstabwidget.cpp" line="652"/>
         <source>Load Images</source>
         <translation>Гирифтори тасвирҳо</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="629"/>
+        <location filename="../src/newstabwidget.cpp" line="632"/>
         <source>Auto Load Images to News View</source>
         <translation>Боркунии автоматии тасвирҳо</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="631"/>
+        <location filename="../src/newstabwidget.cpp" line="634"/>
         <source>No Load Images</source>
         <translation>Бор накардани тасвирҳо</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="632"/>
+        <location filename="../src/newstabwidget.cpp" line="635"/>
         <source>No Load Images to News View</source>
         <translation>Бор накардани тасвирҳо ба намоиши хабарҳо</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="637"/>
+        <location filename="../src/newstabwidget.cpp" line="640"/>
         <source>Close Tab</source>
         <translation>Пӯшидани варақа</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="650"/>
+        <location filename="../src/newstabwidget.cpp" line="653"/>
         <source>Auto Load Images in News View</source>
         <translation>Боркунии автоматии тасвирҳо</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="653"/>
+        <location filename="../src/newstabwidget.cpp" line="656"/>
         <source>Don&apos;t Load Images</source>
         <translation>Бор накардани тасвирҳо</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="654"/>
+        <location filename="../src/newstabwidget.cpp" line="657"/>
         <source>Don&apos;t Load Images in News View</source>
         <translation>Бор накардани тасвирҳо</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1447"/>
-        <location filename="../src/newstabwidget.cpp" line="1676"/>
+        <location filename="../src/newstabwidget.cpp" line="1451"/>
+        <location filename="../src/newstabwidget.cpp" line="1680"/>
         <source>Comments</source>
         <translation>Шарҳҳо</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1453"/>
-        <location filename="../src/newstabwidget.cpp" line="1682"/>
+        <location filename="../src/newstabwidget.cpp" line="1457"/>
+        <location filename="../src/newstabwidget.cpp" line="1686"/>
         <source>Author: %1</source>
         <translation>Муаллиф: %1</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1484"/>
-        <location filename="../src/newstabwidget.cpp" line="1713"/>
+        <location filename="../src/newstabwidget.cpp" line="1488"/>
+        <location filename="../src/newstabwidget.cpp" line="1717"/>
         <source>audio</source>
         <translation>аудио</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1489"/>
-        <location filename="../src/newstabwidget.cpp" line="1718"/>
+        <location filename="../src/newstabwidget.cpp" line="1493"/>
+        <location filename="../src/newstabwidget.cpp" line="1722"/>
         <source>video</source>
         <translation>видео</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1493"/>
-        <location filename="../src/newstabwidget.cpp" line="1722"/>
+        <location filename="../src/newstabwidget.cpp" line="1497"/>
+        <location filename="../src/newstabwidget.cpp" line="1726"/>
         <source>media</source>
         <translation>медиа</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1496"/>
-        <location filename="../src/newstabwidget.cpp" line="1725"/>
+        <location filename="../src/newstabwidget.cpp" line="1500"/>
+        <location filename="../src/newstabwidget.cpp" line="1729"/>
         <source>Link to</source>
         <translation>Линк ба</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1606"/>
+        <location filename="../src/newstabwidget.cpp" line="1610"/>
         <source>Mark Read/Unread</source>
         <translation>Қайд ҳамчун хондашуда/хонданашуда</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1743"/>
+        <location filename="../src/newstabwidget.cpp" line="1747"/>
         <source>Mark News Star</source>
         <translation>Қайди хабар бо ситорача</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1747"/>
+        <location filename="../src/newstabwidget.cpp" line="1751"/>
         <source>Label</source>
         <translation>Нишона</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1751"/>
+        <location filename="../src/newstabwidget.cpp" line="1755"/>
         <source>Share</source>
         <translation>Ба ҳам дидан</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1755"/>
+        <location filename="../src/newstabwidget.cpp" line="1759"/>
         <source>Open News in External Browser</source>
         <translation>Кушодани хабар дар браузери беруна</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1759"/>
+        <location filename="../src/newstabwidget.cpp" line="1763"/>
         <source>Delete</source>
         <translation>Хориҷ</translation>
     </message>
@@ -2904,8 +2918,8 @@ Ancient news could reappear</source>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="65"/>
-        <location filename="../src/optionsdialog.cpp" line="745"/>
-        <location filename="../src/optionsdialog.cpp" line="997"/>
+        <location filename="../src/optionsdialog.cpp" line="748"/>
+        <location filename="../src/optionsdialog.cpp" line="1000"/>
         <source>General</source>
         <translation>Умимӣ</translation>
     </message>
@@ -2926,19 +2940,19 @@ Ancient news could reappear</source>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="77"/>
-        <location filename="../src/optionsdialog.cpp" line="1138"/>
+        <location filename="../src/optionsdialog.cpp" line="1141"/>
         <source>Feeds</source>
         <translation>Тасмаҳо</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="80"/>
-        <location filename="../src/optionsdialog.cpp" line="1883"/>
+        <location filename="../src/optionsdialog.cpp" line="1886"/>
         <source>Labels</source>
         <translation>Нишонаҳо</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="83"/>
-        <location filename="../src/optionsdialog.cpp" line="1885"/>
+        <location filename="../src/optionsdialog.cpp" line="1888"/>
         <source>Notifications</source>
         <translation>Огоҳиҳо</translation>
     </message>
@@ -2949,7 +2963,7 @@ Ancient news could reappear</source>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="89"/>
-        <location filename="../src/optionsdialog.cpp" line="1310"/>
+        <location filename="../src/optionsdialog.cpp" line="1313"/>
         <source>Language</source>
         <translation>Забон</translation>
     </message>
@@ -2964,1143 +2978,1143 @@ Ancient news could reappear</source>
         <translation>Мухтасарҳои тугмавӣ</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="264"/>
-        <location filename="../src/optionsdialog.cpp" line="2215"/>
+        <location filename="../src/optionsdialog.cpp" line="267"/>
+        <location filename="../src/optionsdialog.cpp" line="2218"/>
         <source>Warning: key is already assigned to</source>
         <translation>Таваҷҷӯҳ: тугма муайян шудааст ба</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="288"/>
+        <location filename="../src/optionsdialog.cpp" line="291"/>
         <source>Show splash screen on startup</source>
         <translation>Нишондоди лавҳа ҳангоми оғоз</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="289"/>
+        <location filename="../src/optionsdialog.cpp" line="292"/>
         <source>Reopen last opened feeds on startup</source>
         <translation>Такроран кушодани охирон тасма ҳангоми даъвати барнома</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="290"/>
+        <location filename="../src/optionsdialog.cpp" line="293"/>
         <source>Open new tab next to active</source>
         <translation>Кушодани варақаи нав ҳамчун фаъол</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="291"/>
+        <location filename="../src/optionsdialog.cpp" line="294"/>
         <source>Hide feeds tree when opening tabs</source>
         <translation>Пинҳони дарахти тасмаҳо ҳангоми кушодани саҳифаи нав</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="293"/>
+        <location filename="../src/optionsdialog.cpp" line="296"/>
         <source>Show default rss-icon instead of favourite one</source>
         <translation>Нишондоди тасвири муқаррарӣ барои тасмаҳо</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="294"/>
+        <location filename="../src/optionsdialog.cpp" line="297"/>
         <source>Automatically collapse folders</source>
         <translation>Автоматӣ печонидани папкаҳо</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="295"/>
+        <location filename="../src/optionsdialog.cpp" line="298"/>
         <source>Show close button on tab</source>
         <translation>Нишондоди тугмаи пӯшидашавӣ дар замима</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="297"/>
+        <location filename="../src/optionsdialog.cpp" line="300"/>
         <source>Automatically check for updates</source>
         <translation>Автоматӣ тафтиши навовариҳо</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="298"/>
+        <location filename="../src/optionsdialog.cpp" line="301"/>
         <source>Help improve QuiteRSS by sending usage information</source>
         <translation>Кӯмак барои беҳтар намудани QuiteRSS бо ирсоли омори истифодабарӣ</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="299"/>
+        <location filename="../src/optionsdialog.cpp" line="302"/>
         <source>Store a DB in memory (requires program restart)</source>
         <translation>Нигоҳдошти ММ дар хотира (азнавкушодани барнома лозим аст)</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="306"/>
+        <location filename="../src/optionsdialog.cpp" line="309"/>
         <source>Save DB stored in memory to file every</source>
         <translation>Сабти ММ аз хотира ба файл ҳар</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="308"/>
-        <location filename="../src/optionsdialog.cpp" line="769"/>
+        <location filename="../src/optionsdialog.cpp" line="311"/>
+        <location filename="../src/optionsdialog.cpp" line="772"/>
         <source>minutes</source>
         <translation>дақиқа</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="330"/>
+        <location filename="../src/optionsdialog.cpp" line="333"/>
         <source>Run QuiteRSS at Windows startup</source>
         <translation>Оғози QuiteRSS дар ибтидои кори Windows</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="358"/>
+        <location filename="../src/optionsdialog.cpp" line="361"/>
         <source>Show system tray icon</source>
         <translation>Нишондоди тасвир дар трейи системавӣ</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="361"/>
+        <location filename="../src/optionsdialog.cpp" line="364"/>
         <source>starting QuiteRSS</source>
         <translation>ҳангоми даъвати QuiteRSS</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="362"/>
+        <location filename="../src/optionsdialog.cpp" line="365"/>
         <source>minimizing QuiteRSS</source>
         <translation>ҳангоми минимизатсияи QuiteRSS</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="363"/>
+        <location filename="../src/optionsdialog.cpp" line="366"/>
         <source>closing QuiteRSS</source>
         <translation>ҳангоми пӯшидани QuiteRSS</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="370"/>
+        <location filename="../src/optionsdialog.cpp" line="373"/>
         <source>Show static icon</source>
         <translation>Нишондоди тасвири статикӣ</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="371"/>
+        <location filename="../src/optionsdialog.cpp" line="374"/>
         <source>Change icon for incoming new news</source>
         <translation>Тағйири тасвир ҳангоми қабули хабарҳои нав</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="372"/>
+        <location filename="../src/optionsdialog.cpp" line="375"/>
         <source>Show count of new news</source>
         <translation>Нишондоди миқдори хабарҳои нав</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="373"/>
+        <location filename="../src/optionsdialog.cpp" line="376"/>
         <source>Show count of unread news</source>
         <translation>Нишондоди миқдори хабарҳои хонданашуда</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="382"/>
+        <location filename="../src/optionsdialog.cpp" line="385"/>
         <source>Single click instead of double click for show window</source>
         <translation>Пахши яккарата барои нишондоди равзана</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="384"/>
+        <location filename="../src/optionsdialog.cpp" line="387"/>
         <source>Empty working set on minimize to tray</source>
         <translation>Холикунии хотира ҳангоми минимизатсия ба трей</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="388"/>
+        <location filename="../src/optionsdialog.cpp" line="391"/>
         <source>Move to the system tray when:</source>
         <translation>Ҷойкунӣ дар трейи системавӣ:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="391"/>
+        <location filename="../src/optionsdialog.cpp" line="394"/>
         <source>Tray icon behavior:</source>
         <translation>Рафтори тасвир дар трей:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="415"/>
+        <location filename="../src/optionsdialog.cpp" line="418"/>
         <source>Direct connection to the Internet</source>
         <translation>Пайвастшавӣ бе прокси</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="417"/>
+        <location filename="../src/optionsdialog.cpp" line="420"/>
         <source>System proxy configuration (if available)</source>
         <translation>Танзимоти системавии прокси (ҳангоми дастрас будан)</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="418"/>
+        <location filename="../src/optionsdialog.cpp" line="421"/>
         <source>Manual proxy configuration:</source>
         <translation>Танзими дастии прокси:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="437"/>
+        <location filename="../src/optionsdialog.cpp" line="440"/>
         <source>Proxy server:</source>
         <translation>Прокси-сервер:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="439"/>
+        <location filename="../src/optionsdialog.cpp" line="442"/>
         <source>Port:</source>
         <translation>Порт:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="447"/>
+        <location filename="../src/optionsdialog.cpp" line="450"/>
         <source>Username:</source>
         <translation>Номи истифодабаранда:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="449"/>
+        <location filename="../src/optionsdialog.cpp" line="452"/>
         <source>Password:</source>
         <translation>Парол:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="478"/>
+        <location filename="../src/optionsdialog.cpp" line="481"/>
         <source>Request timeout:</source>
         <translation>Таймаути дархост:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="480"/>
+        <location filename="../src/optionsdialog.cpp" line="483"/>
         <source>Number of requests:</source>
         <translation>Миқдори дархостҳо:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="482"/>
+        <location filename="../src/optionsdialog.cpp" line="485"/>
         <source>Number of retries:</source>
         <translation>Миқдори такрор:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="485"/>
+        <location filename="../src/optionsdialog.cpp" line="488"/>
         <source>Options network requests when updating feeds (requires program restart):</source>
         <translation>Танзимоти дархостҳои шабақавӣ ҳангоми азнавкунии тасмаҳо (азнавкушоии барнома зарур аст):</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="502"/>
+        <location filename="../src/optionsdialog.cpp" line="505"/>
         <source>Use embedded browser</source>
         <translation>Истифодаи браузери дохилӣ</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="503"/>
+        <location filename="../src/optionsdialog.cpp" line="506"/>
         <source>Use external browser</source>
         <translation>Истифодаи браузери берунӣ</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="504"/>
+        <location filename="../src/optionsdialog.cpp" line="507"/>
         <source>Default external browser</source>
         <translation>Браузери пешфарзи берунӣ</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="505"/>
+        <location filename="../src/optionsdialog.cpp" line="508"/>
         <source>Following external browser:</source>
         <translation>Браузери берунии оянда:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="508"/>
-        <location filename="../src/optionsdialog.cpp" line="522"/>
-        <location filename="../src/optionsdialog.cpp" line="603"/>
-        <location filename="../src/optionsdialog.cpp" line="723"/>
-        <location filename="../src/optionsdialog.cpp" line="857"/>
-        <location filename="../src/optionsdialog.cpp" line="1178"/>
+        <location filename="../src/optionsdialog.cpp" line="511"/>
+        <location filename="../src/optionsdialog.cpp" line="525"/>
+        <location filename="../src/optionsdialog.cpp" line="606"/>
+        <location filename="../src/optionsdialog.cpp" line="726"/>
+        <location filename="../src/optionsdialog.cpp" line="860"/>
+        <location filename="../src/optionsdialog.cpp" line="1181"/>
         <source>Browse...</source>
         <translation>Чашмандоз...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="510"/>
-        <location filename="../src/optionsdialog.cpp" line="2101"/>
+        <location filename="../src/optionsdialog.cpp" line="513"/>
+        <location filename="../src/optionsdialog.cpp" line="2104"/>
         <source>Load images</source>
         <translation>Гирифтори тасвирҳо</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="511"/>
+        <location filename="../src/optionsdialog.cpp" line="514"/>
         <source>Enable JavaScript</source>
         <translation>Васли JavaScript</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="512"/>
+        <location filename="../src/optionsdialog.cpp" line="515"/>
         <source>Enable plug-ins</source>
         <translation>Васли плагинҳо</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="518"/>
+        <location filename="../src/optionsdialog.cpp" line="521"/>
         <source>Open links in embedded browser in background</source>
         <translation>Кушодани линкҳо дар браузери дохилӣ</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="519"/>
+        <location filename="../src/optionsdialog.cpp" line="522"/>
         <source>Open links in external browser in background (experimental)</source>
         <translation>Кушодани линкҳо дар браузери беруна (дар озмоиш)</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="545"/>
+        <location filename="../src/optionsdialog.cpp" line="548"/>
         <source>Default zoom on pages:</source>
         <translation>Ҳаҷми пешфарзи саҳифаҳо:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="563"/>
+        <location filename="../src/optionsdialog.cpp" line="566"/>
         <source>Browser selection:</source>
         <translation>Интихоби браузер:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="565"/>
+        <location filename="../src/optionsdialog.cpp" line="568"/>
         <source>External browser:</source>
         <translation>Браузери берунӣ:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="567"/>
+        <location filename="../src/optionsdialog.cpp" line="570"/>
         <source>Content:</source>
         <translation>Мӯҳтаво:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="569"/>
+        <location filename="../src/optionsdialog.cpp" line="572"/>
         <source>User style sheet:</source>
         <translation>Ҷадвали услубҳои истифодабаранда:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="598"/>
+        <location filename="../src/optionsdialog.cpp" line="601"/>
         <source>Maximum pages in cache</source>
         <translation>Мунтаҳои сахифаҳо дар кэш</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="609"/>
+        <location filename="../src/optionsdialog.cpp" line="612"/>
         <source>Store cache in:</source>
         <translation>Нигоҳдошт дар кэш:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="617"/>
+        <location filename="../src/optionsdialog.cpp" line="620"/>
         <source>Maximum size of disk cache</source>
         <translation>Мунтаҳои ҳаҷми диск барои кэш</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="619"/>
+        <location filename="../src/optionsdialog.cpp" line="622"/>
         <source>MB</source>
         <translation>МБ</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="625"/>
+        <location filename="../src/optionsdialog.cpp" line="628"/>
         <source>Use disk cache</source>
         <translation>Истифодаи кэши диск</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="640"/>
+        <location filename="../src/optionsdialog.cpp" line="643"/>
         <source>Allow local data to be set</source>
         <translation>Иҷозати танзими маълумоти локалӣ</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="641"/>
+        <location filename="../src/optionsdialog.cpp" line="644"/>
         <source>Keep local data only until quit application</source>
         <translation>Нигоҳдошти маълумоти локалӣ то баромад аз замима</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="642"/>
+        <location filename="../src/optionsdialog.cpp" line="645"/>
         <source>Block sites from setting any data</source>
         <translation>Муҳосираи сомонаҳо аз шинонидани дилхоҳ маълумот</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="643"/>
+        <location filename="../src/optionsdialog.cpp" line="646"/>
         <source>Clear</source>
         <translation>Тоза кардан</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="659"/>
+        <location filename="../src/optionsdialog.cpp" line="662"/>
         <source>Cookies:</source>
         <translation>Cookies:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="667"/>
+        <location filename="../src/optionsdialog.cpp" line="670"/>
         <source>Click To Flash is a plugin which blocks auto loading of Flash content at page. You can always load it manually by clicking on the Flash play icon.</source>
         <translation>Click To Flash - плагин барои муҳосираи автоматӣ гирифтори Flash мӯҳтавои саҳифа мебошад. Шумо метавонед мӯҳтавои муҳосирашударо по пахш дар тугмаи Play азназар гузаронед.</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="672"/>
+        <location filename="../src/optionsdialog.cpp" line="675"/>
         <source>Use Click to Flash</source>
         <translation>Истифодаи Click to Flash</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="684"/>
+        <location filename="../src/optionsdialog.cpp" line="687"/>
         <source>Add...</source>
         <translation>Илова...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="686"/>
+        <location filename="../src/optionsdialog.cpp" line="689"/>
         <source>Remove...</source>
         <translation>Хориҷ...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="727"/>
+        <location filename="../src/optionsdialog.cpp" line="730"/>
         <source>Ask where to save each file before downloading</source>
         <translation>Пурсиши мавқеъи сабти ҳар файл пеш аз гирифтор</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="737"/>
+        <location filename="../src/optionsdialog.cpp" line="740"/>
         <source>Download location:</source>
         <translation>Мавқеъи гирифтор:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="746"/>
+        <location filename="../src/optionsdialog.cpp" line="749"/>
         <source>History</source>
         <translation>Таърих</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="747"/>
+        <location filename="../src/optionsdialog.cpp" line="750"/>
         <source>Privacy</source>
         <translation>Махфият</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="748"/>
+        <location filename="../src/optionsdialog.cpp" line="751"/>
         <source>Click to Flash</source>
         <translation>Click to Flash</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="749"/>
+        <location filename="../src/optionsdialog.cpp" line="752"/>
         <source>Downloads</source>
         <translation>Гирифторҳо</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="758"/>
+        <location filename="../src/optionsdialog.cpp" line="761"/>
         <source>Automatically update the feeds on startup</source>
         <translation>Автоматӣ азнавкунии тасмаҳо ҳангоми оғоз</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="759"/>
+        <location filename="../src/optionsdialog.cpp" line="762"/>
         <source>Automatically update the feeds every</source>
         <translation>Автоматӣ азнавкунии тасмаҳо ҳар</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="769"/>
-        <location filename="../src/optionsdialog.cpp" line="914"/>
-        <location filename="../src/optionsdialog.cpp" line="1118"/>
+        <location filename="../src/optionsdialog.cpp" line="772"/>
+        <location filename="../src/optionsdialog.cpp" line="917"/>
+        <location filename="../src/optionsdialog.cpp" line="1121"/>
         <source>seconds</source>
         <translation>сония</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="769"/>
+        <location filename="../src/optionsdialog.cpp" line="772"/>
         <source>hours</source>
         <translation>соат</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="785"/>
+        <location filename="../src/optionsdialog.cpp" line="788"/>
         <source>Nothing to do</source>
         <translation>Ҳеҷ кор накардан</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="800"/>
+        <location filename="../src/optionsdialog.cpp" line="803"/>
         <source>Dec</source>
         <translation>Дек</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="801"/>
+        <location filename="../src/optionsdialog.cpp" line="804"/>
         <source>December</source>
         <translation>Декабр</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="824"/>
+        <location filename="../src/optionsdialog.cpp" line="827"/>
         <source>Display format for date:</source>
         <translation>Нишондоди намуди сана:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="827"/>
+        <location filename="../src/optionsdialog.cpp" line="830"/>
         <source>time:</source>
         <translation>вақт:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="831"/>
+        <location filename="../src/optionsdialog.cpp" line="834"/>
         <source>Alternating row background colors</source>
         <translation>Пайдарпайии ранги фони сатрҳо</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="832"/>
+        <location filename="../src/optionsdialog.cpp" line="835"/>
         <source>Simplified representation of date and time</source>
         <translation>Пешниҳоди соддаи сана ва вақт</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="835"/>
+        <location filename="../src/optionsdialog.cpp" line="838"/>
         <source>Show All</source>
         <translation>Нишондоди ҳама</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="835"/>
+        <location filename="../src/optionsdialog.cpp" line="838"/>
         <source>Show New</source>
         <translation>Нишондоди нав</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="835"/>
+        <location filename="../src/optionsdialog.cpp" line="838"/>
         <source>Show Unread</source>
         <translation>Нишондоди нахонда</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="836"/>
+        <location filename="../src/optionsdialog.cpp" line="839"/>
         <source>Show Starred</source>
         <translation>Нишондоди бо ситорача қайд шуда</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="836"/>
+        <location filename="../src/optionsdialog.cpp" line="839"/>
         <source>Show Not Starred</source>
         <translation>Нишондоди қайд нашуда</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="837"/>
+        <location filename="../src/optionsdialog.cpp" line="840"/>
         <source>Show Unread or Starred</source>
         <translation>Нишондоди нахонда ё қайдшуда</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="837"/>
+        <location filename="../src/optionsdialog.cpp" line="840"/>
         <source>Show Last Day</source>
         <translation>Нишондод барои рӯзи гузашта</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="838"/>
+        <location filename="../src/optionsdialog.cpp" line="841"/>
         <source>Show Last 7 Days</source>
         <translation>Нишондод барои 7 рӯзи гузашта</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="879"/>
+        <location filename="../src/optionsdialog.cpp" line="882"/>
         <source>Style sheet for news:</source>
         <translation>Интихоби услуби ҷадвал барои ахборот:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="887"/>
+        <location filename="../src/optionsdialog.cpp" line="890"/>
         <source>Mark news as read:</source>
         <translation>Қайд ҳамчун хондашуда:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="889"/>
+        <location filename="../src/optionsdialog.cpp" line="892"/>
         <source>on selecting. With timeout</source>
         <translation>ҳангоми интихоб. Бо боздоштан ба</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="890"/>
+        <location filename="../src/optionsdialog.cpp" line="893"/>
         <source>after switching to another news</source>
         <translation>баъди гузариш ба хабари дигар</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="896"/>
+        <location filename="../src/optionsdialog.cpp" line="899"/>
         <source>Mark displayed news as read when switching feeds</source>
         <translation>Қайди хабарҳои интихобшуда ҳамчун хондашуда ҳангоми ивази тасмаҳо</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="897"/>
+        <location filename="../src/optionsdialog.cpp" line="900"/>
         <source>Mark displayed news as read when closing tab</source>
         <translation>Қайди  хабарҳои нишондодашуда ҳамчун хондашуда ҳангоми пӯшидани саҳифа</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="898"/>
+        <location filename="../src/optionsdialog.cpp" line="901"/>
         <source>Mark displayed news as read on minimize</source>
         <translation>Қайди  хабарҳои нишондодашуда ҳамчун хондашуда ҳангоми минимизатсия</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="903"/>
+        <location filename="../src/optionsdialog.cpp" line="906"/>
         <source>Change behavior of action &apos;Next Unread News&apos;</source>
         <translation>Тағйири рафтори амали &apos;Хабари нахондаи оянда&apos;</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="905"/>
+        <location filename="../src/optionsdialog.cpp" line="908"/>
         <source>starred news</source>
         <translation>хабарҳои бо ситорача қайд шуда</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="906"/>
+        <location filename="../src/optionsdialog.cpp" line="909"/>
         <source>labeled news</source>
         <translation>хабарҳои нишона шуда</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="908"/>
+        <location filename="../src/optionsdialog.cpp" line="911"/>
         <source>Automatically mark identical news as read</source>
         <translation>Автоматӣ қайди хабарҳои якхела ҳамчун хондашуда</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="935"/>
+        <location filename="../src/optionsdialog.cpp" line="938"/>
         <source>Prevent accidental deletion of:</source>
         <translation>Пешгирии хориҷи тасодуфи:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="947"/>
+        <location filename="../src/optionsdialog.cpp" line="950"/>
         <source>Enable cleanup on shutdown</source>
         <translation>Тоза кардан ҳангоми анҷоми кор</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="950"/>
+        <location filename="../src/optionsdialog.cpp" line="953"/>
         <source>Maximum age of news in days to keep:</source>
         <translation>Синни мунтаҳои хабарҳои сабт мешуда дар рӯз:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="957"/>
+        <location filename="../src/optionsdialog.cpp" line="960"/>
         <source>Maximum number of news to keep:</source>
         <translation>Миқдори мунтаҳои хабарҳои сабт мешуда:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="964"/>
+        <location filename="../src/optionsdialog.cpp" line="967"/>
         <source>Delete read news</source>
         <translation>Хориҷи хабарҳои хондашуда</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="965"/>
+        <location filename="../src/optionsdialog.cpp" line="968"/>
         <source>Never delete unread news</source>
         <translation>Ҳеҷ гоҳ хориҷ накардани хабарҳои хонданашуда</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="966"/>
+        <location filename="../src/optionsdialog.cpp" line="969"/>
         <source>Never delete starred news</source>
         <translation>Ҳеҷ гоҳ хориҷ накардани хабарҳои бо ситорача қайд шуда</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="967"/>
+        <location filename="../src/optionsdialog.cpp" line="970"/>
         <source>Never delete labeled news</source>
         <translation>Ҳеҷ гоҳ хориҷ накардани хабарҳои бо нишона қайд шуда</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="969"/>
+        <location filename="../src/optionsdialog.cpp" line="972"/>
         <source>Clean up &apos;Deleted&apos;</source>
         <translation>Тоза кардани &apos;Хориҷшуда&apos;</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="970"/>
+        <location filename="../src/optionsdialog.cpp" line="973"/>
         <source>Enable DB optimization (slower shutdown)</source>
         <translation>Муносиб кардани ММ (сусттар шудани анҷоми кор)</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="998"/>
+        <location filename="../src/optionsdialog.cpp" line="1001"/>
         <source>Reading</source>
         <translation>Хондан</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="999"/>
+        <location filename="../src/optionsdialog.cpp" line="1002"/>
         <source>Clean Up</source>
         <translation>Тоза кардан</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1016"/>
+        <location filename="../src/optionsdialog.cpp" line="1019"/>
         <source>New...</source>
         <translation>Эъҷод...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1018"/>
+        <location filename="../src/optionsdialog.cpp" line="1021"/>
         <source>Edit...</source>
         <translation>Тағйирдиҳӣ...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1021"/>
+        <location filename="../src/optionsdialog.cpp" line="1024"/>
         <source>Delete...</source>
         <translation>Хориҷ...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1025"/>
+        <location filename="../src/optionsdialog.cpp" line="1028"/>
         <source>Move up</source>
         <translation>Ба боло</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1028"/>
+        <location filename="../src/optionsdialog.cpp" line="1031"/>
         <source>Move down</source>
         <translation>Ба поён</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1082"/>
+        <location filename="../src/optionsdialog.cpp" line="1085"/>
         <source>Show when inactive main window</source>
         <translation>Нишон додан вақти равзанаи асосӣ ғайрифаъол аст</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1097"/>
+        <location filename="../src/optionsdialog.cpp" line="1100"/>
         <source>Screen</source>
         <translation>Экран</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1107"/>
+        <location filename="../src/optionsdialog.cpp" line="1110"/>
         <source>Transparency</source>
         <translation>Шаффофият</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1121"/>
+        <location filename="../src/optionsdialog.cpp" line="1124"/>
         <source>Show titles feeds</source>
         <translation>Нишон додани унвонҳои асрор</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1122"/>
+        <location filename="../src/optionsdialog.cpp" line="1125"/>
         <source>Show icon feed</source>
         <translation>Нишон додани тасвири тасма</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1123"/>
+        <location filename="../src/optionsdialog.cpp" line="1126"/>
         <source>Show button &apos;Mark All News Read&apos;</source>
         <translation> Нишон додани тугмаи &quot;Қайди ҳамаи хабарҳо ҳамчун хондашуда&quot;</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1124"/>
+        <location filename="../src/optionsdialog.cpp" line="1127"/>
         <source>Show button &apos;Mark Read/Unread&apos;</source>
         <translation>Нишон додани тугмаи &quot;Қайд ҳамчун хондашуда/хонданашуда&quot;</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1125"/>
+        <location filename="../src/optionsdialog.cpp" line="1128"/>
         <source>Show button &apos;Open in External Browser&apos;</source>
         <translation>Нишон додани тугмаи &quot;Кушодан дар браузери берунӣ&quot;</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1126"/>
+        <location filename="../src/optionsdialog.cpp" line="1129"/>
         <source>Show button &apos;Delete News&apos;</source>
         <translation>Нишон додани тугмаи &quot;Хориҷи хабарҳо&quot;</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1173"/>
+        <location filename="../src/optionsdialog.cpp" line="1176"/>
         <source>Play sound for incoming new news</source>
         <translation>Садо ҳангоми қабули хабарҳои нав</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1179"/>
+        <location filename="../src/optionsdialog.cpp" line="1182"/>
         <source>Play</source>
         <translation>Пахш</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1061"/>
+        <location filename="../src/optionsdialog.cpp" line="1064"/>
         <source>Display notification for incoming news</source>
         <translation>Нишондоди огоҳӣ ҳангоми воридшудани хабарҳо</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1074"/>
+        <location filename="../src/optionsdialog.cpp" line="1077"/>
         <source>Top Left</source>
         <translation>Дар боло аз чап</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1074"/>
+        <location filename="../src/optionsdialog.cpp" line="1077"/>
         <source>Top Right</source>
         <translation>Дар боло аз рост</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1075"/>
+        <location filename="../src/optionsdialog.cpp" line="1078"/>
         <source>Bottom Left</source>
         <translation>Дар поён аз чап</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1075"/>
+        <location filename="../src/optionsdialog.cpp" line="1078"/>
         <source>Bottom Right</source>
         <translation>Дар поён аз рост</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1093"/>
+        <location filename="../src/optionsdialog.cpp" line="1096"/>
         <source>Review</source>
         <translation>Аз назар гузарондан</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1100"/>
+        <location filename="../src/optionsdialog.cpp" line="1103"/>
         <source>Position</source>
         <translation>Мавқеъ</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1110"/>
+        <location filename="../src/optionsdialog.cpp" line="1113"/>
         <source>Show maximum of</source>
         <translation>Нишондоди мунтаҳо аз</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1112"/>
+        <location filename="../src/optionsdialog.cpp" line="1115"/>
         <source>item on page notification</source>
         <translation>ҷузъ дар саҳифаи огоҳӣ</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1113"/>
+        <location filename="../src/optionsdialog.cpp" line="1116"/>
         <source>Width list items</source>
         <translation>Васеъгии рӯйхати элементҳо</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1115"/>
+        <location filename="../src/optionsdialog.cpp" line="1118"/>
         <source>pixels</source>
         <translation>пиксел</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1116"/>
+        <location filename="../src/optionsdialog.cpp" line="1119"/>
         <source>Close notification after</source>
         <translation>Пӯшидани огоҳӣ пас аз</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1078"/>
+        <location filename="../src/optionsdialog.cpp" line="1081"/>
         <source>Do not show notification in fullscreen mode</source>
         <translation>Нишон надодани огоҳӣ дар реҷаи пурраи экран</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1137"/>
+        <location filename="../src/optionsdialog.cpp" line="1140"/>
         <source>Only show selected feeds:</source>
         <translation>Нишондоди танҳо тасмаҳои интихобшуда:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1202"/>
+        <location filename="../src/optionsdialog.cpp" line="1205"/>
         <source>Notification</source>
         <translation>Огоҳи</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1203"/>
+        <location filename="../src/optionsdialog.cpp" line="1206"/>
         <source>Sound</source>
         <translation>Овоз</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1214"/>
+        <location filename="../src/optionsdialog.cpp" line="1217"/>
         <source>Selection of feeds</source>
         <translation>Интихоби асрор</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1230"/>
+        <location filename="../src/optionsdialog.cpp" line="1233"/>
         <source>All Feeds</source>
         <translation>Ҳамаи тасмаҳо</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1257"/>
+        <location filename="../src/optionsdialog.cpp" line="1260"/>
         <source>Site</source>
         <translation>Сомона</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1257"/>
+        <location filename="../src/optionsdialog.cpp" line="1260"/>
         <source>User</source>
         <translation>Истифодабаранда</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1257"/>
+        <location filename="../src/optionsdialog.cpp" line="1260"/>
         <source>Password</source>
         <translation>Парол</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1274"/>
+        <location filename="../src/optionsdialog.cpp" line="1277"/>
         <source>Delete</source>
         <translation>Хориҷ</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1276"/>
+        <location filename="../src/optionsdialog.cpp" line="1279"/>
         <source>Delete All</source>
         <translation>Хориҷи ҳама</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1278"/>
+        <location filename="../src/optionsdialog.cpp" line="1281"/>
         <source>Show Passwords</source>
         <translation>Нишондоди паролҳо</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1310"/>
+        <location filename="../src/optionsdialog.cpp" line="1313"/>
         <source>Version</source>
         <translation>Нашр</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1311"/>
+        <location filename="../src/optionsdialog.cpp" line="1314"/>
         <source>Author</source>
         <translation>Муаллиф</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1311"/>
+        <location filename="../src/optionsdialog.cpp" line="1314"/>
         <source>Contact</source>
         <translation>Тамос</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1577"/>
+        <location filename="../src/optionsdialog.cpp" line="1580"/>
         <source>Choose language:</source>
         <translation>Забонро интихоб кунед:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1598"/>
+        <location filename="../src/optionsdialog.cpp" line="1601"/>
         <source>Type</source>
         <translation>Намуд</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1598"/>
+        <location filename="../src/optionsdialog.cpp" line="1601"/>
         <source>Font</source>
         <translation>Ҳуруфҳо</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1602"/>
+        <location filename="../src/optionsdialog.cpp" line="1605"/>
         <source>Feeds list font</source>
         <translation>Ҳуруфи рӯйхати тасмаҳо</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1605"/>
+        <location filename="../src/optionsdialog.cpp" line="1608"/>
         <source>News list font</source>
         <translation>Ҳуруфи рӯйхати хабарҳо</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1608"/>
+        <location filename="../src/optionsdialog.cpp" line="1611"/>
         <source>News title font</source>
         <translation>Ҳуруфи сарлавҳаи хабарҳо</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1611"/>
+        <location filename="../src/optionsdialog.cpp" line="1614"/>
         <source>News text font</source>
         <translation>Ҳуруфи матни хабарҳо</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1614"/>
+        <location filename="../src/optionsdialog.cpp" line="1617"/>
         <source>Notification font</source>
         <translation>Ҳуруфи огоҳӣ</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1621"/>
-        <location filename="../src/optionsdialog.cpp" line="1722"/>
+        <location filename="../src/optionsdialog.cpp" line="1624"/>
+        <location filename="../src/optionsdialog.cpp" line="1725"/>
         <source>Change...</source>
         <translation>Тағйирдиҳӣ...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1623"/>
-        <location filename="../src/optionsdialog.cpp" line="1724"/>
-        <location filename="../src/optionsdialog.cpp" line="1836"/>
+        <location filename="../src/optionsdialog.cpp" line="1626"/>
+        <location filename="../src/optionsdialog.cpp" line="1727"/>
+        <location filename="../src/optionsdialog.cpp" line="1839"/>
         <source>Reset</source>
         <translation>Барқароркунӣ</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1648"/>
+        <location filename="../src/optionsdialog.cpp" line="1651"/>
         <source>Feeds list color</source>
         <translation>Ранги рӯйхати тасмаҳо</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1651"/>
+        <location filename="../src/optionsdialog.cpp" line="1654"/>
         <source>Feeds list background</source>
         <translation>Ранги фони рӯйхати тасмаҳо</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1654"/>
+        <location filename="../src/optionsdialog.cpp" line="1657"/>
         <source>News list color</source>
         <translation>Ранги рӯйхати хабарҳо</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1657"/>
+        <location filename="../src/optionsdialog.cpp" line="1660"/>
         <source>News list background</source>
         <translation>Ранги фони рӯйхати хабарҳо</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1660"/>
+        <location filename="../src/optionsdialog.cpp" line="1663"/>
         <source>Focused news color</source>
         <translation>Ранги матни хабар дар зери курсор</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1663"/>
+        <location filename="../src/optionsdialog.cpp" line="1666"/>
         <source>Focused news background color</source>
         <translation>Ранги фони хабар дар зери курсор</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1666"/>
+        <location filename="../src/optionsdialog.cpp" line="1669"/>
         <source>Link color</source>
         <translation>Ранги линк</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1669"/>
+        <location filename="../src/optionsdialog.cpp" line="1672"/>
         <source>Title color</source>
         <translation>Ранги сарлавҳа</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1672"/>
+        <location filename="../src/optionsdialog.cpp" line="1675"/>
         <source>Date color</source>
         <translation>Ранги сана</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1675"/>
+        <location filename="../src/optionsdialog.cpp" line="1678"/>
         <source>Author color</source>
         <translation>Ранги номи муаллиф</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1678"/>
+        <location filename="../src/optionsdialog.cpp" line="1681"/>
         <source>News text color</source>
         <translation>Ранги матни хабарҳо</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1681"/>
+        <location filename="../src/optionsdialog.cpp" line="1684"/>
         <source>News title background</source>
         <translation>Фони сарлавҳаи хабар</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1684"/>
+        <location filename="../src/optionsdialog.cpp" line="1687"/>
         <source>News background</source>
         <translation>Фони хабар</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1687"/>
+        <location filename="../src/optionsdialog.cpp" line="1690"/>
         <source>Feed with new news</source>
         <translation>Тасма бо хабарҳои нав</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1690"/>
+        <location filename="../src/optionsdialog.cpp" line="1693"/>
         <source>Count of unread news in feeds tree</source>
         <translation>Миқдори хабарҳои нахонда дар дарахти тасмаҳо</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1705"/>
+        <location filename="../src/optionsdialog.cpp" line="1708"/>
         <source>Disabled feed</source>
         <translation>Хомӯшкунии тасма</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1708"/>
+        <location filename="../src/optionsdialog.cpp" line="1711"/>
         <source>Alternating row colors</source>
         <translation>Ранги алтернативии сатр</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1711"/>
+        <location filename="../src/optionsdialog.cpp" line="1714"/>
         <source>Notification text color</source>
         <translation>Ранги матни огоҳӣ</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1714"/>
+        <location filename="../src/optionsdialog.cpp" line="1717"/>
         <source>Notification background color</source>
         <translation>Ранги пасзаминаи огоҳинома</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2106"/>
+        <location filename="../src/optionsdialog.cpp" line="2109"/>
         <source>Auto load images in news view</source>
         <translation>Гирифтори автоматии тасвирҳо</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1693"/>
+        <location filename="../src/optionsdialog.cpp" line="1696"/>
         <source>Text color of new news</source>
         <translation>Ранги матни хабарҳои нав</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="292"/>
+        <location filename="../src/optionsdialog.cpp" line="295"/>
         <source>Show feeds tree toggle</source>
         <translation>Нишондоди дарахти тасмаҳо</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="383"/>
+        <location filename="../src/optionsdialog.cpp" line="386"/>
         <source>Clear new status when minimize to tray</source>
         <translation>Тозакунии ҳолати нав ҳангоми минимизатсия ба трей</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="781"/>
+        <location filename="../src/optionsdialog.cpp" line="784"/>
         <source>Set focus on the last opened news</source>
         <translation>Гузариши нигоҳ ба охирон хабари кушодашуда</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="782"/>
+        <location filename="../src/optionsdialog.cpp" line="785"/>
         <source>Set focus at the top of news list</source>
         <translation>Гузариши нигоҳ ба хабари болоии рӯйхат</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="783"/>
+        <location filename="../src/optionsdialog.cpp" line="786"/>
         <source>Set focus on the unread news</source>
         <translation>Гузариши нигоҳ ба хабари нахонда</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="784"/>
+        <location filename="../src/optionsdialog.cpp" line="787"/>
         <source>Open the news</source>
         <translation>Кушодани хабар</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="852"/>
+        <location filename="../src/optionsdialog.cpp" line="855"/>
         <source>Default news filter:</source>
         <translation>Филтри пешфарзи хабарҳо:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="870"/>
+        <location filename="../src/optionsdialog.cpp" line="873"/>
         <source>Action on feed opening:</source>
         <translation>Амалҳо ҳангоми кушодани тасма:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="901"/>
+        <location filename="../src/optionsdialog.cpp" line="904"/>
         <source>Show news description instead of loading web page</source>
         <translation>Нишондоди тавсифи хабар бар замми боркунии веб-саҳифа</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1696"/>
+        <location filename="../src/optionsdialog.cpp" line="1699"/>
         <source>Text color of unread news</source>
         <translation>Ранги матни хабарҳои нахонда</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1699"/>
+        <location filename="../src/optionsdialog.cpp" line="1702"/>
         <source>Focused feed color</source>
         <translation>Ранги матни хабар дар зери курсор</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1702"/>
+        <location filename="../src/optionsdialog.cpp" line="1705"/>
         <source>Focused feed background color</source>
         <translation>Ранги фони хабар дар зери курсор</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1750"/>
+        <location filename="../src/optionsdialog.cpp" line="1753"/>
         <source>Standard</source>
         <translation>Стандартӣ</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1752"/>
+        <location filename="../src/optionsdialog.cpp" line="1755"/>
         <source>Fixed</source>
         <translation>Қайд шуда</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1754"/>
+        <location filename="../src/optionsdialog.cpp" line="1757"/>
         <source>Serif</source>
         <translation>Бо нишона</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1756"/>
+        <location filename="../src/optionsdialog.cpp" line="1759"/>
         <source>Sans Serif</source>
         <translation>Бе нишона</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1758"/>
+        <location filename="../src/optionsdialog.cpp" line="1761"/>
         <source>Cursive</source>
         <translation>Курсив</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1760"/>
+        <location filename="../src/optionsdialog.cpp" line="1763"/>
         <source>Fantasy</source>
         <translation>Моновасеъ</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1775"/>
+        <location filename="../src/optionsdialog.cpp" line="1778"/>
         <source>Default font size</source>
         <translation>Ҳаҷми пешфарзи ҳуруф</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1777"/>
+        <location filename="../src/optionsdialog.cpp" line="1780"/>
         <source>Fixed font size</source>
         <translation>Ҳаҷми ҳуруф қайдшуда</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1779"/>
+        <location filename="../src/optionsdialog.cpp" line="1782"/>
         <source>Minimum font size</source>
         <translation>Ҳаҷми хурдтарини ҳуруф</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1781"/>
+        <location filename="../src/optionsdialog.cpp" line="1784"/>
         <source>Minimum logical font size</source>
         <translation>Ҳачми хурдтарини мантиқии ҳуруф</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1785"/>
+        <location filename="../src/optionsdialog.cpp" line="1788"/>
         <source>Font families:</source>
         <translation>Гурӯҳи ҳуруфҳои:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1787"/>
+        <location filename="../src/optionsdialog.cpp" line="1790"/>
         <source>Font sizes:</source>
         <translation>Ҳаҷми ҳуруфҳо:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1796"/>
+        <location filename="../src/optionsdialog.cpp" line="1799"/>
         <source>Fonts</source>
         <translation>Ҳуруфҳо</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1797"/>
+        <location filename="../src/optionsdialog.cpp" line="1800"/>
         <source>Fonts Browser</source>
         <translation>Ҳуруфҳои браузер</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1798"/>
+        <location filename="../src/optionsdialog.cpp" line="1801"/>
         <source>Colors</source>
         <translation>Рангҳо</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1805"/>
+        <location filename="../src/optionsdialog.cpp" line="1808"/>
         <source>Filter</source>
         <translation>Филтр</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1831"/>
+        <location filename="../src/optionsdialog.cpp" line="1834"/>
         <source>Action</source>
         <translation>Амал</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1831"/>
+        <location filename="../src/optionsdialog.cpp" line="1834"/>
         <source>Description</source>
         <translation>Тавсиф</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1831"/>
+        <location filename="../src/optionsdialog.cpp" line="1834"/>
         <source>Shortcut</source>
         <translation>Мухтасари тугмаҳо</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1839"/>
+        <location filename="../src/optionsdialog.cpp" line="1842"/>
         <source>Shortcut:</source>
         <translation>Мухтасари тугмаҳо:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2270"/>
-        <location filename="../src/optionsdialog.cpp" line="2305"/>
+        <location filename="../src/optionsdialog.cpp" line="2273"/>
+        <location filename="../src/optionsdialog.cpp" line="2308"/>
         <source>Open File...</source>
         <translation>Кушодани файл...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2290"/>
-        <location filename="../src/optionsdialog.cpp" line="2802"/>
+        <location filename="../src/optionsdialog.cpp" line="2293"/>
+        <location filename="../src/optionsdialog.cpp" line="2805"/>
         <source>Select Style Sheet File</source>
         <translation>Интихоби файли ҷадвали услубҳо</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2811"/>
-        <location filename="../src/optionsdialog.cpp" line="2840"/>
+        <location filename="../src/optionsdialog.cpp" line="2814"/>
+        <location filename="../src/optionsdialog.cpp" line="2843"/>
         <source>Open Directory...</source>
         <translation>Кушодани каталог...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2821"/>
+        <location filename="../src/optionsdialog.cpp" line="2824"/>
         <source>Add site to whitelist</source>
         <translation>Иловаи сомона ба рӯйхати сафед</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2822"/>
+        <location filename="../src/optionsdialog.cpp" line="2825"/>
         <source>Site without &apos;http://&apos; (ex. youtube.com)</source>
         <translation>Сомона бе &apos;http://&apos; (мисол, youtube.com)</translation>
     </message>
@@ -4108,17 +4122,17 @@ Ancient news could reappear</source>
 <context>
     <name>QAbstractSpinBox</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5097"/>
+        <location filename="../src/application/mainwindow.cpp" line="5038"/>
         <source>&amp;Step up</source>
         <translation>&amp;Қадам боло</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5098"/>
+        <location filename="../src/application/mainwindow.cpp" line="5039"/>
         <source>Step &amp;down</source>
         <translation>Қадам &amp;поён</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5099"/>
+        <location filename="../src/application/mainwindow.cpp" line="5040"/>
         <source>&amp;Select All</source>
         <translation>&amp;Интихоби ҳама</translation>
     </message>
@@ -4126,22 +4140,22 @@ Ancient news could reappear</source>
 <context>
     <name>QDialogButtonBox</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5075"/>
+        <location filename="../src/application/mainwindow.cpp" line="5016"/>
         <source>Close</source>
         <translation>Пӯшидан</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5076"/>
+        <location filename="../src/application/mainwindow.cpp" line="5017"/>
         <source>Cancel</source>
         <translation>Рафъ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5077"/>
+        <location filename="../src/application/mainwindow.cpp" line="5018"/>
         <source>&amp;Yes</source>
         <translation>&amp;Ҳа</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5078"/>
+        <location filename="../src/application/mainwindow.cpp" line="5019"/>
         <source>&amp;No</source>
         <translation>&amp;Не</translation>
     </message>
@@ -4255,37 +4269,37 @@ Ancient news could reappear</source>
 <context>
     <name>QLineEdit</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5080"/>
+        <location filename="../src/application/mainwindow.cpp" line="5021"/>
         <source>&amp;Undo</source>
         <translation>&amp;Баргард</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5081"/>
+        <location filename="../src/application/mainwindow.cpp" line="5022"/>
         <source>&amp;Redo</source>
         <translation>&amp;Пешгард</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5082"/>
+        <location filename="../src/application/mainwindow.cpp" line="5023"/>
         <source>Cu&amp;t</source>
         <translation>&amp;Буридан</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5083"/>
+        <location filename="../src/application/mainwindow.cpp" line="5024"/>
         <source>&amp;Copy</source>
         <translation>&amp;Нусхагирӣ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5084"/>
+        <location filename="../src/application/mainwindow.cpp" line="5025"/>
         <source>&amp;Paste</source>
         <translation>&amp;Гузоштан</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5085"/>
+        <location filename="../src/application/mainwindow.cpp" line="5026"/>
         <source>Delete</source>
         <translation>Хориҷ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5086"/>
+        <location filename="../src/application/mainwindow.cpp" line="5027"/>
         <source>Select All</source>
         <translation>Интихоби ҳама</translation>
     </message>
@@ -4293,7 +4307,7 @@ Ancient news could reappear</source>
 <context>
     <name>QMultiInputContext</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5101"/>
+        <location filename="../src/application/mainwindow.cpp" line="5042"/>
         <source>Select IM</source>
         <translation>Интихоби реҷаи дохилкунӣ</translation>
     </message>
@@ -4311,7 +4325,7 @@ Ancient news could reappear</source>
         <translation>Оғози барномаи берунӣ имконнопазир аст! %1</translation>
     </message>
     <message>
-        <location filename="../src/database/database.cpp" line="265"/>
+        <location filename="../src/database/database.cpp" line="255"/>
         <source>Error</source>
         <translation>Хатогӣ</translation>
     </message>
@@ -4319,42 +4333,42 @@ Ancient news could reappear</source>
 <context>
     <name>QTextControl</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5088"/>
+        <location filename="../src/application/mainwindow.cpp" line="5029"/>
         <source>&amp;Undo</source>
         <translation>&amp;Баргард</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5089"/>
+        <location filename="../src/application/mainwindow.cpp" line="5030"/>
         <source>&amp;Redo</source>
         <translation>&amp;Пешгард</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5090"/>
+        <location filename="../src/application/mainwindow.cpp" line="5031"/>
         <source>Cu&amp;t</source>
         <translation>&amp;Буридан</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5091"/>
+        <location filename="../src/application/mainwindow.cpp" line="5032"/>
         <source>&amp;Copy</source>
         <translation>&amp;Нусхагирӣ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5092"/>
+        <location filename="../src/application/mainwindow.cpp" line="5033"/>
         <source>&amp;Paste</source>
         <translation>&amp;Гузориш</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5093"/>
+        <location filename="../src/application/mainwindow.cpp" line="5034"/>
         <source>Delete</source>
         <translation>Хориҷ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5094"/>
+        <location filename="../src/application/mainwindow.cpp" line="5035"/>
         <source>Select All</source>
         <translation>Интихоби ҳама</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5095"/>
+        <location filename="../src/application/mainwindow.cpp" line="5036"/>
         <source>Copy &amp;Link Location</source>
         <translation>Нусхабардории &amp;суроғаи линк</translation>
     </message>
@@ -4362,22 +4376,22 @@ Ancient news could reappear</source>
 <context>
     <name>QWizard</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5103"/>
+        <location filename="../src/application/mainwindow.cpp" line="5044"/>
         <source>Cancel</source>
         <translation>Рафъ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5104"/>
+        <location filename="../src/application/mainwindow.cpp" line="5045"/>
         <source>&lt; &amp;Back</source>
         <translation>&lt; Ба &amp;қафо</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5105"/>
+        <location filename="../src/application/mainwindow.cpp" line="5046"/>
         <source>&amp;Finish</source>
         <translation>&amp;Итмом</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5106"/>
+        <location filename="../src/application/mainwindow.cpp" line="5047"/>
         <source>&amp;Next &gt;</source>
         <translation>Ба &amp;пеш &gt;</translation>
     </message>
@@ -4393,22 +4407,22 @@ Ancient news could reappear</source>
 <context>
     <name>RequestFeed</name>
     <message>
-        <location filename="../src/requestfeed.cpp" line="224"/>
+        <location filename="../src/requestfeed.cpp" line="229"/>
         <source>Server requires authentication!</source>
         <translation>Сервер авторизатсияро талаб мекунад!</translation>
     </message>
     <message>
-        <location filename="../src/requestfeed.cpp" line="226"/>
+        <location filename="../src/requestfeed.cpp" line="231"/>
         <source>Server replied: Not Found!</source>
         <translation>Ҷавоби сервер: Ёфта нашуд!</translation>
     </message>
     <message>
-        <location filename="../src/requestfeed.cpp" line="269"/>
+        <location filename="../src/requestfeed.cpp" line="274"/>
         <source>Redirect error!</source>
         <translation>Хатогии переадресатсия!</translation>
     </message>
     <message>
-        <location filename="../src/requestfeed.cpp" line="350"/>
+        <location filename="../src/requestfeed.cpp" line="355"/>
         <source>Request timeout!</source>
         <translation>Таймаути дархост!</translation>
     </message>
@@ -4416,27 +4430,27 @@ Ancient news could reappear</source>
 <context>
     <name>SQLiteDriver</name>
     <message>
-        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="571"/>
+        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="561"/>
         <source>Error opening database</source>
         <translation>Хатогии кушодани ММ</translation>
     </message>
     <message>
-        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="582"/>
+        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="572"/>
         <source>Error closing database</source>
         <translation>Хатогии пӯшидани ММ</translation>
     </message>
     <message>
-        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="602"/>
+        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="592"/>
         <source>Unable to begin transaction</source>
         <translation>Транзаксия нотамом монд</translation>
     </message>
     <message>
-        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="617"/>
+        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="607"/>
         <source>Unable to commit transaction</source>
         <translation>Тасдиқи транзаксия имкон надорад</translation>
     </message>
     <message>
-        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="632"/>
+        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="622"/>
         <source>Unable to rollback transaction</source>
         <translation>Рафъи транзаксия имкон надорад</translation>
     </message>
@@ -4444,39 +4458,39 @@ Ancient news could reappear</source>
 <context>
     <name>SQLiteResult</name>
     <message>
-        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="219"/>
-        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="282"/>
-        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="290"/>
+        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="209"/>
+        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="272"/>
+        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="280"/>
         <source>Unable to fetch row</source>
         <translation>Интихоби сатр номумкин аст</translation>
     </message>
     <message>
-        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="220"/>
+        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="210"/>
         <source>No query</source>
         <translation>Дархост вуҷуд надорад</translation>
     </message>
     <message>
-        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="363"/>
+        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="353"/>
         <source>Unable to execute statement</source>
         <translation>Иҷроиши ифода ғайри имкон аст</translation>
     </message>
     <message>
-        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="368"/>
+        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="358"/>
         <source>Unable to execute multiple statements at a time</source>
         <translation>Иҷроиши якчанд дархостҳо ғайри имкон аст</translation>
     </message>
     <message>
-        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="388"/>
+        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="378"/>
         <source>Unable to reset statement</source>
         <translation>Партофтани ифода ғайри имкон аст</translation>
     </message>
     <message>
-        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="433"/>
+        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="423"/>
         <source>Unable to bind parameters</source>
         <translation>Алоқаманд кардани параметрҳо ғайри имкон аст</translation>
     </message>
     <message>
-        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="440"/>
+        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="430"/>
         <source>Parameter count mismatch</source>
         <translation>Номувофиқ омадани миқдори параметрҳо</translation>
     </message>
@@ -4522,32 +4536,32 @@ Ancient news could reappear</source>
         <translation>&amp;Шинондан</translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="137"/>
+        <location filename="../src/updateappdialog.cpp" line="138"/>
         <source>You already have the latest version</source>
         <translation>Шумо нашри охиронро доред</translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="147"/>
+        <location filename="../src/updateappdialog.cpp" line="148"/>
         <source>A new version of QuiteRSS is available!</source>
         <translation>Нашри нави QuiteRSS дастрас аст!</translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="150"/>
+        <location filename="../src/updateappdialog.cpp" line="151"/>
         <source>Click here to go to the download page</source>
         <translation>Ин ҷо пахш кунед, то ба саҳифаи гирифтор гузаред</translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="155"/>
+        <location filename="../src/updateappdialog.cpp" line="156"/>
         <source>Your version is:</source>
         <translation>Нашри шумо:</translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="157"/>
+        <location filename="../src/updateappdialog.cpp" line="158"/>
         <source>Current version is:</source>
         <translation>Нашри ҷорӣ:</translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="163"/>
+        <location filename="../src/updateappdialog.cpp" line="164"/>
         <source>Error checking updates</source>
         <translation>Хатогии тафтиши навовариҳо</translation>
     </message>

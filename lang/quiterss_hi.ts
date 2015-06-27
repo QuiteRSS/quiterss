@@ -2,84 +2,84 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="45"/>
+        <location filename="../src/aboutdialog.cpp" line="33"/>
         <source>About</source>
         <translation>विषय में</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="56"/>
+        <location filename="../src/aboutdialog.cpp" line="42"/>
         <source>Revision</source>
         <translation>अवतरण</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="64"/>
-        <location filename="../src/aboutdialog.cpp" line="141"/>
-        <location filename="../src/aboutdialog.cpp" line="176"/>
+        <location filename="../src/aboutdialog.cpp" line="50"/>
+        <location filename="../src/aboutdialog.cpp" line="123"/>
+        <location filename="../src/aboutdialog.cpp" line="158"/>
         <source>Version</source>
         <translation>संस्करण</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="68"/>
+        <location filename="../src/aboutdialog.cpp" line="54"/>
         <source>QuiteRSS is a open-source cross-platform RSS/Atom news reader</source>
         <translation>QuiteRSS एक open-source cross-platform आरएसएस / एटम न्यूज रीडर है</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="69"/>
+        <location filename="../src/aboutdialog.cpp" line="55"/>
         <source>Includes:</source>
         <translation>शामिल है</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="144"/>
+        <location filename="../src/aboutdialog.cpp" line="126"/>
         <source>Application directory:</source>
         <translation>ऐप्लिकेशन डायरेक्टरी:</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="147"/>
+        <location filename="../src/aboutdialog.cpp" line="129"/>
         <source>Resource directory:</source>
         <translation>संसाधन डायरेक्टरी:</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="150"/>
+        <location filename="../src/aboutdialog.cpp" line="132"/>
         <source>Data directory:</source>
         <translation>डाटा डायरेक्टरी:</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="153"/>
+        <location filename="../src/aboutdialog.cpp" line="135"/>
         <source>Backup directory:</source>
         <translation>बैकअप निर्देशिका:</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="156"/>
+        <location filename="../src/aboutdialog.cpp" line="138"/>
         <source>Database file:</source>
         <translation>डाटाबेस फ़ाइल:</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="159"/>
+        <location filename="../src/aboutdialog.cpp" line="141"/>
         <source>Settings file:</source>
         <translation>सेटिंग्स फ़ाइल:</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="162"/>
+        <location filename="../src/aboutdialog.cpp" line="144"/>
         <source>Log file:</source>
         <translation>लॉग  फ़ाइल:</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="177"/>
+        <location filename="../src/aboutdialog.cpp" line="159"/>
         <source>Authors</source>
         <translation>लेखक</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="178"/>
+        <location filename="../src/aboutdialog.cpp" line="160"/>
         <source>History</source>
         <translation>इतिहास</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="179"/>
+        <location filename="../src/aboutdialog.cpp" line="161"/>
         <source>License</source>
         <translation>लाइसेंस</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="180"/>
+        <location filename="../src/aboutdialog.cpp" line="162"/>
         <source>Information</source>
         <translation>जानकारी</translation>
     </message>
@@ -110,7 +110,9 @@
 <context>
     <name>AdBlockCustomList</name>
     <message>
-        <location filename="../src/adblock/adblocksubscription.cpp" line="484"/>
+        <location filename="../src/adblock/adblocksubscription.cpp" line="323"/>
+        <location filename="../src/adblock/adblocksubscription.cpp" line="330"/>
+        <location filename="../src/application/mainwindow.cpp" line="5084"/>
         <source>Custom Rules</source>
         <translation>कस्टम नियम</translation>
     </message>
@@ -181,48 +183,48 @@
 <context>
     <name>AdBlockIcon</name>
     <message>
-        <location filename="../src/adblock/adblockicon.cpp" line="61"/>
+        <location filename="../src/adblock/adblockicon.cpp" line="62"/>
         <source>AdBlock lets you block unwanted content on web pages</source>
         <translation>एडब्लॉक आप वेब पन्नों पर अवांछित सामग्री को ब्लॉक करने देता है</translation>
     </message>
     <message>
-        <location filename="../src/adblock/adblockicon.cpp" line="102"/>
+        <location filename="../src/adblock/adblockicon.cpp" line="103"/>
         <source>AdBlock</source>
         <translation>एडब्लॉक</translation>
     </message>
     <message>
-        <location filename="../src/adblock/adblockicon.cpp" line="129"/>
+        <location filename="../src/adblock/adblockicon.cpp" line="130"/>
         <source>Show AdBlock &amp;Settings</source>
         <translation>एडब्लॉक और सेटिंग दिखाएं</translation>
     </message>
     <message>
-        <location filename="../src/adblock/adblockicon.cpp" line="137"/>
+        <location filename="../src/adblock/adblockicon.cpp" line="138"/>
         <source>Disable on %1</source>
         <translation>% 1 पर अक्षम करें</translation>
     </message>
     <message>
-        <location filename="../src/adblock/adblockicon.cpp" line="143"/>
+        <location filename="../src/adblock/adblockicon.cpp" line="144"/>
         <source>Disable only on this page</source>
         <translation>इस पृष्ठ पर केवल अक्षम करें</translation>
     </message>
     <message>
-        <location filename="../src/adblock/adblockicon.cpp" line="153"/>
+        <location filename="../src/adblock/adblockicon.cpp" line="154"/>
         <source>Blocked Popup Windows</source>
         <translation>पॉपअप विंडोज़ अवरुद्ध करें</translation>
     </message>
     <message>
-        <location filename="../src/adblock/adblockicon.cpp" line="158"/>
-        <location filename="../src/adblock/adblockicon.cpp" line="175"/>
+        <location filename="../src/adblock/adblockicon.cpp" line="159"/>
+        <location filename="../src/adblock/adblockicon.cpp" line="176"/>
         <source>%1 with (%2)</source>
         <translation>%1 साथ (% 2)</translation>
     </message>
     <message>
-        <location filename="../src/adblock/adblockicon.cpp" line="169"/>
+        <location filename="../src/adblock/adblockicon.cpp" line="170"/>
         <source>No content blocked</source>
         <translation>कोई सामग्री अवरुद्ध नहीं</translation>
     </message>
     <message>
-        <location filename="../src/adblock/adblockicon.cpp" line="172"/>
+        <location filename="../src/adblock/adblockicon.cpp" line="173"/>
         <source>Blocked URL (AdBlock Rule) - click to edit rule</source>
         <translation>अवरुद्ध यूआरएल (एडब्लॉक  नियम) - नियम संपादित करने के लिए क्लिक करें</translation>
     </message>
@@ -230,7 +232,7 @@
 <context>
     <name>AdBlockManager</name>
     <message>
-        <location filename="../src/adblock/adblockmanager.cpp" line="277"/>
+        <location filename="../src/adblock/adblockmanager.cpp" line="281"/>
         <source>EasyList</source>
         <translation>आसान सूची</translation>
     </message>
@@ -238,7 +240,7 @@
 <context>
     <name>AdBlockSubscription</name>
     <message>
-        <location filename="../src/adblock/adblocksubscription.cpp" line="190"/>
+        <location filename="../src/adblock/adblocksubscription.cpp" line="195"/>
         <source>Cannot load subscription!</source>
         <translation>सदस्यता सक्रिय नहीं कर सकता!</translation>
     </message>
@@ -284,80 +286,80 @@
         <translation>फीड जोड़े</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="99"/>
-        <location filename="../src/addfeedwizard.cpp" line="173"/>
+        <location filename="../src/addfeedwizard.cpp" line="100"/>
+        <location filename="../src/addfeedwizard.cpp" line="174"/>
         <source>Create New Feed</source>
         <translation>नया फीड जोड़े</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="108"/>
+        <location filename="../src/addfeedwizard.cpp" line="109"/>
         <source>Use title of the feed as displayed name</source>
         <translation>प्रदर्शित नाम के स्थान पर फीड का शीर्षक प्रयोग करे</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="112"/>
+        <location filename="../src/addfeedwizard.cpp" line="113"/>
         <source>Server requires authentication:</source>
         <translation>सर्वर को प्रमाणीकरण की आवश्यकता है:</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="121"/>
+        <location filename="../src/addfeedwizard.cpp" line="122"/>
         <source>Username:</source>
         <translation>प्रयोक्ता नाम:</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="123"/>
+        <location filename="../src/addfeedwizard.cpp" line="124"/>
         <source>Password:</source>
         <translation>पासवर्ड:</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="152"/>
+        <location filename="../src/addfeedwizard.cpp" line="153"/>
         <source>Feed URL or website address:</source>
         <translation>फीड यूआरएल या वेबसाइट का पता :</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="185"/>
+        <location filename="../src/addfeedwizard.cpp" line="186"/>
         <source>Feeds</source>
         <translation>फ़ीड्स</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="189"/>
+        <location filename="../src/addfeedwizard.cpp" line="190"/>
         <source>All Feeds</source>
         <translation>सभी फ़ीड</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="229"/>
+        <location filename="../src/addfeedwizard.cpp" line="230"/>
         <source>New Folder...</source>
         <translation>नया फ़ोल्डर ...</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="244"/>
+        <location filename="../src/addfeedwizard.cpp" line="245"/>
         <source>Displayed name:</source>
         <translation>प्रदर्शित नाम :</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="246"/>
+        <location filename="../src/addfeedwizard.cpp" line="247"/>
         <source>Location:</source>
         <translation>स्थान:</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="341"/>
+        <location filename="../src/addfeedwizard.cpp" line="342"/>
         <source>URL error!</source>
         <translation>यूआरएल त्रुटि !</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="355"/>
-        <location filename="../src/addfeedwizard.cpp" line="518"/>
+        <location filename="../src/addfeedwizard.cpp" line="356"/>
+        <location filename="../src/addfeedwizard.cpp" line="519"/>
         <source>Duplicate feed!</source>
         <translation>फीड की दूसरी प्रतिलिपि</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="520"/>
-        <location filename="../src/addfeedwizard.cpp" line="542"/>
+        <location filename="../src/addfeedwizard.cpp" line="521"/>
+        <location filename="../src/addfeedwizard.cpp" line="543"/>
         <source>Can&apos;t find feed URL!</source>
         <translation>फीड यूआरएल उपलब्ध नहीं !</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="561"/>
+        <location filename="../src/addfeedwizard.cpp" line="562"/>
         <source>Request failed!</source>
         <translation>अनुरोध विफल रहा है!</translation>
     </message>
@@ -1004,61 +1006,66 @@ Ancient news could reappear</source>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="318"/>
+        <source>Feeds count:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/feedpropertiesdialog.cpp" line="321"/>
         <source>Description:</source>
         <translation>विवरण:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="325"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="328"/>
         <source>Status:</source>
         <translation>स्थिति:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="327"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="330"/>
         <source>Created:</source>
         <translation>फीड शामिल करने की तिथि :</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="329"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="332"/>
         <source>Last update:</source>
         <translation>पिछला अद्यतन:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="331"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="334"/>
         <source>News count:</source>
         <translation>समाचार गणना:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="396"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="404"/>
         <source>Good</source>
         <translation>अच्छा</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="404"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="412"/>
         <source>Long ago ;-)</source>
         <translation>बहुत समय पहले;-)</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="415"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="423"/>
         <source>new</source>
         <translation>नया</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="417"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="425"/>
         <source>unread</source>
         <translation>अपठित</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="437"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="446"/>
         <source>Image files</source>
         <translation>छवि फ़ाइलें</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="439"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="448"/>
         <source>Select Image</source>
         <translation>चुनें छवि</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="446"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="455"/>
         <source>Load icon: can&apos;t open a file!</source>
         <translation>लोड आइकन: फ़ाइल को खोल नहीं सकता है!</translation>
     </message>
@@ -1154,8 +1161,8 @@ Ancient news could reappear</source>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="113"/>
-        <source>Find in Content</source>
-        <translation>सामग्री में खोजें</translation>
+        <source>Find in Descriptions</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="114"/>
@@ -1430,7 +1437,7 @@ Ancient news could reappear</source>
 <context>
     <name>MainApplication</name>
     <message>
-        <location filename="../src/application/mainapplication.cpp" line="269"/>
+        <location filename="../src/application/mainapplication.cpp" line="297"/>
         <source>Saving data...</source>
         <translation>डेटा सहेज रहा है ...</translation>
     </message>
@@ -1438,1067 +1445,1073 @@ Ancient news could reappear</source>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="1822"/>
+        <location filename="../src/application/mainwindow.cpp" line="1815"/>
         <source>&amp;AdBlock</source>
         <translation>एडब्लॉक </translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2261"/>
-        <location filename="../src/application/mainwindow.cpp" line="5037"/>
-        <location filename="../src/application/mainwindow.cpp" line="7320"/>
-        <location filename="../src/application/mainwindow.cpp" line="7342"/>
+        <location filename="../src/application/mainwindow.cpp" line="2227"/>
+        <location filename="../src/application/mainwindow.cpp" line="4978"/>
+        <location filename="../src/application/mainwindow.cpp" line="7296"/>
+        <location filename="../src/application/mainwindow.cpp" line="7318"/>
         <source>Hide Categories</source>
         <translation>श्रेणियाँ छुपाएं</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2265"/>
-        <location filename="../src/application/mainwindow.cpp" line="5035"/>
-        <location filename="../src/application/mainwindow.cpp" line="7326"/>
+        <location filename="../src/application/mainwindow.cpp" line="2231"/>
+        <location filename="../src/application/mainwindow.cpp" line="4976"/>
+        <location filename="../src/application/mainwindow.cpp" line="7302"/>
         <source>Show Categories</source>
         <translation>श्रेणियाँ दिखाएँ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2720"/>
-        <location filename="../src/application/mainwindow.cpp" line="2749"/>
+        <location filename="../src/application/mainwindow.cpp" line="2686"/>
+        <location filename="../src/application/mainwindow.cpp" line="2715"/>
         <source>Select OPML-File</source>
         <translation>चयन करें OPML फ़ाइल</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2722"/>
+        <location filename="../src/application/mainwindow.cpp" line="2688"/>
         <source>OPML-Files (*.%1 *.%2)</source>
         <translation>OPML फ़ाइलें (*।% 1 *।% 2)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2726"/>
+        <location filename="../src/application/mainwindow.cpp" line="2692"/>
         <source>Import canceled</source>
         <translation>आयात रद्द</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2734"/>
+        <location filename="../src/application/mainwindow.cpp" line="2700"/>
         <source>Import: can&apos;t open a file</source>
         <translation>आयात: फ़ाइल नहीं खुल सकती</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2751"/>
+        <location filename="../src/application/mainwindow.cpp" line="2717"/>
         <source>OPML-Files (*.%1)</source>
         <translation>OPML फ़ाइलें (*।% 1)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2755"/>
+        <location filename="../src/application/mainwindow.cpp" line="2721"/>
         <source>Export canceled</source>
         <translation>निर्यात को रद्द कर दिया</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2761"/>
+        <location filename="../src/application/mainwindow.cpp" line="2727"/>
         <source>Export: can&apos;t open a file</source>
         <translation>निर्यात: फ़ाइल नहीं खुल सकती</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="3033"/>
-        <location filename="../src/application/mainwindow.cpp" line="4169"/>
-        <location filename="../src/application/mainwindow.cpp" line="4807"/>
-        <location filename="../src/application/mainwindow.cpp" line="6246"/>
-        <location filename="../src/application/mainwindow.cpp" line="7278"/>
+        <location filename="../src/application/mainwindow.cpp" line="2996"/>
+        <location filename="../src/application/mainwindow.cpp" line="4132"/>
+        <location filename="../src/application/mainwindow.cpp" line="4748"/>
+        <location filename="../src/application/mainwindow.cpp" line="6222"/>
+        <location filename="../src/application/mainwindow.cpp" line="7254"/>
         <source>Unread: %1</source>
         <translation>अपठित:% 1</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="3034"/>
-        <location filename="../src/application/mainwindow.cpp" line="4170"/>
-        <location filename="../src/application/mainwindow.cpp" line="4810"/>
-        <location filename="../src/application/mainwindow.cpp" line="6247"/>
-        <location filename="../src/application/mainwindow.cpp" line="7279"/>
+        <location filename="../src/application/mainwindow.cpp" line="2997"/>
+        <location filename="../src/application/mainwindow.cpp" line="4133"/>
+        <location filename="../src/application/mainwindow.cpp" line="4751"/>
+        <location filename="../src/application/mainwindow.cpp" line="6223"/>
+        <location filename="../src/application/mainwindow.cpp" line="7255"/>
         <source>All: %1</source>
         <translation>सभी:% 1</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="3590"/>
-        <location filename="../src/application/mainwindow.cpp" line="3595"/>
-        <location filename="../src/application/mainwindow.cpp" line="3600"/>
+        <location filename="../src/application/mainwindow.cpp" line="3553"/>
+        <location filename="../src/application/mainwindow.cpp" line="3558"/>
+        <location filename="../src/application/mainwindow.cpp" line="3563"/>
         <source>(Browser)</source>
         <translation>(ब्राउज़र)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4815"/>
-        <location filename="../src/application/mainwindow.cpp" line="5677"/>
+        <location filename="../src/application/mainwindow.cpp" line="4756"/>
+        <location filename="../src/application/mainwindow.cpp" line="5649"/>
         <source>New News: %1</source>
         <translation>नया समाचार:% 1</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4817"/>
-        <location filename="../src/application/mainwindow.cpp" line="5679"/>
+        <location filename="../src/application/mainwindow.cpp" line="4758"/>
+        <location filename="../src/application/mainwindow.cpp" line="5651"/>
         <source>Unread News: %1</source>
         <translation>अपठित समाचार:% 1</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4822"/>
+        <location filename="../src/application/mainwindow.cpp" line="4763"/>
         <source>&amp;Add</source>
         <translation>&amp;जोड़ें</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4823"/>
-        <location filename="../src/application/mainwindow.cpp" line="4826"/>
+        <location filename="../src/application/mainwindow.cpp" line="4764"/>
+        <location filename="../src/application/mainwindow.cpp" line="4767"/>
         <source>Add New Feed</source>
         <translation>नई फ़ीड जोड़ें</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4825"/>
+        <location filename="../src/application/mainwindow.cpp" line="4766"/>
         <source>&amp;Feed...</source>
         <translation>&amp;फ़ीड </translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4830"/>
+        <location filename="../src/application/mainwindow.cpp" line="4771"/>
         <source>F&amp;older...</source>
         <translation>फ़ो&amp;ल्डर ...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4831"/>
+        <location filename="../src/application/mainwindow.cpp" line="4772"/>
         <source>Add New Folder</source>
         <translation>नया फ़ोल्डर जोड़ें</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4833"/>
-        <location filename="../src/application/mainwindow.cpp" line="4904"/>
+        <location filename="../src/application/mainwindow.cpp" line="4774"/>
+        <location filename="../src/application/mainwindow.cpp" line="4845"/>
         <source>Open in New Tab</source>
         <translation>नए टैब में खोलें</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4835"/>
+        <location filename="../src/application/mainwindow.cpp" line="4776"/>
         <source>&amp;Delete...</source>
         <translation>&amp;हटाएं ...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4836"/>
+        <location filename="../src/application/mainwindow.cpp" line="4777"/>
         <source>Delete Selected Feed</source>
         <translation>चयनित फ़ीड हटाएं</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4838"/>
+        <location filename="../src/application/mainwindow.cpp" line="4779"/>
         <source>&amp;Import Feeds...</source>
         <translation>फ़ीड्स &amp;आयात करें ...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4839"/>
+        <location filename="../src/application/mainwindow.cpp" line="4780"/>
         <source>Import Feeds from OPML File</source>
         <translation>OPML फ़ाइल से फ़ीड्स आयात करें </translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4841"/>
+        <location filename="../src/application/mainwindow.cpp" line="4782"/>
         <source>&amp;Export Feeds...</source>
         <translation>फ़ीड्स निर्यात करें  ...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4842"/>
+        <location filename="../src/application/mainwindow.cpp" line="4783"/>
         <source>Export Feeds to OPML File</source>
         <translation>OPML फ़ाइल से फ़ीड्स निर्यात करें </translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4847"/>
+        <location filename="../src/application/mainwindow.cpp" line="4788"/>
         <source>E&amp;xit</source>
         <translation>&amp;बाहर जाएं</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4849"/>
+        <location filename="../src/application/mainwindow.cpp" line="4790"/>
         <source>Update Feed</source>
         <translation>अद्यतन फ़ीड</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4850"/>
+        <location filename="../src/application/mainwindow.cpp" line="4791"/>
         <source>Update Current Feed</source>
         <translation>वर्तमान फ़ीड अद्यतन</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4852"/>
+        <location filename="../src/application/mainwindow.cpp" line="4793"/>
         <source>Update All</source>
         <translation>सभी अद्यतन करें</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4853"/>
+        <location filename="../src/application/mainwindow.cpp" line="4794"/>
         <source>Update All Feeds</source>
         <translation>सभी फ़ीड्स अद्यतन करें</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4858"/>
+        <location filename="../src/application/mainwindow.cpp" line="4799"/>
         <source>Mark All Feeds Read</source>
         <translation>सभी फ़ीड्स पठित चिन्हित करें</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4860"/>
+        <location filename="../src/application/mainwindow.cpp" line="4801"/>
         <source>Mark Read/Unread</source>
         <translation>पठित/अपठित चिन्हित करें</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4861"/>
+        <location filename="../src/application/mainwindow.cpp" line="4802"/>
         <source>Mark Current News Read/Unread</source>
         <translation> वर्तमान समाचार पठित/अपठित चिन्हित करें</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4863"/>
-        <location filename="../src/application/mainwindow.cpp" line="4864"/>
+        <location filename="../src/application/mainwindow.cpp" line="4804"/>
+        <location filename="../src/application/mainwindow.cpp" line="4805"/>
         <source>Mark All News Read</source>
         <translation>सभी समाचार पठित चिन्हित करें</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4866"/>
-        <location filename="../src/application/mainwindow.cpp" line="7905"/>
-        <location filename="../src/application/mainwindow.cpp" line="7911"/>
-        <location filename="../src/application/mainwindow.cpp" line="7921"/>
+        <location filename="../src/application/mainwindow.cpp" line="4807"/>
+        <location filename="../src/application/mainwindow.cpp" line="7881"/>
+        <location filename="../src/application/mainwindow.cpp" line="7887"/>
+        <location filename="../src/application/mainwindow.cpp" line="7897"/>
         <source>Downloads</source>
         <translation>डाउनलोड</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4868"/>
+        <location filename="../src/application/mainwindow.cpp" line="4809"/>
         <source>Clean Up...</source>
         <translation>साफ - सफाई</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4870"/>
+        <location filename="../src/application/mainwindow.cpp" line="4811"/>
         <source>News Filters...</source>
         <translation>समाचार फिल्टर ...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4871"/>
+        <location filename="../src/application/mainwindow.cpp" line="4812"/>
         <source>Filter News...</source>
         <translation>समाचार फ़िल्टर करें...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4873"/>
+        <location filename="../src/application/mainwindow.cpp" line="4814"/>
         <source>Options...</source>
         <translation>विकल्प</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4874"/>
+        <location filename="../src/application/mainwindow.cpp" line="4815"/>
         <source>Open Options Dialog</source>
         <translation>खोलें विकल्प डायलॉग</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4876"/>
+        <location filename="../src/application/mainwindow.cpp" line="4817"/>
         <source>Filter Feeds</source>
         <translation>फ़िल्टर फ़ीड्स</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4877"/>
-        <location filename="../src/application/mainwindow.cpp" line="4884"/>
+        <location filename="../src/application/mainwindow.cpp" line="4818"/>
+        <location filename="../src/application/mainwindow.cpp" line="4825"/>
         <source>Show All</source>
         <translation>सब दिखाओ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4878"/>
-        <location filename="../src/application/mainwindow.cpp" line="4885"/>
+        <location filename="../src/application/mainwindow.cpp" line="4819"/>
+        <location filename="../src/application/mainwindow.cpp" line="4826"/>
         <source>Show New</source>
         <translation>दिखाएँ नया</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4879"/>
-        <location filename="../src/application/mainwindow.cpp" line="4886"/>
+        <location filename="../src/application/mainwindow.cpp" line="4820"/>
+        <location filename="../src/application/mainwindow.cpp" line="4827"/>
         <source>Show Unread</source>
         <translation>दिखाएँ अपठित</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4880"/>
+        <location filename="../src/application/mainwindow.cpp" line="4821"/>
         <source>Show Starred Feeds</source>
         <translation>तारांकित फ़ीड्स दिखाएँ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4881"/>
+        <location filename="../src/application/mainwindow.cpp" line="4822"/>
         <source>Show Not Working Feeds</source>
         <translation>काम नहीं कर रहा फ़ीड्स दिखाएँ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4883"/>
+        <location filename="../src/application/mainwindow.cpp" line="4824"/>
         <source>Filter News</source>
         <translation>फ़िल्टर समाचार</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4887"/>
+        <location filename="../src/application/mainwindow.cpp" line="4828"/>
         <source>Show Starred</source>
         <translation>तारांकित दिखाएँ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4888"/>
+        <location filename="../src/application/mainwindow.cpp" line="4829"/>
         <source>Show Not Starred</source>
         <translation>दिखाएँ जो तारांकित नहीं है </translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4889"/>
+        <location filename="../src/application/mainwindow.cpp" line="4830"/>
         <source>Show Unread or Starred</source>
         <translation>दिखाएँ अपठित या तारांकित</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4890"/>
+        <location filename="../src/application/mainwindow.cpp" line="4831"/>
         <source>Show Last Day</source>
         <translation>दिखाएँ अंतिम दिन</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4891"/>
+        <location filename="../src/application/mainwindow.cpp" line="4832"/>
         <source>Show Last 7 Days</source>
         <translation>पिछले 7 दिनों का दिखाएँ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4893"/>
+        <location filename="../src/application/mainwindow.cpp" line="4834"/>
         <source>About...</source>
         <translation>बारे में.....</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4894"/>
+        <location filename="../src/application/mainwindow.cpp" line="4835"/>
         <source>Show &apos;About&apos; Dialog</source>
         <translation>डायलॉग &apos;के बारे में&apos; दिखाएँ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4896"/>
+        <location filename="../src/application/mainwindow.cpp" line="4837"/>
         <source>Check for Updates...</source>
         <translation>अद्यतन के लिए जाँच करें....</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4897"/>
+        <location filename="../src/application/mainwindow.cpp" line="4838"/>
         <source>Report a Problem...</source>
         <translation>समस्या के बारे में बताएं ...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4899"/>
+        <location filename="../src/application/mainwindow.cpp" line="4840"/>
         <source>Open News</source>
         <translation>खोलें समाचार</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4901"/>
+        <location filename="../src/application/mainwindow.cpp" line="4842"/>
         <source>Open in Browser</source>
         <translation>ब्राउज़र में खोलें</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4902"/>
+        <location filename="../src/application/mainwindow.cpp" line="4843"/>
         <source>Open in External Browser</source>
         <translation>बाहरी ब्राउज़र में खोलें</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4903"/>
+        <location filename="../src/application/mainwindow.cpp" line="4844"/>
         <source>Open News in External Browser</source>
         <translation>बाहरी ब्राउज़र में समाचार खोलें </translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4905"/>
+        <location filename="../src/application/mainwindow.cpp" line="4846"/>
         <source>Open News in New Tab</source>
         <translation>नए टैब में समाचार खोलें </translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4906"/>
+        <location filename="../src/application/mainwindow.cpp" line="4847"/>
         <source>Open in Background Tab</source>
         <translation>पृष्ठभूमि में टैब खोलें</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4907"/>
+        <location filename="../src/application/mainwindow.cpp" line="4848"/>
         <source>Open News in Background Tab</source>
         <translation>पृष्ठभूमि टैब में समाचार खोलें </translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4908"/>
+        <location filename="../src/application/mainwindow.cpp" line="4849"/>
         <source>Star</source>
         <translation>तारांकित करें</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4909"/>
+        <location filename="../src/application/mainwindow.cpp" line="4850"/>
         <source>Mark News Star</source>
         <translation>तारांकित चिन्हित करें</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4910"/>
+        <location filename="../src/application/mainwindow.cpp" line="4851"/>
         <source>Delete</source>
         <translation>हटाएँ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4911"/>
+        <location filename="../src/application/mainwindow.cpp" line="4852"/>
         <source>Delete Selected News</source>
         <translation>चयनित समाचार हटाएं</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4912"/>
+        <location filename="../src/application/mainwindow.cpp" line="4853"/>
         <source>Delete All News</source>
         <translation>पढ़ें समाचार हटाएं</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4913"/>
+        <location filename="../src/application/mainwindow.cpp" line="4854"/>
         <source>Delete All News from List</source>
         <translation>सूची से सभी समाचार हटाएं</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4914"/>
+        <location filename="../src/application/mainwindow.cpp" line="4855"/>
         <source>Restore</source>
         <translation>पुनर्स्थापित करें</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4915"/>
+        <location filename="../src/application/mainwindow.cpp" line="4856"/>
         <source>Restore News</source>
         <translation>समाचार पुनर्स्थापित करें</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4916"/>
+        <location filename="../src/application/mainwindow.cpp" line="4857"/>
         <source>Copy Link</source>
         <translation>लिंक प्रतिलिपि बनाएँ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4919"/>
+        <location filename="../src/application/mainwindow.cpp" line="4860"/>
         <source>Restore last deleted news</source>
         <translation>पिछले हटाए गए समाचार पुनर्स्थापित करें</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4921"/>
+        <location filename="../src/application/mainwindow.cpp" line="4862"/>
         <source>Mark Read</source>
         <translation>पढ़ा हुआ चिह्नित करें</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4922"/>
+        <location filename="../src/application/mainwindow.cpp" line="4863"/>
         <source>Mark Feed Read</source>
         <translation>फ़ीड्स पठित चिन्हित करें</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4923"/>
-        <location filename="../src/application/mainwindow.cpp" line="4924"/>
+        <location filename="../src/application/mainwindow.cpp" line="4864"/>
+        <location filename="../src/application/mainwindow.cpp" line="4865"/>
         <source>Properties</source>
         <translation>प्रॉपर्टीज</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4926"/>
+        <location filename="../src/application/mainwindow.cpp" line="4867"/>
         <source>&amp;File</source>
         <translation>&amp;फ़ाइल</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4989"/>
+        <location filename="../src/application/mainwindow.cpp" line="4930"/>
         <source>Count Unread News</source>
         <translation>अपठित समाचार गणना करें</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4990"/>
+        <location filename="../src/application/mainwindow.cpp" line="4931"/>
         <source>Count All News</source>
         <translation>सभी समाचार गणना करें</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4991"/>
+        <location filename="../src/application/mainwindow.cpp" line="4932"/>
         <source>Last Update</source>
         <translation>पिछले अद्यतन</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5004"/>
+        <location filename="../src/application/mainwindow.cpp" line="4945"/>
         <source>Reset browser zoom</source>
         <translation>रीसेट ब्राउज़र जूम</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5007"/>
+        <location filename="../src/application/mainwindow.cpp" line="4948"/>
         <source>Print Web Page</source>
         <translation>वेब पेज प्रिंट करें</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5009"/>
+        <location filename="../src/application/mainwindow.cpp" line="4950"/>
         <source>Preview Web Page</source>
         <translation>वेब पेज पूर्वावलोकन करें</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5016"/>
+        <location filename="../src/application/mainwindow.cpp" line="4957"/>
         <source>Save page in database</source>
         <translation>डेटाबेस में पृष्ठ सहेजें</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5017"/>
+        <location filename="../src/application/mainwindow.cpp" line="4958"/>
         <source>Save page in database instead of news description</source>
         <translation>बजाय समाचार विवरण के डेटाबेस में पृष्ठ सहेजें</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2615"/>
+        <location filename="../src/application/mainwindow.cpp" line="2581"/>
         <source>Confirm Delete</source>
         <translation>हटाने की पुष्टि करें</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2616"/>
+        <location filename="../src/application/mainwindow.cpp" line="2582"/>
         <source>Are you sure to delete selected elements?</source>
         <translation>आप चयनित तत्वों को हटाने के लिए सुनिश्चित हैं?</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4820"/>
+        <location filename="../src/application/mainwindow.cpp" line="4761"/>
         <source>Menu</source>
         <translation>मेनू</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4828"/>
+        <location filename="../src/application/mainwindow.cpp" line="4769"/>
         <source>Add Feed...</source>
         <translation>फीड जोड़े</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4844"/>
+        <location filename="../src/application/mainwindow.cpp" line="4785"/>
         <source>&amp;Create Backup...</source>
         <translation>बैकअप बनाएँ </translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4845"/>
+        <location filename="../src/application/mainwindow.cpp" line="4786"/>
         <source>S&amp;how Menu Bar</source>
         <translation>दिखाएँ मेनू बार</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4900"/>
+        <location filename="../src/application/mainwindow.cpp" line="4796"/>
+        <location filename="../src/application/mainwindow.cpp" line="4797"/>
+        <source>Stop Update Feeds</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/application/mainwindow.cpp" line="4841"/>
         <source>Open News Description</source>
         <translation>खोलें समाचार विवरण</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4917"/>
+        <location filename="../src/application/mainwindow.cpp" line="4858"/>
         <source>Copy News Link</source>
         <translation>समाचार लिंक की प्रतिलिपि बनाएँ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4927"/>
+        <location filename="../src/application/mainwindow.cpp" line="4868"/>
         <source>&amp;View</source>
         <translation>व्यू</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4928"/>
+        <location filename="../src/application/mainwindow.cpp" line="4869"/>
         <source>Fee&amp;ds</source>
         <translation>फ़ीड्स</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4929"/>
+        <location filename="../src/application/mainwindow.cpp" line="4870"/>
         <source>&amp;News</source>
         <translation>समाचार</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4930"/>
+        <location filename="../src/application/mainwindow.cpp" line="4871"/>
         <source>&amp;Browser</source>
         <translation>ब्राउज़र</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4931"/>
+        <location filename="../src/application/mainwindow.cpp" line="4872"/>
         <source>&amp;Tools</source>
         <translation>टूल्स</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4932"/>
+        <location filename="../src/application/mainwindow.cpp" line="4873"/>
         <source>&amp;Help</source>
         <translation>मदद</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4934"/>
-        <location filename="../src/application/mainwindow.cpp" line="5020"/>
+        <location filename="../src/application/mainwindow.cpp" line="4875"/>
+        <location filename="../src/application/mainwindow.cpp" line="4961"/>
         <source>Main Toolbar</source>
         <translation>मुख्य उपकरण पट्टी</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4935"/>
+        <location filename="../src/application/mainwindow.cpp" line="4876"/>
         <source>Customize Toolbar</source>
         <translation>उपकरण पट्टी अनुकूलित करें </translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4936"/>
+        <location filename="../src/application/mainwindow.cpp" line="4877"/>
         <source>Main Toolbar...</source>
         <translation>मुख्य उपकरण पट्टी</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4937"/>
+        <location filename="../src/application/mainwindow.cpp" line="4878"/>
         <source>Customize Toolbar...</source>
         <translation>उपकरण पट्टी अनुकूलित करें </translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4938"/>
+        <location filename="../src/application/mainwindow.cpp" line="4879"/>
         <source>Feeds Toolbar...</source>
         <translation>फीड उपकरण पट्टी ...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4939"/>
+        <location filename="../src/application/mainwindow.cpp" line="4880"/>
         <source>News Toolbar...</source>
         <translation>समाचार उपकरण पट्टी</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4941"/>
+        <location filename="../src/application/mainwindow.cpp" line="4882"/>
         <source>Lock Toolbar</source>
         <translation>लॉक उपकरण पट्टी</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4942"/>
+        <location filename="../src/application/mainwindow.cpp" line="4883"/>
         <source>Hide Toolbar</source>
         <translation>छुपाएं उपकरण पट्टी</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4944"/>
-        <location filename="../src/application/mainwindow.cpp" line="4947"/>
+        <location filename="../src/application/mainwindow.cpp" line="4885"/>
+        <location filename="../src/application/mainwindow.cpp" line="4888"/>
         <source>Layout</source>
         <translation>लेआउट</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4945"/>
+        <location filename="../src/application/mainwindow.cpp" line="4886"/>
         <source>Classic</source>
         <translation>क्लासिक</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4946"/>
+        <location filename="../src/application/mainwindow.cpp" line="4887"/>
         <source>Newspaper</source>
         <translation>समाचारपत्र</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4949"/>
+        <location filename="../src/application/mainwindow.cpp" line="4890"/>
         <source>Application Style</source>
         <translation>आवेदन शैली</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4950"/>
+        <location filename="../src/application/mainwindow.cpp" line="4891"/>
         <source>System</source>
         <translation>सिस्टम</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4951"/>
+        <location filename="../src/application/mainwindow.cpp" line="4892"/>
         <source>System2</source>
         <translation>सिस्टम2</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4952"/>
+        <location filename="../src/application/mainwindow.cpp" line="4893"/>
         <source>Green</source>
         <translation>हरा</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4953"/>
+        <location filename="../src/application/mainwindow.cpp" line="4894"/>
         <source>Orange</source>
         <translation>नारंगी</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4954"/>
+        <location filename="../src/application/mainwindow.cpp" line="4895"/>
         <source>Purple</source>
         <translation>बैंगनी</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4955"/>
+        <location filename="../src/application/mainwindow.cpp" line="4896"/>
         <source>Pink</source>
         <translation>गुलाबी</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4956"/>
+        <location filename="../src/application/mainwindow.cpp" line="4897"/>
         <source>Gray</source>
         <translation>धूसर</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4958"/>
+        <location filename="../src/application/mainwindow.cpp" line="4899"/>
         <source>Browser Position</source>
         <translation>ब्राउज़र स्थिति</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4959"/>
+        <location filename="../src/application/mainwindow.cpp" line="4900"/>
         <source>Top</source>
         <translation>ऊपर</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4960"/>
+        <location filename="../src/application/mainwindow.cpp" line="4901"/>
         <source>Bottom</source>
         <translation>नीचे</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4961"/>
+        <location filename="../src/application/mainwindow.cpp" line="4902"/>
         <source>Right</source>
         <translation>दायें</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4962"/>
+        <location filename="../src/application/mainwindow.cpp" line="4903"/>
         <source>Left</source>
         <translation>बाएँ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4964"/>
+        <location filename="../src/application/mainwindow.cpp" line="4905"/>
         <source>Show Window</source>
         <translation>विंडो दिखाएँ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4966"/>
+        <location filename="../src/application/mainwindow.cpp" line="4907"/>
         <source>Previous Feed</source>
         <translation>पिछला फ़ीड</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4967"/>
+        <location filename="../src/application/mainwindow.cpp" line="4908"/>
         <source>Next Feed</source>
         <translation>अगला फीड</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4968"/>
+        <location filename="../src/application/mainwindow.cpp" line="4909"/>
         <source>Previous News</source>
         <translation>पिछले समाचार</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4969"/>
+        <location filename="../src/application/mainwindow.cpp" line="4910"/>
         <source>Next News</source>
         <translation>अगले समाचार</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4970"/>
+        <location filename="../src/application/mainwindow.cpp" line="4911"/>
         <source>News Page Up</source>
         <translation>समाचार पृष्ठ ऊपर</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4971"/>
+        <location filename="../src/application/mainwindow.cpp" line="4912"/>
         <source>News Page Down</source>
         <translation>समाचार पृष्ठ नीचे</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4973"/>
+        <location filename="../src/application/mainwindow.cpp" line="4914"/>
         <source>Next Unread News</source>
         <translation>अगले अपठित समाचार</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4974"/>
+        <location filename="../src/application/mainwindow.cpp" line="4915"/>
         <source>Previous Unread News</source>
         <translation>पिछले अपठित समाचार</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4976"/>
+        <location filename="../src/application/mainwindow.cpp" line="4917"/>
         <source>Switch Focus to Next Panel</source>
         <translation>अगला पैनल में फोकस स्विच करें </translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4978"/>
+        <location filename="../src/application/mainwindow.cpp" line="4919"/>
         <source>Switch Focus to Next Panel (Tree Feeds, List News, Browser)</source>
         <translation>अगला पैनल में फोकस स्विच करें  (ट्री फ़ीड, सूची समाचार, ब्राउज़र)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4979"/>
+        <location filename="../src/application/mainwindow.cpp" line="4920"/>
         <source>Switch Focus to Previous Panel</source>
         <translation>पिछले पैनल में फोकस स्विच करें </translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4981"/>
+        <location filename="../src/application/mainwindow.cpp" line="4922"/>
         <source>Switch Focus to Previous Panel (Tree Feeds, Browser, List News)</source>
         <translation>पिछले पैनल में फोकस स्विच करें  (ट्री फ़ीड, सूची समाचार, ब्राउज़र)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4983"/>
+        <location filename="../src/application/mainwindow.cpp" line="4924"/>
         <source>Show/Hide Tree Feeds</source>
         <translation>दिखाएँ/छुपाएं ट्री फ़ीड्स </translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4985"/>
+        <location filename="../src/application/mainwindow.cpp" line="4926"/>
         <source>Minimize to Tray</source>
         <translation>ट्रे पर ले जाये</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4986"/>
+        <location filename="../src/application/mainwindow.cpp" line="4927"/>
         <source>Minimize Application to Tray</source>
         <translation>ऐप्लिकेशन ट्रे पर ले जाये</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4988"/>
+        <location filename="../src/application/mainwindow.cpp" line="4929"/>
         <source>Columns</source>
         <translation>कॉलम</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4993"/>
+        <location filename="../src/application/mainwindow.cpp" line="4934"/>
         <source>Show Indentation</source>
         <translation>इंडेंटेशन दिखाएँ </translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4995"/>
-        <location filename="../src/application/mainwindow.cpp" line="4996"/>
+        <location filename="../src/application/mainwindow.cpp" line="4936"/>
+        <location filename="../src/application/mainwindow.cpp" line="4937"/>
         <source>Search Feed</source>
         <translation>फ़ीड खोजे</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4998"/>
+        <location filename="../src/application/mainwindow.cpp" line="4939"/>
         <source>Zoom</source>
         <translation>ज़ूम</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4999"/>
+        <location filename="../src/application/mainwindow.cpp" line="4940"/>
         <source>Zoom In</source>
         <translation>ज़ूम इन</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5000"/>
+        <location filename="../src/application/mainwindow.cpp" line="4941"/>
         <source>Zoom in in browser</source>
         <translation>ब्राउज़र में ज़ूम इन करें</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5001"/>
+        <location filename="../src/application/mainwindow.cpp" line="4942"/>
         <source>Zoom Out</source>
         <translation>ज़ूम आउट</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5002"/>
+        <location filename="../src/application/mainwindow.cpp" line="4943"/>
         <source>Zoom out in browser</source>
         <translation>ब्राउज़र में ज़ूम आउट करें</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5003"/>
+        <location filename="../src/application/mainwindow.cpp" line="4944"/>
         <source>100%</source>
         <translation>100%</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5006"/>
+        <location filename="../src/application/mainwindow.cpp" line="4947"/>
         <source>Print...</source>
         <translation>प्रिंट करें ...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5008"/>
+        <location filename="../src/application/mainwindow.cpp" line="4949"/>
         <source>Print Preview...</source>
         <translation>प्रिंट पूर्वावलोकन ...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5011"/>
+        <location filename="../src/application/mainwindow.cpp" line="4952"/>
         <source>Page up (Browser)</source>
         <translation>पृष्ठ के ऊपर जाए (ब्राउज़र)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5012"/>
+        <location filename="../src/application/mainwindow.cpp" line="4953"/>
         <source>Page down (Browser)</source>
         <translation>पृष्ठ के नीचे जाए (ब्राउज़र)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5014"/>
+        <location filename="../src/application/mainwindow.cpp" line="4955"/>
         <source>Save As...</source>
         <translation>के रूप में सहेजें ...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5015"/>
+        <location filename="../src/application/mainwindow.cpp" line="4956"/>
         <source>Save Page As...</source>
         <translation>पृष्ठ को इस रूप में सहेजें ...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5019"/>
+        <location filename="../src/application/mainwindow.cpp" line="4960"/>
         <source>Show/Hide</source>
         <translation>दिखाएँ/छुपाएं</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5021"/>
+        <location filename="../src/application/mainwindow.cpp" line="4962"/>
         <source>Feeds Toolbar</source>
         <translation>फीड उपकरण पट्टी ...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5022"/>
+        <location filename="../src/application/mainwindow.cpp" line="4963"/>
         <source>News Toolbar</source>
         <translation>समाचार उपकरण पट्टी</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5023"/>
+        <location filename="../src/application/mainwindow.cpp" line="4964"/>
         <source>Browser Toolbar</source>
         <translation>ब्राउज़र उपकरण पट्टी</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5024"/>
+        <location filename="../src/application/mainwindow.cpp" line="4965"/>
         <source>Panel Categories</source>
         <translation>पैनल श्रेणियाँ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5025"/>
+        <location filename="../src/application/mainwindow.cpp" line="4966"/>
         <source>Status Bar</source>
         <translation>स्थिति पट्टी</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5027"/>
-        <location filename="../src/application/mainwindow.cpp" line="5028"/>
+        <location filename="../src/application/mainwindow.cpp" line="4968"/>
+        <location filename="../src/application/mainwindow.cpp" line="4969"/>
         <source>Full Screen</source>
         <translation>पूर्ण स्क्रीन</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5030"/>
-        <location filename="../src/application/mainwindow.cpp" line="5031"/>
+        <location filename="../src/application/mainwindow.cpp" line="4971"/>
+        <location filename="../src/application/mainwindow.cpp" line="4972"/>
         <source>Stay On Top</source>
         <translation>शीर्ष पर रहना</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5033"/>
+        <location filename="../src/application/mainwindow.cpp" line="4974"/>
         <source>Categories</source>
         <translation>श्रेणियाँ </translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5039"/>
-        <location filename="../src/application/mainwindow.cpp" line="5040"/>
+        <location filename="../src/application/mainwindow.cpp" line="4980"/>
+        <location filename="../src/application/mainwindow.cpp" line="4981"/>
         <source>Label</source>
         <translation>चिप्पी</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5041"/>
+        <location filename="../src/application/mainwindow.cpp" line="4982"/>
         <source>Show labels menu</source>
         <translation>दिखाएँ चिप्पी मेनू</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5043"/>
+        <location filename="../src/application/mainwindow.cpp" line="4984"/>
         <source>Close Tab</source>
         <translation>टैब बंद करें</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5044"/>
+        <location filename="../src/application/mainwindow.cpp" line="4985"/>
         <source>Close Other Tabs</source>
         <translation>अन्य टैब बंद करें</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5045"/>
+        <location filename="../src/application/mainwindow.cpp" line="4986"/>
         <source>Close All Tabs</source>
         <translation>सभी टैब को बंद करें</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5046"/>
+        <location filename="../src/application/mainwindow.cpp" line="4987"/>
         <source>Switch to next tab</source>
         <translation>अगले टैब में स्विच करे</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5047"/>
+        <location filename="../src/application/mainwindow.cpp" line="4988"/>
         <source>Switch to previous tab</source>
         <translation>पिछले टैब में स्विच करे</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5049"/>
+        <location filename="../src/application/mainwindow.cpp" line="4990"/>
         <source>Unread</source>
         <translation>अपठित</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5050"/>
+        <location filename="../src/application/mainwindow.cpp" line="4991"/>
         <source>Starred</source>
         <translation>तारांकित </translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5051"/>
+        <location filename="../src/application/mainwindow.cpp" line="4992"/>
         <source>Deleted</source>
         <translation>नष्ट किया हुआ </translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5052"/>
+        <location filename="../src/application/mainwindow.cpp" line="4993"/>
         <source>Labels</source>
         <translation>चिप्पीयां</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5054"/>
+        <location filename="../src/application/mainwindow.cpp" line="4995"/>
         <source>Decrease news list/increase browser</source>
         <translation>समाचार सूची घटाएं/ ब्राउज़र बढ़ाएँ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5055"/>
+        <location filename="../src/application/mainwindow.cpp" line="4996"/>
         <source>Increase news list/decrease browser</source>
         <translation>समाचार सूची बढ़ाएँ/ ब्राउज़र घटाएं</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5057"/>
+        <location filename="../src/application/mainwindow.cpp" line="4998"/>
         <source>Find</source>
         <translation>खोजें</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5059"/>
+        <location filename="../src/application/mainwindow.cpp" line="5000"/>
         <source>Open Homepage Feed</source>
         <translation>खोलें मुखपृष्ठ फ़ीड</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5060"/>
+        <location filename="../src/application/mainwindow.cpp" line="5001"/>
         <source>Sort by Name</source>
         <translation>नाम द्वारा क्रमबद्ध करें</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5061"/>
+        <location filename="../src/application/mainwindow.cpp" line="5002"/>
         <source>Collapse All Folders</source>
         <translation>सभी फ़ोल्डर को संकुचित करें</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5062"/>
+        <location filename="../src/application/mainwindow.cpp" line="5003"/>
         <source>Expand All Folders</source>
         <translation>सभी फ़ोल्डरों का विस्तार करे</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5063"/>
+        <location filename="../src/application/mainwindow.cpp" line="5004"/>
         <source>Next Folder</source>
         <translation>अगला फ़ोल्डर</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5064"/>
+        <location filename="../src/application/mainwindow.cpp" line="5005"/>
         <source>Previous Folder</source>
         <translation>पिछले फ़ोल्डर</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5065"/>
+        <location filename="../src/application/mainwindow.cpp" line="5006"/>
         <source>Expand Folder</source>
         <translation>फ़ोल्डर का विस्तार करे</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5067"/>
+        <location filename="../src/application/mainwindow.cpp" line="5008"/>
         <source>Setting Page: Labels</source>
         <translation>सेटिंग पृष्ठ: लेबल</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5069"/>
+        <location filename="../src/application/mainwindow.cpp" line="5010"/>
         <source>Share</source>
         <translation>साझा करें</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5071"/>
+        <location filename="../src/application/mainwindow.cpp" line="5012"/>
         <source>Sort By</source>
         <translation>इसके अनुसार क्रमबद्ध करें:</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5072"/>
+        <location filename="../src/application/mainwindow.cpp" line="5013"/>
         <source>Ascending</source>
         <translation>आरोही</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5073"/>
+        <location filename="../src/application/mainwindow.cpp" line="5014"/>
         <source>Descending</source>
         <translation>अवरोही</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5924"/>
+        <location filename="../src/application/mainwindow.cpp" line="5906"/>
         <source>Check for updates</source>
         <translation>अद्यतन के लिए जाँच करें</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5925"/>
+        <location filename="../src/application/mainwindow.cpp" line="5907"/>
         <source>A new version of QuiteRSS...</source>
         <translation>QuiteRSS का एक नया संस्करण...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="6310"/>
+        <location filename="../src/application/mainwindow.cpp" line="6286"/>
         <source>Loading...</source>
         <translation>लोड हो रहा ...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="6895"/>
-        <location filename="../src/application/mainwindow.cpp" line="6912"/>
+        <location filename="../src/application/mainwindow.cpp" line="6871"/>
+        <location filename="../src/application/mainwindow.cpp" line="6888"/>
         <source>Web Page</source>
         <translation>वेब पृष्ठ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="7469"/>
+        <location filename="../src/application/mainwindow.cpp" line="7445"/>
         <source>Save As</source>
         <translation>के रूप में सहेजें</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="7471"/>
+        <location filename="../src/application/mainwindow.cpp" line="7447"/>
         <source>HTML-Files (*.%1)</source>
         <translation>एचटीएमएल फ़ाइलें (*।% 1)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="7471"/>
+        <location filename="../src/application/mainwindow.cpp" line="7447"/>
         <source>Text files (*.%2)</source>
         <translation>टेक्स्ट फ़ाइलें (*।% 2)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="7477"/>
+        <location filename="../src/application/mainwindow.cpp" line="7453"/>
         <source>Save As: can&apos;t open a file</source>
         <translation>के रूप में सहेजें: फ़ाइल को खोल नहीं सकता है!</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="7973"/>
+        <location filename="../src/application/mainwindow.cpp" line="7949"/>
         <source>Choose Directory</source>
         <translation>डायरेक्ट्री चुनें</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.h" line="101"/>
+        <location filename="../src/application/mainwindow.h" line="103"/>
         <source>Important</source>
         <translation>महत्त्वपूर्ण</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.h" line="101"/>
+        <location filename="../src/application/mainwindow.h" line="103"/>
         <source>Work</source>
         <translation>काम</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.h" line="101"/>
+        <location filename="../src/application/mainwindow.h" line="103"/>
         <source>Personal</source>
         <translation>व्यक्तिगत</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.h" line="102"/>
+        <location filename="../src/application/mainwindow.h" line="104"/>
         <source>To Do</source>
         <translation>करने के लिए</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.h" line="102"/>
+        <location filename="../src/application/mainwindow.h" line="104"/>
         <source>Later</source>
         <translation>बाद में</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.h" line="102"/>
+        <location filename="../src/application/mainwindow.h" line="104"/>
         <source>Amusingly</source>
         <translation>मज़ाकिया</translation>
     </message>
@@ -2602,57 +2615,57 @@ Ancient news could reappear</source>
 <context>
     <name>NewsHeader</name>
     <message>
-        <location filename="../src/newsheader.cpp" line="402"/>
+        <location filename="../src/newsview/newsheader.cpp" line="396"/>
         <source>Icon Feed</source>
         <translation>आइकन फ़ीड</translation>
     </message>
     <message>
-        <location filename="../src/newsheader.cpp" line="403"/>
+        <location filename="../src/newsview/newsheader.cpp" line="397"/>
         <source>Title</source>
         <translation>शीर्षक</translation>
     </message>
     <message>
-        <location filename="../src/newsheader.cpp" line="404"/>
+        <location filename="../src/newsview/newsheader.cpp" line="398"/>
         <source>Published</source>
         <translation>प्रकाशित</translation>
     </message>
     <message>
-        <location filename="../src/newsheader.cpp" line="405"/>
+        <location filename="../src/newsview/newsheader.cpp" line="399"/>
         <source>Received</source>
         <translation>प्राप्त</translation>
     </message>
     <message>
-        <location filename="../src/newsheader.cpp" line="406"/>
+        <location filename="../src/newsview/newsheader.cpp" line="400"/>
         <source>Author</source>
         <translation>लेखक</translation>
     </message>
     <message>
-        <location filename="../src/newsheader.cpp" line="407"/>
+        <location filename="../src/newsview/newsheader.cpp" line="401"/>
         <source>Category</source>
         <translation>श्रेणी</translation>
     </message>
     <message>
-        <location filename="../src/newsheader.cpp" line="408"/>
+        <location filename="../src/newsview/newsheader.cpp" line="402"/>
         <source>Read</source>
         <translation>पढ़ा हुआ </translation>
     </message>
     <message>
-        <location filename="../src/newsheader.cpp" line="409"/>
+        <location filename="../src/newsview/newsheader.cpp" line="403"/>
         <source>Star</source>
         <translation>तारांकित </translation>
     </message>
     <message>
-        <location filename="../src/newsheader.cpp" line="410"/>
+        <location filename="../src/newsview/newsheader.cpp" line="404"/>
         <source>Label</source>
         <translation>चिप्पी</translation>
     </message>
     <message>
-        <location filename="../src/newsheader.cpp" line="411"/>
+        <location filename="../src/newsview/newsheader.cpp" line="405"/>
         <source>Feed Title</source>
         <translation>फ़ीड शीर्षक</translation>
     </message>
     <message>
-        <location filename="../src/newsheader.cpp" line="412"/>
+        <location filename="../src/newsview/newsheader.cpp" line="406"/>
         <source>Link</source>
         <translation>लिंक</translation>
     </message>
@@ -2660,12 +2673,12 @@ Ancient news could reappear</source>
 <context>
     <name>NewsItem</name>
     <message>
-        <location filename="../src/notifications/notificationsnewsitem.cpp" line="38"/>
+        <location filename="../src/notifications/notificationsnewsitem.cpp" line="37"/>
         <source>Mark Read/Unread</source>
         <translation>पठित/अपठित चिन्हित करें</translation>
     </message>
     <message>
-        <location filename="../src/notifications/notificationsnewsitem.cpp" line="47"/>
+        <location filename="../src/notifications/notificationsnewsitem.cpp" line="46"/>
         <source>Delete News</source>
         <translation>समाचार हटाएं</translation>
     </message>
@@ -2673,189 +2686,190 @@ Ancient news could reappear</source>
 <context>
     <name>NewsTabWidget</name>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="600"/>
+        <location filename="../src/newstabwidget.cpp" line="602"/>
         <source>Loading... (%p%)</source>
         <translation>लोड हो रहा ... (% P%)</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="602"/>
+        <location filename="../src/newstabwidget.cpp" line="604"/>
         <source>Home</source>
         <translation>मुखपृष्ठ</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="603"/>
+        <location filename="../src/newstabwidget.cpp" line="605"/>
         <source>Open Page in External Browser</source>
         <translation>बाहरी ब्राउज़र में पृष्ठ खोलें </translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="604"/>
+        <location filename="../src/newstabwidget.cpp" line="606"/>
         <source>Open Link in External Browser</source>
         <translation>बाहरी ब्राउज़र में लिंक खोलें</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="606"/>
+        <location filename="../src/newstabwidget.cpp" line="608"/>
         <source>Open Link</source>
         <translation>लिंक खोलें</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="607"/>
+        <location filename="../src/newstabwidget.cpp" line="609"/>
+        <location filename="../src/newstabwidget.cpp" line="610"/>
         <source>Open in New Tab</source>
         <translation>नए टैब में खोलें</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="608"/>
+        <location filename="../src/newstabwidget.cpp" line="611"/>
         <source>Save Link...</source>
         <translation>लिंक को इस रूप में सहेजें ...</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="609"/>
+        <location filename="../src/newstabwidget.cpp" line="612"/>
         <source>Save Image...</source>
         <translation>छवि सहेजें </translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="610"/>
+        <location filename="../src/newstabwidget.cpp" line="613"/>
         <source>Copy Link</source>
         <translation>लिंक प्रतिलिपि बनाएँ</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="611"/>
+        <location filename="../src/newstabwidget.cpp" line="614"/>
         <source>Copy</source>
         <translation>प्रतिलिपि बनाएँ</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="612"/>
+        <location filename="../src/newstabwidget.cpp" line="615"/>
         <source>Go Back</source>
         <translation>वापस जाओ</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="613"/>
+        <location filename="../src/newstabwidget.cpp" line="616"/>
         <source>Go Forward</source>
         <translation>आगे बढ़ो</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="614"/>
+        <location filename="../src/newstabwidget.cpp" line="617"/>
         <source>Stop</source>
         <translation>रुकें</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="615"/>
+        <location filename="../src/newstabwidget.cpp" line="618"/>
         <source>Reload</source>
         <translation>पुनः लोड करें</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="616"/>
+        <location filename="../src/newstabwidget.cpp" line="619"/>
         <source>Copy Image</source>
         <translation>छवि की प्रतिलिपि बनाए</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="618"/>
+        <location filename="../src/newstabwidget.cpp" line="621"/>
         <source>Copy Image Address</source>
         <translation>छवि पता की प्रतिलिपि बनाए</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="628"/>
-        <location filename="../src/newstabwidget.cpp" line="649"/>
+        <location filename="../src/newstabwidget.cpp" line="631"/>
+        <location filename="../src/newstabwidget.cpp" line="652"/>
         <source>Load Images</source>
         <translation>छवियों को प्रस्तुत करें</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="629"/>
+        <location filename="../src/newstabwidget.cpp" line="632"/>
         <source>Auto Load Images to News View</source>
         <translation>छवियाँ स्वतः लोड करे समाचार व्यू में </translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="631"/>
+        <location filename="../src/newstabwidget.cpp" line="634"/>
         <source>No Load Images</source>
         <translation>छवियों को प्रस्तुत नही करें</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="632"/>
+        <location filename="../src/newstabwidget.cpp" line="635"/>
         <source>No Load Images to News View</source>
         <translation>छवियाँ लोड नही करे समाचार व्यू में </translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="637"/>
+        <location filename="../src/newstabwidget.cpp" line="640"/>
         <source>Close Tab</source>
         <translation>टैब बंद करें</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="650"/>
+        <location filename="../src/newstabwidget.cpp" line="653"/>
         <source>Auto Load Images in News View</source>
         <translation>छवियाँ स्वतः लोड करे समाचार व्यू में </translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="653"/>
+        <location filename="../src/newstabwidget.cpp" line="656"/>
         <source>Don&apos;t Load Images</source>
         <translation>छवियों को प्रस्तुत नही करें</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="654"/>
+        <location filename="../src/newstabwidget.cpp" line="657"/>
         <source>Don&apos;t Load Images in News View</source>
         <translation>छवियाँ लोड नही करे समाचार व्यू में</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1447"/>
-        <location filename="../src/newstabwidget.cpp" line="1676"/>
+        <location filename="../src/newstabwidget.cpp" line="1451"/>
+        <location filename="../src/newstabwidget.cpp" line="1680"/>
         <source>Comments</source>
         <translation>टिप्पणियाँ</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1453"/>
-        <location filename="../src/newstabwidget.cpp" line="1682"/>
+        <location filename="../src/newstabwidget.cpp" line="1457"/>
+        <location filename="../src/newstabwidget.cpp" line="1686"/>
         <source>Author: %1</source>
         <translation>लेखक:% 1</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1484"/>
-        <location filename="../src/newstabwidget.cpp" line="1713"/>
+        <location filename="../src/newstabwidget.cpp" line="1488"/>
+        <location filename="../src/newstabwidget.cpp" line="1717"/>
         <source>audio</source>
         <translation>ऑडियो</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1489"/>
-        <location filename="../src/newstabwidget.cpp" line="1718"/>
+        <location filename="../src/newstabwidget.cpp" line="1493"/>
+        <location filename="../src/newstabwidget.cpp" line="1722"/>
         <source>video</source>
         <translation>वीडियो</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1493"/>
-        <location filename="../src/newstabwidget.cpp" line="1722"/>
+        <location filename="../src/newstabwidget.cpp" line="1497"/>
+        <location filename="../src/newstabwidget.cpp" line="1726"/>
         <source>media</source>
         <translation>मीडिया</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1496"/>
-        <location filename="../src/newstabwidget.cpp" line="1725"/>
+        <location filename="../src/newstabwidget.cpp" line="1500"/>
+        <location filename="../src/newstabwidget.cpp" line="1729"/>
         <source>Link to</source>
         <translation>लिंक करे</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1606"/>
+        <location filename="../src/newstabwidget.cpp" line="1610"/>
         <source>Mark Read/Unread</source>
         <translation>पठित/अपठित चिन्हित करें</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1743"/>
+        <location filename="../src/newstabwidget.cpp" line="1747"/>
         <source>Mark News Star</source>
         <translation>तारांकित चिन्हित करें</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1747"/>
+        <location filename="../src/newstabwidget.cpp" line="1751"/>
         <source>Label</source>
         <translation>चिप्पी</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1751"/>
+        <location filename="../src/newstabwidget.cpp" line="1755"/>
         <source>Share</source>
         <translation>साझा करें</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1755"/>
+        <location filename="../src/newstabwidget.cpp" line="1759"/>
         <source>Open News in External Browser</source>
         <translation>बाहरी ब्राउज़र में समाचार खोलें </translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1759"/>
+        <location filename="../src/newstabwidget.cpp" line="1763"/>
         <source>Delete</source>
         <translation>नष्ट करें</translation>
     </message>
@@ -2904,8 +2918,8 @@ Ancient news could reappear</source>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="65"/>
-        <location filename="../src/optionsdialog.cpp" line="745"/>
-        <location filename="../src/optionsdialog.cpp" line="997"/>
+        <location filename="../src/optionsdialog.cpp" line="748"/>
+        <location filename="../src/optionsdialog.cpp" line="1000"/>
         <source>General</source>
         <translation>सामान्य</translation>
     </message>
@@ -2926,19 +2940,19 @@ Ancient news could reappear</source>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="77"/>
-        <location filename="../src/optionsdialog.cpp" line="1138"/>
+        <location filename="../src/optionsdialog.cpp" line="1141"/>
         <source>Feeds</source>
         <translation>फीड्स</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="80"/>
-        <location filename="../src/optionsdialog.cpp" line="1883"/>
+        <location filename="../src/optionsdialog.cpp" line="1886"/>
         <source>Labels</source>
         <translation>चिप्पी</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="83"/>
-        <location filename="../src/optionsdialog.cpp" line="1885"/>
+        <location filename="../src/optionsdialog.cpp" line="1888"/>
         <source>Notifications</source>
         <translation>सूचनाएं</translation>
     </message>
@@ -2949,7 +2963,7 @@ Ancient news could reappear</source>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="89"/>
-        <location filename="../src/optionsdialog.cpp" line="1310"/>
+        <location filename="../src/optionsdialog.cpp" line="1313"/>
         <source>Language</source>
         <translation>भाषा</translation>
     </message>
@@ -2964,1143 +2978,1143 @@ Ancient news could reappear</source>
         <translation>कीबोर्ड शॉर्टकट</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="264"/>
-        <location filename="../src/optionsdialog.cpp" line="2215"/>
+        <location filename="../src/optionsdialog.cpp" line="267"/>
+        <location filename="../src/optionsdialog.cpp" line="2218"/>
         <source>Warning: key is already assigned to</source>
         <translation>चेतावनी: कुंजी पहले किसी को सौंपा है</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="288"/>
+        <location filename="../src/optionsdialog.cpp" line="291"/>
         <source>Show splash screen on startup</source>
         <translation>स्टार्टअप पर स्प्लैश स्क्रीन दिखाएँ</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="289"/>
+        <location filename="../src/optionsdialog.cpp" line="292"/>
         <source>Reopen last opened feeds on startup</source>
         <translation>स्टार्टअप पर पिछले खोले फीड्स दिखाये</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="290"/>
+        <location filename="../src/optionsdialog.cpp" line="293"/>
         <source>Open new tab next to active</source>
         <translation>सक्रिय टैब के अगले नया टैब खोलें</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="291"/>
+        <location filename="../src/optionsdialog.cpp" line="294"/>
         <source>Hide feeds tree when opening tabs</source>
         <translation>टैब खोलते समय फीड्स ट्री छुपाए</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="293"/>
+        <location filename="../src/optionsdialog.cpp" line="296"/>
         <source>Show default rss-icon instead of favourite one</source>
         <translation>बजाय पसंदीदा आइकन  के डिफ़ॉल्ट आरएसएस आइकन दिखाएँ </translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="294"/>
+        <location filename="../src/optionsdialog.cpp" line="297"/>
         <source>Automatically collapse folders</source>
         <translation>स्वचालित रूप से फ़ोल्डरों को संकुचित करें</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="295"/>
+        <location filename="../src/optionsdialog.cpp" line="298"/>
         <source>Show close button on tab</source>
         <translation>टैब पर बंद बटन दिखाएँ</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="297"/>
+        <location filename="../src/optionsdialog.cpp" line="300"/>
         <source>Automatically check for updates</source>
         <translation>स्वचालित रूप से अद्यतन करें</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="298"/>
+        <location filename="../src/optionsdialog.cpp" line="301"/>
         <source>Help improve QuiteRSS by sending usage information</source>
         <translation>उपयोग की जानकारी भेजकर QuiteRSS सुधार करने में मदद दे</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="299"/>
+        <location filename="../src/optionsdialog.cpp" line="302"/>
         <source>Store a DB in memory (requires program restart)</source>
         <translation>DB को मेमोरी में संग्रहीत करे ( प्रोग्राम को पुनः आरंभ की आवश्यकता है)</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="306"/>
+        <location filename="../src/optionsdialog.cpp" line="309"/>
         <source>Save DB stored in memory to file every</source>
         <translation>मेमोरी में संग्रहीत DB को फाइल में सहेजें इस समयावधि में</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="308"/>
-        <location filename="../src/optionsdialog.cpp" line="769"/>
+        <location filename="../src/optionsdialog.cpp" line="311"/>
+        <location filename="../src/optionsdialog.cpp" line="772"/>
         <source>minutes</source>
         <translation>मिनटों</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="330"/>
+        <location filename="../src/optionsdialog.cpp" line="333"/>
         <source>Run QuiteRSS at Windows startup</source>
         <translation>विंडोज स्टार्टअप पर QuiteRSS चलाएँ</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="358"/>
+        <location filename="../src/optionsdialog.cpp" line="361"/>
         <source>Show system tray icon</source>
         <translation>दिखाएँ सिस्टम ट्रे आइकन</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="361"/>
+        <location filename="../src/optionsdialog.cpp" line="364"/>
         <source>starting QuiteRSS</source>
         <translation>QuiteRSS शुरू करे</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="362"/>
+        <location filename="../src/optionsdialog.cpp" line="365"/>
         <source>minimizing QuiteRSS</source>
         <translation>QuiteRSS को नीचे लाएँ</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="363"/>
+        <location filename="../src/optionsdialog.cpp" line="366"/>
         <source>closing QuiteRSS</source>
         <translation>QuiteRSS बंद करे</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="370"/>
+        <location filename="../src/optionsdialog.cpp" line="373"/>
         <source>Show static icon</source>
         <translation>स्थिर आइकन दिखाएं</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="371"/>
+        <location filename="../src/optionsdialog.cpp" line="374"/>
         <source>Change icon for incoming new news</source>
         <translation>आने वाली नई खबर के लिए चिह्न बदलें </translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="372"/>
+        <location filename="../src/optionsdialog.cpp" line="375"/>
         <source>Show count of new news</source>
-        <translation type="unfinished"/>
+        <translation>नई खबरों की गिनती दिखाएँ</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="373"/>
+        <location filename="../src/optionsdialog.cpp" line="376"/>
         <source>Show count of unread news</source>
-        <translation type="unfinished"/>
+        <translation>अपठित खबरों की गिनती दिखाएँ</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="382"/>
+        <location filename="../src/optionsdialog.cpp" line="385"/>
         <source>Single click instead of double click for show window</source>
-        <translation type="unfinished"/>
+        <translation>शो विंडो पर डबल क्लिक करें बजाय कि सिंगल क्लिक</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="384"/>
+        <location filename="../src/optionsdialog.cpp" line="387"/>
         <source>Empty working set on minimize to tray</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="388"/>
-        <source>Move to the system tray when:</source>
-        <translation type="unfinished"/>
+        <translation>ट्रे के नीचे  पहुचने पर कार्यरत सेट को खाली करें </translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="391"/>
+        <source>Move to the system tray when:</source>
+        <translation>सिस्टम ट्रे में ले जाएँ तब जब:</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="394"/>
         <source>Tray icon behavior:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="415"/>
-        <source>Direct connection to the Internet</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="417"/>
-        <source>System proxy configuration (if available)</source>
-        <translation type="unfinished"/>
+        <translation>ट्रे आइकन व्यवहार:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="418"/>
+        <source>Direct connection to the Internet</source>
+        <translation>इंटरनेट से प्रत्यक्ष कनेक्शन</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="420"/>
+        <source>System proxy configuration (if available)</source>
+        <translation>सिस्टम प्रॉक्सी विन्यास (यदि उपलब्ध हो)</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="421"/>
         <source>Manual proxy configuration:</source>
-        <translation type="unfinished"/>
+        <translation>मैन्युअल प्रॉक्सी विन्यास:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="437"/>
+        <location filename="../src/optionsdialog.cpp" line="440"/>
         <source>Proxy server:</source>
-        <translation type="unfinished"/>
+        <translation>प्रॉक्सी सर्वर:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="439"/>
+        <location filename="../src/optionsdialog.cpp" line="442"/>
         <source>Port:</source>
-        <translation type="unfinished"/>
+        <translation>पोर्ट:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="447"/>
+        <location filename="../src/optionsdialog.cpp" line="450"/>
         <source>Username:</source>
-        <translation type="unfinished"/>
+        <translation>प्रयोक्ता नाम:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="449"/>
+        <location filename="../src/optionsdialog.cpp" line="452"/>
         <source>Password:</source>
-        <translation type="unfinished"/>
+        <translation>पासवर्ड:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="478"/>
+        <location filename="../src/optionsdialog.cpp" line="481"/>
         <source>Request timeout:</source>
-        <translation type="unfinished"/>
+        <translation>समय ख़त्म होने का अनुरोध:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="480"/>
+        <location filename="../src/optionsdialog.cpp" line="483"/>
         <source>Number of requests:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="482"/>
-        <source>Number of retries:</source>
-        <translation type="unfinished"/>
+        <translation>अनुरोधों की संख्या:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="485"/>
+        <source>Number of retries:</source>
+        <translation>पुनर्प्रयास की संख्या:</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="488"/>
         <source>Options network requests when updating feeds (requires program restart):</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="502"/>
-        <source>Use embedded browser</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="503"/>
-        <source>Use external browser</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="504"/>
-        <source>Default external browser</source>
-        <translation type="unfinished"/>
+        <translation>विकल्प नेटवर्क अनुरोध फ़ीड को अपडेट करते समय  (कार्यक्रम को पुनः आरंभ की आवश्यकता है) :</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="505"/>
-        <source>Following external browser:</source>
-        <translation type="unfinished"/>
+        <source>Use embedded browser</source>
+        <translation>एम्बेडेड ब्राउज़र का उपयोग करें</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="506"/>
+        <source>Use external browser</source>
+        <translation>बाहरी ब्राउज़र का प्रयोग करें</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="507"/>
+        <source>Default external browser</source>
+        <translation>डिफ़ॉल्ट बाहरी ब्राउज़र</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="508"/>
-        <location filename="../src/optionsdialog.cpp" line="522"/>
-        <location filename="../src/optionsdialog.cpp" line="603"/>
-        <location filename="../src/optionsdialog.cpp" line="723"/>
-        <location filename="../src/optionsdialog.cpp" line="857"/>
-        <location filename="../src/optionsdialog.cpp" line="1178"/>
-        <source>Browse...</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="510"/>
-        <location filename="../src/optionsdialog.cpp" line="2101"/>
-        <source>Load images</source>
-        <translation type="unfinished"/>
+        <source>Following external browser:</source>
+        <translation>बाहरी ब्राउज़र इस प्रकार है:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="511"/>
+        <location filename="../src/optionsdialog.cpp" line="525"/>
+        <location filename="../src/optionsdialog.cpp" line="606"/>
+        <location filename="../src/optionsdialog.cpp" line="726"/>
+        <location filename="../src/optionsdialog.cpp" line="860"/>
+        <location filename="../src/optionsdialog.cpp" line="1181"/>
+        <source>Browse...</source>
+        <translation>ब्राउज़ करें ...</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="513"/>
+        <location filename="../src/optionsdialog.cpp" line="2104"/>
+        <source>Load images</source>
+        <translation>छवियों को प्रस्तुत करें</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="514"/>
         <source>Enable JavaScript</source>
-        <translation type="unfinished"/>
+        <translation>जावास्क्रिप्ट सक्षम करें</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="512"/>
+        <location filename="../src/optionsdialog.cpp" line="515"/>
         <source>Enable plug-ins</source>
-        <translation type="unfinished"/>
+        <translation>प्लग-इन सक्षम करें </translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="518"/>
+        <location filename="../src/optionsdialog.cpp" line="521"/>
         <source>Open links in embedded browser in background</source>
-        <translation type="unfinished"/>
+        <translation>पृष्ठभूमि में एम्बेडेड ब्राउज़र में लिंक खोलें</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="519"/>
+        <location filename="../src/optionsdialog.cpp" line="522"/>
         <source>Open links in external browser in background (experimental)</source>
-        <translation type="unfinished"/>
+        <translation>लिंक को पृष्ठभूमि में बाहरी ब्राउज़र में खोलें (प्रायोगिक)</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="545"/>
+        <location filename="../src/optionsdialog.cpp" line="548"/>
         <source>Default zoom on pages:</source>
-        <translation type="unfinished"/>
+        <translation>पन्नों पर डिफ़ॉल्ट ज़ूम:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="563"/>
+        <location filename="../src/optionsdialog.cpp" line="566"/>
         <source>Browser selection:</source>
-        <translation type="unfinished"/>
+        <translation>ब्राउज़र चयन:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="565"/>
+        <location filename="../src/optionsdialog.cpp" line="568"/>
         <source>External browser:</source>
-        <translation type="unfinished"/>
+        <translation>बाहरी ब्राउज़र:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="567"/>
+        <location filename="../src/optionsdialog.cpp" line="570"/>
         <source>Content:</source>
-        <translation type="unfinished"/>
+        <translation>सामग्री:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="569"/>
+        <location filename="../src/optionsdialog.cpp" line="572"/>
         <source>User style sheet:</source>
-        <translation type="unfinished"/>
+        <translation>उपयोगकर्ता का स्टाइल शीट:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="598"/>
+        <location filename="../src/optionsdialog.cpp" line="601"/>
         <source>Maximum pages in cache</source>
-        <translation type="unfinished"/>
+        <translation>कैचे में अधिकतम पृष्ठ</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="609"/>
+        <location filename="../src/optionsdialog.cpp" line="612"/>
         <source>Store cache in:</source>
-        <translation type="unfinished"/>
+        <translation>स्टोर कैचे में:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="617"/>
+        <location filename="../src/optionsdialog.cpp" line="620"/>
         <source>Maximum size of disk cache</source>
-        <translation type="unfinished"/>
+        <translation>डिस्क कैचे का अधिकतम आकार</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="619"/>
+        <location filename="../src/optionsdialog.cpp" line="622"/>
         <source>MB</source>
-        <translation type="unfinished"/>
+        <translation>एमबी</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="625"/>
+        <location filename="../src/optionsdialog.cpp" line="628"/>
         <source>Use disk cache</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="640"/>
-        <source>Allow local data to be set</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="641"/>
-        <source>Keep local data only until quit application</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="642"/>
-        <source>Block sites from setting any data</source>
-        <translation type="unfinished"/>
+        <translation>उपयोग डिस्क कैचे </translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="643"/>
+        <source>Allow local data to be set</source>
+        <translation>लोकल डेटा को सेट होने दें</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="644"/>
+        <source>Keep local data only until quit application</source>
+        <translation>एप्लिकेशन से बाहर निकलने तक ही स्थानीय डेटा रखे </translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="645"/>
+        <source>Block sites from setting any data</source>
+        <translation>साइट को डेटा सेट करने से रोके </translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="646"/>
         <source>Clear</source>
-        <translation type="unfinished"/>
+        <translation>साफ़ करें</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="659"/>
+        <location filename="../src/optionsdialog.cpp" line="662"/>
         <source>Cookies:</source>
-        <translation type="unfinished"/>
+        <translation>कुकीज़:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="667"/>
+        <location filename="../src/optionsdialog.cpp" line="670"/>
         <source>Click To Flash is a plugin which blocks auto loading of Flash content at page. You can always load it manually by clicking on the Flash play icon.</source>
-        <translation type="unfinished"/>
+        <translation>फ्लैश सामग्री को ऑटो लोड  होने से रोकने के लिए &quot;क्लिक टू फ्लैश&quot; प्लगइन पर क्लिक करें। आप हमेशा फ्लैश आइकन पर क्लिक करके इसे लोड कर सकते हैं।</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="672"/>
+        <location filename="../src/optionsdialog.cpp" line="675"/>
         <source>Use Click to Flash</source>
-        <translation type="unfinished"/>
+        <translation> &quot;क्लिक टू फ्लैश&quot; का उपयोग करें </translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="684"/>
+        <location filename="../src/optionsdialog.cpp" line="687"/>
         <source>Add...</source>
-        <translation type="unfinished"/>
+        <translation>जोड़ें ...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="686"/>
+        <location filename="../src/optionsdialog.cpp" line="689"/>
         <source>Remove...</source>
-        <translation type="unfinished"/>
+        <translation>हटाएँ</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="727"/>
+        <location filename="../src/optionsdialog.cpp" line="730"/>
         <source>Ask where to save each file before downloading</source>
-        <translation type="unfinished"/>
+        <translation>डाउनलोड करने से पहले प्रत्येक फ़ाइल को सहेजने का स्थान पूछें</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="737"/>
+        <location filename="../src/optionsdialog.cpp" line="740"/>
         <source>Download location:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="746"/>
-        <source>History</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="747"/>
-        <source>Privacy</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="748"/>
-        <source>Click to Flash</source>
-        <translation type="unfinished"/>
+        <translation>डाउनलोड स्थान:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="749"/>
+        <source>History</source>
+        <translation>इतिहास</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="750"/>
+        <source>Privacy</source>
+        <translation>गोपनीयता</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="751"/>
+        <source>Click to Flash</source>
+        <translation> &quot;क्लिक टू फ्लैश&quot; </translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="752"/>
         <source>Downloads</source>
-        <translation type="unfinished"/>
+        <translation>डाउनलोड</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="758"/>
+        <location filename="../src/optionsdialog.cpp" line="761"/>
         <source>Automatically update the feeds on startup</source>
-        <translation type="unfinished"/>
+        <translation>स्वतः स्टार्टअप पर फ़ीड को अपडेट करें </translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="759"/>
+        <location filename="../src/optionsdialog.cpp" line="762"/>
         <source>Automatically update the feeds every</source>
-        <translation type="unfinished"/>
+        <translation>स्वचालित रूप से हर फ़ीड को अपडेट हर </translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="769"/>
-        <location filename="../src/optionsdialog.cpp" line="914"/>
-        <location filename="../src/optionsdialog.cpp" line="1118"/>
+        <location filename="../src/optionsdialog.cpp" line="772"/>
+        <location filename="../src/optionsdialog.cpp" line="917"/>
+        <location filename="../src/optionsdialog.cpp" line="1121"/>
         <source>seconds</source>
-        <translation type="unfinished"/>
+        <translation>सेकंड</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="769"/>
+        <location filename="../src/optionsdialog.cpp" line="772"/>
         <source>hours</source>
-        <translation type="unfinished"/>
+        <translation>घंटे</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="785"/>
+        <location filename="../src/optionsdialog.cpp" line="788"/>
         <source>Nothing to do</source>
-        <translation type="unfinished"/>
+        <translation>कुछ भी नहीं करना</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="800"/>
+        <location filename="../src/optionsdialog.cpp" line="803"/>
         <source>Dec</source>
-        <translation type="unfinished"/>
+        <translation>दिसं </translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="801"/>
+        <location filename="../src/optionsdialog.cpp" line="804"/>
         <source>December</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="824"/>
-        <source>Display format for date:</source>
-        <translation type="unfinished"/>
+        <translation>दिसंबर</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="827"/>
+        <source>Display format for date:</source>
+        <translation>तिथि के लिए प्रदर्शन स्वरूप:</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="830"/>
         <source>time:</source>
-        <translation type="unfinished"/>
+        <translation>समय:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="831"/>
+        <location filename="../src/optionsdialog.cpp" line="834"/>
         <source>Alternating row background colors</source>
-        <translation type="unfinished"/>
+        <translation>बदल बदल के पंक्तियों के पृष्ठभूमि रंग</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="832"/>
+        <location filename="../src/optionsdialog.cpp" line="835"/>
         <source>Simplified representation of date and time</source>
-        <translation type="unfinished"/>
+        <translation>तारीख और समय की सरलीकृत प्रतिनिधित्व</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="835"/>
+        <location filename="../src/optionsdialog.cpp" line="838"/>
         <source>Show All</source>
-        <translation type="unfinished"/>
+        <translation>सब दिखाओ</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="835"/>
+        <location filename="../src/optionsdialog.cpp" line="838"/>
         <source>Show New</source>
-        <translation type="unfinished"/>
+        <translation>नई दिखाएँ </translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="835"/>
+        <location filename="../src/optionsdialog.cpp" line="838"/>
         <source>Show Unread</source>
-        <translation type="unfinished"/>
+        <translation>अपठित दिखाएँ </translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="836"/>
+        <location filename="../src/optionsdialog.cpp" line="839"/>
         <source>Show Starred</source>
         <translation>तारांकित दिखाएँ</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="836"/>
+        <location filename="../src/optionsdialog.cpp" line="839"/>
         <source>Show Not Starred</source>
         <translation>दिखाएँ जो तारांकित नहीं है </translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="837"/>
+        <location filename="../src/optionsdialog.cpp" line="840"/>
         <source>Show Unread or Starred</source>
         <translation>दिखाएँ अपठित या तारांकित</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="837"/>
+        <location filename="../src/optionsdialog.cpp" line="840"/>
         <source>Show Last Day</source>
-        <translation type="unfinished"/>
+        <translation>दिखाएँ अंतिम दिन</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="838"/>
+        <location filename="../src/optionsdialog.cpp" line="841"/>
         <source>Show Last 7 Days</source>
-        <translation type="unfinished"/>
+        <translation>पिछले 7 दिनों दिखाएँ</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="879"/>
+        <location filename="../src/optionsdialog.cpp" line="882"/>
         <source>Style sheet for news:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="887"/>
-        <source>Mark news as read:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="889"/>
-        <source>on selecting. With timeout</source>
-        <translation type="unfinished"/>
+        <translation>खबर के लिए स्टाइल शीट:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="890"/>
-        <source>after switching to another news</source>
-        <translation type="unfinished"/>
+        <source>Mark news as read:</source>
+        <translation>समाचार पठित चिन्हित करें</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="896"/>
+        <location filename="../src/optionsdialog.cpp" line="892"/>
+        <source>on selecting. With timeout</source>
+        <translation>चयन पर।  समय खत्म होने के साथ </translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="893"/>
+        <source>after switching to another news</source>
+        <translation>एक अन्य खबर पर जाने के बाद</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="899"/>
         <source>Mark displayed news as read when switching feeds</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="897"/>
+        <location filename="../src/optionsdialog.cpp" line="900"/>
         <source>Mark displayed news as read when closing tab</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="898"/>
+        <location filename="../src/optionsdialog.cpp" line="901"/>
         <source>Mark displayed news as read on minimize</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="903"/>
+        <location filename="../src/optionsdialog.cpp" line="906"/>
         <source>Change behavior of action &apos;Next Unread News&apos;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="905"/>
+        <location filename="../src/optionsdialog.cpp" line="908"/>
         <source>starred news</source>
         <translation>तारांकित समाचार</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="906"/>
+        <location filename="../src/optionsdialog.cpp" line="909"/>
         <source>labeled news</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="908"/>
+        <location filename="../src/optionsdialog.cpp" line="911"/>
         <source>Automatically mark identical news as read</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="935"/>
+        <location filename="../src/optionsdialog.cpp" line="938"/>
         <source>Prevent accidental deletion of:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="947"/>
+        <location filename="../src/optionsdialog.cpp" line="950"/>
         <source>Enable cleanup on shutdown</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="950"/>
+        <location filename="../src/optionsdialog.cpp" line="953"/>
         <source>Maximum age of news in days to keep:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="957"/>
+        <location filename="../src/optionsdialog.cpp" line="960"/>
         <source>Maximum number of news to keep:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="964"/>
+        <location filename="../src/optionsdialog.cpp" line="967"/>
         <source>Delete read news</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="965"/>
+        <location filename="../src/optionsdialog.cpp" line="968"/>
         <source>Never delete unread news</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="966"/>
+        <location filename="../src/optionsdialog.cpp" line="969"/>
         <source>Never delete starred news</source>
         <translation>तारांकित समाचार को नष्ट नहीं  करें</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="967"/>
+        <location filename="../src/optionsdialog.cpp" line="970"/>
         <source>Never delete labeled news</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="969"/>
+        <location filename="../src/optionsdialog.cpp" line="972"/>
         <source>Clean up &apos;Deleted&apos;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="970"/>
+        <location filename="../src/optionsdialog.cpp" line="973"/>
         <source>Enable DB optimization (slower shutdown)</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="998"/>
+        <location filename="../src/optionsdialog.cpp" line="1001"/>
         <source>Reading</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="999"/>
+        <location filename="../src/optionsdialog.cpp" line="1002"/>
         <source>Clean Up</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1016"/>
+        <location filename="../src/optionsdialog.cpp" line="1019"/>
         <source>New...</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1018"/>
+        <location filename="../src/optionsdialog.cpp" line="1021"/>
         <source>Edit...</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1021"/>
+        <location filename="../src/optionsdialog.cpp" line="1024"/>
         <source>Delete...</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1025"/>
+        <location filename="../src/optionsdialog.cpp" line="1028"/>
         <source>Move up</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1028"/>
+        <location filename="../src/optionsdialog.cpp" line="1031"/>
         <source>Move down</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1082"/>
+        <location filename="../src/optionsdialog.cpp" line="1085"/>
         <source>Show when inactive main window</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1097"/>
+        <location filename="../src/optionsdialog.cpp" line="1100"/>
         <source>Screen</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1107"/>
+        <location filename="../src/optionsdialog.cpp" line="1110"/>
         <source>Transparency</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1121"/>
+        <location filename="../src/optionsdialog.cpp" line="1124"/>
         <source>Show titles feeds</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1122"/>
+        <location filename="../src/optionsdialog.cpp" line="1125"/>
         <source>Show icon feed</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1123"/>
+        <location filename="../src/optionsdialog.cpp" line="1126"/>
         <source>Show button &apos;Mark All News Read&apos;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1124"/>
+        <location filename="../src/optionsdialog.cpp" line="1127"/>
         <source>Show button &apos;Mark Read/Unread&apos;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1125"/>
+        <location filename="../src/optionsdialog.cpp" line="1128"/>
         <source>Show button &apos;Open in External Browser&apos;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1126"/>
+        <location filename="../src/optionsdialog.cpp" line="1129"/>
         <source>Show button &apos;Delete News&apos;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1173"/>
+        <location filename="../src/optionsdialog.cpp" line="1176"/>
         <source>Play sound for incoming new news</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1179"/>
+        <location filename="../src/optionsdialog.cpp" line="1182"/>
         <source>Play</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1061"/>
+        <location filename="../src/optionsdialog.cpp" line="1064"/>
         <source>Display notification for incoming news</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1074"/>
+        <location filename="../src/optionsdialog.cpp" line="1077"/>
         <source>Top Left</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1074"/>
+        <location filename="../src/optionsdialog.cpp" line="1077"/>
         <source>Top Right</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1075"/>
+        <location filename="../src/optionsdialog.cpp" line="1078"/>
         <source>Bottom Left</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1075"/>
+        <location filename="../src/optionsdialog.cpp" line="1078"/>
         <source>Bottom Right</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1093"/>
+        <location filename="../src/optionsdialog.cpp" line="1096"/>
         <source>Review</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1100"/>
+        <location filename="../src/optionsdialog.cpp" line="1103"/>
         <source>Position</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1110"/>
+        <location filename="../src/optionsdialog.cpp" line="1113"/>
         <source>Show maximum of</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1112"/>
+        <location filename="../src/optionsdialog.cpp" line="1115"/>
         <source>item on page notification</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1113"/>
+        <location filename="../src/optionsdialog.cpp" line="1116"/>
         <source>Width list items</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1115"/>
+        <location filename="../src/optionsdialog.cpp" line="1118"/>
         <source>pixels</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1116"/>
+        <location filename="../src/optionsdialog.cpp" line="1119"/>
         <source>Close notification after</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1078"/>
+        <location filename="../src/optionsdialog.cpp" line="1081"/>
         <source>Do not show notification in fullscreen mode</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1137"/>
+        <location filename="../src/optionsdialog.cpp" line="1140"/>
         <source>Only show selected feeds:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1202"/>
+        <location filename="../src/optionsdialog.cpp" line="1205"/>
         <source>Notification</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1203"/>
+        <location filename="../src/optionsdialog.cpp" line="1206"/>
         <source>Sound</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1214"/>
+        <location filename="../src/optionsdialog.cpp" line="1217"/>
         <source>Selection of feeds</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1230"/>
+        <location filename="../src/optionsdialog.cpp" line="1233"/>
         <source>All Feeds</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1257"/>
+        <location filename="../src/optionsdialog.cpp" line="1260"/>
         <source>Site</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1257"/>
+        <location filename="../src/optionsdialog.cpp" line="1260"/>
         <source>User</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1257"/>
+        <location filename="../src/optionsdialog.cpp" line="1260"/>
         <source>Password</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1274"/>
+        <location filename="../src/optionsdialog.cpp" line="1277"/>
         <source>Delete</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1276"/>
+        <location filename="../src/optionsdialog.cpp" line="1279"/>
         <source>Delete All</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1278"/>
+        <location filename="../src/optionsdialog.cpp" line="1281"/>
         <source>Show Passwords</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1310"/>
+        <location filename="../src/optionsdialog.cpp" line="1313"/>
         <source>Version</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1311"/>
+        <location filename="../src/optionsdialog.cpp" line="1314"/>
         <source>Author</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1311"/>
+        <location filename="../src/optionsdialog.cpp" line="1314"/>
         <source>Contact</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1577"/>
+        <location filename="../src/optionsdialog.cpp" line="1580"/>
         <source>Choose language:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1598"/>
+        <location filename="../src/optionsdialog.cpp" line="1601"/>
         <source>Type</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1598"/>
+        <location filename="../src/optionsdialog.cpp" line="1601"/>
         <source>Font</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1602"/>
+        <location filename="../src/optionsdialog.cpp" line="1605"/>
         <source>Feeds list font</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1605"/>
+        <location filename="../src/optionsdialog.cpp" line="1608"/>
         <source>News list font</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1608"/>
+        <location filename="../src/optionsdialog.cpp" line="1611"/>
         <source>News title font</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1611"/>
+        <location filename="../src/optionsdialog.cpp" line="1614"/>
         <source>News text font</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1614"/>
+        <location filename="../src/optionsdialog.cpp" line="1617"/>
         <source>Notification font</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1621"/>
-        <location filename="../src/optionsdialog.cpp" line="1722"/>
+        <location filename="../src/optionsdialog.cpp" line="1624"/>
+        <location filename="../src/optionsdialog.cpp" line="1725"/>
         <source>Change...</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1623"/>
-        <location filename="../src/optionsdialog.cpp" line="1724"/>
-        <location filename="../src/optionsdialog.cpp" line="1836"/>
+        <location filename="../src/optionsdialog.cpp" line="1626"/>
+        <location filename="../src/optionsdialog.cpp" line="1727"/>
+        <location filename="../src/optionsdialog.cpp" line="1839"/>
         <source>Reset</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1648"/>
+        <location filename="../src/optionsdialog.cpp" line="1651"/>
         <source>Feeds list color</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1651"/>
+        <location filename="../src/optionsdialog.cpp" line="1654"/>
         <source>Feeds list background</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1654"/>
+        <location filename="../src/optionsdialog.cpp" line="1657"/>
         <source>News list color</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1657"/>
+        <location filename="../src/optionsdialog.cpp" line="1660"/>
         <source>News list background</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1660"/>
+        <location filename="../src/optionsdialog.cpp" line="1663"/>
         <source>Focused news color</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1663"/>
+        <location filename="../src/optionsdialog.cpp" line="1666"/>
         <source>Focused news background color</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1666"/>
+        <location filename="../src/optionsdialog.cpp" line="1669"/>
         <source>Link color</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1669"/>
+        <location filename="../src/optionsdialog.cpp" line="1672"/>
         <source>Title color</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1672"/>
+        <location filename="../src/optionsdialog.cpp" line="1675"/>
         <source>Date color</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1675"/>
+        <location filename="../src/optionsdialog.cpp" line="1678"/>
         <source>Author color</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1678"/>
+        <location filename="../src/optionsdialog.cpp" line="1681"/>
         <source>News text color</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1681"/>
+        <location filename="../src/optionsdialog.cpp" line="1684"/>
         <source>News title background</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1684"/>
+        <location filename="../src/optionsdialog.cpp" line="1687"/>
         <source>News background</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1687"/>
+        <location filename="../src/optionsdialog.cpp" line="1690"/>
         <source>Feed with new news</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1690"/>
+        <location filename="../src/optionsdialog.cpp" line="1693"/>
         <source>Count of unread news in feeds tree</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1705"/>
+        <location filename="../src/optionsdialog.cpp" line="1708"/>
         <source>Disabled feed</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1708"/>
+        <location filename="../src/optionsdialog.cpp" line="1711"/>
         <source>Alternating row colors</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1711"/>
+        <location filename="../src/optionsdialog.cpp" line="1714"/>
         <source>Notification text color</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1714"/>
+        <location filename="../src/optionsdialog.cpp" line="1717"/>
         <source>Notification background color</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2106"/>
+        <location filename="../src/optionsdialog.cpp" line="2109"/>
         <source>Auto load images in news view</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1693"/>
+        <location filename="../src/optionsdialog.cpp" line="1696"/>
         <source>Text color of new news</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="292"/>
+        <location filename="../src/optionsdialog.cpp" line="295"/>
         <source>Show feeds tree toggle</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="383"/>
+        <location filename="../src/optionsdialog.cpp" line="386"/>
         <source>Clear new status when minimize to tray</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="781"/>
+        <location filename="../src/optionsdialog.cpp" line="784"/>
         <source>Set focus on the last opened news</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="782"/>
+        <location filename="../src/optionsdialog.cpp" line="785"/>
         <source>Set focus at the top of news list</source>
         <translation>समाचार सूची के शीर्ष पर फोकस सेट करें </translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="783"/>
+        <location filename="../src/optionsdialog.cpp" line="786"/>
         <source>Set focus on the unread news</source>
         <translation>अपठित समाचार पर फोकस सेट करें </translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="784"/>
+        <location filename="../src/optionsdialog.cpp" line="787"/>
         <source>Open the news</source>
         <translation>समाचार खोलें</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="852"/>
+        <location filename="../src/optionsdialog.cpp" line="855"/>
         <source>Default news filter:</source>
         <translation>डिफ़ॉल्ट समाचार फिल्टर:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="870"/>
+        <location filename="../src/optionsdialog.cpp" line="873"/>
         <source>Action on feed opening:</source>
         <translation>फ़ीड खोलने पर कार्रवाई:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="901"/>
+        <location filename="../src/optionsdialog.cpp" line="904"/>
         <source>Show news description instead of loading web page</source>
         <translation>वेब पेज लोड करने के बजाय की खबर विवरण दिखाएँ</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1696"/>
+        <location filename="../src/optionsdialog.cpp" line="1699"/>
         <source>Text color of unread news</source>
         <translation>अपठित समाचार का टेक्स्ट रंग</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1699"/>
+        <location filename="../src/optionsdialog.cpp" line="1702"/>
         <source>Focused feed color</source>
         <translation>फोकस्ड फ़ीड रंग</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1702"/>
+        <location filename="../src/optionsdialog.cpp" line="1705"/>
         <source>Focused feed background color</source>
         <translation>फोकस्ड फ़ीड पृष्ठभूमि रंग</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1750"/>
+        <location filename="../src/optionsdialog.cpp" line="1753"/>
         <source>Standard</source>
         <translation>मानक</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1752"/>
+        <location filename="../src/optionsdialog.cpp" line="1755"/>
         <source>Fixed</source>
         <translation>Fixed</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1754"/>
+        <location filename="../src/optionsdialog.cpp" line="1757"/>
         <source>Serif</source>
         <translation>Serif</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1756"/>
+        <location filename="../src/optionsdialog.cpp" line="1759"/>
         <source>Sans Serif</source>
         <translation>Sans Serif</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1758"/>
+        <location filename="../src/optionsdialog.cpp" line="1761"/>
         <source>Cursive</source>
         <translation>प्रवाही</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1760"/>
+        <location filename="../src/optionsdialog.cpp" line="1763"/>
         <source>Fantasy</source>
         <translation>कल्पना</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1775"/>
+        <location filename="../src/optionsdialog.cpp" line="1778"/>
         <source>Default font size</source>
         <translation>डिफ़ॉल्ट फ़ॉन्ट आकार</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1777"/>
+        <location filename="../src/optionsdialog.cpp" line="1780"/>
         <source>Fixed font size</source>
         <translation>निश्चित फ़ॉन्ट आकार</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1779"/>
+        <location filename="../src/optionsdialog.cpp" line="1782"/>
         <source>Minimum font size</source>
         <translation>न्यूनतम फ़ॉन्ट आकार</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1781"/>
+        <location filename="../src/optionsdialog.cpp" line="1784"/>
         <source>Minimum logical font size</source>
         <translation>न्यूनतम लॉजिकल फ़ॉन्ट आकार</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1785"/>
+        <location filename="../src/optionsdialog.cpp" line="1788"/>
         <source>Font families:</source>
         <translation>फ़ॉन्ट परिवार:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1787"/>
+        <location filename="../src/optionsdialog.cpp" line="1790"/>
         <source>Font sizes:</source>
         <translation>फ़ॉन्ट आकार:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1796"/>
+        <location filename="../src/optionsdialog.cpp" line="1799"/>
         <source>Fonts</source>
         <translation>फ़ॉन्ट्स</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1797"/>
+        <location filename="../src/optionsdialog.cpp" line="1800"/>
         <source>Fonts Browser</source>
         <translation>फ़ॉन्ट्स ब्राउज़र</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1798"/>
+        <location filename="../src/optionsdialog.cpp" line="1801"/>
         <source>Colors</source>
         <translation>रंग</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1805"/>
+        <location filename="../src/optionsdialog.cpp" line="1808"/>
         <source>Filter</source>
         <translation>फ़िल्टर</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1831"/>
+        <location filename="../src/optionsdialog.cpp" line="1834"/>
         <source>Action</source>
         <translation>क्रिया</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1831"/>
+        <location filename="../src/optionsdialog.cpp" line="1834"/>
         <source>Description</source>
         <translation>विवरण</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1831"/>
+        <location filename="../src/optionsdialog.cpp" line="1834"/>
         <source>Shortcut</source>
         <translation>शॉर्टकट</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1839"/>
+        <location filename="../src/optionsdialog.cpp" line="1842"/>
         <source>Shortcut:</source>
         <translation>शॉर्टकट:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2270"/>
-        <location filename="../src/optionsdialog.cpp" line="2305"/>
+        <location filename="../src/optionsdialog.cpp" line="2273"/>
+        <location filename="../src/optionsdialog.cpp" line="2308"/>
         <source>Open File...</source>
         <translation>फ़ाइल खोलें ...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2290"/>
-        <location filename="../src/optionsdialog.cpp" line="2802"/>
+        <location filename="../src/optionsdialog.cpp" line="2293"/>
+        <location filename="../src/optionsdialog.cpp" line="2805"/>
         <source>Select Style Sheet File</source>
         <translation>स्टाइल शीट फाइल का चयन करें</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2811"/>
-        <location filename="../src/optionsdialog.cpp" line="2840"/>
+        <location filename="../src/optionsdialog.cpp" line="2814"/>
+        <location filename="../src/optionsdialog.cpp" line="2843"/>
         <source>Open Directory...</source>
         <translation>डायरेक्टरी खोलें...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2821"/>
+        <location filename="../src/optionsdialog.cpp" line="2824"/>
         <source>Add site to whitelist</source>
         <translation>साइट को जोड़ें श्वेतसूची</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2822"/>
+        <location filename="../src/optionsdialog.cpp" line="2825"/>
         <source>Site without &apos;http://&apos; (ex. youtube.com)</source>
         <translation>बिना साइट &apos;http://&apos; (ex. youtube.com)</translation>
     </message>
@@ -4108,17 +4122,17 @@ Ancient news could reappear</source>
 <context>
     <name>QAbstractSpinBox</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5097"/>
+        <location filename="../src/application/mainwindow.cpp" line="5038"/>
         <source>&amp;Step up</source>
         <translation>ऊपर जाएँ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5098"/>
+        <location filename="../src/application/mainwindow.cpp" line="5039"/>
         <source>Step &amp;down</source>
         <translation>नीचे जाएँ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5099"/>
+        <location filename="../src/application/mainwindow.cpp" line="5040"/>
         <source>&amp;Select All</source>
         <translation>सभी चुनें</translation>
     </message>
@@ -4126,22 +4140,22 @@ Ancient news could reappear</source>
 <context>
     <name>QDialogButtonBox</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5075"/>
+        <location filename="../src/application/mainwindow.cpp" line="5016"/>
         <source>Close</source>
         <translation>बंद  करें</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5076"/>
+        <location filename="../src/application/mainwindow.cpp" line="5017"/>
         <source>Cancel</source>
         <translation>रद्द करना</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5077"/>
+        <location filename="../src/application/mainwindow.cpp" line="5018"/>
         <source>&amp;Yes</source>
         <translation>हाँ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5078"/>
+        <location filename="../src/application/mainwindow.cpp" line="5019"/>
         <source>&amp;No</source>
         <translation>नहीं</translation>
     </message>
@@ -4255,37 +4269,37 @@ Ancient news could reappear</source>
 <context>
     <name>QLineEdit</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5080"/>
+        <location filename="../src/application/mainwindow.cpp" line="5021"/>
         <source>&amp;Undo</source>
         <translation>पूर्ववत करें</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5081"/>
+        <location filename="../src/application/mainwindow.cpp" line="5022"/>
         <source>&amp;Redo</source>
         <translation>फिर से करें</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5082"/>
+        <location filename="../src/application/mainwindow.cpp" line="5023"/>
         <source>Cu&amp;t</source>
         <translation>कट करें</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5083"/>
+        <location filename="../src/application/mainwindow.cpp" line="5024"/>
         <source>&amp;Copy</source>
         <translation>प्रतिलिपि बनाएँ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5084"/>
+        <location filename="../src/application/mainwindow.cpp" line="5025"/>
         <source>&amp;Paste</source>
         <translation>चिपकाएँ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5085"/>
+        <location filename="../src/application/mainwindow.cpp" line="5026"/>
         <source>Delete</source>
         <translation>हटाएँ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5086"/>
+        <location filename="../src/application/mainwindow.cpp" line="5027"/>
         <source>Select All</source>
         <translation>सभी चुनें</translation>
     </message>
@@ -4293,7 +4307,7 @@ Ancient news could reappear</source>
 <context>
     <name>QMultiInputContext</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5101"/>
+        <location filename="../src/application/mainwindow.cpp" line="5042"/>
         <source>Select IM</source>
         <translation>चयन करें आईएम</translation>
     </message>
@@ -4311,7 +4325,7 @@ Ancient news could reappear</source>
         <translation>बाहरी प्रोग्राम शुरू नहीं कर सकते! % 1</translation>
     </message>
     <message>
-        <location filename="../src/database/database.cpp" line="265"/>
+        <location filename="../src/database/database.cpp" line="255"/>
         <source>Error</source>
         <translation>त्रुटि</translation>
     </message>
@@ -4319,42 +4333,42 @@ Ancient news could reappear</source>
 <context>
     <name>QTextControl</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5088"/>
+        <location filename="../src/application/mainwindow.cpp" line="5029"/>
         <source>&amp;Undo</source>
         <translation>पूर्ववत करें</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5089"/>
+        <location filename="../src/application/mainwindow.cpp" line="5030"/>
         <source>&amp;Redo</source>
         <translation>फिर से करें</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5090"/>
+        <location filename="../src/application/mainwindow.cpp" line="5031"/>
         <source>Cu&amp;t</source>
         <translation>कट करें</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5091"/>
+        <location filename="../src/application/mainwindow.cpp" line="5032"/>
         <source>&amp;Copy</source>
         <translation>प्रतिलिपि बनाएँ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5092"/>
+        <location filename="../src/application/mainwindow.cpp" line="5033"/>
         <source>&amp;Paste</source>
         <translation>चिपकाएँ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5093"/>
+        <location filename="../src/application/mainwindow.cpp" line="5034"/>
         <source>Delete</source>
         <translation>हटाएँ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5094"/>
+        <location filename="../src/application/mainwindow.cpp" line="5035"/>
         <source>Select All</source>
         <translation>सभी चुनें</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5095"/>
+        <location filename="../src/application/mainwindow.cpp" line="5036"/>
         <source>Copy &amp;Link Location</source>
         <translation>लिंक स्थान की प्रतिलिपि बनाएँ</translation>
     </message>
@@ -4362,22 +4376,22 @@ Ancient news could reappear</source>
 <context>
     <name>QWizard</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5103"/>
+        <location filename="../src/application/mainwindow.cpp" line="5044"/>
         <source>Cancel</source>
         <translation>रद्द करना</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5104"/>
+        <location filename="../src/application/mainwindow.cpp" line="5045"/>
         <source>&lt; &amp;Back</source>
         <translation>&lt; पिछला</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5105"/>
+        <location filename="../src/application/mainwindow.cpp" line="5046"/>
         <source>&amp;Finish</source>
         <translation>अंत</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5106"/>
+        <location filename="../src/application/mainwindow.cpp" line="5047"/>
         <source>&amp;Next &gt;</source>
         <translation>अगला&gt;</translation>
     </message>
@@ -4393,22 +4407,22 @@ Ancient news could reappear</source>
 <context>
     <name>RequestFeed</name>
     <message>
-        <location filename="../src/requestfeed.cpp" line="224"/>
+        <location filename="../src/requestfeed.cpp" line="229"/>
         <source>Server requires authentication!</source>
         <translation>सर्वर को प्रमाणीकरण की आवश्यकता है!</translation>
     </message>
     <message>
-        <location filename="../src/requestfeed.cpp" line="226"/>
+        <location filename="../src/requestfeed.cpp" line="231"/>
         <source>Server replied: Not Found!</source>
         <translation>सर्वर प्रतिक्रिया: नहीं मिला!</translation>
     </message>
     <message>
-        <location filename="../src/requestfeed.cpp" line="269"/>
+        <location filename="../src/requestfeed.cpp" line="274"/>
         <source>Redirect error!</source>
         <translation>त्रुटि पुनर्निर्देशित!</translation>
     </message>
     <message>
-        <location filename="../src/requestfeed.cpp" line="350"/>
+        <location filename="../src/requestfeed.cpp" line="355"/>
         <source>Request timeout!</source>
         <translation>अनुरोध समय समाप्ति!</translation>
     </message>
@@ -4416,27 +4430,27 @@ Ancient news could reappear</source>
 <context>
     <name>SQLiteDriver</name>
     <message>
-        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="571"/>
+        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="561"/>
         <source>Error opening database</source>
         <translation>डेटाबेस खोलने में त्रुटि</translation>
     </message>
     <message>
-        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="582"/>
+        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="572"/>
         <source>Error closing database</source>
         <translation>डेटाबेस बंद करने में त्रुटि</translation>
     </message>
     <message>
-        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="602"/>
+        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="592"/>
         <source>Unable to begin transaction</source>
         <translation>लेन-देन शुरू करने में असमर्थ</translation>
     </message>
     <message>
-        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="617"/>
+        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="607"/>
         <source>Unable to commit transaction</source>
         <translation>लेन-देन के लिए प्रतिबद्ध करने में असमर्थ</translation>
     </message>
     <message>
-        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="632"/>
+        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="622"/>
         <source>Unable to rollback transaction</source>
         <translation>लेन-देन रोलबैक करने में असमर्थ</translation>
     </message>
@@ -4444,39 +4458,39 @@ Ancient news could reappear</source>
 <context>
     <name>SQLiteResult</name>
     <message>
-        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="219"/>
-        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="282"/>
-        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="290"/>
+        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="209"/>
+        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="272"/>
+        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="280"/>
         <source>Unable to fetch row</source>
         <translation>पंक्ति लाने में असमर्थ</translation>
     </message>
     <message>
-        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="220"/>
+        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="210"/>
         <source>No query</source>
         <translation>कोई क्वेरी नहीं</translation>
     </message>
     <message>
-        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="363"/>
+        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="353"/>
         <source>Unable to execute statement</source>
         <translation>कथन निष्पादित करने में असमर्थ</translation>
     </message>
     <message>
-        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="368"/>
+        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="358"/>
         <source>Unable to execute multiple statements at a time</source>
         <translation>एक समय में कई कथन निष्पादित करने में असमर्थ</translation>
     </message>
     <message>
-        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="388"/>
+        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="378"/>
         <source>Unable to reset statement</source>
         <translation>कथन रीसेट करने में असमर्थ</translation>
     </message>
     <message>
-        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="433"/>
+        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="423"/>
         <source>Unable to bind parameters</source>
         <translation>प्राचलों को सवेरने में असमर्थ</translation>
     </message>
     <message>
-        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="440"/>
+        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="430"/>
         <source>Parameter count mismatch</source>
         <translation>प्राचल  गणना बेमेल</translation>
     </message>
@@ -4522,32 +4536,32 @@ Ancient news could reappear</source>
         <translation>स्थापित करें</translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="137"/>
+        <location filename="../src/updateappdialog.cpp" line="138"/>
         <source>You already have the latest version</source>
         <translation>आप पहले से ही नवीनतम संस्करण है</translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="147"/>
+        <location filename="../src/updateappdialog.cpp" line="148"/>
         <source>A new version of QuiteRSS is available!</source>
         <translation>QuiteRSS का एक नया संस्करण उपलब्ध है!</translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="150"/>
+        <location filename="../src/updateappdialog.cpp" line="151"/>
         <source>Click here to go to the download page</source>
         <translation>डाउनलोड पृष्ठ पर जाने के लिए यहां क्लिक करें</translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="155"/>
+        <location filename="../src/updateappdialog.cpp" line="156"/>
         <source>Your version is:</source>
         <translation>आपका संस्करण है:</translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="157"/>
+        <location filename="../src/updateappdialog.cpp" line="158"/>
         <source>Current version is:</source>
         <translation>वर्तमान संस्करण है:</translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="163"/>
+        <location filename="../src/updateappdialog.cpp" line="164"/>
         <source>Error checking updates</source>
         <translation>त्रुटि जाँच अद्यतन</translation>
     </message>
