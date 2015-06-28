@@ -17,7 +17,7 @@
 * ============================================================ */
 /* ============================================================
 * QupZilla - WebKit based browser
-* Copyright (C) 2010-2013  David Rosca <nowrep@gmail.com>
+* Copyright (C) 2010-2014  David Rosca <nowrep@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -205,17 +205,16 @@ void ClickToFlash::load()
 {
   findElement();
   if (element_.isNull()) {
-    qWarning("Click2Flash: Cannot find Flash object");
+    qWarning("Click2Flash: Cannot find Flash object.");
   } else {
     acceptedUrl = url_;
     acceptedArgNames = argumentNames_;
     acceptedArgValues = argumentValues_;
 
-    element_.setAttribute("type", "application/futuresplash");
-
     QString js = "var c2f_clone=this.cloneNode(true);var c2f_parentNode=this.parentNode;"
         "var c2f_substituteElement=document.createElement(this.tagName);"
         "c2f_substituteElement.width=this.width;c2f_substituteElement.height=this.height;"
+        "c2f_substituteElement.type=\"application/futuresplash\";"
         "this.parentNode.replaceChild(c2f_substituteElement,this);setTimeout(function(){"
         "c2f_parentNode.replaceChild(c2f_clone,c2f_substituteElement);},250);";
 
