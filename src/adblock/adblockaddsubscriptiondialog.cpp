@@ -44,7 +44,6 @@ AdBlockAddSubscriptionDialog::AdBlockAddSubscriptionDialog(QWidget* parent)
   ui->setupUi(this);
 
   m_knownSubscriptions << Subscription("EasyList (English)", ADBLOCK_EASYLIST_URL)
-                       << Subscription("Fanboy's List (English)", "https://www.fanboy.co.nz/adblock/fanboy-adblock.txt")
                        << Subscription("Adversity (English)", "https://adversity.googlecode.com/hg/Adversity.txt")
                        << Subscription("BSI Lista Polska (Polish)", "http://www.bsi.info.pl/filtrABP.txt")
                        << Subscription("Czech List (Czech)", "http://adblock.dajbych.net/adblock.txt")
@@ -63,8 +62,8 @@ AdBlockAddSubscriptionDialog::AdBlockAddSubscriptionDialog(QWidget* parent)
                        << Subscription("RuAdList+EasyList (Russian, Ukrainian)", "https://easylist-downloads.adblockplus.org/ruadlist+easylist.txt")
                        << Subscription("RU AdList (Russian, Ukrainian)", "https://easylist-downloads.adblockplus.org/advblock.txt")
                        << Subscription("ABPindo (Indonesian)", "https://indonesianadblockrules.googlecode.com/hg/subscriptions/abpindo.txt")
-                       << Subscription("ChinaList (Chinese)", "http://adblock-chinalist.googlecode.com/svn/trunk/adblock.txt")
-                       << Subscription("Malware Domains list", "https://easylist-downloads.adblockplus.org/malwaredomains_full.txt");
+                       << Subscription("Easylist China (Chinese)", "https://easylist-downloads.adblockplus.org/easylistchina.txt")
+                       << Subscription("Malware Domains", "https://easylist-downloads.adblockplus.org/malwaredomains_full.txt");
 
   foreach (const Subscription &subscription, m_knownSubscriptions) {
     ui->comboBox->addItem(subscription.title);
