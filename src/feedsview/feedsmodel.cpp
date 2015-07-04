@@ -313,8 +313,9 @@ Qt::DropActions FeedsModel::supportedDropActions() const
 QModelIndex FeedsModel::indexById(int id) const
 {
   QModelIndex parentIndex = QModelIndex();
-  if (id > 0)
-    parentIndex = indexById(userDataById(id)->parid);
+  UserData *userData = userDataById(id);
+  if (userData)
+    parentIndex = indexById(userData->parid);
   for (int i = 0; i < rowCount(parentIndex); i++) {
     if (idByIndex(index(i, 0, parentIndex)) == id)
       return index(i,0,parentIndex);
