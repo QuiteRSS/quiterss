@@ -44,7 +44,7 @@ AdBlockAddSubscriptionDialog::AdBlockAddSubscriptionDialog(QWidget* parent)
   ui->setupUi(this);
 
   m_knownSubscriptions << Subscription("EasyList (English)", ADBLOCK_EASYLIST_URL)
-                       << Subscription("Adversity (English)", "https://adversity.googlecode.com/hg/Adversity.txt")
+                       << Subscription("Adversity (English)", "https://raw.githubusercontent.com/Hubird-au/Adversity/master/Adversity.txt")
                        << Subscription("BSI Lista Polska (Polish)", "http://www.bsi.info.pl/filtrABP.txt")
                        << Subscription("Czech List (Czech)", "http://adblock.dajbych.net/adblock.txt")
                        << Subscription("dutchblock (Dutch)", "http://groenewoudt.net/dutchblock/list.txt")
@@ -58,10 +58,10 @@ AdBlockAddSubscriptionDialog::AdBlockAddSubscriptionDialog(QWidget* parent)
                        << Subscription("Schacks Adblock Plus liste (Danish)", "https://adblock.schack.dk/block.txt")
                        << Subscription("Xfiles (Italian)", "http://mozilla.gfsolone.com/filtri.txt")
                        << Subscription("EasyPrivacy (English)", "https://easylist-downloads.adblockplus.org/easyprivacy.txt")
-                       << Subscription("Antisocial (English)", "https://adversity.googlecode.com/hg/Antisocial.txt")
+                       << Subscription("Antisocial (English)", "https://raw.githubusercontent.com/Hubird-au/Adversity/master/Antisocial.txt")
                        << Subscription("RuAdList+EasyList (Russian, Ukrainian)", "https://easylist-downloads.adblockplus.org/ruadlist+easylist.txt")
                        << Subscription("RU AdList (Russian, Ukrainian)", "https://easylist-downloads.adblockplus.org/advblock.txt")
-                       << Subscription("ABPindo (Indonesian)", "https://indonesianadblockrules.googlecode.com/hg/subscriptions/abpindo.txt")
+                       << Subscription("ABPindo (Indonesian)", "https://raw.githubusercontent.com/heradhis/indonesianadblockrules/master/subscriptions/abpindo.txt")
                        << Subscription("Easylist China (Chinese)", "https://easylist-downloads.adblockplus.org/easylistchina.txt")
                        << Subscription("Malware Domains", "https://easylist-downloads.adblockplus.org/malwaredomains_full.txt");
 
