@@ -70,8 +70,8 @@ UpdateAppDialog::UpdateAppDialog(const QString &lang, QWidget *parent, bool show
 
     QString urlHistory;
     if (lang_.contains("ru", Qt::CaseInsensitive))
-      urlHistory = "http://quiterss.org/files/updates/HISTORY_RU";
-    else urlHistory = "http://quiterss.org/files/updates/HISTORY_EN";
+      urlHistory = "http://quiterss.org/files/updates_new/HISTORY_RU";
+    else urlHistory = "http://quiterss.org/files/updates_new/HISTORY_EN";
     historyReply_ = networkManagerProxy_->get(QNetworkRequest(QUrl(urlHistory)));
     connect(historyReply_, SIGNAL(finished()), this, SLOT(slotFinishHistoryReply()));
 
@@ -229,7 +229,7 @@ void UpdateAppDialog::renderStatistics()
   Settings settings;
   bool updateCheckEnabled = settings.value("Settings/updateCheckEnabled", true).toBool();
   if (updateCheckEnabled || showDialog_) {
-    QNetworkRequest request(QUrl("http://quiterss.org/files/updates/VersionNo.h"));
+    QNetworkRequest request(QUrl("http://quiterss.org/files/updates_new/VersionNo.h"));
     reply_ = networkManagerProxy_->get(request);
     connect(reply_, SIGNAL(finished()), this, SLOT(finishUpdatesChecking()));
   } else {
