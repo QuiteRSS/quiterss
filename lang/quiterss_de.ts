@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="de" version="2.0">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="de" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -792,7 +792,7 @@ Ancient news could reappear</source>
         <location filename="../src/downloads/downloadmanager.cpp" line="33"/>
         <location filename="../src/downloads/downloadmanager.cpp" line="253"/>
         <source>Clear</source>
-        <translation>Leeren</translation>
+        <translation>Liste leeren</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="92"/>
@@ -855,7 +855,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="58"/>
         <source>Homepage:</source>
-        <translation>Homepage:</translation>
+        <translation>Startseite:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="59"/>
@@ -1005,7 +1005,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="318"/>
         <source>Feeds count:</source>
-        <translation type="unfinished"/>
+        <translation>Anzahl der Feeds:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="321"/>
@@ -1160,7 +1160,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/findtext.cpp" line="113"/>
         <source>Find in Descriptions</source>
-        <translation type="unfinished"/>
+        <translation>Nachrichtenbeschreibungen durchsuchen</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="114"/>
@@ -1752,7 +1752,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4837"/>
         <source>Check for Updates...</source>
-        <translation>Nach Programmaktualisierung suchen...</translation>
+        <translation>Programmaktualisierung suchen...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4838"/>
@@ -1939,7 +1939,7 @@ Ancient news could reappear</source>
         <location filename="../src/application/mainwindow.cpp" line="4796"/>
         <location filename="../src/application/mainwindow.cpp" line="4797"/>
         <source>Stop Update Feeds</source>
-        <translation type="unfinished"/>
+        <translation>Feed-Aktualisierung stoppen</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4841"/>
@@ -2380,7 +2380,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5000"/>
         <source>Open Homepage Feed</source>
-        <translation>Feed-Homepage öffnen</translation>
+        <translation>Feed-Startseite öffnen</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5001"/>
@@ -2440,7 +2440,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5906"/>
         <source>Check for updates</source>
-        <translation>Nach Programmaktualisierung suchen</translation>
+        <translation>Programmaktualisierung suchen</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5907"/>
@@ -2704,170 +2704,169 @@ Ancient news could reappear</source>
         <translation>Zieladresse in externem Browser öffnen</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="608"/>
+        <location filename="../src/newstabwidget.cpp" line="2230"/>
         <source>Open Link</source>
         <translation>Zieladresse öffnen</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="609"/>
-        <location filename="../src/newstabwidget.cpp" line="610"/>
+        <location filename="../src/newstabwidget.cpp" line="2231"/>
         <source>Open in New Tab</source>
         <translation>In neuem Reiter öffnen</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="611"/>
+        <location filename="../src/newstabwidget.cpp" line="2232"/>
         <source>Save Link...</source>
         <translation>Ziel speichern unter...</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="612"/>
+        <location filename="../src/newstabwidget.cpp" line="2233"/>
         <source>Save Image...</source>
         <translation>Bild speichern...</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="613"/>
+        <location filename="../src/newstabwidget.cpp" line="2234"/>
         <source>Copy Link</source>
         <translation>Zieladresse kopieren</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="614"/>
+        <location filename="../src/newstabwidget.cpp" line="2235"/>
         <source>Copy</source>
         <translation>Kopieren</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="615"/>
+        <location filename="../src/newstabwidget.cpp" line="2236"/>
         <source>Go Back</source>
         <translation>Zurück</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="616"/>
+        <location filename="../src/newstabwidget.cpp" line="2237"/>
         <source>Go Forward</source>
         <translation>Vorwärts</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="617"/>
+        <location filename="../src/newstabwidget.cpp" line="2238"/>
         <source>Stop</source>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="618"/>
+        <location filename="../src/newstabwidget.cpp" line="2239"/>
         <source>Reload</source>
         <translation>Neu laden</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="619"/>
+        <location filename="../src/newstabwidget.cpp" line="2240"/>
         <source>Copy Image</source>
         <translation>Bild kopieren</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="621"/>
+        <location filename="../src/newstabwidget.cpp" line="2242"/>
         <source>Copy Image Address</source>
         <translation>Bild-Adresse kopieren</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="631"/>
-        <location filename="../src/newstabwidget.cpp" line="652"/>
+        <location filename="../src/newstabwidget.cpp" line="615"/>
+        <location filename="../src/newstabwidget.cpp" line="636"/>
         <source>Load Images</source>
         <translation>Bilder laden</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="632"/>
+        <location filename="../src/newstabwidget.cpp" line="616"/>
         <source>Auto Load Images to News View</source>
         <translation>Bilder automatisch mitladen</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="634"/>
+        <location filename="../src/newstabwidget.cpp" line="618"/>
         <source>No Load Images</source>
         <translation>Keine Bilder laden</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="635"/>
+        <location filename="../src/newstabwidget.cpp" line="619"/>
         <source>No Load Images to News View</source>
         <translation>Keine Bilder in Nachrichtenansicht anzeigen</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="640"/>
+        <location filename="../src/newstabwidget.cpp" line="624"/>
         <source>Close Tab</source>
         <translation>Reiter schließen</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="653"/>
+        <location filename="../src/newstabwidget.cpp" line="637"/>
         <source>Auto Load Images in News View</source>
         <translation>Bilder automatisch mitladen</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="656"/>
+        <location filename="../src/newstabwidget.cpp" line="640"/>
         <source>Don&apos;t Load Images</source>
         <translation>Bilder nicht mitladen</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="657"/>
+        <location filename="../src/newstabwidget.cpp" line="641"/>
         <source>Don&apos;t Load Images in News View</source>
         <translation>Keine Bilder in Nachrichtenansicht laden</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1451"/>
-        <location filename="../src/newstabwidget.cpp" line="1680"/>
+        <location filename="../src/newstabwidget.cpp" line="1435"/>
+        <location filename="../src/newstabwidget.cpp" line="1664"/>
         <source>Comments</source>
         <translation>Kommentare</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1457"/>
-        <location filename="../src/newstabwidget.cpp" line="1686"/>
+        <location filename="../src/newstabwidget.cpp" line="1441"/>
+        <location filename="../src/newstabwidget.cpp" line="1670"/>
         <source>Author: %1</source>
         <translation>Autor: %1</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1488"/>
-        <location filename="../src/newstabwidget.cpp" line="1717"/>
+        <location filename="../src/newstabwidget.cpp" line="1472"/>
+        <location filename="../src/newstabwidget.cpp" line="1701"/>
         <source>audio</source>
         <translation>Audio</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1493"/>
-        <location filename="../src/newstabwidget.cpp" line="1722"/>
+        <location filename="../src/newstabwidget.cpp" line="1477"/>
+        <location filename="../src/newstabwidget.cpp" line="1706"/>
         <source>video</source>
         <translation>Video</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1497"/>
-        <location filename="../src/newstabwidget.cpp" line="1726"/>
+        <location filename="../src/newstabwidget.cpp" line="1481"/>
+        <location filename="../src/newstabwidget.cpp" line="1710"/>
         <source>media</source>
         <translation>Medien</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1500"/>
-        <location filename="../src/newstabwidget.cpp" line="1729"/>
+        <location filename="../src/newstabwidget.cpp" line="1484"/>
+        <location filename="../src/newstabwidget.cpp" line="1713"/>
         <source>Link to</source>
         <translation>Verknüpfung erstellen</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1610"/>
+        <location filename="../src/newstabwidget.cpp" line="1594"/>
         <source>Mark Read/Unread</source>
         <translation>Als gelesen/ungelesen markieren</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1747"/>
+        <location filename="../src/newstabwidget.cpp" line="1731"/>
         <source>Mark News Star</source>
         <translation>Nachricht mit Stern markieren</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1751"/>
+        <location filename="../src/newstabwidget.cpp" line="1735"/>
         <source>Label</source>
         <translation>Label</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1755"/>
+        <location filename="../src/newstabwidget.cpp" line="1739"/>
         <source>Share</source>
         <translation>Mitteilung senden</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1759"/>
+        <location filename="../src/newstabwidget.cpp" line="1743"/>
         <source>Open News in External Browser</source>
         <translation>Nachricht im externen Browser öffnen</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1763"/>
+        <location filename="../src/newstabwidget.cpp" line="1747"/>
         <source>Delete</source>
         <translation>Löschen</translation>
     </message>
@@ -4511,7 +4510,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/updateappdialog.cpp" line="40"/>
         <source>Check for Updates</source>
-        <translation>Nach Programmaktualisierung suchen</translation>
+        <translation>Programmaktualisierung suchen</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="45"/>
@@ -4526,7 +4525,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/updateappdialog.cpp" line="53"/>
         <source>Don&apos;t remind about this version</source>
-        <translation>Über diese Version nicht mehr informieren</translation>
+        <translation>Über diese Version nicht mehr benachrichtigen</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="61"/>
@@ -4551,7 +4550,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/updateappdialog.cpp" line="156"/>
         <source>Your version is:</source>
-        <translation>Ihre Version ist:</translation>
+        <translation>Ihre Version:</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="158"/>
@@ -4561,7 +4560,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/updateappdialog.cpp" line="164"/>
         <source>Error checking updates</source>
-        <translation>Fehler beim Prüfen von Programmaktualisierungen</translation>
+        <translation>Fehler beim Prüfen der Programmaktualisierung</translation>
     </message>
 </context>
 </TS>

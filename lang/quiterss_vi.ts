@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="vi" version="2.0">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="vi" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -2706,170 +2706,169 @@ không được tìm thấy!</translation>
         <translation>Mở liên kết trong trình duyệt phụ trợ</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="608"/>
+        <location filename="../src/newstabwidget.cpp" line="2230"/>
         <source>Open Link</source>
         <translation>Mở liên kết</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="609"/>
-        <location filename="../src/newstabwidget.cpp" line="610"/>
+        <location filename="../src/newstabwidget.cpp" line="2231"/>
         <source>Open in New Tab</source>
         <translation>Mở trong một tab mới</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="611"/>
+        <location filename="../src/newstabwidget.cpp" line="2232"/>
         <source>Save Link...</source>
         <translation>Lưu liên kết...</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="612"/>
+        <location filename="../src/newstabwidget.cpp" line="2233"/>
         <source>Save Image...</source>
         <translation>Lưu hình ảnh...</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="613"/>
+        <location filename="../src/newstabwidget.cpp" line="2234"/>
         <source>Copy Link</source>
         <translation>Sao chép liên kết</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="614"/>
+        <location filename="../src/newstabwidget.cpp" line="2235"/>
         <source>Copy</source>
         <translation>Sao chép</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="615"/>
+        <location filename="../src/newstabwidget.cpp" line="2236"/>
         <source>Go Back</source>
         <translation>Quay trở lại</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="616"/>
+        <location filename="../src/newstabwidget.cpp" line="2237"/>
         <source>Go Forward</source>
         <translation>Tiến về phía trước</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="617"/>
+        <location filename="../src/newstabwidget.cpp" line="2238"/>
         <source>Stop</source>
         <translation>Dừng lại</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="618"/>
+        <location filename="../src/newstabwidget.cpp" line="2239"/>
         <source>Reload</source>
         <translation>Tải lại</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="619"/>
+        <location filename="../src/newstabwidget.cpp" line="2240"/>
         <source>Copy Image</source>
         <translation>Sao chép hình ảnh</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="621"/>
+        <location filename="../src/newstabwidget.cpp" line="2242"/>
         <source>Copy Image Address</source>
         <translation>Sao chép địa chỉ hình ảnh</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="631"/>
-        <location filename="../src/newstabwidget.cpp" line="652"/>
+        <location filename="../src/newstabwidget.cpp" line="615"/>
+        <location filename="../src/newstabwidget.cpp" line="636"/>
         <source>Load Images</source>
         <translation>Tải hình ảnh</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="632"/>
+        <location filename="../src/newstabwidget.cpp" line="616"/>
         <source>Auto Load Images to News View</source>
         <translation>Tự động tải hình khi đang xem tin tức</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="634"/>
+        <location filename="../src/newstabwidget.cpp" line="618"/>
         <source>No Load Images</source>
         <translation>Không tải hình ảnh</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="635"/>
+        <location filename="../src/newstabwidget.cpp" line="619"/>
         <source>No Load Images to News View</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="640"/>
+        <location filename="../src/newstabwidget.cpp" line="624"/>
         <source>Close Tab</source>
         <translation>Đóng lại tab</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="653"/>
+        <location filename="../src/newstabwidget.cpp" line="637"/>
         <source>Auto Load Images in News View</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="656"/>
+        <location filename="../src/newstabwidget.cpp" line="640"/>
         <source>Don&apos;t Load Images</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="657"/>
+        <location filename="../src/newstabwidget.cpp" line="641"/>
         <source>Don&apos;t Load Images in News View</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1451"/>
-        <location filename="../src/newstabwidget.cpp" line="1680"/>
+        <location filename="../src/newstabwidget.cpp" line="1435"/>
+        <location filename="../src/newstabwidget.cpp" line="1664"/>
         <source>Comments</source>
         <translation>Bình luậ</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1457"/>
-        <location filename="../src/newstabwidget.cpp" line="1686"/>
+        <location filename="../src/newstabwidget.cpp" line="1441"/>
+        <location filename="../src/newstabwidget.cpp" line="1670"/>
         <source>Author: %1</source>
         <translation>Tác giả: %1</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1488"/>
-        <location filename="../src/newstabwidget.cpp" line="1717"/>
+        <location filename="../src/newstabwidget.cpp" line="1472"/>
+        <location filename="../src/newstabwidget.cpp" line="1701"/>
         <source>audio</source>
         <translation>audio</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1493"/>
-        <location filename="../src/newstabwidget.cpp" line="1722"/>
+        <location filename="../src/newstabwidget.cpp" line="1477"/>
+        <location filename="../src/newstabwidget.cpp" line="1706"/>
         <source>video</source>
         <translation>video</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1497"/>
-        <location filename="../src/newstabwidget.cpp" line="1726"/>
+        <location filename="../src/newstabwidget.cpp" line="1481"/>
+        <location filename="../src/newstabwidget.cpp" line="1710"/>
         <source>media</source>
         <translation>media</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1500"/>
-        <location filename="../src/newstabwidget.cpp" line="1729"/>
+        <location filename="../src/newstabwidget.cpp" line="1484"/>
+        <location filename="../src/newstabwidget.cpp" line="1713"/>
         <source>Link to</source>
         <translation>Liên kết đến</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1610"/>
+        <location filename="../src/newstabwidget.cpp" line="1594"/>
         <source>Mark Read/Unread</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1747"/>
+        <location filename="../src/newstabwidget.cpp" line="1731"/>
         <source>Mark News Star</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1751"/>
+        <location filename="../src/newstabwidget.cpp" line="1735"/>
         <source>Label</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1755"/>
+        <location filename="../src/newstabwidget.cpp" line="1739"/>
         <source>Share</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1759"/>
+        <location filename="../src/newstabwidget.cpp" line="1743"/>
         <source>Open News in External Browser</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1763"/>
+        <location filename="../src/newstabwidget.cpp" line="1747"/>
         <source>Delete</source>
         <translation type="unfinished"/>
     </message>
