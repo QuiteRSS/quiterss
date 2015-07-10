@@ -2,6 +2,36 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
+<p><b>Version 0.17.7+</b> (xx Jul 2015)
+<ul>
+<li>Main: Switch to Qt5</li>
+<li>Main: Embedded browser - WebKit 538.1</li>
+<li>Main: SQLite Library 3.8.10</li>
+
+<li>Added: Applying folder properties to feed being added</li>
+<li>Added: Folder property - feeds quantity</li>
+
+<li>Changed: Update feed perfomance is increased</li>
+<li>Changed: Feeds tree performance is increased</li>
+<li>Changed: CPU load is reduced</li>
+<li>Changed: Memory consumption of Webkit is reduced</li>
+<li>Changed: AdBlock is updated</li>
+<li>Changed: Maximum size of disk cache is increased to 300 MB</li>
+<li>Changed: Image scale saving (news.css)</li>
+<li>Changed: DB saving while minimizing to system tray</li>
+
+<li>Fixed: Bigger font in notification</li>
+<li>Fixed: Filter operating with Description condition of some Atom-feeds</li>
+<li>Fixed: Action of news multiple selection</li>
+<li>Fixed: Restoring column size in news list</li>
+<li>Fixed: Description of some Atom-feeds</li>
+<li>Fixed: Connect to DB using new connection name</li>
+<li>Fixed: Setting browser scale when opening several tabs</li>
+<li>Fixed: Shortcut "Ctrl-Shift-Backtab"</li>
+<li>Fixed: Отметка новостей прочитанными при переключении ленты/папки/вкладки</li>
+<li>Fixed: Click2Flash. Play video at  YouTube</li>
+</ul>
+<!---------------------------------------------------------------------------->
 <p><b>Version 0.17.7</b> (19 Apr 2015)
 <ul>
 <li>Added: Tray menu item "Add feed..."</li>
