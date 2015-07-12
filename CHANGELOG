@@ -1,3 +1,6 @@
+Version 0.18.1 (12 Jul 2015)
+  * Fixed: Application crash
+
 Version 0.18.0 (12 Jul 2015)
   * Main: Switch to Qt5
   * Main: Embedded browser - WebKit 538.1
