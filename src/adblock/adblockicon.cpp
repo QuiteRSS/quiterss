@@ -61,6 +61,9 @@ void AdBlockIcon::retranslateStrings()
 {
   setToolTip(tr("AdBlock lets you block unwanted content on web pages"));
 
+  if (!m_enabled)
+    return;
+
   AdBlockManager::instance()->customList()->retranslateStrings();
 }
 
