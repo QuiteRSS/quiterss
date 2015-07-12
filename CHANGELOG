@@ -1,3 +1,28 @@
+Version 0.18.0 (12 Jul 2015)
+  * Main: Switch to Qt5
+  * Main: Embedded browser - WebKit 538.1
+  * Main: SQLite Library 3.8.10
+  * Added: Applying folder properties to feed being added
+  * Added: Folder property - feeds quantity
+  * Changed: Update feed performance is increased
+  * Changed: Feeds tree performance is increased
+  * Changed: CPU load is reduced
+  * Changed: Memory consumption of Webkit is reduced
+  * Changed: AdBlock is updated
+  * Changed: Maximum size of disk cache is increased to 300 MB
+  * Changed: Image scale saving (news.css)
+  * Changed: DB saving while minimizing to system tray
+  * Fixed: Bigger font in notification
+  * Fixed: Filter operating with Description condition of some Atom-feeds
+  * Fixed: Action of news multiple selection
+  * Fixed: Restoring column size in news list
+  * Fixed: Description of some Atom-feeds
+  * Fixed: Connect to DB using new connection name
+  * Fixed: Setting browser scale when opening several tabs
+  * Fixed: Shortcut "Ctrl-Shift-Backtab"
+  * Fixed: Mark Read news when switching feed/folder/tab
+  * Fixed: Click2Flash. Play video at YouTube
+
 Version 0.17.7 (19 Apr 2015)
   * Added: Tray menu item "Add feed..."
   * Added: News filter. Condition "News" (title + description)

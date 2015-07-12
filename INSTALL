@@ -1,7 +1,7 @@
 Build depends:
   GCC or Clang compiler
   SQLite version 3.6.19 or newer
-  Qt version 4.7.* or 4.8.*
+  Qt version 4.7.* or 4.8.* or 5.4.*
   Required Qt development tools:
     qmake
     lrelease
@@ -17,10 +17,10 @@ Build depends:
 Instructions for Linux and other UNIX-like systems:
   mkdir _build && cd _build
   qmake CONFIG+=release PREFIX=/usr ../QuiteRSS.pro
-  make -j2
+  make -j3
   make install
 
-Instead of -j2 make option you can use -j<number of your CPU cores + 1>.
+Instead of -j3 make option you can use -j<number of your CPU cores + 1>.
 For making debug build use CONFIG+=debug instead of CONFIG+=release.
 By default qmake uses gcc, for using clang you need to alter qmake command:
   qmake QMAKE_CC=clang QMAKE_CXX=clang++ QMAKE_LINK=clang++ QMAKE_LINK_C=clang CONFIG+=release PREFIX=/usr ../QuiteRSS.pro
