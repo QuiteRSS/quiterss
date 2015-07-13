@@ -3231,8 +3231,7 @@ void MainWindow::slotFeedSelected(QModelIndex index, bool createTab)
     QString qStr = QString("UPDATE feeds SET currentNews='%1' WHERE id=='%2'").arg(newsId).arg(feedId);
     mainApp->sqlQueryExec(qStr);
     QModelIndex feedIndex = feedsModel_->indexById(feedId);
-    feedsModel_->setData(feedsModel_->indexSibling(feedIndex, "currentNews"),
-                             newsId);
+    feedsModel_->setData(feedsModel_->indexSibling(feedIndex, "currentNews"), newsId);
   }
 }
 

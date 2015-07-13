@@ -290,6 +290,9 @@ QVariant FeedsModel::data(const QModelIndex &index, int role) const
 
 bool FeedsModel::setData(const QModelIndex &index, const QVariant &value, int)
 {
+  if (!index.isValid())
+    return false;
+
   QSqlRecord *record = &static_cast<UserData*>(index.internalPointer())->record;
   record->setValue(indexColumnOf(index.column()), value);
   return true;
