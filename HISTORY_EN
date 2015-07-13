@@ -2,6 +2,12 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
+<p><b>Version 0.18.2</b> (14 Jul 2015)
+<ul>
+<li>Fixed: Application crash</li>
+<li>Fixed: Catefories. Popup menu item "Mark as Read"</li>
+</ul>
+<!---------------------------------------------------------------------------->
 <p><b>Version 0.18.1</b> (12 Jul 2015)
 <ul>
 <li>Fixed: Application crash</li>
