@@ -7276,12 +7276,13 @@ void MainWindow::clearDeleted()
 void MainWindow::slotMarkReadCategory(QTreeWidgetItem *item)
 {
   int type = item->text(1).toInt();
+  int labelId = item->text(2).toInt();
 
-  if (currentNewsTab->type_ == type) {
+  if ((currentNewsTab->type_ == type) && (currentNewsTab->labelId_ == labelId)) {
     currentNewsTab->markAllNewsRead();
   }
   else {
-    emit signalMarkReadCategory(type, item->text(2).toInt());
+    emit signalMarkReadCategory(type, labelId);
     recountCategoryCounts();
   }
 }
