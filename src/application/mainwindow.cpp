@@ -5792,10 +5792,13 @@ void MainWindow::slotPlaySound(const QString &path)
     if (mediaPlayer_->state() == Phonon::ErrorState)
       mediaPlayer_->clear();
 
-    if (mediaPlayer_->state() != Phonon::PausedState)
+    if ((mediaPlayer_->state() != Phonon::PausedState) &&
+        (mediaPlayer_->state() != Phonon::StoppedState)) {
       mediaPlayer_->enqueue(soundPath);
-    else
+    }
+    else {
       mediaPlayer_->setCurrentSource(soundPath);
+    }
     mediaPlayer_->play();
 
     playing = true;
