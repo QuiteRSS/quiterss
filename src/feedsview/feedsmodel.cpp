@@ -23,6 +23,7 @@
 
 FeedsModel::FeedsModel(QObject *parent)
   : QAbstractItemModel(parent)
+  , defaultIconFeeds_(false)
   , view_(0)
   , rootParentId_(0)
 {
