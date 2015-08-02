@@ -290,6 +290,7 @@ public slots:
   void showOptionDlg(int index = -1);
   void slotPlaceToTray();
   void slotActivationTray(QSystemTrayIcon::ActivationReason reason);
+  void slotTrayOpenNotifyTimer();
   void showWindows(bool trayClick = false);
   void quitApp();
   void myEmptyWorkingSet();
@@ -319,7 +320,7 @@ signals:
   void faviconRequestUrl(QString urlString, QString feedUrl);
   void signalIconFeedReady(QString feedUrl, QByteArray faviconData);
   void signalSetCurrentTab(int index, bool updateTab = false);
-  void signalShowNotification();
+  void signalShowNotification(bool bShowRecentNews=false);
   void signalRefreshInfoTray();
   void signalNextUpdate(bool finish);
   void signalRecountCategoryCounts();
@@ -413,9 +414,9 @@ private slots:
   void setCurrentTab(int index, bool updateCurrentTab = false);
   void findText();
 
-  void showNotification();
+  void showNotification(bool bShowRecentNews=false);
   void deleteNotification();
-  void clearNotification();
+  void clearNotification(bool bClearRecentNews=false);
   void slotOpenNew(int feedId, int newsId);
   void slotOpenNewBrowser(const QUrl &url);
   void slotMarkReadNewsInNotification(int feedId, int newsId, int read);
@@ -725,11 +726,19 @@ private:
   bool cleanUpDeleted_;
   bool optimizeDB_;
 
-  int updateFeedsCount_;
-  QList<int> idFeedList_;
-  QList<int> cntNewNewsList_;
+  struct NewNewsData
+  {
+	  QList<int> idFeedList_;
+	  QList<int> cntNewsList_;
+  };
+
+  NewNewsData NewNews;
+  NewNewsData RecentNews;
+
   QList<int> idColorList_;
   QStringList colorList_;
+
+  QTimer timerTrayOpenNotify;
 
   bool reopenFeedStartup_;
   bool openNewTabNextToActive_;
