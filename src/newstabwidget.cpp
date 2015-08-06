@@ -138,6 +138,9 @@ NewsTabWidget::NewsTabWidget(QWidget *parent, TabType type, int feedId, int feed
 
   connect(this, SIGNAL(signalSetTextTab(QString,NewsTabWidget*)),
           mainWindow_, SLOT(setTextTitle(QString,NewsTabWidget*)));
+
+	connect(&TimerMouseClick, SIGNAL(timeout()), this, SLOT(slotMouseClickTimeout()));
+	TimerMouseClick.setSingleShot(true);
 }
 
 NewsTabWidget::~NewsTabWidget()
@@ -665,11 +668,11 @@ void NewsTabWidget::setAutoLoadImages(bool apply)
  *----------------------------------------------------------------------------*/
 void NewsTabWidget::slotNewsViewClicked(QModelIndex index)
 {
-  slotNewsViewSelected(index);
+	HandleMouseClick(index, Qt::LeftButton);
 }
 
 // ----------------------------------------------------------------------------
-void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
+void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked, bool bUpdateWebView/*=true*/)
 {
   if (mainWindow_->newsLayout_ == 1) return;
 
@@ -718,9 +721,11 @@ void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
       mainWindow_->categoriesTree_->currentItem()->setText(3, QString::number(newsId));
     }
 
-    updateWebView(index);
-
-    mainWindow_->statusBar()->showMessage(linkNewsString_, 3000);
+	if (bUpdateWebView)
+	{
+		updateWebView(index);
+		mainWindow_->statusBar()->showMessage(linkNewsString_, 3000);
+	}
   }
   currentNewsIdOld = newsId;
 }
@@ -728,30 +733,13 @@ void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
 // ----------------------------------------------------------------------------
 void NewsTabWidget::slotNewsViewDoubleClicked(QModelIndex index)
 {
-  if (!index.isValid()) return;
-
-  QUrl url = QUrl::fromEncoded(getLinkNews(index.row()).toUtf8());
-  slotLinkClicked(url);
+	HandleMouseClick(index, Qt::LeftButton, true);
 }
 
 // ----------------------------------------------------------------------------
 void NewsTabWidget::slotNewsMiddleClicked(QModelIndex index)
 {
-  if (!index.isValid()) return;
-
-  if (mainWindow_->markNewsReadOn_ && mainWindow_->markCurNewsRead_)
-    slotSetItemRead(index, 1);
-
-  if (QApplication::keyboardModifiers() == Qt::NoModifier) {
-    webView_->buttonClick_ = MIDDLE_BUTTON;
-  } else if (QApplication::keyboardModifiers() == Qt::AltModifier) {
-    webView_->buttonClick_ = LEFT_BUTTON_ALT;
-  } else {
-    webView_->buttonClick_ = MIDDLE_BUTTON_MOD;
-  }
-
-  QUrl url = QUrl::fromEncoded(getLinkNews(index.row()).toUtf8());
-  slotLinkClicked(url);
+	HandleMouseClick(index, Qt::MiddleButton);
 }
 
 /** @brief Process pressing UP-key
@@ -1329,194 +1317,306 @@ void NewsTabWidget::slotSort(int column, int/* order*/)
  *----------------------------------------------------------------------------*/
 void NewsTabWidget::updateWebView(QModelIndex index)
 {
-  if (!index.isValid()) {
-    hideWebContent();
-    return;
-  }
+	if (!index.isValid())
+	{
+		hideWebContent();
+		return;
+	}
 
-  QString newsId = newsModel_->dataField(index.row(), "id").toString();
-  linkNewsString_ = getLinkNews(index.row());
-  QString linkString = linkNewsString_;
-  QUrl newsUrl = QUrl::fromEncoded(linkString.toUtf8());
 
-  bool showDescriptionNews_ = mainWindow_->showDescriptionNews_;
+	bool showDescriptionNews_ = mainWindow_->showDescriptionNews_;
+	QModelIndex currentIndex = feedsProxyModel_->mapToSource(feedsView_->currentIndex());
+	QVariant displayNews = feedsModel_->dataField(currentIndex, "displayNews");
 
-  QModelIndex currentIndex = feedsProxyModel_->mapToSource(feedsView_->currentIndex());
-  QVariant displayNews = feedsModel_->dataField(currentIndex, "displayNews");
-  if (!displayNews.toString().isEmpty())
-    showDescriptionNews_ = !displayNews.toInt();
+	if (!displayNews.toString().isEmpty())
+	{
+		showDescriptionNews_ = !displayNews.toInt();
+	}
 
-  if (!showDescriptionNews_) {
-    if (mainWindow_->externalBrowserOn_ <= 0) {
-      locationBar_->setText(newsUrl.toString());
-      setWebToolbarVisible(true, false);
+	if (showDescriptionNews_)
+	{
+		updateWebView_Description(index);
+	}
+	else
+	{
+		updateWebView_Link(index, (mainWindow_->externalBrowserOn_ > 0));
+	}
+}
 
-      webView_->history()->setMaximumItemCount(0);
-      webView_->load(newsUrl);
-      webView_->history()->setMaximumItemCount(100);
-    } else {
-      openUrl(newsUrl);
-    }
-  } else {
-    setWebToolbarVisible(false, false);
+void NewsTabWidget::updateWebView_Link(QModelIndex index, bool bExternalLink/*=false*/, QString OverrideURL/*=""*/)
+{
+	if (!index.isValid())
+	{
+		hideWebContent();
+		return;
+	}
 
-    QString htmlStr;
-    QString content = newsModel_->dataField(index.row(), "content").toString();
-    if (!content.contains(QRegExp("<html(.*)</html>", Qt::CaseInsensitive, QRegExp::RegExp2))) {
-      QString description = newsModel_->dataField(index.row(), "description").toString();
-      if (content.isEmpty() || (description.length() > content.length())) {
-        content = description;
-      }
 
-      QString feedId = newsModel_->dataField(index.row(), "feedId").toString();
-      QModelIndex feedIndex = feedsModel_->indexById(feedId.toInt());
+	linkNewsString_ = getLinkNews(index.row());
 
-      QString titleString = newsModel_->dataField(index.row(), "title").toString();
-      if (!linkString.isEmpty()) {
-        titleString = QString("<a href='%1' class='unread'>%2</a>").
-            arg(linkString, titleString);
-      }
+	QUrl newsUrl = QUrl::fromEncoded((OverrideURL.isEmpty() ? linkNewsString_ : OverrideURL).toUtf8());
 
-      QDateTime dtLocal;
-      QString dateString = newsModel_->dataField(index.row(), "published").toString();
-      if (!dateString.isNull()) {
-        QDateTime dtLocalTime = QDateTime::currentDateTime();
-        QDateTime dtUTC = QDateTime(dtLocalTime.date(), dtLocalTime.time(), Qt::UTC);
-        int nTimeShift = dtLocalTime.secsTo(dtUTC);
+	if (bExternalLink)
+	{
+		openUrl(newsUrl);
+	}
+	else
+	{
+		locationBar_->setText(newsUrl.toString());
+		setWebToolbarVisible(true, false);
 
-        QDateTime dt = QDateTime::fromString(dateString, Qt::ISODate);
-        dtLocal = dt.addSecs(nTimeShift);
-      } else {
-        dtLocal = QDateTime::fromString(
-              newsModel_->dataField(index.row(), "received").toString(),
-              Qt::ISODate);
-      }
-      if (QDateTime::currentDateTime().date() <= dtLocal.date())
-        dateString = dtLocal.toString(mainWindow_->formatTime_);
-      else
-        dateString = dtLocal.toString(mainWindow_->formatDate_ + " " + mainWindow_->formatTime_);
+		webView_->history()->setMaximumItemCount(0);
+		webView_->load(newsUrl);
+		webView_->history()->setMaximumItemCount(100);
+	}
+}
 
-      // Create author panel from news author
-      QString authorString;
-      QString authorName = newsModel_->dataField(index.row(), "author_name").toString();
-      QString authorEmail = newsModel_->dataField(index.row(), "author_email").toString();
-      QString authorUri = newsModel_->dataField(index.row(), "author_uri").toString();
+void NewsTabWidget::updateWebView_Description(QModelIndex index)
+{
+	if (!index.isValid())
+	{
+		hideWebContent();
+		return;
+	}
 
-      QRegExp reg("(^\\S+@\\S+\\.\\S+)", Qt::CaseInsensitive, QRegExp::RegExp2);
-      int pos = reg.indexIn(authorName);
-      if (pos > -1) {
-        authorName.replace(reg.cap(1), QString(" <a href='mailto:%1'>%1</a>").arg(reg.cap(1)));
-      }
-      authorString = authorName;
 
-      if (!authorEmail.isEmpty())
-        authorString.append(QString(" <a href='mailto:%1'>e-mail</a>").arg(authorEmail));
-      if (!authorUri.isEmpty())
-        authorString.append(QString(" <a href='%1'>page</a>"). arg(authorUri));
+	setWebToolbarVisible(false, false);
 
-      // If news author is absent, create author panel from feed author
-      // @note(arhohryakov:2012.01.03) Author is got from current feed, because
-      //   news is belong to it
-      if (authorString.isEmpty()) {
-        authorName  = feedsModel_->dataField(feedIndex, "author_name").toString();
-        authorEmail = feedsModel_->dataField(feedIndex, "author_email").toString();
-        authorUri   = feedsModel_->dataField(feedIndex, "author_uri").toString();
+	linkNewsString_ = getLinkNews(index.row());
 
-        authorString = authorName;
-        if (!authorEmail.isEmpty())
-          authorString.append(QString(" <a href='mailto:%1'>e-mail</a>").arg(authorEmail));
-        if (!authorUri.isEmpty())
-          authorString.append(QString(" <a href='%1'>page</a>").arg(authorUri));
-      }
 
-      QString commentsStr;
-      QString commentsUrl = newsModel_->dataField(index.row(), "comments").toString();
-      if (!commentsUrl.isEmpty()) {
-        commentsStr = QString("<a href=\"%1\"> %2</a>").arg(commentsUrl, tr("Comments"));
-      }
+	QString HtmlString = "";
+	QUrl Url;
 
-      QString category = newsModel_->dataField(index.row(), "category").toString();
+	GenerateDescriptionHtml(index, HtmlString, Url);
 
-      if (!authorString.isEmpty()) {
-        authorString = QString(tr("Author: %1")).arg(authorString);
-        if (!commentsStr.isEmpty())
-          authorString.append(QString(" | %1").arg(commentsStr));
-        if (!category.isEmpty())
-          authorString.append(QString(" | %1").arg(category));
-      } else {
-        if (!commentsStr.isEmpty())
-          authorString.append(commentsStr);
-        if (!category.isEmpty()) {
-          if (!commentsStr.isEmpty())
-            authorString.append(QString(" | %1").arg(category));
-          else
-            authorString.append(category);
-        }
-      }
+	emit signalSetHtmlWebView(HtmlString, Url);
+}
 
-      QString labelsString = getHtmlLabels(index.row());
-      authorString.append(QString("<table class=\"labels\" id=\"labels%1\"><tr>%2</tr></table>").
-                          arg(newsId).arg(labelsString));
+void NewsTabWidget::GenerateDescriptionHtml(QModelIndex index, QString& OutHtml, QUrl& OutURL)
+{
+	QString linkString = getLinkNews(index.row());
+	QUrl newsUrl = QUrl::fromEncoded(linkString.toUtf8());
 
-      QString enclosureStr;
-      QString enclosureUrl = newsModel_->dataField(index.row(), "enclosure_url").toString();
-      if (!enclosureUrl.isEmpty()) {
-        QString type = newsModel_->dataField(index.row(), "enclosure_type").toString();
-        if (type.contains("image")) {
-          if (!content.contains(enclosureUrl) && autoLoadImages_) {
-            enclosureStr = QString("<IMG SRC=\"%1\" class=\"enclosureImg\"><p>").
-                arg(enclosureUrl);
-          }
-        } else {
-          if (type.contains("audio")) {
-            type = tr("audio");
-            enclosureStr = audioPlayerHtml_.arg(enclosureUrl);
-            enclosureStr.append("<p>");
-          }
-          else if (type.contains("video")) {
-            type = tr("video");
-            enclosureStr = videoPlayerHtml_.arg(enclosureUrl);
-            enclosureStr.append("<p>");
-          }
-          else type = tr("media");
+	OutURL.setScheme(newsUrl.scheme());
+	OutURL.setHost(newsUrl.host());
 
-          enclosureStr.append(QString("<a href=\"%1\" class=\"enclosure\"> %2 %3 </a><p>").
-                              arg(enclosureUrl, tr("Link to"), type));
-        }
-      }
+	QString newsId = newsModel_->dataField(index.row(), "id").toString();
+	QString content = newsModel_->dataField(index.row(), "content").toString();
 
-      content = enclosureStr + content;
+	if (!content.contains(QRegExp("<html(.*)</html>", Qt::CaseInsensitive, QRegExp::RegExp2)))
+	{
+		QString description = newsModel_->dataField(index.row(), "description").toString();
 
-      bool ltr = !feedsModel_->dataField(feedIndex, "layoutDirection").toInt();
-      QString cssStr = cssString_.
-          arg(ltr ? "left" : "right"). // text-align
-          arg(ltr ? "ltr" : "rtl"). // direction
-          arg(ltr ? "right" : "left"); // "Date" text-align
+		if (content.isEmpty() || (description.length() > content.length()))
+		{
+			content = description;
+		}
 
-      if (!autoLoadImages_) {
-        QRegExp reg("<img[^>]+>", Qt::CaseInsensitive, QRegExp::RegExp2);
-        content = content.remove(reg);
-      }
+		QString feedId = newsModel_->dataField(index.row(), "feedId").toString();
+		QModelIndex feedIndex = feedsModel_->indexById(feedId.toInt());
+		QString titleString = newsModel_->dataField(index.row(), "title").toString();
 
-      if (ltr)
-        htmlStr = htmlString_.arg(cssStr, titleString, dateString, authorString, content);
-      else
-        htmlStr = htmlRtlString_.arg(cssStr, titleString, dateString, authorString, content);
-    } else {
-      if (!autoLoadImages_) {
-        content = content.remove(QRegExp("<img[^>]+>", Qt::CaseInsensitive, QRegExp::RegExp2));
-      }
+		if (!linkString.isEmpty())
+		{
+			titleString = QString("<a href='%1' class='unread'>%2</a>").arg(linkString, titleString);
+		}
 
-      htmlStr = content;
-    }
+		QDateTime dtLocal;
+		QString dateString = newsModel_->dataField(index.row(), "published").toString();
 
-    htmlStr = htmlStr.replace("src=\"//", "src=\"http://");
+		if (!dateString.isNull())
+		{
+			QDateTime dtLocalTime = QDateTime::currentDateTime();
+			QDateTime dtUTC = QDateTime(dtLocalTime.date(), dtLocalTime.time(), Qt::UTC);
+			int nTimeShift = dtLocalTime.secsTo(dtUTC);
 
-    QUrl url;
-    url.setScheme(newsUrl.scheme());
-    url.setHost(newsUrl.host());
-    emit signalSetHtmlWebView(htmlStr, url);
-  }
+			QDateTime dt = QDateTime::fromString(dateString, Qt::ISODate);
+			dtLocal = dt.addSecs(nTimeShift);
+		}
+		else
+		{
+			dtLocal = QDateTime::fromString(newsModel_->dataField(index.row(), "received").toString(), Qt::ISODate);
+		}
+
+		if (QDateTime::currentDateTime().date() <= dtLocal.date())
+		{
+			dateString = dtLocal.toString(mainWindow_->formatTime_);
+		}
+		else
+		{
+			dateString = dtLocal.toString(mainWindow_->formatDate_ + " " + mainWindow_->formatTime_);
+		}
+
+		// Create author panel from news author
+		QString authorString;
+		QString authorName = newsModel_->dataField(index.row(), "author_name").toString();
+		QString authorEmail = newsModel_->dataField(index.row(), "author_email").toString();
+		QString authorUri = newsModel_->dataField(index.row(), "author_uri").toString();
+
+		QRegExp reg("(^\\S+@\\S+\\.\\S+)", Qt::CaseInsensitive, QRegExp::RegExp2);
+		int pos = reg.indexIn(authorName);
+
+		if (pos > -1)
+		{
+			authorName.replace(reg.cap(1), QString(" <a href='mailto:%1'>%1</a>").arg(reg.cap(1)));
+		}
+
+		authorString = authorName;
+
+		if (!authorEmail.isEmpty())
+		{
+			authorString.append(QString(" <a href='mailto:%1'>e-mail</a>").arg(authorEmail));
+		}
+
+		if (!authorUri.isEmpty())
+		{
+			authorString.append(QString(" <a href='%1'>page</a>"). arg(authorUri));
+		}
+
+		// If news author is absent, create author panel from feed author
+		// @note(arhohryakov:2012.01.03) Author is got from current feed, because
+		//   news is belong to it
+		if (authorString.isEmpty())
+		{
+			authorName  = feedsModel_->dataField(feedIndex, "author_name").toString();
+			authorEmail = feedsModel_->dataField(feedIndex, "author_email").toString();
+			authorUri   = feedsModel_->dataField(feedIndex, "author_uri").toString();
+
+			authorString = authorName;
+
+			if (!authorEmail.isEmpty())
+			{
+				authorString.append(QString(" <a href='mailto:%1'>e-mail</a>").arg(authorEmail));
+			}
+
+			if (!authorUri.isEmpty())
+			{
+				authorString.append(QString(" <a href='%1'>page</a>").arg(authorUri));
+			}
+		}
+
+		QString commentsStr;
+		QString commentsUrl = newsModel_->dataField(index.row(), "comments").toString();
+
+		if (!commentsUrl.isEmpty())
+		{
+			commentsStr = QString("<a href=\"%1\"> %2</a>").arg(commentsUrl, tr("Comments"));
+		}
+
+		QString category = newsModel_->dataField(index.row(), "category").toString();
+
+		if (!authorString.isEmpty())
+		{
+			authorString = QString(tr("Author: %1")).arg(authorString);
+
+			if (!commentsStr.isEmpty())
+			{
+				authorString.append(QString(" | %1").arg(commentsStr));
+			}
+			if (!category.isEmpty())
+			{
+				authorString.append(QString(" | %1").arg(category));
+			}
+		}
+		else
+		{
+			if (!commentsStr.isEmpty())
+			{
+				authorString.append(commentsStr);
+			}
+
+			if (!category.isEmpty())
+			{
+				if (!commentsStr.isEmpty())
+				{
+					authorString.append(QString(" | %1").arg(category));
+				}
+				else
+				{
+					authorString.append(category);
+				}
+			}
+		}
+
+		QString labelsString = getHtmlLabels(index.row());
+
+		authorString.append(QString("<table class=\"labels\" id=\"labels%1\"><tr>%2</tr></table>").
+							arg(newsId).arg(labelsString));
+
+		QString enclosureStr;
+		QString enclosureUrl = newsModel_->dataField(index.row(), "enclosure_url").toString();
+
+		if (!enclosureUrl.isEmpty())
+		{
+			QString type = newsModel_->dataField(index.row(), "enclosure_type").toString();
+
+			if (type.contains("image"))
+			{
+				if (!content.contains(enclosureUrl) && autoLoadImages_)
+				{
+					enclosureStr = QString("<IMG SRC=\"%1\" class=\"enclosureImg\"><p>").arg(enclosureUrl);
+				}
+			}
+			else
+			{
+				if (type.contains("audio"))
+				{
+					type = tr("audio");
+					enclosureStr = audioPlayerHtml_.arg(enclosureUrl);
+					enclosureStr.append("<p>");
+				}
+				else if (type.contains("video"))
+				{
+					type = tr("video");
+					enclosureStr = videoPlayerHtml_.arg(enclosureUrl);
+					enclosureStr.append("<p>");
+				}
+				else
+				{
+					type = tr("media");
+				}
+
+				enclosureStr.append(QString("<a href=\"%1\" class=\"enclosure\"> %2 %3 </a><p>").
+									arg(enclosureUrl, tr("Link to"), type));
+			}
+		}
+
+		content = enclosureStr + content;
+
+		bool ltr = !feedsModel_->dataField(feedIndex, "layoutDirection").toInt();
+
+		QString cssStr = cssString_.
+			arg(ltr ? "left" : "right").	// text-align
+			arg(ltr ? "ltr" : "rtl").		// direction
+			arg(ltr ? "right" : "left");	// "Date" text-align
+
+		if (!autoLoadImages_)
+		{
+			QRegExp reg("<img[^>]+>", Qt::CaseInsensitive, QRegExp::RegExp2);
+			content = content.remove(reg);
+		}
+
+		if (ltr)
+		{
+			OutHtml = htmlString_.arg(cssStr, titleString, dateString, authorString, content);
+		}
+		else
+		{
+			OutHtml = htmlRtlString_.arg(cssStr, titleString, dateString, authorString, content);
+		}
+	}
+	else
+	{
+		if (!autoLoadImages_)
+		{
+			content = content.remove(QRegExp("<img[^>]+>", Qt::CaseInsensitive, QRegExp::RegExp2));
+		}
+
+		OutHtml = content;
+	}
+
+	OutHtml = OutHtml.replace("src=\"//", "src=\"http://");
 }
 
 void NewsTabWidget::loadNewspaper(int refresh)
@@ -1795,58 +1895,107 @@ void NewsTabWidget::hideWebContent()
   setWebToolbarVisible(false, false);
 }
 
-void NewsTabWidget::slotLinkClicked(QUrl url)
+void NewsTabWidget::slotLinkClicked(QUrl url, bool bForceNewTab/*=false*/, bool bForceNewBkgTab/*=false*/,
+									QString* OverrideHtml/*=NULL*/)
 {
-  if (url.scheme() == QLatin1String("quiterss")) {
-    actionNewspaper(url);
-    return;
-  }
+	if (url.scheme() == QLatin1String("quiterss"))
+	{
+		actionNewspaper(url);
+		return;
+	}
 
-  if (url.scheme() == QLatin1String("mailto")) {
-    QDesktopServices::openUrl(url);
-    return;
-  }
+	if (url.scheme() == QLatin1String("mailto"))
+	{
+		QDesktopServices::openUrl(url);
+		return;
+	}
 
-  if (type_ != TabTypeWeb) {
-    if (url.host().isEmpty() && newsView_->currentIndex().isValid()) {
-      int row = newsView_->currentIndex().row();
-      int feedId = newsModel_->dataField(row, "feedId").toInt();
-      QModelIndex feedIndex = feedsModel_->indexById(feedId);
-      QUrl hostUrl = feedsModel_->dataField(feedIndex, "htmlUrl").toString();
 
-      url.setScheme(hostUrl.scheme());
-      url.setHost(hostUrl.host());
-    }
-  }
+	if (type_ != TabTypeWeb)
+	{
+		if (url.host().isEmpty() && newsView_->currentIndex().isValid())
+		{
+			int row = newsView_->currentIndex().row();
+			int feedId = newsModel_->dataField(row, "feedId").toInt();
+			QModelIndex feedIndex = feedsModel_->indexById(feedId);
+			QUrl hostUrl = feedsModel_->dataField(feedIndex, "htmlUrl").toString();
 
-  if ((mainWindow_->externalBrowserOn_ <= 0) &&
-      (webView_->buttonClick_ != LEFT_BUTTON_ALT)) {
-    if (webView_->buttonClick_ == LEFT_BUTTON) {
-      if (!webControlPanel_->isVisible()) {
-        locationBar_->setText(url.toString());
-        setWebToolbarVisible(true, false);
-      }
-      webView_->load(url);
-    } else {
-      if ((webView_->buttonClick_ == MIDDLE_BUTTON) ||
-          (webView_->buttonClick_ == LEFT_BUTTON_CTRL)) {
-        mainWindow_->openNewsTab_ = NEW_TAB_BACKGROUND;
-      } else {
-        mainWindow_->openNewsTab_ = NEW_TAB_FOREGROUND;
-      }
-      if (!mainWindow_->openLinkInBackgroundEmbedded_) {
-        if (mainWindow_->openNewsTab_ == NEW_TAB_BACKGROUND)
-          mainWindow_->openNewsTab_ = NEW_TAB_FOREGROUND;
-        else
-          mainWindow_->openNewsTab_ = NEW_TAB_BACKGROUND;
-      }
+			url.setScheme(hostUrl.scheme());
+			url.setHost(hostUrl.host());
+		}
+	}
 
-      mainWindow_->createWebTab(url);
-    }
-  } else {
-    openUrl(url);
-  }
-  webView_->buttonClick_ = 0;
+	bool bLoadWebView = false;
+	bool bLoadNewTab = false;
+	bool bLoadExternal = false;
+
+	if (bForceNewTab)
+	{
+		mainWindow_->openNewsTab_ = NEW_TAB_FOREGROUND;
+		bLoadNewTab = true;
+	}
+	else if (bForceNewBkgTab)
+	{
+		mainWindow_->openNewsTab_ = NEW_TAB_BACKGROUND;
+		bLoadNewTab = true;
+	}
+	else if ((mainWindow_->externalBrowserOn_ <= 0) && (webView_->buttonClick_ != LEFT_BUTTON_ALT))
+	{
+		if (webView_->buttonClick_ == LEFT_BUTTON)
+		{
+			bLoadWebView = true;
+		}
+		else
+		{
+			if ((webView_->buttonClick_ == MIDDLE_BUTTON) || (webView_->buttonClick_ == LEFT_BUTTON_CTRL))
+			{
+				mainWindow_->openNewsTab_ = NEW_TAB_BACKGROUND;
+			}
+			else
+			{
+				mainWindow_->openNewsTab_ = NEW_TAB_FOREGROUND;
+			}
+
+			if (!mainWindow_->openLinkInBackgroundEmbedded_)
+			{
+				if (mainWindow_->openNewsTab_ == NEW_TAB_BACKGROUND)
+				{
+					mainWindow_->openNewsTab_ = NEW_TAB_FOREGROUND;
+				}
+				else
+				{
+					mainWindow_->openNewsTab_ = NEW_TAB_BACKGROUND;
+				}
+			}
+
+			bLoadNewTab = true;
+		}
+	}
+	else
+	{
+		bLoadExternal = true;
+	}
+
+	if (bLoadWebView)
+	{
+		if (!webControlPanel_->isVisible())
+		{
+			locationBar_->setText(url.toString());
+			setWebToolbarVisible(true, false);
+		}
+
+		webView_->load(url);
+	}
+	else if (bLoadNewTab)
+	{
+		mainWindow_->createWebTab(url, OverrideHtml);
+	}
+	else // if (bLoadExternal)
+	{
+		openUrl(url);
+	}
+
+	webView_->buttonClick_ = 0;
 }
 //----------------------------------------------------------------------------
 void NewsTabWidget::slotLinkHovered(const QString &link, const QString &, const QString &)
@@ -2817,4 +2966,151 @@ void NewsTabWidget::actionNewspaper(QUrl url)
       }
     }
   }
+}
+
+void NewsTabWidget::HandleMouseClick(QModelIndex index, Qt::MouseButton Button, bool bDoubleClick/*=false*/)
+{
+	QModelIndex feedIndex = feedsModel_->indexById(feedId_);
+	ENewsClickAction SingleClickAction = (ENewsClickAction)feedsModel_->dataField(feedIndex, "SingleClickAction").toInt();
+	ENewsClickAction DoubleClickAction = (ENewsClickAction)feedsModel_->dataField(feedIndex, "DoubleClickAction").toInt();
+	ENewsClickAction MiddleClickAction = (ENewsClickAction)feedsModel_->dataField(feedIndex, "MiddleClickAction").toInt();
+
+	SingleClickAction = (SingleClickAction == ENewsClickAction::NCA_Default ? mainWindow_->NewsSingleClickAction : SingleClickAction);
+	DoubleClickAction = (DoubleClickAction == ENewsClickAction::NCA_Default ? mainWindow_->NewsDoubleClickAction : DoubleClickAction);
+	MiddleClickAction = (MiddleClickAction == ENewsClickAction::NCA_Default ? mainWindow_->NewsMiddleClickAction : MiddleClickAction);
+
+	if (Button == Qt::LeftButton && !bDoubleClick)
+	{
+		if (SingleClickAction != ENewsClickAction::NCA_Nothing && !TimerMouseClick.isActive())
+		{
+			// We do not know if this click, is the first click of a double click, so we don't want to do anything disruptive to the UI,
+			// until we know one way or the other - this means some single-click settings are safe to execute immediately,
+			// and some have to be delayed to rule-out a double-click (e.g. immediately showing news description is safe,
+			// but opening a new tab will have to be delayed)
+			bool bDelayAction = false;
+
+			if (SingleClickAction != DoubleClickAction && DoubleClickAction != ENewsClickAction::NCA_Nothing)
+			{
+				bDelayAction = true;
+
+				if (SingleClickAction == ENewsClickAction::NCA_Description || SingleClickAction == ENewsClickAction::NCA_WebPage)
+				{
+					bDelayAction = false;
+				}
+			}
+
+			if (bDelayAction)
+			{
+				PendingClickIndex = index;
+				TimerMouseClick.start(400);
+			}
+			else
+			{
+				PerformNewsClickAction(index, SingleClickAction);
+			}
+		}
+	}
+	else if (Button == Qt::LeftButton && bDoubleClick)
+	{
+		TimerMouseClick.stop();
+
+		if (DoubleClickAction != ENewsClickAction::NCA_Nothing)
+		{
+			PerformNewsClickAction(index, DoubleClickAction);
+		}
+	}
+	else if (Button == Qt::MiddleButton)
+	{
+		if (QApplication::keyboardModifiers() == Qt::NoModifier)
+		{
+			if (MiddleClickAction != ENewsClickAction::NCA_Nothing)
+			{
+				PerformNewsClickAction(index, MiddleClickAction);
+			}
+		}
+		else if (QApplication::keyboardModifiers() == Qt::AltModifier)
+		{
+			PerformNewsClickAction(index, ENewsClickAction::NCA_ExternalBrowser);
+		}
+		else
+		{
+			PerformNewsClickAction(index, ENewsClickAction::NCA_WebPageBkgTab);
+		}
+	}
+}
+
+void NewsTabWidget::slotMouseClickTimeout()
+{
+	if (PendingClickIndex.isValid())
+	{
+		QModelIndex feedIndex = feedsModel_->indexById(feedId_);
+		ENewsClickAction SingleClickAction = (ENewsClickAction)feedsModel_->dataField(feedIndex, "SingleClickAction").toInt();
+
+		SingleClickAction = (SingleClickAction == ENewsClickAction::NCA_Default ? mainWindow_->NewsSingleClickAction : SingleClickAction);
+
+		PerformNewsClickAction(PendingClickIndex, SingleClickAction);
+	}
+}
+
+void NewsTabWidget::PerformNewsClickAction(QModelIndex index, ENewsClickAction Action)
+{
+	if (index.isValid())
+	{
+		switch (Action)
+		{
+			case ENewsClickAction::NCA_Description:
+			{
+				slotNewsViewSelected(index, false, false);
+				updateWebView_Description(index);
+
+				break;
+			}
+
+			case ENewsClickAction::NCA_DescriptionNewTab:
+			case ENewsClickAction::NCA_DescriptionBkgTab:
+			{
+				slotNewsViewSelected(index, false, false);
+
+				bool bForegroundTab = Action == ENewsClickAction::NCA_DescriptionNewTab;
+				QString HtmlString = "";
+				QUrl Url;
+
+				GenerateDescriptionHtml(index, HtmlString, Url);
+				slotLinkClicked(Url, bForegroundTab, !bForegroundTab, &HtmlString);
+
+				break;
+			}
+
+			case ENewsClickAction::NCA_WebPage:
+			case ENewsClickAction::NCA_ExternalBrowser:
+			{
+				bool bExternalLink = Action == ENewsClickAction::NCA_ExternalBrowser;
+
+				slotNewsViewSelected(index, false, false);
+				updateWebView_Link(index, bExternalLink);
+
+				break;
+			}
+
+			case ENewsClickAction::NCA_WebPageNewTab:
+			case ENewsClickAction::NCA_WebPageBkgTab:
+			{
+				slotNewsViewSelected(index, false, false);
+
+				bool bForegroundTab = Action == ENewsClickAction::NCA_WebPageNewTab;
+				QUrl Url = QUrl::fromEncoded(getLinkNews(index.row()).toUtf8());
+
+				slotLinkClicked(Url, bForegroundTab, !bForegroundTab);
+
+				break;
+			}
+
+			default:
+			{
+				break;
+			}
+		}
+
+		mainWindow_->statusBar()->showMessage(linkNewsString_, 3000);
+	}
 }

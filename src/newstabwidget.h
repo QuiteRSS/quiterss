@@ -36,6 +36,7 @@
 #include "newsmodel.h"
 #include "newsview.h"
 #include "webview.h"
+#include "optionsdialog.h"
 
 class MainWindow;
 
@@ -92,6 +93,9 @@ public:
   void openNewsNewTab();
 
   void updateWebView(QModelIndex index);
+  void updateWebView_Link(QModelIndex index, bool bExternalLink=false, QString OverrideURL="");
+  void updateWebView_Description(QModelIndex index);
+  void GenerateDescriptionHtml(QModelIndex index, QString& OutHtml, QUrl& OutURL);
   void loadNewspaper(int refresh = RefreshAll);
   void hideWebContent();
   QString getLinkNews(int row);
@@ -143,7 +147,7 @@ public:
 public slots:
   void setAutoLoadImages(bool apply = true);
   void slotNewsViewClicked(QModelIndex index);
-  void slotNewsViewSelected(QModelIndex index, bool clicked = false);
+  void slotNewsViewSelected(QModelIndex index, bool clicked=false, bool bUpdateWebView=true);
   void slotNewsViewDoubleClicked(QModelIndex index);
   void slotNewsMiddleClicked(QModelIndex index);
   void slotNewsUpPressed(QModelIndex index=QModelIndex());
@@ -168,7 +172,7 @@ private slots:
   void setHtmlWebView(const QString &html, const QUrl &baseUrl);
   void webHomePage();
   void openPageInExternalBrowser();
-  void slotLinkClicked(QUrl url);
+  void slotLinkClicked(QUrl url, bool bForceNewTab=false, bool bForceNewBkgTab=false, QString* OverrideHtml=NULL);
   void slotLinkHovered(const QString &link, const QString &str1="", const QString &str2="");
   void slotSetValue(int value);
   void slotLoadStarted();
@@ -190,11 +194,17 @@ private slots:
 
   void slotNewslLabelClicked(QModelIndex index);
 
+  void slotMouseClickTimeout();
+
 private:
   void createNewsList();
   void createWebWidget();
   QString getHtmlLabels(int row);
   void actionNewspaper(QUrl url);
+
+  void HandleMouseClick(QModelIndex index, Qt::MouseButton Button, bool bDoubleClick=false);
+
+  void PerformNewsClickAction(QModelIndex index, ENewsClickAction Action);
 
   MainWindow *mainWindow_;
   QSqlDatabase db_;
@@ -233,6 +243,8 @@ private:
   QString audioPlayerHtml_;
   QString videoPlayerHtml_;
 
+  QTimer TimerMouseClick;
+  QPersistentModelIndex PendingClickIndex;
 };
 
 #endif // NEWSTABWIDGET_H

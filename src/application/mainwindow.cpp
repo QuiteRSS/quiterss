@@ -2028,6 +2028,32 @@ void MainWindow::loadSettings()
 
   showDescriptionNews_ = settings.value("showDescriptionNews", true).toBool();
 
+	int SingleClick = settings.value("NewsSingleClickAction", (int)ENewsClickAction::NCA_Description).toInt();
+	int DoubleClick = settings.value("NewsDoubleClickAction", (int)ENewsClickAction::NCA_WebPage).toInt();
+	int MiddleClick = settings.value("NewsMiddleClickAction", (int)ENewsClickAction::NCA_WebPageNewTab).toInt();
+
+	if (SingleClick < (int)ENewsClickAction::NCA_Start || SingleClick >= (int)ENewsClickAction::NCA_Max ||
+		SingleClick == (int)ENewsClickAction::NCA_Default)
+	{
+		SingleClick = (int)ENewsClickAction::NCA_Description;
+	}
+
+	if (DoubleClick < (int)ENewsClickAction::NCA_Start || DoubleClick >= (int)ENewsClickAction::NCA_Max ||
+		SingleClick == (int)ENewsClickAction::NCA_Default)
+	{
+		DoubleClick = (int)ENewsClickAction::NCA_WebPage;
+	}
+
+	if (MiddleClick < (int)ENewsClickAction::NCA_Start || MiddleClick >= (int)ENewsClickAction::NCA_Max ||
+		SingleClick == (int)ENewsClickAction::NCA_Default)
+	{
+		MiddleClick = (int)ENewsClickAction::NCA_WebPageNewTab;
+	}
+
+	NewsSingleClickAction = (ENewsClickAction)SingleClick;
+	NewsDoubleClickAction = (ENewsClickAction)DoubleClick;
+	NewsMiddleClickAction = (ENewsClickAction)MiddleClick;
+
   formatDate_ = settings.value("formatData", "dd.MM.yy").toString();
   formatTime_ = settings.value("formatTime", "hh:mm").toString();
   feedsModel_->formatDate_ = formatDate_;
@@ -2344,6 +2370,10 @@ void MainWindow::saveSettings()
   settings.setValue("markReadMinimize", markReadMinimize_);
 
   settings.setValue("showDescriptionNews", showDescriptionNews_);
+
+  settings.setValue("NewsSingleClickAction", (int)NewsSingleClickAction);
+  settings.setValue("NewsDoubleClickAction", (int)NewsDoubleClickAction);
+  settings.setValue("NewsMiddleClickAction", (int)NewsMiddleClickAction);
 
   settings.setValue("formatData", formatDate_);
   settings.setValue("formatTime", formatTime_);
@@ -3408,7 +3438,17 @@ void MainWindow::showOptionDlg(int index)
   optionsDialog_->markReadClosingTab_->setChecked(markReadClosingTab_);
   optionsDialog_->markReadMinimize_->setChecked(markReadMinimize_);
 
-  optionsDialog_->showDescriptionNews_->setChecked(showDescriptionNews_);
+	optionsDialog_->showDescriptionNews_->setChecked(showDescriptionNews_);
+
+	int CurClickValIdx = optionsDialog_->SingleClickAction->findData((int)NewsSingleClickAction);
+	optionsDialog_->SingleClickAction->setCurrentIndex(CurClickValIdx);
+
+	CurClickValIdx = optionsDialog_->DoubleClickAction->findData((int)NewsDoubleClickAction);
+	optionsDialog_->DoubleClickAction->setCurrentIndex(CurClickValIdx);
+
+	CurClickValIdx = optionsDialog_->MiddleClickAction->findData((int)NewsMiddleClickAction);
+	optionsDialog_->MiddleClickAction->setCurrentIndex(CurClickValIdx);
+
 
   for (int i = 0; i < optionsDialog_->formatDate_->count(); i++) {
     if (optionsDialog_->formatDate_->itemData(i).toString() == formatDate_) {
@@ -3849,6 +3889,10 @@ void MainWindow::showOptionDlg(int index)
   markReadMinimize_ = optionsDialog_->markReadMinimize_->isChecked();
 
   showDescriptionNews_ = optionsDialog_->showDescriptionNews_->isChecked();
+
+  NewsSingleClickAction = (ENewsClickAction)optionsDialog_->SingleClickAction->currentData().toInt();
+  NewsDoubleClickAction = (ENewsClickAction)optionsDialog_->DoubleClickAction->currentData().toInt();
+  NewsMiddleClickAction = (ENewsClickAction)optionsDialog_->MiddleClickAction->currentData().toInt();
 
   formatDate_ = optionsDialog_->formatDate_->itemData(
         optionsDialog_->formatDate_->currentIndex()).toString();
@@ -5254,6 +5298,11 @@ void MainWindow::showFeedPropertiesDlg()
       feedsModel_->dataField(index, "htmlUrl").toString();
   properties.general.displayOnStartup =
       feedsModel_->dataField(index, "displayOnStartup").toInt();
+
+	properties.Mouse.SingleClickAction = (ENewsClickAction)feedsModel_->dataField(index, "SingleClickAction").toInt();
+	properties.Mouse.DoubleClickAction = (ENewsClickAction)feedsModel_->dataField(index, "DoubleClickAction").toInt();
+	properties.Mouse.MiddleClickAction = (ENewsClickAction)feedsModel_->dataField(index, "MiddleClickAction").toInt();
+
   properties.display.displayEmbeddedImages =
       feedsModel_->dataField(index, "displayEmbeddedImages").toInt();
   properties.display.javaScriptEnable =
@@ -5414,12 +5463,16 @@ void MainWindow::showFeedPropertiesDlg()
   index = feedsModel_->indexById(feedId);
 
   q.prepare("UPDATE feeds SET text = ?, xmlUrl = ?, displayOnStartup = ?, "
+			"SingleClickAction = ?, DoubleClickAction = ?, MiddleClickAction = ?, "
             "displayEmbeddedImages = ?, displayNews = ?, layoutDirection = ?, "
             "label = ?, duplicateNewsMode = ?, authentication = ?, disableUpdate = ?, "
             "javaScriptEnable = ? WHERE id == ?");
   q.addBindValue(properties.general.text);
   q.addBindValue(properties.general.url);
   q.addBindValue(properties.general.displayOnStartup);
+  q.addBindValue((int)properties.Mouse.SingleClickAction);
+  q.addBindValue((int)properties.Mouse.DoubleClickAction);
+  q.addBindValue((int)properties.Mouse.MiddleClickAction);
   q.addBindValue(properties.display.displayEmbeddedImages);
   q.addBindValue(properties.display.displayNews);
   q.addBindValue(properties.display.layoutDirection);
@@ -5527,6 +5580,9 @@ void MainWindow::showFeedPropertiesDlg()
   QPersistentModelIndex indexText    = feedsModel_->indexSibling(index, "text");
   QPersistentModelIndex indexUrl     = feedsModel_->indexSibling(index, "xmlUrl");
   QPersistentModelIndex indexStartup = feedsModel_->indexSibling(index, "displayOnStartup");
+	QModelIndex indexSingleClickAction = feedsModel_->indexSibling(index, "SingleClickAction");
+	QModelIndex indexDoubleClickAction = feedsModel_->indexSibling(index, "DoubleClickAction");
+	QModelIndex indexMiddleClickAction = feedsModel_->indexSibling(index, "MiddleClickAction");
   QModelIndex indexImages  = feedsModel_->indexSibling(index, "displayEmbeddedImages");
   QModelIndex indexNews    = feedsModel_->indexSibling(index, "displayNews");
   QModelIndex indexRTL     = feedsModel_->indexSibling(index, "layoutDirection");
@@ -5538,6 +5594,9 @@ void MainWindow::showFeedPropertiesDlg()
   feedsModel_->setData(indexText, properties.general.text);
   feedsModel_->setData(indexUrl, properties.general.url);
   feedsModel_->setData(indexStartup, properties.general.displayOnStartup);
+	feedsModel_->setData(indexSingleClickAction, (int)properties.Mouse.SingleClickAction);
+	feedsModel_->setData(indexDoubleClickAction, (int)properties.Mouse.DoubleClickAction);
+	feedsModel_->setData(indexMiddleClickAction, (int)properties.Mouse.MiddleClickAction);
   feedsModel_->setData(indexImages, properties.display.displayEmbeddedImages);
   feedsModel_->setData(indexNews, properties.display.displayNews);
   feedsModel_->setData(indexRTL, properties.display.layoutDirection);
@@ -6343,7 +6402,7 @@ void MainWindow::setBrowserPosition(QAction *action)
 
 /** @brief Create tab with browser only (without news list)
  *---------------------------------------------------------------------------*/
-QWebPage *MainWindow::createWebTab(QUrl url)
+QWebPage *MainWindow::createWebTab(QUrl url, QString* OverrideHtml/*=NULL*/)
 {
   NewsTabWidget *widget = new NewsTabWidget(this, NewsTabWidget::TabTypeWeb);
   int indexTab = addTab(widget);
@@ -6359,10 +6418,18 @@ QWebPage *MainWindow::createWebTab(QUrl url)
 
   openNewsTab_ = 0;
 
-  if (!url.isEmpty()) {
-    widget->locationBar_->setText(url.toString());
-    widget->webView_->load(url);
-  }
+	if (!url.isEmpty())
+	{
+		if (OverrideHtml == NULL)
+		{
+			widget->locationBar_->setText(url.toString());
+			widget->webView_->load(url);
+		}
+		else
+		{
+			emit widget->signalSetHtmlWebView(*OverrideHtml, url);
+		}
+	}
 
   return widget->webView_->page();
 }

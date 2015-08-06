@@ -21,6 +21,7 @@
 #include "dialog.h"
 #include "lineedit.h"
 #include "toolbutton.h"
+#include "optionsdialog.h"
 
 //! Feed properties structure
 typedef struct {
@@ -112,6 +113,14 @@ typedef struct {
     int feedsCount; //!< Number of feeds
   } status;
 
+	//! Mouse properties
+	struct Mouse
+	{
+		ENewsClickAction SingleClickAction;	//!< Action to take on single click
+		ENewsClickAction DoubleClickAction;	//!< Action to take on double click
+		ENewsClickAction MiddleClickAction;	//!< Action to take on middle click
+	} Mouse;
+
 } FEED_PROPERTIES;
 
 //! Feed properties dialog
@@ -162,6 +171,13 @@ private:
   QCheckBox *duplicateNewsMode_;
 
   QWidget *createGeneralTab();
+
+  // Tab "Mouse"
+  	QComboBox* SingleClickAction;
+	QComboBox* DoubleClickAction;
+	QComboBox* MiddleClickAction;
+
+	QWidget* CreateMouseTab();
 
   // Tab "Display"
   QCheckBox *showDescriptionNews_;
