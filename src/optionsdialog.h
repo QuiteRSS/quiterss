@@ -44,22 +44,25 @@ class FeedPropertiesDialog;
  * Action to take upon clicking a news entry
  * NOTE: Don't change value of 'Default' away from 0
  */
-enum ENewsClickAction
+namespace ENewsClickAction
 {
-	NCA_Start				= 0,
+	enum Type
+	{
+		NCA_Start				= 0,
 
-	NCA_Default				= 0,
-	NCA_Nothing				= 1,
-	NCA_Description			= 2,
-	NCA_DescriptionNewTab	= 3,
-	NCA_DescriptionBkgTab	= 4,
-	NCA_WebPage				= 5,
-	NCA_WebPageNewTab		= 6,
-	NCA_WebPageBkgTab		= 7,
-	NCA_ExternalBrowser		= 8,
+		NCA_Default				= 0,
+		NCA_Nothing				= 1,
+		NCA_Description			= 2,
+		NCA_DescriptionNewTab	= 3,
+		NCA_DescriptionBkgTab	= 4,
+		NCA_WebPage				= 5,
+		NCA_WebPageNewTab		= 6,
+		NCA_WebPageBkgTab		= 7,
+		NCA_ExternalBrowser		= 8,
 
-	NCA_Max
-};
+		NCA_Max
+	};
+}
 
 class OptionsDialog : public Dialog
 {

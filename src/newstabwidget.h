@@ -204,7 +204,7 @@ private:
 
   void HandleMouseClick(QModelIndex index, Qt::MouseButton Button, bool bDoubleClick=false);
 
-  void PerformNewsClickAction(QModelIndex index, ENewsClickAction Action);
+  void PerformNewsClickAction(QModelIndex index, ENewsClickAction::Type Action);
 
   MainWindow *mainWindow_;
   QSqlDatabase db_;

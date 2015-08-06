@@ -2050,9 +2050,9 @@ void MainWindow::loadSettings()
 		MiddleClick = (int)ENewsClickAction::NCA_WebPageNewTab;
 	}
 
-	NewsSingleClickAction = (ENewsClickAction)SingleClick;
-	NewsDoubleClickAction = (ENewsClickAction)DoubleClick;
-	NewsMiddleClickAction = (ENewsClickAction)MiddleClick;
+	NewsSingleClickAction = (ENewsClickAction::Type)SingleClick;
+	NewsDoubleClickAction = (ENewsClickAction::Type)DoubleClick;
+	NewsMiddleClickAction = (ENewsClickAction::Type)MiddleClick;
 
   formatDate_ = settings.value("formatData", "dd.MM.yy").toString();
   formatTime_ = settings.value("formatTime", "hh:mm").toString();
@@ -3890,9 +3890,9 @@ void MainWindow::showOptionDlg(int index)
 
   showDescriptionNews_ = optionsDialog_->showDescriptionNews_->isChecked();
 
-  NewsSingleClickAction = (ENewsClickAction)optionsDialog_->SingleClickAction->currentData().toInt();
-  NewsDoubleClickAction = (ENewsClickAction)optionsDialog_->DoubleClickAction->currentData().toInt();
-  NewsMiddleClickAction = (ENewsClickAction)optionsDialog_->MiddleClickAction->currentData().toInt();
+  NewsSingleClickAction = (ENewsClickAction::Type)optionsDialog_->SingleClickAction->currentData().toInt();
+  NewsDoubleClickAction = (ENewsClickAction::Type)optionsDialog_->DoubleClickAction->currentData().toInt();
+  NewsMiddleClickAction = (ENewsClickAction::Type)optionsDialog_->MiddleClickAction->currentData().toInt();
 
   formatDate_ = optionsDialog_->formatDate_->itemData(
         optionsDialog_->formatDate_->currentIndex()).toString();
@@ -5299,9 +5299,9 @@ void MainWindow::showFeedPropertiesDlg()
   properties.general.displayOnStartup =
       feedsModel_->dataField(index, "displayOnStartup").toInt();
 
-	properties.Mouse.SingleClickAction = (ENewsClickAction)feedsModel_->dataField(index, "SingleClickAction").toInt();
-	properties.Mouse.DoubleClickAction = (ENewsClickAction)feedsModel_->dataField(index, "DoubleClickAction").toInt();
-	properties.Mouse.MiddleClickAction = (ENewsClickAction)feedsModel_->dataField(index, "MiddleClickAction").toInt();
+	properties.Mouse.SingleClickAction = (ENewsClickAction::Type)feedsModel_->dataField(index, "SingleClickAction").toInt();
+	properties.Mouse.DoubleClickAction = (ENewsClickAction::Type)feedsModel_->dataField(index, "DoubleClickAction").toInt();
+	properties.Mouse.MiddleClickAction = (ENewsClickAction::Type)feedsModel_->dataField(index, "MiddleClickAction").toInt();
 
   properties.display.displayEmbeddedImages =
       feedsModel_->dataField(index, "displayEmbeddedImages").toInt();

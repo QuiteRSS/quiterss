@@ -116,9 +116,9 @@ typedef struct {
 	//! Mouse properties
 	struct Mouse
 	{
-		ENewsClickAction SingleClickAction;	//!< Action to take on single click
-		ENewsClickAction DoubleClickAction;	//!< Action to take on double click
-		ENewsClickAction MiddleClickAction;	//!< Action to take on middle click
+		ENewsClickAction::Type SingleClickAction;	//!< Action to take on single click
+		ENewsClickAction::Type DoubleClickAction;	//!< Action to take on double click
+		ENewsClickAction::Type MiddleClickAction;	//!< Action to take on middle click
 	} Mouse;
 
 } FEED_PROPERTIES;

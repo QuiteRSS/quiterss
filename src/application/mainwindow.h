@@ -219,9 +219,9 @@ public:
   bool markReadClosingTab_;
   bool markReadMinimize_;
   bool showDescriptionNews_;
-  ENewsClickAction NewsSingleClickAction;
-  ENewsClickAction NewsDoubleClickAction;
-  ENewsClickAction NewsMiddleClickAction;
+  ENewsClickAction::Type NewsSingleClickAction;
+  ENewsClickAction::Type NewsDoubleClickAction;
+  ENewsClickAction::Type NewsMiddleClickAction;
   bool alternatingRowColorsNews_;
   bool simplifiedDateTime_;
   bool notDeleteStarred_;

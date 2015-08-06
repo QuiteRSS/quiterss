@@ -2971,9 +2971,9 @@ void NewsTabWidget::actionNewspaper(QUrl url)
 void NewsTabWidget::HandleMouseClick(QModelIndex index, Qt::MouseButton Button, bool bDoubleClick/*=false*/)
 {
 	QModelIndex feedIndex = feedsModel_->indexById(feedId_);
-	ENewsClickAction SingleClickAction = (ENewsClickAction)feedsModel_->dataField(feedIndex, "SingleClickAction").toInt();
-	ENewsClickAction DoubleClickAction = (ENewsClickAction)feedsModel_->dataField(feedIndex, "DoubleClickAction").toInt();
-	ENewsClickAction MiddleClickAction = (ENewsClickAction)feedsModel_->dataField(feedIndex, "MiddleClickAction").toInt();
+	ENewsClickAction::Type SingleClickAction = (ENewsClickAction::Type)feedsModel_->dataField(feedIndex, "SingleClickAction").toInt();
+	ENewsClickAction::Type DoubleClickAction = (ENewsClickAction::Type)feedsModel_->dataField(feedIndex, "DoubleClickAction").toInt();
+	ENewsClickAction::Type MiddleClickAction = (ENewsClickAction::Type)feedsModel_->dataField(feedIndex, "MiddleClickAction").toInt();
 
 	SingleClickAction = (SingleClickAction == ENewsClickAction::NCA_Default ? mainWindow_->NewsSingleClickAction : SingleClickAction);
 	DoubleClickAction = (DoubleClickAction == ENewsClickAction::NCA_Default ? mainWindow_->NewsDoubleClickAction : DoubleClickAction);
@@ -3044,15 +3044,17 @@ void NewsTabWidget::slotMouseClickTimeout()
 	if (PendingClickIndex.isValid())
 	{
 		QModelIndex feedIndex = feedsModel_->indexById(feedId_);
-		ENewsClickAction SingleClickAction = (ENewsClickAction)feedsModel_->dataField(feedIndex, "SingleClickAction").toInt();
+		ENewsClickAction::Type SingleClickAction =
+			(ENewsClickAction::Type)feedsModel_->dataField(feedIndex, "SingleClickAction").toInt();
 
-		SingleClickAction = (SingleClickAction == ENewsClickAction::NCA_Default ? mainWindow_->NewsSingleClickAction : SingleClickAction);
+		SingleClickAction = (SingleClickAction == ENewsClickAction::NCA_Default ? mainWindow_->NewsSingleClickAction :
+								SingleClickAction);
 
 		PerformNewsClickAction(PendingClickIndex, SingleClickAction);
 	}
 }
 
-void NewsTabWidget::PerformNewsClickAction(QModelIndex index, ENewsClickAction Action)
+void NewsTabWidget::PerformNewsClickAction(QModelIndex index, ENewsClickAction::Type Action)
 {
 	if (index.isValid())
 	{
