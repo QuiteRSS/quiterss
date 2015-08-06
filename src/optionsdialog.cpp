@@ -1046,8 +1046,9 @@ QWidget* OptionsDialog::createClickActionWidgets(QComboBox*& OutSingleClickActio
 			QVBoxLayout* ValuesLayout = new QVBoxLayout();
 
 			{
-				auto SetupCombo =
-					[&](QComboBox*& OutCombo)
+				struct Local
+				{
+					static void SetupCombo(QComboBox*& OutCombo, bool bAddDefaultValue)
 					{
 						OutCombo = new QComboBox();
 
@@ -1082,10 +1083,11 @@ QWidget* OptionsDialog::createClickActionWidgets(QComboBox*& OutSingleClickActio
 						// @todo #JohnBTranslation
 						OutCombo->addItem("Open in External Browser", (int)ENewsClickAction::NCA_ExternalBrowser);
 					};
+				};
 
-				SetupCombo(OutSingleClickAction);
-				SetupCombo(OutDoubleClickAction);
-				SetupCombo(OutMiddleClickAction);
+				Local::SetupCombo(OutSingleClickAction, bAddDefaultValue);
+				Local::SetupCombo(OutDoubleClickAction, bAddDefaultValue);
+				Local::SetupCombo(OutMiddleClickAction, bAddDefaultValue);
 
 				// @todo #JohnBTranslation
 				NamesLayout->addWidget(new QLabel(tr("Single Click:")));

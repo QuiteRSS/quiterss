@@ -63,7 +63,7 @@ enum class ENewsClickAction
 
 class OptionsDialog : public Dialog
 {
-	friend FeedPropertiesDialog;
+	friend class FeedPropertiesDialog;
 
   Q_OBJECT
 public:
