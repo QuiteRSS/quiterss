@@ -55,7 +55,6 @@ MainWindow::MainWindow(QWidget *parent)
   , mediaPlayer_(NULL)
 #endif
   , updateAppDialog_(NULL)
-  , updateFeedsCount_(0)
   , notificationWidget(NULL)
   , feedIdOld_(-2)
   , isStartImportFeed_(false)
@@ -95,8 +94,8 @@ MainWindow::MainWindow(QWidget *parent)
 
   QTimer::singleShot(10000, this, SLOT(slotUpdateAppCheck()));
 
-  connect(this, SIGNAL(signalShowNotification()),
-          SLOT(showNotification()), Qt::QueuedConnection);
+  connect(this, SIGNAL(signalShowNotification(bool)),
+          SLOT(showNotification(bool)), Qt::QueuedConnection);
   connect(this, SIGNAL(signalPlaySoundNewNews()),
           SLOT(slotPlaySoundNewNews()), Qt::QueuedConnection);
 
@@ -112,6 +111,9 @@ MainWindow::MainWindow(QWidget *parent)
           this, SLOT(showDownloadManager(bool)));
   connect(mainApp->downloadManager(), SIGNAL(signalUpdateInfo(QString)),
           this, SLOT(updateInfoDownloads(QString)));
+
+  connect(&timerTrayOpenNotify, SIGNAL(timeout()), this, SLOT(slotTrayOpenNotifyTimer()));
+  timerTrayOpenNotify.setSingleShot(true);
 
   retranslateStrings();
 
@@ -307,7 +309,7 @@ void MainWindow::slotPlaceToTray()
     setFeedRead(currentNewsTab->type_, currentNewsTab->feedId_, FeedReadPlaceToTray, currentNewsTab);
   if (clearStatusNew_)
     QTimer::singleShot(0, this, SIGNAL(signalMarkAllFeedsOld()));
-  clearNotification();
+  clearNotification(true);
 
   saveSettings();
 
@@ -328,25 +330,63 @@ void MainWindow::slotActivationTray(QSystemTrayIcon::ActivationReason reason)
   case QSystemTrayIcon::Context:
     trayMenu_->activateWindow();
     break;
-  case QSystemTrayIcon::DoubleClick:
-    if (!singleClickTray_) {
-      if ((QDateTime::currentMSecsSinceEpoch() - activationStateChangedTime_ < 300) ||
-          isActiveWindow())
-        activated = true;
-      showWindows(activated);
-    }
-    break;
-  case QSystemTrayIcon::Trigger:
-    if (singleClickTray_) {
-      if (((QDateTime::currentMSecsSinceEpoch() - activationStateChangedTime_ < 200) && !isActiveWindow()) ||
-          (!(QDateTime::currentMSecsSinceEpoch() - activationStateChangedTime_ < 200) && isActiveWindow()))
-        activated = true;
-      showWindows(activated);
-    }
-    break;
+
+	case QSystemTrayIcon::DoubleClick:
+	{
+		if (!singleClickTray_)
+		{
+			timerTrayOpenNotify.stop();
+
+			if ((QDateTime::currentMSecsSinceEpoch() - activationStateChangedTime_ < 300) || isActiveWindow())
+			{
+				activated = true;
+			}
+
+			showWindows(activated);
+		}
+
+		break;
+	}
+
+	case QSystemTrayIcon::Trigger:
+	{
+		if (singleClickTray_)
+		{
+			qint64 LastActiveChangeTime = QDateTime::currentMSecsSinceEpoch() - activationStateChangedTime_;
+
+			if (isActiveWindow() ? (LastActiveChangeTime >= 200) : (LastActiveChangeTime < 200))
+			{
+				activated = true;
+			}
+
+			showWindows(activated);
+		}
+		else
+		{
+			if (notificationWidget == NULL)
+			{
+				if (!timerTrayOpenNotify.isActive())
+				{
+					timerTrayOpenNotify.start(400);
+				}
+			}
+			else
+			{
+				delete notificationWidget;
+				notificationWidget = NULL;
+			}
+		}
+		break;
+	}
+
   case QSystemTrayIcon::MiddleClick:
     break;
   }
+}
+
+void MainWindow::slotTrayOpenNotifyTimer()
+{
+	emit signalShowNotification(true);
 }
 
 /** @brief Show window on event
@@ -1991,6 +2031,32 @@ void MainWindow::loadSettings()
 
   showDescriptionNews_ = settings.value("showDescriptionNews", true).toBool();
 
+	int SingleClick = settings.value("NewsSingleClickAction", (int)ENewsClickAction::NCA_Description).toInt();
+	int DoubleClick = settings.value("NewsDoubleClickAction", (int)ENewsClickAction::NCA_WebPage).toInt();
+	int MiddleClick = settings.value("NewsMiddleClickAction", (int)ENewsClickAction::NCA_WebPageNewTab).toInt();
+
+	if (SingleClick < (int)ENewsClickAction::NCA_Start || SingleClick >= (int)ENewsClickAction::NCA_Max ||
+		SingleClick == (int)ENewsClickAction::NCA_Default)
+	{
+		SingleClick = (int)ENewsClickAction::NCA_Description;
+	}
+
+	if (DoubleClick < (int)ENewsClickAction::NCA_Start || DoubleClick >= (int)ENewsClickAction::NCA_Max ||
+		SingleClick == (int)ENewsClickAction::NCA_Default)
+	{
+		DoubleClick = (int)ENewsClickAction::NCA_WebPage;
+	}
+
+	if (MiddleClick < (int)ENewsClickAction::NCA_Start || MiddleClick >= (int)ENewsClickAction::NCA_Max ||
+		SingleClick == (int)ENewsClickAction::NCA_Default)
+	{
+		MiddleClick = (int)ENewsClickAction::NCA_WebPageNewTab;
+	}
+
+	NewsSingleClickAction = (ENewsClickAction::Type)SingleClick;
+	NewsDoubleClickAction = (ENewsClickAction::Type)DoubleClick;
+	NewsMiddleClickAction = (ENewsClickAction::Type)MiddleClick;
+
   formatDate_ = settings.value("formatData", "dd.MM.yy").toString();
   formatTime_ = settings.value("formatTime", "hh:mm").toString();
   feedsModel_->formatDate_ = formatDate_;
@@ -2307,6 +2373,10 @@ void MainWindow::saveSettings()
   settings.setValue("markReadMinimize", markReadMinimize_);
 
   settings.setValue("showDescriptionNews", showDescriptionNews_);
+
+  settings.setValue("NewsSingleClickAction", (int)NewsSingleClickAction);
+  settings.setValue("NewsDoubleClickAction", (int)NewsDoubleClickAction);
+  settings.setValue("NewsMiddleClickAction", (int)NewsMiddleClickAction);
 
   settings.setValue("formatData", formatDate_);
   settings.setValue("formatTime", formatTime_);
@@ -3033,32 +3103,54 @@ void MainWindow::slotUpdateFeed(int feedId, bool changed, int newCount, bool fin
   if (newCount > 0)
     emit signalPlaySoundNewNews();
 
-  // Manage notifications
-  bool showNotify = true;
-  if (showNotifyInactiveApp_)
-    showNotify = !isActiveWindow();
-  if (!showNotify) {
-    clearNotification();
-  } else if (newCount > 0) {
-    int feedIdIndex = idFeedList_.indexOf(feedId);
-    if (onlySelectedFeeds_) {
-      if(idFeedsNotifyList_.contains(feedId)) {
-        if (-1 < feedIdIndex) {
-          cntNewNewsList_[feedIdIndex] = newCount;
-        } else {
-          idFeedList_.append(feedId);
-          cntNewNewsList_.append(newCount);
-        }
-      }
-    } else {
-      if (-1 < feedIdIndex) {
-        cntNewNewsList_[feedIdIndex] = newCount;
-      } else {
-        idFeedList_.append(feedId);
-        cntNewNewsList_.append(newCount);
-      }
-    }
-  }
+	// Manage notifications
+	bool showNotify = true;
+
+	if (showNotifyInactiveApp_)
+	{
+		showNotify = !isActiveWindow();
+	}
+
+	if (!showNotify)
+	{
+		clearNotification();
+	}
+
+	if (newCount > 0)
+	{
+		bool bAddRecentNews = !onlySelectedFeeds_ || idFeedsNotifyList_.contains(feedId);
+		bool bAddNewNews = bAddRecentNews && showNotify;
+
+		if (bAddNewNews)
+		{
+			int NewFeedIdIndex = NewNews.idFeedList_.indexOf(feedId);
+
+			if (-1 < NewFeedIdIndex)
+			{
+				NewNews.cntNewsList_[NewFeedIdIndex] = newCount;
+			}
+			else
+			{
+				NewNews.idFeedList_.append(feedId);
+				NewNews.cntNewsList_.append(newCount);
+			}
+		}
+
+		if (bAddRecentNews)
+		{
+			int RecentFeedIdIndex = RecentNews.idFeedList_.indexOf(feedId);
+
+			if (-1 < RecentFeedIdIndex)
+			{
+				RecentNews.cntNewsList_[RecentFeedIdIndex] += newCount;
+			}
+			else
+			{
+				RecentNews.idFeedList_.append(feedId);
+				RecentNews.cntNewsList_.append(newCount);
+			}
+		}
+	}
 
   recountCategoryCounts();
 
@@ -3349,7 +3441,17 @@ void MainWindow::showOptionDlg(int index)
   optionsDialog_->markReadClosingTab_->setChecked(markReadClosingTab_);
   optionsDialog_->markReadMinimize_->setChecked(markReadMinimize_);
 
-  optionsDialog_->showDescriptionNews_->setChecked(showDescriptionNews_);
+	optionsDialog_->showDescriptionNews_->setChecked(showDescriptionNews_);
+
+	int CurClickValIdx = optionsDialog_->SingleClickAction->findData((int)NewsSingleClickAction);
+	optionsDialog_->SingleClickAction->setCurrentIndex(CurClickValIdx);
+
+	CurClickValIdx = optionsDialog_->DoubleClickAction->findData((int)NewsDoubleClickAction);
+	optionsDialog_->DoubleClickAction->setCurrentIndex(CurClickValIdx);
+
+	CurClickValIdx = optionsDialog_->MiddleClickAction->findData((int)NewsMiddleClickAction);
+	optionsDialog_->MiddleClickAction->setCurrentIndex(CurClickValIdx);
+
 
   for (int i = 0; i < optionsDialog_->formatDate_->count(); i++) {
     if (optionsDialog_->formatDate_->itemData(i).toString() == formatDate_) {
@@ -3790,6 +3892,10 @@ void MainWindow::showOptionDlg(int index)
   markReadMinimize_ = optionsDialog_->markReadMinimize_->isChecked();
 
   showDescriptionNews_ = optionsDialog_->showDescriptionNews_->isChecked();
+
+  NewsSingleClickAction = (ENewsClickAction::Type)optionsDialog_->SingleClickAction->currentData().toInt();
+  NewsDoubleClickAction = (ENewsClickAction::Type)optionsDialog_->DoubleClickAction->currentData().toInt();
+  NewsMiddleClickAction = (ENewsClickAction::Type)optionsDialog_->MiddleClickAction->currentData().toInt();
 
   formatDate_ = optionsDialog_->formatDate_->itemData(
         optionsDialog_->formatDate_->currentIndex()).toString();
@@ -5195,6 +5301,11 @@ void MainWindow::showFeedPropertiesDlg()
       feedsModel_->dataField(index, "htmlUrl").toString();
   properties.general.displayOnStartup =
       feedsModel_->dataField(index, "displayOnStartup").toInt();
+
+	properties.Mouse.SingleClickAction = (ENewsClickAction::Type)feedsModel_->dataField(index, "SingleClickAction").toInt();
+	properties.Mouse.DoubleClickAction = (ENewsClickAction::Type)feedsModel_->dataField(index, "DoubleClickAction").toInt();
+	properties.Mouse.MiddleClickAction = (ENewsClickAction::Type)feedsModel_->dataField(index, "MiddleClickAction").toInt();
+
   properties.display.displayEmbeddedImages =
       feedsModel_->dataField(index, "displayEmbeddedImages").toInt();
   properties.display.javaScriptEnable =
@@ -5355,12 +5466,16 @@ void MainWindow::showFeedPropertiesDlg()
   index = feedsModel_->indexById(feedId);
 
   q.prepare("UPDATE feeds SET text = ?, xmlUrl = ?, displayOnStartup = ?, "
+			"SingleClickAction = ?, DoubleClickAction = ?, MiddleClickAction = ?, "
             "displayEmbeddedImages = ?, displayNews = ?, layoutDirection = ?, "
             "label = ?, duplicateNewsMode = ?, authentication = ?, disableUpdate = ?, "
             "javaScriptEnable = ? WHERE id == ?");
   q.addBindValue(properties.general.text);
   q.addBindValue(properties.general.url);
   q.addBindValue(properties.general.displayOnStartup);
+  q.addBindValue((int)properties.Mouse.SingleClickAction);
+  q.addBindValue((int)properties.Mouse.DoubleClickAction);
+  q.addBindValue((int)properties.Mouse.MiddleClickAction);
   q.addBindValue(properties.display.displayEmbeddedImages);
   q.addBindValue(properties.display.displayNews);
   q.addBindValue(properties.display.layoutDirection);
@@ -5468,6 +5583,9 @@ void MainWindow::showFeedPropertiesDlg()
   QPersistentModelIndex indexText    = feedsModel_->indexSibling(index, "text");
   QPersistentModelIndex indexUrl     = feedsModel_->indexSibling(index, "xmlUrl");
   QPersistentModelIndex indexStartup = feedsModel_->indexSibling(index, "displayOnStartup");
+	QModelIndex indexSingleClickAction = feedsModel_->indexSibling(index, "SingleClickAction");
+	QModelIndex indexDoubleClickAction = feedsModel_->indexSibling(index, "DoubleClickAction");
+	QModelIndex indexMiddleClickAction = feedsModel_->indexSibling(index, "MiddleClickAction");
   QModelIndex indexImages  = feedsModel_->indexSibling(index, "displayEmbeddedImages");
   QModelIndex indexNews    = feedsModel_->indexSibling(index, "displayNews");
   QModelIndex indexRTL     = feedsModel_->indexSibling(index, "layoutDirection");
@@ -5479,6 +5597,9 @@ void MainWindow::showFeedPropertiesDlg()
   feedsModel_->setData(indexText, properties.general.text);
   feedsModel_->setData(indexUrl, properties.general.url);
   feedsModel_->setData(indexStartup, properties.general.displayOnStartup);
+	feedsModel_->setData(indexSingleClickAction, (int)properties.Mouse.SingleClickAction);
+	feedsModel_->setData(indexDoubleClickAction, (int)properties.Mouse.DoubleClickAction);
+	feedsModel_->setData(indexMiddleClickAction, (int)properties.Mouse.MiddleClickAction);
   feedsModel_->setData(indexImages, properties.display.displayEmbeddedImages);
   feedsModel_->setData(indexNews, properties.display.displayNews);
   feedsModel_->setData(indexRTL, properties.display.layoutDirection);
@@ -6284,7 +6405,7 @@ void MainWindow::setBrowserPosition(QAction *action)
 
 /** @brief Create tab with browser only (without news list)
  *---------------------------------------------------------------------------*/
-QWebPage *MainWindow::createWebTab(QUrl url)
+QWebPage *MainWindow::createWebTab(QUrl url, QString* OverrideHtml/*=NULL*/)
 {
   NewsTabWidget *widget = new NewsTabWidget(this, NewsTabWidget::TabTypeWeb);
   int indexTab = addTab(widget);
@@ -6300,10 +6421,18 @@ QWebPage *MainWindow::createWebTab(QUrl url)
 
   openNewsTab_ = 0;
 
-  if (!url.isEmpty()) {
-    widget->locationBar_->setText(url.toString());
-    widget->webView_->load(url);
-  }
+	if (!url.isEmpty())
+	{
+		if (OverrideHtml == NULL)
+		{
+			widget->locationBar_->setText(url.toString());
+			widget->webView_->load(url);
+		}
+		else
+		{
+			emit widget->signalSetHtmlWebView(*OverrideHtml, url);
+		}
+	}
 
   return widget->webView_->page();
 }
@@ -6542,18 +6671,25 @@ void MainWindow::findText()
 
 /** @brief Show notification on inbox news
  *---------------------------------------------------------------------------*/
-void MainWindow::showNotification()
+void MainWindow::showNotification(bool bShowRecentNews/*=false*/)
 {
-  Settings settings;
-  settings.setValue("Flags/updatingFeeds", false);
+	Settings settings;
+	settings.setValue("Flags/updatingFeeds", false);
 
-  bool showNotify = true;
-  if (showNotifyInactiveApp_)
-    showNotify = !isActiveWindow();
-  if (idFeedList_.isEmpty() || !showNotify || !showNotifyOn_) {
-    clearNotification();
-    return;
-  }
+	bool showNotify = true;
+
+	if (showNotifyInactiveApp_)
+	{
+		showNotify = !isActiveWindow();
+	}
+
+	NewNewsData& CurNews = (bShowRecentNews ? RecentNews : NewNews);
+
+	if (CurNews.idFeedList_.isEmpty() || !showNotify || !showNotifyOn_)
+	{
+		clearNotification();
+		return;
+	}
 
   if (fullscreenModeNotify_) {
 #if defined(Q_OS_WIN)
@@ -6576,11 +6712,17 @@ void MainWindow::showNotification()
 #endif
   }
 
+  timerTrayOpenNotify.stop();
+
+
   if (notificationWidget) delete notificationWidget;
-  notificationWidget = new NotificationWidget(idFeedList_, cntNewNewsList_,
+  notificationWidget = new NotificationWidget(CurNews.idFeedList_, CurNews.cntNewsList_,
                                               idColorList_, colorList_, this);
 
-  clearNotification();
+	if (!bShowRecentNews)
+	{
+		clearNotification();
+	}
 
   connect(notificationWidget, SIGNAL(signalShow()), this, SLOT(showWindows()));
   connect(notificationWidget, SIGNAL(signalClose()),
@@ -6607,18 +6749,28 @@ void MainWindow::deleteNotification()
   notificationWidget = NULL;
 }
 
-void MainWindow::clearNotification()
+void MainWindow::clearNotification(bool bClearRecentNews/*=false*/)
 {
-  idFeedList_.clear();
-  cntNewNewsList_.clear();
-  idColorList_.clear();
-  colorList_.clear();
+	NewNews.idFeedList_.clear();
+	NewNews.cntNewsList_.clear();
+
+	if (bClearRecentNews)
+	{
+		RecentNews.idFeedList_.clear();
+		RecentNews.cntNewsList_.clear();
+
+		idColorList_.clear();
+		colorList_.clear();
+	}
 }
 
 void MainWindow::slotAddColorList(int id, const QString &color)
 {
-  idColorList_.append(id);
-  colorList_.append(color);
+	if (idColorList_.indexOf(id) == -1)
+	{
+		idColorList_.append(id);
+		colorList_.append(color);
+	}
 }
 
 /** @brief Show news on click in notification window
