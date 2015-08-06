@@ -155,6 +155,9 @@ void MainWindow::quitApp()
     updateAppDialog_->disconnectObjects();
     updateAppDialog_->deleteLater();
   }
+  if (optionsDialog_) {
+    optionsDialog_->close();
+  }
 
   mainApp->showClosingWidget();
 
