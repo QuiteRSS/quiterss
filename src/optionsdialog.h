@@ -44,7 +44,7 @@ class FeedPropertiesDialog;
  * Action to take upon clicking a news entry
  * NOTE: Don't change value of 'Default' away from 0
  */
-enum class ENewsClickAction
+enum ENewsClickAction
 {
 	NCA_Start				= 0,
 
