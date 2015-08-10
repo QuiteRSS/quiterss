@@ -725,7 +725,6 @@ private:
   bool cleanUpDeleted_;
   bool optimizeDB_;
 
-  int updateFeedsCount_;
   QList<int> idFeedList_;
   QList<int> cntNewNewsList_;
   QList<int> idColorList_;

@@ -55,7 +55,6 @@ MainWindow::MainWindow(QWidget *parent)
   , mediaPlayer_(NULL)
 #endif
   , updateAppDialog_(NULL)
-  , updateFeedsCount_(0)
   , notificationWidget(NULL)
   , feedIdOld_(-2)
   , isStartImportFeed_(false)
