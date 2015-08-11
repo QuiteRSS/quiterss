@@ -303,7 +303,7 @@ public slots:
   void slotUpdateStatus(int feedId, bool changed = true);
   void setNewsFilter(QAction*, bool clicked = true);
   void slotCloseTab(int index);
-  QWebPage *createWebTab(QUrl url = QUrl(), QString* overrideHtml=NULL);
+  QWebPage *createWebTab(QUrl url = QUrl(), const QString &overrideHtml="");
   void feedsModelReload(bool checkFilter = false);
   void setStatusFeed(int feedId, QString status);
   void slotPrint(QWebFrame *frame = 0);

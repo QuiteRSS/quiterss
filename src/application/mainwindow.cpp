@@ -3893,9 +3893,15 @@ void MainWindow::showOptionDlg(int index)
 
   showDescriptionNews_ = optionsDialog_->showDescriptionNews_->isChecked();
 
-  newsSingleClickAction = (ENewsClickAction::Type)optionsDialog_->singleClickAction->currentData().toInt();
-  newsDoubleClickAction = (ENewsClickAction::Type)optionsDialog_->doubleClickAction->currentData().toInt();
-  newsMiddleClickAction = (ENewsClickAction::Type)optionsDialog_->middleClickAction->currentData().toInt();
+  newsSingleClickAction =
+      (ENewsClickAction::Type)optionsDialog_->singleClickAction->
+      itemData(optionsDialog_->singleClickAction->currentIndex()).toInt();
+  newsDoubleClickAction =
+      (ENewsClickAction::Type)optionsDialog_->doubleClickAction->
+      itemData(optionsDialog_->doubleClickAction->currentIndex()).toInt();
+  newsMiddleClickAction =
+      (ENewsClickAction::Type)optionsDialog_->middleClickAction->
+      itemData(optionsDialog_->middleClickAction->currentIndex()).toInt();
 
   formatDate_ = optionsDialog_->formatDate_->itemData(
         optionsDialog_->formatDate_->currentIndex()).toString();
@@ -6405,7 +6411,7 @@ void MainWindow::setBrowserPosition(QAction *action)
 
 /** @brief Create tab with browser only (without news list)
  *---------------------------------------------------------------------------*/
-QWebPage *MainWindow::createWebTab(QUrl url, QString* overrideHtml/*=NULL*/)
+QWebPage *MainWindow::createWebTab(QUrl url, const QString &overrideHtml)
 {
   NewsTabWidget *widget = new NewsTabWidget(this, NewsTabWidget::TabTypeWeb);
   int indexTab = addTab(widget);
@@ -6423,14 +6429,14 @@ QWebPage *MainWindow::createWebTab(QUrl url, QString* overrideHtml/*=NULL*/)
 
   if (!url.isEmpty())
   {
-    if (overrideHtml == NULL)
+    if (overrideHtml.isEmpty())
     {
       widget->locationBar_->setText(url.toString());
       widget->webView_->load(url);
     }
     else
     {
-      emit widget->signalSetHtmlWebView(*overrideHtml, url);
+      widget->setHtmlWebView(overrideHtml, url);
     }
   }
 

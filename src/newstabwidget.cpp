@@ -425,7 +425,7 @@ void NewsTabWidget::createWebWidget()
   connect(urlExternalBrowserAct_, SIGNAL(triggered()),
           this, SLOT(openUrlInExternalBrowser()));
   connect(this, SIGNAL(signalSetHtmlWebView(QString,QUrl)),
-          SLOT(setHtmlWebView(QString,QUrl)), Qt::QueuedConnection);
+          SLOT(slotSetHtmlWebView(QString,QUrl)), Qt::QueuedConnection);
   connect(webView_, SIGNAL(loadStarted()), this, SLOT(slotLoadStarted()));
   connect(webView_, SIGNAL(loadFinished(bool)), this, SLOT(slotLoadFinished(bool)));
   connect(webView_, SIGNAL(linkClicked(QUrl)), this, SLOT(slotLinkClicked(QUrl)));
@@ -1878,9 +1878,14 @@ void NewsTabWidget::loadNewspaper(int refresh)
   }
 }
 
+void NewsTabWidget::setHtmlWebView(const QString &html, const QUrl &baseUrl)
+{
+  emit signalSetHtmlWebView(html, baseUrl);
+}
+
 /** @brief Asynchorous update web view
  *----------------------------------------------------------------------------*/
-void NewsTabWidget::setHtmlWebView(const QString &html, const QUrl &baseUrl)
+void NewsTabWidget::slotSetHtmlWebView(const QString &html, const QUrl &baseUrl)
 {
   webView_->history()->setMaximumItemCount(0);
   webView_->setHtml(html, baseUrl);
@@ -1896,7 +1901,7 @@ void NewsTabWidget::hideWebContent()
 }
 
 void NewsTabWidget::slotLinkClicked(QUrl url, bool bForceNewTab/*=false*/, bool bForceNewBkgTab/*=false*/,
-                                    QString* overrideHtml/*=NULL*/)
+                                    const QString &overrideHtml/*=""*/)
 {
   if (url.scheme() == QLatin1String("quiterss"))
   {
@@ -3078,7 +3083,7 @@ void NewsTabWidget::performNewsClickAction(QModelIndex index, ENewsClickAction::
         QUrl url;
 
         generateDescriptionHtml(index, htmlString, url);
-        slotLinkClicked(url, bForegroundTab, !bForegroundTab, &htmlString);
+        slotLinkClicked(url, bForegroundTab, !bForegroundTab, htmlString);
 
         break;
       }

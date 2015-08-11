@@ -546,9 +546,12 @@ FEED_PROPERTIES FeedPropertiesDialog::getFeedProperties()
   feedProperties.general.updateInterval = updateInterval_->value();
   feedProperties.general.intervalType = updateIntervalType_->currentIndex() - 1;
 
-  feedProperties.mouse.singleClickAction = (ENewsClickAction::Type)singleClickAction->currentData().toInt();
-  feedProperties.mouse.doubleClickAction = (ENewsClickAction::Type)doubleClickAction->currentData().toInt();
-  feedProperties.mouse.middleClickAction = (ENewsClickAction::Type)middleClickAction->currentData().toInt();
+  feedProperties.mouse.singleClickAction =
+      (ENewsClickAction::Type)singleClickAction->itemData(singleClickAction->currentIndex()).toInt();
+  feedProperties.mouse.doubleClickAction =
+      (ENewsClickAction::Type)doubleClickAction->itemData(doubleClickAction->currentIndex()).toInt();
+  feedProperties.mouse.middleClickAction =
+      (ENewsClickAction::Type)middleClickAction->itemData(middleClickAction->currentIndex()).toInt();
 
   feedProperties.general.displayOnStartup = displayOnStartup->isChecked();
   feedProperties.general.starred = starredOn_->isChecked();

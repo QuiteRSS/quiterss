@@ -99,6 +99,7 @@ public:
   void loadNewspaper(int refresh = RefreshAll);
   void hideWebContent();
   QString getLinkNews(int row);
+  void setHtmlWebView(const QString &html, const QUrl &baseUrl=QUrl());
 
   void reduceNewsList();
   void increaseNewsList();
@@ -169,10 +170,11 @@ private slots:
   void slotSetItemStar(QModelIndex index, int starred);
   void slotMarkReadTimeout();
 
-  void setHtmlWebView(const QString &html, const QUrl &baseUrl);
+  void slotSetHtmlWebView(const QString &html, const QUrl &baseUrl);
   void webHomePage();
   void openPageInExternalBrowser();
-  void slotLinkClicked(QUrl url, bool bForceNewTab=false, bool bForceNewBkgTab=false, QString* overrideHtml=NULL);
+  void slotLinkClicked(QUrl url, bool bForceNewTab=false,
+                       bool bForceNewBkgTab=false, const QString &overrideHtml="");
   void slotLinkHovered(const QString &link, const QString &str1="", const QString &str2="");
   void slotSetValue(int value);
   void slotLoadStarted();
