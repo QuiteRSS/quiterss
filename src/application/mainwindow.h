@@ -219,6 +219,9 @@ public:
   bool markReadClosingTab_;
   bool markReadMinimize_;
   bool showDescriptionNews_;
+  ENewsClickAction::Type newsSingleClickAction;
+  ENewsClickAction::Type newsDoubleClickAction;
+  ENewsClickAction::Type newsMiddleClickAction;
   bool alternatingRowColorsNews_;
   bool simplifiedDateTime_;
   bool notDeleteStarred_;
@@ -300,7 +303,7 @@ public slots:
   void slotUpdateStatus(int feedId, bool changed = true);
   void setNewsFilter(QAction*, bool clicked = true);
   void slotCloseTab(int index);
-  QWebPage *createWebTab(QUrl url = QUrl());
+  QWebPage *createWebTab(QUrl url = QUrl(), QString* overrideHtml=NULL);
   void feedsModelReload(bool checkFilter = false);
   void setStatusFeed(int feedId, QString status);
   void slotPrint(QWebFrame *frame = 0);
