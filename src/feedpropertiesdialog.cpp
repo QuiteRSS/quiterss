@@ -29,6 +29,10 @@ FeedPropertiesDialog::FeedPropertiesDialog(bool isFeed, QWidget *parent)
 
   tabWidget = new QTabWidget();
   tabWidget->addTab(createGeneralTab(), tr("General"));
+
+  // @todo #JohnBTranslation
+  tabWidget->addTab(createMouseTab(), tr("Mouse"));
+
   tabWidget->addTab(createDisplayTab(), tr("Display"));
   tabWidget->addTab(createColumnsTab(), tr("Columns"));
   tabWidget->addTab(createAuthenticationTab(), tr("Authentication"));
@@ -165,27 +169,53 @@ QWidget *FeedPropertiesDialog::createGeneralTab()
   return tab;
 }
 //------------------------------------------------------------------------------
+QWidget* FeedPropertiesDialog::createMouseTab()
+{
+  QWidget* returnVal = new QWidget();
+  QVBoxLayout* tabLayout = new QVBoxLayout(returnVal);
+
+  {
+    tabLayout->setMargin(10);
+    tabLayout->setSpacing(5);
+
+    QWidget* clickActionWidgets =
+      OptionsDialog::createClickActionWidgets(singleClickAction, doubleClickAction, middleClickAction, true);
+
+    tabLayout->addWidget(clickActionWidgets);
+
+    tabLayout->addStretch();
+  }
+
+  return returnVal;
+}
+//------------------------------------------------------------------------------
 QWidget *FeedPropertiesDialog::createDisplayTab()
 {
-  QWidget *tab = new QWidget();
+  QWidget* returnVal = new QWidget();
+  QVBoxLayout* tabLayout = new QVBoxLayout(returnVal);
 
-  loadImagesOn_ = new QCheckBox(tr("Load images"));
-  loadImagesOn_->setTristate(true);
-  javaScriptEnable_ = new QCheckBox(tr("Enable JavaScript"));
-  javaScriptEnable_->setTristate(true);
-  showDescriptionNews_ = new QCheckBox(tr("Show news' description instead of loading web page"));
-  layoutDirection_ = new QCheckBox(tr("Right-to-left layout"));
+  {
+    tabLayout->setMargin(10);
+    tabLayout->setSpacing(5);
 
-  QVBoxLayout *tabLayout = new QVBoxLayout(tab);
-  tabLayout->setMargin(10);
-  tabLayout->setSpacing(5);
-  tabLayout->addWidget(loadImagesOn_);
-  tabLayout->addWidget(javaScriptEnable_);
-  tabLayout->addWidget(showDescriptionNews_);
-  tabLayout->addWidget(layoutDirection_);
-  tabLayout->addStretch();
+    loadImagesOn_ = new QCheckBox(tr("Load images"));
+    loadImagesOn_->setTristate(true);
+    javaScriptEnable_ = new QCheckBox(tr("Enable JavaScript"));
+    javaScriptEnable_->setTristate(true);
 
-  return tab;
+    showDescriptionNews_ = new QCheckBox(tr("Show news' description instead of loading web page"));
+
+    layoutDirection_ = new QCheckBox(tr("Right-to-left layout"));
+
+    tabLayout->addWidget(loadImagesOn_);
+    tabLayout->addWidget(javaScriptEnable_);
+    tabLayout->addWidget(showDescriptionNews_);
+    tabLayout->addWidget(layoutDirection_);
+
+    tabLayout->addStretch();
+  }
+
+  return returnVal;
 }
 //------------------------------------------------------------------------------
 QWidget *FeedPropertiesDialog::createColumnsTab()
@@ -373,6 +403,15 @@ QWidget *FeedPropertiesDialog::createStatusTab()
   starredOn_->setChecked(feedProperties.general.starred);
   duplicateNewsMode_->setChecked(feedProperties.general.duplicateNewsMode);
 
+  int curClickValIdx = singleClickAction->findData((int)feedProperties.mouse.singleClickAction);
+  singleClickAction->setCurrentIndex(curClickValIdx);
+
+  curClickValIdx = singleClickAction->findData((int)feedProperties.mouse.doubleClickAction);
+  doubleClickAction->setCurrentIndex(curClickValIdx);
+
+  curClickValIdx = singleClickAction->findData((int)feedProperties.mouse.middleClickAction);
+  middleClickAction->setCurrentIndex(curClickValIdx);
+
   loadImagesOn_->setCheckState((Qt::CheckState)feedProperties.display.displayEmbeddedImages);
   javaScriptEnable_->setCheckState((Qt::CheckState)feedProperties.display.javaScriptEnable);
   showDescriptionNews_->setChecked(!feedProperties.display.displayNews);
@@ -506,6 +545,10 @@ FEED_PROPERTIES FeedPropertiesDialog::getFeedProperties()
   feedProperties.general.updateEnable = updateEnable_->isChecked();
   feedProperties.general.updateInterval = updateInterval_->value();
   feedProperties.general.intervalType = updateIntervalType_->currentIndex() - 1;
+
+  feedProperties.mouse.singleClickAction = (ENewsClickAction::Type)singleClickAction->currentData().toInt();
+  feedProperties.mouse.doubleClickAction = (ENewsClickAction::Type)doubleClickAction->currentData().toInt();
+  feedProperties.mouse.middleClickAction = (ENewsClickAction::Type)middleClickAction->currentData().toInt();
 
   feedProperties.general.displayOnStartup = displayOnStartup->isChecked();
   feedProperties.general.starred = starredOn_->isChecked();
