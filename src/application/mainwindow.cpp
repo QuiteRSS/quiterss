@@ -55,7 +55,6 @@ MainWindow::MainWindow(QWidget *parent)
   , mediaPlayer_(NULL)
 #endif
   , updateAppDialog_(NULL)
-  , updateFeedsCount_(0)
   , notificationWidget(NULL)
   , feedIdOld_(-2)
   , isStartImportFeed_(false)
@@ -95,8 +94,8 @@ MainWindow::MainWindow(QWidget *parent)
 
   QTimer::singleShot(10000, this, SLOT(slotUpdateAppCheck()));
 
-  connect(this, SIGNAL(signalShowNotification()),
-          SLOT(showNotification()), Qt::QueuedConnection);
+  connect(this, SIGNAL(signalShowNotification(bool)),
+          SLOT(showNotification(bool)), Qt::QueuedConnection);
   connect(this, SIGNAL(signalPlaySoundNewNews()),
           SLOT(slotPlaySoundNewNews()), Qt::QueuedConnection);
 
@@ -112,6 +111,9 @@ MainWindow::MainWindow(QWidget *parent)
           this, SLOT(showDownloadManager(bool)));
   connect(mainApp->downloadManager(), SIGNAL(signalUpdateInfo(QString)),
           this, SLOT(updateInfoDownloads(QString)));
+
+  connect(&timerTrayOpenNotify, SIGNAL(timeout()), this, SLOT(slotTrayOpenNotifyTimer()));
+  timerTrayOpenNotify.setSingleShot(true);
 
   retranslateStrings();
 
@@ -307,7 +309,7 @@ void MainWindow::slotPlaceToTray()
     setFeedRead(currentNewsTab->type_, currentNewsTab->feedId_, FeedReadPlaceToTray, currentNewsTab);
   if (clearStatusNew_)
     QTimer::singleShot(0, this, SIGNAL(signalMarkAllFeedsOld()));
-  clearNotification();
+  clearNotification(true);
 
   saveSettings();
 
@@ -328,25 +330,63 @@ void MainWindow::slotActivationTray(QSystemTrayIcon::ActivationReason reason)
   case QSystemTrayIcon::Context:
     trayMenu_->activateWindow();
     break;
+
   case QSystemTrayIcon::DoubleClick:
-    if (!singleClickTray_) {
-      if ((QDateTime::currentMSecsSinceEpoch() - activationStateChangedTime_ < 300) ||
-          isActiveWindow())
+  {
+    if (!singleClickTray_)
+    {
+      timerTrayOpenNotify.stop();
+
+      if ((QDateTime::currentMSecsSinceEpoch() - activationStateChangedTime_ < 300) || isActiveWindow())
+      {
         activated = true;
+      }
+
       showWindows(activated);
     }
+
     break;
+  }
+
   case QSystemTrayIcon::Trigger:
-    if (singleClickTray_) {
-      if (((QDateTime::currentMSecsSinceEpoch() - activationStateChangedTime_ < 200) && !isActiveWindow()) ||
-          (!(QDateTime::currentMSecsSinceEpoch() - activationStateChangedTime_ < 200) && isActiveWindow()))
+  {
+    if (singleClickTray_)
+    {
+      qint64 lastActiveChangeTime = QDateTime::currentMSecsSinceEpoch() - activationStateChangedTime_;
+
+      if (isActiveWindow() ? (lastActiveChangeTime >= 200) : (lastActiveChangeTime < 200))
+      {
         activated = true;
+      }
+
       showWindows(activated);
     }
+    else
+    {
+      if (notificationWidget == NULL)
+      {
+        if (!timerTrayOpenNotify.isActive())
+        {
+          timerTrayOpenNotify.start(400);
+        }
+      }
+      else
+      {
+        delete notificationWidget;
+        notificationWidget = NULL;
+      }
+    }
+
     break;
+  }
+
   case QSystemTrayIcon::MiddleClick:
     break;
   }
+}
+void MainWindow::slotTrayOpenNotifyTimer()
+{
+  emit signalShowNotification(true);
 }
 
 /** @brief Show window on event
@@ -3035,27 +3075,49 @@ void MainWindow::slotUpdateFeed(int feedId, bool changed, int newCount, bool fin
 
   // Manage notifications
   bool showNotify = true;
+
   if (showNotifyInactiveApp_)
+  {
     showNotify = !isActiveWindow();
-  if (!showNotify) {
+  }
+
+  if (!showNotify)
+  {
     clearNotification();
-  } else if (newCount > 0) {
-    int feedIdIndex = idFeedList_.indexOf(feedId);
-    if (onlySelectedFeeds_) {
-      if(idFeedsNotifyList_.contains(feedId)) {
-        if (-1 < feedIdIndex) {
-          cntNewNewsList_[feedIdIndex] = newCount;
-        } else {
-          idFeedList_.append(feedId);
-          cntNewNewsList_.append(newCount);
-        }
+  }
+
+  if (newCount > 0)
+  {
+    bool bAddRecentNews = !onlySelectedFeeds_ || idFeedsNotifyList_.contains(feedId);
+    bool bAddNewNews = bAddRecentNews && showNotify;
+
+    if (bAddNewNews)
+    {
+      int newFeedIdIndex = newNews.idFeedList_.indexOf(feedId);
+
+      if (-1 < newFeedIdIndex)
+      {
+        newNews.cntNewsList_[newFeedIdIndex] = newCount;
       }
-    } else {
-      if (-1 < feedIdIndex) {
-        cntNewNewsList_[feedIdIndex] = newCount;
-      } else {
-        idFeedList_.append(feedId);
-        cntNewNewsList_.append(newCount);
+      else
+      {
+        newNews.idFeedList_.append(feedId);
+        newNews.cntNewsList_.append(newCount);
+      }
+    }
+
+    if (bAddRecentNews)
+    {
+      int recentFeedIdIndex = recentNews.idFeedList_.indexOf(feedId);
+
+      if (-1 < recentFeedIdIndex)
+      {
+        recentNews.cntNewsList_[recentFeedIdIndex] += newCount;
+      }
+      else
+      {
+        recentNews.idFeedList_.append(feedId);
+        recentNews.cntNewsList_.append(newCount);
       }
     }
   }
@@ -6542,15 +6604,22 @@ void MainWindow::findText()
 
 /** @brief Show notification on inbox news
  *---------------------------------------------------------------------------*/
-void MainWindow::showNotification()
+void MainWindow::showNotification(bool bShowRecentNews/*=false*/)
 {
   Settings settings;
   settings.setValue("Flags/updatingFeeds", false);
 
   bool showNotify = true;
+
   if (showNotifyInactiveApp_)
+  {
     showNotify = !isActiveWindow();
-  if (idFeedList_.isEmpty() || !showNotify || !showNotifyOn_) {
+  }
+
+  NewNewsData& curNews = (bShowRecentNews ? recentNews : newNews);
+
+  if (curNews.idFeedList_.isEmpty() || !showNotify || !showNotifyOn_)
+  {
     clearNotification();
     return;
   }
@@ -6576,11 +6645,21 @@ void MainWindow::showNotification()
 #endif
   }
 
-  if (notificationWidget) delete notificationWidget;
-  notificationWidget = new NotificationWidget(idFeedList_, cntNewNewsList_,
+  timerTrayOpenNotify.stop();
+
+
+  if (notificationWidget != NULL)
+  {
+    delete notificationWidget;
+  }
+
+  notificationWidget = new NotificationWidget(curNews.idFeedList_, curNews.cntNewsList_,
                                               idColorList_, colorList_, this);
 
-  clearNotification();
+  if (!bShowRecentNews)
+  {
+    clearNotification();
+  }
 
   connect(notificationWidget, SIGNAL(signalShow()), this, SLOT(showWindows()));
   connect(notificationWidget, SIGNAL(signalClose()),
@@ -6607,18 +6686,28 @@ void MainWindow::deleteNotification()
   notificationWidget = NULL;
 }
 
-void MainWindow::clearNotification()
+void MainWindow::clearNotification(bool bClearRecentNews/*=false*/)
 {
-  idFeedList_.clear();
-  cntNewNewsList_.clear();
-  idColorList_.clear();
-  colorList_.clear();
+  newNews.idFeedList_.clear();
+  newNews.cntNewsList_.clear();
+
+  if (bClearRecentNews)
+  {
+    recentNews.idFeedList_.clear();
+    recentNews.cntNewsList_.clear();
+
+    idColorList_.clear();
+    colorList_.clear();
+  }
 }
 
 void MainWindow::slotAddColorList(int id, const QString &color)
 {
-  idColorList_.append(id);
-  colorList_.append(color);
+  if (idColorList_.indexOf(id) == -1)
+  {
+    idColorList_.append(id);
+    colorList_.append(color);
+  }
 }
 
 /** @brief Show news on click in notification window
