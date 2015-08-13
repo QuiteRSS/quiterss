@@ -630,16 +630,6 @@ void OptionsDialog::createBrowserWidget()
   diskCacheOn_->setChecked(false);
   diskCacheOn_->setLayout(historyLayout4);
 
-  QVBoxLayout *historyMainLayout = new QVBoxLayout();
-  historyMainLayout->setMargin(10);
-  historyMainLayout->addLayout(historyLayout1);
-  historyMainLayout->addWidget(diskCacheOn_);
-  historyMainLayout->addStretch();
-
-  QWidget *historyBrowserWidget_ = new QWidget();
-  historyBrowserWidget_->setLayout(historyMainLayout);
-
-  //! tab "Privacy"
   saveCookies_ = new QRadioButton(tr("Allow local data to be set"));
   deleteCookiesOnClose_ = new QRadioButton(tr("Keep local data only until quit application"));
   blockCookies_ = new QRadioButton(tr("Block sites from setting any data"));
@@ -657,14 +647,18 @@ void OptionsDialog::createBrowserWidget()
   cookiesBox->addButton(deleteCookiesOnClose_);
   cookiesBox->addButton(blockCookies_);
 
-  QVBoxLayout *privacyMainLayout = new QVBoxLayout();
-  privacyMainLayout->setMargin(10);
-  privacyMainLayout->addWidget(new QLabel(tr("Cookies:")));
-  privacyMainLayout->addLayout(cookiesLayout);
-  privacyMainLayout->addStretch();
+  QVBoxLayout *historyMainLayout = new QVBoxLayout();
+  historyMainLayout->setMargin(10);
+  historyMainLayout->addLayout(historyLayout1);
+  historyMainLayout->addWidget(diskCacheOn_);
+  historyMainLayout->addSpacing(10);
+  historyMainLayout->addWidget(new QLabel(tr("Cookies:")));
+  historyMainLayout->addLayout(cookiesLayout);
+  historyMainLayout->addStretch();
 
-  QWidget *privacyWidget_ = new QWidget();
-  privacyWidget_->setLayout(privacyMainLayout);
+  QWidget *historyBrowserWidget_ = new QWidget();
+  historyBrowserWidget_->setLayout(historyMainLayout);
+
 
   //! tab "Click to Flash"
   QLabel *c2fInfo = new QLabel(tr("Click To Flash is a plugin which blocks auto loading of "
@@ -747,7 +741,6 @@ void OptionsDialog::createBrowserWidget()
   browserWidget_ = new QTabWidget();
   browserWidget_->addTab(generalBrowserWidget, tr("General"));
   browserWidget_->addTab(historyBrowserWidget_, tr("History"));
-  browserWidget_->addTab(privacyWidget_, tr("Privacy"));
   browserWidget_->addTab(click2FlashWidget_, tr("Click to Flash"));
   browserWidget_->addTab(downloadsWidget, tr("Downloads"));
 }
@@ -798,6 +791,22 @@ void OptionsDialog::createFeedsWidget()
   openingFeedsLayout->addWidget(positionUnreadNews_, 2, 0, 1, 1);
   openingFeedsLayout->addWidget(nottoOpenNews_, 3, 0, 1, 1);
 
+  markIdenticalNewsRead_ = new QCheckBox(tr("Automatically mark identical news as read"));
+
+  QVBoxLayout *generalFeedsLayout = new QVBoxLayout();
+  generalFeedsLayout->addWidget(updateFeedsStartUp_);
+  generalFeedsLayout->addLayout(updateFeedsLayout);
+  generalFeedsLayout->addSpacing(10);
+  generalFeedsLayout->addWidget(new QLabel(tr("Action on feed opening:")));
+  generalFeedsLayout->addLayout(openingFeedsLayout);
+  generalFeedsLayout->addWidget(markIdenticalNewsRead_);
+  generalFeedsLayout->addStretch();
+
+  QWidget *generalFeedsWidget = new QWidget();
+  generalFeedsWidget->setLayout(generalFeedsLayout);
+
+
+  //! tab "Display"
   QStringList itemList;
   itemList << "31.12.99" << "31.12.1999"
            << QString("31. %1. 1999").arg(tr("Dec"))
@@ -866,25 +875,23 @@ void OptionsDialog::createFeedsWidget()
   styleSheetNewsLayout->addWidget(styleSheetNewsEdit_, 0, 0);
   styleSheetNewsLayout->addWidget(styleSheetNewsButton, 0, 1, Qt::AlignRight);
 
-  QVBoxLayout *generalFeedsLayout = new QVBoxLayout();
-  generalFeedsLayout->addWidget(updateFeedsStartUp_);
-  generalFeedsLayout->addLayout(updateFeedsLayout);
-  generalFeedsLayout->addSpacing(10);
-  generalFeedsLayout->addWidget(new QLabel(tr("Action on feed opening:")));
-  generalFeedsLayout->addLayout(openingFeedsLayout);
-  generalFeedsLayout->addWidget(alternatingRowColorsNews_);
-  generalFeedsLayout->addSpacing(10);
-  generalFeedsLayout->addWidget(simplifiedDateTime_);
-  generalFeedsLayout->addLayout(formatDateLayout);
-  generalFeedsLayout->addSpacing(10);
-  generalFeedsLayout->addLayout(mainNewsFilterLayout);
-  generalFeedsLayout->addSpacing(10);
-  generalFeedsLayout->addWidget(new QLabel(tr("Style sheet for news:")));
-  generalFeedsLayout->addLayout(styleSheetNewsLayout);
-  generalFeedsLayout->addStretch();
+  showDescriptionNews_ = new QCheckBox(tr("Show news description instead of loading web page"));
 
-  QWidget *generalFeedsWidget = new QWidget();
-  generalFeedsWidget->setLayout(generalFeedsLayout);
+  QVBoxLayout *displayFeedsLayout = new QVBoxLayout();
+  displayFeedsLayout->addWidget(alternatingRowColorsNews_);
+  displayFeedsLayout->addSpacing(10);
+  displayFeedsLayout->addWidget(simplifiedDateTime_);
+  displayFeedsLayout->addLayout(formatDateLayout);
+  displayFeedsLayout->addSpacing(10);
+  displayFeedsLayout->addLayout(mainNewsFilterLayout);
+  displayFeedsLayout->addSpacing(10);
+  displayFeedsLayout->addWidget(new QLabel(tr("Style sheet for news:")));
+  displayFeedsLayout->addLayout(styleSheetNewsLayout);
+  displayFeedsLayout->addWidget(showDescriptionNews_);
+  displayFeedsLayout->addStretch();
+
+  QWidget *displayFeedsWidget = new QWidget();
+  displayFeedsWidget->setLayout(displayFeedsLayout);
 
 
   //! tab "Reading"
@@ -924,52 +931,39 @@ void OptionsDialog::createFeedsWidget()
       markNewsReadOn_->setLayout(radioLayout);
     }
 
-    readingMainLayout->addWidget(markNewsReadOn_);
-
-
     markReadSwitchingFeed_ = new QCheckBox(tr("Mark displayed news as read when switching feeds"));
     markReadClosingTab_ = new QCheckBox(tr("Mark displayed news as read when closing tab"));
     markReadMinimize_ = new QCheckBox(tr("Mark displayed news as read on minimize"));
 
-    showDescriptionNews_ = new QCheckBox(tr("Show news description instead of loading web page"));
+    QGridLayout* curLayout = new QGridLayout();
 
+    notDeleteStarred_ = new QCheckBox(tr("starred news"));
+    notDeleteLabeled_ = new QCheckBox(tr("labeled news"));
+
+    curLayout->setContentsMargins(15, 0, 0, 10);
+    curLayout->addWidget(notDeleteStarred_, 0, 0, 1, 1);
+    curLayout->addWidget(notDeleteLabeled_, 1, 0, 1, 1);
+
+    changeBehaviorActionNUN_ = new QCheckBox(tr("Change behavior of action 'Next Unread News'"));
+
+    QWidget* clickActionWidgets = createClickActionWidgets(singleClickAction,
+                                                           doubleClickAction,
+                                                           middleClickAction);
+
+    readingMainLayout->addWidget(markNewsReadOn_);
     readingMainLayout->addWidget(markReadSwitchingFeed_);
     readingMainLayout->addWidget(markReadClosingTab_);
     readingMainLayout->addWidget(markReadMinimize_);
     readingMainLayout->addSpacing(10);
-    readingMainLayout->addWidget(showDescriptionNews_);
-
-    QWidget* clickActionWidgets = createClickActionWidgets(singleClickAction, doubleClickAction, middleClickAction);
-
-    readingMainLayout->addWidget(clickActionWidgets);
-    readingMainLayout->addSpacing(10);
     readingMainLayout->addWidget(new QLabel(tr("Prevent accidental deletion of:")));
-
-
-    {
-      QGridLayout* curLayout = new QGridLayout();
-
-      notDeleteStarred_ = new QCheckBox(tr("starred news"));
-      notDeleteLabeled_ = new QCheckBox(tr("labeled news"));
-
-      curLayout->setContentsMargins(15, 0, 0, 10);
-      curLayout->addWidget(notDeleteStarred_, 0, 0, 1, 1);
-      curLayout->addWidget(notDeleteLabeled_, 1, 0, 1, 1);
-
-      readingMainLayout->addLayout(curLayout);
-    }
-
-    changeBehaviorActionNUN_ = new QCheckBox(tr("Change behavior of action 'Next Unread News'"));
-    markIdenticalNewsRead_ = new QCheckBox(tr("Automatically mark identical news as read"));
-
+    readingMainLayout->addLayout(curLayout);
     readingMainLayout->addWidget(changeBehaviorActionNUN_);
-    readingMainLayout->addWidget(markIdenticalNewsRead_);
+    readingMainLayout->addSpacing(10);
+    readingMainLayout->addWidget(clickActionWidgets);
+    readingMainLayout->addStretch();
   }
 
-  readingMainLayout->addStretch();
-
   QWidget* readingFeedsWidget = new QWidget();
-
   readingFeedsWidget->setLayout(readingMainLayout);
 
 
@@ -1027,6 +1021,7 @@ void OptionsDialog::createFeedsWidget()
 
   feedsWidget_ = new QTabWidget();
   feedsWidget_->addTab(generalFeedsWidget, tr("General"));
+  feedsWidget_->addTab(displayFeedsWidget, tr("Display"));
   feedsWidget_->addTab(readingFeedsWidget, tr("Reading"));
   feedsWidget_->addTab(cleanUpFeedsWidget, tr("Clean Up"));
 }
@@ -1034,8 +1029,7 @@ void OptionsDialog::createFeedsWidget()
 QWidget* OptionsDialog::createClickActionWidgets(QComboBox*& outSingleClickAction, QComboBox*& outDoubleClickAction,
                                                   QComboBox*& outMiddleClickAction, bool bAddDefaultValue/*=false*/)
 {
-  // @todo #JohnBTranslation
-  QGroupBox* returnVal = new QGroupBox(tr("Action on news opening:"));
+  QGroupBox* returnVal = new QGroupBox(tr("Action mouse on news opening:"));
 
   {
     QHBoxLayout* actionLayoutLeft = new QHBoxLayout();
@@ -1054,50 +1048,34 @@ QWidget* OptionsDialog::createClickActionWidgets(QComboBox*& outSingleClickActio
 
             if (bAddDefaultValue)
             {
-              // @todo #JohnBTranslation
               outCombo->addItem("Default", (int)ENewsClickAction::NCA_Default);
               outCombo->insertSeparator(outCombo->count());
             }
-
-            // @todo #JohnBTranslation
             outCombo->addItem("Nothing", (int)ENewsClickAction::NCA_Nothing);
             outCombo->insertSeparator(outCombo->count());
-
-            // @todo #JohnBTranslation
             outCombo->addItem("Show News Description", (int)ENewsClickAction::NCA_Description);
-            // @todo #JohnBTranslation
             outCombo->addItem("Show News Description in New Tab", (int)ENewsClickAction::NCA_DescriptionNewTab);
-            // @todo #JohnBTranslation
             outCombo->addItem("Show News Description in New Tab (Background)",
                       (int)ENewsClickAction::NCA_DescriptionBkgTab);
             outCombo->insertSeparator(outCombo->count());
-
-            // @todo #JohnBTranslation
             outCombo->addItem("Load Web Page", (int)ENewsClickAction::NCA_WebPage);
-            // @todo #JohnBTranslation
             outCombo->addItem("Load Web Page in New Tab", (int)ENewsClickAction::NCA_WebPageNewTab);
-            // @todo #JohnBTranslation
             outCombo->addItem("Load Web Page in New Tab (Background)", (int)ENewsClickAction::NCA_WebPageBkgTab);
             outCombo->insertSeparator(outCombo->count());
-
-            // @todo #JohnBTranslation
             outCombo->addItem("Open in External Browser", (int)ENewsClickAction::NCA_ExternalBrowser);
-          };
+          }
         };
 
         Local::setupCombo(outSingleClickAction, bAddDefaultValue);
         Local::setupCombo(outDoubleClickAction, bAddDefaultValue);
         Local::setupCombo(outMiddleClickAction, bAddDefaultValue);
 
-        // @todo #JohnBTranslation
         namesLayout->addWidget(new QLabel(tr("Single Click:")));
         valuesLayout->addWidget(outSingleClickAction);
 
-        // @todo #JohnBTranslation
         namesLayout->addWidget(new QLabel(tr("Double Click:")));
         valuesLayout->addWidget(outDoubleClickAction);
 
-        // @todo #JohnBTranslation
         namesLayout->addWidget(new QLabel(tr("Middle Click:")));
         valuesLayout->addWidget(outMiddleClickAction);
       }

@@ -177,7 +177,7 @@ private:
   QComboBox* doubleClickAction;
   QComboBox* middleClickAction;
 
-  QWidget* createMouseTab();
+  QWidget* createReadingTab();
 
   // Tab "Display"
   QCheckBox *showDescriptionNews_;

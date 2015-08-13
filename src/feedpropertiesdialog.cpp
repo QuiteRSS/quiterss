@@ -24,16 +24,13 @@ FeedPropertiesDialog::FeedPropertiesDialog(bool isFeed, QWidget *parent)
 {
   setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
   setWindowTitle(tr("Properties"));
-  setMinimumWidth(450);
-  setMinimumHeight(350);
+  setMinimumWidth(500);
+  setMinimumHeight(400);
 
   tabWidget = new QTabWidget();
   tabWidget->addTab(createGeneralTab(), tr("General"));
-
-  // @todo #JohnBTranslation
-  tabWidget->addTab(createMouseTab(), tr("Mouse"));
-
   tabWidget->addTab(createDisplayTab(), tr("Display"));
+  tabWidget->addTab(createReadingTab(), tr("Reading"));
   tabWidget->addTab(createColumnsTab(), tr("Columns"));
   tabWidget->addTab(createAuthenticationTab(), tr("Authentication"));
   tabWidget->addTab(createStatusTab(), tr("Status"));
@@ -120,7 +117,6 @@ QWidget *FeedPropertiesDialog::createGeneralTab()
 
   starredOn_ = new QCheckBox(tr("Starred"));
   displayOnStartup = new QCheckBox(tr("Display in new tab on startup"));
-  duplicateNewsMode_ = new QCheckBox(tr("Automatically delete duplicate news"));
 
   QHBoxLayout *layoutGeneralHomepage = new QHBoxLayout();
   labelHomepage = new QLabel();
@@ -132,6 +128,8 @@ QWidget *FeedPropertiesDialog::createGeneralTab()
   layoutGeneralGrid->addLayout(layoutGeneralTitle, 0 ,1);
   layoutGeneralGrid->addWidget(labelURLCapt, 1, 0);
   layoutGeneralGrid->addWidget(editURL, 1, 1);
+
+  duplicateNewsMode_ = new QCheckBox(tr("Automatically delete duplicate news"));
 
   QVBoxLayout *tabLayout = new QVBoxLayout(tab);
   tabLayout->setMargin(10);
@@ -169,22 +167,19 @@ QWidget *FeedPropertiesDialog::createGeneralTab()
   return tab;
 }
 //------------------------------------------------------------------------------
-QWidget* FeedPropertiesDialog::createMouseTab()
+QWidget* FeedPropertiesDialog::createReadingTab()
 {
   QWidget* returnVal = new QWidget();
   QVBoxLayout* tabLayout = new QVBoxLayout(returnVal);
+  tabLayout->setMargin(10);
+  tabLayout->setSpacing(5);
 
-  {
-    tabLayout->setMargin(10);
-    tabLayout->setSpacing(5);
+  QWidget* clickActionWidgets =
+      OptionsDialog::createClickActionWidgets(singleClickAction, doubleClickAction,
+                                              middleClickAction, true);
 
-    QWidget* clickActionWidgets =
-      OptionsDialog::createClickActionWidgets(singleClickAction, doubleClickAction, middleClickAction, true);
-
-    tabLayout->addWidget(clickActionWidgets);
-
-    tabLayout->addStretch();
-  }
+  tabLayout->addWidget(clickActionWidgets);
+  tabLayout->addStretch();
 
   return returnVal;
 }
