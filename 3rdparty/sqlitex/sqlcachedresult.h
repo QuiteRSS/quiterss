@@ -1,6 +1,7 @@
 /**************************************************************************
-* Extensible SQLite driver for Qt4
+* Extensible SQLite driver for Qt4/Qt5
 * Copyright (C) 2011-2012 Michał Męciński
+* Copyright (C) 2011-2015 QuiteRSS Team <quiterssteam@gmail.com>
 *
 * This library is free software: you can redistribute it and/or modify
 * it under the terms of the GNU Lesser General Public License version 2.1
@@ -31,39 +32,39 @@ class SqlCachedResultPrivate;
 class SqlCachedResult: public QSqlResult
 {
 public:
-    virtual ~SqlCachedResult();
+  virtual ~SqlCachedResult();
 
-    typedef QVector<QVariant> ValueCache;
+  typedef QVector<QVariant> ValueCache;
 
 protected:
-    SqlCachedResult(const QSqlDriver * db);
+  SqlCachedResult(const QSqlDriver * db);
 
-    void init(int colCount);
-    void cleanup();
-    void clearValues();
+  void init(int colCount);
+  void cleanup();
+  void clearValues();
 
-    virtual bool gotoNext(ValueCache &values, int index) = 0;
+  virtual bool gotoNext(ValueCache &values, int index) = 0;
 
-    QVariant data(int i);
-    bool isNull(int i);
-    bool fetch(int i);
-    bool fetchNext();
-    bool fetchPrevious();
-    bool fetchFirst();
-    bool fetchLast();
+  QVariant data(int i);
+  bool isNull(int i);
+  bool fetch(int i);
+  bool fetchNext();
+  bool fetchPrevious();
+  bool fetchFirst();
+  bool fetchLast();
 
-    int colCount() const;
-    ValueCache &cache();
+  int colCount() const;
+  ValueCache &cache();
 
 #ifdef HAVE_QT5
-    void detachFromResultSet();
-    void setNumericalPrecisionPolicy(QSql::NumericalPrecisionPolicy policy);
-#else
-    void virtual_hook(int id, void *data);
+  void detachFromResultSet();
+  void setNumericalPrecisionPolicy(QSql::NumericalPrecisionPolicy policy);
 #endif
+  void virtual_hook(int id, void *data);
+
 private:
-    bool cacheNext();
-    SqlCachedResultPrivate *d;
+  bool cacheNext();
+  SqlCachedResultPrivate *d;
 };
 
 #endif

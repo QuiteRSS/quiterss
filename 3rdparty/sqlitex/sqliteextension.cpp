@@ -1,6 +1,7 @@
 /**************************************************************************
-* Extensible SQLite driver for Qt4
+* Extensible SQLite driver for Qt4/Qt5
 * Copyright (C) 2011-2012 Michał Męciński
+* Copyright (C) 2011-2015 QuiteRSS Team <quiterssteam@gmail.com>
 *
 * This library is free software: you can redistribute it and/or modify
 * it under the terms of the GNU Lesser General Public License version 2.1
@@ -73,7 +74,7 @@ static void upperFunction(sqlite3_context* context, int /*argc*/, sqlite3_value*
   QString string = QString::fromRawData(reinterpret_cast<const QChar*>(data), len/sizeof(QChar));
   string = string.toUpper();
 
-  sqlite3_result_text16(context, string.data(), -1, NULL);
+  sqlite3_result_text16(context, string.data(), -1, SQLITE_TRANSIENT);
 }
 
 void installSQLiteExtension( sqlite3* db )

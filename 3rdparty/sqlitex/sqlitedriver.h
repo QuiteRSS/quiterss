@@ -1,6 +1,7 @@
 /**************************************************************************
-* Extensible SQLite driver for Qt4
+* Extensible SQLite driver for Qt4/Qt5
 * Copyright (C) 2011-2012 Michał Męciński
+* Copyright (C) 2011-2015 QuiteRSS Team <quiterssteam@gmail.com>
 *
 * This library is free software: you can redistribute it and/or modify
 * it under the terms of the GNU Lesser General Public License version 2.1
@@ -34,65 +35,65 @@ class SQLiteDriver;
 
 class SQLiteResult : public SqlCachedResult
 {
-    friend class SQLiteDriver;
-    friend class SQLiteResultPrivate;
+  friend class SQLiteDriver;
+  friend class SQLiteResultPrivate;
 public:
-    explicit SQLiteResult(const SQLiteDriver* db);
-    ~SQLiteResult();
-    QVariant handle() const;
+  explicit SQLiteResult(const SQLiteDriver* db);
+  ~SQLiteResult();
+  QVariant handle() const;
 
 protected:
-    bool gotoNext(SqlCachedResult::ValueCache& row, int idx);
-    bool reset(const QString &query);
-    bool prepare(const QString &query);
-    bool exec();
-    int size();
-    int numRowsAffected();
-    QVariant lastInsertId() const;
-    QSqlRecord record() const;
+  bool gotoNext(SqlCachedResult::ValueCache& row, int idx);
+  bool reset(const QString &query);
+  bool prepare(const QString &query);
+  bool exec();
+  int size();
+  int numRowsAffected();
+  QVariant lastInsertId() const;
+  QSqlRecord record() const;
 #ifdef HAVE_QT5
-    void detachFromResultSet();
-#else
-    void virtual_hook(int id, void *data);
+  void detachFromResultSet();
 #endif
-    void setLastError(const QSqlError& e);
+  void virtual_hook(int id, void *data);
+
+  void setLastError(const QSqlError& e);
 
 private:
-    SQLiteResultPrivate* d;
+  SQLiteResultPrivate* d;
 };
 
 class SQLiteDriver : public QSqlDriver
 {
-    Q_OBJECT
-    friend class SQLiteResult;
+  Q_OBJECT
+  friend class SQLiteResult;
 public:
-    explicit SQLiteDriver(QObject *parent = 0);
-    explicit SQLiteDriver(sqlite3 *connection, QObject *parent = 0);
-    ~SQLiteDriver();
-    bool hasFeature(DriverFeature f) const;
-    bool open(const QString & db,
-                   const QString & user,
-                   const QString & password,
-                   const QString & host,
-                   int port,
-                   const QString & connOpts);
-    void close();
-    QSqlResult *createResult() const;
-    bool beginTransaction();
-    bool commitTransaction();
-    bool rollbackTransaction();
-    QStringList tables(QSql::TableType) const;
+  explicit SQLiteDriver(QObject *parent = 0);
+  explicit SQLiteDriver(sqlite3 *connection, QObject *parent = 0);
+  ~SQLiteDriver();
+  bool hasFeature(DriverFeature f) const;
+  bool open(const QString & db,
+            const QString & user,
+            const QString & password,
+            const QString & host,
+            int port,
+            const QString & conOpts);
+  void close();
+  QSqlResult *createResult() const;
+  bool beginTransaction();
+  bool commitTransaction();
+  bool rollbackTransaction();
+  QStringList tables(QSql::TableType) const;
 
-    QSqlRecord record(const QString& tablename) const;
-    QSqlIndex primaryIndex(const QString &table) const;
-    QVariant handle() const;
-    QString escapeIdentifier(const QString &identifier, IdentifierType) const;
+  QSqlRecord record(const QString& tablename) const;
+  QSqlIndex primaryIndex(const QString &table) const;
+  QVariant handle() const;
+  QString escapeIdentifier(const QString &identifier, IdentifierType) const;
 
 protected:
-    void setLastError(const QSqlError& e);
+  void setLastError(const QSqlError& e);
 
 private:
-    SQLiteDriverPrivate* d;
+  SQLiteDriverPrivate* d;
 };
 
 #endif
