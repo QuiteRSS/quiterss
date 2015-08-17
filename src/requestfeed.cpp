@@ -345,14 +345,16 @@ void RequestFeed::slotRequestTimeout()
       currentHead_.removeAt(i);
 
       int replyIndex = requestUrl_.indexOf(url);
-      QUrl replyUrl = requestUrl_.takeAt(replyIndex);
-      QNetworkReply *reply = networkReply_.takeAt(replyIndex);
-      reply->deleteLater();
+      if (replyIndex >= 0) {
+        QUrl replyUrl = requestUrl_.takeAt(replyIndex);
+        QNetworkReply *reply = networkReply_.takeAt(replyIndex);
+        reply->deleteLater();
 
-      if (count < numberRepeats_) {
-        emit signalGet(replyUrl, feedId, feedUrl, feedDate, count);
-      } else {
-        emit getUrlDone(-3, feedId, feedUrl, tr("Request timeout!"));
+        if (count < numberRepeats_) {
+          emit signalGet(replyUrl, feedId, feedUrl, feedDate, count);
+        } else {
+          emit getUrlDone(-3, feedId, feedUrl, tr("Request timeout!"));
+        }
       }
     } else {
       currentTime_.replace(i, time);

@@ -241,12 +241,14 @@ void FaviconObject::slotRequestTimeout()
       currentTime_.removeAt(i);
 
       int replyIndex = requestUrl_.indexOf(url);
-      requestUrl_.removeAt(replyIndex);
-      QNetworkReply *reply = networkReply_.takeAt(replyIndex);
-      reply->deleteLater();
+      if (replyIndex >= 0) {
+        requestUrl_.removeAt(replyIndex);
+        QNetworkReply *reply = networkReply_.takeAt(replyIndex);
+        reply->deleteLater();
 
-      if (cntRequests == 0) {
-        emit signalGet(url, feedUrl, 2);
+        if (cntRequests == 0) {
+          emit signalGet(url, feedUrl, 2);
+        }
       }
     } else {
       currentTime_.replace(i, time);
