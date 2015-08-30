@@ -1932,7 +1932,6 @@ void NewsTabWidget::slotLinkClicked(QUrl url, bool bForceNewTab/*=false*/, bool 
 
   bool bLoadWebView = false;
   bool bLoadNewTab = false;
-  bool bLoadExternal = false;
 
   if (bForceNewTab)
   {
@@ -1975,10 +1974,6 @@ void NewsTabWidget::slotLinkClicked(QUrl url, bool bForceNewTab/*=false*/, bool 
 
       bLoadNewTab = true;
     }
-  }
-  else
-  {
-    bLoadExternal = true;
   }
 
   if (bLoadWebView)
