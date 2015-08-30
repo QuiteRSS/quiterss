@@ -800,6 +800,8 @@ QString ParseObject::parseDate(const QString &dateString, const QString &urlStri
 
     temp = ds.left(20);
     timeZone = ds.mid(temp.length()+1, 3);
+    if (timeZone.contains("EDT"))
+      timeZone="-4";
     if (timeZone.isEmpty()) timeZone = QString::number(nTimeShift);
     dt = locale.toDateTime(temp, "dd MMM yyyy HH:mm:ss");
     if (dt.isValid()) return locale.toString(dt.addSecs(timeZone.toInt() * -3600), "yyyy-MM-ddTHH:mm:ss");
