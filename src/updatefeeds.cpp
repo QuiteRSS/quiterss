@@ -22,6 +22,7 @@
 #include "settings.h"
 
 #include <QDebug>
+#include <qzregexp.h>
 
 #define UPDATE_INTERVAL 3000
 #define UPDATE_INTERVAL_MIN 500
@@ -364,7 +365,7 @@ void UpdateObject::slotImportFeeds(QByteArray xmlData)
   QString convertData;
   bool codecOk = false;
 
-  QRegExp rx("&(?!([a-z0-9#]+;))", Qt::CaseInsensitive, QRegExp::RegExp2);
+  QzRegExp rx("&(?!([a-z0-9#]+;))", Qt::CaseInsensitive);
   int pos = 0;
   while ((pos = rx.indexIn(QString::fromLatin1(xmlData), pos)) != -1) {
     xmlData.replace(pos, 1, "&amp;");

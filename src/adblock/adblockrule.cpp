@@ -510,7 +510,7 @@ void AdBlockRule::parseFilter()
 
     m_type = RegExpMatchRule;
     m_regExp = new RegExp;
-    m_regExp->regExp = QRegExp(parsedLine, m_caseSensitivity);
+    m_regExp->regExp = QzRegExp(parsedLine, m_caseSensitivity);
     m_regExp->matchers = createStringMatchers(parseRegExpFilter(parsedLine));
     return;
   }
@@ -551,7 +551,7 @@ void AdBlockRule::parseFilter()
       ) {
     m_type = RegExpMatchRule;
     m_regExp = new RegExp;
-    m_regExp->regExp = QRegExp(createRegExpFromFilter(parsedLine), m_caseSensitivity);
+    m_regExp->regExp = QzRegExp(createRegExpFromFilter(parsedLine), m_caseSensitivity);
     m_regExp->matchers = createStringMatchers(parseRegExpFilter(parsedLine));
     return;
   }

@@ -26,6 +26,7 @@
 #else
 #include <qwebkitversion.h>
 #endif
+#include <qzregexp.h>
 
 #define REPLY_MAX_COUNT 4
 #define REQUEST_TIMEOUT 30
@@ -153,12 +154,12 @@ void FaviconObject::finished(QNetworkReply *reply)
             QString linkFavicon;
             QString str = QString::fromUtf8(data);
             if (str.contains("<html", Qt::CaseInsensitive)) {
-              QRegExp rx("<link[^>]+rel=['\"]icon['\"][^>]+>",
-                         Qt::CaseInsensitive, QRegExp::RegExp2);
+              QzRegExp rx("<link[^>]+rel=['\"]icon['\"][^>]+>",
+                          Qt::CaseInsensitive);
               int pos = rx.indexIn(str);
               if (pos == -1) {
-                rx = QRegExp("<link[^>]+rel=['\"]shortcut icon['\"][^>]+>",
-                             Qt::CaseInsensitive, QRegExp::RegExp2);
+                rx = QzRegExp("<link[^>]+rel=['\"]shortcut icon['\"][^>]+>",
+                              Qt::CaseInsensitive);
                 pos = rx.indexIn(str);
               }
               if (pos > -1) {

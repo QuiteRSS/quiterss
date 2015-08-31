@@ -24,6 +24,7 @@
 #include "settings.h"
 
 #include <QDomDocument>
+#include <qzregexp.h>
 
 extern QString kCreateNewsTableQuery;
 
@@ -483,8 +484,7 @@ void AddFeedWizard::getUrlDone(int result, int feedId, QString feedUrlStr,
     if (!isFeed) {
       QString str = QString::fromUtf8(data);
 
-      QRegExp rx("<link[^>]+(atom|rss)\\+xml[^>]+>",
-                 Qt::CaseInsensitive, QRegExp::RegExp2);
+      QzRegExp rx("<link[^>]+(atom|rss)\\+xml[^>]+>", Qt::CaseInsensitive);
       int pos = rx.indexIn(str);
       if (pos > -1) {
         str = rx.cap(0);

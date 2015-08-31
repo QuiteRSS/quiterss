@@ -26,6 +26,7 @@
 #include <qwebkitversion.h>
 #endif
 #include <QtSql>
+#include <qzregexp.h>
 
 #define REPLY_MAX_COUNT 10
 
@@ -286,7 +287,7 @@ void RequestFeed::finished(QNetworkReply *reply)
         }
         else {
           QString codecName;
-          QRegExp rx("charset=([^\t]+)$", Qt::CaseInsensitive, QRegExp::RegExp2);
+          QzRegExp rx("charset=([^\t]+)$", Qt::CaseInsensitive);
           int pos = rx.indexIn(reply->header(QNetworkRequest::ContentTypeHeader).toString());
           if (pos > -1) {
             codecName = rx.cap(1);

@@ -24,6 +24,8 @@
 #include "settings.h"
 #include "common.h"
 
+#include <qzregexp.h>
+
 DownloadManager::DownloadManager(QWidget *parent)
   : QWidget(parent)
 {
@@ -119,13 +121,13 @@ QString DownloadManager::getFileName(QNetworkReply* reply)
   if (reply->hasRawHeader("Content-Disposition")) {
     QString value = QString::fromUtf8(reply->rawHeader("Content-Disposition"));
 
-    if (value.contains(QRegExp("filename\\s*\\*\\s*=\\s*UTF-8", Qt::CaseInsensitive))) {
-      QRegExp reg("filename\\s*\\*\\s*=\\s*UTF-8''([^;]*)", Qt::CaseInsensitive);
+    if (value.contains(QzRegExp("filename\\s*\\*\\s*=\\s*UTF-8", Qt::CaseInsensitive))) {
+      QzRegExp reg("filename\\s*\\*\\s*=\\s*UTF-8''([^;]*)", Qt::CaseInsensitive);
       reg.indexIn(value);
       path = QUrl::fromPercentEncoding(reg.cap(1).toUtf8()).trimmed();
     }
-    else if (value.contains(QRegExp("filename\\s*=", Qt::CaseInsensitive))) {
-      QRegExp reg("filename\\s*=([^;]*)", Qt::CaseInsensitive);
+    else if (value.contains(QzRegExp("filename\\s*=", Qt::CaseInsensitive))) {
+      QzRegExp reg("filename\\s*=([^;]*)", Qt::CaseInsensitive);
       reg.indexIn(value);
       path = QUrl::fromPercentEncoding(reg.cap(1).toUtf8()).trimmed();
 
@@ -155,7 +157,7 @@ QString DownloadManager::getFileName(QNetworkReply* reply)
 
   QString name = baseName + endName;
 
-  name.replace(QRegExp("[;:<>?\"]"), "_");
+  name.replace(QzRegExp("[;:<>?\"]"), "_");
 
   return name;
 }

@@ -25,10 +25,10 @@
 #include <QDebug>
 #include <QDesktopServices>
 #include <QTextDocumentFragment>
-#include <QRegExp>
 #if defined(Q_OS_WIN)
 #include <windows.h>
 #endif
+#include <qzregexp.h>
 
 ParseObject::ParseObject(QObject *parent)
   : QObject(parent)
@@ -142,8 +142,7 @@ void ParseObject::slotParse(const QByteArray &xmlData, const int &feedId,
   int errorLine;
   int errorColumn;
 
-  QRegExp rx("encoding=\"([^\"]+)",
-             Qt::CaseInsensitive, QRegExp::RegExp2);
+  QzRegExp rx("encoding=\"([^\"]+)", Qt::CaseInsensitive);
   int pos = rx.indexIn(xmlData);
   if (pos == -1) {
     rx.setPattern("encoding='([^']+)");

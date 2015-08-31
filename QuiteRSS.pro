@@ -203,11 +203,6 @@ INCLUDEPATH +=  $$PWD/src \
                 $$PWD/src/network \
                 $$PWD/src/webview \
 
-
-isEqual(QT_MAJOR_VERSION, 5) {
-  include(3rdparty/qftp/qftp.pri)
-}
-
 CONFIG += debug_and_release
 CONFIG(debug, debug|release) {
   BUILD_DIR = $$OUT_PWD/debug
@@ -226,8 +221,12 @@ isEmpty(SYSTEMQTSA) {
 } else {
   CONFIG += qtsingleapplication
 }
+isEqual(QT_MAJOR_VERSION, 5) {
+  include(3rdparty/qftp/qftp.pri)
+}
 include(3rdparty/sqlite.pri)
 include(lang/lang.pri)
+include(3rdparty/qupzilla/qupzilla.pri)
 
 os2|win32|mac {
   TARGET = QuiteRSS

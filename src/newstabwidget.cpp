@@ -25,6 +25,7 @@
 #if defined(Q_OS_WIN)
 #include <qt_windows.h>
 #endif
+#include <qzregexp.h>
 
 NewsTabWidget::NewsTabWidget(QWidget *parent, TabType type, int feedId, int feedParId)
   : QWidget(parent)
@@ -1404,7 +1405,7 @@ void NewsTabWidget::generateDescriptionHtml(QModelIndex index, QString& outHtml,
   QString newsId = newsModel_->dataField(index.row(), "id").toString();
   QString content = newsModel_->dataField(index.row(), "content").toString();
 
-  if (!content.contains(QRegExp("<html(.*)</html>", Qt::CaseInsensitive, QRegExp::RegExp2)))
+  if (!content.contains(QzRegExp("<html(.*)</html>", Qt::CaseInsensitive)))
   {
     QString description = newsModel_->dataField(index.row(), "description").toString();
 
@@ -1454,7 +1455,7 @@ void NewsTabWidget::generateDescriptionHtml(QModelIndex index, QString& outHtml,
     QString authorEmail = newsModel_->dataField(index.row(), "author_email").toString();
     QString authorUri = newsModel_->dataField(index.row(), "author_uri").toString();
 
-    QRegExp reg("(^\\S+@\\S+\\.\\S+)", Qt::CaseInsensitive, QRegExp::RegExp2);
+    QzRegExp reg("(^\\S+@\\S+\\.\\S+)", Qt::CaseInsensitive);
     int pos = reg.indexIn(authorName);
 
     if (pos > -1)
@@ -1593,7 +1594,7 @@ void NewsTabWidget::generateDescriptionHtml(QModelIndex index, QString& outHtml,
 
     if (!autoLoadImages_)
     {
-      QRegExp reg("<img[^>]+>", Qt::CaseInsensitive, QRegExp::RegExp2);
+      QzRegExp reg("<img[^>]+>", Qt::CaseInsensitive);
       content = content.remove(reg);
     }
 
@@ -1610,7 +1611,7 @@ void NewsTabWidget::generateDescriptionHtml(QModelIndex index, QString& outHtml,
   {
     if (!autoLoadImages_)
     {
-      content = content.remove(QRegExp("<img[^>]+>", Qt::CaseInsensitive, QRegExp::RegExp2));
+      content = content.remove(QzRegExp("<img[^>]+>", Qt::CaseInsensitive));
     }
 
     outHtml = content;
@@ -1666,7 +1667,7 @@ void NewsTabWidget::loadNewspaper(int refresh)
     QString linkString = linkNewsString_;
 
     QString content = newsModel_->dataField(index.row(), "content").toString();
-    if (!content.contains(QRegExp("<html(.*)</html>", Qt::CaseInsensitive, QRegExp::RegExp2))) {
+    if (!content.contains(QzRegExp("<html(.*)</html>", Qt::CaseInsensitive))) {
       QString description = newsModel_->dataField(index.row(), "description").toString();
       if (content.isEmpty() || (description.length() > content.length())) {
         content = description;
@@ -1731,7 +1732,7 @@ void NewsTabWidget::loadNewspaper(int refresh)
       QString authorEmail = newsModel_->dataField(index.row(), "author_email").toString();
       QString authorUri = newsModel_->dataField(index.row(), "author_uri").toString();
 
-      QRegExp reg("(^\\S+@\\S+\\.\\S+)", Qt::CaseInsensitive, QRegExp::RegExp2);
+      QzRegExp reg("(^\\S+@\\S+\\.\\S+)", Qt::CaseInsensitive);
       int pos = reg.indexIn(authorName);
       if (pos > -1) {
         authorName.replace(reg.cap(1), QString(" <a href='mailto:%1'>%1</a>").arg(reg.cap(1)));
@@ -1817,7 +1818,7 @@ void NewsTabWidget::loadNewspaper(int refresh)
       content = enclosureStr + content;
 
       if (!autoLoadImages_) {
-        QRegExp reg("<img[^>]+>", Qt::CaseInsensitive, QRegExp::RegExp2);
+        QzRegExp reg("<img[^>]+>", Qt::CaseInsensitive);
         content = content.remove(reg);
       }
 
@@ -1859,7 +1860,7 @@ void NewsTabWidget::loadNewspaper(int refresh)
       }
     } else {
       if (!autoLoadImages_) {
-        content = content.remove(QRegExp("<img[^>]+>", Qt::CaseInsensitive, QRegExp::RegExp2));
+        content = content.remove(QzRegExp("<img[^>]+>", Qt::CaseInsensitive));
       }
       htmlStr = content;
     }
@@ -2825,7 +2826,7 @@ int NewsTabWidget::getUnreadCount(QString countString)
 {
   if (countString.isEmpty()) return 0;
 
-  countString.remove(QRegExp("[()]"));
+  countString.remove(QzRegExp("[()]"));
   switch (type_) {
   case TabTypeUnread:
     return countString.toInt();
