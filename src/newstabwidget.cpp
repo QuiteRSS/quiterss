@@ -1624,10 +1624,14 @@ void NewsTabWidget::loadNewspaper(int refresh)
 {
   if (mainWindow_->newsLayout_ != 1) return;
   setWebToolbarVisible(false, false);
+  webView_->setUpdatesEnabled(false);
 
+  int sortOrder = newsHeader_->sortIndicatorOrder();
   int scrollBarValue = 0;
-  if (refresh == RefreshWithPos) {
+  int height = 0;
+  if (refresh != RefreshAll) {
     scrollBarValue = webView_->page()->mainFrame()->scrollBarValue(Qt::Vertical);
+    height = webView_->page()->mainFrame()->contentsSize().height();
   }
   webView_->settings()->setAttribute(QWebSettings::AutoLoadImages, true);
 
@@ -1651,8 +1655,21 @@ void NewsTabWidget::loadNewspaper(int refresh)
     webView_->setHtml(htmlStr, hostUrl);
   }
 
-  for (int i = 0; i < newsModel_->rowCount(); ++i) {
-    QModelIndex index = newsModel_->index(i, newsModel_->fieldIndex("id"));
+  int idx = -1;
+  if ((refresh == RefreshInsert) && (sortOrder == Qt::DescendingOrder))
+    idx = newsModel_->rowCount();
+  while (1) {
+    if ((refresh == RefreshInsert) && (sortOrder == Qt::DescendingOrder)) {
+      idx--;
+      if (idx < 0)
+        break;
+    } else {
+      idx++;
+      if (idx >= newsModel_->rowCount())
+        break;
+    }
+
+    QModelIndex index = newsModel_->index(idx, newsModel_->fieldIndex("id"));
     QString newsId = newsModel_->dataField(index.row(), "id").toString();
 
     if (refresh == RefreshInsert) {
@@ -1850,7 +1867,7 @@ void NewsTabWidget::loadNewspaper(int refresh)
           deleteAction;
 
       QString border = "0";
-      if (i != 0) border = "1";
+      if (idx != 0) border = "1";
       if (ltr) {
         htmlStr = newspaperHtml_.arg(newsId, border, readImg, feedImg, titleString,
                                      dateString, authorString, content, actionNews);
@@ -1869,14 +1886,20 @@ void NewsTabWidget::loadNewspaper(int refresh)
 
     QWebElement document = webView_->page()->mainFrame()->documentElement();
     QWebElement element = document.findFirst("body");
-    element.appendInside(htmlStr);
+    if ((refresh == RefreshInsert) && (sortOrder == Qt::DescendingOrder))
+      element.prependInside(htmlStr);
+    else
+      element.appendInside(htmlStr);
     qApp->processEvents();
   }
 
   webView_->settings()->setAttribute(QWebSettings::AutoLoadImages, autoLoadImages_);
-  if (refresh == RefreshWithPos) {
+  if ((refresh == RefreshInsert) && (sortOrder == Qt::DescendingOrder))
+    scrollBarValue += webView_->page()->mainFrame()->contentsSize().height() - height;
+  if (refresh != RefreshAll)
     webView_->page()->mainFrame()->setScrollBarValue(Qt::Vertical, scrollBarValue);
-  }
+
+  webView_->setUpdatesEnabled(true);
 }
 
 void NewsTabWidget::setHtmlWebView(const QString &html, const QUrl &baseUrl)
