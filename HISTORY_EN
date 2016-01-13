@@ -6,14 +6,14 @@
 <ul>
 <li>Added: Setting to set mouse buttons to open news</li>
 
-<li>Changed: update SQLite library to 3.9.2 version</li>
-<li>Changed: Updating news in (?)newspaper view using descending sort</li>
+<li>Changed: Update SQLite library to 3.9.2 version</li>
+<li>Changed: Updating news in newspaper view using descending sort</li>
 
-<li>Fixed: duplicate notification sound playback (Ubuntu)</li>
+<li>Fixed: Duplicate notification sound playback (Ubuntu)</li>
 <li>Fixed: Application crash if quit while settins dialog is open</li>
 <li>Fixed: Application crash while using search and filters</li>
 <li>Fixed: Application crash while adding local feed</li>
-<li>Fixed: news publish time of some feeds</li>
+<li>Fixed: News publish time of some feeds</li>
 </ul>
 <!---------------------------------------------------------------------------->
 <p><b>Version 0.18.2</b> (14 Jul 2015)
