@@ -1,7 +1,7 @@
 /**************************************************************************
 * Extensible SQLite driver for Qt4/Qt5
 * Copyright (C) 2011-2012 Michał Męciński
-* Copyright (C) 2011-2015 QuiteRSS Team <quiterssteam@gmail.com>
+* Copyright (C) 2011-2016 QuiteRSS Team <quiterssteam@gmail.com>
 *
 * This library is free software: you can redistribute it and/or modify
 * it under the terms of the GNU Lesser General Public License version 2.1
