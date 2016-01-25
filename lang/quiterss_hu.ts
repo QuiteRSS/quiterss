@@ -112,7 +112,7 @@
     <message>
         <location filename="../src/adblock/adblocksubscription.cpp" line="323"/>
         <location filename="../src/adblock/adblocksubscription.cpp" line="330"/>
-        <location filename="../src/application/mainwindow.cpp" line="5084"/>
+        <location filename="../src/application/mainwindow.cpp" line="5199"/>
         <source>Custom Rules</source>
         <translation>Egyéni szabályok</translation>
     </message>
@@ -188,43 +188,43 @@
         <translation>Az AdBlock lehetővé teszi a nem kívánt weboldal tartalmak blokkolását</translation>
     </message>
     <message>
-        <location filename="../src/adblock/adblockicon.cpp" line="103"/>
+        <location filename="../src/adblock/adblockicon.cpp" line="106"/>
         <source>AdBlock</source>
         <translation>AdBlock</translation>
     </message>
     <message>
-        <location filename="../src/adblock/adblockicon.cpp" line="130"/>
+        <location filename="../src/adblock/adblockicon.cpp" line="133"/>
         <source>Show AdBlock &amp;Settings</source>
         <translation>AdBlock beállítások megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/adblock/adblockicon.cpp" line="138"/>
+        <location filename="../src/adblock/adblockicon.cpp" line="141"/>
         <source>Disable on %1</source>
         <translation>Letiltás itt: %1</translation>
     </message>
     <message>
-        <location filename="../src/adblock/adblockicon.cpp" line="144"/>
+        <location filename="../src/adblock/adblockicon.cpp" line="147"/>
         <source>Disable only on this page</source>
         <translation>Letiltás csak ezen a lapon</translation>
     </message>
     <message>
-        <location filename="../src/adblock/adblockicon.cpp" line="154"/>
+        <location filename="../src/adblock/adblockicon.cpp" line="157"/>
         <source>Blocked Popup Windows</source>
         <translation>Blokkolt felugró ablakok</translation>
     </message>
     <message>
-        <location filename="../src/adblock/adblockicon.cpp" line="159"/>
-        <location filename="../src/adblock/adblockicon.cpp" line="176"/>
+        <location filename="../src/adblock/adblockicon.cpp" line="162"/>
+        <location filename="../src/adblock/adblockicon.cpp" line="179"/>
         <source>%1 with (%2)</source>
         <translation>%1 a következővel: (%2)</translation>
     </message>
     <message>
-        <location filename="../src/adblock/adblockicon.cpp" line="170"/>
+        <location filename="../src/adblock/adblockicon.cpp" line="173"/>
         <source>No content blocked</source>
         <translation>Nincs blokkolt tartalom</translation>
     </message>
     <message>
-        <location filename="../src/adblock/adblockicon.cpp" line="173"/>
+        <location filename="../src/adblock/adblockicon.cpp" line="176"/>
         <source>Blocked URL (AdBlock Rule) - click to edit rule</source>
         <translation>Blokkolt URL (AdBlock szabály) - kattintson a szabály szerkesztéséhez</translation>
     </message>
@@ -281,73 +281,73 @@
 <context>
     <name>AddFeedWizard</name>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="36"/>
+        <location filename="../src/addfeedwizard.cpp" line="37"/>
         <source>Add Feed</source>
         <translation>Hírcsatorna hozzáadása</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="100"/>
-        <location filename="../src/addfeedwizard.cpp" line="174"/>
+        <location filename="../src/addfeedwizard.cpp" line="101"/>
+        <location filename="../src/addfeedwizard.cpp" line="175"/>
         <source>Create New Feed</source>
         <translation>Új hírcsatorna létrehozása</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="109"/>
+        <location filename="../src/addfeedwizard.cpp" line="110"/>
         <source>Use title of the feed as displayed name</source>
         <translation>Használja a hírcsatorna címét megjelenítendő névként</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="113"/>
+        <location filename="../src/addfeedwizard.cpp" line="114"/>
         <source>Server requires authentication:</source>
         <translation>Kiszolgáló hitelesítés szükséges:</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="122"/>
+        <location filename="../src/addfeedwizard.cpp" line="123"/>
         <source>Username:</source>
         <translation>Felhasználónév:</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="124"/>
+        <location filename="../src/addfeedwizard.cpp" line="125"/>
         <source>Password:</source>
         <translation>Jelszó:</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="153"/>
+        <location filename="../src/addfeedwizard.cpp" line="154"/>
         <source>Feed URL or website address:</source>
         <translation>Hírcsatorna URL vagy weboldal cím:</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="186"/>
+        <location filename="../src/addfeedwizard.cpp" line="187"/>
         <source>Feeds</source>
         <translation>Hírcsatornák</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="190"/>
+        <location filename="../src/addfeedwizard.cpp" line="191"/>
         <source>All Feeds</source>
         <translation>Az összes hírcsatorna</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="230"/>
+        <location filename="../src/addfeedwizard.cpp" line="231"/>
         <source>New Folder...</source>
         <translation>Új mappa...</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="245"/>
+        <location filename="../src/addfeedwizard.cpp" line="246"/>
         <source>Displayed name:</source>
         <translation>Megjelenítendő név:</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="247"/>
+        <location filename="../src/addfeedwizard.cpp" line="248"/>
         <source>Location:</source>
         <translation>Hely:</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="342"/>
+        <location filename="../src/addfeedwizard.cpp" line="343"/>
         <source>URL error!</source>
         <translation>URL hiba!</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="356"/>
+        <location filename="../src/addfeedwizard.cpp" line="357"/>
         <location filename="../src/addfeedwizard.cpp" line="519"/>
         <source>Duplicate feed!</source>
         <translation>Ismétlődő hírcsatorna!</translation>
@@ -791,33 +791,33 @@ Ancient news could reappear</source>
 <context>
     <name>DownloadManager</name>
     <message>
-        <location filename="../src/downloads/downloadmanager.cpp" line="33"/>
-        <location filename="../src/downloads/downloadmanager.cpp" line="253"/>
+        <location filename="../src/downloads/downloadmanager.cpp" line="35"/>
+        <location filename="../src/downloads/downloadmanager.cpp" line="255"/>
         <source>Clear</source>
         <translation>Törlés</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloadmanager.cpp" line="92"/>
+        <location filename="../src/downloads/downloadmanager.cpp" line="94"/>
         <source>File %1 (*.%2)</source>
         <translation>%1 fájl (*.%2)</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloadmanager.cpp" line="92"/>
+        <location filename="../src/downloads/downloadmanager.cpp" line="94"/>
         <source>All Files (*.*)</source>
         <translation>Minden fájl (*.*)</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloadmanager.cpp" line="96"/>
+        <location filename="../src/downloads/downloadmanager.cpp" line="98"/>
         <source>Save As...</source>
         <translation>Mentés másként ...</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloadmanager.cpp" line="172"/>
+        <location filename="../src/downloads/downloadmanager.cpp" line="174"/>
         <source>Executable: </source>
         <translation>Végrehajtható:</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloadmanager.cpp" line="173"/>
+        <location filename="../src/downloads/downloadmanager.cpp" line="175"/>
         <source>Arguments: </source>
         <translation>Argumentumok:</translation>
     </message>
@@ -835,102 +835,102 @@ Ancient news could reappear</source>
         <translation>Általános</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="33"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="34"/>
         <source>Columns</source>
         <translation>Oszlopok</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="34"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="35"/>
         <source>Authentication</source>
         <translation>Hitelesítés</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="35"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="36"/>
         <source>Status</source>
         <translation>Állapot</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="57"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="58"/>
         <source>Title:</source>
         <translation>Cím:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="58"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="59"/>
         <source>Homepage:</source>
         <translation>Honlap:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="59"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="60"/>
         <source>Feed URL:</source>
         <translation>Hírcsatorna Url::</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="66"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="67"/>
         <source>Load Title</source>
         <translation>Cím betöltése</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="70"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="71"/>
         <source>Load Favicon</source>
         <translation>Weblapikon betöltése</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="72"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="73"/>
         <source>Select Icon...</source>
         <translation>Ikon kiválasztása...</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="75"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="76"/>
         <source>Select Icon</source>
         <translation>Ikon kiválasztása</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="85"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="86"/>
         <source>Disable update</source>
         <translation>Frissítés letiltása</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="88"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="89"/>
         <source>Automatically update every</source>
         <translation>Automatikus frissítés minden</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="98"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="99"/>
         <source>seconds</source>
         <translation>másodperc</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="98"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="99"/>
         <source>minutes</source>
         <translation>perc</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="98"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="99"/>
         <source>hours</source>
         <translation>óra</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="117"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="118"/>
         <source>Starred</source>
         <translation>Csillagozott</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="172"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="196"/>
         <source>Load images</source>
         <translation>Képek betöltése</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="118"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="119"/>
         <source>Display in new tab on startup</source>
         <translation>Megjelenítés új lapon indításkor</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="176"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="201"/>
         <source>Show news&apos; description instead of loading web page</source>
         <translation>Hírleírások megjelenítése a weblap betöltése helyett</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="119"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="132"/>
         <source>Automatically delete duplicate news</source>
         <translation>Az ismétlődő hírek automatikus törlése</translation>
     </message>
@@ -940,132 +940,137 @@ Ancient news could reappear</source>
         <translation>Kijelző</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="174"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="33"/>
+        <source>Reading</source>
+        <translation>Olvasás</translation>
+    </message>
+    <message>
+        <location filename="../src/feedpropertiesdialog.cpp" line="198"/>
         <source>Enable JavaScript</source>
         <translation>JavaScript engedélyezése</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="177"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="203"/>
         <source>Right-to-left layout</source>
         <translation>Jobbról-balra elrendezés</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="216"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="241"/>
         <source>Ascending</source>
         <translation>Növekvő</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="216"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="241"/>
         <source>Descending</source>
         <translation>Csökkenő</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="221"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="246"/>
         <source>Sort by:</source>
         <translation>Rendezés:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="235"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="260"/>
         <source>Add</source>
         <translation>Hozzáadás</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="242"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="267"/>
         <source>Remove</source>
         <translation>Eltávolítás</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="246"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="271"/>
         <source>Move up</source>
         <translation>Feljebb</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="249"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="274"/>
         <source>Move down</source>
         <translation>Lejjebb</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="253"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="278"/>
         <source>Default</source>
         <translation>Alapértelmezett</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="283"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="308"/>
         <source>Server requires authentication:</source>
         <translation>Kiszolgáló hitelesítés szükséges:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="292"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="317"/>
         <source>Username:</source>
         <translation>Felhasználónév:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="294"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="319"/>
         <source>Password:</source>
         <translation>Jelszó:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="318"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="343"/>
         <source>Feeds count:</source>
         <translation>Hírcsatornák száma:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="321"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="346"/>
         <source>Description:</source>
         <translation>Leírás:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="328"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="353"/>
         <source>Status:</source>
         <translation>Állapot:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="330"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="355"/>
         <source>Created:</source>
         <translation>Létrehozva:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="332"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="357"/>
         <source>Last update:</source>
         <translation>Utolsó frissítés:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="334"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="359"/>
         <source>News count:</source>
         <translation>Hírek száma:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="404"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="438"/>
         <source>Good</source>
         <translation>Jó</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="412"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="446"/>
         <source>Long ago ;-)</source>
         <translation>Régen ;-)</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="423"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="457"/>
         <source>new</source>
         <translation>új</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="425"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="459"/>
         <source>unread</source>
         <translation>olvasatlan</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="446"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="480"/>
         <source>Image files</source>
         <translation>Képfájlok</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="448"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="482"/>
         <source>Select Image</source>
         <translation>Kép kiválasztása</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="455"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="489"/>
         <source>Load icon: can&apos;t open a file!</source>
         <translation>Ikon betöltése: a fájl nem nyitható meg!</translation>
     </message>
@@ -1445,1043 +1450,1043 @@ Ancient news could reappear</source>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="1815"/>
+        <location filename="../src/application/mainwindow.cpp" line="1859"/>
         <source>&amp;AdBlock</source>
         <translation>&amp;AdBlock</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2227"/>
-        <location filename="../src/application/mainwindow.cpp" line="4978"/>
-        <location filename="../src/application/mainwindow.cpp" line="7296"/>
-        <location filename="../src/application/mainwindow.cpp" line="7318"/>
+        <location filename="../src/application/mainwindow.cpp" line="2297"/>
+        <location filename="../src/application/mainwindow.cpp" line="5093"/>
+        <location filename="../src/application/mainwindow.cpp" line="7465"/>
+        <location filename="../src/application/mainwindow.cpp" line="7487"/>
         <source>Hide Categories</source>
         <translation>Kategóriák rejtése</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2231"/>
-        <location filename="../src/application/mainwindow.cpp" line="4976"/>
-        <location filename="../src/application/mainwindow.cpp" line="7302"/>
+        <location filename="../src/application/mainwindow.cpp" line="2301"/>
+        <location filename="../src/application/mainwindow.cpp" line="5091"/>
+        <location filename="../src/application/mainwindow.cpp" line="7471"/>
         <source>Show Categories</source>
         <translation>Kategóriák megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2686"/>
-        <location filename="../src/application/mainwindow.cpp" line="2715"/>
+        <location filename="../src/application/mainwindow.cpp" line="2760"/>
+        <location filename="../src/application/mainwindow.cpp" line="2789"/>
         <source>Select OPML-File</source>
         <translation>OPML-fájl kiválasztása</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2688"/>
+        <location filename="../src/application/mainwindow.cpp" line="2762"/>
         <source>OPML-Files (*.%1 *.%2)</source>
         <translation>OPML-fájlok (*.%1 *.%2)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2692"/>
+        <location filename="../src/application/mainwindow.cpp" line="2766"/>
         <source>Import canceled</source>
         <translation>Importálás megszakítva</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2700"/>
+        <location filename="../src/application/mainwindow.cpp" line="2774"/>
         <source>Import: can&apos;t open a file</source>
         <translation>Importálás: a fájlt nem lehet megnyitni</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2717"/>
+        <location filename="../src/application/mainwindow.cpp" line="2791"/>
         <source>OPML-Files (*.%1)</source>
         <translation>OPML-fájlok (*.%1)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2721"/>
+        <location filename="../src/application/mainwindow.cpp" line="2795"/>
         <source>Export canceled</source>
         <translation>Exportálás megszakítva</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2727"/>
+        <location filename="../src/application/mainwindow.cpp" line="2801"/>
         <source>Export: can&apos;t open a file</source>
         <translation>Exportálás: a fájlt nem lehet megnyitni</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2996"/>
-        <location filename="../src/application/mainwindow.cpp" line="4132"/>
-        <location filename="../src/application/mainwindow.cpp" line="4748"/>
-        <location filename="../src/application/mainwindow.cpp" line="6222"/>
-        <location filename="../src/application/mainwindow.cpp" line="7254"/>
+        <location filename="../src/application/mainwindow.cpp" line="3070"/>
+        <location filename="../src/application/mainwindow.cpp" line="4247"/>
+        <location filename="../src/application/mainwindow.cpp" line="4863"/>
+        <location filename="../src/application/mainwindow.cpp" line="6355"/>
+        <location filename="../src/application/mainwindow.cpp" line="7422"/>
         <source>Unread: %1</source>
         <translation>Olvasatlan: %1</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2997"/>
-        <location filename="../src/application/mainwindow.cpp" line="4133"/>
-        <location filename="../src/application/mainwindow.cpp" line="4751"/>
-        <location filename="../src/application/mainwindow.cpp" line="6223"/>
-        <location filename="../src/application/mainwindow.cpp" line="7255"/>
+        <location filename="../src/application/mainwindow.cpp" line="3071"/>
+        <location filename="../src/application/mainwindow.cpp" line="4248"/>
+        <location filename="../src/application/mainwindow.cpp" line="4866"/>
+        <location filename="../src/application/mainwindow.cpp" line="6356"/>
+        <location filename="../src/application/mainwindow.cpp" line="7423"/>
         <source>All: %1</source>
         <translation>Összes: %1</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="3553"/>
-        <location filename="../src/application/mainwindow.cpp" line="3558"/>
-        <location filename="../src/application/mainwindow.cpp" line="3563"/>
+        <location filename="../src/application/mainwindow.cpp" line="3658"/>
+        <location filename="../src/application/mainwindow.cpp" line="3663"/>
+        <location filename="../src/application/mainwindow.cpp" line="3668"/>
         <source>(Browser)</source>
         <translation>(Böngésző)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4756"/>
-        <location filename="../src/application/mainwindow.cpp" line="5649"/>
+        <location filename="../src/application/mainwindow.cpp" line="4871"/>
+        <location filename="../src/application/mainwindow.cpp" line="5779"/>
         <source>New News: %1</source>
         <translation>Új hírek: %1</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4758"/>
-        <location filename="../src/application/mainwindow.cpp" line="5651"/>
+        <location filename="../src/application/mainwindow.cpp" line="4873"/>
+        <location filename="../src/application/mainwindow.cpp" line="5781"/>
         <source>Unread News: %1</source>
         <translation>Olvasatlan hírek: %1</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4763"/>
+        <location filename="../src/application/mainwindow.cpp" line="4878"/>
         <source>&amp;Add</source>
         <translation>Hozzáadás</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4764"/>
-        <location filename="../src/application/mainwindow.cpp" line="4767"/>
+        <location filename="../src/application/mainwindow.cpp" line="4879"/>
+        <location filename="../src/application/mainwindow.cpp" line="4882"/>
         <source>Add New Feed</source>
         <translation>Új hírcsatorna hozzáadása</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4766"/>
+        <location filename="../src/application/mainwindow.cpp" line="4881"/>
         <source>&amp;Feed...</source>
         <translation>Hírcsatorna...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4771"/>
+        <location filename="../src/application/mainwindow.cpp" line="4886"/>
         <source>F&amp;older...</source>
         <translation>Mappa...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4772"/>
+        <location filename="../src/application/mainwindow.cpp" line="4887"/>
         <source>Add New Folder</source>
         <translation>Új mappa hozzáadása</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4774"/>
-        <location filename="../src/application/mainwindow.cpp" line="4845"/>
+        <location filename="../src/application/mainwindow.cpp" line="4889"/>
+        <location filename="../src/application/mainwindow.cpp" line="4960"/>
         <source>Open in New Tab</source>
         <translation>Megnyitás új lapon</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4776"/>
+        <location filename="../src/application/mainwindow.cpp" line="4891"/>
         <source>&amp;Delete...</source>
         <translation>Törlés...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4777"/>
+        <location filename="../src/application/mainwindow.cpp" line="4892"/>
         <source>Delete Selected Feed</source>
         <translation>A kijelölt hírcsatorna törlése</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4779"/>
+        <location filename="../src/application/mainwindow.cpp" line="4894"/>
         <source>&amp;Import Feeds...</source>
         <translation>&amp;Hírcsatornák importálása...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4780"/>
+        <location filename="../src/application/mainwindow.cpp" line="4895"/>
         <source>Import Feeds from OPML File</source>
         <translation>Hírcsatornák importálása OPML fájlból</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4782"/>
+        <location filename="../src/application/mainwindow.cpp" line="4897"/>
         <source>&amp;Export Feeds...</source>
         <translation>&amp;Hírcsatornák exportálása...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4783"/>
+        <location filename="../src/application/mainwindow.cpp" line="4898"/>
         <source>Export Feeds to OPML File</source>
         <translation>Hírcsatornák exportálása OPML fájlba</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4788"/>
+        <location filename="../src/application/mainwindow.cpp" line="4903"/>
         <source>E&amp;xit</source>
         <translation>Kilépés</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4790"/>
+        <location filename="../src/application/mainwindow.cpp" line="4905"/>
         <source>Update Feed</source>
         <translation>Hírcsatorna frissítése</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4791"/>
+        <location filename="../src/application/mainwindow.cpp" line="4906"/>
         <source>Update Current Feed</source>
         <translation>Az aktuális hírcsatorna frissítése</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4793"/>
+        <location filename="../src/application/mainwindow.cpp" line="4908"/>
         <source>Update All</source>
         <translation>Az összes frissítése</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4794"/>
+        <location filename="../src/application/mainwindow.cpp" line="4909"/>
         <source>Update All Feeds</source>
         <translation>Az összes hírcsatorna frissítése</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4799"/>
+        <location filename="../src/application/mainwindow.cpp" line="4914"/>
         <source>Mark All Feeds Read</source>
         <translation>Az összes hírcsatorna megjelölése olvasottként</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4801"/>
+        <location filename="../src/application/mainwindow.cpp" line="4916"/>
         <source>Mark Read/Unread</source>
         <translation>Olvasott/olvasatlan</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4802"/>
+        <location filename="../src/application/mainwindow.cpp" line="4917"/>
         <source>Mark Current News Read/Unread</source>
         <translation>Az aktuális hírek megjelölése olvasotként/olvasatlanként</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4804"/>
-        <location filename="../src/application/mainwindow.cpp" line="4805"/>
+        <location filename="../src/application/mainwindow.cpp" line="4919"/>
+        <location filename="../src/application/mainwindow.cpp" line="4920"/>
         <source>Mark All News Read</source>
         <translation>Az összes hír megjelölése olvasottként</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4807"/>
-        <location filename="../src/application/mainwindow.cpp" line="7881"/>
-        <location filename="../src/application/mainwindow.cpp" line="7887"/>
-        <location filename="../src/application/mainwindow.cpp" line="7897"/>
+        <location filename="../src/application/mainwindow.cpp" line="4922"/>
+        <location filename="../src/application/mainwindow.cpp" line="8050"/>
+        <location filename="../src/application/mainwindow.cpp" line="8056"/>
+        <location filename="../src/application/mainwindow.cpp" line="8066"/>
         <source>Downloads</source>
         <translation>Letöltések</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4809"/>
+        <location filename="../src/application/mainwindow.cpp" line="4924"/>
         <source>Clean Up...</source>
         <translation>Tisztítás...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4811"/>
+        <location filename="../src/application/mainwindow.cpp" line="4926"/>
         <source>News Filters...</source>
         <translation>Hír-szűrők...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4812"/>
+        <location filename="../src/application/mainwindow.cpp" line="4927"/>
         <source>Filter News...</source>
         <translation>Hírek szűrése...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4814"/>
+        <location filename="../src/application/mainwindow.cpp" line="4929"/>
         <source>Options...</source>
         <translation>Beállítások...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4815"/>
+        <location filename="../src/application/mainwindow.cpp" line="4930"/>
         <source>Open Options Dialog</source>
         <translation>A beállítások párbeszédpanel megnyitása</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4817"/>
+        <location filename="../src/application/mainwindow.cpp" line="4932"/>
         <source>Filter Feeds</source>
         <translation>Hírcsatorna szűrő</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4818"/>
-        <location filename="../src/application/mainwindow.cpp" line="4825"/>
+        <location filename="../src/application/mainwindow.cpp" line="4933"/>
+        <location filename="../src/application/mainwindow.cpp" line="4940"/>
         <source>Show All</source>
         <translation>Összes megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4819"/>
-        <location filename="../src/application/mainwindow.cpp" line="4826"/>
+        <location filename="../src/application/mainwindow.cpp" line="4934"/>
+        <location filename="../src/application/mainwindow.cpp" line="4941"/>
         <source>Show New</source>
         <translation>Új megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4820"/>
-        <location filename="../src/application/mainwindow.cpp" line="4827"/>
+        <location filename="../src/application/mainwindow.cpp" line="4935"/>
+        <location filename="../src/application/mainwindow.cpp" line="4942"/>
         <source>Show Unread</source>
         <translation>Olvasatlan megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4821"/>
+        <location filename="../src/application/mainwindow.cpp" line="4936"/>
         <source>Show Starred Feeds</source>
         <translation>A csillaggal jelölt hírcsatornák megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4822"/>
+        <location filename="../src/application/mainwindow.cpp" line="4937"/>
         <source>Show Not Working Feeds</source>
         <translation>Nem működő hírcsatornák megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4824"/>
+        <location filename="../src/application/mainwindow.cpp" line="4939"/>
         <source>Filter News</source>
         <translation>Hírek szűrő</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4828"/>
+        <location filename="../src/application/mainwindow.cpp" line="4943"/>
         <source>Show Starred</source>
         <translation>Csillagozott megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4829"/>
+        <location filename="../src/application/mainwindow.cpp" line="4944"/>
         <source>Show Not Starred</source>
         <translation>Nem csillagozott megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4830"/>
+        <location filename="../src/application/mainwindow.cpp" line="4945"/>
         <source>Show Unread or Starred</source>
         <translation>Olvasatlan vagy csillagozott megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4831"/>
+        <location filename="../src/application/mainwindow.cpp" line="4946"/>
         <source>Show Last Day</source>
         <translation>Utolsó nap megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4832"/>
+        <location filename="../src/application/mainwindow.cpp" line="4947"/>
         <source>Show Last 7 Days</source>
         <translation>Utolsó 7 nap megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4834"/>
+        <location filename="../src/application/mainwindow.cpp" line="4949"/>
         <source>About...</source>
         <translation>Névjegy...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4835"/>
+        <location filename="../src/application/mainwindow.cpp" line="4950"/>
         <source>Show &apos;About&apos; Dialog</source>
         <translation>A &apos;Névjegy&apos; párbeszédpanel megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4837"/>
+        <location filename="../src/application/mainwindow.cpp" line="4952"/>
         <source>Check for Updates...</source>
         <translation>Frissítések ellenőrzése...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4838"/>
+        <location filename="../src/application/mainwindow.cpp" line="4953"/>
         <source>Report a Problem...</source>
         <translation>Hibajelentés...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4840"/>
+        <location filename="../src/application/mainwindow.cpp" line="4955"/>
         <source>Open News</source>
         <translation>Hírek mgnyitása</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4842"/>
+        <location filename="../src/application/mainwindow.cpp" line="4957"/>
         <source>Open in Browser</source>
         <translation>Megnyitás a böngészőben</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4843"/>
+        <location filename="../src/application/mainwindow.cpp" line="4958"/>
         <source>Open in External Browser</source>
         <translation>Megnyitás egy külső böngészőben</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4844"/>
+        <location filename="../src/application/mainwindow.cpp" line="4959"/>
         <source>Open News in External Browser</source>
         <translation>Hírek megnyitása külső böngészőben</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4846"/>
+        <location filename="../src/application/mainwindow.cpp" line="4961"/>
         <source>Open News in New Tab</source>
         <translation>Hírek megnyitása új lapon</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4847"/>
+        <location filename="../src/application/mainwindow.cpp" line="4962"/>
         <source>Open in Background Tab</source>
         <translation>Megnyitása a háttérlapon</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4848"/>
+        <location filename="../src/application/mainwindow.cpp" line="4963"/>
         <source>Open News in Background Tab</source>
         <translation>Hírek megnyitása a háttérlapon</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4849"/>
+        <location filename="../src/application/mainwindow.cpp" line="4964"/>
         <source>Star</source>
         <translation>Csillagozás</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4850"/>
+        <location filename="../src/application/mainwindow.cpp" line="4965"/>
         <source>Mark News Star</source>
         <translation>Hírek megjelölése csillaggal</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4851"/>
+        <location filename="../src/application/mainwindow.cpp" line="4966"/>
         <source>Delete</source>
         <translation>Törlés</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4852"/>
+        <location filename="../src/application/mainwindow.cpp" line="4967"/>
         <source>Delete Selected News</source>
         <translation>A kijelölt hírek törlése</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4853"/>
+        <location filename="../src/application/mainwindow.cpp" line="4968"/>
         <source>Delete All News</source>
         <translation>Az összes hír törlése</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4854"/>
+        <location filename="../src/application/mainwindow.cpp" line="4969"/>
         <source>Delete All News from List</source>
         <translation>Az összes hír törlése a listáról</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4855"/>
+        <location filename="../src/application/mainwindow.cpp" line="4970"/>
         <source>Restore</source>
         <translation>Visszaállítás</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4856"/>
+        <location filename="../src/application/mainwindow.cpp" line="4971"/>
         <source>Restore News</source>
         <translation>Hírek visszaállítása</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4857"/>
+        <location filename="../src/application/mainwindow.cpp" line="4972"/>
         <source>Copy Link</source>
         <translation>Hivatkozás másolása</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4860"/>
+        <location filename="../src/application/mainwindow.cpp" line="4975"/>
         <source>Restore last deleted news</source>
         <translation>Az utoljára törölt hírek visszaállítása</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4862"/>
+        <location filename="../src/application/mainwindow.cpp" line="4977"/>
         <source>Mark Read</source>
         <translation>Megjelölés olvasottként</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4863"/>
+        <location filename="../src/application/mainwindow.cpp" line="4978"/>
         <source>Mark Feed Read</source>
         <translation>Hírcsatorna megjelölése olvasottként</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4864"/>
-        <location filename="../src/application/mainwindow.cpp" line="4865"/>
+        <location filename="../src/application/mainwindow.cpp" line="4979"/>
+        <location filename="../src/application/mainwindow.cpp" line="4980"/>
         <source>Properties</source>
         <translation>Tulajdonságok</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4867"/>
+        <location filename="../src/application/mainwindow.cpp" line="4982"/>
         <source>&amp;File</source>
         <translation>&amp;Fájl</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4930"/>
+        <location filename="../src/application/mainwindow.cpp" line="5045"/>
         <source>Count Unread News</source>
         <translation>Olvasatlan hírek száma</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4931"/>
+        <location filename="../src/application/mainwindow.cpp" line="5046"/>
         <source>Count All News</source>
         <translation>Összes hír száma</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4932"/>
+        <location filename="../src/application/mainwindow.cpp" line="5047"/>
         <source>Last Update</source>
         <translation>Utolsó frissítés</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4945"/>
+        <location filename="../src/application/mainwindow.cpp" line="5060"/>
         <source>Reset browser zoom</source>
         <translation>Böngésző nagyítás visszaállítása</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4948"/>
+        <location filename="../src/application/mainwindow.cpp" line="5063"/>
         <source>Print Web Page</source>
         <translation>Weboldal nyomtatása</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4950"/>
+        <location filename="../src/application/mainwindow.cpp" line="5065"/>
         <source>Preview Web Page</source>
         <translation>Weboldal előnézete</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4957"/>
+        <location filename="../src/application/mainwindow.cpp" line="5072"/>
         <source>Save page in database</source>
         <translation>Oldal mentése az adatbázisban</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4958"/>
+        <location filename="../src/application/mainwindow.cpp" line="5073"/>
         <source>Save page in database instead of news description</source>
         <translation>Oldal mentése az adatbázisba a hírek leírás helyett</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2581"/>
+        <location filename="../src/application/mainwindow.cpp" line="2655"/>
         <source>Confirm Delete</source>
         <translation>Törlés megerősítése</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2582"/>
+        <location filename="../src/application/mainwindow.cpp" line="2656"/>
         <source>Are you sure to delete selected elements?</source>
         <translation>Biztos benne, hogy törli a kiválasztott elemeket?</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4761"/>
+        <location filename="../src/application/mainwindow.cpp" line="4876"/>
         <source>Menu</source>
         <translation>Menü</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4769"/>
+        <location filename="../src/application/mainwindow.cpp" line="4884"/>
         <source>Add Feed...</source>
         <translation>Hírcsatorna hozzáadása...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4785"/>
+        <location filename="../src/application/mainwindow.cpp" line="4900"/>
         <source>&amp;Create Backup...</source>
         <translation>Mentés létrehozása...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4786"/>
+        <location filename="../src/application/mainwindow.cpp" line="4901"/>
         <source>S&amp;how Menu Bar</source>
         <translation>Menüsor megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4796"/>
-        <location filename="../src/application/mainwindow.cpp" line="4797"/>
+        <location filename="../src/application/mainwindow.cpp" line="4911"/>
+        <location filename="../src/application/mainwindow.cpp" line="4912"/>
         <source>Stop Update Feeds</source>
         <translation>Hírcsatorna frissítés leállítása</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4841"/>
+        <location filename="../src/application/mainwindow.cpp" line="4956"/>
         <source>Open News Description</source>
         <translation>Hírleírások megnyitása</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4858"/>
+        <location filename="../src/application/mainwindow.cpp" line="4973"/>
         <source>Copy News Link</source>
         <translation>Hírek hivatkozás másolása</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4868"/>
+        <location filename="../src/application/mainwindow.cpp" line="4983"/>
         <source>&amp;View</source>
         <translation>Nézet</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4869"/>
+        <location filename="../src/application/mainwindow.cpp" line="4984"/>
         <source>Fee&amp;ds</source>
         <translation>Hírcsatornák</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4870"/>
+        <location filename="../src/application/mainwindow.cpp" line="4985"/>
         <source>&amp;News</source>
         <translation>Hírek</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4871"/>
+        <location filename="../src/application/mainwindow.cpp" line="4986"/>
         <source>&amp;Browser</source>
         <translation>Böngésző</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4872"/>
+        <location filename="../src/application/mainwindow.cpp" line="4987"/>
         <source>&amp;Tools</source>
         <translation>Eszközök</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4873"/>
+        <location filename="../src/application/mainwindow.cpp" line="4988"/>
         <source>&amp;Help</source>
         <translation>Súgó</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4875"/>
-        <location filename="../src/application/mainwindow.cpp" line="4961"/>
+        <location filename="../src/application/mainwindow.cpp" line="4990"/>
+        <location filename="../src/application/mainwindow.cpp" line="5076"/>
         <source>Main Toolbar</source>
         <translation>Fő eszköztár</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4876"/>
+        <location filename="../src/application/mainwindow.cpp" line="4991"/>
         <source>Customize Toolbar</source>
         <translation>Eszköztár testreszabása</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4877"/>
+        <location filename="../src/application/mainwindow.cpp" line="4992"/>
         <source>Main Toolbar...</source>
         <translation>Fő eszköztár...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4878"/>
+        <location filename="../src/application/mainwindow.cpp" line="4993"/>
         <source>Customize Toolbar...</source>
         <translation>Eszköztár testreszabása...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4879"/>
+        <location filename="../src/application/mainwindow.cpp" line="4994"/>
         <source>Feeds Toolbar...</source>
         <translation>Hírcsatornák eszköztár...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4880"/>
+        <location filename="../src/application/mainwindow.cpp" line="4995"/>
         <source>News Toolbar...</source>
         <translation>Hírek eszköztár</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4882"/>
+        <location filename="../src/application/mainwindow.cpp" line="4997"/>
         <source>Lock Toolbar</source>
         <translation>Eszköztár zárolása</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4883"/>
+        <location filename="../src/application/mainwindow.cpp" line="4998"/>
         <source>Hide Toolbar</source>
         <translation>Eszköztár rejtése</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4885"/>
-        <location filename="../src/application/mainwindow.cpp" line="4888"/>
+        <location filename="../src/application/mainwindow.cpp" line="5000"/>
+        <location filename="../src/application/mainwindow.cpp" line="5003"/>
         <source>Layout</source>
         <translation>Elrendezés</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4886"/>
+        <location filename="../src/application/mainwindow.cpp" line="5001"/>
         <source>Classic</source>
         <translation>Klasszikus</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4887"/>
+        <location filename="../src/application/mainwindow.cpp" line="5002"/>
         <source>Newspaper</source>
         <translation>Hírlap</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4890"/>
+        <location filename="../src/application/mainwindow.cpp" line="5005"/>
         <source>Application Style</source>
         <translation>Alkalmazás stílus</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4891"/>
+        <location filename="../src/application/mainwindow.cpp" line="5006"/>
         <source>System</source>
         <translation>Rendszer</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4892"/>
+        <location filename="../src/application/mainwindow.cpp" line="5007"/>
         <source>System2</source>
         <translation>System2</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4893"/>
+        <location filename="../src/application/mainwindow.cpp" line="5008"/>
         <source>Green</source>
         <translation>Zöld</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4894"/>
+        <location filename="../src/application/mainwindow.cpp" line="5009"/>
         <source>Orange</source>
         <translation>Narancs</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4895"/>
+        <location filename="../src/application/mainwindow.cpp" line="5010"/>
         <source>Purple</source>
         <translation>Bíbor</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4896"/>
+        <location filename="../src/application/mainwindow.cpp" line="5011"/>
         <source>Pink</source>
         <translation>Rózsaszín</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4897"/>
+        <location filename="../src/application/mainwindow.cpp" line="5012"/>
         <source>Gray</source>
         <translation>Szürke</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4899"/>
+        <location filename="../src/application/mainwindow.cpp" line="5014"/>
         <source>Browser Position</source>
         <translation>Böngésző pozíció</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4900"/>
+        <location filename="../src/application/mainwindow.cpp" line="5015"/>
         <source>Top</source>
         <translation>Fent</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4901"/>
+        <location filename="../src/application/mainwindow.cpp" line="5016"/>
         <source>Bottom</source>
         <translation>Lent</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4902"/>
+        <location filename="../src/application/mainwindow.cpp" line="5017"/>
         <source>Right</source>
         <translation>Jobbra</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4903"/>
+        <location filename="../src/application/mainwindow.cpp" line="5018"/>
         <source>Left</source>
         <translation>Balra</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4905"/>
+        <location filename="../src/application/mainwindow.cpp" line="5020"/>
         <source>Show Window</source>
         <translation>Ablak megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4907"/>
+        <location filename="../src/application/mainwindow.cpp" line="5022"/>
         <source>Previous Feed</source>
         <translation>Előző hírcsatorna</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4908"/>
+        <location filename="../src/application/mainwindow.cpp" line="5023"/>
         <source>Next Feed</source>
         <translation>Következő hírcsatorna</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4909"/>
+        <location filename="../src/application/mainwindow.cpp" line="5024"/>
         <source>Previous News</source>
         <translation>Előző hír</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4910"/>
+        <location filename="../src/application/mainwindow.cpp" line="5025"/>
         <source>Next News</source>
         <translation>Következő hír</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4911"/>
+        <location filename="../src/application/mainwindow.cpp" line="5026"/>
         <source>News Page Up</source>
         <translation>Hírek lap fel</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4912"/>
+        <location filename="../src/application/mainwindow.cpp" line="5027"/>
         <source>News Page Down</source>
         <translation>Hírek lap le</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4914"/>
+        <location filename="../src/application/mainwindow.cpp" line="5029"/>
         <source>Next Unread News</source>
         <translation>Következő olvasatlan hír</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4915"/>
+        <location filename="../src/application/mainwindow.cpp" line="5030"/>
         <source>Previous Unread News</source>
         <translation>Előző olvasatlan hír</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4917"/>
+        <location filename="../src/application/mainwindow.cpp" line="5032"/>
         <source>Switch Focus to Next Panel</source>
         <translation>Fókuszváltás a következő panelra</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4919"/>
+        <location filename="../src/application/mainwindow.cpp" line="5034"/>
         <source>Switch Focus to Next Panel (Tree Feeds, List News, Browser)</source>
         <translation>Fókuszváltás a következő panelra (Hírcsatorna-fa, Hírek lista, Böngésző)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4920"/>
+        <location filename="../src/application/mainwindow.cpp" line="5035"/>
         <source>Switch Focus to Previous Panel</source>
         <translation>Fókuszváltás az előző panelra</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4922"/>
+        <location filename="../src/application/mainwindow.cpp" line="5037"/>
         <source>Switch Focus to Previous Panel (Tree Feeds, Browser, List News)</source>
         <translation>Fókuszváltás az előző panelra (Hírcsatorna-fa, Hírek lista, Böngésző)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4924"/>
+        <location filename="../src/application/mainwindow.cpp" line="5039"/>
         <source>Show/Hide Tree Feeds</source>
         <translation>Hírcsatornák fa megjelenítése/rejtése</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4926"/>
+        <location filename="../src/application/mainwindow.cpp" line="5041"/>
         <source>Minimize to Tray</source>
         <translation>Lekicsinyítés a tálcára</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4927"/>
+        <location filename="../src/application/mainwindow.cpp" line="5042"/>
         <source>Minimize Application to Tray</source>
         <translation>Alkalmazás minimalizálása a tálcára</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4929"/>
+        <location filename="../src/application/mainwindow.cpp" line="5044"/>
         <source>Columns</source>
         <translation>Oszlopok</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4934"/>
+        <location filename="../src/application/mainwindow.cpp" line="5049"/>
         <source>Show Indentation</source>
         <translation>Behúzás megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4936"/>
-        <location filename="../src/application/mainwindow.cpp" line="4937"/>
+        <location filename="../src/application/mainwindow.cpp" line="5051"/>
+        <location filename="../src/application/mainwindow.cpp" line="5052"/>
         <source>Search Feed</source>
         <translation>Hírcsatorna keresése</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4939"/>
+        <location filename="../src/application/mainwindow.cpp" line="5054"/>
         <source>Zoom</source>
         <translation>Nagyítás</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4940"/>
+        <location filename="../src/application/mainwindow.cpp" line="5055"/>
         <source>Zoom In</source>
         <translation>Nagyítás +</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4941"/>
+        <location filename="../src/application/mainwindow.cpp" line="5056"/>
         <source>Zoom in in browser</source>
         <translation>Nagyítás a böngészőben</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4942"/>
+        <location filename="../src/application/mainwindow.cpp" line="5057"/>
         <source>Zoom Out</source>
         <translation>Nagyítás -</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4943"/>
+        <location filename="../src/application/mainwindow.cpp" line="5058"/>
         <source>Zoom out in browser</source>
         <translation>Lekicsinyítés a böngészőben</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4944"/>
+        <location filename="../src/application/mainwindow.cpp" line="5059"/>
         <source>100%</source>
         <translation>100%</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4947"/>
+        <location filename="../src/application/mainwindow.cpp" line="5062"/>
         <source>Print...</source>
         <translation>Nyomtatás...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4949"/>
+        <location filename="../src/application/mainwindow.cpp" line="5064"/>
         <source>Print Preview...</source>
         <translation>Nyomtatási kép...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4952"/>
+        <location filename="../src/application/mainwindow.cpp" line="5067"/>
         <source>Page up (Browser)</source>
         <translation>Lapozás felfelé (Böngésző)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4953"/>
+        <location filename="../src/application/mainwindow.cpp" line="5068"/>
         <source>Page down (Browser)</source>
         <translation>Lapozás lefelé (Böngésző)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4955"/>
+        <location filename="../src/application/mainwindow.cpp" line="5070"/>
         <source>Save As...</source>
         <translation>Mentés másként...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4956"/>
+        <location filename="../src/application/mainwindow.cpp" line="5071"/>
         <source>Save Page As...</source>
         <translation>Oldal mentése mint...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4960"/>
+        <location filename="../src/application/mainwindow.cpp" line="5075"/>
         <source>Show/Hide</source>
         <translation>Megjelenítés/Elrejtés</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4962"/>
+        <location filename="../src/application/mainwindow.cpp" line="5077"/>
         <source>Feeds Toolbar</source>
         <translation>Hírcsatorna eszköztár</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4963"/>
+        <location filename="../src/application/mainwindow.cpp" line="5078"/>
         <source>News Toolbar</source>
         <translation>Hírek eszköztár</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4964"/>
+        <location filename="../src/application/mainwindow.cpp" line="5079"/>
         <source>Browser Toolbar</source>
         <translation>Böngésző eszköztár</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4965"/>
+        <location filename="../src/application/mainwindow.cpp" line="5080"/>
         <source>Panel Categories</source>
         <translation>Panel-kategóriák</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4966"/>
+        <location filename="../src/application/mainwindow.cpp" line="5081"/>
         <source>Status Bar</source>
         <translation>Állapotsor</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4968"/>
-        <location filename="../src/application/mainwindow.cpp" line="4969"/>
+        <location filename="../src/application/mainwindow.cpp" line="5083"/>
+        <location filename="../src/application/mainwindow.cpp" line="5084"/>
         <source>Full Screen</source>
         <translation>Teljes képernyő</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4971"/>
-        <location filename="../src/application/mainwindow.cpp" line="4972"/>
+        <location filename="../src/application/mainwindow.cpp" line="5086"/>
+        <location filename="../src/application/mainwindow.cpp" line="5087"/>
         <source>Stay On Top</source>
         <translation>Mindig felül</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4974"/>
+        <location filename="../src/application/mainwindow.cpp" line="5089"/>
         <source>Categories</source>
         <translation>Kategóriák</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4980"/>
-        <location filename="../src/application/mainwindow.cpp" line="4981"/>
+        <location filename="../src/application/mainwindow.cpp" line="5095"/>
+        <location filename="../src/application/mainwindow.cpp" line="5096"/>
         <source>Label</source>
         <translation>Címke</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4982"/>
+        <location filename="../src/application/mainwindow.cpp" line="5097"/>
         <source>Show labels menu</source>
         <translation>Címke menü megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4984"/>
+        <location filename="../src/application/mainwindow.cpp" line="5099"/>
         <source>Close Tab</source>
         <translation>Lap bezárása</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4985"/>
+        <location filename="../src/application/mainwindow.cpp" line="5100"/>
         <source>Close Other Tabs</source>
         <translation>Egyéb lapok bezárása</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4986"/>
+        <location filename="../src/application/mainwindow.cpp" line="5101"/>
         <source>Close All Tabs</source>
         <translation>Az összes lap bezárása</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4987"/>
+        <location filename="../src/application/mainwindow.cpp" line="5102"/>
         <source>Switch to next tab</source>
         <translation>Váltás a következő lapra</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4988"/>
+        <location filename="../src/application/mainwindow.cpp" line="5103"/>
         <source>Switch to previous tab</source>
         <translation>Váltás az előző lapra</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4990"/>
+        <location filename="../src/application/mainwindow.cpp" line="5105"/>
         <source>Unread</source>
         <translation>Olvasatlan</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4991"/>
+        <location filename="../src/application/mainwindow.cpp" line="5106"/>
         <source>Starred</source>
         <translation>Csillagozott</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4992"/>
+        <location filename="../src/application/mainwindow.cpp" line="5107"/>
         <source>Deleted</source>
         <translation>Törölt</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4993"/>
+        <location filename="../src/application/mainwindow.cpp" line="5108"/>
         <source>Labels</source>
         <translation>Címkék</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4995"/>
+        <location filename="../src/application/mainwindow.cpp" line="5110"/>
         <source>Decrease news list/increase browser</source>
         <translation>Hírek lista csökkentése/böngésző növelése</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4996"/>
+        <location filename="../src/application/mainwindow.cpp" line="5111"/>
         <source>Increase news list/decrease browser</source>
         <translation>Hírek lista növelése/böngésző csökkentése</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4998"/>
+        <location filename="../src/application/mainwindow.cpp" line="5113"/>
         <source>Find</source>
         <translation>Keresés</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5000"/>
+        <location filename="../src/application/mainwindow.cpp" line="5115"/>
         <source>Open Homepage Feed</source>
         <translation>Honlap hírcsatorna megnyitása</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5001"/>
+        <location filename="../src/application/mainwindow.cpp" line="5116"/>
         <source>Sort by Name</source>
         <translation>Rendezés Név szerint</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5002"/>
+        <location filename="../src/application/mainwindow.cpp" line="5117"/>
         <source>Collapse All Folders</source>
         <translation>Az összes mappa összezárása</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5003"/>
+        <location filename="../src/application/mainwindow.cpp" line="5118"/>
         <source>Expand All Folders</source>
         <translation>Az összes mappa kibontása</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5004"/>
+        <location filename="../src/application/mainwindow.cpp" line="5119"/>
         <source>Next Folder</source>
         <translation>Következő mappa</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5005"/>
+        <location filename="../src/application/mainwindow.cpp" line="5120"/>
         <source>Previous Folder</source>
         <translation>Előző mappa</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5006"/>
+        <location filename="../src/application/mainwindow.cpp" line="5121"/>
         <source>Expand Folder</source>
         <translation>Mappa kibontása</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5008"/>
+        <location filename="../src/application/mainwindow.cpp" line="5123"/>
         <source>Setting Page: Labels</source>
         <translation>Beállítás lap: Címkék</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5010"/>
+        <location filename="../src/application/mainwindow.cpp" line="5125"/>
         <source>Share</source>
         <translation>Megosztás</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5012"/>
+        <location filename="../src/application/mainwindow.cpp" line="5127"/>
         <source>Sort By</source>
         <translation>Rendezés</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5013"/>
+        <location filename="../src/application/mainwindow.cpp" line="5128"/>
         <source>Ascending</source>
         <translation>Növekvő</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5014"/>
+        <location filename="../src/application/mainwindow.cpp" line="5129"/>
         <source>Descending</source>
         <translation>Csökkenő</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5906"/>
+        <location filename="../src/application/mainwindow.cpp" line="6039"/>
         <source>Check for updates</source>
         <translation>Frissítések ellenőrzése</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5907"/>
+        <location filename="../src/application/mainwindow.cpp" line="6040"/>
         <source>A new version of QuiteRSS...</source>
         <translation>Új QuiteRSS verzió...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="6286"/>
+        <location filename="../src/application/mainwindow.cpp" line="6419"/>
         <source>Loading...</source>
         <translation>Betöltés...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="6871"/>
-        <location filename="../src/application/mainwindow.cpp" line="6888"/>
+        <location filename="../src/application/mainwindow.cpp" line="7039"/>
+        <location filename="../src/application/mainwindow.cpp" line="7056"/>
         <source>Web Page</source>
         <translation>Weblap</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="7445"/>
+        <location filename="../src/application/mainwindow.cpp" line="7614"/>
         <source>Save As</source>
         <translation>Mentés másként</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="7447"/>
+        <location filename="../src/application/mainwindow.cpp" line="7616"/>
         <source>HTML-Files (*.%1)</source>
         <translation>HTML-fájlok (*.%1)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="7447"/>
+        <location filename="../src/application/mainwindow.cpp" line="7616"/>
         <source>Text files (*.%2)</source>
         <translation>Szövegfájlok (*.%2)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="7453"/>
+        <location filename="../src/application/mainwindow.cpp" line="7622"/>
         <source>Save As: can&apos;t open a file</source>
         <translation>Mentés másként: nem lehet megnyitni egy fájlt</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="7949"/>
+        <location filename="../src/application/mainwindow.cpp" line="8118"/>
         <source>Choose Directory</source>
         <translation>Válasszon könyvtárat</translation>
     </message>
@@ -2686,189 +2691,189 @@ Ancient news could reappear</source>
 <context>
     <name>NewsTabWidget</name>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="602"/>
+        <location filename="../src/newstabwidget.cpp" line="606"/>
         <source>Loading... (%p%)</source>
         <translation>Betöltés... (%p%)</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="604"/>
+        <location filename="../src/newstabwidget.cpp" line="608"/>
         <source>Home</source>
         <translation>Főoldal</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="605"/>
+        <location filename="../src/newstabwidget.cpp" line="609"/>
         <source>Open Page in External Browser</source>
         <translation>Lap megnyitása külső böngészőben</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="606"/>
+        <location filename="../src/newstabwidget.cpp" line="610"/>
         <source>Open Link in External Browser</source>
         <translation>Link megnyitása külső böngészőben</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2230"/>
+        <location filename="../src/newstabwidget.cpp" line="2403"/>
         <source>Open Link</source>
         <translation>Link megnyitása</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2231"/>
+        <location filename="../src/newstabwidget.cpp" line="2404"/>
         <source>Open in New Tab</source>
         <translation>Megnyitás új lapon</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2232"/>
+        <location filename="../src/newstabwidget.cpp" line="2405"/>
         <source>Save Link...</source>
         <translation>Hivatkozás mentése...</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2233"/>
+        <location filename="../src/newstabwidget.cpp" line="2406"/>
         <source>Save Image...</source>
         <translation>Kép mentése...</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2234"/>
+        <location filename="../src/newstabwidget.cpp" line="2407"/>
         <source>Copy Link</source>
         <translation>Hivatkozás másolása</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2235"/>
+        <location filename="../src/newstabwidget.cpp" line="2408"/>
         <source>Copy</source>
         <translation>Másolás</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2236"/>
+        <location filename="../src/newstabwidget.cpp" line="2409"/>
         <source>Go Back</source>
         <translation>Ugrás vissza</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2237"/>
+        <location filename="../src/newstabwidget.cpp" line="2410"/>
         <source>Go Forward</source>
         <translation>Ugrás előre</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2238"/>
+        <location filename="../src/newstabwidget.cpp" line="2411"/>
         <source>Stop</source>
         <translation>Leállítás</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2239"/>
+        <location filename="../src/newstabwidget.cpp" line="2412"/>
         <source>Reload</source>
         <translation>Újratöltés</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2240"/>
+        <location filename="../src/newstabwidget.cpp" line="2413"/>
         <source>Copy Image</source>
         <translation>Kép másolása</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2242"/>
+        <location filename="../src/newstabwidget.cpp" line="2415"/>
         <source>Copy Image Address</source>
         <translation>A kép címének másolása</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="615"/>
-        <location filename="../src/newstabwidget.cpp" line="636"/>
+        <location filename="../src/newstabwidget.cpp" line="619"/>
+        <location filename="../src/newstabwidget.cpp" line="640"/>
         <source>Load Images</source>
         <translation>Képek betöltése</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="616"/>
+        <location filename="../src/newstabwidget.cpp" line="620"/>
         <source>Auto Load Images to News View</source>
         <translation>Képek automatikus betöltése a hírek nézetben</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="618"/>
+        <location filename="../src/newstabwidget.cpp" line="622"/>
         <source>No Load Images</source>
         <translation>Ne töltse be a képeket</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="619"/>
+        <location filename="../src/newstabwidget.cpp" line="623"/>
         <source>No Load Images to News View</source>
         <translation>Ne töltse be a képeket hírek nézetben</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="624"/>
+        <location filename="../src/newstabwidget.cpp" line="628"/>
         <source>Close Tab</source>
         <translation>Fül bezárása</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="637"/>
+        <location filename="../src/newstabwidget.cpp" line="641"/>
         <source>Auto Load Images in News View</source>
         <translation>Képek automatikus betöltése a hírek nézetbe</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="640"/>
+        <location filename="../src/newstabwidget.cpp" line="644"/>
         <source>Don&apos;t Load Images</source>
         <translation>Ne töltse be a képeket</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="641"/>
+        <location filename="../src/newstabwidget.cpp" line="645"/>
         <source>Don&apos;t Load Images in News View</source>
         <translation>Ne töltse be a képeket hírek nézetben</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1435"/>
-        <location filename="../src/newstabwidget.cpp" line="1664"/>
+        <location filename="../src/newstabwidget.cpp" line="1505"/>
+        <location filename="../src/newstabwidget.cpp" line="1782"/>
         <source>Comments</source>
         <translation>Megjegyzések</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1441"/>
-        <location filename="../src/newstabwidget.cpp" line="1670"/>
+        <location filename="../src/newstabwidget.cpp" line="1512"/>
+        <location filename="../src/newstabwidget.cpp" line="1788"/>
         <source>Author: %1</source>
         <translation>Készítő: %1</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1472"/>
-        <location filename="../src/newstabwidget.cpp" line="1701"/>
+        <location filename="../src/newstabwidget.cpp" line="1566"/>
+        <location filename="../src/newstabwidget.cpp" line="1819"/>
         <source>audio</source>
         <translation>audió</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1477"/>
-        <location filename="../src/newstabwidget.cpp" line="1706"/>
+        <location filename="../src/newstabwidget.cpp" line="1572"/>
+        <location filename="../src/newstabwidget.cpp" line="1824"/>
         <source>video</source>
         <translation>videó</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1481"/>
-        <location filename="../src/newstabwidget.cpp" line="1710"/>
+        <location filename="../src/newstabwidget.cpp" line="1578"/>
+        <location filename="../src/newstabwidget.cpp" line="1828"/>
         <source>media</source>
         <translation>média</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1484"/>
-        <location filename="../src/newstabwidget.cpp" line="1713"/>
+        <location filename="../src/newstabwidget.cpp" line="1582"/>
+        <location filename="../src/newstabwidget.cpp" line="1831"/>
         <source>Link to</source>
         <translation>Hivatkozás a következőhöz:</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1594"/>
+        <location filename="../src/newstabwidget.cpp" line="1712"/>
         <source>Mark Read/Unread</source>
         <translation>Megjelölés olvasottként/olvasatlanként</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1731"/>
+        <location filename="../src/newstabwidget.cpp" line="1849"/>
         <source>Mark News Star</source>
         <translation>Hírek megjelölése csillaggal</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1735"/>
+        <location filename="../src/newstabwidget.cpp" line="1853"/>
         <source>Label</source>
         <translation>Címke</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1739"/>
+        <location filename="../src/newstabwidget.cpp" line="1857"/>
         <source>Share</source>
         <translation>Megosztás</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1743"/>
+        <location filename="../src/newstabwidget.cpp" line="1861"/>
         <source>Open News in External Browser</source>
         <translation>Hírek megnyitása külső böngészőben</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1747"/>
+        <location filename="../src/newstabwidget.cpp" line="1865"/>
         <source>Delete</source>
         <translation>Törlés</translation>
     </message>
@@ -2917,8 +2922,8 @@ Ancient news could reappear</source>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="65"/>
-        <location filename="../src/optionsdialog.cpp" line="748"/>
-        <location filename="../src/optionsdialog.cpp" line="1000"/>
+        <location filename="../src/optionsdialog.cpp" line="742"/>
+        <location filename="../src/optionsdialog.cpp" line="1023"/>
         <source>General</source>
         <translation>Általános</translation>
     </message>
@@ -2939,19 +2944,19 @@ Ancient news could reappear</source>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="77"/>
-        <location filename="../src/optionsdialog.cpp" line="1141"/>
+        <location filename="../src/optionsdialog.cpp" line="1233"/>
         <source>Feeds</source>
         <translation>Hírcsatornák</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="80"/>
-        <location filename="../src/optionsdialog.cpp" line="1886"/>
+        <location filename="../src/optionsdialog.cpp" line="1978"/>
         <source>Labels</source>
         <translation>Címkék</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="83"/>
-        <location filename="../src/optionsdialog.cpp" line="1888"/>
+        <location filename="../src/optionsdialog.cpp" line="1980"/>
         <source>Notifications</source>
         <translation>Értesítések</translation>
     </message>
@@ -2962,7 +2967,7 @@ Ancient news could reappear</source>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="89"/>
-        <location filename="../src/optionsdialog.cpp" line="1313"/>
+        <location filename="../src/optionsdialog.cpp" line="1405"/>
         <source>Language</source>
         <translation>Nyelv</translation>
     </message>
@@ -2978,7 +2983,7 @@ Ancient news could reappear</source>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="267"/>
-        <location filename="../src/optionsdialog.cpp" line="2218"/>
+        <location filename="../src/optionsdialog.cpp" line="2310"/>
         <source>Warning: key is already assigned to</source>
         <translation>Figyelem: a billentyű már hozzá van rendelve:</translation>
     </message>
@@ -3039,7 +3044,7 @@ Ancient news could reappear</source>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="311"/>
-        <location filename="../src/optionsdialog.cpp" line="772"/>
+        <location filename="../src/optionsdialog.cpp" line="765"/>
         <source>minutes</source>
         <translation>percben</translation>
     </message>
@@ -3187,15 +3192,15 @@ Ancient news could reappear</source>
         <location filename="../src/optionsdialog.cpp" line="511"/>
         <location filename="../src/optionsdialog.cpp" line="525"/>
         <location filename="../src/optionsdialog.cpp" line="606"/>
-        <location filename="../src/optionsdialog.cpp" line="726"/>
-        <location filename="../src/optionsdialog.cpp" line="860"/>
-        <location filename="../src/optionsdialog.cpp" line="1181"/>
+        <location filename="../src/optionsdialog.cpp" line="720"/>
+        <location filename="../src/optionsdialog.cpp" line="869"/>
+        <location filename="../src/optionsdialog.cpp" line="1273"/>
         <source>Browse...</source>
         <translation>Tallózás...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="513"/>
-        <location filename="../src/optionsdialog.cpp" line="2104"/>
+        <location filename="../src/optionsdialog.cpp" line="2196"/>
         <source>Load images</source>
         <translation>Képek betöltése</translation>
     </message>
@@ -3270,662 +3275,682 @@ Ancient news could reappear</source>
         <translation>Lemez gyorsítótár használata</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="643"/>
+        <location filename="../src/optionsdialog.cpp" line="633"/>
         <source>Allow local data to be set</source>
         <translation>Helyi adat beállítások engedélyezése</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="644"/>
+        <location filename="../src/optionsdialog.cpp" line="634"/>
         <source>Keep local data only until quit application</source>
         <translation>A helyi adatok megőrzése csak addig, amíg az alkalmazás kilép</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="645"/>
+        <location filename="../src/optionsdialog.cpp" line="635"/>
         <source>Block sites from setting any data</source>
         <translation>Oldalak blokkolása bármilyen adat beállításból</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="646"/>
+        <location filename="../src/optionsdialog.cpp" line="636"/>
         <source>Clear</source>
         <translation>Törlés</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="662"/>
+        <location filename="../src/optionsdialog.cpp" line="655"/>
         <source>Cookies:</source>
         <translation>Cookie-k</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="670"/>
+        <location filename="../src/optionsdialog.cpp" line="664"/>
         <source>Click To Flash is a plugin which blocks auto loading of Flash content at page. You can always load it manually by clicking on the Flash play icon.</source>
         <translation>A Click To Flash egy beépülő modul, amely blokkolja a Flash tartalmak automatikus betöltését a lapon. Azok maniuális betöltéséhez, kattintson a Flash lejátszása ikonra.</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="675"/>
+        <location filename="../src/optionsdialog.cpp" line="669"/>
         <source>Use Click to Flash</source>
         <translation>A Click to Flash használata</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="687"/>
+        <location filename="../src/optionsdialog.cpp" line="681"/>
         <source>Add...</source>
         <translation>Hozzáadás...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="689"/>
+        <location filename="../src/optionsdialog.cpp" line="683"/>
         <source>Remove...</source>
         <translation>Eltávolítás...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="730"/>
+        <location filename="../src/optionsdialog.cpp" line="724"/>
         <source>Ask where to save each file before downloading</source>
         <translation>Kérdezzen rá a fájlok mentési helyére letöltés előtt</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="740"/>
+        <location filename="../src/optionsdialog.cpp" line="734"/>
         <source>Download location:</source>
         <translation>Letöltési hely:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="749"/>
+        <location filename="../src/optionsdialog.cpp" line="743"/>
         <source>History</source>
         <translation>Előzmények</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="750"/>
-        <source>Privacy</source>
-        <translation>Adatvédelem</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="751"/>
+        <location filename="../src/optionsdialog.cpp" line="744"/>
         <source>Click to Flash</source>
         <translation>Click to Flash</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="752"/>
+        <location filename="../src/optionsdialog.cpp" line="745"/>
         <source>Downloads</source>
         <translation>Letöltések</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="761"/>
+        <location filename="../src/optionsdialog.cpp" line="754"/>
         <source>Automatically update the feeds on startup</source>
         <translation>A hírcsatornák automatikusan frissítése indításkor</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="762"/>
+        <location filename="../src/optionsdialog.cpp" line="755"/>
         <source>Automatically update the feeds every</source>
         <translation>A hírcsatornák automatikus frissítése minden</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="772"/>
-        <location filename="../src/optionsdialog.cpp" line="917"/>
-        <location filename="../src/optionsdialog.cpp" line="1121"/>
+        <location filename="../src/optionsdialog.cpp" line="765"/>
+        <location filename="../src/optionsdialog.cpp" line="922"/>
+        <location filename="../src/optionsdialog.cpp" line="1213"/>
         <source>seconds</source>
         <translation>másodperc után</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="772"/>
+        <location filename="../src/optionsdialog.cpp" line="765"/>
         <source>hours</source>
         <translation>órában</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="788"/>
+        <location filename="../src/optionsdialog.cpp" line="781"/>
         <source>Nothing to do</source>
         <translation>Nincs művelet</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="803"/>
+        <location filename="../src/optionsdialog.cpp" line="812"/>
         <source>Dec</source>
         <translation>Dec</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="804"/>
+        <location filename="../src/optionsdialog.cpp" line="813"/>
         <source>December</source>
         <translation>December</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="827"/>
+        <location filename="../src/optionsdialog.cpp" line="836"/>
         <source>Display format for date:</source>
         <translation>A dátum megjelenítési formátuma:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="830"/>
+        <location filename="../src/optionsdialog.cpp" line="839"/>
         <source>time:</source>
         <translation>idő:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="834"/>
+        <location filename="../src/optionsdialog.cpp" line="843"/>
         <source>Alternating row background colors</source>
         <translation>Váltakozó sor háttérszínek</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="835"/>
+        <location filename="../src/optionsdialog.cpp" line="844"/>
         <source>Simplified representation of date and time</source>
         <translation>Egyszerűsített dátum és időpont ábrázolás</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="838"/>
+        <location filename="../src/optionsdialog.cpp" line="847"/>
         <source>Show All</source>
         <translation>Összes megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="838"/>
+        <location filename="../src/optionsdialog.cpp" line="847"/>
         <source>Show New</source>
         <translation>Új megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="838"/>
+        <location filename="../src/optionsdialog.cpp" line="847"/>
         <source>Show Unread</source>
         <translation>Olvasatlan megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="839"/>
+        <location filename="../src/optionsdialog.cpp" line="848"/>
         <source>Show Starred</source>
         <translation>Csillagozott megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="839"/>
+        <location filename="../src/optionsdialog.cpp" line="848"/>
         <source>Show Not Starred</source>
         <translation>Nem csillagozott megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="840"/>
+        <location filename="../src/optionsdialog.cpp" line="849"/>
         <source>Show Unread or Starred</source>
         <translation>Olvasatlan vagy csillagozott megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="840"/>
+        <location filename="../src/optionsdialog.cpp" line="849"/>
         <source>Show Last Day</source>
         <translation>Utolsó nap megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="841"/>
+        <location filename="../src/optionsdialog.cpp" line="850"/>
         <source>Show Last 7 Days</source>
         <translation>Utolsó 7 nap megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="882"/>
+        <location filename="../src/optionsdialog.cpp" line="888"/>
         <source>Style sheet for news:</source>
         <translation>Hírek stíluslap:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="890"/>
+        <location filename="../src/optionsdialog.cpp" line="901"/>
         <source>Mark news as read:</source>
         <translation>Hírek megjelölése olvasottként:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="892"/>
+        <location filename="../src/optionsdialog.cpp" line="911"/>
         <source>on selecting. With timeout</source>
         <translation>kijelölésnél. Késleltetéssel</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="893"/>
+        <location filename="../src/optionsdialog.cpp" line="928"/>
         <source>after switching to another news</source>
         <translation>másik hírre váltás után</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="899"/>
+        <location filename="../src/optionsdialog.cpp" line="934"/>
         <source>Mark displayed news as read when switching feeds</source>
         <translation>A megjelenített hírek megjelölése olvasottként hírcsatorna váltáskor</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="900"/>
+        <location filename="../src/optionsdialog.cpp" line="935"/>
         <source>Mark displayed news as read when closing tab</source>
         <translation>A megjelenített hírek megjelölése olvasottként a lap bezárásakor</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="901"/>
+        <location filename="../src/optionsdialog.cpp" line="936"/>
         <source>Mark displayed news as read on minimize</source>
         <translation>A megjelenített hírek megjelölése olvasottként minimalizáláskor</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="906"/>
+        <location filename="../src/optionsdialog.cpp" line="947"/>
         <source>Change behavior of action &apos;Next Unread News&apos;</source>
         <translation>A &quot;Következő olvasatlan hírek&quot; művelet viselkedésének módosítása</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="908"/>
+        <location filename="../src/optionsdialog.cpp" line="940"/>
         <source>starred news</source>
         <translation>csillagozott hír</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="909"/>
+        <location filename="../src/optionsdialog.cpp" line="941"/>
         <source>labeled news</source>
         <translation>címkézett hír</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="911"/>
+        <location filename="../src/optionsdialog.cpp" line="794"/>
         <source>Automatically mark identical news as read</source>
         <translation>Azonos hírek automatikus megjelölése olvasottként</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="938"/>
+        <location filename="../src/optionsdialog.cpp" line="958"/>
         <source>Prevent accidental deletion of:</source>
         <translation>Véletlen törlés megakadályozása:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="950"/>
+        <location filename="../src/optionsdialog.cpp" line="973"/>
         <source>Enable cleanup on shutdown</source>
         <translation>Tisztítás engedélyezése leállításnál</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="953"/>
+        <location filename="../src/optionsdialog.cpp" line="976"/>
         <source>Maximum age of news in days to keep:</source>
         <translation>A megtartandó hírek maximális ideje napban:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="960"/>
+        <location filename="../src/optionsdialog.cpp" line="983"/>
         <source>Maximum number of news to keep:</source>
         <translation>A megtartandó hírek maximális száma:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="967"/>
+        <location filename="../src/optionsdialog.cpp" line="990"/>
         <source>Delete read news</source>
         <translation>Olvasott hírek törlése</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="968"/>
+        <location filename="../src/optionsdialog.cpp" line="991"/>
         <source>Never delete unread news</source>
         <translation>Soha ne törölje az olvasatlan híreket</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="969"/>
+        <location filename="../src/optionsdialog.cpp" line="992"/>
         <source>Never delete starred news</source>
         <translation>Soha ne törölje a csillagozott híreket</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="970"/>
+        <location filename="../src/optionsdialog.cpp" line="993"/>
         <source>Never delete labeled news</source>
         <translation>Soha ne törölje a megjelölt híreket</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="972"/>
+        <location filename="../src/optionsdialog.cpp" line="995"/>
         <source>Clean up &apos;Deleted&apos;</source>
         <translation>A &apos;Törölt&apos; eltávolítása</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="973"/>
+        <location filename="../src/optionsdialog.cpp" line="996"/>
         <source>Enable DB optimization (slower shutdown)</source>
         <translation>DB optimalizálás engedélyezése (lassabb leállítás)</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1001"/>
+        <location filename="../src/optionsdialog.cpp" line="1025"/>
         <source>Reading</source>
         <translation>Olvasás</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1002"/>
+        <location filename="../src/optionsdialog.cpp" line="1026"/>
         <source>Clean Up</source>
         <translation>Törlés</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1019"/>
+        <location filename="../src/optionsdialog.cpp" line="1111"/>
         <source>New...</source>
         <translation>Új...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1021"/>
+        <location filename="../src/optionsdialog.cpp" line="1113"/>
         <source>Edit...</source>
         <translation>Szerkesztés...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1024"/>
+        <location filename="../src/optionsdialog.cpp" line="1116"/>
         <source>Delete...</source>
         <translation>Törlés...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1028"/>
+        <location filename="../src/optionsdialog.cpp" line="1120"/>
         <source>Move up</source>
         <translation>Feljebb</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1031"/>
+        <location filename="../src/optionsdialog.cpp" line="1123"/>
         <source>Move down</source>
         <translation>Lejjebb</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1085"/>
+        <location filename="../src/optionsdialog.cpp" line="1177"/>
         <source>Show when inactive main window</source>
         <translation>Megjelenítés, ha a főablak inaktív</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1100"/>
+        <location filename="../src/optionsdialog.cpp" line="1192"/>
         <source>Screen</source>
         <translation>Képernyő</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1110"/>
+        <location filename="../src/optionsdialog.cpp" line="1202"/>
         <source>Transparency</source>
         <translation>Átlátszóság</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1124"/>
+        <location filename="../src/optionsdialog.cpp" line="1216"/>
         <source>Show titles feeds</source>
         <translation>Hírcsatorna címek megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1125"/>
+        <location filename="../src/optionsdialog.cpp" line="1217"/>
         <source>Show icon feed</source>
         <translation>Hírcsatorna ikon megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1126"/>
+        <location filename="../src/optionsdialog.cpp" line="1218"/>
         <source>Show button &apos;Mark All News Read&apos;</source>
         <translation>&apos;Összes hír megjelölése olvasottként&apos; gomb megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1127"/>
+        <location filename="../src/optionsdialog.cpp" line="1219"/>
         <source>Show button &apos;Mark Read/Unread&apos;</source>
         <translation>&apos;Megjelölés olvasottként/olvasatlanként&apos; gomb megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1128"/>
+        <location filename="../src/optionsdialog.cpp" line="1220"/>
         <source>Show button &apos;Open in External Browser&apos;</source>
         <translation>&apos;Megnyitás külső böngészőben&apos; gomb megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1129"/>
+        <location filename="../src/optionsdialog.cpp" line="1221"/>
         <source>Show button &apos;Delete News&apos;</source>
         <translation>&apos;Hírek törlése&apos; gomb megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1176"/>
+        <location filename="../src/optionsdialog.cpp" line="1268"/>
         <source>Play sound for incoming new news</source>
         <translation>Hangjelzés a bejövő hírek esetén</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1182"/>
+        <location filename="../src/optionsdialog.cpp" line="1274"/>
         <source>Play</source>
         <translation>Lejátszás</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1064"/>
+        <location filename="../src/optionsdialog.cpp" line="1156"/>
         <source>Display notification for incoming news</source>
         <translation>Értesítés megjelenítése a bejövő hírekről</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1077"/>
+        <location filename="../src/optionsdialog.cpp" line="1169"/>
         <source>Top Left</source>
         <translation>Balra fent</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1077"/>
+        <location filename="../src/optionsdialog.cpp" line="1169"/>
         <source>Top Right</source>
         <translation>Jobbra fent</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1078"/>
+        <location filename="../src/optionsdialog.cpp" line="1170"/>
         <source>Bottom Left</source>
         <translation>Balra lent</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1078"/>
+        <location filename="../src/optionsdialog.cpp" line="1170"/>
         <source>Bottom Right</source>
         <translation>Jobbra lent</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1096"/>
+        <location filename="../src/optionsdialog.cpp" line="1188"/>
         <source>Review</source>
         <translation>Áttekintés</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1103"/>
+        <location filename="../src/optionsdialog.cpp" line="1195"/>
         <source>Position</source>
         <translation>Pozíció</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1113"/>
+        <location filename="../src/optionsdialog.cpp" line="1205"/>
         <source>Show maximum of</source>
         <translation>Maximális megjelenítés</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1115"/>
+        <location filename="../src/optionsdialog.cpp" line="1207"/>
         <source>item on page notification</source>
         <translation>elem az értesítési oldalon</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1116"/>
+        <location filename="../src/optionsdialog.cpp" line="1208"/>
         <source>Width list items</source>
         <translation>Listaelemek szélessége</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1118"/>
+        <location filename="../src/optionsdialog.cpp" line="1210"/>
         <source>pixels</source>
         <translation>képpont</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1119"/>
+        <location filename="../src/optionsdialog.cpp" line="1211"/>
         <source>Close notification after</source>
         <translation>Bezárás az értesítést követő</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1081"/>
+        <location filename="../src/optionsdialog.cpp" line="1173"/>
         <source>Do not show notification in fullscreen mode</source>
         <translation>Ne jelenjen meg értesítés a teljes képernyős módban</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1140"/>
+        <location filename="../src/optionsdialog.cpp" line="1024"/>
+        <source>Display</source>
+        <translation>Kijelző</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1032"/>
+        <source>Action mouse on news opening:</source>
+        <translation>Egérművelet a hírek megnyitásánál:</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1073"/>
+        <source>Single Click:</source>
+        <translation>Egy kattintás:</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1076"/>
+        <source>Double Click:</source>
+        <translation>Dupla kattintás:</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1079"/>
+        <source>Middle Click:</source>
+        <translation>Középső kattintás:</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1232"/>
         <source>Only show selected feeds:</source>
         <translation>Csak a kijelölt hírcsatornák megjelenítése:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1205"/>
+        <location filename="../src/optionsdialog.cpp" line="1297"/>
         <source>Notification</source>
         <translation>Értesítés</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1206"/>
+        <location filename="../src/optionsdialog.cpp" line="1298"/>
         <source>Sound</source>
         <translation>Hang</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1217"/>
+        <location filename="../src/optionsdialog.cpp" line="1309"/>
         <source>Selection of feeds</source>
         <translation>Hírcsatornák kiválasztása</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1233"/>
+        <location filename="../src/optionsdialog.cpp" line="1325"/>
         <source>All Feeds</source>
         <translation>Az összes hírcsatorna</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1260"/>
+        <location filename="../src/optionsdialog.cpp" line="1352"/>
         <source>Site</source>
         <translation>Oldal</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1260"/>
+        <location filename="../src/optionsdialog.cpp" line="1352"/>
         <source>User</source>
         <translation>Felhasználó</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1260"/>
+        <location filename="../src/optionsdialog.cpp" line="1352"/>
         <source>Password</source>
         <translation>Jelszó</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1277"/>
+        <location filename="../src/optionsdialog.cpp" line="1369"/>
         <source>Delete</source>
         <translation>Törlés</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1279"/>
+        <location filename="../src/optionsdialog.cpp" line="1371"/>
         <source>Delete All</source>
         <translation>Az összes törlése</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1281"/>
+        <location filename="../src/optionsdialog.cpp" line="1373"/>
         <source>Show Passwords</source>
         <translation>Jelszavak megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1313"/>
+        <location filename="../src/optionsdialog.cpp" line="1405"/>
         <source>Version</source>
         <translation>Verzió</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1314"/>
+        <location filename="../src/optionsdialog.cpp" line="1406"/>
         <source>Author</source>
         <translation>Készítő</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1314"/>
+        <location filename="../src/optionsdialog.cpp" line="1406"/>
         <source>Contact</source>
         <translation>Kapcsolat</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1580"/>
+        <location filename="../src/optionsdialog.cpp" line="1672"/>
         <source>Choose language:</source>
         <translation>Válasszon nyelvet:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1601"/>
+        <location filename="../src/optionsdialog.cpp" line="1693"/>
         <source>Type</source>
         <translation>Típus</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1601"/>
+        <location filename="../src/optionsdialog.cpp" line="1693"/>
         <source>Font</source>
         <translation>Betűtípus</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1605"/>
+        <location filename="../src/optionsdialog.cpp" line="1697"/>
         <source>Feeds list font</source>
         <translation>Hírcsatorna lista betűtípusa</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1608"/>
+        <location filename="../src/optionsdialog.cpp" line="1700"/>
         <source>News list font</source>
         <translation>Hírek lista betűtipusa</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1611"/>
+        <location filename="../src/optionsdialog.cpp" line="1703"/>
         <source>News title font</source>
         <translation>Hírek címsorának betűtípusa</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1614"/>
+        <location filename="../src/optionsdialog.cpp" line="1706"/>
         <source>News text font</source>
         <translation>Hírek szövegének betűtípusa</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1617"/>
+        <location filename="../src/optionsdialog.cpp" line="1709"/>
         <source>Notification font</source>
         <translation>Értesítések betűtípusa</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1624"/>
-        <location filename="../src/optionsdialog.cpp" line="1725"/>
+        <location filename="../src/optionsdialog.cpp" line="1716"/>
+        <location filename="../src/optionsdialog.cpp" line="1817"/>
         <source>Change...</source>
         <translation>Módosítás...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1626"/>
-        <location filename="../src/optionsdialog.cpp" line="1727"/>
-        <location filename="../src/optionsdialog.cpp" line="1839"/>
+        <location filename="../src/optionsdialog.cpp" line="1718"/>
+        <location filename="../src/optionsdialog.cpp" line="1819"/>
+        <location filename="../src/optionsdialog.cpp" line="1931"/>
         <source>Reset</source>
         <translation>Visszaállítás</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1651"/>
+        <location filename="../src/optionsdialog.cpp" line="1743"/>
         <source>Feeds list color</source>
         <translation>Hírcsatorna lista színe</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1654"/>
+        <location filename="../src/optionsdialog.cpp" line="1746"/>
         <source>Feeds list background</source>
         <translation>Hírcsatorna lista háttere</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1657"/>
+        <location filename="../src/optionsdialog.cpp" line="1749"/>
         <source>News list color</source>
         <translation>Hírek lista színe</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1660"/>
+        <location filename="../src/optionsdialog.cpp" line="1752"/>
         <source>News list background</source>
         <translation>Hírek lista háttere</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1663"/>
+        <location filename="../src/optionsdialog.cpp" line="1755"/>
         <source>Focused news color</source>
         <translation>Fókuszban lévő hírek színe</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1666"/>
+        <location filename="../src/optionsdialog.cpp" line="1758"/>
         <source>Focused news background color</source>
         <translation>Fókuszban lévő hírek háttérszíne</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1669"/>
+        <location filename="../src/optionsdialog.cpp" line="1761"/>
         <source>Link color</source>
         <translation>Hivatkozás színe</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1672"/>
+        <location filename="../src/optionsdialog.cpp" line="1764"/>
         <source>Title color</source>
         <translation>Felirat színe</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1675"/>
+        <location filename="../src/optionsdialog.cpp" line="1767"/>
         <source>Date color</source>
         <translation>Dátum színe</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1678"/>
+        <location filename="../src/optionsdialog.cpp" line="1770"/>
         <source>Author color</source>
         <translation>Készítő színe</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1681"/>
+        <location filename="../src/optionsdialog.cpp" line="1773"/>
         <source>News text color</source>
         <translation>Hírek szövegének színe</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1684"/>
+        <location filename="../src/optionsdialog.cpp" line="1776"/>
         <source>News title background</source>
         <translation>Hírek címének háttére</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1687"/>
+        <location filename="../src/optionsdialog.cpp" line="1779"/>
         <source>News background</source>
         <translation>Hírek háttér</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1690"/>
+        <location filename="../src/optionsdialog.cpp" line="1782"/>
         <source>Feed with new news</source>
         <translation>Hírcsatorna új hírekkel</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1693"/>
+        <location filename="../src/optionsdialog.cpp" line="1785"/>
         <source>Count of unread news in feeds tree</source>
         <translation>Olvasatlan hírek száma a hírcsatornák fában</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1708"/>
+        <location filename="../src/optionsdialog.cpp" line="1800"/>
         <source>Disabled feed</source>
         <translation>Letiltott hírcsatorna</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1711"/>
+        <location filename="../src/optionsdialog.cpp" line="1803"/>
         <source>Alternating row colors</source>
         <translation>Váltakozó sorszínek</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1714"/>
+        <location filename="../src/optionsdialog.cpp" line="1806"/>
         <source>Notification text color</source>
         <translation>Értesítés szöveg színe</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1717"/>
+        <location filename="../src/optionsdialog.cpp" line="1809"/>
         <source>Notification background color</source>
         <translation>Értesítés háttérszíne</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2109"/>
+        <location filename="../src/optionsdialog.cpp" line="2201"/>
         <source>Auto load images in news view</source>
         <translation>Képek automatikus betöltése a hírek nézetbe</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1696"/>
+        <location filename="../src/optionsdialog.cpp" line="1788"/>
         <source>Text color of new news</source>
         <translation>Új hírek szövegszíne</translation>
     </message>
@@ -3940,180 +3965,180 @@ Ancient news could reappear</source>
         <translation>Az új státusz törlése a tálcára küldéskor</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="784"/>
+        <location filename="../src/optionsdialog.cpp" line="777"/>
         <source>Set focus on the last opened news</source>
         <translation>Fókusz ráállítása az utoljára megnyitott hírekre</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="785"/>
+        <location filename="../src/optionsdialog.cpp" line="778"/>
         <source>Set focus at the top of news list</source>
         <translation>Fókusz ráállítása a hírek lista tetejére</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="786"/>
+        <location filename="../src/optionsdialog.cpp" line="779"/>
         <source>Set focus on the unread news</source>
         <translation>Fókusz ráállítása az olvasatlan hírekre</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="787"/>
+        <location filename="../src/optionsdialog.cpp" line="780"/>
         <source>Open the news</source>
         <translation>Hírek megnyitása</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="855"/>
+        <location filename="../src/optionsdialog.cpp" line="864"/>
         <source>Default news filter:</source>
         <translation>Alapértelmezett hírek szűrő:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="873"/>
+        <location filename="../src/optionsdialog.cpp" line="800"/>
         <source>Action on feed opening:</source>
         <translation>Művelet  hírcsatorna megnyitásakor:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="904"/>
+        <location filename="../src/optionsdialog.cpp" line="878"/>
         <source>Show news description instead of loading web page</source>
         <translation>Hírleírások megjelenítése a weblap betöltése helyett</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1699"/>
+        <location filename="../src/optionsdialog.cpp" line="1791"/>
         <source>Text color of unread news</source>
         <translation>Olvasatlan hírek szövegszíne</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1702"/>
+        <location filename="../src/optionsdialog.cpp" line="1794"/>
         <source>Focused feed color</source>
         <translation>Fókuszban lévő hírcsatorna színe</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1705"/>
+        <location filename="../src/optionsdialog.cpp" line="1797"/>
         <source>Focused feed background color</source>
         <translation>Fókuszban lévő hírcsatorna háttérszíne</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1753"/>
+        <location filename="../src/optionsdialog.cpp" line="1845"/>
         <source>Standard</source>
         <translation>Standard</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1755"/>
+        <location filename="../src/optionsdialog.cpp" line="1847"/>
         <source>Fixed</source>
         <translation>Rögzített</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1757"/>
+        <location filename="../src/optionsdialog.cpp" line="1849"/>
         <source>Serif</source>
         <translation>Serif</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1759"/>
+        <location filename="../src/optionsdialog.cpp" line="1851"/>
         <source>Sans Serif</source>
         <translation>Sans Serif</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1761"/>
+        <location filename="../src/optionsdialog.cpp" line="1853"/>
         <source>Cursive</source>
         <translation>Kurzív</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1763"/>
+        <location filename="../src/optionsdialog.cpp" line="1855"/>
         <source>Fantasy</source>
         <translation>Fantasy</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1778"/>
+        <location filename="../src/optionsdialog.cpp" line="1870"/>
         <source>Default font size</source>
         <translation>Alapértelmezett betűméret</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1780"/>
+        <location filename="../src/optionsdialog.cpp" line="1872"/>
         <source>Fixed font size</source>
         <translation>Rögzített betűméret</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1782"/>
+        <location filename="../src/optionsdialog.cpp" line="1874"/>
         <source>Minimum font size</source>
         <translation>Legkisebb betűméret</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1784"/>
+        <location filename="../src/optionsdialog.cpp" line="1876"/>
         <source>Minimum logical font size</source>
         <translation>Legkisebb logikai betűméret</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1788"/>
+        <location filename="../src/optionsdialog.cpp" line="1880"/>
         <source>Font families:</source>
         <translation>Betűcsaládok:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1790"/>
+        <location filename="../src/optionsdialog.cpp" line="1882"/>
         <source>Font sizes:</source>
         <translation>Betűméretek:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1799"/>
+        <location filename="../src/optionsdialog.cpp" line="1891"/>
         <source>Fonts</source>
         <translation>Betűtípusok</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1800"/>
+        <location filename="../src/optionsdialog.cpp" line="1892"/>
         <source>Fonts Browser</source>
         <translation>Betűtípus böngésző</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1801"/>
+        <location filename="../src/optionsdialog.cpp" line="1893"/>
         <source>Colors</source>
         <translation>Színek</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1808"/>
+        <location filename="../src/optionsdialog.cpp" line="1900"/>
         <source>Filter</source>
         <translation>Szűrő</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1834"/>
+        <location filename="../src/optionsdialog.cpp" line="1926"/>
         <source>Action</source>
         <translation>Művelet</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1834"/>
+        <location filename="../src/optionsdialog.cpp" line="1926"/>
         <source>Description</source>
         <translation>Leírás</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1834"/>
+        <location filename="../src/optionsdialog.cpp" line="1926"/>
         <source>Shortcut</source>
         <translation>Gyorsbillentyű</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1842"/>
+        <location filename="../src/optionsdialog.cpp" line="1934"/>
         <source>Shortcut:</source>
         <translation>Gyorsbillentyű:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2273"/>
-        <location filename="../src/optionsdialog.cpp" line="2308"/>
+        <location filename="../src/optionsdialog.cpp" line="2365"/>
+        <location filename="../src/optionsdialog.cpp" line="2400"/>
         <source>Open File...</source>
         <translation>Fájl megnyitása...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2293"/>
-        <location filename="../src/optionsdialog.cpp" line="2805"/>
+        <location filename="../src/optionsdialog.cpp" line="2385"/>
+        <location filename="../src/optionsdialog.cpp" line="2897"/>
         <source>Select Style Sheet File</source>
         <translation>Stíluslap-fájl kiválasztása</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2814"/>
-        <location filename="../src/optionsdialog.cpp" line="2843"/>
+        <location filename="../src/optionsdialog.cpp" line="2906"/>
+        <location filename="../src/optionsdialog.cpp" line="2935"/>
         <source>Open Directory...</source>
         <translation>Könyvtár megnyitása...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2824"/>
+        <location filename="../src/optionsdialog.cpp" line="2916"/>
         <source>Add site to whitelist</source>
         <translation>Oldal hozzáadása a fehérlistához</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2825"/>
+        <location filename="../src/optionsdialog.cpp" line="2917"/>
         <source>Site without &apos;http://&apos; (ex. youtube.com)</source>
         <translation>Oldal &apos;http://&apos; (ex. youtube.com) nélkül</translation>
     </message>
@@ -4121,17 +4146,17 @@ Ancient news could reappear</source>
 <context>
     <name>QAbstractSpinBox</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5038"/>
+        <location filename="../src/application/mainwindow.cpp" line="5153"/>
         <source>&amp;Step up</source>
         <translation>&amp;Felfelé</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5039"/>
+        <location filename="../src/application/mainwindow.cpp" line="5154"/>
         <source>Step &amp;down</source>
         <translation>&amp;Lefelé</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5040"/>
+        <location filename="../src/application/mainwindow.cpp" line="5155"/>
         <source>&amp;Select All</source>
         <translation>Az ö&amp;sszes kijelölése</translation>
     </message>
@@ -4139,22 +4164,22 @@ Ancient news could reappear</source>
 <context>
     <name>QDialogButtonBox</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5016"/>
+        <location filename="../src/application/mainwindow.cpp" line="5131"/>
         <source>Close</source>
         <translation>Bezárás</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5017"/>
+        <location filename="../src/application/mainwindow.cpp" line="5132"/>
         <source>Cancel</source>
         <translation>Mégse</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5018"/>
+        <location filename="../src/application/mainwindow.cpp" line="5133"/>
         <source>&amp;Yes</source>
         <translation>&amp;Igen</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5019"/>
+        <location filename="../src/application/mainwindow.cpp" line="5134"/>
         <source>&amp;No</source>
         <translation>&amp;Nem</translation>
     </message>
@@ -4268,37 +4293,37 @@ Ancient news could reappear</source>
 <context>
     <name>QLineEdit</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5021"/>
+        <location filename="../src/application/mainwindow.cpp" line="5136"/>
         <source>&amp;Undo</source>
         <translation>Visszavonás</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5022"/>
+        <location filename="../src/application/mainwindow.cpp" line="5137"/>
         <source>&amp;Redo</source>
         <translation>Ismételt végrehajtás</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5023"/>
+        <location filename="../src/application/mainwindow.cpp" line="5138"/>
         <source>Cu&amp;t</source>
         <translation>Kivágás</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5024"/>
+        <location filename="../src/application/mainwindow.cpp" line="5139"/>
         <source>&amp;Copy</source>
         <translation>&amp;Másolás</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5025"/>
+        <location filename="../src/application/mainwindow.cpp" line="5140"/>
         <source>&amp;Paste</source>
         <translation>Beillesztés</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5026"/>
+        <location filename="../src/application/mainwindow.cpp" line="5141"/>
         <source>Delete</source>
         <translation>Törlés</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5027"/>
+        <location filename="../src/application/mainwindow.cpp" line="5142"/>
         <source>Select All</source>
         <translation>Az összes kijelölése</translation>
     </message>
@@ -4306,7 +4331,7 @@ Ancient news could reappear</source>
 <context>
     <name>QMultiInputContext</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5042"/>
+        <location filename="../src/application/mainwindow.cpp" line="5157"/>
         <source>Select IM</source>
         <translation>IM kiválasztása</translation>
     </message>
@@ -4314,17 +4339,17 @@ Ancient news could reappear</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/downloads/downloadmanager.cpp" line="175"/>
+        <location filename="../src/downloads/downloadmanager.cpp" line="177"/>
         <source>Cannot start external program</source>
         <translation>Nem indítható el a külső program</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloadmanager.cpp" line="176"/>
+        <location filename="../src/downloads/downloadmanager.cpp" line="178"/>
         <source>Cannot start external program! %1</source>
         <translation>Nem indítható el a külső program! %1</translation>
     </message>
     <message>
-        <location filename="../src/database/database.cpp" line="255"/>
+        <location filename="../src/database/database.cpp" line="259"/>
         <source>Error</source>
         <translation>Hiba</translation>
     </message>
@@ -4332,42 +4357,42 @@ Ancient news could reappear</source>
 <context>
     <name>QTextControl</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5029"/>
+        <location filename="../src/application/mainwindow.cpp" line="5144"/>
         <source>&amp;Undo</source>
         <translation>Visszavonás</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5030"/>
+        <location filename="../src/application/mainwindow.cpp" line="5145"/>
         <source>&amp;Redo</source>
         <translation>Ismételt végrehajtás</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5031"/>
+        <location filename="../src/application/mainwindow.cpp" line="5146"/>
         <source>Cu&amp;t</source>
         <translation>Kivágás</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5032"/>
+        <location filename="../src/application/mainwindow.cpp" line="5147"/>
         <source>&amp;Copy</source>
         <translation>Másolás</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5033"/>
+        <location filename="../src/application/mainwindow.cpp" line="5148"/>
         <source>&amp;Paste</source>
         <translation>Beillesztés</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5034"/>
+        <location filename="../src/application/mainwindow.cpp" line="5149"/>
         <source>Delete</source>
         <translation>Törlés</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5035"/>
+        <location filename="../src/application/mainwindow.cpp" line="5150"/>
         <source>Select All</source>
         <translation>Az összes kijelölése</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5036"/>
+        <location filename="../src/application/mainwindow.cpp" line="5151"/>
         <source>Copy &amp;Link Location</source>
         <translation>Hivatkozási hely másolása</translation>
     </message>
@@ -4375,22 +4400,22 @@ Ancient news could reappear</source>
 <context>
     <name>QWizard</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5044"/>
+        <location filename="../src/application/mainwindow.cpp" line="5159"/>
         <source>Cancel</source>
         <translation>Mégse</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5045"/>
+        <location filename="../src/application/mainwindow.cpp" line="5160"/>
         <source>&lt; &amp;Back</source>
         <translation>&lt; &amp;Vissza</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5046"/>
+        <location filename="../src/application/mainwindow.cpp" line="5161"/>
         <source>&amp;Finish</source>
         <translation>&amp;Befejezés</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5047"/>
+        <location filename="../src/application/mainwindow.cpp" line="5162"/>
         <source>&amp;Next &gt;</source>
         <translation>&amp;Következő &gt;</translation>
     </message>
@@ -4406,22 +4431,22 @@ Ancient news could reappear</source>
 <context>
     <name>RequestFeed</name>
     <message>
-        <location filename="../src/requestfeed.cpp" line="229"/>
+        <location filename="../src/requestfeed.cpp" line="230"/>
         <source>Server requires authentication!</source>
         <translation>Kiszolgáló hitelesítés szükséges!</translation>
     </message>
     <message>
-        <location filename="../src/requestfeed.cpp" line="231"/>
+        <location filename="../src/requestfeed.cpp" line="232"/>
         <source>Server replied: Not Found!</source>
         <translation>Kiszolgáló válaszolt: Nem található!</translation>
     </message>
     <message>
-        <location filename="../src/requestfeed.cpp" line="274"/>
+        <location filename="../src/requestfeed.cpp" line="275"/>
         <source>Redirect error!</source>
         <translation>Átirányítási hiba!</translation>
     </message>
     <message>
-        <location filename="../src/requestfeed.cpp" line="355"/>
+        <location filename="../src/requestfeed.cpp" line="357"/>
         <source>Request timeout!</source>
         <translation>Kérelem időtúllépése!</translation>
     </message>
@@ -4429,27 +4454,27 @@ Ancient news could reappear</source>
 <context>
     <name>SQLiteDriver</name>
     <message>
-        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="561"/>
+        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="603"/>
         <source>Error opening database</source>
         <translation>Adatbázis megnyitási hiba</translation>
     </message>
     <message>
-        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="572"/>
+        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="617"/>
         <source>Error closing database</source>
         <translation>Adatbázis bezárási hiba</translation>
     </message>
     <message>
-        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="592"/>
+        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="637"/>
         <source>Unable to begin transaction</source>
         <translation>A tranzakció nem indítható</translation>
     </message>
     <message>
-        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="607"/>
+        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="652"/>
         <source>Unable to commit transaction</source>
         <translation>A tranzakció nem véglegesíthető</translation>
     </message>
     <message>
-        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="622"/>
+        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="667"/>
         <source>Unable to rollback transaction</source>
         <translation>A tranzakció nem vonható vissza</translation>
     </message>
@@ -4457,39 +4482,39 @@ Ancient news could reappear</source>
 <context>
     <name>SQLiteResult</name>
     <message>
-        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="209"/>
-        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="272"/>
-        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="280"/>
+        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="223"/>
+        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="286"/>
+        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="294"/>
         <source>Unable to fetch row</source>
         <translation>Nem lehet beolvasni a sort</translation>
     </message>
     <message>
-        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="210"/>
+        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="224"/>
         <source>No query</source>
         <translation>Nincs lekérdezés</translation>
     </message>
     <message>
-        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="353"/>
+        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="368"/>
         <source>Unable to execute statement</source>
         <translation>Nem hajtható végre az utasítás</translation>
     </message>
     <message>
-        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="358"/>
+        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="373"/>
         <source>Unable to execute multiple statements at a time</source>
         <translation>Nem hajtható végre több utasítás egyszerre</translation>
     </message>
     <message>
-        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="378"/>
+        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="393"/>
         <source>Unable to reset statement</source>
         <translation>Nem lehet visszaállítani az adatot</translation>
     </message>
     <message>
-        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="423"/>
+        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="438"/>
         <source>Unable to bind parameters</source>
         <translation>Nem lehet átvinni a paramétereket</translation>
     </message>
     <message>
-        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="430"/>
+        <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="445"/>
         <source>Parameter count mismatch</source>
         <translation>Paraméter szám eltérés</translation>
     </message>
