@@ -942,7 +942,7 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="33"/>
         <source>Reading</source>
-        <translation type="unfinished"/>
+        <translation>Lectura</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="198"/>
@@ -3704,27 +3704,27 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1024"/>
         <source>Display</source>
-        <translation type="unfinished"/>
+        <translation>Mostrar</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1032"/>
         <source>Action mouse on news opening:</source>
-        <translation type="unfinished"/>
+        <translation>Acción ao abrir as novas:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1073"/>
         <source>Single Click:</source>
-        <translation type="unfinished"/>
+        <translation>Prema simple:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1076"/>
         <source>Double Click:</source>
-        <translation type="unfinished"/>
+        <translation>Prema dupla:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1079"/>
         <source>Middle Click:</source>
-        <translation type="unfinished"/>
+        <translation>Botón central:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1232"/>
