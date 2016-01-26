@@ -1,3 +1,13 @@
+Version 0.18.3 (26 Jan 2015)
+  * Added: Setting to set mouse buttons to open news
+  * Changed: Update SQLite library to 3.9.2 version
+  * Changed: Updating news in newspaper view using descending sort
+  * Fixed: Duplicate notification sound playback (Ubuntu)
+  * Fixed: Application crash if quit while settins dialog is open
+  * Fixed: Application crash while using search and filters
+  * Fixed: Application crash while adding local feed
+  * Fixed: News publish time of some feeds
+
 Version 0.18.2 (14 Jul 2015)
   * Fixed: Application crash
   * Fixed: Catefories. Popup menu item "Mark as Read"
