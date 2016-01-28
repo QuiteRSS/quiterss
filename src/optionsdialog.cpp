@@ -1048,21 +1048,21 @@ QWidget* OptionsDialog::createClickActionWidgets(QComboBox*& outSingleClickActio
 
             if (bAddDefaultValue)
             {
-              outCombo->addItem("Default", (int)ENewsClickAction::NCA_Default);
+              outCombo->addItem(tr("Default"), (int)ENewsClickAction::NCA_Default);
               outCombo->insertSeparator(outCombo->count());
             }
-            outCombo->addItem("Nothing", (int)ENewsClickAction::NCA_Nothing);
+            outCombo->addItem(tr("Nothing"), (int)ENewsClickAction::NCA_Nothing);
             outCombo->insertSeparator(outCombo->count());
-            outCombo->addItem("Show News Description", (int)ENewsClickAction::NCA_Description);
-            outCombo->addItem("Show News Description in New Tab", (int)ENewsClickAction::NCA_DescriptionNewTab);
-            outCombo->addItem("Show News Description in New Tab (Background)",
+            outCombo->addItem(tr("Show News Description"), (int)ENewsClickAction::NCA_Description);
+            outCombo->addItem(tr("Show News Description in New Tab"), (int)ENewsClickAction::NCA_DescriptionNewTab);
+            outCombo->addItem(tr("Show News Description in New Tab (Background)"),
                       (int)ENewsClickAction::NCA_DescriptionBkgTab);
             outCombo->insertSeparator(outCombo->count());
-            outCombo->addItem("Load Web Page", (int)ENewsClickAction::NCA_WebPage);
-            outCombo->addItem("Load Web Page in New Tab", (int)ENewsClickAction::NCA_WebPageNewTab);
-            outCombo->addItem("Load Web Page in New Tab (Background)", (int)ENewsClickAction::NCA_WebPageBkgTab);
+            outCombo->addItem(tr("Load Web Page"), (int)ENewsClickAction::NCA_WebPage);
+            outCombo->addItem(tr("Load Web Page in New Tab"), (int)ENewsClickAction::NCA_WebPageNewTab);
+            outCombo->addItem(tr("Load Web Page in New Tab (Background)"), (int)ENewsClickAction::NCA_WebPageBkgTab);
             outCombo->insertSeparator(outCombo->count());
-            outCombo->addItem("Open in External Browser", (int)ENewsClickAction::NCA_ExternalBrowser);
+            outCombo->addItem(tr("Open in External Browser"), (int)ENewsClickAction::NCA_ExternalBrowser);
           }
         };
 
