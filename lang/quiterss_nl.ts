@@ -2711,62 +2711,62 @@ werd niet gevonden</translation>
         <translation>Open Link in External Browser</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2403"/>
+        <location filename="../src/newstabwidget.cpp" line="2404"/>
         <source>Open Link</source>
         <translation>Open link</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2404"/>
+        <location filename="../src/newstabwidget.cpp" line="2405"/>
         <source>Open in New Tab</source>
         <translation>Open in Nieuwe Tabblad</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2405"/>
+        <location filename="../src/newstabwidget.cpp" line="2406"/>
         <source>Save Link...</source>
         <translation>Link opslaan...</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2406"/>
+        <location filename="../src/newstabwidget.cpp" line="2407"/>
         <source>Save Image...</source>
         <translation>Afbeelding opslaan als...</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2407"/>
+        <location filename="../src/newstabwidget.cpp" line="2408"/>
         <source>Copy Link</source>
         <translation>Kopieer link</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2408"/>
+        <location filename="../src/newstabwidget.cpp" line="2409"/>
         <source>Copy</source>
         <translation>Kopieer</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2409"/>
+        <location filename="../src/newstabwidget.cpp" line="2410"/>
         <source>Go Back</source>
         <translation>Ga Terug</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2410"/>
+        <location filename="../src/newstabwidget.cpp" line="2411"/>
         <source>Go Forward</source>
         <translation>Ga Vooruit</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2411"/>
+        <location filename="../src/newstabwidget.cpp" line="2412"/>
         <source>Stop</source>
         <translation>Stop</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2412"/>
+        <location filename="../src/newstabwidget.cpp" line="2413"/>
         <source>Reload</source>
         <translation>Herlaad</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2413"/>
+        <location filename="../src/newstabwidget.cpp" line="2414"/>
         <source>Copy Image</source>
         <translation>Kopieer Afbeelding</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2415"/>
+        <location filename="../src/newstabwidget.cpp" line="2416"/>
         <source>Copy Image Address</source>
         <translation>Kopieer Afbeelding Adres</translation>
     </message>
@@ -3710,6 +3710,51 @@ werd niet gevonden</translation>
         <location filename="../src/optionsdialog.cpp" line="1032"/>
         <source>Action mouse on news opening:</source>
         <translation>Actie van muis op nieuws opening:</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1051"/>
+        <source>Default</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1054"/>
+        <source>Nothing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1056"/>
+        <source>Show News Description</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1057"/>
+        <source>Show News Description in New Tab</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1058"/>
+        <source>Show News Description in New Tab (Background)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1061"/>
+        <source>Load Web Page</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1062"/>
+        <source>Load Web Page in New Tab</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1063"/>
+        <source>Load Web Page in New Tab (Background)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1065"/>
+        <source>Open in External Browser</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1073"/>

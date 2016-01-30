@@ -2711,62 +2711,62 @@ Ancient news could reappear</source>
         <translation>외부 브라우저로 링크 열기</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2403"/>
+        <location filename="../src/newstabwidget.cpp" line="2404"/>
         <source>Open Link</source>
         <translation>링크 열기</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2404"/>
+        <location filename="../src/newstabwidget.cpp" line="2405"/>
         <source>Open in New Tab</source>
         <translation>새 탭으로 열기</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2405"/>
+        <location filename="../src/newstabwidget.cpp" line="2406"/>
         <source>Save Link...</source>
         <translation>링크 저장...</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2406"/>
+        <location filename="../src/newstabwidget.cpp" line="2407"/>
         <source>Save Image...</source>
         <translation>이미지 저장...</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2407"/>
+        <location filename="../src/newstabwidget.cpp" line="2408"/>
         <source>Copy Link</source>
         <translation>링크 복사</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2408"/>
+        <location filename="../src/newstabwidget.cpp" line="2409"/>
         <source>Copy</source>
         <translation>복사</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2409"/>
+        <location filename="../src/newstabwidget.cpp" line="2410"/>
         <source>Go Back</source>
         <translation>뒤로</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2410"/>
+        <location filename="../src/newstabwidget.cpp" line="2411"/>
         <source>Go Forward</source>
         <translation>앞으로</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2411"/>
+        <location filename="../src/newstabwidget.cpp" line="2412"/>
         <source>Stop</source>
         <translation>정지</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2412"/>
+        <location filename="../src/newstabwidget.cpp" line="2413"/>
         <source>Reload</source>
         <translation>새로 불러오기</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2413"/>
+        <location filename="../src/newstabwidget.cpp" line="2414"/>
         <source>Copy Image</source>
         <translation>이미지 저장</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2415"/>
+        <location filename="../src/newstabwidget.cpp" line="2416"/>
         <source>Copy Image Address</source>
         <translation>이미지 주소 저장</translation>
     </message>
@@ -3710,6 +3710,51 @@ Ancient news could reappear</source>
         <location filename="../src/optionsdialog.cpp" line="1032"/>
         <source>Action mouse on news opening:</source>
         <translation>뉴스를 열때 마우스 동작:</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1051"/>
+        <source>Default</source>
+        <translation>기본</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1054"/>
+        <source>Nothing</source>
+        <translation>없음</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1056"/>
+        <source>Show News Description</source>
+        <translation>뉴스 설명 보기</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1057"/>
+        <source>Show News Description in New Tab</source>
+        <translation>새 탭에서 뉴스 설명 보기</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1058"/>
+        <source>Show News Description in New Tab (Background)</source>
+        <translation>새 탭에서 뉴스 설명 표시 (비활성화)</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1061"/>
+        <source>Load Web Page</source>
+        <translation>웹페이지 불러오기</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1062"/>
+        <source>Load Web Page in New Tab</source>
+        <translation>새 탭에서 웹페이지 불러오기</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1063"/>
+        <source>Load Web Page in New Tab (Background)</source>
+        <translation>새 탭에서 웹페이지 불러오기 (비활성화)</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1065"/>
+        <source>Open in External Browser</source>
+        <translation>외부 브라우저로 열기</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1073"/>

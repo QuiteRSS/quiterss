@@ -2711,62 +2711,62 @@ Les anciens articles pourraient réapparaître</translation>
         <translation>Ouvrir le lien dans un navigateur externe</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2403"/>
+        <location filename="../src/newstabwidget.cpp" line="2404"/>
         <source>Open Link</source>
         <translation>Ouvrir le lien</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2404"/>
+        <location filename="../src/newstabwidget.cpp" line="2405"/>
         <source>Open in New Tab</source>
         <translation>Ouvrir dans un nouvel onglet</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2405"/>
+        <location filename="../src/newstabwidget.cpp" line="2406"/>
         <source>Save Link...</source>
         <translation>Enregistrer le lien...</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2406"/>
+        <location filename="../src/newstabwidget.cpp" line="2407"/>
         <source>Save Image...</source>
         <translation>Enregistrer l&apos;image...</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2407"/>
+        <location filename="../src/newstabwidget.cpp" line="2408"/>
         <source>Copy Link</source>
         <translation>Copier le lien</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2408"/>
+        <location filename="../src/newstabwidget.cpp" line="2409"/>
         <source>Copy</source>
         <translation>Copier</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2409"/>
+        <location filename="../src/newstabwidget.cpp" line="2410"/>
         <source>Go Back</source>
         <translation>Précédent</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2410"/>
+        <location filename="../src/newstabwidget.cpp" line="2411"/>
         <source>Go Forward</source>
         <translation>Suivant</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2411"/>
+        <location filename="../src/newstabwidget.cpp" line="2412"/>
         <source>Stop</source>
         <translation>Arrêter</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2412"/>
+        <location filename="../src/newstabwidget.cpp" line="2413"/>
         <source>Reload</source>
         <translation>Recharger</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2413"/>
+        <location filename="../src/newstabwidget.cpp" line="2414"/>
         <source>Copy Image</source>
         <translation>Copier l&apos;image</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2415"/>
+        <location filename="../src/newstabwidget.cpp" line="2416"/>
         <source>Copy Image Address</source>
         <translation>Copier l&apos;adresse de l&apos;image</translation>
     </message>
@@ -3710,6 +3710,51 @@ Les anciens articles pourraient réapparaître</translation>
         <location filename="../src/optionsdialog.cpp" line="1032"/>
         <source>Action mouse on news opening:</source>
         <translation>Action de la souris à l&apos;ouverture des articles :</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1051"/>
+        <source>Default</source>
+        <translation>Par défaut</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1054"/>
+        <source>Nothing</source>
+        <translation>Rien</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1056"/>
+        <source>Show News Description</source>
+        <translation>Voir la description de l&apos;article</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1057"/>
+        <source>Show News Description in New Tab</source>
+        <translation>Voir la description de l&apos;article dans un nouvel onglet</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1058"/>
+        <source>Show News Description in New Tab (Background)</source>
+        <translation>Voir la description de l&apos;article dans un nouvel onglet (arrière-plan)</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1061"/>
+        <source>Load Web Page</source>
+        <translation>Charger la page web</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1062"/>
+        <source>Load Web Page in New Tab</source>
+        <translation>Charger la page web dans un nouvel onglet</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1063"/>
+        <source>Load Web Page in New Tab (Background)</source>
+        <translation>Charger la page web dans un nouvel onglet (arrière-plan)</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1065"/>
+        <source>Open in External Browser</source>
+        <translation>Ouvrir dans un navigateur externe</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1073"/>

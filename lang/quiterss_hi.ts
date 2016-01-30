@@ -2711,62 +2711,62 @@ Ancient news could reappear</source>
         <translation>बाहरी ब्राउज़र में लिंक खोलें</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2403"/>
+        <location filename="../src/newstabwidget.cpp" line="2404"/>
         <source>Open Link</source>
         <translation>लिंक खोलें</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2404"/>
+        <location filename="../src/newstabwidget.cpp" line="2405"/>
         <source>Open in New Tab</source>
         <translation>नए टैब में खोलें</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2405"/>
+        <location filename="../src/newstabwidget.cpp" line="2406"/>
         <source>Save Link...</source>
         <translation>लिंक को इस रूप में सहेजें ...</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2406"/>
+        <location filename="../src/newstabwidget.cpp" line="2407"/>
         <source>Save Image...</source>
         <translation>छवि सहेजें </translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2407"/>
+        <location filename="../src/newstabwidget.cpp" line="2408"/>
         <source>Copy Link</source>
         <translation>लिंक प्रतिलिपि बनाएँ</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2408"/>
+        <location filename="../src/newstabwidget.cpp" line="2409"/>
         <source>Copy</source>
         <translation>प्रतिलिपि बनाएँ</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2409"/>
+        <location filename="../src/newstabwidget.cpp" line="2410"/>
         <source>Go Back</source>
         <translation>वापस जाओ</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2410"/>
+        <location filename="../src/newstabwidget.cpp" line="2411"/>
         <source>Go Forward</source>
         <translation>आगे बढ़ो</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2411"/>
+        <location filename="../src/newstabwidget.cpp" line="2412"/>
         <source>Stop</source>
         <translation>रुकें</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2412"/>
+        <location filename="../src/newstabwidget.cpp" line="2413"/>
         <source>Reload</source>
         <translation>पुनः लोड करें</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2413"/>
+        <location filename="../src/newstabwidget.cpp" line="2414"/>
         <source>Copy Image</source>
         <translation>छवि की प्रतिलिपि बनाए</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2415"/>
+        <location filename="../src/newstabwidget.cpp" line="2416"/>
         <source>Copy Image Address</source>
         <translation>छवि पता की प्रतिलिपि बनाए</translation>
     </message>
@@ -3709,6 +3709,51 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1032"/>
         <source>Action mouse on news opening:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1051"/>
+        <source>Default</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1054"/>
+        <source>Nothing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1056"/>
+        <source>Show News Description</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1057"/>
+        <source>Show News Description in New Tab</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1058"/>
+        <source>Show News Description in New Tab (Background)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1061"/>
+        <source>Load Web Page</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1062"/>
+        <source>Load Web Page in New Tab</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1063"/>
+        <source>Load Web Page in New Tab (Background)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1065"/>
+        <source>Open in External Browser</source>
         <translation type="unfinished"/>
     </message>
     <message>
