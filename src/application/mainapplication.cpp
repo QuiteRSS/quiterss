@@ -155,9 +155,7 @@ void MainApplication::checkPortable()
   isPortable_ = true;
   QString fileName(QCoreApplication::applicationDirPath() + "/portable.dat");
   if (!QFile::exists(fileName)) {
-    fileName = QCoreApplication::applicationDirPath() + "/" + QCoreApplication::applicationName() + ".ini";
-    if (!QFile::exists(fileName))
-      isPortable_ = false;
+    isPortable_ = false;
   }
   if (isPortable_) {
     fileName = QCoreApplication::applicationDirPath() + "/../../QuiteRSSPortable.exe";
