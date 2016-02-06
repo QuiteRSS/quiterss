@@ -6627,14 +6627,14 @@ void MainWindow::slotShowLabelsMenu()
 // ----------------------------------------------------------------------------
 void MainWindow::slotPageUpWebView()
 {
-  QKeyEvent *keyEvent = new QKeyEvent(QEvent::KeyPress, Qt::Key_PageUp, Qt::NoModifier);
-  QApplication::sendEvent(currentNewsTab->webView_, keyEvent);
+  QKeyEvent keyEvent(QEvent::KeyPress, Qt::Key_PageUp, Qt::NoModifier);
+  QApplication::sendEvent(currentNewsTab->webView_->page(), &keyEvent);
 }
 
 void MainWindow::slotPageDownWebView()
 {
-  QKeyEvent *keyEvent = new QKeyEvent(QEvent::KeyPress, Qt::Key_PageDown, Qt::NoModifier);
-  QApplication::sendEvent(currentNewsTab->webView_, keyEvent);
+  QKeyEvent keyEvent(QEvent::KeyPress, Qt::Key_PageDown, Qt::NoModifier);
+  QApplication::sendEvent(currentNewsTab->webView_->page(), &keyEvent);
 }
 /** @brief Reload full model
  * @details Performs: reload model, reset proxy model, restore focus
