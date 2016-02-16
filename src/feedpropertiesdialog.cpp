@@ -32,12 +32,12 @@ FeedPropertiesDialog::FeedPropertiesDialog(bool isFeed, QWidget *parent)
   tabWidget->addTab(createDisplayTab(), tr("Display"));
   tabWidget->addTab(createReadingTab(), tr("Reading"));
   tabWidget->addTab(createColumnsTab(), tr("Columns"));
-  tabWidget->addTab(createAuthenticationTab(), tr("Authentication"));
+  int authTabIndex = tabWidget->addTab(createAuthenticationTab(), tr("Authentication"));
   tabWidget->addTab(createStatusTab(), tr("Status"));
   pageLayout->addWidget(tabWidget);
 
   if (!isFeed_) {
-    tabWidget->removeTab(3);
+    tabWidget->removeTab(authTabIndex);
   }
 
   buttonBox->addButton(QDialogButtonBox::Ok);
