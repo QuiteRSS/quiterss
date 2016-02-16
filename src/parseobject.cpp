@@ -293,7 +293,8 @@ void ParseObject::parseAtom(const QString &feedUrl, const QDomDocument &doc)
         }
     }
   }
-  if (QUrl(feedItem.link).host().isEmpty()) {
+
+  if (QUrl(feedItem.link).host().isEmpty() || (QUrl(feedItem.link).host().indexOf('.')) == -1) {
     if (!feedItem.linkBase.isEmpty() && !QUrl(feedItem.linkBase).host().isEmpty())
       feedItem.link = QUrl(feedItem.linkBase).scheme() %  "://" % QUrl(feedItem.linkBase).host();
     else
