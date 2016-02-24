@@ -36,7 +36,6 @@
 #include "newsmodel.h"
 #include "newsview.h"
 #include "webview.h"
-#include "optionsdialog.h"
 
 class MainWindow;
 
@@ -93,13 +92,9 @@ public:
   void openNewsNewTab();
 
   void updateWebView(QModelIndex index);
-  void updateWebView_Link(QModelIndex index, bool bExternalLink=false, QString overrideURL="");
-  void updateWebView_Description(QModelIndex index);
-  void generateDescriptionHtml(QModelIndex index, QString& outHtml, QUrl& outURL);
   void loadNewspaper(int refresh = RefreshAll);
   void hideWebContent();
   QString getLinkNews(int row);
-  void setHtmlWebView(const QString &html, const QUrl &baseUrl=QUrl());
 
   void reduceNewsList();
   void increaseNewsList();
@@ -148,7 +143,7 @@ public:
 public slots:
   void setAutoLoadImages(bool apply = true);
   void slotNewsViewClicked(QModelIndex index);
-  void slotNewsViewSelected(QModelIndex index, bool clicked=false, bool bUpdateWebView=true);
+  void slotNewsViewSelected(QModelIndex index, bool clicked=false);
   void slotNewsViewDoubleClicked(QModelIndex index);
   void slotNewsMiddleClicked(QModelIndex index);
   void slotNewsUpPressed(QModelIndex index=QModelIndex());
@@ -173,8 +168,7 @@ private slots:
   void slotSetHtmlWebView(const QString &html, const QUrl &baseUrl);
   void webHomePage();
   void openPageInExternalBrowser();
-  void slotLinkClicked(QUrl url, bool bForceNewTab=false,
-                       bool bForceNewBkgTab=false, const QString &overrideHtml="");
+  void slotLinkClicked(QUrl url);
   void slotLinkHovered(const QString &link, const QString &str1="", const QString &str2="");
   void slotSetValue(int value);
   void slotLoadStarted();
@@ -196,17 +190,11 @@ private slots:
 
   void slotNewslLabelClicked(QModelIndex index);
 
-  void slotMouseClickTimeout();
-
 private:
   void createNewsList();
   void createWebWidget();
   QString getHtmlLabels(int row);
   void actionNewspaper(QUrl url);
-
-  void handleMouseClick(QModelIndex index, Qt::MouseButton button, bool bDoubleClick=false);
-
-  void performNewsClickAction(QModelIndex index, ENewsClickAction::Type action);
 
   MainWindow *mainWindow_;
   QSqlDatabase db_;
@@ -245,8 +233,6 @@ private:
   QString audioPlayerHtml_;
   QString videoPlayerHtml_;
 
-  QTimer timerMouseClick;
-  QPersistentModelIndex pendingClickIndex;
 };
 
 #endif // NEWSTABWIDGET_H

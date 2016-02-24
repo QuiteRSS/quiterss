@@ -30,44 +30,13 @@
 #include "lineedit.h"
 #include "notificationswidget.h"
 
-
-// Forward declarations
-class FeedPropertiesDialog;
-
-
 #define STATIC_ICON_TRAY        0
 #define CHANGE_ICON_TRAY        1
 #define NEW_COUNT_ICON_TRAY     2
 #define UNREAD_COUNT_ICON_TRAY  3
 
-/**
- * Action to take upon clicking a news entry
- * NOTE: Don't change value of 'Default' away from 0
- */
-namespace ENewsClickAction
-{
-  enum Type
-  {
-    NCA_Start             = 0,
-
-    NCA_Default           = 0,
-    NCA_Nothing           = 1,
-    NCA_Description       = 2,
-    NCA_DescriptionNewTab = 3,
-    NCA_DescriptionBkgTab = 4,
-    NCA_WebPage           = 5,
-    NCA_WebPageNewTab     = 6,
-    NCA_WebPageBkgTab     = 7,
-    NCA_ExternalBrowser   = 8,
-
-    NCA_Max
-  };
-}
-
 class OptionsDialog : public Dialog
 {
-  friend class FeedPropertiesDialog;
-
   Q_OBJECT
 public:
   explicit OptionsDialog(QWidget *parent);
@@ -159,10 +128,6 @@ public:
   QCheckBox *markReadMinimize_;
 
   QCheckBox *showDescriptionNews_;
-
-  QComboBox* singleClickAction;
-  QComboBox* doubleClickAction;
-  QComboBox* middleClickAction;
 
   QComboBox *formatDate_;
   QComboBox *formatTime_;
@@ -350,18 +315,6 @@ private:
 
   // feeds
   void createFeedsWidget();
-
-  /**
-   * Creates the widgets for configuring news mouse click settings; shared between options dialog and feed properties dialog.
-   *
-   * @param outSingleClickAction  Variable storing the single click widget
-   * @param outDoubleClickAction  Variable storing the double click widget
-   * @param outMiddleClickAction  Variable storing the middle click widget
-   * @param bAddDefaultValue      Adds a value marked 'Default' to the combo box (for feed properties)
-   * @return                      Returns the widget for configuring the mouse settings
-   */
-  static QWidget* createClickActionWidgets(QComboBox*& outSingleClickAction, QComboBox*& outDoubleClickAction,
-                        QComboBox*& outMiddleClickAction, bool bAddDefaultValue=false);
 
   // notifier
   void createNotifierWidget();

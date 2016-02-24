@@ -946,10 +946,6 @@ void OptionsDialog::createFeedsWidget()
 
     changeBehaviorActionNUN_ = new QCheckBox(tr("Change behavior of action 'Next Unread News'"));
 
-    QWidget* clickActionWidgets = createClickActionWidgets(singleClickAction,
-                                                           doubleClickAction,
-                                                           middleClickAction);
-
     readingMainLayout->addWidget(markNewsReadOn_);
     readingMainLayout->addWidget(markReadSwitchingFeed_);
     readingMainLayout->addWidget(markReadClosingTab_);
@@ -958,8 +954,6 @@ void OptionsDialog::createFeedsWidget()
     readingMainLayout->addWidget(new QLabel(tr("Prevent accidental deletion of:")));
     readingMainLayout->addLayout(curLayout);
     readingMainLayout->addWidget(changeBehaviorActionNUN_);
-    readingMainLayout->addSpacing(10);
-    readingMainLayout->addWidget(clickActionWidgets);
     readingMainLayout->addStretch();
   }
 
@@ -1024,74 +1018,6 @@ void OptionsDialog::createFeedsWidget()
   feedsWidget_->addTab(displayFeedsWidget, tr("Display"));
   feedsWidget_->addTab(readingFeedsWidget, tr("Reading"));
   feedsWidget_->addTab(cleanUpFeedsWidget, tr("Clean Up"));
-}
-
-QWidget* OptionsDialog::createClickActionWidgets(QComboBox*& outSingleClickAction, QComboBox*& outDoubleClickAction,
-                                                  QComboBox*& outMiddleClickAction, bool bAddDefaultValue/*=false*/)
-{
-  QGroupBox* returnVal = new QGroupBox(tr("Action mouse on news opening:"));
-
-  {
-    QHBoxLayout* actionLayoutLeft = new QHBoxLayout();
-    QHBoxLayout* actionLayoutRight = new QHBoxLayout();
-
-    {
-      QVBoxLayout* namesLayout = new QVBoxLayout();
-      QVBoxLayout* valuesLayout = new QVBoxLayout();
-
-      {
-        struct Local
-        {
-          static void setupCombo(QComboBox*& outCombo, bool bAddDefaultValue)
-          {
-            outCombo = new QComboBox();
-
-            if (bAddDefaultValue)
-            {
-              outCombo->addItem(tr("Default"), (int)ENewsClickAction::NCA_Default);
-              outCombo->insertSeparator(outCombo->count());
-            }
-            outCombo->addItem(tr("Nothing"), (int)ENewsClickAction::NCA_Nothing);
-            outCombo->insertSeparator(outCombo->count());
-            outCombo->addItem(tr("Show News Description"), (int)ENewsClickAction::NCA_Description);
-            outCombo->addItem(tr("Show News Description in New Tab"), (int)ENewsClickAction::NCA_DescriptionNewTab);
-            outCombo->addItem(tr("Show News Description in New Tab (Background)"),
-                      (int)ENewsClickAction::NCA_DescriptionBkgTab);
-            outCombo->insertSeparator(outCombo->count());
-            outCombo->addItem(tr("Load Web Page"), (int)ENewsClickAction::NCA_WebPage);
-            outCombo->addItem(tr("Load Web Page in New Tab"), (int)ENewsClickAction::NCA_WebPageNewTab);
-            outCombo->addItem(tr("Load Web Page in New Tab (Background)"), (int)ENewsClickAction::NCA_WebPageBkgTab);
-            outCombo->insertSeparator(outCombo->count());
-            outCombo->addItem(tr("Open in External Browser"), (int)ENewsClickAction::NCA_ExternalBrowser);
-          }
-        };
-
-        Local::setupCombo(outSingleClickAction, bAddDefaultValue);
-        Local::setupCombo(outDoubleClickAction, bAddDefaultValue);
-        Local::setupCombo(outMiddleClickAction, bAddDefaultValue);
-
-        namesLayout->addWidget(new QLabel(tr("Single Click:")));
-        valuesLayout->addWidget(outSingleClickAction);
-
-        namesLayout->addWidget(new QLabel(tr("Double Click:")));
-        valuesLayout->addWidget(outDoubleClickAction);
-
-        namesLayout->addWidget(new QLabel(tr("Middle Click:")));
-        valuesLayout->addWidget(outMiddleClickAction);
-      }
-
-
-      actionLayoutLeft->addLayout(namesLayout);
-      actionLayoutRight->addLayout(valuesLayout);
-    }
-
-    actionLayoutRight->addStretch();
-    actionLayoutLeft->addLayout(actionLayoutRight);
-
-    returnVal->setLayout(actionLayoutLeft);
-  }
-
-  return returnVal;
 }
 
 /** @brief Create widget "Labels"

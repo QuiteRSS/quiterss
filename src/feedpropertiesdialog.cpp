@@ -30,7 +30,6 @@ FeedPropertiesDialog::FeedPropertiesDialog(bool isFeed, QWidget *parent)
   tabWidget = new QTabWidget();
   tabWidget->addTab(createGeneralTab(), tr("General"));
   tabWidget->addTab(createDisplayTab(), tr("Display"));
-  tabWidget->addTab(createReadingTab(), tr("Reading"));
   tabWidget->addTab(createColumnsTab(), tr("Columns"));
   int authTabIndex = tabWidget->addTab(createAuthenticationTab(), tr("Authentication"));
   tabWidget->addTab(createStatusTab(), tr("Status"));
@@ -117,6 +116,7 @@ QWidget *FeedPropertiesDialog::createGeneralTab()
 
   starredOn_ = new QCheckBox(tr("Starred"));
   displayOnStartup = new QCheckBox(tr("Display in new tab on startup"));
+  duplicateNewsMode_ = new QCheckBox(tr("Automatically delete duplicate news"));
 
   QHBoxLayout *layoutGeneralHomepage = new QHBoxLayout();
   labelHomepage = new QLabel();
@@ -128,8 +128,6 @@ QWidget *FeedPropertiesDialog::createGeneralTab()
   layoutGeneralGrid->addLayout(layoutGeneralTitle, 0 ,1);
   layoutGeneralGrid->addWidget(labelURLCapt, 1, 0);
   layoutGeneralGrid->addWidget(editURL, 1, 1);
-
-  duplicateNewsMode_ = new QCheckBox(tr("Automatically delete duplicate news"));
 
   QVBoxLayout *tabLayout = new QVBoxLayout(tab);
   tabLayout->setMargin(10);
@@ -167,50 +165,30 @@ QWidget *FeedPropertiesDialog::createGeneralTab()
   return tab;
 }
 //------------------------------------------------------------------------------
-QWidget* FeedPropertiesDialog::createReadingTab()
-{
-  QWidget* returnVal = new QWidget();
-  QVBoxLayout* tabLayout = new QVBoxLayout(returnVal);
-  tabLayout->setMargin(10);
-  tabLayout->setSpacing(5);
-
-  QWidget* clickActionWidgets =
-      OptionsDialog::createClickActionWidgets(singleClickAction, doubleClickAction,
-                                              middleClickAction, true);
-
-  tabLayout->addWidget(clickActionWidgets);
-  tabLayout->addStretch();
-
-  return returnVal;
-}
-//------------------------------------------------------------------------------
 QWidget *FeedPropertiesDialog::createDisplayTab()
 {
-  QWidget* returnVal = new QWidget();
-  QVBoxLayout* tabLayout = new QVBoxLayout(returnVal);
+  QWidget *tab = new QWidget();
 
-  {
-    tabLayout->setMargin(10);
-    tabLayout->setSpacing(5);
+  loadImagesOn_ = new QCheckBox(tr("Load images"));
+  loadImagesOn_->setTristate(true);
+  javaScriptEnable_ = new QCheckBox(tr("Enable JavaScript"));
+  javaScriptEnable_->setTristate(true);
 
-    loadImagesOn_ = new QCheckBox(tr("Load images"));
-    loadImagesOn_->setTristate(true);
-    javaScriptEnable_ = new QCheckBox(tr("Enable JavaScript"));
-    javaScriptEnable_->setTristate(true);
+  showDescriptionNews_ = new QCheckBox(tr("Show news' description instead of loading web page"));
 
-    showDescriptionNews_ = new QCheckBox(tr("Show news' description instead of loading web page"));
+  layoutDirection_ = new QCheckBox(tr("Right-to-left layout"));
 
-    layoutDirection_ = new QCheckBox(tr("Right-to-left layout"));
+  QVBoxLayout *tabLayout = new QVBoxLayout(tab);
+  tabLayout->setMargin(10);
+  tabLayout->setSpacing(5);
+  tabLayout->addWidget(loadImagesOn_);
+  tabLayout->addWidget(javaScriptEnable_);
+  tabLayout->addWidget(showDescriptionNews_);
+  tabLayout->addWidget(layoutDirection_);
 
-    tabLayout->addWidget(loadImagesOn_);
-    tabLayout->addWidget(javaScriptEnable_);
-    tabLayout->addWidget(showDescriptionNews_);
-    tabLayout->addWidget(layoutDirection_);
+  tabLayout->addStretch();
 
-    tabLayout->addStretch();
-  }
-
-  return returnVal;
+  return tab;
 }
 //------------------------------------------------------------------------------
 QWidget *FeedPropertiesDialog::createColumnsTab()
@@ -398,15 +376,6 @@ QWidget *FeedPropertiesDialog::createStatusTab()
   starredOn_->setChecked(feedProperties.general.starred);
   duplicateNewsMode_->setChecked(feedProperties.general.duplicateNewsMode);
 
-  int curClickValIdx = singleClickAction->findData((int)feedProperties.mouse.singleClickAction);
-  singleClickAction->setCurrentIndex(curClickValIdx);
-
-  curClickValIdx = singleClickAction->findData((int)feedProperties.mouse.doubleClickAction);
-  doubleClickAction->setCurrentIndex(curClickValIdx);
-
-  curClickValIdx = singleClickAction->findData((int)feedProperties.mouse.middleClickAction);
-  middleClickAction->setCurrentIndex(curClickValIdx);
-
   loadImagesOn_->setCheckState((Qt::CheckState)feedProperties.display.displayEmbeddedImages);
   javaScriptEnable_->setCheckState((Qt::CheckState)feedProperties.display.javaScriptEnable);
   showDescriptionNews_->setChecked(!feedProperties.display.displayNews);
@@ -541,13 +510,6 @@ FEED_PROPERTIES FeedPropertiesDialog::getFeedProperties()
   feedProperties.general.updateInterval = updateInterval_->value();
   feedProperties.general.intervalType = updateIntervalType_->currentIndex() - 1;
 
-  feedProperties.mouse.singleClickAction =
-      (ENewsClickAction::Type)singleClickAction->itemData(singleClickAction->currentIndex()).toInt();
-  feedProperties.mouse.doubleClickAction =
-      (ENewsClickAction::Type)doubleClickAction->itemData(doubleClickAction->currentIndex()).toInt();
-  feedProperties.mouse.middleClickAction =
-      (ENewsClickAction::Type)middleClickAction->itemData(middleClickAction->currentIndex()).toInt();
-
   feedProperties.general.displayOnStartup = displayOnStartup->isChecked();
   feedProperties.general.starred = starredOn_->isChecked();
   feedProperties.display.displayEmbeddedImages = loadImagesOn_->checkState();
@@ -578,7 +540,7 @@ void FeedPropertiesDialog::setFeedProperties(FEED_PROPERTIES properties)
 }
 //------------------------------------------------------------------------------
 void FeedPropertiesDialog::slotCurrentColumnChanged(QTreeWidgetItem *current,
-                                                  QTreeWidgetItem *)
+                                                    QTreeWidgetItem *)
 {
   if (columnsTree_->indexOfTopLevelItem(current) == 0)
     moveUpButton_->setEnabled(false);
