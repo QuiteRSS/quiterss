@@ -2,6 +2,17 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
+<p><b>Version 0.18.3+</b> (xx Feb 2016)
+<ul>
+<li>Changed: Mouse buttons settings of opening news is removed</li>
+<li>Changed: SQLite librari is updated to 3.11.0 version</li>
+
+<li>Fixed: msvcr120.dll troubles (Windows)</li>
+<li>Fixed: Application crash while using some shortcuts</li>
+<li>Fixed: Images are not displayed in some feeds</li>
+<li>Fixed: Folder properties does not display "Columns" tab</li>
+</ul>
+<!---------------------------------------------------------------------------->
 <p><b>Version 0.18.3</b> (26 Jan 2016)
 <ul>
 <li>Added: Setting to set mouse buttons to open news</li>
