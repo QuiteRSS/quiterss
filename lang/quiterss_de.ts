@@ -1893,7 +1893,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5015"/>
         <source>Preview Web Page</source>
-        <translation>Webseitenvorschau</translation>
+        <translation>Druckvorschau</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5022"/>
