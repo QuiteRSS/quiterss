@@ -100,6 +100,7 @@
         <file alias="layout_classic">images/layout_classic.png</file>
         <file alias="layout_newspaper">images/layout_newspaper.png</file>
         <file alias="cleanup">images/cleanup.png</file>
+        <file alias="quiterss_128">images/128x128/quiterss.png</file>
     </qresource>
     <qresource prefix="/style">
         <file alias="systemStyle">style/system.qss</file>
