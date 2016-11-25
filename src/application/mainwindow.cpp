@@ -289,7 +289,7 @@ void MainWindow::changeEvent(QEvent *event)
     }
   } else if(event->type() == QEvent::ActivationChange) {
     if (isActiveWindow() && (behaviorIconTray_ == CHANGE_ICON_TRAY)) {
-      traySystem->setIcon(QIcon(":/images/quiterss16"));
+      traySystem->setIcon(QIcon(":/images/quiterss_128"));
     }
   } else if(event->type() == QEvent::LanguageChange) {
     retranslateStrings();
@@ -3753,7 +3753,7 @@ void MainWindow::showOptionDlg(int index)
   if (behaviorIconTray_ > CHANGE_ICON_TRAY) {
     emit signalRefreshInfoTray();
   } else {
-    traySystem->setIcon(QIcon(":/images/quiterss16"));
+    traySystem->setIcon(QIcon(":/images/quiterss_128"));
   }
   singleClickTray_ = optionsDialog_->singleClickTray_->isChecked();
   clearStatusNew_ = optionsDialog_->clearStatusNew_->isChecked();
@@ -5752,7 +5752,7 @@ void MainWindow::slotRefreshInfoTray(int newCount, int unreadCount)
     }
     // Draw icon without number
     else {
-      traySystem->setIcon(QIcon(":/images/quiterss16"));
+      traySystem->setIcon(QIcon(":/images/quiterss_128"));
     }
   }
 }
