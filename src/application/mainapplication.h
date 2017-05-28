@@ -51,6 +51,7 @@ public:
   bool isClosing() const;
   bool isNoDebugOutput() const { return noDebugOutput_; }
   void showClosingWidget();
+  bool dataDirInitialized() const { return dataDirInitialized_; }
 
   QString resourcesDir() const;
   QString dataDir() const;
@@ -111,6 +112,7 @@ private:
   bool isPortable_;
   bool isPortableAppsCom_;
   bool isClosing_;
+  bool dataDirInitialized_ = false;
 
   QString resourcesDir_;
   QString dataDir_;
