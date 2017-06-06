@@ -124,8 +124,8 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool addFeed)
             updateObject_, SLOT(slotNextUpdateFeed(bool)));
     connect(updateObject_, SIGNAL(signalUpdateModel(bool)),
             parent, SLOT(feedsModelReload(bool)));
-    connect(updateObject_, SIGNAL(signalUpdateNews()),
-            parent, SLOT(slotUpdateNews()));
+    connect(updateObject_, SIGNAL(signalUpdateNews(int)),
+            parent, SLOT(slotUpdateNews(int)));
     connect(updateObject_, SIGNAL(signalCountsStatusBar(int,int)),
             parent, SLOT(slotCountsStatusBar(int,int)));
 
@@ -967,8 +967,6 @@ void UpdateObject::slotSetFeedRead(int readType, int feedId, int idException, QL
     slotRecountFeedCounts(feedId);
     slotRecountCategoryCounts();
 
-    emit signalUpdateNews();
-
     if (readType != FeedReadPlaceToTray) {
       slotRefreshInfoTray();
     }
@@ -1164,7 +1162,7 @@ void UpdateObject::slotMarkAllFeedsOld()
   slotRecountCategoryCounts();
 
   if ((mainWindow_->currentNewsTab != NULL) && (mainWindow_->currentNewsTab->type_ < NewsTabWidget::TabTypeWeb)) {
-    emit signalUpdateNews();
+    emit signalUpdateNews(NewsTabWidget::RefreshWithPos);
   }
 
   slotRefreshInfoTray();

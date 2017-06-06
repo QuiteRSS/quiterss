@@ -25,6 +25,7 @@
 #include "requestfeed.h"
 #include "parseobject.h"
 #include "faviconobject.h"
+#include "newstabwidget.h"
 
 class UpdateObject;
 class MainWindow;
@@ -108,7 +109,7 @@ signals:
   void setStatusFeed(int feedId, QString status);
   void feedUpdated(int feedId, bool changed, int newCount, bool finish);
   void signalUpdateModel(bool checkFilter = true);
-  void signalUpdateNews();
+  void signalUpdateNews(int refresh = NewsTabWidget::RefreshInsert);
   void signalCountsStatusBar(int unreadCount, int allCount);
   void signalRecountCategoryCounts(QList<int> deletedList, QList<int> starredList,
                                    QList<int> readList, QStringList labelList);

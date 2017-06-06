@@ -4479,9 +4479,9 @@ void MainWindow::setFeedRead(int type, int feedId, FeedReedType feedReadType,
     if (((feedReadType == FeedReadSwitchingFeed) && markReadSwitchingFeed_) ||
         ((feedReadType == FeedReadClosingTab) && markReadClosingTab_) ||
         ((feedReadType == FeedReadPlaceToTray) && markReadMinimize_)) {
-      emit setFeedRead(feedReadType, feedId, idException, idNewsList);
+      mainApp->updateFeeds()->updateObject_->slotSetFeedRead(feedReadType, feedId, idException, idNewsList);
     } else {
-      emit setFeedRead(feedReadType, feedId, idException, idNewsList);
+      mainApp->updateFeeds()->updateObject_->slotSetFeedRead(feedReadType, feedId, idException, idNewsList);
     }
   } else {
     int cnt = widgetTab->newsModel_->rowCount();
@@ -4501,7 +4501,7 @@ void MainWindow::setFeedRead(int type, int feedId, FeedReedType feedReadType,
         idNewsList.removeOne(newsId);
       }
     }
-    emit setFeedRead(FeedReadSwitchingTab, feedId, idException, idNewsList);
+    mainApp->updateFeeds()->updateObject_->slotSetFeedRead(FeedReadSwitchingTab, feedId, idException, idNewsList);
   }
 }
 
