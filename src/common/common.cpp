@@ -290,11 +290,13 @@ QString Common::cpuArchitecture()
 QString Common::operatingSystemLong()
 {
   QString os = Common::operatingSystem();
+#if QT_VERSION >= 0x050400
 #ifdef Q_OS_UNIX
     if (QGuiApplication::platformName() == QL1S("xcb"))
         os.prepend(QL1S("X11; "));
     else if (QGuiApplication::platformName().startsWith(QL1S("wayland")))
         os.prepend(QL1S("Wayland; "));
+#endif
 #endif
 
   const QString arch = cpuArchitecture();
