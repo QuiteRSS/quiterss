@@ -259,10 +259,11 @@ QString Common::operatingSystem()
   case QSysInfo::WV_WINDOWS8:
     str.append(" 8");
     break;
-
+#if QT_VERSION >= 0x050400
   case QSysInfo::WV_WINDOWS8_1:
     str.append(" 8.1");
     break;
+#endif
 #if QT_VERSION >= 0x050600
   case QSysInfo::WV_WINDOWS10:
     str.append(" 10");
@@ -278,7 +279,11 @@ QString Common::operatingSystem()
 
 QString Common::cpuArchitecture()
 {
+#if QT_VERSION >= 0x050400
   return QSysInfo::currentCpuArchitecture();
+#else
+  return "";
+#endif
 }
 
 QString Common::operatingSystemLong()
