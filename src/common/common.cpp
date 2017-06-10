@@ -18,6 +18,7 @@
 #include "common.h"
 
 #include <QtCore>
+#include <QApplication>
 #if defined Q_OS_WIN
 #include <windows.h>
 #else
