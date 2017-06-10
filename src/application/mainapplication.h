@@ -31,7 +31,7 @@
 #include "cookiejar.h"
 #include "downloadmanager.h"
 #include "mainwindow.h"
-#include "ganalytics.hpp"
+#include "ganalytics.h"
 
 class NetworkManager;
 class SplashScreen;
