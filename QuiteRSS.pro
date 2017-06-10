@@ -117,7 +117,7 @@ HEADERS += \
     src/network/sslerrordialog.h \
     src/network/networkmanagerproxy.h \
     src/adblock/adblockmatcher.h \
-    src/feedsview/feedsproxymodel.h
+    src/feedsview/feedsproxymodel.h \
 
 SOURCES += \
     src/parseobject.cpp \
@@ -227,6 +227,7 @@ isEqual(QT_MAJOR_VERSION, 5) {
 include(3rdparty/sqlite.pri)
 include(lang/lang.pri)
 include(3rdparty/qupzilla/qupzilla.pri)
+include(3rdparty/ganalytics/ganalytics.pri)
 
 os2|win32|mac {
   TARGET = QuiteRSS

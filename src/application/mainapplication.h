@@ -31,6 +31,7 @@
 #include "cookiejar.h"
 #include "downloadmanager.h"
 #include "mainwindow.h"
+#include "ganalytics.hpp"
 
 class NetworkManager;
 class SplashScreen;
@@ -85,6 +86,8 @@ public:
   QString language() const { return langFileName_; }
   void setLanguage(const QString &lang) { langFileName_ = lang; }
 
+  GAnalytics *analytics() const { return analytics_; }
+
 public slots:
   void receiveMessage(const QString &message);
   void quitApplication();
@@ -101,12 +104,15 @@ private:
   void checkPortable();
   void checkDir();
   void createSettings();
+  void createGoogleAnalytics();
   void connectDatabase();
   void loadSettings();
   void setStyleApplication();
   void showSplashScreen();
   void closeSplashScreen();
   void setProgressSplashScreen(int value);
+
+  QUrl userStyleSheet(const QString &filePath) const;
 
   bool isPortable_;
   bool isPortableAppsCom_;
@@ -139,7 +145,7 @@ private:
   QStringList c2fWhitelist_;
   bool c2fEnabled_;
 
-  QUrl userStyleSheet(const QString &filePath) const;
+  GAnalytics *analytics_;
 
 };
 

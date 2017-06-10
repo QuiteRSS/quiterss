@@ -79,3 +79,8 @@ QVariant Settings::value(const QString &key, const QVariant &defaultValue)
 {
   return settings_->value(key, defaultValue);
 }
+
+bool Settings::contains(const QString &key)
+{
+  return settings_->contains(key);
+}

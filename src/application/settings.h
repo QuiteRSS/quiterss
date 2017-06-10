@@ -37,6 +37,7 @@ public:
 
   void setValue(const QString &key, const QVariant &defaultValue = QVariant());
   QVariant value(const QString &key, const QVariant &defaultValue = QVariant());
+  bool contains(const QString &key);
 
 private:
   static QSettings* settings_;

@@ -79,15 +79,7 @@ UpdateAppDialog::UpdateAppDialog(const QString &lang, QWidget *parent, bool show
 
     restoreGeometry(settings.value("updateAppDlg/geometry").toByteArray());
   } else {
-    bool statisticsEnabled = settings.value("Settings/statisticsEnabled", true).toBool();
-    if (statisticsEnabled) {
-      page_ = new QWebPage(this);
-      page_->setNetworkAccessManager(networkManagerProxy_);
-      page_->mainFrame()->load(QUrl("http://quiterss.org/runAplication"));
-      connect(page_, SIGNAL(loadFinished(bool)), this, SLOT(renderStatistics()));
-    } else {
-      renderStatistics();
-    }
+    renderStatistics();
   }
 }
 

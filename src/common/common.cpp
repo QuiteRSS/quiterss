@@ -19,10 +19,14 @@
 
 #include <QtCore>
 #if defined Q_OS_WIN
-#include <qt_windows.h>
+#include <windows.h>
 #else
 #include <time.h>
 #include <unistd.h>
+#endif
+
+#ifdef Q_OS_MAC
+#include <CoreServices/CoreServices.h>
 #endif
 
 bool Common::removePath(const QString &path)
@@ -164,4 +168,131 @@ void Common::sleep(int ms)
   struct timespec ts = { ms / 1000, (ms % 1000) * 1000 * 1000 };
   nanosleep(&ts, NULL);
 #endif
+}
+
+QString Common::operatingSystem()
+{
+#ifdef Q_OS_MAC
+  QString str = "Mac OS X";
+
+  SInt32 majorVersion;
+  SInt32 minorVersion;
+
+  if (Gestalt(gestaltSystemVersionMajor, &majorVersion) == noErr && Gestalt(gestaltSystemVersionMinor, &minorVersion) == noErr) {
+    str.append(QString(" %1.%2").arg(majorVersion).arg(minorVersion));
+  }
+
+  return str;
+#endif
+#ifdef Q_OS_LINUX
+  return "Linux";
+#endif
+#ifdef Q_OS_BSD4
+  return "BSD 4.4";
+#endif
+#ifdef Q_OS_BSDI
+  return "BSD/OS";
+#endif
+#ifdef Q_OS_FREEBSD
+  return "FreeBSD";
+#endif
+#ifdef Q_OS_HPUX
+  return "HP-UX";
+#endif
+#ifdef Q_OS_HURD
+  return "GNU Hurd";
+#endif
+#ifdef Q_OS_LYNX
+  return "LynxOS";
+#endif
+#ifdef Q_OS_NETBSD
+  return "NetBSD";
+#endif
+#ifdef Q_OS_OS2
+  return "OS/2";
+#endif
+#ifdef Q_OS_OPENBSD
+  return "OpenBSD";
+#endif
+#ifdef Q_OS_OSF
+  return "HP Tru64 UNIX";
+#endif
+#ifdef Q_OS_SOLARIS
+  return "Sun Solaris";
+#endif
+#ifdef Q_OS_UNIXWARE
+  return "UnixWare 7 / Open UNIX 8";
+#endif
+#ifdef Q_OS_UNIX
+  return "Unix";
+#endif
+#ifdef Q_OS_HAIKU
+  return "Haiku";
+#endif
+#ifdef Q_OS_WIN32
+  QString str = "Windows";
+
+  switch (QSysInfo::windowsVersion()) {
+  case QSysInfo::WV_NT:
+    str.append(" NT");
+    break;
+
+  case QSysInfo::WV_2000:
+    str.append(" 2000");
+    break;
+
+  case QSysInfo::WV_XP:
+    str.append(" XP");
+    break;
+  case QSysInfo::WV_2003:
+    str.append(" XP Pro x64");
+    break;
+
+  case QSysInfo::WV_VISTA:
+    str.append(" Vista");
+    break;
+
+  case QSysInfo::WV_WINDOWS7:
+    str.append(" 7");
+    break;
+
+  case QSysInfo::WV_WINDOWS8:
+    str.append(" 8");
+    break;
+
+  case QSysInfo::WV_WINDOWS8_1:
+    str.append(" 8.1");
+    break;
+#if QT_VERSION >= 0x050600
+  case QSysInfo::WV_WINDOWS10:
+    str.append(" 10");
+    break;
+#endif
+  default:
+    break;
+  }
+
+  return str;
+#endif
+}
+
+QString Common::cpuArchitecture()
+{
+  return QSysInfo::currentCpuArchitecture();
+}
+
+QString Common::operatingSystemLong()
+{
+  QString os = Common::operatingSystem();
+#ifdef Q_OS_UNIX
+    if (QGuiApplication::platformName() == QL1S("xcb"))
+        os.prepend(QL1S("X11; "));
+    else if (QGuiApplication::platformName().startsWith(QL1S("wayland")))
+        os.prepend(QL1S("Wayland; "));
+#endif
+
+  const QString arch = cpuArchitecture();
+  if (arch.isEmpty())
+    return os;
+  return os + QSL(" ") + arch;
 }

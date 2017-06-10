@@ -39,6 +39,7 @@ MainApplication::MainApplication(int &argc, char **argv)
   , cookieJar_(0)
   , diskCache_(0)
   , downloadManager_(0)
+  , analytics_(0)
 {
   QString message = arguments().value(1);
   if (isRunning()) {
@@ -82,6 +83,8 @@ MainApplication::MainApplication(int &argc, char **argv)
   setStyleApplication();
   setTranslateApplication();
   showSplashScreen();
+
+  createGoogleAnalytics();
 
   connectDatabase();
   setProgressSplashScreen(30);
@@ -250,6 +253,22 @@ void MainApplication::createSettings()
   settings.endGroup();
 }
 
+void MainApplication::createGoogleAnalytics()
+{
+  Settings settings;
+  bool statisticsEnabled = settings.value("Settings/statisticsEnabled2", true).toBool();
+  if (statisticsEnabled) {
+    QString clientID;
+    if (!settings.contains("GAnalytics-cid")) {
+      settings.setValue("GAnalytics-cid", QUuid::createUuid().toString());
+    }
+    clientID = settings.value("GAnalytics-cid").toString();
+    analytics_ = new GAnalytics(this, TRACKING_ID, clientID);
+    analytics_->generateUserAgentEtc();
+    analytics_->startSession();
+  }
+}
+
 void MainApplication::connectDatabase()
 {
   QString fileName(dbFileName() % ".bak");
@@ -287,6 +306,12 @@ void MainApplication::quitApplication()
   delete networkManager_;
   delete cookieJar_;
   delete closingWidget_;
+
+  if (analytics_) {
+    analytics_->endSession();
+    analytics_->waitForIdle();
+    delete analytics_;
+  }
 
   qWarning() << "Quit application";
 

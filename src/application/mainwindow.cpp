@@ -66,6 +66,9 @@ MainWindow::MainWindow(QWidget *parent)
   setWindowTitle("QuiteRSS");
   setContextMenuPolicy(Qt::CustomContextMenu);
 
+  if (mainApp->analytics())
+    mainApp->analytics()->sendScreenview("MainWindow");
+
   db_ = QSqlDatabase::database();
 
   createFeedsWidget();
@@ -92,8 +95,7 @@ MainWindow::MainWindow(QWidget *parent)
 
   initUpdateFeeds();
 
-
-  QTimer::singleShot(10000, this, SLOT(slotUpdateAppCheck()));
+  QTimer::singleShot(5000, this, SLOT(slotUpdateAppCheck()));
 
   connect(this, SIGNAL(signalShowNotification(bool)),
           SLOT(showNotification(bool)), Qt::QueuedConnection);
@@ -3332,7 +3334,7 @@ void MainWindow::showOptionDlg(int index)
 
   bool updateCheckEnabled = settings.value("Settings/updateCheckEnabled", true).toBool();
   optionsDialog_->updateCheckEnabled_->setChecked(updateCheckEnabled);
-  bool statisticsEnabled = settings.value("Settings/statisticsEnabled", true).toBool();
+  bool statisticsEnabled = settings.value("Settings/statisticsEnabled2", true).toBool();
   optionsDialog_->statisticsEnabled_->setChecked(statisticsEnabled);
 
   bool storeDBMemory_ = settings.value("Settings/storeDBMemory", true).toBool();
@@ -3735,7 +3737,7 @@ void MainWindow::showOptionDlg(int index)
   updateCheckEnabled = optionsDialog_->updateCheckEnabled_->isChecked();
   settings.setValue("Settings/updateCheckEnabled", updateCheckEnabled);
   statisticsEnabled = optionsDialog_->statisticsEnabled_->isChecked();
-  settings.setValue("Settings/statisticsEnabled", statisticsEnabled);
+  settings.setValue("Settings/statisticsEnabled2", statisticsEnabled);
 
   storeDBMemory_ = optionsDialog_->storeDBMemory_->isChecked();
   settings.setValue("Settings/storeDBMemory", storeDBMemory_);
