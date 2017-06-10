@@ -37,8 +37,6 @@
   define GANALYTICS_QTQUICK in your .pro file like this: 'DEFINES += GANALYTICS_QTQUICK',
   or in cmake project: 'add_definitions(-DGANALYTICS_QTQUICK)'
 */
-#include <unistd.h>
-#include <map>
 #include <QCoreApplication>
 #include <QSettings>
 
