@@ -205,14 +205,6 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
 
   setLayout(layout);
 
-  foreach (int cntNews, cntNewNewsList) {
-    cntAllNews_ = cntAllNews_ + cntNews;
-  }
-  textTitle_->setText(QString(tr("Incoming News: %1")).arg(cntAllNews_));
-
-  if ((cntAllNews_ + idFeedList.count()) > numberItems) nextButton_->setEnabled(true);
-  else nextButton_->setEnabled(false);
-
   addPage(false);
 
   if (!idFeedList.isEmpty()) {
@@ -223,11 +215,16 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
       QString titleFeed;
       QPixmap icon;
       int idFeed = idFeedList[i];
+      int cntNews;
 
-      qStr = QString("SELECT text, image FROM feeds WHERE id=='%1'").
+      qStr = QString("SELECT text, image, newCount FROM feeds WHERE id=='%1'").
           arg(idFeed);
       q.exec(qStr);
       if (q.next()) {
+        cntNews = q.value(2).toInt();
+        if (!cntNews)
+          continue;
+
         titleFeed = q.value(0).toString();
         QByteArray byteArray = q.value(1).toByteArray();
         if (!byteArray.isNull()) {
@@ -235,7 +232,10 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
         } else {
           icon.load(":/images/feed");
         }
+      } else {
+        continue;
       }
+      cntAllNews_ = cntAllNews_ + cntNewNewsList[i];
 
       if (showTitlesFeedsNotify) {
         if (countItems >= (numberItems - 1)) {
@@ -252,7 +252,8 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
       }
 
       int cntNewNews = 0;
-      qStr = QString("SELECT id, title FROM news WHERE new=1 AND feedId=='%1'").
+
+      qStr = QString("SELECT id, title FROM news WHERE new=1 AND feedId=='%1' ORDER BY received DESC").
           arg(idFeed);
       q.exec(qStr);
       while (q.next()) {
@@ -352,7 +353,14 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
         pageLayout_->addWidget(newsItem);
       }
     }
+    foreach (int cntNews, cntNewNewsList) {
+      cntAllNews_ = cntAllNews_ + cntNews;
+    }
   }
+
+  textTitle_->setText(QString(tr("Incoming News: %1")).arg(cntAllNews_));
+  if ((cntAllNews_ + idFeedList.count()) > numberItems) nextButton_->setEnabled(true);
+  else nextButton_->setEnabled(false);
 
   pageLayout_->addStretch();
   numPage_->setText(QString(tr("Page %1 of %2").arg("1").arg(stackedWidget_->count())));
