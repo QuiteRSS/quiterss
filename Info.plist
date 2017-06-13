@@ -9,7 +9,7 @@
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleGetInfoString</key>
-    <string>@EXECUTABLE@ (C) 2011-2016 QuiteRSS Team</string>
+    <string>@EXECUTABLE@ (C) 2011-2017 QuiteRSS Team</string>
     <key>CFBundleSignature</key>
     <string>@TYPEINFO@</string>
     <key>CFBundleExecutable</key>
@@ -23,6 +23,6 @@
     <key>CFBundleShortVersionString</key>
     <string>0.18.4</string>
     <key>NSHumanReadableCopyright</key>
-    <string>(C) 2011-2016 QuiteRSS Team</string>
+    <string>(C) 2011-2017 QuiteRSS Team</string>
 </dict>
 </plist>

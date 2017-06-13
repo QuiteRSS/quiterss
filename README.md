@@ -1,7 +1,7 @@
 Linux: [![Build Status](https://travis-ci.org/QuiteRSS/quiterss.svg?branch=master)](https://travis-ci.org/QuiteRSS/quiterss)
 Windows: [![Build status](https://ci.appveyor.com/api/projects/status/5lr4m5jxf2ad4f5r/branch/master?svg=true)](https://ci.appveyor.com/project/Funcy-dcm/quiterss/branch/master)
 
-Copyright (C) 2011-2016 QuiteRSS Team <quiterssteam@gmail.com>
+Copyright (C) 2011-2017 QuiteRSS Team <quiterssteam@gmail.com>
 
 QuiteRSS is a open-source cross-platform RSS/Atom news feeds reader written on Qt/C++
 
