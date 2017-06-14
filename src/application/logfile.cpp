@@ -33,6 +33,9 @@ void LogFile::msgHandler(QtMsgType type, const QMessageLogContext &, const QStri
     if (mainApp->isNoDebugOutput()) return;
   }
 
+  if (!mainApp->dataDirInitialized())
+    return;
+
   QFile file;
   file.setFileName(mainApp->dataDir() + "/debug.log");
   QIODevice::OpenMode openMode = QIODevice::WriteOnly | QIODevice::Text;

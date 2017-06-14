@@ -200,6 +200,7 @@ void MainApplication::checkDir()
     dataDir_ = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
     cacheDir_ = QDesktopServices::storageLocation(QDesktopServices::CacheLocation);
 #endif
+    dataDirInitialized_ = true;
     soundNotifyDir_ = resourcesDir_ % "/sound";
 
     QDir dir(dataDir_);
