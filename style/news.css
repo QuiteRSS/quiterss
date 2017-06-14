@@ -116,6 +116,7 @@ a.enclosure {
 
 .newsTable {
   border-top: 1px solid %6;
+  border-bottom: 1px solid %6;
   text-align: %14;
   direction: %15;
   width: 100%;
