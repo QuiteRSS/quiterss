@@ -200,12 +200,12 @@ void MainApplication::checkDir()
     dataDir_ = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
     cacheDir_ = QDesktopServices::storageLocation(QDesktopServices::CacheLocation);
 #endif
-    dataDirInitialized_ = true;
     soundNotifyDir_ = resourcesDir_ % "/sound";
 
     QDir dir(dataDir_);
     dir.mkpath(dataDir_);
   }
+  dataDirInitialized_ = true;
 }
 
 void MainApplication::createSettings()
