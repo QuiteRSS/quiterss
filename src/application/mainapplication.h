@@ -118,7 +118,7 @@ private:
   bool isPortable_;
   bool isPortableAppsCom_;
   bool isClosing_;
-  bool dataDirInitialized_ = false;
+  bool dataDirInitialized_;
 
   QString resourcesDir_;
   QString dataDir_;
