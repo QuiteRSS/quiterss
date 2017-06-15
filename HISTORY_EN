@@ -17,7 +17,7 @@
 <p><b>Version 0.18.4</b> (08 Mar 2016)
 <ul>
 <li>Changed: Mouse buttons settings of opening news is removed</li>
-<li>Changed: SQLite librari is updated to 3.11.1 version</li>
+<li>Changed: SQLite library is updated to 3.11.1 version</li>
 
 <li>Fixed: msvcr120.dll troubles (Windows)</li>
 <li>Fixed: Application crash while using some shortcuts</li>
@@ -33,7 +33,7 @@
 <li>Changed: Updating news in newspaper view using descending sort</li>
 
 <li>Fixed: Duplicate notification sound playback (Ubuntu)</li>
-<li>Fixed: Application crash if quit while settins dialog is open</li>
+<li>Fixed: Application crash if quit while settings dialog is open</li>
 <li>Fixed: Application crash while using search and filters</li>
 <li>Fixed: Application crash while adding local feed</li>
 <li>Fixed: News publish time of some feeds</li>
@@ -42,7 +42,7 @@
 <p><b>Version 0.18.2</b> (14 Jul 2015)
 <ul>
 <li>Fixed: Application crash</li>
-<li>Fixed: Catefories. Popup menu item "Mark as Read"</li>
+<li>Fixed: Categories. Popup menu item "Mark as Read"</li>
 </ul>
 <!---------------------------------------------------------------------------->
 <p><b>Version 0.18.1</b> (12 Jul 2015)
@@ -85,9 +85,9 @@
 <li>Added: Tray menu item "Add feed..."</li>
 <li>Added: News filter. Condition "News" (title + description)</li>
 <li>Added: Displaying feed icon beside feed title when using newspaper mode</li>
-<li>Added: Catefories. Popup menu item "Mark as Read"</li>
+<li>Added: Categories. Popup menu item "Mark as Read"</li>
 
-<li>Changed: CA sertificate loading</li>
+<li>Changed: CA certificate loading</li>
 <li>Changed: Icons correction</li>
 <li>Changed: Displaying the wizard only if feed is added from Firefox</li>
 
@@ -326,7 +326,7 @@
 <li>Fixed: Importing feeds from opml-file failure in some cases</li>
 <li>Fixed: Reset zoom on switching tabs</li>
 <li>Fixed: Processing authorization request from proxy</li>
-<li>Fixed: RTL for arabic and persian</li>
+<li>Fixed: RTL for Arabic and Persian</li>
 <li>Fixed: Creating links in news</li>
 </ul>
 <!---------------------------------------------------------------------------->
@@ -338,11 +338,11 @@
 <li>Added: Setting for text and background colors of focused feed</li>
 <li>Added: Language: Finnish</li>
 
-<li>Changed: Load feed's favicon from main webpage</li>
+<li>Changed: Load feed favicon from main webpage</li>
 <li>Changed: Process "dc:date" while parsing feed</li>
 <li>Changed: Mouse gestures. Jump to news description if there is no previous page on back-action</li>
 <li>Changed: Address bar appearance</li>
-<li>Changed: Send whole new's text when share news by e-mail</li>
+<li>Changed: Send whole news text when share news by e-mail</li>
 
 <li>Fixed: Adding feeds that contains "amp;"</li>
 <li>Fixed: Parsing of some feeds</li>
@@ -376,7 +376,7 @@
 <li>Fixed: Mark feed read (while filter is enabled)</li>
 </ul>
 <!---------------------------------------------------------------------------->
-<p><b>Vervion 0.14.0</b> (15 Nov 2013)
+<p><b>Version 0.14.0</b> (15 Nov 2013)
 <ul>
 <li>Main: Increase application performance</li>
 <li>Main: Feed filter is case-insensitive now</li>
@@ -396,7 +396,7 @@
 <li>Fixed: Application crash while starting by desktop shortcut</li>
 <li>Fixed: Tip "All feeds" while creating new filter</li>
 <li>Fixed: Clearing news filter on switching between feeds</li>
-<li>Fixed: Autoreplacement "http://" on adding feed</li>
+<li>Fixed: Auto-replacement "http://" on adding feed</li>
 <li>Fixed: Confuse options names "Don't delete starred news", "Don't delete labeled news"</li>
 <li>Fixed: User filters with apostrophe didn't work</li>
 <li>Fixed: Files extension in save/open dialogs</li>
@@ -586,7 +586,7 @@
 
 <li>Changed: GUI. Visual tweaks</li>
 <li>Changed: Increase performance of updating news</li>
-<li>Changed: Display feed's title in "Feed" column in news list</li>
+<li>Changed: Display feed title in "Feed" column in news list</li>
 
 <li>Fixed: Application crash while dragging feeds/folders</li>
 <li>Fixed: Application crash while pressing SPACE in tab which contains news</li>
@@ -607,15 +607,15 @@
 <p><b>Version 0.12.3</b> (16 Mar 2013)
 <ul>
 <li>Main: Increase productivity</li>
-<li>Main: Manual sort in feed's tree</li>
+<li>Main: Manual sort in feed tree</li>
 
-<li>Added: Option "Hide feed's tree when opening tabs"</li>
+<li>Added: Option "Hide feed tree when opening tabs"</li>
 <li>Added: Option for news' list "Alternate row's background color" (Options->Feeds->General->...)</li>
 <li>Added: Ability to open several news in external browser</li>
 <li>Added: Ability to open several news in tabs</li>
 <li>Added: News filters: "Show for Last Day" and "Show for Last 7 Days"</li>
 <li>Added: Notification window: Button to open news in external browser</li>
-<li>Added: Ability to hide feed's indentation in tree ("Feeds->Show Indentation")</li>
+<li>Added: Ability to hide feed indentation in tree ("Feeds->Show Indentation")</li>
 <li>Added: Ability to customize toolbar ("View->Customize toolbar->...")</li>
 <li>Added: Option "Show default rss-icon instead of favourite one"</li>
 <li>Added: Share news: Email, Evernote, Facebook, VK</li>
@@ -636,7 +636,7 @@
 <li>Fixed: Some feeds displays short description instead of full</li>
 <li>Fixed: Recounting folder's counters</li>
 <li>Fixed: Shutdown of application while PC shutdown</li>
-<li>Fixed: Feed's tree when it contains more than 256 items</li>
+<li>Fixed: Feed tree when it contains more than 256 items</li>
 <li>Fixed: Cursor disappear in news list when sort changing</li>
 <li>Fixed: Import OPML-files</li>
 <li>Fixed: Notification window displays old news</li>
@@ -648,7 +648,7 @@
 <li>Added: Displaying news of selected folder</li>
 <li>Added: Displaying URL of media-content</li>
 <li>Added: Ability to save browser page as plain text</li>
-<li>Added: Feed's option "Automatically delete news' duplicates"</li>
+<li>Added: Feed option "Automatically delete news' duplicates"</li>
 <li>Added: Ability to hide Categories ("View->Show/Hide->Panel Categories")</li>
 
 <li>Changed: GUI. Visual tweaks</li>
@@ -821,8 +821,8 @@
 
 <li>Changed: GUI. Some visual tweaks</li>
 
-<li>Fixed: Keyboard layout in unix systems</li>
-<li>Fixed: Default application icon instead on QuiteRSS icon in unix systems</li>
+<li>Fixed: Keyboard layout in Unix systems</li>
+<li>Fixed: Default application icon instead on QuiteRSS icon in Unix systems</li>
 <li>Fixed: Hang while updating some feeds</li>
 <li>Fixed: Duplicate news in RSS-feeds</li>
 </ul>
@@ -945,8 +945,8 @@
 <li>Fixed: SQLite for Qt 4.8.0</li>
 <li>Fixed: NetworkManager move to his own thread</li>
 <li>Fixed: News list don't scroll while click on column "read/unread" if cursor is out of view</li>
-<li>Fixed: Request url queues while update feeds</li>
-<li>Fixed: Parsing "alternate" url of the news of Atom-feeds</li>
+<li>Fixed: Request URL queues while update feeds</li>
+<li>Fixed: Parsing "alternate" URL of the news of Atom-feeds</li>
 <li>Fixed: TrayMenu is not appear sometimes</li>
 </ul>
 
