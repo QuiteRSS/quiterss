@@ -2,7 +2,7 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
-<p><b>Version 0.18.4+</b> (xx Jun 2017)
+<p><b>Version 0.18.5</b> (15 Jun 2017)
 <ul>
 <li>Changed: SQLite 3.19.1</li>
 <li>Changed: OpenSSL 1.1.0f (Windows)</li>
