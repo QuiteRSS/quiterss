@@ -193,12 +193,10 @@ void NetworkManager::slotProxyAuthentication(const QNetworkProxy &proxy, QAuthen
   delete authenticationDialog;
 }
 
-#if QT_VERSION < 0x050000
 static inline uint qHash(const QSslCertificate &cert)
 {
   return qHash(cert.toPem());
 }
-#endif
 
 void NetworkManager::slotSslError(QNetworkReply *reply, QList<QSslError> errors)
 {
