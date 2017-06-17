@@ -193,11 +193,6 @@ void NetworkManager::slotProxyAuthentication(const QNetworkProxy &proxy, QAuthen
   delete authenticationDialog;
 }
 
-static inline uint qHash(const QSslCertificate &cert)
-{
-  return qHash(cert.toPem());
-}
-
 void NetworkManager::slotSslError(QNetworkReply *reply, QList<QSslError> errors)
 {
   if (ignoreAllWarnings_ || reply->property("downloadReply").toBool()) {

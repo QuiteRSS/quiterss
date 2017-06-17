@@ -175,14 +175,6 @@ QString Common::operatingSystem()
 {
 #ifdef Q_OS_MAC
   QString str = "Mac OS X";
-#if QT_VERSION >= 0x050400
-  SInt32 majorVersion;
-  SInt32 minorVersion;
-
-  if (Gestalt(gestaltSystemVersionMajor, &majorVersion) == noErr && Gestalt(gestaltSystemVersionMinor, &minorVersion) == noErr) {
-    str.append(QString(" %1.%2").arg(majorVersion).arg(minorVersion));
-  }
-#endif
   return str;
 #endif
 #ifdef Q_OS_LINUX

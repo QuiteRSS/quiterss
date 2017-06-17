@@ -4539,11 +4539,11 @@ void MainWindow::markFeedRead()
     bool openFeedT = false;
     QModelIndex index = feedsModel_->indexById(id);
     int parentId = feedsModel_->dataField(index, "parentId").toInt();
-    if ((currentNewsTab->feedId_ == id)) {
+    if (currentNewsTab->feedId_ == id) {
       openFeedT = true;
       openFeed = true;
     }
-    if ((currentNewsTab->feedParId_ == id)) {
+    if (currentNewsTab->feedParId_ == id) {
       openFeed = true;
     }
     if (currentNewsTab->feedId_ == parentId) {
