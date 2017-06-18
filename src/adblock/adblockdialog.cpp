@@ -47,13 +47,15 @@
 #include <QInputDialog>
 
 AdBlockDialog::AdBlockDialog(QWidget* parent)
-  : QWidget(parent)
+  : QDialog(parent)
   , m_manager(AdBlockManager::instance())
   , m_currentTreeWidget(0)
   , m_currentSubscription(0)
   , m_loaded(false)
   , m_useLimitedEasyList(false)
 {
+  setModal(true);
+  setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
   setAttribute(Qt::WA_DeleteOnClose);
   setupUi(this);
 

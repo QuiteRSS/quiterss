@@ -2539,10 +2539,8 @@ void MainWindow::addFeed()
     curFolderId = feedsModel_->paridByIndex(curIndex);
   }
 
-  AddFeedWizard *addFeedWizard = new AddFeedWizard(0, curFolderId);
+  AddFeedWizard *addFeedWizard = new AddFeedWizard(this, curFolderId);
   addFeedWizard->show();
-  addFeedWizard->raise();
-  addFeedWizard->activateWindow();
 
   int result = addFeedWizard->exec();
   if (result == QDialog::Rejected) {
