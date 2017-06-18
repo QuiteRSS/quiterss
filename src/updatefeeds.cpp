@@ -164,7 +164,7 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool addFeed)
     connect(parent, SIGNAL(signalSetFeedsFilter(bool)),
             updateObject_, SIGNAL(signalSetFeedsFilter(bool)));
     connect(updateObject_, SIGNAL(signalSetFeedsFilter(bool)),
-            parent, SLOT(setFeedsFilter(bool)));
+            parent, SLOT(setFeedsFilter(bool)), Qt::QueuedConnection);
 
     connect(mainApp, SIGNAL(signalSqlQueryExec(QString)),
             updateObject_, SLOT(slotSqlQueryExec(QString)));
