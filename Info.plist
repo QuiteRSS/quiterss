@@ -24,5 +24,9 @@
     <string>0.18.5</string>
     <key>NSHumanReadableCopyright</key>
     <string>(C) 2011-2017 QuiteRSS Team</string>
+    <key>NSPrincipalClass</key>
+    <string>NSApplication</string>
+    <key>NSHighResolutionCapable</key>
+    <true/>
 </dict>
 </plist>
