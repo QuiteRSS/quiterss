@@ -2,7 +2,7 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
-<p><b>Version 0.18.5+</b> (xx Jun 2017)
+<p><b>Version 0.18.6</b> (20 Jun 2017)
 <ul>
 <li>Changed: SQLite 3.19.3</li>
 

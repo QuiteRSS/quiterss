@@ -1,3 +1,8 @@
+Version 0.18.6 (20 Jun 2017)
+  * Changed: SQLite 3.19.3
+  * Fixed: Displaying dialogs in mode "Stay on top"
+  * Fixed: Mark displayed news as read when switching feeds
+
 Version 0.18.5 (15 Jun 2017)
   * Changed: SQLite 3.19.1
   * Changed: OpenSSL 1.1.0f (Windows)
