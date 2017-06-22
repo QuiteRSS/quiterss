@@ -524,7 +524,9 @@ private:
   int addTab(NewsTabWidget *widget);
 
   NewsModel *newsModel_;
+#ifndef Q_OS_MAC
   QMenu *mainMenu_;
+#endif
   ToolButton *mainMenuButton_;
   TabBar *tabBar_;
   QWidget *tabBarWidget_;
