@@ -299,7 +299,9 @@ unix:!mac {
   icon_128.path = $$quote($$PREFIX/share/icons/hicolor/128x128/apps)
   icon_256.path = $$quote($$PREFIX/share/icons/hicolor/256x256/apps)
 
-  translations.files = $$quote($$DESTDIR/lang/)*.qm
+  translations.files = $$TRANSLATIONS
+  translations.files ~= s,\\.ts$,.qm,g
+  translations.files ~= s,^,$$DESTDIR/,g
   translations.path =  $$quote($$DATA_DIR/lang)
   translations.CONFIG += no_check_exist
 
