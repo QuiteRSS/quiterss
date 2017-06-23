@@ -1,3 +1,10 @@
+greaterThan(QT_MAJOR_VERSION, 5) {
+  error("QuiteRSS requires no more than Qt 5.5.1!")
+}
+isEqual(QT_MAJOR_VERSION, 5):greaterThan(QT_MINOR_VERSION, 5) {
+  error("QuiteRSS requires no more than Qt 5.5.1!")
+}
+
 # VCS revision info
 REVFILE = src/VersionRev.h
 QMAKE_DISTCLEAN += $$REVFILE
