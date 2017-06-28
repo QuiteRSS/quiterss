@@ -44,7 +44,7 @@ img:not(.quiterss-img) {
   max-width: 670px;
   margin-left: auto;   
   margin-right: auto;
-  border:10px solid #fff;1
+  border:10px solid #fff;
   -webkit-box-shadow: 0 7px 5px -5px #CCC;
   -moz-box-shadow: 0 7px 5px -5px #CCC;
   box-shadow: 0 7px 5px -5px #CCC;
@@ -122,7 +122,7 @@ a:hover {text-decoration: none; color: #0066CC;}
   margin-top: 10px;
   padding: 5px;
   background-color:#3D3D3D;
-  -webkit-border-top-left-radius: 5x;
+  -webkit-border-top-left-radius: 5px;
   -webkit-border-top-right-radius: 5px;
   -moz-border-top-left-radius: 5px;
   -moz-border-top-right-radius: 5px;
@@ -136,7 +136,7 @@ a:hover {text-decoration: none; color: #0066CC;}
   padding: 5px;
   text-align: %14;
   direction: %15;
-  -webkit-border-bottom-left-radius: 5x;
+  -webkit-border-bottom-left-radius: 5px;
   -webkit-border-bottom-right-radius: 5px;
   -moz-border-bottom-left-radius: 5px;
   -moz-border-bottom-right-radius: 5px;
