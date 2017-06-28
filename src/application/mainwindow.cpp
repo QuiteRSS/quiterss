@@ -4462,7 +4462,8 @@ void MainWindow::setNewsFilter(QAction* pAct, bool clicked)
 void MainWindow::setFeedRead(int type, int feedId, FeedReedType feedReadType,
                              NewsTabWidget *widgetTab, int idException)
 {
-  if ((type >= NewsTabWidget::TabTypeWeb) || (type == NewsTabWidget::TabTypeDel))
+  if ((type >= NewsTabWidget::TabTypeWeb) || (type == NewsTabWidget::TabTypeDel) ||
+      (widgetTab == NULL))
     return;
 
   if ((type == NewsTabWidget::TabTypeFeed) && (feedReadType != FeedReadSwitchingTab)) {
