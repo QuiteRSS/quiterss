@@ -664,16 +664,16 @@ void AddFeedWizard::finish()
                  "displayEmbeddedImages = ?, displayNews = ?, layoutDirection = ?, "
                  "javaScriptEnable = ? "
                  "WHERE id == ?");
-      q1.addBindValue(q.value(0).toString());
-      q1.addBindValue(q.value(1).toInt());
-      q1.addBindValue(q.value(2).toInt());
-      q1.addBindValue(q.value(3).toInt());
-      q1.addBindValue(q.value(4).toInt());
-      q1.addBindValue(q.value(5).toInt());
-      q1.addBindValue(q.value(6).toInt());
-      q1.addBindValue(q.value(7).toInt());
-      q1.addBindValue(q.value(8).toInt());
-      q1.addBindValue(q.value(9).toInt());
+      q1.addBindValue(q.value(0));
+      q1.addBindValue(q.value(1));
+      q1.addBindValue(q.value(2));
+      q1.addBindValue(q.value(3));
+      q1.addBindValue(q.value(4));
+      q1.addBindValue(q.value(5));
+      q1.addBindValue(q.value(6));
+      q1.addBindValue(q.value(7));
+      q1.addBindValue(q.value(8));
+      q1.addBindValue(q.value(9));
       q1.addBindValue(feedId_);
       q1.exec();
     }
