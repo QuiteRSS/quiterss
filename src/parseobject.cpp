@@ -210,7 +210,6 @@ void ParseObject::slotParse(const QByteArray &xmlData, const int &feedId,
     else {
       while (q.next()) {
         QString str = q.value(2).toString();
-        if (!str.isEmpty()) {
         titleList_.append(str);
 
         str = q.value(1).toString();
@@ -220,7 +219,6 @@ void ParseObject::slotParse(const QByteArray &xmlData, const int &feedId,
         publishedList_.append(str);
         str = q.value(4).toString();
         linkList_.append(str);
-        }
       }
     }
     q.finish();
@@ -429,7 +427,7 @@ void ParseObject::addAtomNewsIntoBase(NewsItemStruct *newsItem)
             if (publishedList_.at(i) == newsItem->updated)
               isDuplicate = true;
           } else {                      // ... or by title
-            if (titleList_.at(i) == newsItem->title)
+            if (!newsItem->title.isEmpty() && (titleList_.at(i) == newsItem->title))
               isDuplicate = true;
           }
         }
@@ -439,7 +437,7 @@ void ParseObject::addAtomNewsIntoBase(NewsItemStruct *newsItem)
         if (publishedList_.at(i) == newsItem->updated)
           isDuplicate = true;
       } else {                              // ... or by title
-        if (titleList_.at(i) == newsItem->title)
+        if (!newsItem->title.isEmpty() && (titleList_.at(i) == newsItem->title))
           isDuplicate = true;
       }
     }
@@ -625,7 +623,7 @@ void ParseObject::addRssNewsIntoBase(NewsItemStruct *newsItem)
             isDuplicate = true;
           }
         } else {                            // ... or by title
-          if (titleList_.at(i) == newsItem->title)
+          if (!newsItem->title.isEmpty() && (titleList_.at(i) == newsItem->title))
             isDuplicate = true;
         }
       }
@@ -649,7 +647,7 @@ void ParseObject::addRssNewsIntoBase(NewsItemStruct *newsItem)
             isDuplicate = true;
           }
         } else {                            // ... or by title
-          if (titleList_.at(i) == newsItem->title)
+          if (!newsItem->title.isEmpty() && (titleList_.at(i) == newsItem->title))
             isDuplicate = true;
         }
       }
@@ -672,7 +670,7 @@ void ParseObject::addRssNewsIntoBase(NewsItemStruct *newsItem)
           isDuplicate = true;
         }
       } else {                            // ... or by title
-        if (titleList_.at(i) == newsItem->title)
+        if (!newsItem->title.isEmpty() && (titleList_.at(i) == newsItem->title))
           isDuplicate = true;
       }
       if (!isDuplicate) {

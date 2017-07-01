@@ -158,6 +158,9 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
       linkStr = linkStr.remove("http://");
       linkStr = linkStr.remove("https://");
       return linkStr;
+    } else if (QSqlTableModel::fieldIndex("title") == index.column()) {
+      if (index.data(Qt::EditRole).toString().isEmpty())
+        return tr("(no title)");
     }
   } else if (role == Qt::FontRole) {
     QFont font = view_->font();
