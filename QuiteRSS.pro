@@ -306,19 +306,19 @@ unix:!mac {
   icon_128.path = $$quote($$PREFIX/share/icons/hicolor/128x128/apps)
   icon_256.path = $$quote($$PREFIX/share/icons/hicolor/256x256/apps)
 
-  translations.files = $$quote($$DESTDIR/lang/)*.qm
-  translations.path =  $$quote($$DATA_DIR/lang)
+  translations.files = $$quote($$DESTDIR/lang)
+  translations.path =  $$quote($$DATA_DIR)
   translations.CONFIG += no_check_exist
 
-  sound.files = sound/*.wav
-  sound.path = $$quote($$DATA_DIR/sound)
+  sound.files = sound
+  sound.path = $$quote($$DATA_DIR)
 
-  style.files = style/*.*
-  style.path = $$quote($$DATA_DIR/style)
+  style.files = style
+  style.path = $$quote($$DATA_DIR)
 
   INSTALLS += target desktop target1
-  INSTALLS += icon_16 icon_32 icon_48 icon_64 icon_128 icon_256 \
-              translations sound style
+  INSTALLS += icon_16 icon_32 icon_48 icon_64 icon_128 icon_256
+  INSTALLS += translations sound style
 }
 
 mac {
