@@ -2596,8 +2596,10 @@ void NewsTabWidget::slotShareNews(QAction *action)
       linkString = webView_->url().toString();
       content = webView_->page()->mainFrame()->toPlainText();
     }
+#if defined(Q_OS_WIN) || defined(Q_OS_OS2) || defined(Q_OS_MAC)
     content = content.replace("\n", "%0A");
     content = content.replace("\"", "%22");
+#endif
 
     QUrl url;
     if (action->objectName() == "emailShareAct") {
@@ -2606,10 +2608,19 @@ void NewsTabWidget::slotShareNews(QAction *action)
       QUrlQuery urlQuery;
       urlQuery.addQueryItem("subject", title);
       urlQuery.addQueryItem("body", linkString);
+//#if defined(Q_OS_WIN) || defined(Q_OS_OS2) || defined(Q_OS_MAC)
+//      urlQuery.addQueryItem("body", linkString + "%0A%0A" + content);
+//#else
+//      urlQuery.addQueryItem("body", linkString + "\n\n" + content);
+//#endif
       url.setQuery(urlQuery);
 #else
       url.addQueryItem("subject", title);
+#if defined(Q_OS_WIN) || defined(Q_OS_OS2) || defined(Q_OS_MAC)
       url.addQueryItem("body", linkString + "%0A%0A" + content);
+#else
+      url.addQueryItem("body", linkString + "\n\n" + content);
+#endif
 #endif
       openUrl(url);
     } else {
