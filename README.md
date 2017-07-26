@@ -13,4 +13,3 @@ Links:
 * Git repository: https://github.com/QuiteRSS/quiterss
 * Issue tracker: https://github.com/QuiteRSS/quiterss/issues
 * Translations: https://www.transifex.com/projects/p/quiterss/
-* Jabber conference: quiterss@conference.jabber.ru
