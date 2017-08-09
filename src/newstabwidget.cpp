@@ -2061,7 +2061,7 @@ void NewsTabWidget::openInExternalBrowserNews()
 
 void NewsTabWidget::setNewsLayout()
 {
-  if (type_ == TabTypeDownloads) return;
+  if (type_ >= TabTypeWeb) return;
 
   switch (mainWindow_->newsLayout_) {
   case 1:
@@ -2078,7 +2078,7 @@ void NewsTabWidget::setNewsLayout()
  *----------------------------------------------------------------------------*/
 void NewsTabWidget::setBrowserPosition()
 {
-  if (type_ == TabTypeDownloads) return;
+  if (type_ >= TabTypeWeb) return;
 
   int idx = newsTabWidgetSplitter_->indexOf(webWidget_);
 
