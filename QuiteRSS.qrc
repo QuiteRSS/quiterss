@@ -24,11 +24,7 @@
         <file alias="imagesOn">images/imagesOn.png</file>
         <file alias="importFeeds">images/ImportFeeds.png</file>
         <file alias="filterOff">images/filterOff.png</file>
-        <file alias="quiterss16_NewNews">images/QuiteRSS16_NewNews.png</file>
         <file alias="quiterss16">images/16x16/quiterss.png</file>
-        <file alias="quiterss32">images/32x32/quiterss.png</file>
-        <file alias="quiterss16_NewNews1">images/QuiteRSS16_NewNews1.png</file>
-        <file alias="countNew">images/quiterss_count.png</file>
         <file alias="exportFeeds">images/exportFeeds.png</file>
         <file alias="add">images/add.png</file>
         <file alias="delete">images/delete.png</file>
@@ -100,7 +96,8 @@
         <file alias="layout_classic">images/layout_classic.png</file>
         <file alias="layout_newspaper">images/layout_newspaper.png</file>
         <file alias="cleanup">images/cleanup.png</file>
-        <file alias="quiterss_128">images/128x128/quiterss.png</file>
+        <file alias="quiterss128">images/128x128/quiterss.png</file>
+        <file alias="quiterss128_NewNews">images/quiterss128_NewNews.png</file>
     </qresource>
     <qresource prefix="/style">
         <file alias="systemStyle">style/system.qss</file>

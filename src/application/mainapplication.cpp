@@ -63,7 +63,7 @@ MainApplication::MainApplication(int &argc, char **argv)
   setApplicationName("QuiteRss");
   setOrganizationName("QuiteRss");
   setApplicationVersion(STRPRODUCTVER);
-  setWindowIcon(QIcon(":/images/quiterss_128"));
+  setWindowIcon(QIcon(":/images/quiterss128"));
   setQuitOnLastWindowClosed(false);
   QSettings::setDefaultFormat(QSettings::IniFormat);
 #if QT_VERSION >= 0x050400
