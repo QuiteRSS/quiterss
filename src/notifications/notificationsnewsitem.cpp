@@ -92,7 +92,7 @@ void NewsItem::setColorText(const QString &color, const QString &linkColor)
 
 bool NewsItem::eventFilter(QObject *obj, QEvent *event)
 {
-  if((event->type() == QEvent::MouseButtonPress) && isEnabled()) {
+  if ((event->type() == QEvent::MouseButtonPress) && isEnabled()) {
     read_ = 1;
     readButton_->setIcon(QIcon(":/images/bulletRead"));
     QFont font = textLabel_->font();

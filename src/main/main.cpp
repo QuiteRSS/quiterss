@@ -18,7 +18,7 @@
 #include "mainapplication.h"
 #include "logfile.h"
 
-const bool logFileOutput = 0;
+const bool logFileOutput = 1;
 
 int main(int argc, char **argv)
 {

@@ -531,7 +531,7 @@ FEED_PROPERTIES FeedPropertiesDialog::getFeedProperties()
   feedProperties.authentication.user = user_->text();
   feedProperties.authentication.pass = pass_->text();
 
-  return(feedProperties);
+  return (feedProperties);
 }
 //------------------------------------------------------------------------------
 void FeedPropertiesDialog::setFeedProperties(FEED_PROPERTIES properties)

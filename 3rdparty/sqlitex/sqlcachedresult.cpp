@@ -133,7 +133,7 @@ bool SqlCachedResult::fetch(int i)
     // speed hack - do not copy values if not needed
     if (at() > i || at() == QSql::AfterLastRow)
       return false;
-    while(at() < i - 1) {
+    while (at() < i - 1) {
       if (!gotoNext(d->cache, -1))
         return false;
       setAt(at() + 1);
@@ -244,7 +244,7 @@ bool SqlCachedResult::cacheNext()
   if (d->atEnd)
     return false;
 
-  if(isForwardOnly()) {
+  if (isForwardOnly()) {
     d->cache.clear();
     d->cache.resize(d->colCount);
   }

@@ -482,9 +482,9 @@ void Database::sqliteDBMemFile(bool save)
             qDebug() << rc << "backup" << pagecount << "remain" << remaining;
           }
 
-          if((rc == SQLITE_OK) || (rc == SQLITE_BUSY) || (rc == SQLITE_LOCKED))
+          if ((rc == SQLITE_OK) || (rc == SQLITE_BUSY) || (rc == SQLITE_LOCKED))
             sqlite3_sleep(100);
-        } while((rc == SQLITE_OK) || (rc == SQLITE_BUSY) || (rc == SQLITE_LOCKED));
+        } while ((rc == SQLITE_OK) || (rc == SQLITE_BUSY) || (rc == SQLITE_LOCKED));
 
         /* Release resources allocated by backup_init(). */
         (void)sqlite3_backup_finish(pBackup);

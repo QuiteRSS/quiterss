@@ -2111,7 +2111,7 @@ void OptionsDialog::loadActionShortcut(QList<QAction *> actions, QStringList *li
              << pAction->objectName() << pAction->data().toString();
 
     QList<QStandardItem *> treeItems;
-    for(int i = 0; i < treeItem.count(); i++) {
+    for (int i = 0; i < treeItem.count(); i++) {
       QStandardItem *item = new QStandardItem(treeItem.at(i));
       if (i == 0) {
         if (pAction->icon().isNull())
@@ -2357,7 +2357,7 @@ void OptionsDialog::feedsTreeNotifyItemChanged(QTreeWidgetItem *item, int column
 //----------------------------------------------------------------------------
 void OptionsDialog::setCheckStateItem(QTreeWidgetItem *item, Qt::CheckState state)
 {
-  for(int i = 0; i < item->childCount(); ++i) {
+  for (int i = 0; i < item->childCount(); ++i) {
     QTreeWidgetItem *childItem = item->child(i);
     childItem->setCheckState(0, state);
     setCheckStateItem(childItem, state);
@@ -2437,7 +2437,7 @@ void OptionsDialog::newLabel()
   itemStr << nameLabel << nameLabel << ""
           << QString("labelAction_%1").arg(idLabel) << QString::number(idLabel);
   QList<QStandardItem *> treeItems;
-  for(int i = 0; i < itemStr.count(); i++) {
+  for (int i = 0; i < itemStr.count(); i++) {
     QStandardItem *item = new QStandardItem(itemStr.at(i));
     if (i == 0) {
       item->setIcon(labelDialog->icon_);

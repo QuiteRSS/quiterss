@@ -481,7 +481,7 @@ void FilterRulesDialog::feedItemChanged(QTreeWidgetItem *item, int column)
 
 void FilterRulesDialog::setCheckStateItem(QTreeWidgetItem *item, Qt::CheckState state)
 {
-  for(int i = 0; i < item->childCount(); ++i) {
+  for (int i = 0; i < item->childCount(); ++i) {
     QTreeWidgetItem *childItem = item->child(i);
     childItem->setCheckState(0, state);
     setCheckStateItem(childItem, state);

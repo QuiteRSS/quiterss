@@ -52,7 +52,7 @@ Q_DECLARE_METATYPE(sqlite3_stmt*)
 static QString _q_escapeIdentifier(const QString &identifier)
 {
   QString res = identifier;
-  if(!identifier.isEmpty() && identifier.left(1) != QString(QLatin1Char('"')) && identifier.right(1) != QString(QLatin1Char('"')) ) {
+  if (!identifier.isEmpty() && identifier.left(1) != QString(QLatin1Char('"')) && identifier.right(1) != QString(QLatin1Char('"')) ) {
     res.replace(QLatin1Char('"'), QLatin1String("\"\""));
     res.prepend(QLatin1Char('"')).append(QLatin1Char('"'));
     res.replace(QLatin1Char('.'), QLatin1String("\".\""));
@@ -208,13 +208,13 @@ bool SQLiteResultPrivate::fetchNext(SqlCachedResult::ValueCache &values, int idx
     // already fetched
     Q_ASSERT(!initialFetch);
     skipRow = false;
-    for(int i=0;i<firstRow.count();i++)
+    for (int i=0;i<firstRow.count();i++)
       values[i]=firstRow[i];
     return skippedStatus;
   }
   skipRow = initialFetch;
 
-  if(initialFetch) {
+  if (initialFetch) {
     firstRow.clear();
     firstRow.resize(sqlite3_column_count(stmt));
   }
@@ -227,7 +227,7 @@ bool SQLiteResultPrivate::fetchNext(SqlCachedResult::ValueCache &values, int idx
   }
   res = sqlite3_step(stmt);
 
-  switch(res) {
+  switch (res) {
   case SQLITE_ROW:
     // check to see if should fill out columns
     if (rInf.isEmpty())
@@ -246,7 +246,7 @@ bool SQLiteResultPrivate::fetchNext(SqlCachedResult::ValueCache &values, int idx
         values[i + idx] = sqlite3_column_int64(stmt, i);
         break;
       case SQLITE_FLOAT:
-        switch(q->numericalPrecisionPolicy()) {
+        switch (q->numericalPrecisionPolicy()) {
         case QSql::LowPrecisionInt32:
           values[i + idx] = sqlite3_column_int(stmt, i);
           break;
@@ -693,7 +693,7 @@ QStringList SQLiteDriver::tables(QSql::TableType type) const
     sql.clear();
 
   if (!sql.isEmpty() && q.exec(sql)) {
-    while(q.next())
+    while (q.next())
       res.append(q.value(0).toString());
   }
 

@@ -282,18 +282,18 @@ void MainWindow::slotTimerLinkOpening()
  *---------------------------------------------------------------------------*/
 void MainWindow::changeEvent(QEvent *event)
 {
-  if(event->type() == QEvent::WindowStateChange) {
+  if (event->type() == QEvent::WindowStateChange) {
     isOpeningLink_ = false;
-    if(isMinimized()) {
+    if (isMinimized()) {
       oldState = ((QWindowStateChangeEvent*)event)->oldState();
     } else {
       oldState = windowState();
     }
-  } else if(event->type() == QEvent::ActivationChange) {
+  } else if (event->type() == QEvent::ActivationChange) {
     if (isActiveWindow() && (behaviorIconTray_ == CHANGE_ICON_TRAY)) {
       traySystem->setIcon(QIcon(":/images/quiterss128"));
     }
-  } else if(event->type() == QEvent::LanguageChange) {
+  } else if (event->type() == QEvent::LanguageChange) {
     retranslateStrings();
   }
   QMainWindow::changeEvent(event);
@@ -4718,7 +4718,7 @@ void MainWindow::restoreFeedsOnStartUp()
   // Open feeds in tabs
   QSqlQuery q;
   q.exec(QString("SELECT id, parentId FROM feeds WHERE displayOnStartup=1"));
-  while(q.next()) {
+  while (q.next()) {
     creatFeedTab(q.value(0).toInt(), q.value(1).toInt());
   }
 }
@@ -6637,7 +6637,7 @@ void MainWindow::showNotification(bool bShowRecentNews/*=false*/)
     RECT rc;
     GetWindowRect(GetDesktopWindow(), &rc);
 
-    if((hWnd != GetDesktopWindow())
+    if ((hWnd != GetDesktopWindow())
    #ifdef HAVE_QT5
        && (hWnd != GetShellWindow())
    #endif

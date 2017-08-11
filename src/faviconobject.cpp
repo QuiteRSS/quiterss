@@ -139,7 +139,7 @@ void FaviconObject::finished(QNetworkReply *reply)
     QString feedUrl = currentFeeds_.takeAt(currentReplyIndex);
     int cntRequests = currentCntRequests_.takeAt(currentReplyIndex);
 
-    if((reply->error() == QNetworkReply::NoError) || (reply->error() == QNetworkReply::UnknownContentError)) {
+    if ((reply->error() == QNetworkReply::NoError) || (reply->error() == QNetworkReply::UnknownContentError)) {
       QUrl redirectionTarget = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
       if (redirectionTarget.isValid()) {
         if ((cntRequests == 0) || (cntRequests == 1)) {

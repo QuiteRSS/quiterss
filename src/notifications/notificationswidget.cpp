@@ -391,7 +391,7 @@ NotificationWidget::~NotificationWidget()
 void NotificationWidget::showEvent(QShowEvent*)
 {
   QPoint point;
-  switch(position_) {
+  switch (position_) {
   case 0:
     point = QPoint(QApplication::desktop()->availableGeometry(screen_).topLeft().x(),
                    QApplication::desktop()->availableGeometry(screen_).topLeft().y());
@@ -414,7 +414,7 @@ void NotificationWidget::showEvent(QShowEvent*)
 
 bool NotificationWidget::eventFilter(QObject *obj, QEvent *event)
 {
-  if(event->type() == QEvent::MouseButtonPress) {
+  if (event->type() == QEvent::MouseButtonPress) {
     emit signalShow();
     emit signalClose();
     return true;
