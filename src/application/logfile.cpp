@@ -88,7 +88,7 @@ void LogFile::msgHandler(QtMsgType type, const char *msg)
   file.setFileName(mainApp->dataDir() + "/debug.log");
   QIODevice::OpenMode openMode = QIODevice::WriteOnly | QIODevice::Text;
 
-  if (file.exists() && (file.size() < maxLogFileSize)) {
+  if (file.exists() && (file.size() < (qint64)maxLogFileSize)) {
     openMode |= QIODevice::Append;
   }
 
