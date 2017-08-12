@@ -2734,6 +2734,28 @@ void NewsTabWidget::slotShareNews(QAction *action)
 #else
         url.addQueryItem("url", linkString);
 #endif
+      } else if (action->objectName() == "instapaperShareAct") {
+        url.setUrl("https://www.instapaper.com/hello2");
+#ifdef HAVE_QT5
+        QUrlQuery urlQuery;
+        urlQuery.addQueryItem("url", linkString);
+        urlQuery.addQueryItem("title", title);
+        url.setQuery(urlQuery);
+#else
+        url.addQueryItem("url", linkString);
+        url.addQueryItem("title", title);
+#endif
+      } else if (action->objectName() == "redditShareAct") {
+        url.setUrl("https://reddit.com/submit");
+#ifdef HAVE_QT5
+        QUrlQuery urlQuery;
+        urlQuery.addQueryItem("url", linkString);
+        urlQuery.addQueryItem("title", title);
+        url.setQuery(urlQuery);
+#else
+        url.addQueryItem("url", linkString);
+        url.addQueryItem("title", title);
+#endif
       }
 
       if (mainWindow_->externalBrowserOn_ <= 0) {

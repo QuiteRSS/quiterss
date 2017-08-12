@@ -1438,6 +1438,18 @@ void MainWindow::createActions()
   printfriendlyShareAct_->setIcon(QIcon(":/share/images/share/printfriendly.png"));
   shareGroup_->addAction(printfriendlyShareAct_);
 
+  instapaperShareAct_ = new QAction(this);
+  instapaperShareAct_->setObjectName("instapaperShareAct");
+  instapaperShareAct_->setText("Instapaper");
+  instapaperShareAct_->setIcon(QIcon(":/share/images/share/instapaper.png"));
+  shareGroup_->addAction(instapaperShareAct_);
+
+  redditShareAct_ = new QAction(this);
+  redditShareAct_->setObjectName("redditShareAct");
+  redditShareAct_->setText("Reddit");
+  redditShareAct_->setIcon(QIcon(":/share/images/share/reddit.ico"));
+  shareGroup_->addAction(redditShareAct_);
+
   this->addActions(shareGroup_->actions());
   connect(shareGroup_, SIGNAL(triggered(QAction*)),
           this, SLOT(slotShareNews(QAction*)));

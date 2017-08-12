@@ -162,6 +162,8 @@ public:
   QAction *linkedinShareAct_;
   QAction *bloggerShareAct_;
   QAction *printfriendlyShareAct_;
+  QAction *instapaperShareAct_;
+  QAction *redditShareAct_;
   QAction *copyLinkAct_;
   QAction *pageUpWebViewAct_;
   QAction *pageDownWebViewAct_;

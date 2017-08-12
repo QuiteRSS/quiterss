@@ -164,5 +164,7 @@
         <file>images/share/printfriendly.png</file>
         <file>images/share/twitter.png</file>
         <file>images/share/vk.png</file>
+        <file>images/share/instapaper.png</file>
+        <file>images/share/reddit.ico</file>
     </qresource>
 </RCC>
