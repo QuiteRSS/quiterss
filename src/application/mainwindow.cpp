@@ -5733,15 +5733,15 @@ void MainWindow::slotRefreshInfoTray(int newCount, int unreadCount)
       if (trayCount > 99) {
         font.setBold(false);
         if (trayCount < 1000) {
-          font.setPixelSize(70);
+          font.setPixelSize(60);
           trayCountStr = QString::number(trayCount);
         } else {
-          font.setPixelSize(100);
+          font.setPixelSize(86);
           trayCountStr = "#";
         }
       } else {
         font.setBold(true);
-        font.setPixelSize(100);
+        font.setPixelSize(90);
         trayCountStr = QString::number(trayCount);
       }
 
