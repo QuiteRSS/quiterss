@@ -242,7 +242,7 @@
     <message>
         <location filename="../src/adblock/adblocksubscription.cpp" line="195"/>
         <source>Cannot load subscription!</source>
-        <translation>Не удается загрузить подписку!</translation>
+        <translation>Не удаётся загрузить подписку!</translation>
     </message>
 </context>
 <context>
@@ -440,7 +440,7 @@
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="67"/>
         <source>Deleted</source>
-        <translation>Удаленные</translation>
+        <translation>Удалённые</translation>
     </message>
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="72"/>
@@ -529,7 +529,7 @@
         <location filename="../src/cleanupwizard.cpp" line="361"/>
         <source>Totally remove records that had marked 'deleted' from DB.
 Ancient news could reappear</source>
-        <translation>Полностью удаляет записи, которые отмечены как &quot;удаленные&quot; из БД.
+        <translation>Полностью удаляет записи, которые отмечены как &quot;удалённые&quot; из БД.
 Возможно, удалённые новости загрузятся снова</translation>
     </message>
     <message>
@@ -1844,7 +1844,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4925"/>
         <source>Restore last deleted news</source>
-        <translation>Восстановление последней удалёной новости</translation>
+        <translation>Восстановление последней удалённой новости</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4927"/>
@@ -2357,7 +2357,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5057"/>
         <source>Deleted</source>
-        <translation>Удаленные</translation>
+        <translation>Удалённые</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5058"/>
@@ -3101,7 +3101,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="391"/>
         <source>Move to the system tray when:</source>
-        <translation>Помещать в сиcтемный трей:</translation>
+        <translation>Помещать в системный трей:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="394"/>
@@ -3292,7 +3292,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="655"/>
         <source>Cookies:</source>
-        <translation>Файлы сookies:</translation>
+        <translation>Файлы cookies:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="664"/>
@@ -3394,7 +3394,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="844"/>
         <source>Simplified representation of date and time</source>
-        <translation>Упрощенное представление даты и времени</translation>
+        <translation>Упрощённое представление даты и времени</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="847"/>

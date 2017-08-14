@@ -6,7 +6,7 @@
 </phrase>
 <phrase>
     <source>Next</source>
-    <target>Следущий файл</target>
+    <target>Следующий файл</target>
 </phrase>
 <phrase>
     <source>Open</source>
@@ -154,7 +154,7 @@
 </phrase>
 <phrase>
     <source>Proxy enabled</source>
-    <target>Прокси включен</target>
+    <target>Прокси включён</target>
 </phrase>
 <phrase>
     <source>Select OPML-file</source>
@@ -558,7 +558,7 @@
 </phrase>
 <phrase>
     <source>Move to the system tray when:</source>
-    <target>Помещать в сиcтемный трей:</target>
+    <target>Помещать в системный трей:</target>
 </phrase>
 <phrase>
     <source>No load images</source>
@@ -1599,7 +1599,7 @@
 </phrase>
 <phrase>
     <source>Deleted</source>
-    <target>Удаленные</target>
+    <target>Удалённые</target>
 </phrase>
 <phrase>
     <source>Starred</source>
@@ -1719,7 +1719,7 @@
 </phrase>
 <phrase>
     <source>Restore last deleted news</source>
-    <target>Восстановление последней удалёной новости</target>
+    <target>Восстановление последней удалённой новости</target>
 </phrase>
 <phrase>
     <source>Next Unread News</source>
@@ -1939,7 +1939,7 @@
 </phrase>
 <phrase>
     <source>Simplified representation of date and time</source>
-    <target>Упрощенное представление даты и времени</target>
+    <target>Упрощённое представление даты и времени</target>
 </phrase>
 <phrase>
     <source>Change behavior of action &apos;Next Unread News&apos;</source>
@@ -2051,7 +2051,7 @@
 </phrase>
 <phrase>
     <source>Do you want to also delete downloaded file?</source>
-    <target>Вы хотите удалить скачаный файл?</target>
+    <target>Вы хотите удалить скачанный файл?</target>
 </phrase>
 <phrase>
     <source>Open File</source>
@@ -2223,7 +2223,7 @@
 </phrase>
 <phrase>
     <source>starred news</source>
-    <target>новостей отмеченых звёздочкой</target>
+    <target>новостей отмеченных звёздочкой</target>
 </phrase>
 <phrase>
     <source>Expand Folder</source>
@@ -2354,7 +2354,7 @@
 <phrase>
     <source>Totally remove records that had marked &apos;deleted&apos; from DB.
 Ancient news could reappear</source>
-    <target>Полностью удаляет записи, которые отмечены как &quot;удаленные&quot; из БД.
+    <target>Полностью удаляет записи, которые отмечены как &quot;удалённые&quot; из БД.
 Возможно, удалённые новости загрузятся снова</target>
 </phrase>
 <phrase>
@@ -2391,7 +2391,7 @@ Ancient news could reappear</source>
 </phrase>
 <phrase>
     <source>Cookies:</source>
-    <target>Файлы сookies:</target>
+    <target>Файлы cookies:</target>
 </phrase>
 <phrase>
     <source>Count of news unread in feeds tree</source>
@@ -2701,7 +2701,7 @@ Save?</source>
 </phrase>
 <phrase>
     <source>Cannot load subscription!</source>
-    <target>Не удается загрузить подписку!</target>
+    <target>Не удаётся загрузить подписку!</target>
 </phrase>
 <phrase>
     <source>%1 (Error: %2)</source>
@@ -2709,7 +2709,7 @@ Save?</source>
 </phrase>
 <phrase>
     <source>Cannot load subscription!</source>
-    <target>Не удается загрузить подписку!</target>
+    <target>Не удаётся загрузить подписку!</target>
 </phrase>
 <phrase>
     <source>Add Custom Rule</source>

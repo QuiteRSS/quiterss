@@ -574,7 +574,7 @@
 <li>Fixed: Recounting feeds count after group operations</li>
 <li>Fixed: Moving tab content while moving tabs</li>
 <li>Fixed: Deleting default buttons from toolbar</li>
-<li>Fixed: Application startup in  Archlinux (KDE)</li>
+<li>Fixed: Application startup in Archlinux (KDE)</li>
 <li>Fixed: Show on top in full screen mode</li>
 <li>Fixed: Loop while adding/updating feed</li>
 <li>Fixed: Updating some feeds</li>

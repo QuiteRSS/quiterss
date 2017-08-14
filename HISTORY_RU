@@ -99,7 +99,7 @@
 <li>Изменено: Корректировка иконок</li>
 <li>Изменено: При добавлении ленты из Firefox отображается только мастер</li>
 
-<li>Исправлено: Случайный захват ссылок при скролинге страницы</li>
+<li>Исправлено: Случайный захват ссылок при скроллинге страницы</li>
 <li>Исправлено: Нельзя вызвать программу из трея с помощью клавиш WIN+B (Windows)</li>
 <li>Исправлено: Некоторые ссылки на контент в содержимом новости не имеют схемы ("http")</li>
 </ul>
@@ -168,7 +168,7 @@
 <li>Добавлено: Настройка цвета текста и фона уведомления</li>
 <li>Добавлено: Опция уведомления "Показывать при неактивности главного окна"</li>
 <li>Добавлено: Дополнительные опции для настройки макета уведомления</li>
-<li>Добавлено: Горячие клавиши постраничного скроллига во встроенном браузере</li>
+<li>Добавлено: Горячие клавиши постраничного скроллинга во встроенном браузере</li>
 
 <li>Изменено: При переключении между лентами поиск в новостях не сбрасывается</li>
 <li>Изменено: После завершения мастера очистки отображается количество удалённых новостей</li>
@@ -825,7 +825,7 @@
 <!---------------------------------------------------------------------------->
 <p><b>Версия 0.9.1</b> (31 Май 2012)
 <ul>
-<li>Note: Повторное отображение новостей, которые уже были помечаны прочитанными (0.8.x -> 0.9.x) (<a href="https://code.google.com/p/quite-rss/wiki/ReappearNews">More...</a>)</li>
+<li>Note: Повторное отображение новостей, которые уже были помечены прочитанными (0.8.x -> 0.9.x) (<a href="https://code.google.com/p/quite-rss/wiki/ReappearNews">More...</a>)</li>
 
 <li>Added: Вкладки. Открытие ленты в новой вкладке</li>
 <li>Added: Изменение положения браузера("Вид->Позиция браузера")</li>
@@ -844,7 +844,7 @@
 <ul>
 <li>Main: Реконструкция базы данных (<a href="https://code.google.com/p/quite-rss/wiki/DatabaseReconstruction">More...</a>)</li>
 
-<li>Added: Опция: дествия при открытии ленты</li>
+<li>Added: Опция: действия при открытии ленты</li>
 <li>Added: Дополнительные горячие клавиши</li>
 <li>Added: Венгерский язык</li>
 
@@ -957,7 +957,7 @@
 <li>Fixed: Cyrillic letters in application path</li>
 <li>Fixed: SQLite for Qt 4.8.0</li>
 <li>Fixed: NetworkManager move to his own thread</li>
-<li>Fixed: News list don't scrool while click on column "read/unread" if cursor is out of view</li>
+<li>Fixed: News list don't scroll while click on column "read/unread" if cursor is out of view</li>
 <li>Fixed: Request url queues while update feeds</li>
 <li>Fixed: Parsing "alternate" url of the news of Atom-feeds</li>
 <li>Fixed: TrayMenu is not appear sometimes</li>
@@ -965,7 +965,7 @@
 
 <p><b>Version 0.8.0</b> (31 Jan 2012)
 <ul>
-<li>Added: Sumiltaneous update up to 8 feeds</li>
+<li>Added: Simultaneous update up to 8 feeds</li>
 </ul>
 
 <p><b>Version 0.7.6</b> (28 Jan 2012)

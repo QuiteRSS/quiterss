@@ -14,7 +14,7 @@ Version 0.18.5 (15 Jun 2017)
 
 Version 0.18.4 (08 Mar 2016)
   * Changed: Mouse buttons settings of opening news is removed
-  * Changed: SQLite librari is updated to 3.11.1 version
+  * Changed: SQLite library is updated to 3.11.1 version
   * Fixed: msvcr120.dll troubles (Windows)
   * Fixed: Application crash while using some shortcuts
   * Fixed: Images are not displayed in some feeds
@@ -25,14 +25,14 @@ Version 0.18.3 (26 Jan 2015)
   * Changed: Update SQLite library to 3.9.2 version
   * Changed: Updating news in newspaper view using descending sort
   * Fixed: Duplicate notification sound playback (Ubuntu)
-  * Fixed: Application crash if quit while settins dialog is open
+  * Fixed: Application crash if quit while settings dialog is open
   * Fixed: Application crash while using search and filters
   * Fixed: Application crash while adding local feed
   * Fixed: News publish time of some feeds
 
 Version 0.18.2 (14 Jul 2015)
   * Fixed: Application crash
-  * Fixed: Catefories. Popup menu item "Mark as Read"
+  * Fixed: Categories. Popup menu item "Mark as Read"
 
 Version 0.18.1 (12 Jul 2015)
   * Fixed: Application crash
@@ -66,8 +66,8 @@ Version 0.17.7 (19 Apr 2015)
   * Added: Tray menu item "Add feed..."
   * Added: News filter. Condition "News" (title + description)
   * Added: Displaying feed icon beside feed title when using newspaper mode
-  * Added: Catefories. Popup menu item "Mark as Read"
-  * Changed: CA sertificate loading
+  * Added: Categories. Popup menu item "Mark as Read"
+  * Changed: CA certificate loading
   * Changed: Icons correction
   * Changed: Displaying the wizard only if feed is added from Firefox
   * Fixed: Occasional capturing of links while scrolling
