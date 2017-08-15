@@ -112,7 +112,7 @@
     <message>
         <location filename="../src/adblock/adblocksubscription.cpp" line="323"/>
         <location filename="../src/adblock/adblocksubscription.cpp" line="330"/>
-        <location filename="../src/application/mainwindow.cpp" line="5149"/>
+        <location filename="../src/application/mainwindow.cpp" line="5155"/>
         <source>Custom Rules</source>
         <translation>Özel Kurallar</translation>
     </message>
@@ -147,37 +147,37 @@
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="122"/>
         <source>Use only essential part of EasyList (for performance reasons)</source>
-        <translation type="unfinished"/>
+        <translation>EasyList&apos;in yalnızca olmazsa olmaz parçalarını kullan (Performans amaçları için)</translation>
     </message>
     <message>
-        <location filename="../src/adblock/adblockdialog.cpp" line="72"/>
+        <location filename="../src/adblock/adblockdialog.cpp" line="74"/>
         <source>Add Rule</source>
         <translation>Kural Ekle</translation>
     </message>
     <message>
-        <location filename="../src/adblock/adblockdialog.cpp" line="73"/>
+        <location filename="../src/adblock/adblockdialog.cpp" line="75"/>
         <source>Remove Rule</source>
         <translation>Kural Sil</translation>
     </message>
     <message>
-        <location filename="../src/adblock/adblockdialog.cpp" line="75"/>
+        <location filename="../src/adblock/adblockdialog.cpp" line="77"/>
         <source>Add Subscription</source>
         <translation>Abonelik Ekle</translation>
     </message>
     <message>
-        <location filename="../src/adblock/adblockdialog.cpp" line="76"/>
+        <location filename="../src/adblock/adblockdialog.cpp" line="78"/>
         <source>Remove Subscription</source>
         <translation>Abonelik Sil</translation>
     </message>
     <message>
-        <location filename="../src/adblock/adblockdialog.cpp" line="77"/>
+        <location filename="../src/adblock/adblockdialog.cpp" line="79"/>
         <source>Update Subscriptions</source>
         <translation>Abonelikleri Güncelle</translation>
     </message>
     <message>
-        <location filename="../src/adblock/adblockdialog.cpp" line="79"/>
+        <location filename="../src/adblock/adblockdialog.cpp" line="81"/>
         <source>Learn about writing rules...</source>
-        <translation type="unfinished"/>
+        <translation>Kuralları yazmayla ilgili bilgi edinin...</translation>
     </message>
 </context>
 <context>
@@ -185,7 +185,7 @@
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="62"/>
         <source>AdBlock lets you block unwanted content on web pages</source>
-        <translation type="unfinished"/>
+        <translation>Adblock, web sayfasında istenmeyen içeriklerin engellenmesini sağlar</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="106"/>
@@ -195,38 +195,38 @@
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="133"/>
         <source>Show AdBlock &amp;Settings</source>
-        <translation type="unfinished"/>
+        <translation>Göster Adblock &amp;Ayarlar</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="141"/>
         <source>Disable on %1</source>
-        <translation type="unfinished"/>
+        <translation>Pasifleştirilmiş  %1</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="147"/>
         <source>Disable only on this page</source>
-        <translation type="unfinished"/>
+        <translation>Yalnızca sayfayı pasifleştir</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="157"/>
         <source>Blocked Popup Windows</source>
-        <translation type="unfinished"/>
+        <translation>Engellenmiş Popup Pencereleri</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="162"/>
         <location filename="../src/adblock/adblockicon.cpp" line="179"/>
         <source>%1 with (%2)</source>
-        <translation type="unfinished"/>
+        <translation>%2 ile %1</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="173"/>
         <source>No content blocked</source>
-        <translation type="unfinished"/>
+        <translation>Hiç bir içerik engellenmedi</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="176"/>
         <source>Blocked URL (AdBlock Rule) - click to edit rule</source>
-        <translation type="unfinished"/>
+        <translation>Engellenen URL (AdBlock Kuralı) -  kuralı düzenlemek için tıkla</translation>
     </message>
 </context>
 <context>
@@ -265,17 +265,17 @@
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="160"/>
         <source>Please write your rule here:</source>
-        <translation type="unfinished"/>
+        <translation>Sizin kuralınızı lütfen buraya yazınız : </translation>
     </message>
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="198"/>
         <source>%1 (recently updated)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (henüz güncellendi)</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="207"/>
         <source>%1 (Error: %2)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (Hata: %2)</translation>
     </message>
 </context>
 <context>
@@ -460,7 +460,7 @@
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="143"/>
         <source>Mark Read</source>
-        <translation type="unfinished"/>
+        <translation>Okunmuş İşaretle</translation>
     </message>
 </context>
 <context>
@@ -540,7 +540,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="525"/>
         <source>Clean Up wizard deleted %1 news</source>
-        <translation type="unfinished"/>
+        <translation>Temizleme sihirbazı %1 haberi sildi</translation>
     </message>
 </context>
 <context>
@@ -736,7 +736,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="353"/>
         <source>Do you want to also delete downloaded file?</source>
-        <translation type="unfinished"/>
+        <translation>Ayrıca indirilen dosyaları silmek ister misin?</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="370"/>
@@ -947,7 +947,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="179"/>
         <source>Right-to-left layout</source>
-        <translation type="unfinished"/>
+        <translation>Sağdan sola dizilim</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="219"/>
@@ -1007,7 +1007,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="321"/>
         <source>Feeds count:</source>
-        <translation type="unfinished"/>
+        <translation>Besleme sayısı:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="324"/>
@@ -1162,7 +1162,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/findtext.cpp" line="113"/>
         <source>Find in Descriptions</source>
-        <translation type="unfinished"/>
+        <translation>Açıklamalarda Bul</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="114"/>
@@ -1213,7 +1213,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/newsfilters/itemaction.cpp" line="28"/>
         <source>Show News in Notifier</source>
-        <translation type="unfinished"/>
+        <translation>Haberleri Bildiricide Göster</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/itemaction.cpp" line="37"/>
@@ -1284,7 +1284,7 @@ adlı dosya bulunamadı!</translation>
         <location filename="../src/newsfilters/itemcondition.cpp" line="31"/>
         <location filename="../src/newsfilters/itemcondition.cpp" line="112"/>
         <source>News</source>
-        <translation type="unfinished"/>
+        <translation>Haberler</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/itemcondition.cpp" line="36"/>
@@ -1437,7 +1437,7 @@ adlı dosya bulunamadı!</translation>
 <context>
     <name>MainApplication</name>
     <message>
-        <location filename="../src/application/mainapplication.cpp" line="295"/>
+        <location filename="../src/application/mainapplication.cpp" line="328"/>
         <source>Saving data...</source>
         <translation>Kaydediliyor...</translation>
     </message>
@@ -1445,1043 +1445,1043 @@ adlı dosya bulunamadı!</translation>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="1859"/>
+        <location filename="../src/application/mainwindow.cpp" line="1854"/>
         <source>&amp;AdBlock</source>
         <translation>&amp;AdBlock</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2271"/>
-        <location filename="../src/application/mainwindow.cpp" line="5043"/>
-        <location filename="../src/application/mainwindow.cpp" line="7392"/>
-        <location filename="../src/application/mainwindow.cpp" line="7414"/>
+        <location filename="../src/application/mainwindow.cpp" line="2276"/>
+        <location filename="../src/application/mainwindow.cpp" line="5049"/>
+        <location filename="../src/application/mainwindow.cpp" line="7409"/>
+        <location filename="../src/application/mainwindow.cpp" line="7431"/>
         <source>Hide Categories</source>
         <translation>Kategorileri Gizle</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2275"/>
-        <location filename="../src/application/mainwindow.cpp" line="5041"/>
-        <location filename="../src/application/mainwindow.cpp" line="7398"/>
+        <location filename="../src/application/mainwindow.cpp" line="2280"/>
+        <location filename="../src/application/mainwindow.cpp" line="5047"/>
+        <location filename="../src/application/mainwindow.cpp" line="7415"/>
         <source>Show Categories</source>
         <translation>Kategorileri Göster</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2730"/>
-        <location filename="../src/application/mainwindow.cpp" line="2759"/>
+        <location filename="../src/application/mainwindow.cpp" line="2735"/>
+        <location filename="../src/application/mainwindow.cpp" line="2764"/>
         <source>Select OPML-File</source>
         <translation>OPML-tipi dosya seç</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2732"/>
+        <location filename="../src/application/mainwindow.cpp" line="2737"/>
         <source>OPML-Files (*.%1 *.%2)</source>
         <translation>OPML-Dosyaları (*.%1 *.%2)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2736"/>
+        <location filename="../src/application/mainwindow.cpp" line="2741"/>
         <source>Import canceled</source>
         <translation>İçeri aktarım iptal edildi</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2744"/>
+        <location filename="../src/application/mainwindow.cpp" line="2749"/>
         <source>Import: can&apos;t open a file</source>
         <translation>İçeri Aktarım:Dosya açılamadı</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2761"/>
+        <location filename="../src/application/mainwindow.cpp" line="2766"/>
         <source>OPML-Files (*.%1)</source>
         <translation>OPML-Dosyaları (*.%1)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2765"/>
+        <location filename="../src/application/mainwindow.cpp" line="2770"/>
         <source>Export canceled</source>
         <translation>Dışarı aktarım iptal edildi</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2771"/>
+        <location filename="../src/application/mainwindow.cpp" line="2776"/>
         <source>Export: can&apos;t open a file</source>
         <translation>Dışarı aktarım:Dosya açılamadı</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="3040"/>
-        <location filename="../src/application/mainwindow.cpp" line="4197"/>
-        <location filename="../src/application/mainwindow.cpp" line="4813"/>
-        <location filename="../src/application/mainwindow.cpp" line="6290"/>
-        <location filename="../src/application/mainwindow.cpp" line="7349"/>
+        <location filename="../src/application/mainwindow.cpp" line="3045"/>
+        <location filename="../src/application/mainwindow.cpp" line="4202"/>
+        <location filename="../src/application/mainwindow.cpp" line="4819"/>
+        <location filename="../src/application/mainwindow.cpp" line="6307"/>
+        <location filename="../src/application/mainwindow.cpp" line="7366"/>
         <source>Unread: %1</source>
         <translation>Okunmamış: %1</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="3041"/>
-        <location filename="../src/application/mainwindow.cpp" line="4198"/>
-        <location filename="../src/application/mainwindow.cpp" line="4816"/>
-        <location filename="../src/application/mainwindow.cpp" line="6291"/>
-        <location filename="../src/application/mainwindow.cpp" line="7350"/>
+        <location filename="../src/application/mainwindow.cpp" line="3046"/>
+        <location filename="../src/application/mainwindow.cpp" line="4203"/>
+        <location filename="../src/application/mainwindow.cpp" line="4822"/>
+        <location filename="../src/application/mainwindow.cpp" line="6308"/>
+        <location filename="../src/application/mainwindow.cpp" line="7367"/>
         <source>All: %1</source>
         <translation>Tümü: %1</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="3618"/>
         <location filename="../src/application/mainwindow.cpp" line="3623"/>
         <location filename="../src/application/mainwindow.cpp" line="3628"/>
+        <location filename="../src/application/mainwindow.cpp" line="3633"/>
         <source>(Browser)</source>
         <translation>(Tarayıcı)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4821"/>
-        <location filename="../src/application/mainwindow.cpp" line="5714"/>
+        <location filename="../src/application/mainwindow.cpp" line="4827"/>
+        <location filename="../src/application/mainwindow.cpp" line="5720"/>
         <source>New News: %1</source>
         <translation>Yeni Haber: %1</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4823"/>
-        <location filename="../src/application/mainwindow.cpp" line="5716"/>
+        <location filename="../src/application/mainwindow.cpp" line="4829"/>
+        <location filename="../src/application/mainwindow.cpp" line="5722"/>
         <source>Unread News: %1</source>
         <translation>Okunmamış Haber: %1</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4828"/>
+        <location filename="../src/application/mainwindow.cpp" line="4834"/>
         <source>&amp;Add</source>
         <translation>&amp;Ekle</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4829"/>
-        <location filename="../src/application/mainwindow.cpp" line="4832"/>
+        <location filename="../src/application/mainwindow.cpp" line="4835"/>
+        <location filename="../src/application/mainwindow.cpp" line="4838"/>
         <source>Add New Feed</source>
         <translation>Yeni Haber Kaynağı Ekle</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4831"/>
+        <location filename="../src/application/mainwindow.cpp" line="4837"/>
         <source>&amp;Feed...</source>
         <translation>&amp;Kaynak...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4836"/>
+        <location filename="../src/application/mainwindow.cpp" line="4842"/>
         <source>F&amp;older...</source>
         <translation>&amp;Klasör</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4837"/>
+        <location filename="../src/application/mainwindow.cpp" line="4843"/>
         <source>Add New Folder</source>
         <translation>Yeni Klasör Ekle</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4839"/>
-        <location filename="../src/application/mainwindow.cpp" line="4910"/>
+        <location filename="../src/application/mainwindow.cpp" line="4845"/>
+        <location filename="../src/application/mainwindow.cpp" line="4916"/>
         <source>Open in New Tab</source>
         <translation>Yeni sekmede aç</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4841"/>
+        <location filename="../src/application/mainwindow.cpp" line="4847"/>
         <source>&amp;Delete...</source>
         <translation>&amp;Sil</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4842"/>
+        <location filename="../src/application/mainwindow.cpp" line="4848"/>
         <source>Delete Selected Feed</source>
         <translation>Seçilen Kaynağı Sil</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4844"/>
+        <location filename="../src/application/mainwindow.cpp" line="4850"/>
         <source>&amp;Import Feeds...</source>
         <translation>İçeri Kaynak Aktar</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4845"/>
+        <location filename="../src/application/mainwindow.cpp" line="4851"/>
         <source>Import Feeds from OPML File</source>
         <translation>OMPL tipi dosyadan kaynakları içeri aktar</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4847"/>
+        <location filename="../src/application/mainwindow.cpp" line="4853"/>
         <source>&amp;Export Feeds...</source>
         <translation>&amp;Kaynakları dışarı aktar</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4848"/>
+        <location filename="../src/application/mainwindow.cpp" line="4854"/>
         <source>Export Feeds to OPML File</source>
         <translation>Kaynakları OPML tipi dosyaya aktar</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4853"/>
+        <location filename="../src/application/mainwindow.cpp" line="4859"/>
         <source>E&amp;xit</source>
         <translation>Çıkış</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4855"/>
+        <location filename="../src/application/mainwindow.cpp" line="4861"/>
         <source>Update Feed</source>
         <translation>Kaynak güncelle</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4856"/>
+        <location filename="../src/application/mainwindow.cpp" line="4862"/>
         <source>Update Current Feed</source>
         <translation>Mevcut kaynağı güncelle</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4858"/>
+        <location filename="../src/application/mainwindow.cpp" line="4864"/>
         <source>Update All</source>
         <translation>Tümünü güncelle</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4859"/>
+        <location filename="../src/application/mainwindow.cpp" line="4865"/>
         <source>Update All Feeds</source>
         <translation>Tüm kaynakları güncelle</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4864"/>
+        <location filename="../src/application/mainwindow.cpp" line="4870"/>
         <source>Mark All Feeds Read</source>
         <translation>Haberleri okundu olarak işaretle</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4866"/>
+        <location filename="../src/application/mainwindow.cpp" line="4872"/>
         <source>Mark Read/Unread</source>
         <translation>Okundu/Okunmadı olarak işaretle</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4867"/>
+        <location filename="../src/application/mainwindow.cpp" line="4873"/>
         <source>Mark Current News Read/Unread</source>
         <translation>Mevcut haberi okundu/okunmadı olarak işaretle</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4869"/>
-        <location filename="../src/application/mainwindow.cpp" line="4870"/>
+        <location filename="../src/application/mainwindow.cpp" line="4875"/>
+        <location filename="../src/application/mainwindow.cpp" line="4876"/>
         <source>Mark All News Read</source>
         <translation>Tüm haberleri okundu olarak işaretle</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4872"/>
-        <location filename="../src/application/mainwindow.cpp" line="7977"/>
-        <location filename="../src/application/mainwindow.cpp" line="7983"/>
-        <location filename="../src/application/mainwindow.cpp" line="7993"/>
+        <location filename="../src/application/mainwindow.cpp" line="4878"/>
+        <location filename="../src/application/mainwindow.cpp" line="7994"/>
+        <location filename="../src/application/mainwindow.cpp" line="8000"/>
+        <location filename="../src/application/mainwindow.cpp" line="8010"/>
         <source>Downloads</source>
         <translation>İndirmeler</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4874"/>
+        <location filename="../src/application/mainwindow.cpp" line="4880"/>
         <source>Clean Up...</source>
         <translation>Temizlik yap...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4876"/>
+        <location filename="../src/application/mainwindow.cpp" line="4882"/>
         <source>News Filters...</source>
         <translation>Haber süzgeçleri</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4877"/>
+        <location filename="../src/application/mainwindow.cpp" line="4883"/>
         <source>Filter News...</source>
         <translation>Haberi süz..</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4879"/>
+        <location filename="../src/application/mainwindow.cpp" line="4885"/>
         <source>Options...</source>
         <translation>Seçenekler</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4880"/>
+        <location filename="../src/application/mainwindow.cpp" line="4886"/>
         <source>Open Options Dialog</source>
         <translation>Seçenekler diyaloğunu aç</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4882"/>
+        <location filename="../src/application/mainwindow.cpp" line="4888"/>
         <source>Filter Feeds</source>
         <translation>Kaynağı Süz</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4883"/>
-        <location filename="../src/application/mainwindow.cpp" line="4890"/>
+        <location filename="../src/application/mainwindow.cpp" line="4889"/>
+        <location filename="../src/application/mainwindow.cpp" line="4896"/>
         <source>Show All</source>
         <translation>Hepsini Göster</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4884"/>
-        <location filename="../src/application/mainwindow.cpp" line="4891"/>
+        <location filename="../src/application/mainwindow.cpp" line="4890"/>
+        <location filename="../src/application/mainwindow.cpp" line="4897"/>
         <source>Show New</source>
         <translation>Yenileri göster</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4885"/>
-        <location filename="../src/application/mainwindow.cpp" line="4892"/>
+        <location filename="../src/application/mainwindow.cpp" line="4891"/>
+        <location filename="../src/application/mainwindow.cpp" line="4898"/>
         <source>Show Unread</source>
         <translation>Okunmamışları göster</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4886"/>
+        <location filename="../src/application/mainwindow.cpp" line="4892"/>
         <source>Show Starred Feeds</source>
         <translation>Favorilere eklenmiş kaynakları göster</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4887"/>
+        <location filename="../src/application/mainwindow.cpp" line="4893"/>
         <source>Show Not Working Feeds</source>
-        <translation type="unfinished"/>
+        <translation>Çalışmayan Beslemeleri Göster</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4889"/>
+        <location filename="../src/application/mainwindow.cpp" line="4895"/>
         <source>Filter News</source>
         <translation>Haberleri Süz</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4893"/>
+        <location filename="../src/application/mainwindow.cpp" line="4899"/>
         <source>Show Starred</source>
         <translation>Favorilere Eklenmişleri Göster</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4894"/>
+        <location filename="../src/application/mainwindow.cpp" line="4900"/>
         <source>Show Not Starred</source>
         <translation>Favorilere eklenmemişleri göster</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4895"/>
+        <location filename="../src/application/mainwindow.cpp" line="4901"/>
         <source>Show Unread or Starred</source>
         <translation>Favorilere eklenmiş/eklenmemişleri göster</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4896"/>
+        <location filename="../src/application/mainwindow.cpp" line="4902"/>
         <source>Show Last Day</source>
         <translation>Dünü Göster</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4897"/>
+        <location filename="../src/application/mainwindow.cpp" line="4903"/>
         <source>Show Last 7 Days</source>
         <translation>Son 7 Günü Göster</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4899"/>
+        <location filename="../src/application/mainwindow.cpp" line="4905"/>
         <source>About...</source>
         <translation>Hakkında</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4900"/>
+        <location filename="../src/application/mainwindow.cpp" line="4906"/>
         <source>Show &apos;About&apos; Dialog</source>
         <translation>&apos;Hakkında&apos; diyaloğunu göster</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4902"/>
+        <location filename="../src/application/mainwindow.cpp" line="4908"/>
         <source>Check for Updates...</source>
         <translation>Güncellemeleri kontrol et</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4903"/>
+        <location filename="../src/application/mainwindow.cpp" line="4909"/>
         <source>Report a Problem...</source>
         <translation>Sorun bildir</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4905"/>
+        <location filename="../src/application/mainwindow.cpp" line="4911"/>
         <source>Open News</source>
         <translation>Haberleri Aç</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4907"/>
+        <location filename="../src/application/mainwindow.cpp" line="4913"/>
         <source>Open in Browser</source>
         <translation>Tarayıcıda aç</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4908"/>
+        <location filename="../src/application/mainwindow.cpp" line="4914"/>
         <source>Open in External Browser</source>
         <translation>Dış Tarayıcıda Aç</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4909"/>
+        <location filename="../src/application/mainwindow.cpp" line="4915"/>
         <source>Open News in External Browser</source>
         <translation>Dış Tarayıcıda Haberleri Aç</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4911"/>
+        <location filename="../src/application/mainwindow.cpp" line="4917"/>
         <source>Open News in New Tab</source>
         <translation>Yeni sekmede aç</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4912"/>
+        <location filename="../src/application/mainwindow.cpp" line="4918"/>
         <source>Open in Background Tab</source>
         <translation>Arkaplandaki sekmede aç</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4913"/>
+        <location filename="../src/application/mainwindow.cpp" line="4919"/>
         <source>Open News in Background Tab</source>
         <translation>Arkaplandaki sekmede haberleri aç</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4914"/>
+        <location filename="../src/application/mainwindow.cpp" line="4920"/>
         <source>Star</source>
         <translation>Favori</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4915"/>
+        <location filename="../src/application/mainwindow.cpp" line="4921"/>
         <source>Mark News Star</source>
         <translation>Haberleri favorilerilere ekle</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4916"/>
+        <location filename="../src/application/mainwindow.cpp" line="4922"/>
         <source>Delete</source>
         <translation>Sil</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4917"/>
+        <location filename="../src/application/mainwindow.cpp" line="4923"/>
         <source>Delete Selected News</source>
         <translation>Seçilen Haberleri Sil</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4918"/>
+        <location filename="../src/application/mainwindow.cpp" line="4924"/>
         <source>Delete All News</source>
         <translation>Tüm Haberleri Sil</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4919"/>
+        <location filename="../src/application/mainwindow.cpp" line="4925"/>
         <source>Delete All News from List</source>
         <translation>Listeden Tüm Haberleri Sil</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4920"/>
+        <location filename="../src/application/mainwindow.cpp" line="4926"/>
         <source>Restore</source>
         <translation>Geri Dönüştür</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4921"/>
+        <location filename="../src/application/mainwindow.cpp" line="4927"/>
         <source>Restore News</source>
         <translation>Haberleri Geri Dönüştür</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4922"/>
+        <location filename="../src/application/mainwindow.cpp" line="4928"/>
         <source>Copy Link</source>
         <translation>Linki kopyala</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4925"/>
+        <location filename="../src/application/mainwindow.cpp" line="4931"/>
         <source>Restore last deleted news</source>
         <translation>Son silinen haberi geri dönüştür</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4927"/>
+        <location filename="../src/application/mainwindow.cpp" line="4933"/>
         <source>Mark Read</source>
         <translation>Okundu/Okunmadı olarak işaretle</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4928"/>
+        <location filename="../src/application/mainwindow.cpp" line="4934"/>
         <source>Mark Feed Read</source>
         <translation>Kaynağı Okundu Olarak İşaretle</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4929"/>
-        <location filename="../src/application/mainwindow.cpp" line="4930"/>
+        <location filename="../src/application/mainwindow.cpp" line="4935"/>
+        <location filename="../src/application/mainwindow.cpp" line="4936"/>
         <source>Properties</source>
         <translation>Özellikler</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4932"/>
+        <location filename="../src/application/mainwindow.cpp" line="4938"/>
         <source>&amp;File</source>
         <translation>&amp;Dosya</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4995"/>
+        <location filename="../src/application/mainwindow.cpp" line="5001"/>
         <source>Count Unread News</source>
-        <translation type="unfinished"/>
+        <translation>Okunmamış Haberleri Say</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4996"/>
+        <location filename="../src/application/mainwindow.cpp" line="5002"/>
         <source>Count All News</source>
-        <translation type="unfinished"/>
+        <translation>Tüm Haberleri Say</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4997"/>
+        <location filename="../src/application/mainwindow.cpp" line="5003"/>
         <source>Last Update</source>
         <translation>Son Güncelleme</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5010"/>
+        <location filename="../src/application/mainwindow.cpp" line="5016"/>
         <source>Reset browser zoom</source>
         <translation>Tarayıcı büyütecini sıfırla</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5013"/>
+        <location filename="../src/application/mainwindow.cpp" line="5019"/>
         <source>Print Web Page</source>
         <translation>Web Sayfasını Yazdır</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5015"/>
+        <location filename="../src/application/mainwindow.cpp" line="5021"/>
         <source>Preview Web Page</source>
         <translation>Web Sayfasını Önizle</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5022"/>
+        <location filename="../src/application/mainwindow.cpp" line="5028"/>
         <source>Save page in database</source>
         <translation>Sayfayı veritabanında kaydet</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5023"/>
+        <location filename="../src/application/mainwindow.cpp" line="5029"/>
         <source>Save page in database instead of news description</source>
-        <translation type="unfinished"/>
+        <translation>Haber açıklaması yerine veritabanına sayfa kaydet</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2625"/>
+        <location filename="../src/application/mainwindow.cpp" line="2630"/>
         <source>Confirm Delete</source>
         <translation>Silmeyi Onayla</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2626"/>
+        <location filename="../src/application/mainwindow.cpp" line="2631"/>
         <source>Are you sure to delete selected elements?</source>
-        <translation type="unfinished"/>
+        <translation>Seçilenleri silmek istedğinize emin misiniz?</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4826"/>
+        <location filename="../src/application/mainwindow.cpp" line="4832"/>
         <source>Menu</source>
         <translation>Menü</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4834"/>
+        <location filename="../src/application/mainwindow.cpp" line="4840"/>
         <source>Add Feed...</source>
-        <translation type="unfinished"/>
+        <translation>Besleme ekle...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4850"/>
+        <location filename="../src/application/mainwindow.cpp" line="4856"/>
         <source>&amp;Create Backup...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Yedek Yarat</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4851"/>
+        <location filename="../src/application/mainwindow.cpp" line="4857"/>
         <source>S&amp;how Menu Bar</source>
         <translation>Menüyü Gö&amp;ster</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4861"/>
-        <location filename="../src/application/mainwindow.cpp" line="4862"/>
+        <location filename="../src/application/mainwindow.cpp" line="4867"/>
+        <location filename="../src/application/mainwindow.cpp" line="4868"/>
         <source>Stop Update Feeds</source>
-        <translation type="unfinished"/>
+        <translation>Beslemeleri Güncellemeyi Durdur</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4906"/>
+        <location filename="../src/application/mainwindow.cpp" line="4912"/>
         <source>Open News Description</source>
-        <translation type="unfinished"/>
+        <translation>Haberin Ayrıntılarını Aç</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4923"/>
+        <location filename="../src/application/mainwindow.cpp" line="4929"/>
         <source>Copy News Link</source>
         <translation>Haber Bağlantısını Kopyala</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4933"/>
+        <location filename="../src/application/mainwindow.cpp" line="4939"/>
         <source>&amp;View</source>
         <translation>&amp;Görüntüle</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4934"/>
+        <location filename="../src/application/mainwindow.cpp" line="4940"/>
         <source>Fee&amp;ds</source>
         <translation>&amp;Kaynaklar</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4935"/>
+        <location filename="../src/application/mainwindow.cpp" line="4941"/>
         <source>&amp;News</source>
         <translation>&amp;Haberler</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4936"/>
+        <location filename="../src/application/mainwindow.cpp" line="4942"/>
         <source>&amp;Browser</source>
         <translation>Tarayıcı</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4937"/>
+        <location filename="../src/application/mainwindow.cpp" line="4943"/>
         <source>&amp;Tools</source>
         <translation>&amp;Araçlar</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4938"/>
+        <location filename="../src/application/mainwindow.cpp" line="4944"/>
         <source>&amp;Help</source>
         <translation>&amp;Yardım</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4940"/>
-        <location filename="../src/application/mainwindow.cpp" line="5026"/>
+        <location filename="../src/application/mainwindow.cpp" line="4946"/>
+        <location filename="../src/application/mainwindow.cpp" line="5032"/>
         <source>Main Toolbar</source>
         <translation>Ana Şerit</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4941"/>
+        <location filename="../src/application/mainwindow.cpp" line="4947"/>
         <source>Customize Toolbar</source>
         <translation>Şeriti Düzenle</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4942"/>
+        <location filename="../src/application/mainwindow.cpp" line="4948"/>
         <source>Main Toolbar...</source>
         <translation>Ana Şerit...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4943"/>
+        <location filename="../src/application/mainwindow.cpp" line="4949"/>
         <source>Customize Toolbar...</source>
         <translation>Şeriti Biçimlendir...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4944"/>
+        <location filename="../src/application/mainwindow.cpp" line="4950"/>
         <source>Feeds Toolbar...</source>
         <translation>Kaynak Şeriti...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4945"/>
+        <location filename="../src/application/mainwindow.cpp" line="4951"/>
         <source>News Toolbar...</source>
         <translation>Haber Şeriti...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4947"/>
+        <location filename="../src/application/mainwindow.cpp" line="4953"/>
         <source>Lock Toolbar</source>
         <translation>Şeriti kitle</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4948"/>
+        <location filename="../src/application/mainwindow.cpp" line="4954"/>
         <source>Hide Toolbar</source>
         <translation>Şeriti Gizle</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4950"/>
-        <location filename="../src/application/mainwindow.cpp" line="4953"/>
+        <location filename="../src/application/mainwindow.cpp" line="4956"/>
+        <location filename="../src/application/mainwindow.cpp" line="4959"/>
         <source>Layout</source>
-        <translation type="unfinished"/>
+        <translation>Diziliş</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4951"/>
+        <location filename="../src/application/mainwindow.cpp" line="4957"/>
         <source>Classic</source>
         <translation>Klasik</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4952"/>
+        <location filename="../src/application/mainwindow.cpp" line="4958"/>
         <source>Newspaper</source>
         <translation>Gazete</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4955"/>
+        <location filename="../src/application/mainwindow.cpp" line="4961"/>
         <source>Application Style</source>
         <translation>Uygulamanın Tarzı</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4956"/>
+        <location filename="../src/application/mainwindow.cpp" line="4962"/>
         <source>System</source>
         <translation>Sistem</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4957"/>
+        <location filename="../src/application/mainwindow.cpp" line="4963"/>
         <source>System2</source>
         <translation>Sistem2</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4958"/>
+        <location filename="../src/application/mainwindow.cpp" line="4964"/>
         <source>Green</source>
         <translation>Yeşil</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4959"/>
+        <location filename="../src/application/mainwindow.cpp" line="4965"/>
         <source>Orange</source>
         <translation>Turuncu</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4960"/>
+        <location filename="../src/application/mainwindow.cpp" line="4966"/>
         <source>Purple</source>
         <translation>Mor</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4961"/>
+        <location filename="../src/application/mainwindow.cpp" line="4967"/>
         <source>Pink</source>
         <translation>Pembe</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4962"/>
+        <location filename="../src/application/mainwindow.cpp" line="4968"/>
         <source>Gray</source>
         <translation>Gri</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4964"/>
+        <location filename="../src/application/mainwindow.cpp" line="4970"/>
         <source>Browser Position</source>
         <translation>Tarayıcı konumu</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4965"/>
+        <location filename="../src/application/mainwindow.cpp" line="4971"/>
         <source>Top</source>
         <translation>Üst</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4966"/>
+        <location filename="../src/application/mainwindow.cpp" line="4972"/>
         <source>Bottom</source>
         <translation>Alt</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4967"/>
+        <location filename="../src/application/mainwindow.cpp" line="4973"/>
         <source>Right</source>
         <translation>Sağ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4968"/>
+        <location filename="../src/application/mainwindow.cpp" line="4974"/>
         <source>Left</source>
         <translation>Sol</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4970"/>
+        <location filename="../src/application/mainwindow.cpp" line="4976"/>
         <source>Show Window</source>
         <translation>Pencereyi göster</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4972"/>
+        <location filename="../src/application/mainwindow.cpp" line="4978"/>
         <source>Previous Feed</source>
         <translation>Önceki kaynak</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4973"/>
+        <location filename="../src/application/mainwindow.cpp" line="4979"/>
         <source>Next Feed</source>
         <translation>Sonraki kaynak</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4974"/>
+        <location filename="../src/application/mainwindow.cpp" line="4980"/>
         <source>Previous News</source>
         <translation>Önceki kaynak</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4975"/>
+        <location filename="../src/application/mainwindow.cpp" line="4981"/>
         <source>Next News</source>
         <translation>Sonraki kaynak</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4976"/>
+        <location filename="../src/application/mainwindow.cpp" line="4982"/>
         <source>News Page Up</source>
-        <translation type="unfinished"/>
+        <translation>Haberler Üst Sayfa</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4977"/>
+        <location filename="../src/application/mainwindow.cpp" line="4983"/>
         <source>News Page Down</source>
-        <translation type="unfinished"/>
+        <translation>Haberler Alt Sayfa</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4979"/>
+        <location filename="../src/application/mainwindow.cpp" line="4985"/>
         <source>Next Unread News</source>
         <translation>Sonraki Okunmamış Haberler</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4980"/>
+        <location filename="../src/application/mainwindow.cpp" line="4986"/>
         <source>Previous Unread News</source>
         <translation>Önceki Okunmamış Haberler</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4982"/>
+        <location filename="../src/application/mainwindow.cpp" line="4988"/>
         <source>Switch Focus to Next Panel</source>
         <translation>Sonraki Panele Odak Geçiş</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4984"/>
+        <location filename="../src/application/mainwindow.cpp" line="4990"/>
         <source>Switch Focus to Next Panel (Tree Feeds, List News, Browser)</source>
         <translation>Sonraki Panele Odak Geçiş (Kaynaklar Ağacı,Haberler Listesi,Tarayıcı)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4985"/>
+        <location filename="../src/application/mainwindow.cpp" line="4991"/>
         <source>Switch Focus to Previous Panel</source>
         <translation>Önceki Panele Odak Geçiş</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4987"/>
+        <location filename="../src/application/mainwindow.cpp" line="4993"/>
         <source>Switch Focus to Previous Panel (Tree Feeds, Browser, List News)</source>
         <translation>Önceki Panele Odak Geçiş (Kaynaklar Ağacı,Haberler Listesi,Tarayıcı)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4989"/>
+        <location filename="../src/application/mainwindow.cpp" line="4995"/>
         <source>Show/Hide Tree Feeds</source>
         <translation>Kaynak ağacını göster/gizle</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4991"/>
+        <location filename="../src/application/mainwindow.cpp" line="4997"/>
         <source>Minimize to Tray</source>
         <translation>Tepsiye küçült</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4992"/>
+        <location filename="../src/application/mainwindow.cpp" line="4998"/>
         <source>Minimize Application to Tray</source>
         <translation>Uygulamayı tepsiye küçült</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4994"/>
+        <location filename="../src/application/mainwindow.cpp" line="5000"/>
         <source>Columns</source>
         <translation>Kolonlar</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4999"/>
+        <location filename="../src/application/mainwindow.cpp" line="5005"/>
         <source>Show Indentation</source>
         <translation>Paragrafbaşını Göster</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5001"/>
-        <location filename="../src/application/mainwindow.cpp" line="5002"/>
+        <location filename="../src/application/mainwindow.cpp" line="5007"/>
+        <location filename="../src/application/mainwindow.cpp" line="5008"/>
         <source>Search Feed</source>
         <translation>Kaynak ara</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5004"/>
+        <location filename="../src/application/mainwindow.cpp" line="5010"/>
         <source>Zoom</source>
         <translation>Büyüteç</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5005"/>
+        <location filename="../src/application/mainwindow.cpp" line="5011"/>
         <source>Zoom In</source>
         <translation>Yakınlaş</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5006"/>
+        <location filename="../src/application/mainwindow.cpp" line="5012"/>
         <source>Zoom in in browser</source>
         <translation>Tarayıcıda yakınlaş</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5007"/>
+        <location filename="../src/application/mainwindow.cpp" line="5013"/>
         <source>Zoom Out</source>
         <translation>Uzaklaş</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5008"/>
+        <location filename="../src/application/mainwindow.cpp" line="5014"/>
         <source>Zoom out in browser</source>
         <translation>Tarayıcıda uzaklaş</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5009"/>
+        <location filename="../src/application/mainwindow.cpp" line="5015"/>
         <source>100%</source>
         <translation>%100</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5012"/>
+        <location filename="../src/application/mainwindow.cpp" line="5018"/>
         <source>Print...</source>
         <translation>Yazdır...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5014"/>
+        <location filename="../src/application/mainwindow.cpp" line="5020"/>
         <source>Print Preview...</source>
         <translation>Önizlemeyi Yazdır...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5017"/>
+        <location filename="../src/application/mainwindow.cpp" line="5023"/>
         <source>Page up (Browser)</source>
-        <translation type="unfinished"/>
+        <translation>Üst Sayfa (Tarayıcı)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5018"/>
+        <location filename="../src/application/mainwindow.cpp" line="5024"/>
         <source>Page down (Browser)</source>
-        <translation type="unfinished"/>
+        <translation>Alt Sayfa (Tarayıcı)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5020"/>
+        <location filename="../src/application/mainwindow.cpp" line="5026"/>
         <source>Save As...</source>
         <translation>Farklı Kaydet...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5021"/>
+        <location filename="../src/application/mainwindow.cpp" line="5027"/>
         <source>Save Page As...</source>
         <translation>Sayfayı Farklı Kaydet...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5025"/>
+        <location filename="../src/application/mainwindow.cpp" line="5031"/>
         <source>Show/Hide</source>
         <translation>Göster/Gizle</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5027"/>
+        <location filename="../src/application/mainwindow.cpp" line="5033"/>
         <source>Feeds Toolbar</source>
         <translation>Kaynak Şeriti</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5028"/>
+        <location filename="../src/application/mainwindow.cpp" line="5034"/>
         <source>News Toolbar</source>
         <translation>Haber Şeriti</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5029"/>
+        <location filename="../src/application/mainwindow.cpp" line="5035"/>
         <source>Browser Toolbar</source>
         <translation>Tarayıcı Şeriti</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5030"/>
+        <location filename="../src/application/mainwindow.cpp" line="5036"/>
         <source>Panel Categories</source>
         <translation>Panel Kategorileri</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5031"/>
+        <location filename="../src/application/mainwindow.cpp" line="5037"/>
         <source>Status Bar</source>
-        <translation type="unfinished"/>
+        <translation>Durum Çubuğu</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5033"/>
-        <location filename="../src/application/mainwindow.cpp" line="5034"/>
+        <location filename="../src/application/mainwindow.cpp" line="5039"/>
+        <location filename="../src/application/mainwindow.cpp" line="5040"/>
         <source>Full Screen</source>
         <translation>Tam Ekran</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5036"/>
-        <location filename="../src/application/mainwindow.cpp" line="5037"/>
+        <location filename="../src/application/mainwindow.cpp" line="5042"/>
+        <location filename="../src/application/mainwindow.cpp" line="5043"/>
         <source>Stay On Top</source>
         <translation>Her zaman üstte</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5039"/>
+        <location filename="../src/application/mainwindow.cpp" line="5045"/>
         <source>Categories</source>
         <translation>Kategoriler</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5045"/>
-        <location filename="../src/application/mainwindow.cpp" line="5046"/>
+        <location filename="../src/application/mainwindow.cpp" line="5051"/>
+        <location filename="../src/application/mainwindow.cpp" line="5052"/>
         <source>Label</source>
         <translation>Etiket</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5047"/>
+        <location filename="../src/application/mainwindow.cpp" line="5053"/>
         <source>Show labels menu</source>
-        <translation type="unfinished"/>
+        <translation>Etiket menusunu göster</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5049"/>
+        <location filename="../src/application/mainwindow.cpp" line="5055"/>
         <source>Close Tab</source>
         <translation>Sekmeyi kapat</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5050"/>
+        <location filename="../src/application/mainwindow.cpp" line="5056"/>
         <source>Close Other Tabs</source>
         <translation>Diğer sekmeleri kapat</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5051"/>
+        <location filename="../src/application/mainwindow.cpp" line="5057"/>
         <source>Close All Tabs</source>
         <translation>Tüm sekmeleri kapat</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5052"/>
+        <location filename="../src/application/mainwindow.cpp" line="5058"/>
         <source>Switch to next tab</source>
         <translation>Diğer sekmeye geç</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5053"/>
+        <location filename="../src/application/mainwindow.cpp" line="5059"/>
         <source>Switch to previous tab</source>
         <translation>Önceki sekmeye geç</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5055"/>
+        <location filename="../src/application/mainwindow.cpp" line="5061"/>
         <source>Unread</source>
         <translation>Okunmamış</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5056"/>
+        <location filename="../src/application/mainwindow.cpp" line="5062"/>
         <source>Starred</source>
         <translation>Favoriler</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5057"/>
+        <location filename="../src/application/mainwindow.cpp" line="5063"/>
         <source>Deleted</source>
         <translation>Silinmiş</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5058"/>
+        <location filename="../src/application/mainwindow.cpp" line="5064"/>
         <source>Labels</source>
         <translation>Etiketler</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5060"/>
+        <location filename="../src/application/mainwindow.cpp" line="5066"/>
         <source>Decrease news list/increase browser</source>
         <translation>Haber listesini azalt/tarayıcıyı artır</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5061"/>
+        <location filename="../src/application/mainwindow.cpp" line="5067"/>
         <source>Increase news list/decrease browser</source>
         <translation>Haber listesini artır/Tarayıcıyı azalt</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5063"/>
+        <location filename="../src/application/mainwindow.cpp" line="5069"/>
         <source>Find</source>
         <translation>Bul</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5065"/>
+        <location filename="../src/application/mainwindow.cpp" line="5071"/>
         <source>Open Homepage Feed</source>
         <translation>Anasayfa Kaynaklarını Aç</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5066"/>
+        <location filename="../src/application/mainwindow.cpp" line="5072"/>
         <source>Sort by Name</source>
-        <translation type="unfinished"/>
+        <translation>İsme göre sırala</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5067"/>
+        <location filename="../src/application/mainwindow.cpp" line="5073"/>
         <source>Collapse All Folders</source>
         <translation>Tüm klasörleri kapat</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5068"/>
+        <location filename="../src/application/mainwindow.cpp" line="5074"/>
         <source>Expand All Folders</source>
         <translation>Tüm klasörleri aç</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5069"/>
+        <location filename="../src/application/mainwindow.cpp" line="5075"/>
         <source>Next Folder</source>
         <translation>Sonraki klasör</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5070"/>
+        <location filename="../src/application/mainwindow.cpp" line="5076"/>
         <source>Previous Folder</source>
         <translation>Önceki klasör</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5071"/>
+        <location filename="../src/application/mainwindow.cpp" line="5077"/>
         <source>Expand Folder</source>
         <translation>Klasörü genişlet</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5073"/>
+        <location filename="../src/application/mainwindow.cpp" line="5079"/>
         <source>Setting Page: Labels</source>
-        <translation type="unfinished"/>
+        <translation>Sayfa Ayarları: Etiketler</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5075"/>
+        <location filename="../src/application/mainwindow.cpp" line="5081"/>
         <source>Share</source>
         <translation>Paylaş</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5077"/>
+        <location filename="../src/application/mainwindow.cpp" line="5083"/>
         <source>Sort By</source>
         <translation>Sıralama kriteri</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5078"/>
+        <location filename="../src/application/mainwindow.cpp" line="5084"/>
         <source>Ascending</source>
         <translation>Yükselen</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5079"/>
+        <location filename="../src/application/mainwindow.cpp" line="5085"/>
         <source>Descending</source>
         <translation>Alçalan</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5974"/>
+        <location filename="../src/application/mainwindow.cpp" line="5991"/>
         <source>Check for updates</source>
         <translation>Güncellemeleri kontrol et</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5975"/>
+        <location filename="../src/application/mainwindow.cpp" line="5992"/>
         <source>A new version of QuiteRSS...</source>
         <translation>QuiteRSS&apos;nin yeni sürümü</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="6354"/>
+        <location filename="../src/application/mainwindow.cpp" line="6371"/>
         <source>Loading...</source>
         <translation>Yükleniyor</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="6966"/>
         <location filename="../src/application/mainwindow.cpp" line="6983"/>
+        <location filename="../src/application/mainwindow.cpp" line="7000"/>
         <source>Web Page</source>
         <translation>Web Sayfası</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="7541"/>
+        <location filename="../src/application/mainwindow.cpp" line="7558"/>
         <source>Save As</source>
         <translation>Farklı Kaydet</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="7543"/>
+        <location filename="../src/application/mainwindow.cpp" line="7560"/>
         <source>HTML-Files (*.%1)</source>
         <translation>HTML-Dosyaları (*.%1)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="7543"/>
+        <location filename="../src/application/mainwindow.cpp" line="7560"/>
         <source>Text files (*.%2)</source>
         <translation>Metin dosyaları (*.%2)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="7549"/>
+        <location filename="../src/application/mainwindow.cpp" line="7566"/>
         <source>Save As: can&apos;t open a file</source>
         <translation>Farklı Kaydet:Dosya açılamadı</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="8045"/>
+        <location filename="../src/application/mainwindow.cpp" line="8062"/>
         <source>Choose Directory</source>
         <translation>Dizin Seç</translation>
     </message>
@@ -2526,7 +2526,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="231"/>
         <source>The &quot;%1&quot; server has the following errors in the SSL certificate:</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; sunucusunun SSL sertifikasında şu sorunlar bulunmaktadır : </translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="247"/>
@@ -2541,7 +2541,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="253"/>
         <source>&lt;b&gt;Expiration Date: &lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Bitiş Tarihi: &lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="260"/>
@@ -2551,7 +2551,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="268"/>
         <source>Would you like to make an exception for this certificate?</source>
-        <translation type="unfinished"/>
+        <translation>Bu sertifika için hariciyet oluşturmak ister misiniz?</translation>
     </message>
 </context>
 <context>
@@ -2609,7 +2609,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/newsfilters/newsfiltersdialog.cpp" line="260"/>
         <source>Are you sure you want to delete the filter &apos;%1&apos;?</source>
-        <translation type="unfinished"/>
+        <translation>&apos;%1&apos; filterini silmek istediğinize emin misiniz?</translation>
     </message>
 </context>
 <context>
@@ -2684,6 +2684,14 @@ adlı dosya bulunamadı!</translation>
     </message>
 </context>
 <context>
+    <name>NewsModel</name>
+    <message>
+        <location filename="../src/newsview/newsmodel.cpp" line="163"/>
+        <source>(no title)</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>NewsTabWidget</name>
     <message>
         <location filename="../src/newstabwidget.cpp" line="603"/>
@@ -2706,62 +2714,62 @@ adlı dosya bulunamadı!</translation>
         <translation>Dış Tarayıcıda Linki Aç</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2290"/>
+        <location filename="../src/newstabwidget.cpp" line="2291"/>
         <source>Open Link</source>
         <translation>Linki aç</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2291"/>
+        <location filename="../src/newstabwidget.cpp" line="2292"/>
         <source>Open in New Tab</source>
         <translation>Yeni sekmede aç</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2292"/>
+        <location filename="../src/newstabwidget.cpp" line="2293"/>
         <source>Save Link...</source>
         <translation>Linki kaydet...</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2293"/>
+        <location filename="../src/newstabwidget.cpp" line="2294"/>
         <source>Save Image...</source>
         <translation>Resmi kaydet...</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2294"/>
+        <location filename="../src/newstabwidget.cpp" line="2295"/>
         <source>Copy Link</source>
         <translation>Linki kopyala</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2295"/>
+        <location filename="../src/newstabwidget.cpp" line="2296"/>
         <source>Copy</source>
         <translation>Kopyala</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2296"/>
+        <location filename="../src/newstabwidget.cpp" line="2297"/>
         <source>Go Back</source>
         <translation>Geri git</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2297"/>
+        <location filename="../src/newstabwidget.cpp" line="2298"/>
         <source>Go Forward</source>
         <translation>İleri git</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2298"/>
+        <location filename="../src/newstabwidget.cpp" line="2299"/>
         <source>Stop</source>
         <translation>Dur</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2299"/>
+        <location filename="../src/newstabwidget.cpp" line="2300"/>
         <source>Reload</source>
         <translation>Yeniden yükle</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2300"/>
+        <location filename="../src/newstabwidget.cpp" line="2301"/>
         <source>Copy Image</source>
         <translation>Resmi Kopyala</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2302"/>
+        <location filename="../src/newstabwidget.cpp" line="2303"/>
         <source>Copy Image Address</source>
         <translation>Resim Adreslerini Kopyala</translation>
     </message>
@@ -2799,7 +2807,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/newstabwidget.cpp" line="641"/>
         <source>Don&apos;t Load Images</source>
-        <translation type="unfinished"/>
+        <translation>Resimleri Yükleme</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="642"/>
@@ -2865,7 +2873,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1796"/>
         <source>Open News in External Browser</source>
-        <translation type="unfinished"/>
+        <translation>Haber Başlıklarını Harici Tarayıcıda Aç</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1800"/>
@@ -2896,14 +2904,14 @@ adlı dosya bulunamadı!</translation>
         <translation>Sonraki Sayfa</translation>
     </message>
     <message>
-        <location filename="../src/notifications/notificationswidget.cpp" line="211"/>
+        <location filename="../src/notifications/notificationswidget.cpp" line="361"/>
         <source>Incoming News: %1</source>
         <translation>Gelen Haberler : %1</translation>
     </message>
     <message>
-        <location filename="../src/notifications/notificationswidget.cpp" line="358"/>
-        <location filename="../src/notifications/notificationswidget.cpp" line="448"/>
-        <location filename="../src/notifications/notificationswidget.cpp" line="460"/>
+        <location filename="../src/notifications/notificationswidget.cpp" line="366"/>
+        <location filename="../src/notifications/notificationswidget.cpp" line="456"/>
+        <location filename="../src/notifications/notificationswidget.cpp" line="468"/>
         <source>Page %1 of %2</source>
         <translation>Sayfa %1 of %2</translation>
     </message>
@@ -3146,7 +3154,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="481"/>
         <source>Request timeout:</source>
-        <translation type="unfinished"/>
+        <translation>İstek zaman aşımına uğradı:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="483"/>
@@ -3699,7 +3707,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1018"/>
         <source>Display</source>
-        <translation type="unfinished"/>
+        <translation>Ekran</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1158"/>
@@ -3902,7 +3910,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1726"/>
         <source>Disabled feed</source>
-        <translation type="unfinished"/>
+        <translation>Devre dışı bırakılmış kaynak</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1729"/>
@@ -3912,12 +3920,12 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1732"/>
         <source>Notification text color</source>
-        <translation type="unfinished"/>
+        <translation>Bildirim metni rengi</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1735"/>
         <source>Notification background color</source>
-        <translation type="unfinished"/>
+        <translation>Bildirim arka plan rengi</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2127"/>
@@ -3927,7 +3935,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1714"/>
         <source>Text color of new news</source>
-        <translation type="unfinished"/>
+        <translation>Yeni haberlerde metin rengi</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="295"/>
@@ -3967,17 +3975,17 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="800"/>
         <source>Action on feed opening:</source>
-        <translation type="unfinished"/>
+        <translation>Kaynak açma işlemi:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="878"/>
         <source>Show news description instead of loading web page</source>
-        <translation type="unfinished"/>
+        <translation>Web sayfası yüklemek yerine haber açıklaması göster</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1717"/>
         <source>Text color of unread news</source>
-        <translation type="unfinished"/>
+        <translation>Okunmamış haberlerin metin rengi</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1720"/>
@@ -4121,17 +4129,17 @@ adlı dosya bulunamadı!</translation>
 <context>
     <name>QAbstractSpinBox</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5103"/>
+        <location filename="../src/application/mainwindow.cpp" line="5109"/>
         <source>&amp;Step up</source>
         <translation>&amp;Yukarı taşı</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5104"/>
+        <location filename="../src/application/mainwindow.cpp" line="5110"/>
         <source>Step &amp;down</source>
         <translation>&amp;Aşağı taşı</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5105"/>
+        <location filename="../src/application/mainwindow.cpp" line="5111"/>
         <source>&amp;Select All</source>
         <translation>&amp;Tümünü seç</translation>
     </message>
@@ -4139,22 +4147,22 @@ adlı dosya bulunamadı!</translation>
 <context>
     <name>QDialogButtonBox</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5081"/>
+        <location filename="../src/application/mainwindow.cpp" line="5087"/>
         <source>Close</source>
         <translation>Kapat</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5082"/>
+        <location filename="../src/application/mainwindow.cpp" line="5088"/>
         <source>Cancel</source>
         <translation>İptal</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5083"/>
+        <location filename="../src/application/mainwindow.cpp" line="5089"/>
         <source>&amp;Yes</source>
         <translation>&amp;Evet</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5084"/>
+        <location filename="../src/application/mainwindow.cpp" line="5090"/>
         <source>&amp;No</source>
         <translation>&amp;Hayır</translation>
     </message>
@@ -4259,37 +4267,37 @@ adlı dosya bulunamadı!</translation>
 <context>
     <name>QLineEdit</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5086"/>
+        <location filename="../src/application/mainwindow.cpp" line="5092"/>
         <source>&amp;Undo</source>
         <translation>&amp;Geri al</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5087"/>
+        <location filename="../src/application/mainwindow.cpp" line="5093"/>
         <source>&amp;Redo</source>
         <translation>&amp;Tekrar yap</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5088"/>
+        <location filename="../src/application/mainwindow.cpp" line="5094"/>
         <source>Cu&amp;t</source>
         <translation>&amp;Kes</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5089"/>
+        <location filename="../src/application/mainwindow.cpp" line="5095"/>
         <source>&amp;Copy</source>
         <translation>&amp;Kopyala</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5090"/>
+        <location filename="../src/application/mainwindow.cpp" line="5096"/>
         <source>&amp;Paste</source>
         <translation>&amp;Yapıştır</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5091"/>
+        <location filename="../src/application/mainwindow.cpp" line="5097"/>
         <source>Delete</source>
         <translation>Sil</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5092"/>
+        <location filename="../src/application/mainwindow.cpp" line="5098"/>
         <source>Select All</source>
         <translation>Tümünü seç</translation>
     </message>
@@ -4297,7 +4305,7 @@ adlı dosya bulunamadı!</translation>
 <context>
     <name>QMultiInputContext</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5107"/>
+        <location filename="../src/application/mainwindow.cpp" line="5113"/>
         <source>Select IM</source>
         <translation>IM seç</translation>
     </message>
@@ -4323,42 +4331,42 @@ adlı dosya bulunamadı!</translation>
 <context>
     <name>QTextControl</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5094"/>
+        <location filename="../src/application/mainwindow.cpp" line="5100"/>
         <source>&amp;Undo</source>
         <translation>&amp;Geri al</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5095"/>
+        <location filename="../src/application/mainwindow.cpp" line="5101"/>
         <source>&amp;Redo</source>
         <translation>&amp;Tekrar yap</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5096"/>
+        <location filename="../src/application/mainwindow.cpp" line="5102"/>
         <source>Cu&amp;t</source>
         <translation>&amp;Kes</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5097"/>
+        <location filename="../src/application/mainwindow.cpp" line="5103"/>
         <source>&amp;Copy</source>
         <translation>&amp;Kopyala</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5098"/>
+        <location filename="../src/application/mainwindow.cpp" line="5104"/>
         <source>&amp;Paste</source>
         <translation>&amp;Yapıştır</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5099"/>
+        <location filename="../src/application/mainwindow.cpp" line="5105"/>
         <source>Delete</source>
         <translation>Sil</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5100"/>
+        <location filename="../src/application/mainwindow.cpp" line="5106"/>
         <source>Select All</source>
         <translation>Tümünü seç</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5101"/>
+        <location filename="../src/application/mainwindow.cpp" line="5107"/>
         <source>Copy &amp;Link Location</source>
         <translation>&amp;Linki kopyala</translation>
     </message>
@@ -4366,22 +4374,22 @@ adlı dosya bulunamadı!</translation>
 <context>
     <name>QWizard</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5109"/>
+        <location filename="../src/application/mainwindow.cpp" line="5115"/>
         <source>Cancel</source>
         <translation>İptal</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5110"/>
+        <location filename="../src/application/mainwindow.cpp" line="5116"/>
         <source>&lt; &amp;Back</source>
         <translation>&lt; &amp;Geri git</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5111"/>
+        <location filename="../src/application/mainwindow.cpp" line="5117"/>
         <source>&amp;Finish</source>
         <translation>&amp;Bitir</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5112"/>
+        <location filename="../src/application/mainwindow.cpp" line="5118"/>
         <source>&amp;Next &gt;</source>
         <translation>&amp;İleri git &gt;</translation>
     </message>
@@ -4404,7 +4412,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/requestfeed.cpp" line="232"/>
         <source>Server replied: Not Found!</source>
-        <translation type="unfinished"/>
+        <translation>Sunucu yanıtı: Bulunamadı!</translation>
     </message>
     <message>
         <location filename="../src/requestfeed.cpp" line="275"/>
@@ -4414,7 +4422,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/requestfeed.cpp" line="357"/>
         <source>Request timeout!</source>
-        <translation type="unfinished"/>
+        <translation>İstek zaman aşımına uğradı!</translation>
     </message>
 </context>
 <context>
@@ -4526,32 +4534,32 @@ adlı dosya bulunamadı!</translation>
         <translation>&amp;Yükle</translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="138"/>
+        <location filename="../src/updateappdialog.cpp" line="130"/>
         <source>You already have the latest version</source>
         <translation>Zaten son sürüme sahipsiniz</translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="148"/>
+        <location filename="../src/updateappdialog.cpp" line="140"/>
         <source>A new version of QuiteRSS is available!</source>
         <translation>QuiteRSS&apos;nin yeni sürümü mevcut!</translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="151"/>
+        <location filename="../src/updateappdialog.cpp" line="143"/>
         <source>Click here to go to the download page</source>
         <translation>İndirme sayfasına gitmek için buraya tıklayınız</translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="156"/>
+        <location filename="../src/updateappdialog.cpp" line="148"/>
         <source>Your version is:</source>
         <translation>Sürümünüz:</translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="158"/>
+        <location filename="../src/updateappdialog.cpp" line="150"/>
         <source>Current version is:</source>
         <translation>Mevcut sürümünüz:</translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="164"/>
+        <location filename="../src/updateappdialog.cpp" line="156"/>
         <source>Error checking updates</source>
         <translation>Güncellemeleri kontrol ederken hata oluştu</translation>
     </message>
