@@ -519,8 +519,13 @@ void ParseObject::parseRss(const QString &feedUrl, const QDomDocument &doc)
   feedItem.title = toPlainText(channel.namedItem("title").toElement().text());
   feedItem.description = channel.namedItem("description").toElement().text();
   feedItem.link = toPlainText(channel.namedItem("link").toElement().text());
-  if (QUrl(feedItem.link).host().isEmpty())
-    feedItem.link = QUrl(feedUrl).scheme() %  "://" % QUrl(feedUrl).host() + feedItem.link;
+  QUrl url = QUrl(feedItem.link);
+  if (url.host().isEmpty())
+    url.setHost(QUrl(feedUrl).host());
+  if (url.scheme().isEmpty())
+    url.setScheme(QUrl(feedUrl).scheme());
+  feedItem.link = url.toString();
+
   feedItem.updated = channel.namedItem("pubDate").toElement().text();
   if (feedItem.updated.isEmpty())
     feedItem.updated = channel.namedItem("pubdate").toElement().text();
@@ -563,8 +568,12 @@ void ParseObject::parseRss(const QString &feedUrl, const QDomDocument &doc)
       if (newsList.item(i).namedItem("guid").toElement().attribute("isPermaLink") == "true")
         newsItem.link = newsItem.id;
     }
-    if (QUrl(newsItem.link).host().isEmpty())
-      newsItem.link = QUrl(feedUrl).scheme() %  "://" % QUrl(feedUrl).host() + newsItem.link;
+    url = QUrl(newsItem.link);
+    if (url.host().isEmpty())
+      url.setHost(QUrl(feedUrl).host());
+    if (url.scheme().isEmpty())
+      url.setScheme(QUrl(feedUrl).scheme());
+    newsItem.link = url.toString();
 
     newsItem.description = newsList.item(i).namedItem("description").toElement().text();
     newsItem.content = newsList.item(i).namedItem("content:encoded").toElement().text();
