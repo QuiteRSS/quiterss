@@ -147,7 +147,7 @@
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="122"/>
         <source>Use only essential part of EasyList (for performance reasons)</source>
-        <translation>Utilizar apenas a principal lista EasyList (para melhor desempenho)</translation>
+        <translation>Utilizar apenas a lista EasyList (para melhor desempenho)</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="74"/>
@@ -2688,7 +2688,7 @@ não existe!</translation>
     <message>
         <location filename="../src/newsview/newsmodel.cpp" line="163"/>
         <source>(no title)</source>
-        <translation type="unfinished"/>
+        <translation>(sem título)</translation>
     </message>
 </context>
 <context>

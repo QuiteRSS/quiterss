@@ -2688,7 +2688,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsview/newsmodel.cpp" line="163"/>
         <source>(no title)</source>
-        <translation type="unfinished"/>
+        <translation>(nincs cím)</translation>
     </message>
 </context>
 <context>
@@ -2906,14 +2906,14 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/notifications/notificationswidget.cpp" line="361"/>
         <source>Incoming News: %1</source>
-        <translation type="unfinished"/>
+        <translation>Beérkező hírek: %1</translation>
     </message>
     <message>
         <location filename="../src/notifications/notificationswidget.cpp" line="366"/>
         <location filename="../src/notifications/notificationswidget.cpp" line="456"/>
         <location filename="../src/notifications/notificationswidget.cpp" line="468"/>
         <source>Page %1 of %2</source>
-        <translation type="unfinished"/>
+        <translation>%2 - %1 oldal</translation>
     </message>
 </context>
 <context>
@@ -3817,7 +3817,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1635"/>
         <source>Notification font</source>
-        <translation type="unfinished"/>
+        <translation>Értesítés betűtípusa</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1642"/>

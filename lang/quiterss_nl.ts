@@ -2688,7 +2688,7 @@ werd niet gevonden</translation>
     <message>
         <location filename="../src/newsview/newsmodel.cpp" line="163"/>
         <source>(no title)</source>
-        <translation type="unfinished"/>
+        <translation>(geen naam)</translation>
     </message>
 </context>
 <context>

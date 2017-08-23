@@ -2688,7 +2688,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/newsview/newsmodel.cpp" line="163"/>
         <source>(no title)</source>
-        <translation type="unfinished"/>
+        <translation>(sem título)</translation>
     </message>
 </context>
 <context>
@@ -2906,7 +2906,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/notifications/notificationswidget.cpp" line="361"/>
         <source>Incoming News: %1</source>
-        <translation>Notícias de Entrada: %1</translation>
+        <translation>Notícias Recebidas: %1</translation>
     </message>
     <message>
         <location filename="../src/notifications/notificationswidget.cpp" line="366"/>

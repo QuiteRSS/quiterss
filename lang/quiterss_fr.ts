@@ -2688,7 +2688,7 @@ Les anciens articles pourraient réapparaître</translation>
     <message>
         <location filename="../src/newsview/newsmodel.cpp" line="163"/>
         <source>(no title)</source>
-        <translation type="unfinished"/>
+        <translation>(sans titre)</translation>
     </message>
 </context>
 <context>
@@ -2906,14 +2906,14 @@ Les anciens articles pourraient réapparaître</translation>
     <message>
         <location filename="../src/notifications/notificationswidget.cpp" line="361"/>
         <source>Incoming News: %1</source>
-        <translation type="unfinished"/>
+        <translation>Nouvelles en arrivées : %1</translation>
     </message>
     <message>
         <location filename="../src/notifications/notificationswidget.cpp" line="366"/>
         <location filename="../src/notifications/notificationswidget.cpp" line="456"/>
         <location filename="../src/notifications/notificationswidget.cpp" line="468"/>
         <source>Page %1 of %2</source>
-        <translation type="unfinished"/>
+        <translation>Page %1 sur %2</translation>
     </message>
 </context>
 <context>
@@ -3817,7 +3817,7 @@ Les anciens articles pourraient réapparaître</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1635"/>
         <source>Notification font</source>
-        <translation type="unfinished"/>
+        <translation>Police de notification</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1642"/>

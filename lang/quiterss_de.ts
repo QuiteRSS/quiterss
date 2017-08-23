@@ -2686,7 +2686,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsview/newsmodel.cpp" line="163"/>
         <source>(no title)</source>
-        <translation type="unfinished"/>
+        <translation>(ohne Titel)</translation>
     </message>
 </context>
 <context>

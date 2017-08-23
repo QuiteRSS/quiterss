@@ -2688,7 +2688,7 @@ kunde inte hittas!</translation>
     <message>
         <location filename="../src/newsview/newsmodel.cpp" line="163"/>
         <source>(no title)</source>
-        <translation type="unfinished"/>
+        <translation>(ingen titel)</translation>
     </message>
 </context>
 <context>
@@ -3817,7 +3817,7 @@ kunde inte hittas!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1635"/>
         <source>Notification font</source>
-        <translation>Teckensnitt för meddelanden</translation>
+        <translation>Teckensnitt för aviseringar</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1642"/>
