@@ -2,6 +2,21 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
+<p><b>Version 0.18.7</b> (23 Aug 2017)
+<ul>
+<li>Added: Share. Reddit, Instapaper</li>
+
+<li>Changed: SQLite 3.20.0</li>
+<li>Changed: Displaying icon in system tray</li>
+
+<li>Fixed: Copying folder properties when adding feed</li>
+<li>Fixed: Duplicated news without headings</li>
+<li>Fixed: Share. Email (Linux)</li>
+<li>Fixed: Application crash when open browser tab and layout switching</li>
+<li>Fixed: Sometimes regular expressions in filters did not work</li>
+<li>Fixed: Some content links of the news description has no "http" schema</li>
+</ul>
+<!---------------------------------------------------------------------------->
 <p><b>Version 0.18.6</b> (20 Jun 2017)
 <ul>
 <li>Changed: SQLite 3.19.3</li>

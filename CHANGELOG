@@ -1,3 +1,14 @@
+Version 0.18.7 (23 Aug 2017)
+  * Added: Share. Reddit, Instapaper
+  * Changed: SQLite 3.20.0
+  * Changed: Displaying icon in system tray
+  * Fixed: Copying folder properties when adding feed
+  * Fixed: Duplicated news without headings
+  * Fixed: Share. Email (Linux)
+  * Fixed: Application crash when open browser tab and layout switching
+  * Fixed: Sometimes regular expressions in filters did not work
+  * Fixed: Some content links of the news description has no "http" schema
+
 Version 0.18.6 (20 Jun 2017)
   * Changed: SQLite 3.19.3
   * Fixed: Displaying dialogs in mode "Stay on top"
