@@ -1,3 +1,6 @@
+Version 0.18.8 (24 Aug 2017)
+  * Fixed: "Show Unread" news filter was not working
+
 Version 0.18.7 (23 Aug 2017)
   * Added: Share. Reddit, Instapaper
   * Changed: SQLite 3.20.0

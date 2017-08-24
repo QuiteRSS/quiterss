@@ -1390,7 +1390,7 @@ void OptionsDialog::createLanguageWidget()
 
   treeItem.clear();
   treeItem << "fa" << QString::fromUtf8("فارسی [FA]")
-           << "0.18.7"
+           << "0.18.8"
            << "H.Mohamadi" << "";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/flags/flag_FA"));
@@ -1406,7 +1406,7 @@ void OptionsDialog::createLanguageWidget()
 
   treeItem.clear();
   treeItem << "fr" << QString::fromUtf8("Français [FR]")
-           << "0.18.7"
+           << "0.18.8"
            << "Glad Deschrijver" << "glad.deschrijver@gmail.com";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/flags/flag_FR"));
@@ -1438,7 +1438,7 @@ void OptionsDialog::createLanguageWidget()
 
   treeItem.clear();
   treeItem << "it" << QString::fromUtf8("Italiano [IT]")
-           << "0.18.7"
+           << "0.18.8"
            << "ZeroWis" << "lightflash@hotmail.it";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/flags/flag_IT"));
@@ -1470,7 +1470,7 @@ void OptionsDialog::createLanguageWidget()
 
   treeItem.clear();
   treeItem << "nl" << QString::fromUtf8("Nederlands [NL]")
-           << "0.18.7"
+           << "0.18.8"
            << "TeLLie" << "elbert.pol@gmail.com";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/flags/flag_NL"));
@@ -1478,7 +1478,7 @@ void OptionsDialog::createLanguageWidget()
 
   treeItem.clear();
   treeItem << "pl" << QString::fromUtf8("Polski [PL]")
-           << "0.18.7"
+           << "0.18.8"
            << QString::fromUtf8("Piotr Pecka") << "piotr.pecka@outlook.com";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/flags/flag_PL"));
@@ -1486,7 +1486,7 @@ void OptionsDialog::createLanguageWidget()
 
   treeItem.clear();
   treeItem << "pt_BR" << QString::fromUtf8("Português (Brazil) [pt_BR]")
-           << "0.18.7"
+           << "0.18.8"
            << QString::fromUtf8("Marcos M. Ribeiro") << "";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/flags/flag_BR"));
@@ -1502,7 +1502,7 @@ void OptionsDialog::createLanguageWidget()
 
   treeItem.clear();
   treeItem << "ro_RO" << QString::fromUtf8("Limba română [ro_RO]")
-           << "0.18.7"
+           << "0.18.8"
            << QString::fromUtf8("Jaff (Oprea Nicolae)") << "Jaff2002@yahoo.com";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/flags/flag_RO"));

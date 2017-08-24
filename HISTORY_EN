@@ -2,6 +2,11 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
+<p><b>Version 0.18.8</b> (24 Aug 2017)
+<ul>
+<li>Fixed: "Show Unread" news filter was not working</li>
+</ul>
+<!---------------------------------------------------------------------------->
 <p><b>Version 0.18.7</b> (23 Aug 2017)
 <ul>
 <li>Added: Share. Reddit, Instapaper</li>
