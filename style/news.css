@@ -123,3 +123,8 @@ a.enclosure {
   padding: 5px;
   color: %13;
 }
+
+/* Prevent content 'div's from changing table width */
+.newsTable td div[style] {
+    width: 100% !important;
+}
