@@ -514,11 +514,19 @@ void ParseObject::addAtomNewsIntoBase(NewsItemStruct *newsItem)
 void ParseObject::parseRss(const QString &feedUrl, const QDomDocument &doc)
 {
   QDomNode channel = doc.documentElement().namedItem("channel");
+  if (channel.isNull())
+    channel = doc.documentElement().namedItem("rss:channel");
   FeedItemStruct feedItem;
 
   feedItem.title = toPlainText(channel.namedItem("title").toElement().text());
+  if (feedItem.title.isEmpty())
+    feedItem.title = toPlainText(channel.namedItem("rss:title").toElement().text());
   feedItem.description = channel.namedItem("description").toElement().text();
+  if (feedItem.description.isEmpty())
+    feedItem.description = toPlainText(channel.namedItem("rss:description").toElement().text());
   feedItem.link = toPlainText(channel.namedItem("link").toElement().text());
+  if (feedItem.link.isEmpty())
+    feedItem.link = toPlainText(channel.namedItem("rss:link").toElement().text());
   QUrl url = QUrl(feedItem.link);
   if (url.host().isEmpty())
     url.setHost(QUrl(feedUrl).host());
@@ -532,6 +540,8 @@ void ParseObject::parseRss(const QString &feedUrl, const QDomDocument &doc)
   feedItem.updated = parseDate(feedItem.updated, feedUrl);
   feedItem.author = toPlainText(channel.namedItem("author").toElement().text());
   feedItem.language = channel.namedItem("language").toElement().text();
+  if (feedItem.language.isEmpty())
+    feedItem.language = channel.namedItem("dc:language").toElement().text();
 
   QSqlQuery q(db_);
   q.setForwardOnly(true);
@@ -550,10 +560,14 @@ void ParseObject::parseRss(const QString &feedUrl, const QDomDocument &doc)
   q.exec();
 
   QDomNodeList newsList = doc.elementsByTagName("item");
+  if (newsList.isEmpty())
+    newsList = doc.elementsByTagName("rss:item");
   for (int i = 0; i < newsList.size(); i++) {
     NewsItemStruct newsItem;
     newsItem.id = newsList.item(i).namedItem("guid").toElement().text();
     newsItem.title = toPlainText(newsList.item(i).namedItem("title").toElement().text());
+    if (newsItem.title.isEmpty())
+      newsItem.title = toPlainText(newsList.item(i).namedItem("rss:title").toElement().text());
     newsItem.updated = newsList.item(i).namedItem("pubDate").toElement().text();
     if (newsItem.updated.isEmpty())
       newsItem.updated = newsList.item(i).namedItem("pubdate").toElement().text();
@@ -565,8 +579,11 @@ void ParseObject::parseRss(const QString &feedUrl, const QDomDocument &doc)
       newsItem.author = toPlainText(newsList.item(i).namedItem("dc:creator").toElement().text());
     newsItem.link = toPlainText(newsList.item(i).namedItem("link").toElement().text());
     if (newsItem.link.isEmpty()) {
-      if (newsList.item(i).namedItem("guid").toElement().attribute("isPermaLink") == "true")
-        newsItem.link = newsItem.id;
+        newsItem.link = toPlainText(newsList.item(i).namedItem("rss:link").toElement().text());
+        if (newsItem.link.isEmpty()) {
+            if (newsList.item(i).namedItem("guid").toElement().attribute("isPermaLink") == "true")
+                newsItem.link = newsItem.id;
+        }
     }
     url = QUrl(newsItem.link);
     if (url.host().isEmpty())
