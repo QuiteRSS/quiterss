@@ -234,11 +234,13 @@ void Database::initialization()
 
 void Database::setPragma(QSqlDatabase &db)
 {
+  Settings settings;
   QSqlQuery q(db);
   q.setForwardOnly(true);
   q.exec("PRAGMA encoding = \"UTF-8\"");
 
-//  q.exec("PRAGMA synchronous = FULL");
+  QString sync = settings.value("synchronousDB", "FULL").toString();
+  q.exec(QString("PRAGMA synchronous = %1").arg(sync));
 //  q.exec("PRAGMA journal_mode = MEMORY");
 //  q.exec("PRAGMA temp_store = MEMORY");
 
