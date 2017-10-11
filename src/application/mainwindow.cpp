@@ -102,11 +102,6 @@ MainWindow::MainWindow(QWidget *parent)
   connect(this, SIGNAL(signalPlaySoundNewNews()),
           SLOT(slotPlaySoundNewNews()), Qt::QueuedConnection);
 
-  qRegisterMetaType<QList<int> >("QList<int>");
-  connect(this, SIGNAL(setFeedRead(int,int,int,QList<int>)),
-          SIGNAL(signalSetFeedRead(int,int,int,QList<int>)),
-          Qt::QueuedConnection);
-
   connect(&timerLinkOpening_, SIGNAL(timeout()),
           this, SLOT(slotTimerLinkOpening()));
 
@@ -4350,12 +4345,7 @@ void MainWindow::setNewsFilter(QAction* pAct, bool clicked)
     return;
   }
 
-  QElapsedTimer timer;
-  timer.start();
-  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
-
   QModelIndex index = newsView_->currentIndex();
-
   int feedId = currentNewsTab->feedId_;
   int newsId = newsModel_->index(
         index.row(), newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
@@ -4429,13 +4419,9 @@ void MainWindow::setNewsFilter(QAction* pAct, bool clicked)
     }
   }
 
-  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
   newsModel_->setFilter(filterStr);
-
   while (newsModel_->canFetchMore())
     newsModel_->fetchMore();
-
-  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
   if ((currentNewsTab->newsHeader_->sortIndicatorSection() == newsModel_->fieldIndex("read")) ||
       currentNewsTab->newsHeader_->sortIndicatorSection() == newsModel_->fieldIndex("starred")) {
@@ -4462,8 +4448,6 @@ void MainWindow::setNewsFilter(QAction* pAct, bool clicked)
     }
   }
 
-  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
-
   // Store filter to enable it as "last used filter"
   if (pAct->objectName() != mainNewsFilter_)
     newsFilterAction_ = pAct;
@@ -4484,9 +4468,9 @@ void MainWindow::setFeedRead(int type, int feedId, FeedReedType feedReadType,
     if (((feedReadType == FeedReadSwitchingFeed) && markReadSwitchingFeed_) ||
         ((feedReadType == FeedReadClosingTab) && markReadClosingTab_) ||
         ((feedReadType == FeedReadPlaceToTray) && markReadMinimize_)) {
-      mainApp->updateFeeds()->updateObject_->slotSetFeedRead(feedReadType, feedId, idException, idNewsList);
+      emit signalSetFeedRead(feedReadType, feedId, idException, idNewsList);
     } else {
-      mainApp->updateFeeds()->updateObject_->slotSetFeedRead(feedReadType, feedId, idException, idNewsList);
+      emit signalSetFeedRead(feedReadType, feedId, idException, idNewsList);
     }
   } else if (widgetTab) {
     int cnt = widgetTab->newsModel_->rowCount();
@@ -4506,7 +4490,7 @@ void MainWindow::setFeedRead(int type, int feedId, FeedReedType feedReadType,
         idNewsList.removeOne(newsId);
       }
     }
-    mainApp->updateFeeds()->updateObject_->slotSetFeedRead(FeedReadSwitchingTab, feedId, idException, idNewsList);
+    emit signalSetFeedRead(FeedReadSwitchingTab, feedId, idException, idNewsList);
   }
 }
 

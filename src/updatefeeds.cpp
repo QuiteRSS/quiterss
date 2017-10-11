@@ -133,7 +133,8 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool addFeed)
             updateObject_, SLOT(slotRecountCategoryCounts()));
     qRegisterMetaType<QList<int> >("QList<int>");
     connect(updateObject_, SIGNAL(signalRecountCategoryCounts(QList<int>,QList<int>,QList<int>,QStringList)),
-            parent, SLOT(slotRecountCategoryCounts(QList<int>,QList<int>,QList<int>,QStringList)));
+            parent, SLOT(slotRecountCategoryCounts(QList<int>,QList<int>,QList<int>,QStringList)),
+            Qt::QueuedConnection);
     connect(parent, SIGNAL(signalRecountFeedCounts(int,bool)),
             updateObject_, SLOT(slotRecountFeedCounts(int,bool)));
     connect(updateObject_, SIGNAL(feedCountsUpdate(FeedCountStruct)),
@@ -141,7 +142,8 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool addFeed)
     connect(updateObject_, SIGNAL(signalFeedsViewportUpdate()),
             parent, SLOT(slotFeedsViewportUpdate()));
     connect(parent, SIGNAL(signalSetFeedRead(int,int,int,QList<int>)),
-            updateObject_, SLOT(slotSetFeedRead(int,int,int,QList<int>)));
+            updateObject_, SLOT(slotSetFeedRead(int,int,int,QList<int>)),
+            Qt::DirectConnection);
     connect(parent, SIGNAL(signalMarkFeedRead(int,bool,bool)),
             updateObject_, SLOT(slotMarkFeedRead(int,bool,bool)));
     connect(parent, SIGNAL(signalRefreshInfoTray()),
@@ -936,9 +938,11 @@ QList<int> UpdateObject::getIdFeedsInList(int idFolder)
  *---------------------------------------------------------------------------*/
 void UpdateObject::slotSetFeedRead(int readType, int feedId, int idException, QList<int> idNewsList)
 {
+  QSqlDatabase db = QSqlDatabase::database();
+  QSqlQuery q(db);
+
   if (readType != FeedReadSwitchingTab) {
-    db_.transaction();
-    QSqlQuery q(db_);
+    db.transaction();
     QString idFeedsStr = getIdFeedsString(feedId, idException);
     if (((readType == FeedReadSwitchingFeed) && mainWindow_->markReadSwitchingFeed_) ||
         ((readType == FeedReadClosingTab) && mainWindow_->markReadClosingTab_) ||
@@ -962,14 +966,13 @@ void UpdateObject::slotSetFeedRead(int readType, int feedId, int idException, QL
     }
     if (mainWindow_->markNewsReadOn_ && mainWindow_->markPrevNewsRead_)
       q.exec(QString("UPDATE news SET read=2 WHERE id IN (SELECT currentNews FROM feeds WHERE id='%1')").arg(feedId));
-    db_.commit();
+    db.commit();
 
     slotRecountFeedCounts(feedId);
     slotRecountCategoryCounts();
 
-    if (readType != FeedReadPlaceToTray) {
+    if (readType != FeedReadPlaceToTray)
       slotRefreshInfoTray();
-    }
   } else {
     QString idStr;
     foreach (int newsId, idNewsList) {
@@ -977,11 +980,10 @@ void UpdateObject::slotSetFeedRead(int readType, int feedId, int idException, QL
       idStr.append(QString("id='%1'").arg(newsId));
     }
 
-    db_.transaction();
-    QSqlQuery q(db_);
+    db.transaction();
     q.exec(QString("UPDATE news SET read=2 WHERE (%1) AND read==1").arg(idStr));
     q.exec(QString("UPDATE news SET new=0 WHERE (%1) AND new==1").arg(idStr));
-    db_.commit();
+    db.commit();
 
     if (feedId > -1)
       slotRecountFeedCounts(feedId, false);
