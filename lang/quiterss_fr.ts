@@ -540,7 +540,7 @@ Les anciens articles pourraient réapparaître</translation>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="525"/>
         <source>Clean Up wizard deleted %1 news</source>
-        <translation>L&apos;assistant Nettoyeur a supprimé 1% nouvelles</translation>
+        <translation>L&apos;assistant Nettoyeur a supprimé %1 nouvelles</translation>
     </message>
 </context>
 <context>
@@ -784,7 +784,7 @@ Les anciens articles pourraient réapparaître</translation>
  %1 
  was not found!</source>
         <translation>Désolé, le fichier
-  1%
+  %1
   n&apos;a pas été trouvé !</translation>
     </message>
 </context>

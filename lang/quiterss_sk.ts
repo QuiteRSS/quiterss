@@ -2686,7 +2686,7 @@ Staré správy sa môžu znova objaviť</translation>
     <message>
         <location filename="../src/newsview/newsmodel.cpp" line="163"/>
         <source>(no title)</source>
-        <translation type="unfinished"/>
+        <translation>(bez názvu)</translation>
     </message>
 </context>
 <context>
