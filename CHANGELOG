@@ -1,3 +1,9 @@
+Version 0.18.9 (01 Dec 2017)
+  * Changed: SQLite 3.21.0
+  * Changed: Displaying news is no more than width of window
+  * Fixed: Parsing of some feeds (RDF)
+  * Fixed: Resetting news list columns when switching between feeds
+
 Version 0.18.8 (24 Aug 2017)
   * Fixed: "Show Unread" news filter was not working
 
