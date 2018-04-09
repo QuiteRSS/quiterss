@@ -1603,6 +1603,8 @@ void MainWindow::createShortcut()
   findTextAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_F));
   listActions_.append(findTextAct_);
 
+  listActions_.append(findFeedAct_);
+
   listActions_.append(copyLinkAct_);
 
   listActions_.append(backWebPageAct_);
