@@ -155,7 +155,6 @@ void RequestFeed::slotHead(const QUrl &getUrl, const int &id, const QString &fee
   QString userAgent = QString("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/%1 (KHTML, like Gecko) QuiteRSS/%2 Safari/%1").
       arg(qWebKitVersion()).arg(STRPRODUCTVER);
   request.setRawHeader("User-Agent", userAgent.toUtf8());
-  request.setRawHeader("Accept-Language", "*,en-us;q=0.8,en;q=0.6");
 
   currentUrls_.append(getUrl);
   currentIds_.append(id);
@@ -179,7 +178,6 @@ void RequestFeed::slotGet(const QUrl &getUrl, const int &id, const QString &feed
   qDebug() << objectName() << "::get:" << getUrl.toEncoded() << "feed:" << feedUrl;
   QNetworkRequest request(getUrl);
   request.setRawHeader("Accept", "application/atom+xml,application/rss+xml;q=0.9,application/xml;q=0.8,text/xml;q=0.7,*/*;q=0.6");
-  request.setRawHeader("Accept-Language", "*,en-us;q=0.8,en;q=0.6");
   QString userAgent = QString("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/%1 (KHTML, like Gecko) QuiteRSS/%2 Safari/%1").
       arg(qWebKitVersion()).arg(STRPRODUCTVER);
   request.setRawHeader("User-Agent", userAgent.toUtf8());
