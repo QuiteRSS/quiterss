@@ -63,6 +63,8 @@ signals:
   void pressKeyDown();
   void pressKeyHome();
   void pressKeyEnd();
+  void pressKeyPageUp();
+  void pressKeyPageDown();
   void signalDropped(const QModelIndex &where, int how);
 
 protected:

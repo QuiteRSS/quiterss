@@ -379,6 +379,8 @@ private slots:
   void slotFeedDownPressed();
   void slotFeedHomePressed();
   void slotFeedEndPressed();
+  void slotFeedPageUpPressed();
+  void slotFeedPageDownPressed();
   void slotFeedPrevious();
   void slotFeedNext();
   void setStyleApp(QAction*);

@@ -525,6 +525,8 @@ void MainWindow::createFeedsWidget()
   connect(feedsView_, SIGNAL(pressKeyDown()), this, SLOT(slotFeedDownPressed()));
   connect(feedsView_, SIGNAL(pressKeyHome()), this, SLOT(slotFeedHomePressed()));
   connect(feedsView_, SIGNAL(pressKeyEnd()), this, SLOT(slotFeedEndPressed()));
+  connect(feedsView_, SIGNAL(pressKeyPageUp()), this, SLOT(slotFeedPageUpPressed()));
+  connect(feedsView_, SIGNAL(pressKeyPageDown()), this, SLOT(slotFeedPageDownPressed()));
   connect(feedsView_, SIGNAL(signalDropped(QModelIndex,int)),
           this, SLOT(slotMoveIndex(QModelIndex,int)));
   connect(feedsView_, SIGNAL(customContextMenuRequested(QPoint)),
@@ -6070,6 +6072,38 @@ void MainWindow::slotFeedHomePressed()
 void MainWindow::slotFeedEndPressed()
 {
   QModelIndex index = feedsProxyModel_->index(feedsProxyModel_->rowCount()-1, "text");
+  feedsView_->setCurrentIndex(index);
+  slotFeedClicked(index);
+}
+
+/** @brief Process pressing PageUp-key in feeds tree
+ *----------------------------------------------------------------------------*/
+void MainWindow::slotFeedPageUpPressed()
+{
+  int row = 0;
+  QModelIndex index = feedsView_->currentIndex();
+  if (index.isValid())
+    row = index.row() - feedsView_->verticalScrollBar()->pageStep();
+  if (row < 0)
+    row = 0;
+  index = feedsProxyModel_->index(row, "text");
+
+  feedsView_->setCurrentIndex(index);
+  slotFeedClicked(index);
+}
+
+/** @brief Process pressing PageDown-key in feeds tree
+ *----------------------------------------------------------------------------*/
+void MainWindow::slotFeedPageDownPressed()
+{
+  int row = 0;
+  QModelIndex index = feedsView_->currentIndex();
+  if (index.isValid())
+    row = index.row() + feedsView_->verticalScrollBar()->pageStep();
+  if (row >= feedsProxyModel_->rowCount())
+    row = feedsProxyModel_->rowCount()-1;
+  index = feedsProxyModel_->index(row, "text");
+
   feedsView_->setCurrentIndex(index);
   slotFeedClicked(index);
 }
