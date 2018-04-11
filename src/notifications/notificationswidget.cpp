@@ -297,7 +297,7 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
         connect(newsItem, SIGNAL(signalMarkRead(int, int, int)),
                 this, SLOT(slotMarkRead(int, int, int)));
         connect(newsItem, SIGNAL(signalTitleClicked(int, int)),
-                this, SIGNAL(signalOpenNews(int, int)));
+                this, SLOT(slotOpenNew(int, int)));
         connect(newsItem, SIGNAL(signalOpenExternalBrowser(QUrl)),
                 this, SIGNAL(signalOpenExternalBrowser(QUrl)));
         connect(newsItem, SIGNAL(signalDeleteNews(int,int)),
@@ -490,6 +490,13 @@ void NotificationWidget::slotDeleteNews(int feedId, int newsId)
   emit signalDeleteNews(feedId, newsId);
 }
 
+void NotificationWidget::slotOpenNew(int feedId, int newsId)
+{
+  emit signalClose();
+  emit signalOpenNews(feedId, newsId);
+}
+
 void NotificationWidget::slotMarkAllRead()
 {
+
 }

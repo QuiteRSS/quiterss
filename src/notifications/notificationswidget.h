@@ -62,6 +62,7 @@ private slots:
   void previousPage();
   void slotMarkRead(int feedId, int newsId, int read);
   void slotDeleteNews(int feedId, int newsId);
+  void slotOpenNew(int feedId, int newsId);
   void slotMarkAllRead();
 
 private:
