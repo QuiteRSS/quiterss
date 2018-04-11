@@ -437,7 +437,7 @@ void MainApplication::setTranslateApplication()
 void MainApplication::showSplashScreen()
 {
   Settings settings;
-  int versionDB = settings.value("versionDB", "1").toInt();
+  int versionDB = settings.value("VersionDB", "1").toInt();
   if ((versionDB != Database::version()) && QFile::exists(settings.fileName()))
     showSplashScreen_ = true;
 
