@@ -174,7 +174,8 @@ void DownloadManager::startExternalApp(const QString &executable, const QUrl &ur
     info = info.arg(tr("Executable: "), executable,
                     tr("Arguments: "), arguments.join(QLatin1String(" ")));
 
-    QMessageBox::critical(0, QObject::tr("Cannot start external program"),
+    QMessageBox::critical(this,
+                          QObject::tr("Cannot start external program"),
                           QObject::tr("Cannot start external program! %1").arg(info));
   }
 }

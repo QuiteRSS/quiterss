@@ -521,7 +521,7 @@ void CleanUpWizard::finishCleanUp()
 
   accept();
 
-  QMessageBox::information(0, tr("Information"),
+  QMessageBox::information(this, tr("Information"),
                            tr("Clean Up wizard deleted %1 news").
                            arg(cleanUpThread_->countDeleted));
 }

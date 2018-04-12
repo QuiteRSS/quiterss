@@ -454,7 +454,7 @@ void FeedPropertiesDialog::selectIcon()
 
   if (fileName.isNull()) return;
 
-  QMessageBox msgBox;
+  QMessageBox msgBox(this);
   msgBox.setText(tr("Load icon: can't open a file!"));
   msgBox.setIcon(QMessageBox::Warning);
 

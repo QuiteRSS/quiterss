@@ -254,7 +254,7 @@ void NewsFiltersDialog::editFilter()
 
 void NewsFiltersDialog::deleteFilter()
 {
-  QMessageBox msgBox;
+  QMessageBox msgBox(this);
   msgBox.setIcon(QMessageBox::Question);
   msgBox.setWindowTitle(tr("Delete Filter"));
   msgBox.setText(QString(tr("Are you sure you want to delete the filter '%1'?")).

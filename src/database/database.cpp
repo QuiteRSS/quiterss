@@ -258,7 +258,7 @@ void Database::prepareDatabase()
       QString message = QString("Cannot open SQLite database! \n"
                                 "Error: %1").arg(db.lastError().text());
       qCritical() << message;
-      QMessageBox::critical(0, QObject::tr("Error"), message);
+      QMessageBox::critical(mainApp->mainWindow(), QObject::tr("Error"), message);
     } else {
       setPragma(db);
       QSqlQuery q(db);
