@@ -7689,7 +7689,6 @@ void MainWindow::nextUnreadNews()
       Settings settings;
       openingFeedAction_ = settings.value("/Settings/openingFeedAction", 0).toInt();
     }
-    newsView_->setCurrentIndex(newsView_->currentIndex());
     return;
   }
 
@@ -7726,7 +7725,6 @@ void MainWindow::prevUnreadNews()
       Settings settings;
       openingFeedAction_ = settings.value("/Settings/openingFeedAction", 0).toInt();
     }
-    newsView_->setCurrentIndex(newsView_->currentIndex());
     return;
   }
 
