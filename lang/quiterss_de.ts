@@ -3625,7 +3625,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1147"/>
         <source>Show button &apos;Delete News&apos;</source>
-        <translation>Schaltfläche &apos;Gelöschte Nachrichten&apos; anzeigen</translation>
+        <translation>Schaltfläche &apos;Nachricht löschen&apos; anzeigen</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1194"/>

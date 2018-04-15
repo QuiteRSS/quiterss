@@ -460,7 +460,7 @@
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="143"/>
         <source>Mark Read</source>
-        <translation type="unfinished"/>
+        <translation>既読にする</translation>
     </message>
 </context>
 <context>
@@ -535,12 +535,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="524"/>
         <source>Information</source>
-        <translation type="unfinished"/>
+        <translation>情報</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="525"/>
         <source>Clean Up wizard deleted %1 news</source>
-        <translation type="unfinished"/>
+        <translation>クリーンアップウィザードで %1 件のニュースを削除しました</translation>
     </message>
 </context>
 <context>
@@ -736,7 +736,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="353"/>
         <source>Do you want to also delete downloaded file?</source>
-        <translation type="unfinished"/>
+        <translation>ダウンロードしたファイルも削除しますか?</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="370"/>
@@ -1007,7 +1007,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="321"/>
         <source>Feeds count:</source>
-        <translation type="unfinished"/>
+        <translation>フィード件数:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="324"/>
@@ -1162,12 +1162,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/findtext.cpp" line="113"/>
         <source>Find in Descriptions</source>
-        <translation type="unfinished"/>
+        <translation>説明から検索</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="114"/>
         <source>Find in Links</source>
-        <translation type="unfinished"/>
+        <translation>リンクから検索</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="115"/>
@@ -1278,13 +1278,13 @@ Ancient news could reappear</source>
         <location filename="../src/newsfilters/itemcondition.cpp" line="31"/>
         <location filename="../src/newsfilters/itemcondition.cpp" line="106"/>
         <source>Link</source>
-        <translation type="unfinished"/>
+        <translation>リンク</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/itemcondition.cpp" line="31"/>
         <location filename="../src/newsfilters/itemcondition.cpp" line="112"/>
         <source>News</source>
-        <translation type="unfinished"/>
+        <translation>ニュース</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/itemcondition.cpp" line="36"/>
@@ -1439,7 +1439,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainapplication.cpp" line="328"/>
         <source>Saving data...</source>
-        <translation type="unfinished"/>
+        <translation>データを保存しています...</translation>
     </message>
 </context>
 <context>
@@ -1925,7 +1925,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4840"/>
         <source>Add Feed...</source>
-        <translation type="unfinished"/>
+        <translation>フィードの追加...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4856"/>
@@ -1941,7 +1941,7 @@ Ancient news could reappear</source>
         <location filename="../src/application/mainwindow.cpp" line="4867"/>
         <location filename="../src/application/mainwindow.cpp" line="4868"/>
         <source>Stop Update Feeds</source>
-        <translation type="unfinished"/>
+        <translation>フィードの更新を停止</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4912"/>
@@ -2028,17 +2028,17 @@ Ancient news could reappear</source>
         <location filename="../src/application/mainwindow.cpp" line="4956"/>
         <location filename="../src/application/mainwindow.cpp" line="4959"/>
         <source>Layout</source>
-        <translation type="unfinished"/>
+        <translation>レイアウト</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4957"/>
         <source>Classic</source>
-        <translation type="unfinished"/>
+        <translation>クラシック</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4958"/>
         <source>Newspaper</source>
-        <translation type="unfinished"/>
+        <translation>新聞</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4961"/>
@@ -2244,12 +2244,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5023"/>
         <source>Page up (Browser)</source>
-        <translation type="unfinished"/>
+        <translation>ページアップ(ブラウザー)</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5024"/>
         <source>Page down (Browser)</source>
-        <translation type="unfinished"/>
+        <translation>ページダウン(ブラウザー)</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5026"/>
@@ -2387,7 +2387,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5072"/>
         <source>Sort by Name</source>
-        <translation type="unfinished"/>
+        <translation>名前順で並び替え</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5073"/>
@@ -2521,37 +2521,37 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="230"/>
         <source>SSL Certificate Error!</source>
-        <translation type="unfinished"/>
+        <translation>SSL 認証エラー!</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="231"/>
         <source>The &quot;%1&quot; server has the following errors in the SSL certificate:</source>
-        <translation type="unfinished"/>
+        <translation>サーバー &quot;%1&quot; の SSL 認証中に以下のエラーが発生しました:</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="247"/>
         <source>&lt;b&gt;Organization: &lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;組織: &lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="250"/>
         <source>&lt;b&gt;Domain Name: &lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;ドメイン名: &lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="253"/>
         <source>&lt;b&gt;Expiration Date: &lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;有効期限: &lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="260"/>
         <source>&lt;b&gt;Error: &lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;エラー: &lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="268"/>
         <source>Would you like to make an exception for this certificate?</source>
-        <translation type="unfinished"/>
+        <translation>この認証を例外に追加しますか？</translation>
     </message>
 </context>
 <context>
@@ -2688,7 +2688,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsview/newsmodel.cpp" line="163"/>
         <source>(no title)</source>
-        <translation type="unfinished"/>
+        <translation>(タイトルなし)</translation>
     </message>
 </context>
 <context>
@@ -2853,32 +2853,32 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1647"/>
         <source>Mark Read/Unread</source>
-        <translation type="unfinished"/>
+        <translation>既読/未読にする</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1784"/>
         <source>Mark News Star</source>
-        <translation type="unfinished"/>
+        <translation>ニュースにスターを付ける</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1788"/>
         <source>Label</source>
-        <translation type="unfinished"/>
+        <translation>ラベル</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1792"/>
         <source>Share</source>
-        <translation type="unfinished"/>
+        <translation>共有</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1796"/>
         <source>Open News in External Browser</source>
-        <translation type="unfinished"/>
+        <translation>ニュースを外部ブラウザーで開く</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1800"/>
         <source>Delete</source>
-        <translation type="unfinished"/>
+        <translation>削除</translation>
     </message>
 </context>
 <context>
@@ -3377,12 +3377,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="812"/>
         <source>Dec</source>
-        <translation>Dec</translation>
+        <translation>12</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="813"/>
         <source>December</source>
-        <translation>December</translation>
+        <translation>12月</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="836"/>
@@ -3587,47 +3587,47 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1103"/>
         <source>Show when inactive main window</source>
-        <translation type="unfinished"/>
+        <translation>メインウィンドウがアクティブではない時にも表示</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1118"/>
         <source>Screen</source>
-        <translation type="unfinished"/>
+        <translation>画面</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1128"/>
         <source>Transparency</source>
-        <translation type="unfinished"/>
+        <translation>透過度</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1142"/>
         <source>Show titles feeds</source>
-        <translation type="unfinished"/>
+        <translation>フィードのタイトルを表示</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1143"/>
         <source>Show icon feed</source>
-        <translation type="unfinished"/>
+        <translation>フィードのアイコンを表示</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1144"/>
         <source>Show button &apos;Mark All News Read&apos;</source>
-        <translation type="unfinished"/>
+        <translation>&apos;全ニュースを既読にする&apos; ボタンを表示</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1145"/>
         <source>Show button &apos;Mark Read/Unread&apos;</source>
-        <translation type="unfinished"/>
+        <translation>&apos;既読/未読にする&apos; ボタンを表示</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1146"/>
         <source>Show button &apos;Open in External Browser&apos;</source>
-        <translation type="unfinished"/>
+        <translation>&apos;外部ブラウザーで開く&apos; ボタンを表示</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1147"/>
         <source>Show button &apos;Delete News&apos;</source>
-        <translation type="unfinished"/>
+        <translation>&apos;ニュースを削除&apos; ボタンを表示</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1194"/>
@@ -3707,7 +3707,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1018"/>
         <source>Display</source>
-        <translation type="unfinished"/>
+        <translation>表示</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1158"/>
@@ -3717,17 +3717,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1223"/>
         <source>Notification</source>
-        <translation type="unfinished"/>
+        <translation>通知</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1224"/>
         <source>Sound</source>
-        <translation type="unfinished"/>
+        <translation>音</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1235"/>
         <source>Selection of feeds</source>
-        <translation type="unfinished"/>
+        <translation>表示するフィードを選択</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1251"/>
@@ -3910,22 +3910,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1726"/>
         <source>Disabled feed</source>
-        <translation type="unfinished"/>
+        <translation>無効化されたフィード</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1729"/>
         <source>Alternating row colors</source>
-        <translation type="unfinished"/>
+        <translation>交互に変える行の背景色</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1732"/>
         <source>Notification text color</source>
-        <translation type="unfinished"/>
+        <translation>通知の文字色</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1735"/>
         <source>Notification background color</source>
-        <translation type="unfinished"/>
+        <translation>通知の背景色</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2127"/>
@@ -3950,22 +3950,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="777"/>
         <source>Set focus on the last opened news</source>
-        <translation type="unfinished"/>
+        <translation>最後に開いたニュースを選択</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="778"/>
         <source>Set focus at the top of news list</source>
-        <translation type="unfinished"/>
+        <translation>ニュース一覧の先頭を選択</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="779"/>
         <source>Set focus on the unread news</source>
-        <translation type="unfinished"/>
+        <translation>未読のニュースを選択</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="780"/>
         <source>Open the news</source>
-        <translation type="unfinished"/>
+        <translation>ニュースを開く</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="864"/>
@@ -3975,7 +3975,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="800"/>
         <source>Action on feed opening:</source>
-        <translation type="unfinished"/>
+        <translation>フィードを開いた時の動作:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="878"/>
@@ -4507,12 +4507,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/network/sslerrordialog.cpp" line="24"/>
         <source>SSL Certificate Error!</source>
-        <translation type="unfinished"/>
+        <translation>SSL 認証エラー!</translation>
     </message>
     <message>
         <location filename="../src/network/sslerrordialog.cpp" line="34"/>
         <source>Only for this session</source>
-        <translation type="unfinished"/>
+        <translation>このセッション中のみ</translation>
     </message>
 </context>
 <context>

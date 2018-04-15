@@ -31,37 +31,37 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="126"/>
         <source>Application directory:</source>
-        <translation type="unfinished"/>
+        <translation>Sovelluksen hakemisto:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="129"/>
         <source>Resource directory:</source>
-        <translation type="unfinished"/>
+        <translation>Resurssi hakemisto:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="132"/>
         <source>Data directory:</source>
-        <translation type="unfinished"/>
+        <translation>Data hakemisto:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="135"/>
         <source>Backup directory:</source>
-        <translation type="unfinished"/>
+        <translation>Varmuuskopioiden kansio:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="138"/>
         <source>Database file:</source>
-        <translation type="unfinished"/>
+        <translation>Tietokanta:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="141"/>
         <source>Settings file:</source>
-        <translation type="unfinished"/>
+        <translation>Asetukset:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="144"/>
         <source>Log file:</source>
-        <translation type="unfinished"/>
+        <translation>Lokitiedosto:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="159"/>
@@ -81,7 +81,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="162"/>
         <source>Information</source>
-        <translation type="unfinished"/>
+        <translation>Tiedot</translation>
     </message>
 </context>
 <context>
@@ -89,7 +89,7 @@
     <message>
         <location filename="../src/adblock/adblockaddsubscriptiondialog.ui" line="14"/>
         <source>Add Subscription</source>
-        <translation type="unfinished"/>
+        <translation>Lisää tilaus</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockaddsubscriptiondialog.ui" line="23"/>
@@ -99,12 +99,12 @@
     <message>
         <location filename="../src/adblock/adblockaddsubscriptiondialog.ui" line="33"/>
         <source>Address:</source>
-        <translation type="unfinished"/>
+        <translation>Osoite:</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockaddsubscriptiondialog.ui" line="53"/>
         <source>Add new subscription to AdBlock:</source>
-        <translation type="unfinished"/>
+        <translation>Lisää Uusi AdBlock Estolista:</translation>
     </message>
 </context>
 <context>
@@ -114,7 +114,7 @@
         <location filename="../src/adblock/adblocksubscription.cpp" line="330"/>
         <location filename="../src/application/mainwindow.cpp" line="5155"/>
         <source>Custom Rules</source>
-        <translation type="unfinished"/>
+        <translation>Omat säännöt</translation>
     </message>
 </context>
 <context>
@@ -122,17 +122,17 @@
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="14"/>
         <source>AdBlock Configuration</source>
-        <translation type="unfinished"/>
+        <translation>AdBlockin Asetukset</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="20"/>
         <source>Enable AdBlock</source>
-        <translation type="unfinished"/>
+        <translation>Ota AdBlock Käyttöön</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="32"/>
         <source>Search...</source>
-        <translation type="unfinished"/>
+        <translation>Haku...</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="68"/>
@@ -142,42 +142,42 @@
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="98"/>
         <source>AdBlock</source>
-        <translation type="unfinished"/>
+        <translation>AdBlock</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="122"/>
         <source>Use only essential part of EasyList (for performance reasons)</source>
-        <translation type="unfinished"/>
+        <translation>Käytä vain EasyListin olennaisimpia osia (suorituskyvyn parantamiseksi)</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="74"/>
         <source>Add Rule</source>
-        <translation type="unfinished"/>
+        <translation>Lisää Sääntö:</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="75"/>
         <source>Remove Rule</source>
-        <translation type="unfinished"/>
+        <translation>Poista Sääntö:</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="77"/>
         <source>Add Subscription</source>
-        <translation type="unfinished"/>
+        <translation>Lisää Lista:</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="78"/>
         <source>Remove Subscription</source>
-        <translation type="unfinished"/>
+        <translation>Poista Lista:</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="79"/>
         <source>Update Subscriptions</source>
-        <translation type="unfinished"/>
+        <translation>Päivitä Listoja</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="81"/>
         <source>Learn about writing rules...</source>
-        <translation type="unfinished"/>
+        <translation>Lisätietoja omien sääntöjen kirjoittamisesta...</translation>
     </message>
 </context>
 <context>
@@ -185,48 +185,48 @@
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="62"/>
         <source>AdBlock lets you block unwanted content on web pages</source>
-        <translation type="unfinished"/>
+        <translation>AdBlock estää ei haluttua sisältöä verkkosivuilla</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="106"/>
         <source>AdBlock</source>
-        <translation type="unfinished"/>
+        <translation>AdBlock</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="133"/>
         <source>Show AdBlock &amp;Settings</source>
-        <translation type="unfinished"/>
+        <translation>AdBlockin &amp;Asetukset</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="141"/>
         <source>Disable on %1</source>
-        <translation type="unfinished"/>
+        <translation>Poista käytöstä %1</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="147"/>
         <source>Disable only on this page</source>
-        <translation type="unfinished"/>
+        <translation>Poista käytöstä vain tällä sivulla</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="157"/>
         <source>Blocked Popup Windows</source>
-        <translation type="unfinished"/>
+        <translation>Estetyt Ponnahdusikkunat</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="162"/>
         <location filename="../src/adblock/adblockicon.cpp" line="179"/>
         <source>%1 with (%2)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (%2) kanssa</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="173"/>
         <source>No content blocked</source>
-        <translation type="unfinished"/>
+        <translation>Ei estettyä sisältöä</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="176"/>
         <source>Blocked URL (AdBlock Rule) - click to edit rule</source>
-        <translation type="unfinished"/>
+        <translation>Estetty osoite (AdBlockin Asetus) - klikkaa muokkaaksesi sääntöä</translation>
     </message>
 </context>
 <context>
@@ -234,7 +234,7 @@
     <message>
         <location filename="../src/adblock/adblockmanager.cpp" line="281"/>
         <source>EasyList</source>
-        <translation type="unfinished"/>
+        <translation>EasyList</translation>
     </message>
 </context>
 <context>
@@ -242,7 +242,7 @@
     <message>
         <location filename="../src/adblock/adblocksubscription.cpp" line="195"/>
         <source>Cannot load subscription!</source>
-        <translation type="unfinished"/>
+        <translation>Listoja ei voitu ladata!</translation>
     </message>
 </context>
 <context>
@@ -250,32 +250,32 @@
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="97"/>
         <source>Add Rule</source>
-        <translation type="unfinished"/>
+        <translation>Lisää Sääntö</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="99"/>
         <source>Remove Rule</source>
-        <translation type="unfinished"/>
+        <translation>Poista Sääntö</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="160"/>
         <source>Add Custom Rule</source>
-        <translation type="unfinished"/>
+        <translation>Lisää Oma Sääntö</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="160"/>
         <source>Please write your rule here:</source>
-        <translation type="unfinished"/>
+        <translation>Kirjoita sääntösi tähän:</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="198"/>
         <source>%1 (recently updated)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (päivitetty)</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="207"/>
         <source>%1 (Error: %2)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (Virhe: %2)</translation>
     </message>
 </context>
 <context>
@@ -460,7 +460,7 @@
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="143"/>
         <source>Mark Read</source>
-        <translation type="unfinished"/>
+        <translation>Merkitse luetuksi</translation>
     </message>
 </context>
 <context>
@@ -529,18 +529,18 @@
         <location filename="../src/cleanupwizard.cpp" line="361"/>
         <source>Totally remove records that had marked 'deleted' from DB.
 Ancient news could reappear</source>
-        <translation>Poista lopullisesti poistetuksi merkityt uutiset tietokannasta.
+        <translation>Puhdistaa lopullisesti poistetut uutiset tietokannasta.
 Erittäin vanhoja uutisia saattaa ilmestyä uudelleen.</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="524"/>
         <source>Information</source>
-        <translation type="unfinished"/>
+        <translation>Tietoja</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="525"/>
         <source>Clean Up wizard deleted %1 news</source>
-        <translation type="unfinished"/>
+        <translation>Ohjattu siivous on poistanut %1 uutista</translation>
     </message>
 </context>
 <context>
@@ -736,7 +736,7 @@ Erittäin vanhoja uutisia saattaa ilmestyä uudelleen.</translation>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="353"/>
         <source>Do you want to also delete downloaded file?</source>
-        <translation type="unfinished"/>
+        <translation>Haluatko poistaa myös ladatun tiedoston?</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="370"/>
@@ -927,7 +927,7 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="177"/>
         <source>Show news&apos; description instead of loading web page</source>
-        <translation>Näytä uutisten kuvaus verkkosivun lautauksen sijaan</translation>
+        <translation>Näytä uutisten kuvaus verkkosivun lataamisen sijasta</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="119"/>
@@ -937,17 +937,17 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="32"/>
         <source>Display</source>
-        <translation type="unfinished"/>
+        <translation>Näytä</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="174"/>
         <source>Enable JavaScript</source>
-        <translation type="unfinished"/>
+        <translation>Ota JavaScript käyttöön</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="179"/>
         <source>Right-to-left layout</source>
-        <translation type="unfinished"/>
+        <translation>Oikealta vasemmalle</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="219"/>
@@ -1007,7 +1007,7 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="321"/>
         <source>Feeds count:</source>
-        <translation type="unfinished"/>
+        <translation>Syötteiden lukumäärä:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="324"/>
@@ -1147,27 +1147,27 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/findtext.cpp" line="110"/>
         <source>Find in Titles</source>
-        <translation type="unfinished"/>
+        <translation>Hae otsikkoja</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="111"/>
         <source>Find in Authors</source>
-        <translation type="unfinished"/>
+        <translation>Hae tekijöitä</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="112"/>
         <source>Find in Categories</source>
-        <translation type="unfinished"/>
+        <translation>Etsi kategorioita</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="113"/>
         <source>Find in Descriptions</source>
-        <translation type="unfinished"/>
+        <translation>Etsi kuvauksista</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="114"/>
         <source>Find in Links</source>
-        <translation type="unfinished"/>
+        <translation>Etsi osoitetta</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="115"/>
@@ -1278,13 +1278,13 @@ ei löydetty!</translation>
         <location filename="../src/newsfilters/itemcondition.cpp" line="31"/>
         <location filename="../src/newsfilters/itemcondition.cpp" line="106"/>
         <source>Link</source>
-        <translation type="unfinished"/>
+        <translation>Linkki</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/itemcondition.cpp" line="31"/>
         <location filename="../src/newsfilters/itemcondition.cpp" line="112"/>
         <source>News</source>
-        <translation type="unfinished"/>
+        <translation>Uutiset</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/itemcondition.cpp" line="36"/>
@@ -1371,7 +1371,7 @@ ei löydetty!</translation>
         <location filename="../src/newsfilters/itemcondition.cpp" line="110"/>
         <location filename="../src/newsfilters/itemcondition.cpp" line="114"/>
         <source>Regular expressions</source>
-        <translation type="unfinished"/>
+        <translation>Säännöllinen lauseke</translation>
     </message>
 </context>
 <context>
@@ -1439,7 +1439,7 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/application/mainapplication.cpp" line="328"/>
         <source>Saving data...</source>
-        <translation type="unfinished"/>
+        <translation>Tallennetaan tietoja...</translation>
     </message>
 </context>
 <context>
@@ -1447,7 +1447,7 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="1854"/>
         <source>&amp;AdBlock</source>
-        <translation type="unfinished"/>
+        <translation>&amp;AdBlock</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2276"/>
@@ -1523,7 +1523,7 @@ ei löydetty!</translation>
         <location filename="../src/application/mainwindow.cpp" line="3628"/>
         <location filename="../src/application/mainwindow.cpp" line="3633"/>
         <source>(Browser)</source>
-        <translation type="unfinished"/>
+        <translation>(Selain)</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4827"/>
@@ -1592,7 +1592,7 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4853"/>
         <source>&amp;Export Feeds...</source>
-        <translation>Vie syött&amp;eitä...</translation>
+        <translation>&amp;Vie syötteitä...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4854"/>
@@ -1799,7 +1799,7 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4920"/>
         <source>Star</source>
-        <translation type="unfinished"/>
+        <translation>Tähti</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4921"/>
@@ -1870,88 +1870,88 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5001"/>
         <source>Count Unread News</source>
-        <translation type="unfinished"/>
+        <translation>Laske lukemattomat uutiset</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5002"/>
         <source>Count All News</source>
-        <translation type="unfinished"/>
+        <translation>Laske kaikki uutiset</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5003"/>
         <source>Last Update</source>
-        <translation type="unfinished"/>
+        <translation>Viimeisin päivitys</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5016"/>
         <source>Reset browser zoom</source>
-        <translation type="unfinished"/>
+        <translation>Resetoi selaimen zoomaus</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5019"/>
         <source>Print Web Page</source>
-        <translation type="unfinished"/>
+        <translation>Tulosta nettisivu</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5021"/>
         <source>Preview Web Page</source>
-        <translation type="unfinished"/>
+        <translation>Esikatsele verkkosivua</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5028"/>
         <source>Save page in database</source>
-        <translation type="unfinished"/>
+        <translation>Tallenna sivu tietokantaan</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5029"/>
         <source>Save page in database instead of news description</source>
-        <translation type="unfinished"/>
+        <translation>Tallenna sivu tietokantaan uutiskuvauksen sijasta</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2630"/>
         <source>Confirm Delete</source>
-        <translation type="unfinished"/>
+        <translation>Vahvista poistaminen</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2631"/>
         <source>Are you sure to delete selected elements?</source>
-        <translation type="unfinished"/>
+        <translation>Haluatko varmasti poistaa valitut elementit?</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4832"/>
         <source>Menu</source>
-        <translation type="unfinished"/>
+        <translation>Valikko</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4840"/>
         <source>Add Feed...</source>
-        <translation type="unfinished"/>
+        <translation>Lisää syöte...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4856"/>
         <source>&amp;Create Backup...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Luo varmuuskopio...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4857"/>
         <source>S&amp;how Menu Bar</source>
-        <translation type="unfinished"/>
+        <translation>Näytä valikkopalkki</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4867"/>
         <location filename="../src/application/mainwindow.cpp" line="4868"/>
         <source>Stop Update Feeds</source>
-        <translation type="unfinished"/>
+        <translation>Lopeta syötteiden päivitys</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4912"/>
         <source>Open News Description</source>
-        <translation type="unfinished"/>
+        <translation>Avaa uutisen kuvaus</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4929"/>
         <source>Copy News Link</source>
-        <translation type="unfinished"/>
+        <translation>Kopioi uutisen linkki</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4939"/>
@@ -1971,12 +1971,12 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4942"/>
         <source>&amp;Browser</source>
-        <translation>S&amp;elain</translation>
+        <translation>&amp;Selain</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4943"/>
         <source>&amp;Tools</source>
-        <translation>Työ&amp;kalut</translation>
+        <translation>&amp;Työkalut</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4944"/>
@@ -2028,17 +2028,17 @@ ei löydetty!</translation>
         <location filename="../src/application/mainwindow.cpp" line="4956"/>
         <location filename="../src/application/mainwindow.cpp" line="4959"/>
         <source>Layout</source>
-        <translation type="unfinished"/>
+        <translation>Asettelu</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4957"/>
         <source>Classic</source>
-        <translation type="unfinished"/>
+        <translation>Klassinen</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4958"/>
         <source>Newspaper</source>
-        <translation type="unfinished"/>
+        <translation>Sanomalehti</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4961"/>
@@ -2244,12 +2244,12 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5023"/>
         <source>Page up (Browser)</source>
-        <translation type="unfinished"/>
+        <translation>Sivu ylös (Selain)</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5024"/>
         <source>Page down (Browser)</source>
-        <translation type="unfinished"/>
+        <translation>Sivu alas (Selain)</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5026"/>
@@ -2289,7 +2289,7 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5037"/>
         <source>Status Bar</source>
-        <translation type="unfinished"/>
+        <translation>Tilapalkki</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5039"/>
@@ -2347,17 +2347,17 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5061"/>
         <source>Unread</source>
-        <translation type="unfinished"/>
+        <translation>Lukemattomat</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5062"/>
         <source>Starred</source>
-        <translation type="unfinished"/>
+        <translation>Tähdellä merkityt</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5063"/>
         <source>Deleted</source>
-        <translation type="unfinished"/>
+        <translation>Poistetut</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5064"/>
@@ -2387,7 +2387,7 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5072"/>
         <source>Sort by Name</source>
-        <translation type="unfinished"/>
+        <translation>Järjestä nimen mukaan</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5073"/>
@@ -2483,7 +2483,7 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="8062"/>
         <source>Choose Directory</source>
-        <translation type="unfinished"/>
+        <translation>Valitse hakemisto</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.h" line="103"/>
@@ -2521,37 +2521,37 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="230"/>
         <source>SSL Certificate Error!</source>
-        <translation type="unfinished"/>
+        <translation>SSL Sertifikaatti virhe!</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="231"/>
         <source>The &quot;%1&quot; server has the following errors in the SSL certificate:</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; palvelimen SSL Sertifikaatti virhe:</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="247"/>
         <source>&lt;b&gt;Organization: &lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Organisaatio: &lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="250"/>
         <source>&lt;b&gt;Domain Name: &lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Verkkotunnus: &lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="253"/>
         <source>&lt;b&gt;Expiration Date: &lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Viimeinen käyttöpäivä: &lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="260"/>
         <source>&lt;b&gt;Error: &lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Virhe: &lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="268"/>
         <source>Would you like to make an exception for this certificate?</source>
-        <translation type="unfinished"/>
+        <translation>Haluatko antaa tälle sertifikaatille poikkeusluvan?</translation>
     </message>
 </context>
 <context>
@@ -2569,7 +2569,7 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/newsfilters/newsfiltersdialog.cpp" line="46"/>
         <source>Filter Name</source>
-        <translation type="unfinished"/>
+        <translation>Suodattimen nimi</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/newsfiltersdialog.cpp" line="91"/>
@@ -2609,7 +2609,7 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/newsfilters/newsfiltersdialog.cpp" line="260"/>
         <source>Are you sure you want to delete the filter &apos;%1&apos;?</source>
-        <translation type="unfinished"/>
+        <translation>Haluatko varmasti poistaa suodattimen &quot;%1&quot;?</translation>
     </message>
 </context>
 <context>
@@ -2662,7 +2662,7 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/newsview/newsheader.cpp" line="405"/>
         <source>Feed Title</source>
-        <translation type="unfinished"/>
+        <translation>Syötteen nimi</translation>
     </message>
     <message>
         <location filename="../src/newsview/newsheader.cpp" line="406"/>
@@ -2680,7 +2680,7 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/notifications/notificationsnewsitem.cpp" line="46"/>
         <source>Delete News</source>
-        <translation type="unfinished"/>
+        <translation>Poista uutinen</translation>
     </message>
 </context>
 <context>
@@ -2688,7 +2688,7 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/newsview/newsmodel.cpp" line="163"/>
         <source>(no title)</source>
-        <translation type="unfinished"/>
+        <translation>(ei nimeä)</translation>
     </message>
 </context>
 <context>
@@ -2802,17 +2802,17 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/newstabwidget.cpp" line="638"/>
         <source>Auto Load Images in News View</source>
-        <translation type="unfinished"/>
+        <translation>Lataa kuvat automaattisesti uutisnäkymässä</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="641"/>
         <source>Don&apos;t Load Images</source>
-        <translation type="unfinished"/>
+        <translation>Älä lataa kuvia</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="642"/>
         <source>Don&apos;t Load Images in News View</source>
-        <translation type="unfinished"/>
+        <translation>Älä lataa kuvia uutisnäkymässä</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1438"/>
@@ -2853,32 +2853,32 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1647"/>
         <source>Mark Read/Unread</source>
-        <translation type="unfinished"/>
+        <translation>Merkitse luetuksi/lukemattomaksi</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1784"/>
         <source>Mark News Star</source>
-        <translation type="unfinished"/>
+        <translation>Merkitse tähdellä</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1788"/>
         <source>Label</source>
-        <translation type="unfinished"/>
+        <translation>Nimike</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1792"/>
         <source>Share</source>
-        <translation type="unfinished"/>
+        <translation>Jaa</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1796"/>
         <source>Open News in External Browser</source>
-        <translation type="unfinished"/>
+        <translation>Avaa uutiset ulkoisessa selaimessa</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1800"/>
         <source>Delete</source>
-        <translation type="unfinished"/>
+        <translation>Poista</translation>
     </message>
 </context>
 <context>
@@ -2896,12 +2896,12 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/notifications/notificationswidget.cpp" line="156"/>
         <source>Previous Page</source>
-        <translation type="unfinished"/>
+        <translation>Edellinen sivu</translation>
     </message>
     <message>
         <location filename="../src/notifications/notificationswidget.cpp" line="161"/>
         <source>Next Page</source>
-        <translation type="unfinished"/>
+        <translation>Seuraava sivu</translation>
     </message>
     <message>
         <location filename="../src/notifications/notificationswidget.cpp" line="361"/>
@@ -3023,7 +3023,7 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="298"/>
         <source>Show close button on tab</source>
-        <translation type="unfinished"/>
+        <translation>Näytä sulje ikoni välilehdessä</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="300"/>
@@ -3033,7 +3033,7 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="301"/>
         <source>Help improve QuiteRSS by sending usage information</source>
-        <translation type="unfinished"/>
+        <translation>Auta parantamaan QuiteRSS ohjelmaa lähettämällä käyttötietoja.</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="302"/>
@@ -3154,17 +3154,17 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="481"/>
         <source>Request timeout:</source>
-        <translation type="unfinished"/>
+        <translation>Yhteyden aikakatkaisu:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="483"/>
         <source>Number of requests:</source>
-        <translation type="unfinished"/>
+        <translation>Yhteyksien lukumäärä:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="485"/>
         <source>Number of retries:</source>
-        <translation type="unfinished"/>
+        <translation>Uudelleenyrityksien määrä:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="488"/>
@@ -3255,7 +3255,7 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="601"/>
         <source>Maximum pages in cache</source>
-        <translation>Sivuja enintään välimuistissa</translation>
+        <translation>Sivuja välimuistissa enintään</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="612"/>
@@ -3447,7 +3447,7 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="888"/>
         <source>Style sheet for news:</source>
-        <translation type="unfinished"/>
+        <translation>Tyylisivu uutisille:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="901"/>
@@ -3587,47 +3587,47 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1103"/>
         <source>Show when inactive main window</source>
-        <translation type="unfinished"/>
+        <translation>Näytä, kun passiivinen pääikkuna</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1118"/>
         <source>Screen</source>
-        <translation type="unfinished"/>
+        <translation>Kuvaruutu</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1128"/>
         <source>Transparency</source>
-        <translation type="unfinished"/>
+        <translation>Läpinäkyvyys</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1142"/>
         <source>Show titles feeds</source>
-        <translation type="unfinished"/>
+        <translation>Näytä otsikon syötteet</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1143"/>
         <source>Show icon feed</source>
-        <translation type="unfinished"/>
+        <translation>Näytä syötteen kuvake</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1144"/>
         <source>Show button &apos;Mark All News Read&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Näytä &apos;Merkitse kaikki uutiset luetuiksi&apos; valinta</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1145"/>
         <source>Show button &apos;Mark Read/Unread&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Näytä &apos;Merkitse luetuksi/lukemattomaksi&apos; valinta</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1146"/>
         <source>Show button &apos;Open in External Browser&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Näytä &apos;Avaa ulkoisessa selaimessa&apos; valinta</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1147"/>
         <source>Show button &apos;Delete News&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Näytä &apos;Poista uutiset&apos; valinta</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1194"/>
@@ -3682,12 +3682,12 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1133"/>
         <source>item on page notification</source>
-        <translation type="unfinished"/>
+        <translation>Uutinen ilmoituksessa</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1134"/>
         <source>Width list items</source>
-        <translation type="unfinished"/>
+        <translation>Listan uutisten leveys</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1136"/>
@@ -3707,7 +3707,7 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1018"/>
         <source>Display</source>
-        <translation type="unfinished"/>
+        <translation>Näytä</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1158"/>
@@ -3717,17 +3717,17 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1223"/>
         <source>Notification</source>
-        <translation type="unfinished"/>
+        <translation>Ilmoitus</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1224"/>
         <source>Sound</source>
-        <translation type="unfinished"/>
+        <translation>Ääni</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1235"/>
         <source>Selection of feeds</source>
-        <translation type="unfinished"/>
+        <translation>Syötteiden valinta</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1251"/>
@@ -3905,32 +3905,32 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1711"/>
         <source>Count of unread news in feeds tree</source>
-        <translation type="unfinished"/>
+        <translation>Lukemattomien uutisten määrä syötelistassa</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1726"/>
         <source>Disabled feed</source>
-        <translation type="unfinished"/>
+        <translation>Käytöstä poistettu syöte</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1729"/>
         <source>Alternating row colors</source>
-        <translation type="unfinished"/>
+        <translation>Vaihteleva rivien väri</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1732"/>
         <source>Notification text color</source>
-        <translation type="unfinished"/>
+        <translation>Ilmoitustekstin väri</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1735"/>
         <source>Notification background color</source>
-        <translation type="unfinished"/>
+        <translation>Ilmoituksen taustaväri</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2127"/>
         <source>Auto load images in news view</source>
-        <translation type="unfinished"/>
+        <translation>Lataa kuvat automaattisesti uutisnäkymässä</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1714"/>
@@ -3940,47 +3940,47 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="295"/>
         <source>Show feeds tree toggle</source>
-        <translation type="unfinished"/>
+        <translation>Näytä syötelistan piilotusnappula</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="386"/>
         <source>Clear new status when minimize to tray</source>
-        <translation type="unfinished"/>
+        <translation>Aseta uutiset luetuiksi pienennettäessä järjestelmäpalkkiin</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="777"/>
         <source>Set focus on the last opened news</source>
-        <translation type="unfinished"/>
+        <translation>Aseta valinta viimeksi avattuun uutiseen</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="778"/>
         <source>Set focus at the top of news list</source>
-        <translation type="unfinished"/>
+        <translation>Aseta valinta uutislistan ylimmäiseen uutiseen</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="779"/>
         <source>Set focus on the unread news</source>
-        <translation type="unfinished"/>
+        <translation>Aseta valinta lukemattomiin uutisiin</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="780"/>
         <source>Open the news</source>
-        <translation type="unfinished"/>
+        <translation>Avaa uutiset</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="864"/>
         <source>Default news filter:</source>
-        <translation type="unfinished"/>
+        <translation>Oletus uutissuodatin:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="800"/>
         <source>Action on feed opening:</source>
-        <translation type="unfinished"/>
+        <translation>Toimenpide syötettä avattaessa</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="878"/>
         <source>Show news description instead of loading web page</source>
-        <translation type="unfinished"/>
+        <translation>Näytä uutisten kuvaus verkkosivun latauksen sijasta</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1717"/>
@@ -4334,7 +4334,7 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/database/database.cpp" line="259"/>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>Virhe</translation>
     </message>
 </context>
 <context>
@@ -4408,7 +4408,7 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/webview/rssdetectionwidget.cpp" line="56"/>
         <source>Untitled feed</source>
-        <translation type="unfinished"/>
+        <translation>Nimetön syöte</translation>
     </message>
 </context>
 <context>
@@ -4439,27 +4439,27 @@ ei löydetty!</translation>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="603"/>
         <source>Error opening database</source>
-        <translation type="unfinished"/>
+        <translation>Virhe tietokantaa avattaessa</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="617"/>
         <source>Error closing database</source>
-        <translation type="unfinished"/>
+        <translation>Virhe tietokantaa suljettaessa</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="637"/>
         <source>Unable to begin transaction</source>
-        <translation type="unfinished"/>
+        <translation>Virhe aloittaessa toimintaa</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="652"/>
         <source>Unable to commit transaction</source>
-        <translation type="unfinished"/>
+        <translation>Virhe toiminnan aikana</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="667"/>
         <source>Unable to rollback transaction</source>
-        <translation type="unfinished"/>
+        <translation>Virhe toiminnan palautuksessa</translation>
     </message>
 </context>
 <context>
@@ -4469,37 +4469,37 @@ ei löydetty!</translation>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="286"/>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="294"/>
         <source>Unable to fetch row</source>
-        <translation type="unfinished"/>
+        <translation>Virhe haettaessa riviä</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="224"/>
         <source>No query</source>
-        <translation type="unfinished"/>
+        <translation>Ei kyselyä</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="368"/>
         <source>Unable to execute statement</source>
-        <translation type="unfinished"/>
+        <translation>Toimintoa ei voida suorittaa</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="373"/>
         <source>Unable to execute multiple statements at a time</source>
-        <translation type="unfinished"/>
+        <translation>Useampaa toimintoa ei voida suorittaa samanaikaisesti</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="393"/>
         <source>Unable to reset statement</source>
-        <translation type="unfinished"/>
+        <translation>Toimintoa ei voitu nollata</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="438"/>
         <source>Unable to bind parameters</source>
-        <translation type="unfinished"/>
+        <translation>Parametrejä ei voida yhdistää</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="445"/>
         <source>Parameter count mismatch</source>
-        <translation type="unfinished"/>
+        <translation>Parametrien määrä on virheellinen</translation>
     </message>
 </context>
 <context>
@@ -4507,12 +4507,12 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/network/sslerrordialog.cpp" line="24"/>
         <source>SSL Certificate Error!</source>
-        <translation type="unfinished"/>
+        <translation>SSL Sertifikaatti virhe!</translation>
     </message>
     <message>
         <location filename="../src/network/sslerrordialog.cpp" line="34"/>
         <source>Only for this session</source>
-        <translation type="unfinished"/>
+        <translation>Vain tämän istunnon ajaksi</translation>
     </message>
 </context>
 <context>
