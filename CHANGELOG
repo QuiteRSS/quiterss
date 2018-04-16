@@ -1,3 +1,13 @@
+Version 0.18.10 (16 Apr 2018)
+  * Added: Shortcut "Search Feed"
+  * Added: Page Up/Down in feeds tree
+  * Changed: SQLite 3.23.0
+  * Changed: Closing notification window when clicking on news header
+  * Fixed: Splash screen always displayed (Linux)
+  * Fixed: Parsing of some feeds (Accept-Language)
+  * Fixed: Displaying dialogs in mode "Stay On Top"
+  * Fixed: Go to next/previous unread news
+
 Version 0.18.9 (01 Dec 2017)
   * Changed: SQLite 3.21.0
   * Changed: Displaying news is no more than width of window
