@@ -270,6 +270,8 @@ public:
 
   AdBlockIcon *adBlockIcon() { return adblockIcon_; }
 
+  void webViewFullScreen(bool on);
+
 public slots:
   void restoreFeedsOnStartUp();
   void addFeed();

@@ -127,6 +127,7 @@ public:
   QToolBar *newsToolBar_;
   QSplitter *newsTabWidgetSplitter_;
 
+  QWidget *newsWidget_;
   WebView *webView_;
   QToolBar *webToolBar_;
   LocationBar *locationBar_;
@@ -198,7 +199,6 @@ private:
 
   MainWindow *mainWindow_;
   QSqlDatabase db_;
-  QWidget *newsWidget_;
 
   FeedsModel *feedsModel_;
   FeedsProxyModel *feedsProxyModel_;

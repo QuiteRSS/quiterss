@@ -51,7 +51,10 @@ WebPage::WebPage(QObject *parent)
           this, SLOT(downloadRequested(QNetworkRequest)));
   connect(this, SIGNAL(printRequested(QWebFrame*)),
           mainApp->mainWindow(), SLOT(slotPrint(QWebFrame*)));
-
+#if QT_VERSION >= 0x050900
+  connect(this, SIGNAL(fullScreenRequested(QWebFullScreenRequest)),
+          this, SLOT(slotFullScreenRequested(QWebFullScreenRequest)));
+#endif
   livingPages_.append(this);
 }
 
@@ -283,3 +286,11 @@ void WebPage::cleanBlockedObjects()
     mainFrame()->scrollToAnchor(mainFrame()->url().fragment());
   }
 }
+
+#if QT_VERSION >= 0x050900
+void WebPage::slotFullScreenRequested(QWebFullScreenRequest fullScreenRequest)
+{
+  fullScreenRequest.accept();
+  mainApp->mainWindow()->webViewFullScreen(fullScreenRequest.toggleOn());
+}
+#endif

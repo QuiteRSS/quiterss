@@ -8102,3 +8102,14 @@ void MainWindow::createBackup()
     QFile::copy(settings.fileName(), backupFileName);
   }
 }
+
+void MainWindow::webViewFullScreen(bool on)
+{
+  setFullScreen();
+  feedsWidget_->setVisible(!on);
+  pushButtonNull_->setVisible(!on);
+  tabBarWidget_->setVisible(!on);
+  currentNewsTab->newsWidget_->setVisible(!on);
+  pushButtonNull_->setVisible(!on);
+  statusBar()->setVisible(!on);
+}

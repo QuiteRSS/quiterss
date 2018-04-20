@@ -741,7 +741,9 @@ void OptionsDialog::createBrowserWidget()
   browserWidget_ = new QTabWidget();
   browserWidget_->addTab(generalBrowserWidget, tr("General"));
   browserWidget_->addTab(historyBrowserWidget_, tr("History"));
+#if QT_VERSION < 0x050900
   browserWidget_->addTab(click2FlashWidget_, tr("Click to Flash"));
+#endif
   browserWidget_->addTab(downloadsWidget, tr("Downloads"));
 }
 

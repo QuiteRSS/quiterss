@@ -566,6 +566,9 @@ void MainApplication::c2fLoadSettings()
   settings.beginGroup("ClickToFlash");
   c2fWhitelist_ = settings.value("whitelist", QStringList()).toStringList();
   c2fEnabled_ = settings.value("enabled", true).toBool();
+#if QT_VERSION >= 0x050900
+  c2fEnabled_ = false;
+#endif
   settings.endGroup();
 }
 
