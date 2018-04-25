@@ -86,6 +86,7 @@ private:
   int transparency_;
   int cntAllNews_;
   int cntReadNews_;
+  bool closeNotify_;
 
 };
 

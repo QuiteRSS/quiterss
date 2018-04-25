@@ -2096,6 +2096,7 @@ void MainWindow::loadSettings()
   showButtonMarkReadNotify_ = settings.value("showButtonMarkReadNotify", true).toBool();
   showButtonExBrowserNotify_ = settings.value("showButtonExBrowserNotify", true).toBool();
   showButtonDeleteNotify_ = settings.value("showButtonDeleteNotify", true).toBool();
+  closeNotify_ = settings.value("closeNotify", true).toBool();
 
   toolBarLockAct_->setChecked(settings.value("mainToolbarLock", true).toBool());
   lockMainToolbar(toolBarLockAct_->isChecked());
@@ -2405,6 +2406,7 @@ void MainWindow::saveSettings()
   settings.setValue("showButtonMarkReadNotify", showButtonMarkReadNotify_);
   settings.setValue("showButtonExBrowserNotify", showButtonExBrowserNotify_);
   settings.setValue("showButtonDeleteNotify", showButtonDeleteNotify_);
+  settings.setValue("closeNotify", closeNotify_);
 
   settings.setValue("mainToolbarLock", toolBarLockAct_->isChecked());
 
@@ -3479,6 +3481,7 @@ void MainWindow::showOptionDlg(int index)
   optionsDialog_->showButtonMarkReadNotify_->setChecked(showButtonMarkReadNotify_);
   optionsDialog_->showButtonExBrowserNotify_->setChecked(showButtonExBrowserNotify_);
   optionsDialog_->showButtonDeleteNotify_->setChecked(showButtonDeleteNotify_);
+  optionsDialog_->closeNotify_->setChecked(closeNotify_);
 
   optionsDialog_->setLanguage(mainApp->language());
 
@@ -3909,6 +3912,7 @@ void MainWindow::showOptionDlg(int index)
   showButtonMarkReadNotify_ = optionsDialog_->showButtonMarkReadNotify_->isChecked();
   showButtonExBrowserNotify_ = optionsDialog_->showButtonExBrowserNotify_->isChecked();
   showButtonDeleteNotify_ = optionsDialog_->showButtonDeleteNotify_->isChecked();
+  closeNotify_ = optionsDialog_->closeNotify_->isChecked();
 
   mainApp->setLanguage(optionsDialog_->language());
   mainApp->setTranslateApplication();

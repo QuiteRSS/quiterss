@@ -266,6 +266,7 @@ public:
   bool showButtonMarkReadNotify_;
   bool showButtonExBrowserNotify_;
   bool showButtonDeleteNotify_;
+  bool closeNotify_;
   QList<int> idFeedsNotifyList_;
 
   AdBlockIcon *adBlockIcon() { return adblockIcon_; }

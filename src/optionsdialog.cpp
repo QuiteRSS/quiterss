@@ -1103,6 +1103,7 @@ void OptionsDialog::createNotifierWidget()
   fullscreenModeNotify_->hide();
 #endif
   showNotifyInactiveApp_ = new QCheckBox(tr("Show when inactive main window"));
+  closeNotify_ = new QCheckBox(tr("Close notification after opening news"));
 
   transparencyNotify_ = new QSpinBox();
   transparencyNotify_->setRange(0, 100);
@@ -1156,7 +1157,6 @@ void OptionsDialog::createNotifierWidget()
   notifierLayout3->addWidget(showButtonExBrowserNotify_);
   notifierLayout3->addWidget(showButtonDeleteNotify_);
 
-
   onlySelectedFeeds_ = new QCheckBox(tr("Only show selected feeds:"));
   QPushButton *feedsNotiferButton = new QPushButton(tr("Feeds"));
   feedsNotiferButton->setEnabled(false);
@@ -1178,6 +1178,7 @@ void OptionsDialog::createNotifierWidget()
   notificationLayoutV->addLayout(notifierLayout1);
   notificationLayoutV->addWidget(fullscreenModeNotify_);
   notificationLayoutV->addWidget(showNotifyInactiveApp_);
+  notificationLayoutV->addWidget(closeNotify_);
   notificationLayoutV->addSpacing(10);
   notificationLayoutV->addLayout(notifierLayout2);
   notificationLayoutV->addSpacing(10);

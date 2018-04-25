@@ -78,6 +78,7 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
     showButtonMarkReadNotify = mainApp->mainWindow()->showButtonMarkReadNotify_;
     showButtonExBrowserNotify = mainApp->mainWindow()->showButtonExBrowserNotify_;
     showButtonDeleteNotify = mainApp->mainWindow()->showButtonDeleteNotify_;
+    closeNotify_ = mainApp->mainWindow()->closeNotify_;
   } else {
     OptionsDialog *options = qobject_cast<OptionsDialog*>(parentWidget);
     screen_ = options->screenNotify_->currentIndex()-1;
@@ -98,6 +99,7 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
     showButtonMarkReadNotify = options->showButtonMarkReadNotify_->isChecked();
     showButtonExBrowserNotify = options->showButtonExBrowserNotify_->isChecked();
     showButtonDeleteNotify = options->showButtonDeleteNotify_->isChecked();
+    closeNotify_ = options->closeNotify_->isChecked();
 
     for (int i = 0; i < 10; i++) {
       cntNewNewsList << 9;
@@ -492,7 +494,8 @@ void NotificationWidget::slotDeleteNews(int feedId, int newsId)
 
 void NotificationWidget::slotOpenNew(int feedId, int newsId)
 {
-  emit signalClose();
+  if (closeNotify_)
+    emit signalClose();
   emit signalOpenNews(feedId, newsId);
 }
 
