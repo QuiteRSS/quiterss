@@ -5644,6 +5644,40 @@ void MainWindow::showFeedPropertiesDlg()
     slotIconFeedUpdate(feedId, properties.general.image);
   }
 
+  if ((properties.display.layoutDirection  != properties_tmp.display.layoutDirection) &&
+      !isFeed) {
+    QQueue<int> parentIds;
+    parentIds.enqueue(feedId);
+    while (!parentIds.empty()) {
+      int parentId = parentIds.dequeue();
+      q.exec(QString("SELECT id, xmlUrl FROM feeds WHERE parentId='%1'").arg(parentId));
+      while (q.next()) {
+        int id = q.value(0).toInt();
+        QString xmlUrl = q.value(1).toString();
+
+        QSqlQuery q1;
+        q1.prepare("UPDATE feeds SET layoutDirection = ? WHERE id == ?");
+        q1.addBindValue(properties.display.layoutDirection);
+        q1.addBindValue(id);
+        q1.exec();
+
+        QPersistentModelIndex index1 = feedsModel_->indexById(id);
+        indexRTL = feedsModel_->indexSibling(index1, "layoutDirection");
+        feedsModel_->setData(indexRTL, properties.display.layoutDirection);
+
+        for (int i = 0; i < stackedWidget_->count(); i++) {
+          NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(i);
+          if (widget->feedId_ == id) {
+            widget->setSettings();
+          }
+        }
+
+        if (xmlUrl.isEmpty())
+          parentIds.enqueue(id);
+      }
+    }
+  }
+
   for (int i = 0; i < stackedWidget_->count(); i++) {
     NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(i);
     if (widget->feedId_ == feedId) {
