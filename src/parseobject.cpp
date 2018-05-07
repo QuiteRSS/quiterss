@@ -348,6 +348,15 @@ void ParseObject::parseAtom(const QString &feedUrl, const QDomDocument &doc)
     } else {
       newsItem.content = nodeContent.toElement().text();
     }
+    if (newsItem.content.isEmpty()) {
+      nodeContent = newsList.item(i).namedItem("media:group");
+      if (!nodeContent.isNull()) {
+        QString description = nodeContent.namedItem("media:description").toElement().text();
+        QString media = nodeContent.namedItem("media:thumbnail").toElement().attribute("url");
+        newsItem.content += "<p class=\"description\">" + description + "</p>";
+        newsItem.content += "<img src=\"" + media + "\" alt=\"image\"/>";
+      }
+    }
     if (!(newsItem.content.isEmpty() ||
           (newsItem.description.length() > newsItem.content.length()))) {
       newsItem.description = newsItem.content;
