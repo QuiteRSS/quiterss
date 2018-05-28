@@ -1174,7 +1174,7 @@ bool QFtpPI::processReply()
         break;
     case Success:
         // success handling
-        state = Idle;
+        state = Idle; // fall through
         // no break!
     case Idle:
         if (dtp.hasError()) {

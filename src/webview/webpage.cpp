@@ -173,7 +173,7 @@ void WebPage::handleUnsupportedContent(QNetworkReply* reply)
       }
       mainApp->downloadManager()->handleUnsupportedContent(reply, mainApp->mainWindow()->askDownloadLocation_);
       return;
-    }
+    } // fall through
 
   case QNetworkReply::ProtocolUnknownError: {
     qDebug() << "WebPage::UnsupportedContent" << url << "ProtocolUnknowError";
