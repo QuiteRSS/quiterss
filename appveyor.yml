@@ -1,6 +1,9 @@
-version: 0.17.7_b{build}
+version: 0.18.10_b{build}
 
 os: unstable
+
+image:
+- Visual Studio 2013
 
 branches:
   only:
