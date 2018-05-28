@@ -66,6 +66,7 @@ environment:
 #    QTARCHIVE2: '5.4.1-0icu_53_1_msvc_2013_32.7z'
 
 install:
+- ls C:\Qt\5.4
 # prepare extern install
 - choco install curl 7zip # dependencywalker
 - mkdir extern
