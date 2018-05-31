@@ -112,7 +112,7 @@
     <message>
         <location filename="../src/adblock/adblocksubscription.cpp" line="323"/>
         <location filename="../src/adblock/adblocksubscription.cpp" line="330"/>
-        <location filename="../src/application/mainwindow.cpp" line="5155"/>
+        <location filename="../src/application/mainwindow.cpp" line="5146"/>
         <source>Custom Rules</source>
         <translation>カスタムルール</translation>
     </message>
@@ -792,7 +792,7 @@ Ancient news could reappear</source>
     <name>DownloadManager</name>
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="35"/>
-        <location filename="../src/downloads/downloadmanager.cpp" line="255"/>
+        <location filename="../src/downloads/downloadmanager.cpp" line="256"/>
         <source>Clear</source>
         <translation>クリア</translation>
     </message>
@@ -1445,1043 +1445,1043 @@ Ancient news could reappear</source>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="1854"/>
+        <location filename="../src/application/mainwindow.cpp" line="1853"/>
         <source>&amp;AdBlock</source>
         <translation>AdBlock&amp;(A)</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2276"/>
-        <location filename="../src/application/mainwindow.cpp" line="5049"/>
-        <location filename="../src/application/mainwindow.cpp" line="7409"/>
-        <location filename="../src/application/mainwindow.cpp" line="7431"/>
+        <location filename="../src/application/mainwindow.cpp" line="5040"/>
+        <location filename="../src/application/mainwindow.cpp" line="7432"/>
+        <location filename="../src/application/mainwindow.cpp" line="7454"/>
         <source>Hide Categories</source>
         <translation>カテゴリを隠す</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2280"/>
-        <location filename="../src/application/mainwindow.cpp" line="5047"/>
-        <location filename="../src/application/mainwindow.cpp" line="7415"/>
+        <location filename="../src/application/mainwindow.cpp" line="5038"/>
+        <location filename="../src/application/mainwindow.cpp" line="7438"/>
         <source>Show Categories</source>
         <translation>カテゴリを表示</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2735"/>
-        <location filename="../src/application/mainwindow.cpp" line="2764"/>
+        <location filename="../src/application/mainwindow.cpp" line="2736"/>
+        <location filename="../src/application/mainwindow.cpp" line="2765"/>
         <source>Select OPML-File</source>
         <translation>OPML ファイルの選択</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2737"/>
+        <location filename="../src/application/mainwindow.cpp" line="2738"/>
         <source>OPML-Files (*.%1 *.%2)</source>
         <translation>OPML ファイル (*.%1 *.%2)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2741"/>
+        <location filename="../src/application/mainwindow.cpp" line="2742"/>
         <source>Import canceled</source>
         <translation>インポートをキャンセルしました</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2749"/>
+        <location filename="../src/application/mainwindow.cpp" line="2750"/>
         <source>Import: can&apos;t open a file</source>
         <translation>インポート: ファイルを開けません</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2766"/>
+        <location filename="../src/application/mainwindow.cpp" line="2767"/>
         <source>OPML-Files (*.%1)</source>
         <translation>OPML ファイル (*.%1)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2770"/>
+        <location filename="../src/application/mainwindow.cpp" line="2771"/>
         <source>Export canceled</source>
         <translation>エクスポートをキャンセルしました</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2776"/>
+        <location filename="../src/application/mainwindow.cpp" line="2777"/>
         <source>Export: can&apos;t open a file</source>
         <translation>エクスポート: ファイルを開けません</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="3045"/>
-        <location filename="../src/application/mainwindow.cpp" line="4202"/>
-        <location filename="../src/application/mainwindow.cpp" line="4819"/>
-        <location filename="../src/application/mainwindow.cpp" line="6307"/>
-        <location filename="../src/application/mainwindow.cpp" line="7366"/>
+        <location filename="../src/application/mainwindow.cpp" line="3046"/>
+        <location filename="../src/application/mainwindow.cpp" line="4205"/>
+        <location filename="../src/application/mainwindow.cpp" line="4810"/>
+        <location filename="../src/application/mainwindow.cpp" line="6330"/>
+        <location filename="../src/application/mainwindow.cpp" line="7389"/>
         <source>Unread: %1</source>
         <translation>未読: %1</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="3046"/>
-        <location filename="../src/application/mainwindow.cpp" line="4203"/>
-        <location filename="../src/application/mainwindow.cpp" line="4822"/>
-        <location filename="../src/application/mainwindow.cpp" line="6308"/>
-        <location filename="../src/application/mainwindow.cpp" line="7367"/>
+        <location filename="../src/application/mainwindow.cpp" line="3047"/>
+        <location filename="../src/application/mainwindow.cpp" line="4206"/>
+        <location filename="../src/application/mainwindow.cpp" line="4813"/>
+        <location filename="../src/application/mainwindow.cpp" line="6331"/>
+        <location filename="../src/application/mainwindow.cpp" line="7390"/>
         <source>All: %1</source>
         <translation>すべて: %1</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="3623"/>
-        <location filename="../src/application/mainwindow.cpp" line="3628"/>
-        <location filename="../src/application/mainwindow.cpp" line="3633"/>
+        <location filename="../src/application/mainwindow.cpp" line="3625"/>
+        <location filename="../src/application/mainwindow.cpp" line="3630"/>
+        <location filename="../src/application/mainwindow.cpp" line="3635"/>
         <source>(Browser)</source>
         <translation>(ブラウザー)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4827"/>
-        <location filename="../src/application/mainwindow.cpp" line="5720"/>
+        <location filename="../src/application/mainwindow.cpp" line="4818"/>
+        <location filename="../src/application/mainwindow.cpp" line="5711"/>
         <source>New News: %1</source>
         <translation>新着ニュース: %1</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4829"/>
-        <location filename="../src/application/mainwindow.cpp" line="5722"/>
+        <location filename="../src/application/mainwindow.cpp" line="4820"/>
+        <location filename="../src/application/mainwindow.cpp" line="5713"/>
         <source>Unread News: %1</source>
         <translation>未読ニュース: %1</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4834"/>
+        <location filename="../src/application/mainwindow.cpp" line="4825"/>
         <source>&amp;Add</source>
         <translation>追加(&amp;A)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4835"/>
-        <location filename="../src/application/mainwindow.cpp" line="4838"/>
+        <location filename="../src/application/mainwindow.cpp" line="4826"/>
+        <location filename="../src/application/mainwindow.cpp" line="4829"/>
         <source>Add New Feed</source>
         <translation>新しいフィードを追加します</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4837"/>
+        <location filename="../src/application/mainwindow.cpp" line="4828"/>
         <source>&amp;Feed...</source>
         <translation>フィード(&amp;F)...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4842"/>
+        <location filename="../src/application/mainwindow.cpp" line="4833"/>
         <source>F&amp;older...</source>
         <translation>フォルダー(&amp;O)...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4843"/>
+        <location filename="../src/application/mainwindow.cpp" line="4834"/>
         <source>Add New Folder</source>
         <translation>新しくフォルダーを追加します</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4845"/>
-        <location filename="../src/application/mainwindow.cpp" line="4916"/>
+        <location filename="../src/application/mainwindow.cpp" line="4836"/>
+        <location filename="../src/application/mainwindow.cpp" line="4907"/>
         <source>Open in New Tab</source>
         <translation>新しいタブで開く</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4847"/>
+        <location filename="../src/application/mainwindow.cpp" line="4838"/>
         <source>&amp;Delete...</source>
         <translation>削除(&amp;D)...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4848"/>
+        <location filename="../src/application/mainwindow.cpp" line="4839"/>
         <source>Delete Selected Feed</source>
         <translation>選択したフィードを削除します</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4850"/>
+        <location filename="../src/application/mainwindow.cpp" line="4841"/>
         <source>&amp;Import Feeds...</source>
         <translation>フィードのインポート(&amp;I)...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4851"/>
+        <location filename="../src/application/mainwindow.cpp" line="4842"/>
         <source>Import Feeds from OPML File</source>
         <translation>OPML ファイルからフィードをインポートします</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4853"/>
+        <location filename="../src/application/mainwindow.cpp" line="4844"/>
         <source>&amp;Export Feeds...</source>
         <translation>フィードのエクスポート(&amp;E)...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4854"/>
+        <location filename="../src/application/mainwindow.cpp" line="4845"/>
         <source>Export Feeds to OPML File</source>
         <translation>フィードを OPML にエクスポートします</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4859"/>
+        <location filename="../src/application/mainwindow.cpp" line="4850"/>
         <source>E&amp;xit</source>
         <translation>終了(&amp;X)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4861"/>
+        <location filename="../src/application/mainwindow.cpp" line="4852"/>
         <source>Update Feed</source>
         <translation>フィードの更新</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4862"/>
+        <location filename="../src/application/mainwindow.cpp" line="4853"/>
         <source>Update Current Feed</source>
         <translation>現在のフィードを更新します</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4864"/>
+        <location filename="../src/application/mainwindow.cpp" line="4855"/>
         <source>Update All</source>
         <translation>すべて更新</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4865"/>
+        <location filename="../src/application/mainwindow.cpp" line="4856"/>
         <source>Update All Feeds</source>
         <translation>すべてのフィードを更新します</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4870"/>
+        <location filename="../src/application/mainwindow.cpp" line="4861"/>
         <source>Mark All Feeds Read</source>
         <translation>全フィードを既読にする</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4872"/>
+        <location filename="../src/application/mainwindow.cpp" line="4863"/>
         <source>Mark Read/Unread</source>
         <translation>既読/未読にします</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4873"/>
+        <location filename="../src/application/mainwindow.cpp" line="4864"/>
         <source>Mark Current News Read/Unread</source>
         <translation>現在のニュースを既読/未読にする</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4875"/>
-        <location filename="../src/application/mainwindow.cpp" line="4876"/>
+        <location filename="../src/application/mainwindow.cpp" line="4866"/>
+        <location filename="../src/application/mainwindow.cpp" line="4867"/>
         <source>Mark All News Read</source>
         <translation>全ニュースを既読にする</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4878"/>
-        <location filename="../src/application/mainwindow.cpp" line="7994"/>
-        <location filename="../src/application/mainwindow.cpp" line="8000"/>
-        <location filename="../src/application/mainwindow.cpp" line="8010"/>
+        <location filename="../src/application/mainwindow.cpp" line="4869"/>
+        <location filename="../src/application/mainwindow.cpp" line="8015"/>
+        <location filename="../src/application/mainwindow.cpp" line="8021"/>
+        <location filename="../src/application/mainwindow.cpp" line="8031"/>
         <source>Downloads</source>
         <translation>ダウンロード</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4880"/>
+        <location filename="../src/application/mainwindow.cpp" line="4871"/>
         <source>Clean Up...</source>
         <translation>クリーンアップ...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4882"/>
+        <location filename="../src/application/mainwindow.cpp" line="4873"/>
         <source>News Filters...</source>
         <translation>ニュースフィルター...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4883"/>
+        <location filename="../src/application/mainwindow.cpp" line="4874"/>
         <source>Filter News...</source>
         <translation>ニュースのフィルター...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4885"/>
+        <location filename="../src/application/mainwindow.cpp" line="4876"/>
         <source>Options...</source>
         <translation>オプション...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4886"/>
+        <location filename="../src/application/mainwindow.cpp" line="4877"/>
         <source>Open Options Dialog</source>
         <translation>オプションダイアログを表示します</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4888"/>
+        <location filename="../src/application/mainwindow.cpp" line="4879"/>
         <source>Filter Feeds</source>
         <translation>フィードをフィルター</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4889"/>
-        <location filename="../src/application/mainwindow.cpp" line="4896"/>
+        <location filename="../src/application/mainwindow.cpp" line="4880"/>
+        <location filename="../src/application/mainwindow.cpp" line="4887"/>
         <source>Show All</source>
         <translation>すべて表示</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4890"/>
-        <location filename="../src/application/mainwindow.cpp" line="4897"/>
+        <location filename="../src/application/mainwindow.cpp" line="4881"/>
+        <location filename="../src/application/mainwindow.cpp" line="4888"/>
         <source>Show New</source>
         <translation>新着ニュースを表示</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4891"/>
-        <location filename="../src/application/mainwindow.cpp" line="4898"/>
+        <location filename="../src/application/mainwindow.cpp" line="4882"/>
+        <location filename="../src/application/mainwindow.cpp" line="4889"/>
         <source>Show Unread</source>
         <translation>未読を表示</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4892"/>
+        <location filename="../src/application/mainwindow.cpp" line="4883"/>
         <source>Show Starred Feeds</source>
         <translation>スター付きフィードを表示</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4893"/>
+        <location filename="../src/application/mainwindow.cpp" line="4884"/>
         <source>Show Not Working Feeds</source>
         <translation>動作していないフィードを表示</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4895"/>
+        <location filename="../src/application/mainwindow.cpp" line="4886"/>
         <source>Filter News</source>
         <translation>ニュースをフィルター</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4899"/>
+        <location filename="../src/application/mainwindow.cpp" line="4890"/>
         <source>Show Starred</source>
         <translation>スター付きを表示</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4900"/>
+        <location filename="../src/application/mainwindow.cpp" line="4891"/>
         <source>Show Not Starred</source>
         <translation>スターなしを表示</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4901"/>
+        <location filename="../src/application/mainwindow.cpp" line="4892"/>
         <source>Show Unread or Starred</source>
         <translation>未読またはスター付きを表示</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4902"/>
+        <location filename="../src/application/mainwindow.cpp" line="4893"/>
         <source>Show Last Day</source>
         <translation>最新日分を表示</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4903"/>
+        <location filename="../src/application/mainwindow.cpp" line="4894"/>
         <source>Show Last 7 Days</source>
         <translation>最新の 7 日分を表示</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4905"/>
+        <location filename="../src/application/mainwindow.cpp" line="4896"/>
         <source>About...</source>
         <translation>QuiteRSS について...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4906"/>
+        <location filename="../src/application/mainwindow.cpp" line="4897"/>
         <source>Show &apos;About&apos; Dialog</source>
         <translation>このアプリケーションの情報を表示します </translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4908"/>
+        <location filename="../src/application/mainwindow.cpp" line="4899"/>
         <source>Check for Updates...</source>
         <translation>最新状態をチェック...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4909"/>
+        <location filename="../src/application/mainwindow.cpp" line="4900"/>
         <source>Report a Problem...</source>
         <translation>問題を報告...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4911"/>
+        <location filename="../src/application/mainwindow.cpp" line="4902"/>
         <source>Open News</source>
         <translation>ニュースを開く</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4913"/>
+        <location filename="../src/application/mainwindow.cpp" line="4904"/>
         <source>Open in Browser</source>
         <translation>ブラウザーで開く</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4914"/>
+        <location filename="../src/application/mainwindow.cpp" line="4905"/>
         <source>Open in External Browser</source>
         <translation>外部ブラウザーで開く</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4915"/>
+        <location filename="../src/application/mainwindow.cpp" line="4906"/>
         <source>Open News in External Browser</source>
         <translation>ニュースを外部ブラウザーで開く</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4917"/>
+        <location filename="../src/application/mainwindow.cpp" line="4908"/>
         <source>Open News in New Tab</source>
         <translation>ニュースを新しいタブで開きます</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4918"/>
+        <location filename="../src/application/mainwindow.cpp" line="4909"/>
         <source>Open in Background Tab</source>
         <translation>後ろにタブで開く</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4919"/>
+        <location filename="../src/application/mainwindow.cpp" line="4910"/>
         <source>Open News in Background Tab</source>
         <translation>ニュースを後ろにタブで開きます</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4920"/>
+        <location filename="../src/application/mainwindow.cpp" line="4911"/>
         <source>Star</source>
         <translation>スター</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4921"/>
+        <location filename="../src/application/mainwindow.cpp" line="4912"/>
         <source>Mark News Star</source>
         <translation>ニュースにスターを付ける</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4922"/>
+        <location filename="../src/application/mainwindow.cpp" line="4913"/>
         <source>Delete</source>
         <translation>削除</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4923"/>
+        <location filename="../src/application/mainwindow.cpp" line="4914"/>
         <source>Delete Selected News</source>
         <translation>選択したニュースを削除</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4924"/>
+        <location filename="../src/application/mainwindow.cpp" line="4915"/>
         <source>Delete All News</source>
         <translation>全ニュースを削除</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4925"/>
+        <location filename="../src/application/mainwindow.cpp" line="4916"/>
         <source>Delete All News from List</source>
         <translation>リストから全ニュースを削除します</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4926"/>
+        <location filename="../src/application/mainwindow.cpp" line="4917"/>
         <source>Restore</source>
         <translation>復元</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4927"/>
+        <location filename="../src/application/mainwindow.cpp" line="4918"/>
         <source>Restore News</source>
         <translation>ニュースを復元します</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4928"/>
+        <location filename="../src/application/mainwindow.cpp" line="4919"/>
         <source>Copy Link</source>
         <translation>リンクをコピー</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4931"/>
+        <location filename="../src/application/mainwindow.cpp" line="4922"/>
         <source>Restore last deleted news</source>
         <translation>最後に削除したニュースを復元</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4933"/>
+        <location filename="../src/application/mainwindow.cpp" line="4924"/>
         <source>Mark Read</source>
         <translation>既読にする</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4934"/>
+        <location filename="../src/application/mainwindow.cpp" line="4925"/>
         <source>Mark Feed Read</source>
         <translation>フィードを既読にします</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4935"/>
-        <location filename="../src/application/mainwindow.cpp" line="4936"/>
+        <location filename="../src/application/mainwindow.cpp" line="4926"/>
+        <location filename="../src/application/mainwindow.cpp" line="4927"/>
         <source>Properties</source>
         <translation>プロパティ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4938"/>
+        <location filename="../src/application/mainwindow.cpp" line="4929"/>
         <source>&amp;File</source>
         <translation>ファイル(&amp;F)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5001"/>
+        <location filename="../src/application/mainwindow.cpp" line="4992"/>
         <source>Count Unread News</source>
         <translation>未読記事数</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5002"/>
+        <location filename="../src/application/mainwindow.cpp" line="4993"/>
         <source>Count All News</source>
         <translation>全記事数</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5003"/>
+        <location filename="../src/application/mainwindow.cpp" line="4994"/>
         <source>Last Update</source>
         <translation>最終更新</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5016"/>
+        <location filename="../src/application/mainwindow.cpp" line="5007"/>
         <source>Reset browser zoom</source>
         <translation>ブラウザーのズームをリセットします</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5019"/>
+        <location filename="../src/application/mainwindow.cpp" line="5010"/>
         <source>Print Web Page</source>
         <translation>ウェブページを印刷します</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5021"/>
+        <location filename="../src/application/mainwindow.cpp" line="5012"/>
         <source>Preview Web Page</source>
         <translation>ウェブページの印刷プレビューを表示します</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5028"/>
+        <location filename="../src/application/mainwindow.cpp" line="5019"/>
         <source>Save page in database</source>
         <translation>ページをデータベースの保存</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5029"/>
+        <location filename="../src/application/mainwindow.cpp" line="5020"/>
         <source>Save page in database instead of news description</source>
         <translation>ニュースの説明ではなくページをデータベースに保存します</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2630"/>
+        <location filename="../src/application/mainwindow.cpp" line="2631"/>
         <source>Confirm Delete</source>
         <translation>削除の確認</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2631"/>
+        <location filename="../src/application/mainwindow.cpp" line="2632"/>
         <source>Are you sure to delete selected elements?</source>
         <translation>選択した要素をデータベースから削除しますか?</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4832"/>
+        <location filename="../src/application/mainwindow.cpp" line="4823"/>
         <source>Menu</source>
         <translation>メニュー</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4840"/>
+        <location filename="../src/application/mainwindow.cpp" line="4831"/>
         <source>Add Feed...</source>
         <translation>フィードの追加...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4856"/>
+        <location filename="../src/application/mainwindow.cpp" line="4847"/>
         <source>&amp;Create Backup...</source>
         <translation>バックアップの作成(&amp;C)...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4857"/>
+        <location filename="../src/application/mainwindow.cpp" line="4848"/>
         <source>S&amp;how Menu Bar</source>
         <translation>メニューバーを表示(&amp;H)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4867"/>
-        <location filename="../src/application/mainwindow.cpp" line="4868"/>
+        <location filename="../src/application/mainwindow.cpp" line="4858"/>
+        <location filename="../src/application/mainwindow.cpp" line="4859"/>
         <source>Stop Update Feeds</source>
         <translation>フィードの更新を停止</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4912"/>
+        <location filename="../src/application/mainwindow.cpp" line="4903"/>
         <source>Open News Description</source>
         <translation>ニュースの説明を開きます</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4929"/>
+        <location filename="../src/application/mainwindow.cpp" line="4920"/>
         <source>Copy News Link</source>
         <translation>ニュースのリンクをコピー</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4939"/>
+        <location filename="../src/application/mainwindow.cpp" line="4930"/>
         <source>&amp;View</source>
         <translation>表示(&amp;V)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4940"/>
+        <location filename="../src/application/mainwindow.cpp" line="4931"/>
         <source>Fee&amp;ds</source>
         <translation>フィード(&amp;D)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4941"/>
+        <location filename="../src/application/mainwindow.cpp" line="4932"/>
         <source>&amp;News</source>
         <translation>ニュース(&amp;N)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4942"/>
+        <location filename="../src/application/mainwindow.cpp" line="4933"/>
         <source>&amp;Browser</source>
         <translation>ブラウザー(&amp;B)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4943"/>
+        <location filename="../src/application/mainwindow.cpp" line="4934"/>
         <source>&amp;Tools</source>
         <translation>ツール(&amp;T)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4944"/>
+        <location filename="../src/application/mainwindow.cpp" line="4935"/>
         <source>&amp;Help</source>
         <translation>ヘルプ(&amp;H)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4946"/>
-        <location filename="../src/application/mainwindow.cpp" line="5032"/>
+        <location filename="../src/application/mainwindow.cpp" line="4937"/>
+        <location filename="../src/application/mainwindow.cpp" line="5023"/>
         <source>Main Toolbar</source>
         <translation>メインツールバー</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4947"/>
+        <location filename="../src/application/mainwindow.cpp" line="4938"/>
         <source>Customize Toolbar</source>
         <translation>ツールバーのカスタマイズ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4948"/>
+        <location filename="../src/application/mainwindow.cpp" line="4939"/>
         <source>Main Toolbar...</source>
         <translation>メインツールバー...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4949"/>
+        <location filename="../src/application/mainwindow.cpp" line="4940"/>
         <source>Customize Toolbar...</source>
         <translation>カスタムツールバー...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4950"/>
+        <location filename="../src/application/mainwindow.cpp" line="4941"/>
         <source>Feeds Toolbar...</source>
         <translation>フィードツールバー...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4951"/>
+        <location filename="../src/application/mainwindow.cpp" line="4942"/>
         <source>News Toolbar...</source>
         <translation>ニュースツールバー...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4953"/>
+        <location filename="../src/application/mainwindow.cpp" line="4944"/>
         <source>Lock Toolbar</source>
         <translation>ツールバーをロック</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4954"/>
+        <location filename="../src/application/mainwindow.cpp" line="4945"/>
         <source>Hide Toolbar</source>
         <translation>ツールバーを隠す</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4956"/>
-        <location filename="../src/application/mainwindow.cpp" line="4959"/>
+        <location filename="../src/application/mainwindow.cpp" line="4947"/>
+        <location filename="../src/application/mainwindow.cpp" line="4950"/>
         <source>Layout</source>
         <translation>レイアウト</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4957"/>
+        <location filename="../src/application/mainwindow.cpp" line="4948"/>
         <source>Classic</source>
         <translation>クラシック</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4958"/>
+        <location filename="../src/application/mainwindow.cpp" line="4949"/>
         <source>Newspaper</source>
         <translation>新聞</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4961"/>
+        <location filename="../src/application/mainwindow.cpp" line="4952"/>
         <source>Application Style</source>
         <translation>アプリケーションスタイル</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4962"/>
+        <location filename="../src/application/mainwindow.cpp" line="4953"/>
         <source>System</source>
         <translation>システム</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4963"/>
+        <location filename="../src/application/mainwindow.cpp" line="4954"/>
         <source>System2</source>
         <translation>システム2</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4964"/>
+        <location filename="../src/application/mainwindow.cpp" line="4955"/>
         <source>Green</source>
         <translation>グリーン</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4965"/>
+        <location filename="../src/application/mainwindow.cpp" line="4956"/>
         <source>Orange</source>
         <translation>オレンジ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4966"/>
+        <location filename="../src/application/mainwindow.cpp" line="4957"/>
         <source>Purple</source>
         <translation>パープル</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4967"/>
+        <location filename="../src/application/mainwindow.cpp" line="4958"/>
         <source>Pink</source>
         <translation>ピンク</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4968"/>
+        <location filename="../src/application/mainwindow.cpp" line="4959"/>
         <source>Gray</source>
         <translation>グレー</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4970"/>
+        <location filename="../src/application/mainwindow.cpp" line="4961"/>
         <source>Browser Position</source>
         <translation>ブラウザーの位置</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4971"/>
+        <location filename="../src/application/mainwindow.cpp" line="4962"/>
         <source>Top</source>
         <translation>上</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4972"/>
+        <location filename="../src/application/mainwindow.cpp" line="4963"/>
         <source>Bottom</source>
         <translation>下</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4973"/>
+        <location filename="../src/application/mainwindow.cpp" line="4964"/>
         <source>Right</source>
         <translation>右</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4974"/>
+        <location filename="../src/application/mainwindow.cpp" line="4965"/>
         <source>Left</source>
         <translation>左</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4976"/>
+        <location filename="../src/application/mainwindow.cpp" line="4967"/>
         <source>Show Window</source>
         <translation>ウィンドウを表示</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4978"/>
+        <location filename="../src/application/mainwindow.cpp" line="4969"/>
         <source>Previous Feed</source>
         <translation>前のフィード</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4979"/>
+        <location filename="../src/application/mainwindow.cpp" line="4970"/>
         <source>Next Feed</source>
         <translation>次のフィード</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4980"/>
+        <location filename="../src/application/mainwindow.cpp" line="4971"/>
         <source>Previous News</source>
         <translation>前のニュース</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4981"/>
+        <location filename="../src/application/mainwindow.cpp" line="4972"/>
         <source>Next News</source>
         <translation>次のニュース</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4982"/>
+        <location filename="../src/application/mainwindow.cpp" line="4973"/>
         <source>News Page Up</source>
         <translation>ニュースを 1 ページ上へ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4983"/>
+        <location filename="../src/application/mainwindow.cpp" line="4974"/>
         <source>News Page Down</source>
         <translation>ニュースを 1 ページ下へ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4985"/>
+        <location filename="../src/application/mainwindow.cpp" line="4976"/>
         <source>Next Unread News</source>
         <translation>次の未読ニュース</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4986"/>
+        <location filename="../src/application/mainwindow.cpp" line="4977"/>
         <source>Previous Unread News</source>
         <translation>前の未読ニュース</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4988"/>
+        <location filename="../src/application/mainwindow.cpp" line="4979"/>
         <source>Switch Focus to Next Panel</source>
         <translation>次のパネルへフォーカスを移す</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4990"/>
+        <location filename="../src/application/mainwindow.cpp" line="4981"/>
         <source>Switch Focus to Next Panel (Tree Feeds, List News, Browser)</source>
         <translation>次のパネル (フィードツリー、ニュースリスト、ブラウザー) にフォーカスを移動します</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4991"/>
+        <location filename="../src/application/mainwindow.cpp" line="4982"/>
         <source>Switch Focus to Previous Panel</source>
         <translation>前のパネルへフォーカスを移す</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4993"/>
+        <location filename="../src/application/mainwindow.cpp" line="4984"/>
         <source>Switch Focus to Previous Panel (Tree Feeds, Browser, List News)</source>
         <translation>前のパネル (フィードツリー、ニュースリスト、ブラウザー) にフォーカスを移動します</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4995"/>
+        <location filename="../src/application/mainwindow.cpp" line="4986"/>
         <source>Show/Hide Tree Feeds</source>
         <translation>フィードツリーの表示/非表示</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4997"/>
+        <location filename="../src/application/mainwindow.cpp" line="4988"/>
         <source>Minimize to Tray</source>
         <translation>トレイに最小化</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4998"/>
+        <location filename="../src/application/mainwindow.cpp" line="4989"/>
         <source>Minimize Application to Tray</source>
         <translation>アプリケーションをトレイに最小化します</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5000"/>
+        <location filename="../src/application/mainwindow.cpp" line="4991"/>
         <source>Columns</source>
         <translation>カラム</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5005"/>
+        <location filename="../src/application/mainwindow.cpp" line="4996"/>
         <source>Show Indentation</source>
         <translation>インデント表示</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5007"/>
-        <location filename="../src/application/mainwindow.cpp" line="5008"/>
+        <location filename="../src/application/mainwindow.cpp" line="4998"/>
+        <location filename="../src/application/mainwindow.cpp" line="4999"/>
         <source>Search Feed</source>
         <translation>フィードの検索</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5010"/>
+        <location filename="../src/application/mainwindow.cpp" line="5001"/>
         <source>Zoom</source>
         <translation>ズーム</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5011"/>
+        <location filename="../src/application/mainwindow.cpp" line="5002"/>
         <source>Zoom In</source>
         <translation>ズームイン</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5012"/>
+        <location filename="../src/application/mainwindow.cpp" line="5003"/>
         <source>Zoom in in browser</source>
         <translation>ブラウザー内をズームインします</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5013"/>
+        <location filename="../src/application/mainwindow.cpp" line="5004"/>
         <source>Zoom Out</source>
         <translation>ズームアウト</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5014"/>
+        <location filename="../src/application/mainwindow.cpp" line="5005"/>
         <source>Zoom out in browser</source>
         <translation>ブラウザー内をズームアウトします</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5015"/>
+        <location filename="../src/application/mainwindow.cpp" line="5006"/>
         <source>100%</source>
         <translation>100%</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5018"/>
+        <location filename="../src/application/mainwindow.cpp" line="5009"/>
         <source>Print...</source>
         <translation>印刷...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5020"/>
+        <location filename="../src/application/mainwindow.cpp" line="5011"/>
         <source>Print Preview...</source>
         <translation>印刷プレビュー...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5023"/>
+        <location filename="../src/application/mainwindow.cpp" line="5014"/>
         <source>Page up (Browser)</source>
         <translation>ページアップ(ブラウザー)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5024"/>
+        <location filename="../src/application/mainwindow.cpp" line="5015"/>
         <source>Page down (Browser)</source>
         <translation>ページダウン(ブラウザー)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5026"/>
+        <location filename="../src/application/mainwindow.cpp" line="5017"/>
         <source>Save As...</source>
         <translation>名前を付けて保存...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5027"/>
+        <location filename="../src/application/mainwindow.cpp" line="5018"/>
         <source>Save Page As...</source>
         <translation>名前を付けてページを保存...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5031"/>
+        <location filename="../src/application/mainwindow.cpp" line="5022"/>
         <source>Show/Hide</source>
         <translation>表示/非表示</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5033"/>
+        <location filename="../src/application/mainwindow.cpp" line="5024"/>
         <source>Feeds Toolbar</source>
         <translation>フィードツールバー</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5034"/>
+        <location filename="../src/application/mainwindow.cpp" line="5025"/>
         <source>News Toolbar</source>
         <translation>ニュースツールバー</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5035"/>
+        <location filename="../src/application/mainwindow.cpp" line="5026"/>
         <source>Browser Toolbar</source>
         <translation>ブラウザーツールバー</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5036"/>
+        <location filename="../src/application/mainwindow.cpp" line="5027"/>
         <source>Panel Categories</source>
         <translation>パネルカテゴリ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5037"/>
+        <location filename="../src/application/mainwindow.cpp" line="5028"/>
         <source>Status Bar</source>
         <translation>ステータスバー</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5039"/>
-        <location filename="../src/application/mainwindow.cpp" line="5040"/>
+        <location filename="../src/application/mainwindow.cpp" line="5030"/>
+        <location filename="../src/application/mainwindow.cpp" line="5031"/>
         <source>Full Screen</source>
         <translation>フルスクリーン</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5042"/>
-        <location filename="../src/application/mainwindow.cpp" line="5043"/>
+        <location filename="../src/application/mainwindow.cpp" line="5033"/>
+        <location filename="../src/application/mainwindow.cpp" line="5034"/>
         <source>Stay On Top</source>
         <translation>常に最前面に表示</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5045"/>
+        <location filename="../src/application/mainwindow.cpp" line="5036"/>
         <source>Categories</source>
         <translation>カテゴリ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5051"/>
-        <location filename="../src/application/mainwindow.cpp" line="5052"/>
+        <location filename="../src/application/mainwindow.cpp" line="5042"/>
+        <location filename="../src/application/mainwindow.cpp" line="5043"/>
         <source>Label</source>
         <translation>ラベル</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5053"/>
+        <location filename="../src/application/mainwindow.cpp" line="5044"/>
         <source>Show labels menu</source>
         <translation>ラベルメニューを表示</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5055"/>
+        <location filename="../src/application/mainwindow.cpp" line="5046"/>
         <source>Close Tab</source>
         <translation>タブを閉じる</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5056"/>
+        <location filename="../src/application/mainwindow.cpp" line="5047"/>
         <source>Close Other Tabs</source>
         <translation>他のタブを閉じる</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5057"/>
+        <location filename="../src/application/mainwindow.cpp" line="5048"/>
         <source>Close All Tabs</source>
         <translation>全タブを閉じる</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5058"/>
+        <location filename="../src/application/mainwindow.cpp" line="5049"/>
         <source>Switch to next tab</source>
         <translation>次のタブに切り替え</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5059"/>
+        <location filename="../src/application/mainwindow.cpp" line="5050"/>
         <source>Switch to previous tab</source>
         <translation>前のタブに切り替え</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5061"/>
+        <location filename="../src/application/mainwindow.cpp" line="5052"/>
         <source>Unread</source>
         <translation>未読</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5062"/>
+        <location filename="../src/application/mainwindow.cpp" line="5053"/>
         <source>Starred</source>
         <translation>スター付き</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5063"/>
+        <location filename="../src/application/mainwindow.cpp" line="5054"/>
         <source>Deleted</source>
         <translation>削除</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5064"/>
+        <location filename="../src/application/mainwindow.cpp" line="5055"/>
         <source>Labels</source>
         <translation>ラベル</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5066"/>
+        <location filename="../src/application/mainwindow.cpp" line="5057"/>
         <source>Decrease news list/increase browser</source>
         <translation>ニュースリストを狭く/ブラウザーを広く</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5067"/>
+        <location filename="../src/application/mainwindow.cpp" line="5058"/>
         <source>Increase news list/decrease browser</source>
         <translation>ニュースリストを広く/ブラウザーを狭く</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5069"/>
+        <location filename="../src/application/mainwindow.cpp" line="5060"/>
         <source>Find</source>
         <translation>検索</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5071"/>
+        <location filename="../src/application/mainwindow.cpp" line="5062"/>
         <source>Open Homepage Feed</source>
         <translation>フィードのホームページを開く</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5072"/>
+        <location filename="../src/application/mainwindow.cpp" line="5063"/>
         <source>Sort by Name</source>
         <translation>名前順で並び替え</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5073"/>
+        <location filename="../src/application/mainwindow.cpp" line="5064"/>
         <source>Collapse All Folders</source>
         <translation>全フォルダーをたたむ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5074"/>
+        <location filename="../src/application/mainwindow.cpp" line="5065"/>
         <source>Expand All Folders</source>
         <translation>全フォルダーを展開する</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5075"/>
+        <location filename="../src/application/mainwindow.cpp" line="5066"/>
         <source>Next Folder</source>
         <translation>次のフォルダー</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5076"/>
+        <location filename="../src/application/mainwindow.cpp" line="5067"/>
         <source>Previous Folder</source>
         <translation>前のフォルダー</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5077"/>
+        <location filename="../src/application/mainwindow.cpp" line="5068"/>
         <source>Expand Folder</source>
         <translation>フォルダーを展開</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5079"/>
+        <location filename="../src/application/mainwindow.cpp" line="5070"/>
         <source>Setting Page: Labels</source>
         <translation>設定ページ: ラベル</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5081"/>
+        <location filename="../src/application/mainwindow.cpp" line="5072"/>
         <source>Share</source>
         <translation>共有</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5083"/>
+        <location filename="../src/application/mainwindow.cpp" line="5074"/>
         <source>Sort By</source>
         <translation>並び替え</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5084"/>
+        <location filename="../src/application/mainwindow.cpp" line="5075"/>
         <source>Ascending</source>
         <translation>昇順</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5085"/>
+        <location filename="../src/application/mainwindow.cpp" line="5076"/>
         <source>Descending</source>
         <translation>降順</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5991"/>
+        <location filename="../src/application/mainwindow.cpp" line="5982"/>
         <source>Check for updates</source>
         <translation>最新状態をチェック</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5992"/>
+        <location filename="../src/application/mainwindow.cpp" line="5983"/>
         <source>A new version of QuiteRSS...</source>
         <translation>QuiteRSS の新バージョン...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="6371"/>
+        <location filename="../src/application/mainwindow.cpp" line="6394"/>
         <source>Loading...</source>
         <translation>読み込んでいます...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="6983"/>
-        <location filename="../src/application/mainwindow.cpp" line="7000"/>
+        <location filename="../src/application/mainwindow.cpp" line="7006"/>
+        <location filename="../src/application/mainwindow.cpp" line="7023"/>
         <source>Web Page</source>
         <translation>ウェブページ</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="7558"/>
+        <location filename="../src/application/mainwindow.cpp" line="7581"/>
         <source>Save As</source>
         <translation>名前を付けて保存</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="7560"/>
+        <location filename="../src/application/mainwindow.cpp" line="7583"/>
         <source>HTML-Files (*.%1)</source>
         <translation>HTML ファイル (*.%1)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="7560"/>
+        <location filename="../src/application/mainwindow.cpp" line="7583"/>
         <source>Text files (*.%2)</source>
         <translation>テキストファイル (*.%2)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="7566"/>
+        <location filename="../src/application/mainwindow.cpp" line="7589"/>
         <source>Save As: can&apos;t open a file</source>
         <translation>名前を付けて保存: ファイルを開けません</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="8062"/>
+        <location filename="../src/application/mainwindow.cpp" line="8083"/>
         <source>Choose Directory</source>
         <translation>ディレクトリの選択</translation>
     </message>
@@ -2714,62 +2714,62 @@ Ancient news could reappear</source>
         <translation>リンクを外部ブラウザーで開く</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2291"/>
+        <location filename="../src/newstabwidget.cpp" line="2295"/>
         <source>Open Link</source>
         <translation>リンクを開く</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2292"/>
+        <location filename="../src/newstabwidget.cpp" line="2296"/>
         <source>Open in New Tab</source>
         <translation>新しいタブで開く</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2293"/>
+        <location filename="../src/newstabwidget.cpp" line="2297"/>
         <source>Save Link...</source>
         <translation>リンクを保存...</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2294"/>
+        <location filename="../src/newstabwidget.cpp" line="2298"/>
         <source>Save Image...</source>
         <translation>画像を保存...</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2295"/>
+        <location filename="../src/newstabwidget.cpp" line="2299"/>
         <source>Copy Link</source>
         <translation>リンクをコピー</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2296"/>
+        <location filename="../src/newstabwidget.cpp" line="2300"/>
         <source>Copy</source>
         <translation>コピー</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2297"/>
+        <location filename="../src/newstabwidget.cpp" line="2301"/>
         <source>Go Back</source>
         <translation>戻る</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2298"/>
+        <location filename="../src/newstabwidget.cpp" line="2302"/>
         <source>Go Forward</source>
         <translation>進む</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2299"/>
+        <location filename="../src/newstabwidget.cpp" line="2303"/>
         <source>Stop</source>
         <translation>停止</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2300"/>
+        <location filename="../src/newstabwidget.cpp" line="2304"/>
         <source>Reload</source>
         <translation>再読み込み</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2301"/>
+        <location filename="../src/newstabwidget.cpp" line="2305"/>
         <source>Copy Image</source>
         <translation>画像をコピー</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2303"/>
+        <location filename="../src/newstabwidget.cpp" line="2307"/>
         <source>Copy Image Address</source>
         <translation>画像のアドレスをコピー</translation>
     </message>
@@ -2884,34 +2884,34 @@ Ancient news could reappear</source>
 <context>
     <name>NotificationWidget</name>
     <message>
-        <location filename="../src/notifications/notificationswidget.cpp" line="125"/>
+        <location filename="../src/notifications/notificationswidget.cpp" line="127"/>
         <source>Close</source>
         <translation>閉じる</translation>
     </message>
     <message>
-        <location filename="../src/notifications/notificationswidget.cpp" line="151"/>
+        <location filename="../src/notifications/notificationswidget.cpp" line="153"/>
         <source>Mark All News Read</source>
         <translation>全ニュースを既読にする</translation>
     </message>
     <message>
-        <location filename="../src/notifications/notificationswidget.cpp" line="156"/>
+        <location filename="../src/notifications/notificationswidget.cpp" line="158"/>
         <source>Previous Page</source>
         <translation>前のページ</translation>
     </message>
     <message>
-        <location filename="../src/notifications/notificationswidget.cpp" line="161"/>
+        <location filename="../src/notifications/notificationswidget.cpp" line="163"/>
         <source>Next Page</source>
         <translation>次のページ</translation>
     </message>
     <message>
-        <location filename="../src/notifications/notificationswidget.cpp" line="361"/>
+        <location filename="../src/notifications/notificationswidget.cpp" line="363"/>
         <source>Incoming News: %1</source>
         <translation>着信ニュース: %1</translation>
     </message>
     <message>
-        <location filename="../src/notifications/notificationswidget.cpp" line="366"/>
-        <location filename="../src/notifications/notificationswidget.cpp" line="456"/>
-        <location filename="../src/notifications/notificationswidget.cpp" line="468"/>
+        <location filename="../src/notifications/notificationswidget.cpp" line="368"/>
+        <location filename="../src/notifications/notificationswidget.cpp" line="458"/>
+        <location filename="../src/notifications/notificationswidget.cpp" line="470"/>
         <source>Page %1 of %2</source>
         <translation>ページ %1 / %2</translation>
     </message>
@@ -2926,7 +2926,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="65"/>
         <location filename="../src/optionsdialog.cpp" line="742"/>
-        <location filename="../src/optionsdialog.cpp" line="1017"/>
+        <location filename="../src/optionsdialog.cpp" line="1019"/>
         <source>General</source>
         <translation>一般</translation>
     </message>
@@ -2947,19 +2947,19 @@ Ancient news could reappear</source>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="77"/>
-        <location filename="../src/optionsdialog.cpp" line="1159"/>
+        <location filename="../src/optionsdialog.cpp" line="1161"/>
         <source>Feeds</source>
         <translation>フィード</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="80"/>
-        <location filename="../src/optionsdialog.cpp" line="1904"/>
+        <location filename="../src/optionsdialog.cpp" line="1907"/>
         <source>Labels</source>
         <translation>ラベル</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="83"/>
-        <location filename="../src/optionsdialog.cpp" line="1906"/>
+        <location filename="../src/optionsdialog.cpp" line="1909"/>
         <source>Notifications</source>
         <translation>通知</translation>
     </message>
@@ -2970,7 +2970,7 @@ Ancient news could reappear</source>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="89"/>
-        <location filename="../src/optionsdialog.cpp" line="1331"/>
+        <location filename="../src/optionsdialog.cpp" line="1334"/>
         <source>Language</source>
         <translation>言語</translation>
     </message>
@@ -2986,7 +2986,7 @@ Ancient news could reappear</source>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="267"/>
-        <location filename="../src/optionsdialog.cpp" line="2236"/>
+        <location filename="../src/optionsdialog.cpp" line="2239"/>
         <source>Warning: key is already assigned to</source>
         <translation>警告: キーはすでに次の機能に割り当てられています </translation>
     </message>
@@ -3047,7 +3047,7 @@ Ancient news could reappear</source>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="311"/>
-        <location filename="../src/optionsdialog.cpp" line="765"/>
+        <location filename="../src/optionsdialog.cpp" line="767"/>
         <source>minutes</source>
         <translation>分</translation>
     </message>
@@ -3196,14 +3196,14 @@ Ancient news could reappear</source>
         <location filename="../src/optionsdialog.cpp" line="525"/>
         <location filename="../src/optionsdialog.cpp" line="606"/>
         <location filename="../src/optionsdialog.cpp" line="720"/>
-        <location filename="../src/optionsdialog.cpp" line="869"/>
-        <location filename="../src/optionsdialog.cpp" line="1199"/>
+        <location filename="../src/optionsdialog.cpp" line="871"/>
+        <location filename="../src/optionsdialog.cpp" line="1202"/>
         <source>Browse...</source>
         <translation>参照...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="513"/>
-        <location filename="../src/optionsdialog.cpp" line="2122"/>
+        <location filename="../src/optionsdialog.cpp" line="2125"/>
         <source>Load images</source>
         <translation>画像の読み込み</translation>
     </message>
@@ -3338,602 +3338,607 @@ Ancient news could reappear</source>
         <translation>履歴</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="744"/>
+        <location filename="../src/optionsdialog.cpp" line="745"/>
         <source>Click to Flash</source>
         <translation>Click to Flash</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="745"/>
+        <location filename="../src/optionsdialog.cpp" line="747"/>
         <source>Downloads</source>
         <translation>ダウンロード</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="754"/>
+        <location filename="../src/optionsdialog.cpp" line="756"/>
         <source>Automatically update the feeds on startup</source>
         <translation>起動時にフィードを更新する</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="755"/>
+        <location filename="../src/optionsdialog.cpp" line="757"/>
         <source>Automatically update the feeds every</source>
         <translation>フィードを定期的に更新する - 更新間隔</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="765"/>
-        <location filename="../src/optionsdialog.cpp" line="922"/>
-        <location filename="../src/optionsdialog.cpp" line="1139"/>
+        <location filename="../src/optionsdialog.cpp" line="767"/>
+        <location filename="../src/optionsdialog.cpp" line="924"/>
+        <location filename="../src/optionsdialog.cpp" line="1142"/>
         <source>seconds</source>
         <translation>秒</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="765"/>
+        <location filename="../src/optionsdialog.cpp" line="767"/>
         <source>hours</source>
         <translation>時間</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="781"/>
+        <location filename="../src/optionsdialog.cpp" line="783"/>
         <source>Nothing to do</source>
         <translation>何もしない</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="812"/>
+        <location filename="../src/optionsdialog.cpp" line="814"/>
         <source>Dec</source>
         <translation>12</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="813"/>
+        <location filename="../src/optionsdialog.cpp" line="815"/>
         <source>December</source>
         <translation>12月</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="836"/>
+        <location filename="../src/optionsdialog.cpp" line="838"/>
         <source>Display format for date:</source>
         <translation>日付の表示形式:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="839"/>
+        <location filename="../src/optionsdialog.cpp" line="841"/>
         <source>time:</source>
         <translation>時刻:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="843"/>
+        <location filename="../src/optionsdialog.cpp" line="845"/>
         <source>Alternating row background colors</source>
         <translation>行の背景色を交互に変える</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="844"/>
+        <location filename="../src/optionsdialog.cpp" line="846"/>
         <source>Simplified representation of date and time</source>
         <translation>日付を時刻を簡易表示にする</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="847"/>
+        <location filename="../src/optionsdialog.cpp" line="849"/>
         <source>Show All</source>
         <translation>すべて表示</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="847"/>
+        <location filename="../src/optionsdialog.cpp" line="849"/>
         <source>Show New</source>
         <translation>新着ニュースを表示</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="847"/>
+        <location filename="../src/optionsdialog.cpp" line="849"/>
         <source>Show Unread</source>
         <translation>未読を表示</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="848"/>
+        <location filename="../src/optionsdialog.cpp" line="850"/>
         <source>Show Starred</source>
         <translation>スター付きを表示</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="848"/>
+        <location filename="../src/optionsdialog.cpp" line="850"/>
         <source>Show Not Starred</source>
         <translation>スターなしを表示</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="849"/>
+        <location filename="../src/optionsdialog.cpp" line="851"/>
         <source>Show Unread or Starred</source>
         <translation>未読またはスター付きを表示</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="849"/>
+        <location filename="../src/optionsdialog.cpp" line="851"/>
         <source>Show Last Day</source>
         <translation>最新日分を表示</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="850"/>
+        <location filename="../src/optionsdialog.cpp" line="852"/>
         <source>Show Last 7 Days</source>
         <translation>最新の 7 日分を表示</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="888"/>
+        <location filename="../src/optionsdialog.cpp" line="890"/>
         <source>Style sheet for news:</source>
         <translation>ニュース用スタイルシート:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="901"/>
+        <location filename="../src/optionsdialog.cpp" line="903"/>
         <source>Mark news as read:</source>
         <translation>既読にするニュース:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="911"/>
+        <location filename="../src/optionsdialog.cpp" line="913"/>
         <source>on selecting. With timeout</source>
         <translation>選択時 - タイムアウト</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="928"/>
+        <location filename="../src/optionsdialog.cpp" line="930"/>
         <source>after switching to another news</source>
         <translation>他のニュースへの移動時</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="934"/>
+        <location filename="../src/optionsdialog.cpp" line="936"/>
         <source>Mark displayed news as read when switching feeds</source>
         <translation>表示したニュースから他のフィードへ移動した時に既読にする</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="935"/>
+        <location filename="../src/optionsdialog.cpp" line="937"/>
         <source>Mark displayed news as read when closing tab</source>
         <translation>表示したニュースをタブを閉じた時に既読にする</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="936"/>
+        <location filename="../src/optionsdialog.cpp" line="938"/>
         <source>Mark displayed news as read on minimize</source>
         <translation>表示したニュースを最小化した時に既読にする</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="947"/>
+        <location filename="../src/optionsdialog.cpp" line="949"/>
         <source>Change behavior of action &apos;Next Unread News&apos;</source>
         <translation>&apos;次の未読ニュース&apos; の振る舞いを変更する</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="940"/>
+        <location filename="../src/optionsdialog.cpp" line="942"/>
         <source>starred news</source>
         <translation>スター付きニュース</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="941"/>
+        <location filename="../src/optionsdialog.cpp" line="943"/>
         <source>labeled news</source>
         <translation>ラベル付きニュース</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="794"/>
+        <location filename="../src/optionsdialog.cpp" line="796"/>
         <source>Automatically mark identical news as read</source>
         <translation>同一のニュースは自動的に既読にする</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="954"/>
+        <location filename="../src/optionsdialog.cpp" line="956"/>
         <source>Prevent accidental deletion of:</source>
         <translation>誤削除の防止:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="967"/>
+        <location filename="../src/optionsdialog.cpp" line="969"/>
         <source>Enable cleanup on shutdown</source>
         <translation>アプリケーションの終了時にクリーンアップを行う</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="970"/>
+        <location filename="../src/optionsdialog.cpp" line="972"/>
         <source>Maximum age of news in days to keep:</source>
         <translation>最大ニュース保持日数:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="977"/>
+        <location filename="../src/optionsdialog.cpp" line="979"/>
         <source>Maximum number of news to keep:</source>
         <translation>最大ニュース保持件数:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="984"/>
+        <location filename="../src/optionsdialog.cpp" line="986"/>
         <source>Delete read news</source>
         <translation>既読のニュースを削除する</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="985"/>
+        <location filename="../src/optionsdialog.cpp" line="987"/>
         <source>Never delete unread news</source>
         <translation>未読のニュースは削除しない</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="986"/>
+        <location filename="../src/optionsdialog.cpp" line="988"/>
         <source>Never delete starred news</source>
         <translation>スター付きニュースは削除しない</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="987"/>
+        <location filename="../src/optionsdialog.cpp" line="989"/>
         <source>Never delete labeled news</source>
         <translation>ラベル付きニュースを削除しない</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="989"/>
+        <location filename="../src/optionsdialog.cpp" line="991"/>
         <source>Clean up &apos;Deleted&apos;</source>
         <translation>&apos;削除&apos; にマークされたニュースをクリアする</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="990"/>
+        <location filename="../src/optionsdialog.cpp" line="992"/>
         <source>Enable DB optimization (slower shutdown)</source>
         <translation>DB の最適化を有効にする (終了時に時間がかかります)</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1019"/>
+        <location filename="../src/optionsdialog.cpp" line="1021"/>
         <source>Reading</source>
         <translation>読み込み</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1020"/>
+        <location filename="../src/optionsdialog.cpp" line="1022"/>
         <source>Clean Up</source>
         <translation>クリーンアップ</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1037"/>
+        <location filename="../src/optionsdialog.cpp" line="1039"/>
         <source>New...</source>
         <translation>新規...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1039"/>
+        <location filename="../src/optionsdialog.cpp" line="1041"/>
         <source>Edit...</source>
         <translation>編集...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1042"/>
+        <location filename="../src/optionsdialog.cpp" line="1044"/>
         <source>Delete...</source>
         <translation>削除...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1046"/>
+        <location filename="../src/optionsdialog.cpp" line="1048"/>
         <source>Move up</source>
         <translation>上へ</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1049"/>
+        <location filename="../src/optionsdialog.cpp" line="1051"/>
         <source>Move down</source>
         <translation>下へ</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1103"/>
+        <location filename="../src/optionsdialog.cpp" line="1105"/>
         <source>Show when inactive main window</source>
         <translation>メインウィンドウがアクティブではない時にも表示</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1118"/>
+        <location filename="../src/optionsdialog.cpp" line="1121"/>
         <source>Screen</source>
         <translation>画面</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1128"/>
+        <location filename="../src/optionsdialog.cpp" line="1131"/>
         <source>Transparency</source>
         <translation>透過度</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1142"/>
+        <location filename="../src/optionsdialog.cpp" line="1145"/>
         <source>Show titles feeds</source>
         <translation>フィードのタイトルを表示</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1143"/>
+        <location filename="../src/optionsdialog.cpp" line="1146"/>
         <source>Show icon feed</source>
         <translation>フィードのアイコンを表示</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1144"/>
+        <location filename="../src/optionsdialog.cpp" line="1147"/>
         <source>Show button &apos;Mark All News Read&apos;</source>
         <translation>&apos;全ニュースを既読にする&apos; ボタンを表示</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1145"/>
+        <location filename="../src/optionsdialog.cpp" line="1148"/>
         <source>Show button &apos;Mark Read/Unread&apos;</source>
         <translation>&apos;既読/未読にする&apos; ボタンを表示</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1146"/>
+        <location filename="../src/optionsdialog.cpp" line="1149"/>
         <source>Show button &apos;Open in External Browser&apos;</source>
         <translation>&apos;外部ブラウザーで開く&apos; ボタンを表示</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1147"/>
+        <location filename="../src/optionsdialog.cpp" line="1150"/>
         <source>Show button &apos;Delete News&apos;</source>
         <translation>&apos;ニュースを削除&apos; ボタンを表示</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1194"/>
+        <location filename="../src/optionsdialog.cpp" line="1197"/>
         <source>Play sound for incoming new news</source>
         <translation>ニュースの新着時にサウンドを鳴らす</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1200"/>
+        <location filename="../src/optionsdialog.cpp" line="1203"/>
         <source>Play</source>
         <translation>再生</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1082"/>
+        <location filename="../src/optionsdialog.cpp" line="1084"/>
         <source>Display notification for incoming news</source>
         <translation>ニュースの新着時に通知する</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1095"/>
+        <location filename="../src/optionsdialog.cpp" line="1097"/>
         <source>Top Left</source>
         <translation>左上</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1095"/>
+        <location filename="../src/optionsdialog.cpp" line="1097"/>
         <source>Top Right</source>
         <translation>右上</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1096"/>
+        <location filename="../src/optionsdialog.cpp" line="1098"/>
         <source>Bottom Left</source>
         <translation>左下</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1096"/>
+        <location filename="../src/optionsdialog.cpp" line="1098"/>
         <source>Bottom Right</source>
         <translation>右下</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1114"/>
+        <location filename="../src/optionsdialog.cpp" line="1117"/>
         <source>Review</source>
         <translation>プレビュー</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1121"/>
+        <location filename="../src/optionsdialog.cpp" line="1124"/>
         <source>Position</source>
         <translation>位置</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1131"/>
+        <location filename="../src/optionsdialog.cpp" line="1134"/>
         <source>Show maximum of</source>
         <translation>通知ページごとの最大表示数</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1133"/>
+        <location filename="../src/optionsdialog.cpp" line="1136"/>
         <source>item on page notification</source>
         <translation>アイテム</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1134"/>
+        <location filename="../src/optionsdialog.cpp" line="1137"/>
         <source>Width list items</source>
         <translation>リストのアイテムの幅</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1136"/>
+        <location filename="../src/optionsdialog.cpp" line="1139"/>
         <source>pixels</source>
         <translation>ピクセル</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1137"/>
+        <location filename="../src/optionsdialog.cpp" line="1140"/>
         <source>Close notification after</source>
         <translation>通知を閉じるまでの時間</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1099"/>
+        <location filename="../src/optionsdialog.cpp" line="1101"/>
         <source>Do not show notification in fullscreen mode</source>
         <translation>全画面モード時に通知しない</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1018"/>
+        <location filename="../src/optionsdialog.cpp" line="1020"/>
         <source>Display</source>
         <translation>表示</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1158"/>
+        <location filename="../src/optionsdialog.cpp" line="1106"/>
+        <source>Close notification after opening news</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1160"/>
         <source>Only show selected feeds:</source>
         <translation>選択したフィードのみ表示する:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1223"/>
+        <location filename="../src/optionsdialog.cpp" line="1226"/>
         <source>Notification</source>
         <translation>通知</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1224"/>
+        <location filename="../src/optionsdialog.cpp" line="1227"/>
         <source>Sound</source>
         <translation>音</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1235"/>
+        <location filename="../src/optionsdialog.cpp" line="1238"/>
         <source>Selection of feeds</source>
         <translation>表示するフィードを選択</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1251"/>
+        <location filename="../src/optionsdialog.cpp" line="1254"/>
         <source>All Feeds</source>
         <translation>全フィード</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1278"/>
+        <location filename="../src/optionsdialog.cpp" line="1281"/>
         <source>Site</source>
         <translation>サイト</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1278"/>
+        <location filename="../src/optionsdialog.cpp" line="1281"/>
         <source>User</source>
         <translation>ユーザー</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1278"/>
+        <location filename="../src/optionsdialog.cpp" line="1281"/>
         <source>Password</source>
         <translation>パスワード</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1295"/>
+        <location filename="../src/optionsdialog.cpp" line="1298"/>
         <source>Delete</source>
         <translation>削除</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1297"/>
+        <location filename="../src/optionsdialog.cpp" line="1300"/>
         <source>Delete All</source>
         <translation>すべて削除</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1299"/>
+        <location filename="../src/optionsdialog.cpp" line="1302"/>
         <source>Show Passwords</source>
         <translation>パスワードを表示</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1331"/>
+        <location filename="../src/optionsdialog.cpp" line="1334"/>
         <source>Version</source>
         <translation>バージョン</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1332"/>
+        <location filename="../src/optionsdialog.cpp" line="1335"/>
         <source>Author</source>
         <translation>作者</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1332"/>
+        <location filename="../src/optionsdialog.cpp" line="1335"/>
         <source>Contact</source>
         <translation>連絡先</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1598"/>
+        <location filename="../src/optionsdialog.cpp" line="1601"/>
         <source>Choose language:</source>
         <translation>言語の選択:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1619"/>
+        <location filename="../src/optionsdialog.cpp" line="1622"/>
         <source>Type</source>
         <translation>タイプ</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1619"/>
+        <location filename="../src/optionsdialog.cpp" line="1622"/>
         <source>Font</source>
         <translation>フォント</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1623"/>
+        <location filename="../src/optionsdialog.cpp" line="1626"/>
         <source>Feeds list font</source>
         <translation>フィードリストのフォント</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1626"/>
+        <location filename="../src/optionsdialog.cpp" line="1629"/>
         <source>News list font</source>
         <translation>ニュースリストのフォント</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1629"/>
+        <location filename="../src/optionsdialog.cpp" line="1632"/>
         <source>News title font</source>
         <translation>ニュースタイトルのフォント</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1632"/>
+        <location filename="../src/optionsdialog.cpp" line="1635"/>
         <source>News text font</source>
         <translation>ニューステキストのフォント</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1635"/>
+        <location filename="../src/optionsdialog.cpp" line="1638"/>
         <source>Notification font</source>
         <translation>通知のフォント</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1642"/>
-        <location filename="../src/optionsdialog.cpp" line="1743"/>
+        <location filename="../src/optionsdialog.cpp" line="1645"/>
+        <location filename="../src/optionsdialog.cpp" line="1746"/>
         <source>Change...</source>
         <translation>変更...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1644"/>
-        <location filename="../src/optionsdialog.cpp" line="1745"/>
-        <location filename="../src/optionsdialog.cpp" line="1857"/>
+        <location filename="../src/optionsdialog.cpp" line="1647"/>
+        <location filename="../src/optionsdialog.cpp" line="1748"/>
+        <location filename="../src/optionsdialog.cpp" line="1860"/>
         <source>Reset</source>
         <translation>リセット</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1669"/>
+        <location filename="../src/optionsdialog.cpp" line="1672"/>
         <source>Feeds list color</source>
         <translation>フィードリストの色</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1672"/>
+        <location filename="../src/optionsdialog.cpp" line="1675"/>
         <source>Feeds list background</source>
         <translation>フィードリストの背景色</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1675"/>
+        <location filename="../src/optionsdialog.cpp" line="1678"/>
         <source>News list color</source>
         <translation>ニュースリストの色</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1678"/>
+        <location filename="../src/optionsdialog.cpp" line="1681"/>
         <source>News list background</source>
         <translation>ニュースリストの背景色</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1681"/>
+        <location filename="../src/optionsdialog.cpp" line="1684"/>
         <source>Focused news color</source>
         <translation>フォーカスのあるニュースの色</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1684"/>
+        <location filename="../src/optionsdialog.cpp" line="1687"/>
         <source>Focused news background color</source>
         <translation>フォーカスのあるニュースの背景色</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1687"/>
+        <location filename="../src/optionsdialog.cpp" line="1690"/>
         <source>Link color</source>
         <translation>リンクの色</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1690"/>
+        <location filename="../src/optionsdialog.cpp" line="1693"/>
         <source>Title color</source>
         <translation>タイトルの色</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1693"/>
+        <location filename="../src/optionsdialog.cpp" line="1696"/>
         <source>Date color</source>
         <translation>日付の色</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1696"/>
+        <location filename="../src/optionsdialog.cpp" line="1699"/>
         <source>Author color</source>
         <translation>作者の色</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1699"/>
+        <location filename="../src/optionsdialog.cpp" line="1702"/>
         <source>News text color</source>
         <translation>ニュースの文字色</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1702"/>
+        <location filename="../src/optionsdialog.cpp" line="1705"/>
         <source>News title background</source>
         <translation>ニュースタイトルの背景色</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1705"/>
+        <location filename="../src/optionsdialog.cpp" line="1708"/>
         <source>News background</source>
         <translation>ニュースの背景色</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1708"/>
+        <location filename="../src/optionsdialog.cpp" line="1711"/>
         <source>Feed with new news</source>
         <translation>新着ニュースのあるフィード</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1711"/>
+        <location filename="../src/optionsdialog.cpp" line="1714"/>
         <source>Count of unread news in feeds tree</source>
         <translation>フィードツリーの未読のニュース数</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1726"/>
+        <location filename="../src/optionsdialog.cpp" line="1729"/>
         <source>Disabled feed</source>
         <translation>無効化されたフィード</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1729"/>
+        <location filename="../src/optionsdialog.cpp" line="1732"/>
         <source>Alternating row colors</source>
         <translation>交互に変える行の背景色</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1732"/>
+        <location filename="../src/optionsdialog.cpp" line="1735"/>
         <source>Notification text color</source>
         <translation>通知の文字色</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1735"/>
+        <location filename="../src/optionsdialog.cpp" line="1738"/>
         <source>Notification background color</source>
         <translation>通知の背景色</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2127"/>
+        <location filename="../src/optionsdialog.cpp" line="2130"/>
         <source>Auto load images in news view</source>
         <translation>ニュースビューでの画像の自動読み込み</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1714"/>
+        <location filename="../src/optionsdialog.cpp" line="1717"/>
         <source>Text color of new news</source>
         <translation>新着ニュースの文字色</translation>
     </message>
@@ -3948,180 +3953,180 @@ Ancient news could reappear</source>
         <translation>トレイに最小化したときステータスをクリアする</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="777"/>
+        <location filename="../src/optionsdialog.cpp" line="779"/>
         <source>Set focus on the last opened news</source>
         <translation>最後に開いたニュースを選択</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="778"/>
+        <location filename="../src/optionsdialog.cpp" line="780"/>
         <source>Set focus at the top of news list</source>
         <translation>ニュース一覧の先頭を選択</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="779"/>
+        <location filename="../src/optionsdialog.cpp" line="781"/>
         <source>Set focus on the unread news</source>
         <translation>未読のニュースを選択</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="780"/>
+        <location filename="../src/optionsdialog.cpp" line="782"/>
         <source>Open the news</source>
         <translation>ニュースを開く</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="864"/>
+        <location filename="../src/optionsdialog.cpp" line="866"/>
         <source>Default news filter:</source>
         <translation>デフォルトのニュースフィルター:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="800"/>
+        <location filename="../src/optionsdialog.cpp" line="802"/>
         <source>Action on feed opening:</source>
         <translation>フィードを開いた時の動作:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="878"/>
+        <location filename="../src/optionsdialog.cpp" line="880"/>
         <source>Show news description instead of loading web page</source>
         <translation>ウェブページを読み込むのではなくニュースの説明を表示する</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1717"/>
+        <location filename="../src/optionsdialog.cpp" line="1720"/>
         <source>Text color of unread news</source>
         <translation>未読ニュースの文字色</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1720"/>
+        <location filename="../src/optionsdialog.cpp" line="1723"/>
         <source>Focused feed color</source>
         <translation>フォーカスのあるフィードの色</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1723"/>
+        <location filename="../src/optionsdialog.cpp" line="1726"/>
         <source>Focused feed background color</source>
         <translation>フォーカスのあるフィードの背景色</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1771"/>
+        <location filename="../src/optionsdialog.cpp" line="1774"/>
         <source>Standard</source>
         <translation>標準</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1773"/>
+        <location filename="../src/optionsdialog.cpp" line="1776"/>
         <source>Fixed</source>
         <translation>固定幅</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1775"/>
+        <location filename="../src/optionsdialog.cpp" line="1778"/>
         <source>Serif</source>
         <translation>セリフ体</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1777"/>
+        <location filename="../src/optionsdialog.cpp" line="1780"/>
         <source>Sans Serif</source>
         <translation>サンセリフ体</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1779"/>
+        <location filename="../src/optionsdialog.cpp" line="1782"/>
         <source>Cursive</source>
         <translation>筆記体</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1781"/>
+        <location filename="../src/optionsdialog.cpp" line="1784"/>
         <source>Fantasy</source>
         <translation>ファンタジー</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1796"/>
+        <location filename="../src/optionsdialog.cpp" line="1799"/>
         <source>Default font size</source>
         <translation>デフォルトフォントのサイズ</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1798"/>
+        <location filename="../src/optionsdialog.cpp" line="1801"/>
         <source>Fixed font size</source>
         <translation>固定幅フォントのサイズ</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1800"/>
+        <location filename="../src/optionsdialog.cpp" line="1803"/>
         <source>Minimum font size</source>
         <translation>最小フォントサイズ</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1802"/>
+        <location filename="../src/optionsdialog.cpp" line="1805"/>
         <source>Minimum logical font size</source>
         <translation>論理フォントの最大サイズ</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1806"/>
+        <location filename="../src/optionsdialog.cpp" line="1809"/>
         <source>Font families:</source>
         <translation>フォントファミリ:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1808"/>
+        <location filename="../src/optionsdialog.cpp" line="1811"/>
         <source>Font sizes:</source>
         <translation>フォントサイズ:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1817"/>
+        <location filename="../src/optionsdialog.cpp" line="1820"/>
         <source>Fonts</source>
         <translation>フォント</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1818"/>
+        <location filename="../src/optionsdialog.cpp" line="1821"/>
         <source>Fonts Browser</source>
         <translation>フォントブラウザー</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1819"/>
+        <location filename="../src/optionsdialog.cpp" line="1822"/>
         <source>Colors</source>
         <translation>配色</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1826"/>
+        <location filename="../src/optionsdialog.cpp" line="1829"/>
         <source>Filter</source>
         <translation>フィルター</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1852"/>
+        <location filename="../src/optionsdialog.cpp" line="1855"/>
         <source>Action</source>
         <translation>アクション</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1852"/>
+        <location filename="../src/optionsdialog.cpp" line="1855"/>
         <source>Description</source>
         <translation>説明</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1852"/>
+        <location filename="../src/optionsdialog.cpp" line="1855"/>
         <source>Shortcut</source>
         <translation>ショートカット</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1860"/>
+        <location filename="../src/optionsdialog.cpp" line="1863"/>
         <source>Shortcut:</source>
         <translation>ショートカット:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2291"/>
-        <location filename="../src/optionsdialog.cpp" line="2326"/>
+        <location filename="../src/optionsdialog.cpp" line="2294"/>
+        <location filename="../src/optionsdialog.cpp" line="2329"/>
         <source>Open File...</source>
         <translation>ファイルを開く...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2311"/>
-        <location filename="../src/optionsdialog.cpp" line="2823"/>
+        <location filename="../src/optionsdialog.cpp" line="2314"/>
+        <location filename="../src/optionsdialog.cpp" line="2826"/>
         <source>Select Style Sheet File</source>
         <translation>スタイルシートファイルの選択</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2832"/>
-        <location filename="../src/optionsdialog.cpp" line="2861"/>
+        <location filename="../src/optionsdialog.cpp" line="2835"/>
+        <location filename="../src/optionsdialog.cpp" line="2864"/>
         <source>Open Directory...</source>
         <translation>ディレクトリを開く...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2842"/>
+        <location filename="../src/optionsdialog.cpp" line="2845"/>
         <source>Add site to whitelist</source>
         <translation>サイトをホワイトリストへ追加</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2843"/>
+        <location filename="../src/optionsdialog.cpp" line="2846"/>
         <source>Site without &apos;http://&apos; (ex. youtube.com)</source>
         <translation>サイト名に &apos;http://&apos; は付けないでください (例: youtube.com)</translation>
     </message>
@@ -4129,17 +4134,17 @@ Ancient news could reappear</source>
 <context>
     <name>QAbstractSpinBox</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5109"/>
+        <location filename="../src/application/mainwindow.cpp" line="5100"/>
         <source>&amp;Step up</source>
         <translation>ステップアップ(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5110"/>
+        <location filename="../src/application/mainwindow.cpp" line="5101"/>
         <source>Step &amp;down</source>
         <translation>ステップダウン(&amp;D)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5111"/>
+        <location filename="../src/application/mainwindow.cpp" line="5102"/>
         <source>&amp;Select All</source>
         <translation>すべて選択(&amp;S)</translation>
     </message>
@@ -4147,22 +4152,22 @@ Ancient news could reappear</source>
 <context>
     <name>QDialogButtonBox</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5087"/>
+        <location filename="../src/application/mainwindow.cpp" line="5078"/>
         <source>Close</source>
         <translation>閉じる</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5088"/>
+        <location filename="../src/application/mainwindow.cpp" line="5079"/>
         <source>Cancel</source>
         <translation>キャンセル</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5089"/>
+        <location filename="../src/application/mainwindow.cpp" line="5080"/>
         <source>&amp;Yes</source>
         <translation>はい(&amp;Y)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5090"/>
+        <location filename="../src/application/mainwindow.cpp" line="5081"/>
         <source>&amp;No</source>
         <translation>いいえ(&amp;N)</translation>
     </message>
@@ -4276,37 +4281,37 @@ Ancient news could reappear</source>
 <context>
     <name>QLineEdit</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5092"/>
+        <location filename="../src/application/mainwindow.cpp" line="5083"/>
         <source>&amp;Undo</source>
         <translation>元に戻す(&amp;U)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5093"/>
+        <location filename="../src/application/mainwindow.cpp" line="5084"/>
         <source>&amp;Redo</source>
         <translation>やり直す(&amp;R)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5094"/>
+        <location filename="../src/application/mainwindow.cpp" line="5085"/>
         <source>Cu&amp;t</source>
         <translation>切り取り(&amp;T)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5095"/>
+        <location filename="../src/application/mainwindow.cpp" line="5086"/>
         <source>&amp;Copy</source>
         <translation>コピー(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5096"/>
+        <location filename="../src/application/mainwindow.cpp" line="5087"/>
         <source>&amp;Paste</source>
         <translation>貼り付け(&amp;P)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5097"/>
+        <location filename="../src/application/mainwindow.cpp" line="5088"/>
         <source>Delete</source>
         <translation>削除</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5098"/>
+        <location filename="../src/application/mainwindow.cpp" line="5089"/>
         <source>Select All</source>
         <translation>すべて選択</translation>
     </message>
@@ -4314,7 +4319,7 @@ Ancient news could reappear</source>
 <context>
     <name>QMultiInputContext</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5113"/>
+        <location filename="../src/application/mainwindow.cpp" line="5104"/>
         <source>Select IM</source>
         <translation>IM の選択</translation>
     </message>
@@ -4322,17 +4327,17 @@ Ancient news could reappear</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/downloads/downloadmanager.cpp" line="177"/>
+        <location filename="../src/downloads/downloadmanager.cpp" line="178"/>
         <source>Cannot start external program</source>
         <translation>外部プログラムを起動できません</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloadmanager.cpp" line="178"/>
+        <location filename="../src/downloads/downloadmanager.cpp" line="179"/>
         <source>Cannot start external program! %1</source>
         <translation>外部プログラムを起動できません! %1</translation>
     </message>
     <message>
-        <location filename="../src/database/database.cpp" line="259"/>
+        <location filename="../src/database/database.cpp" line="261"/>
         <source>Error</source>
         <translation>エラー</translation>
     </message>
@@ -4340,42 +4345,42 @@ Ancient news could reappear</source>
 <context>
     <name>QTextControl</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5100"/>
+        <location filename="../src/application/mainwindow.cpp" line="5091"/>
         <source>&amp;Undo</source>
         <translation>元に戻す(&amp;U)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5101"/>
+        <location filename="../src/application/mainwindow.cpp" line="5092"/>
         <source>&amp;Redo</source>
         <translation>やり直す(&amp;R)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5102"/>
+        <location filename="../src/application/mainwindow.cpp" line="5093"/>
         <source>Cu&amp;t</source>
         <translation>切り取り(&amp;T)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5103"/>
+        <location filename="../src/application/mainwindow.cpp" line="5094"/>
         <source>&amp;Copy</source>
         <translation>コピー(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5104"/>
+        <location filename="../src/application/mainwindow.cpp" line="5095"/>
         <source>&amp;Paste</source>
         <translation>貼り付け(&amp;P)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5105"/>
+        <location filename="../src/application/mainwindow.cpp" line="5096"/>
         <source>Delete</source>
         <translation>削除</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5106"/>
+        <location filename="../src/application/mainwindow.cpp" line="5097"/>
         <source>Select All</source>
         <translation>すべて選択</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5107"/>
+        <location filename="../src/application/mainwindow.cpp" line="5098"/>
         <source>Copy &amp;Link Location</source>
         <translation>リンクの場所をコピー(&amp;L)</translation>
     </message>
@@ -4383,22 +4388,22 @@ Ancient news could reappear</source>
 <context>
     <name>QWizard</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5115"/>
+        <location filename="../src/application/mainwindow.cpp" line="5106"/>
         <source>Cancel</source>
         <translation>キャンセル</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5116"/>
+        <location filename="../src/application/mainwindow.cpp" line="5107"/>
         <source>&lt; &amp;Back</source>
         <translation>&lt; 前(&amp;B)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5117"/>
+        <location filename="../src/application/mainwindow.cpp" line="5108"/>
         <source>&amp;Finish</source>
         <translation>完了(&amp;F)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5118"/>
+        <location filename="../src/application/mainwindow.cpp" line="5109"/>
         <source>&amp;Next &gt;</source>
         <translation>次(&amp;N) &gt;</translation>
     </message>
@@ -4414,22 +4419,22 @@ Ancient news could reappear</source>
 <context>
     <name>RequestFeed</name>
     <message>
-        <location filename="../src/requestfeed.cpp" line="230"/>
+        <location filename="../src/requestfeed.cpp" line="228"/>
         <source>Server requires authentication!</source>
         <translation>サーバーが認証を要求しています!</translation>
     </message>
     <message>
-        <location filename="../src/requestfeed.cpp" line="232"/>
+        <location filename="../src/requestfeed.cpp" line="230"/>
         <source>Server replied: Not Found!</source>
         <translation>サーバーの応答: 見つかりませんでした!</translation>
     </message>
     <message>
-        <location filename="../src/requestfeed.cpp" line="275"/>
+        <location filename="../src/requestfeed.cpp" line="273"/>
         <source>Redirect error!</source>
         <translation>リダイレクトエラーです!</translation>
     </message>
     <message>
-        <location filename="../src/requestfeed.cpp" line="357"/>
+        <location filename="../src/requestfeed.cpp" line="355"/>
         <source>Request timeout!</source>
         <translation>リクエストタイムアウトです!</translation>
     </message>
