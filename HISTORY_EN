@@ -2,6 +2,16 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
+<p><b>Version 0.18.11</b> (31 May 2018)
+<ul>
+<li>Added: Notifications. Option "Close notification after opening news"</li>
+<li>Added: Support for Youtube feeds</li>
+
+<li>Changed: SQLite 3.23.1</li>
+<li>Changed: OpenSSL 1.0.2o (Windows)</li>
+<li>Changed: Folder property. Option "RTL" for all feeds in folder</li>
+</ul>
+<!---------------------------------------------------------------------------->
 <p><b>Version 0.18.10</b> (16 Apr 2018)
 <ul>
 <li>Added: Shortcut "Search Feed"</li>
