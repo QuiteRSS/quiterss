@@ -68,7 +68,7 @@ private slots:
   void downloadRequested(const QNetworkRequest &request);
   void cleanBlockedObjects();
   void urlChanged(const QUrl &url);
-#if QT_VERSION >= 0x050900
+#if QT_VERSION >= 0x050905
   void slotFullScreenRequested(QWebFullScreenRequest fullScreenRequest);
 #endif
 
