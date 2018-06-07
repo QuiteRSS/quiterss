@@ -227,7 +227,7 @@ void Database::initialization()
     setPragma(db);
 
     if (mainApp->storeDBMemory()) {
-      sqliteDBMemFile(false);
+      sqliteDBMemFile(db, false);
     }
   }
 }
@@ -427,13 +427,13 @@ QSqlDatabase Database::connection(const QString &connectionName)
   return db;
 }
 
-void Database::sqliteDBMemFile(bool save)
+void Database::sqliteDBMemFile(QSqlDatabase &db, bool save)
 {
   if (save) qWarning() << "sqliteDBMemFile(): from memory to file...";
   else qWarning() << "sqliteDBMemFile(): from file to memory...";
 
   int rc = -1;                   /* Function return code */
-  QVariant v = QSqlDatabase::database().driver()->handle();
+  QVariant v = db.driver()->handle();
   if (v.isValid() && qstrcmp(v.typeName(),"sqlite3*") == 0) {
     // v.data() returns a pointer to the handle
     sqlite3 *handle = *static_cast<sqlite3 **>(v.data());

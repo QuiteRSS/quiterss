@@ -312,6 +312,7 @@ public slots:
   void slotPrintPreview(QWebFrame* frame = 0);
 
 signals:
+  void signalQuitApp();
   void signalPlaceToTray();
   void signalGetFeedTimer(int feedId);
   void signalGetAllFeedsTimer();

@@ -28,7 +28,7 @@ public:
   static int version();
   static void initialization();
   static QSqlDatabase connection(const QString &connectionName = QString());
-  static void sqliteDBMemFile(bool save = true);
+  static void sqliteDBMemFile(QSqlDatabase &db, bool save = true);
   static void setVacuum();
 
 private:

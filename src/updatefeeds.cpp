@@ -183,6 +183,11 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool addFeed)
     connect(updateObject_, SIGNAL(signalIconUpdate(int,QByteArray)),
             parent, SLOT(slotIconFeedUpdate(int,QByteArray)));
 
+    connect(parent, SIGNAL(signalQuitApp()),
+            updateObject_, SLOT(quitApp()));
+    connect(this, SIGNAL(signalSaveMemoryDatabase()),
+            updateObject_, SLOT(saveMemoryDatabase()));
+
     updateObject_->moveToThread(updateFeedThread_);
     faviconObject_->moveToThread(getFaviconThread_);
 
@@ -255,12 +260,7 @@ void UpdateFeeds::saveMemoryDatabase()
   if (!mainApp->storeDBMemory()) return;
   if (updateObject_->isSaveMemoryDatabase) return;
 
-  QTimer::singleShot(100, updateObject_, SLOT(saveMemoryDatabase()));
-}
-
-void UpdateFeeds::quitApp()
-{
-  QTimer::singleShot(0, updateObject_, SLOT(quitApp()));
+  emit signalSaveMemoryDatabase();
 }
 
 //------------------------------------------------------------------------------
@@ -745,7 +745,7 @@ void UpdateObject::slotRecountFeedCounts(int feedId, bool updateViewport)
   } else {
     bool changed = false;
     QList<int> idParList;
-    QList<int> idList = getIdFeedsInList(feedId);
+    QList<int> idList = getIdFeedsInList(db_, feedId);
     if (idList.count()) {
       foreach (int id, idList) {
         int parId = 0;
@@ -894,7 +894,7 @@ void UpdateObject::slotRecountFeedCounts(int feedId, bool updateViewport)
  *---------------------------------------------------------------------------*/
 QString UpdateObject::getIdFeedsString(int idFolder, int idException)
 {
-  QList<int> idList = getIdFeedsInList(idFolder);
+  QList<int> idList = getIdFeedsInList(db_, idFolder);
   if (idList.count()) {
     QString str;
     foreach (int id, idList) {
@@ -910,12 +910,12 @@ QString UpdateObject::getIdFeedsString(int idFolder, int idException)
 
 /** @brief Get feeds ids list of folder \a idFolder
  *---------------------------------------------------------------------------*/
-QList<int> UpdateObject::getIdFeedsInList(int idFolder)
+QList<int> UpdateObject::getIdFeedsInList(QSqlDatabase &db, int idFolder)
 {
   QList<int> idList;
   if (idFolder <= 0) return idList;
 
-  QSqlQuery q;
+  QSqlQuery q(db);
   QQueue<int> parentIds;
   parentIds.enqueue(idFolder);
   while (!parentIds.empty()) {
@@ -1188,7 +1188,7 @@ void UpdateObject::slotRefreshInfoTray()
 void UpdateObject::saveMemoryDatabase()
 {
   isSaveMemoryDatabase = true;
-  Database::sqliteDBMemFile();
+  Database::sqliteDBMemFile(db_);
   isSaveMemoryDatabase = false;
 }
 
@@ -1211,12 +1211,12 @@ void UpdateObject::cleanUpShutdown()
   bool optimizeDB = settings.value("optimizeDB", false).toBool();
   settings.endGroup();
 
-  QSqlQuery q;
-  QString qStr;
-
   if (!mainApp->storeDBMemory())
     db_ = QSqlDatabase::database();
   db_.transaction();
+
+  QSqlQuery q(db_);
+  QString qStr;
 
   q.exec("UPDATE news SET new=0 WHERE new==1");
   q.exec("UPDATE news SET read=2 WHERE read==1");
@@ -1261,7 +1261,7 @@ void UpdateObject::cleanUpShutdown()
 
         if (newsCleanUpOn && (countDelNews < (countAllNews - maxNewsCleanUp))) {
           qStr = QString("%1 WHERE id=='%2'").arg(qStr1).arg(newsId);
-          QSqlQuery qt;
+          QSqlQuery qt(db_);
           qt.exec(qStr);
           countDelNews++;
           continue;
@@ -1273,7 +1273,7 @@ void UpdateObject::cleanUpShutdown()
         if (dayCleanUpOn &&
             (dateTime.daysTo(QDateTime::currentDateTime()) > maxDayCleanUp)) {
           qStr = QString("%1 WHERE id=='%2'").arg(qStr1).arg(newsId);
-          QSqlQuery qt;
+          QSqlQuery qt(db_);
           qt.exec(qStr);
           countDelNews++;
           continue;
@@ -1281,7 +1281,7 @@ void UpdateObject::cleanUpShutdown()
 
         if (readCleanUp) {
           qStr = QString("%1 WHERE read!=0 AND id=='%2'").arg(qStr1).arg(newsId);
-          QSqlQuery qt;
+          QSqlQuery qt(db_);
           qt.exec(qStr);
           countDelNews++;
         }

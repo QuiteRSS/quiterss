@@ -193,7 +193,7 @@ CleanUpThread::~CleanUpThread()
   if (!mainApp->storeDBMemory()) {
     db.exec("VACUUM");
   } else {
-    Database::sqliteDBMemFile();
+    Database::sqliteDBMemFile(db);
     Database::setVacuum();
   }
 }

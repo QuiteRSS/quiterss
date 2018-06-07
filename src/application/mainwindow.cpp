@@ -173,7 +173,7 @@ void MainWindow::quitApp()
 
   mainApp->networkManager()->disconnect(mainApp->networkManager());
   mainApp->updateFeeds()->disconnectObjects();
-  mainApp->updateFeeds()->quitApp();
+  emit signalQuitApp();
 }
 
 // ---------------------------------------------------------------------------
@@ -4134,7 +4134,7 @@ void MainWindow::slotGetFeed()
   foreach (QModelIndex indexProxy, indexList) {
     QModelIndex index = feedsProxyModel_->mapToSource(indexProxy);
     if (feedsModel_->isFolder(index)) {
-      QList<int> list = UpdateObject::getIdFeedsInList(feedsModel_->dataField(index, "id").toInt());
+      QList<int> list = UpdateObject::getIdFeedsInList(db_, feedsModel_->dataField(index, "id").toInt());
       foreach (int idFeed, list) {
         if (!idList.contains(idFeed)) {
           idList.append(idFeed);
@@ -4549,7 +4549,7 @@ void MainWindow::markFeedRead()
       if (currentNewsTab->feedId_ == id) {
         isFolder = true;
       }
-      QList<int> list = UpdateObject::getIdFeedsInList(id);
+      QList<int> list = UpdateObject::getIdFeedsInList(db_, id);
       foreach (int id1, list) {
         QModelIndex index1 = feedsModel_->indexById(id1);
         QModelIndex indexUnread = feedsModel_->indexSibling(index1, "unread");
@@ -7780,7 +7780,7 @@ void MainWindow::prevUnreadNews()
  *---------------------------------------------------------------------------*/
 QString MainWindow::getIdFeedsString(int idFolder, int idException)
 {
-  QList<int> idList = UpdateObject::getIdFeedsInList(idFolder);
+  QList<int> idList = UpdateObject::getIdFeedsInList(db_, idFolder);
   if (idList.count()) {
     QString str;
     foreach (int id, idList) {

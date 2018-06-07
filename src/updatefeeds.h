@@ -50,7 +50,9 @@ public:
 
 public slots:
   void saveMemoryDatabase();
-  void quitApp();
+
+signals:
+  void signalSaveMemoryDatabase();
 
 private:
   bool addFeed_;
@@ -65,8 +67,7 @@ public:
   explicit UpdateObject(QObject *parent = 0);
   ~UpdateObject();
 
-  static QList<int> getIdFeedsInList(int idFolder);
-  static QString getIdFeedsString(int idFolder, int idException = -1);
+  static QList<int> getIdFeedsInList(QSqlDatabase &db, int idFolder);
 
   bool isSaveMemoryDatabase;
 
@@ -125,6 +126,8 @@ private slots:
                       const QDateTime &date, int auth);
 
 private:
+  QString getIdFeedsString(int idFolder, int idException = -1);
+
   MainWindow *mainWindow_;
   QSqlDatabase db_;
   QList<int> feedIdList_;
