@@ -66,12 +66,6 @@ MainApplication::MainApplication(int &argc, char **argv)
   setWindowIcon(QIcon(":/images/quiterss128"));
   setQuitOnLastWindowClosed(false);
   QSettings::setDefaultFormat(QSettings::IniFormat);
-#if QT_VERSION >= 0x050400
-  QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
-#endif
-#if QT_VERSION >= 0x050600
-  QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-#endif
 
   checkPortable();
 

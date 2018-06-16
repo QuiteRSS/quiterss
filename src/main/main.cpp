@@ -30,6 +30,13 @@ int main(int argc, char **argv)
 #endif
   }
 
+#if QT_VERSION >= 0x050600
+  QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+#elif QT_VERSION >= 0x050400
+  QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
+  qputenv("QT_DEVICE_PIXEL_RATIO", "auto");
+#endif
+
   MainApplication app(argc, argv);
 
   if (app.isClosing())
