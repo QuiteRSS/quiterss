@@ -99,6 +99,7 @@ void FaviconObject::getQueuedUrl()
     feedUrl = feedsQueue_.dequeue();
 
     QUrl url = QUrl::fromEncoded(urlString.toUtf8());
+    url.setUrl(QString("%1://%2").arg(url.scheme()).arg(url.host()));
     if (!url.isValid()) {
       url = QUrl::fromEncoded(feedUrl.toUtf8());
       url.setUrl(QString("%1://%2").arg(url.scheme()).arg(url.host()));
@@ -115,7 +116,6 @@ void FaviconObject::slotGet(const QUrl &getUrl, const QString &feedUrl, const in
   QString userAgent = QString("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/%1 (KHTML, like Gecko) QuiteRSS/%2 Safari/%1").
       arg(qWebKitVersion()).arg(STRPRODUCTVER);
   request.setRawHeader("User-Agent", userAgent.toUtf8());
-  request.setRawHeader("Accept-Language", "en-us,en");
 
   currentUrls_.append(getUrl);
   currentFeeds_.append(feedUrl);
@@ -142,9 +142,13 @@ void FaviconObject::finished(QNetworkReply *reply)
     if ((reply->error() == QNetworkReply::NoError) || (reply->error() == QNetworkReply::UnknownContentError)) {
       QUrl redirectionTarget = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
       if (redirectionTarget.isValid()) {
-        if ((cntRequests == 0) || (cntRequests == 1)) {
-          if (redirectionTarget.host().isNull())
-            redirectionTarget.setUrl("http://"+url.host()+"/"+redirectionTarget.toString());
+        if ((cntRequests == 0) || (cntRequests == 1) || (cntRequests == 3)) {
+          if (redirectionTarget.host().isNull()) {
+            if (redirectionTarget.toString().left(1) == "/")
+              redirectionTarget.setUrl(url.scheme()+"://"+url.host()+redirectionTarget.toString());
+            else
+              redirectionTarget.setUrl(url.scheme()+"://"+url.host()+"/"+redirectionTarget.toString());
+          }
           emit signalGet(redirectionTarget, feedUrl, cntRequests+2);
         }
       } else {
@@ -154,11 +158,11 @@ void FaviconObject::finished(QNetworkReply *reply)
             QString linkFavicon;
             QString str = QString::fromUtf8(data);
             if (str.contains("<html", Qt::CaseInsensitive)) {
-              QzRegExp rx("<link[^>]+rel=['\"]icon['\"][^>]+>",
+              QzRegExp rx("<link[^>]+rel=['\"]shortcut icon['\"][^>]+>",
                           Qt::CaseInsensitive);
               int pos = rx.indexIn(str);
               if (pos == -1) {
-                rx = QzRegExp("<link[^>]+rel=['\"]shortcut icon['\"][^>]+>",
+                rx = QzRegExp("<link[^>]+rel=['\"]icon['\"][^>]+>",
                               Qt::CaseInsensitive);
                 pos = rx.indexIn(str);
               }
