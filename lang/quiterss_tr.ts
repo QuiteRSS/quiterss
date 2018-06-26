@@ -356,7 +356,7 @@
         <location filename="../src/addfeedwizard.cpp" line="521"/>
         <location filename="../src/addfeedwizard.cpp" line="543"/>
         <source>Can&apos;t find feed URL!</source>
-        <translation>URL kaynağı bulunamadı !</translation>
+        <translation>Bağlantı kaynağı bulunamadı!</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="562"/>
@@ -571,7 +571,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="37"/>
         <source>Customize Feeds Toolbar</source>
-        <translation>Kaynaklar Şeritini Biçimlendir</translation>
+        <translation>Kaynaklar Araç Çubuğunu Biçimlendir</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="40"/>
@@ -862,7 +862,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="59"/>
         <source>Feed URL:</source>
-        <translation>Kaynak URL:</translation>
+        <translation>Kaynak bağlantısı:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="66"/>
@@ -1007,7 +1007,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="321"/>
         <source>Feeds count:</source>
-        <translation>Besleme sayısı:</translation>
+        <translation>Kaynak sayısı:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="324"/>
@@ -1627,7 +1627,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4861"/>
         <source>Mark All Feeds Read</source>
-        <translation>Haberleri okundu olarak işaretle</translation>
+        <translation>Tüm kaynakları okundu olarak işaretle</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4863"/>
@@ -1709,7 +1709,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4884"/>
         <source>Show Not Working Feeds</source>
-        <translation>Çalışmayan Beslemeleri Göster</translation>
+        <translation>Çalışmayan Kaynakları Göster</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4886"/>
@@ -1925,7 +1925,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4831"/>
         <source>Add Feed...</source>
-        <translation>Besleme ekle...</translation>
+        <translation>Kaynak Ekle...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4847"/>
@@ -1941,7 +1941,7 @@ adlı dosya bulunamadı!</translation>
         <location filename="../src/application/mainwindow.cpp" line="4858"/>
         <location filename="../src/application/mainwindow.cpp" line="4859"/>
         <source>Stop Update Feeds</source>
-        <translation>Beslemeleri Güncellemeyi Durdur</translation>
+        <translation>Kaynakları Güncellemeyi Durdur</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4903"/>
@@ -2007,7 +2007,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4941"/>
         <source>Feeds Toolbar...</source>
-        <translation>Kaynak Şeriti...</translation>
+        <translation>Kaynak Araç Çubuğu...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4942"/>
@@ -2113,12 +2113,12 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4969"/>
         <source>Previous Feed</source>
-        <translation>Önceki kaynak</translation>
+        <translation>Önceki Kaynak</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4970"/>
         <source>Next Feed</source>
-        <translation>Sonraki kaynak</translation>
+        <translation>Sonraki Kaynak</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4971"/>
@@ -2158,7 +2158,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4981"/>
         <source>Switch Focus to Next Panel (Tree Feeds, List News, Browser)</source>
-        <translation>Sonraki Panele Odak Geçiş (Kaynaklar Ağacı,Haberler Listesi,Tarayıcı)</translation>
+        <translation>Sonraki Panele Odak Geçiş (Kaynak Ağacı, Haberler Listesi, Tarayıcı)</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4982"/>
@@ -2168,7 +2168,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4984"/>
         <source>Switch Focus to Previous Panel (Tree Feeds, Browser, List News)</source>
-        <translation>Önceki Panele Odak Geçiş (Kaynaklar Ağacı,Haberler Listesi,Tarayıcı)</translation>
+        <translation>Önceki Panele Odak Geçiş (Kaynak Ağacı, Haberler Listesi, Tarayıcı)</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4986"/>
@@ -2199,7 +2199,7 @@ adlı dosya bulunamadı!</translation>
         <location filename="../src/application/mainwindow.cpp" line="4998"/>
         <location filename="../src/application/mainwindow.cpp" line="4999"/>
         <source>Search Feed</source>
-        <translation>Kaynak ara</translation>
+        <translation>Kaynak Ara</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5001"/>
@@ -2269,7 +2269,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5024"/>
         <source>Feeds Toolbar</source>
-        <translation>Kaynak Şeriti</translation>
+        <translation>Kaynak Araç Çubuğu</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5025"/>
@@ -2382,7 +2382,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5062"/>
         <source>Open Homepage Feed</source>
-        <translation>Anasayfa Kaynaklarını Aç</translation>
+        <translation>Anasayfa Kaynağını Aç</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5063"/>
@@ -2688,7 +2688,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/newsview/newsmodel.cpp" line="163"/>
         <source>(no title)</source>
-        <translation type="unfinished"/>
+        <translation>(başlık yok)</translation>
     </message>
 </context>
 <context>
@@ -2782,17 +2782,17 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/newstabwidget.cpp" line="617"/>
         <source>Auto Load Images to News View</source>
-        <translation type="unfinished"/>
+        <translation>Haberleri görüntülediğinde resimleri otomatik yükle</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="619"/>
         <source>No Load Images</source>
-        <translation type="unfinished"/>
+        <translation>Yüklenecek resim yok</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="620"/>
         <source>No Load Images to News View</source>
-        <translation type="unfinished"/>
+        <translation>Haber görüntülemesinde resim bulunamadı</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="625"/>
@@ -2802,7 +2802,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/newstabwidget.cpp" line="638"/>
         <source>Auto Load Images in News View</source>
-        <translation type="unfinished"/>
+        <translation>Haberleri görüntülediğinde resimleri otomatik yükle</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="641"/>
@@ -2812,7 +2812,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/newstabwidget.cpp" line="642"/>
         <source>Don&apos;t Load Images in News View</source>
-        <translation type="unfinished"/>
+        <translation>Haber Görünümünde Resimleri Yükleme</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1438"/>
@@ -2873,7 +2873,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1796"/>
         <source>Open News in External Browser</source>
-        <translation>Haber Başlıklarını Harici Tarayıcıda Aç</translation>
+        <translation>Haber Başlıklarını Dış Tarayıcıda Aç</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1800"/>
@@ -3008,7 +3008,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="294"/>
         <source>Hide feeds tree when opening tabs</source>
-        <translation>Sekme açılınca kaynaklar ağacını gizle</translation>
+        <translation>Sekme açılırken kaynak ağacını gizle</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="296"/>
@@ -3023,7 +3023,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="298"/>
         <source>Show close button on tab</source>
-        <translation type="unfinished"/>
+        <translation>Kapat butonunu sekmede göster</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="300"/>
@@ -3033,7 +3033,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="301"/>
         <source>Help improve QuiteRSS by sending usage information</source>
-        <translation type="unfinished"/>
+        <translation>Kullanım bilgilerini göndererek QuiteRSS&apos;i geliştirmeye yardımcı olun</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="302"/>
@@ -3043,7 +3043,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="309"/>
         <source>Save DB stored in memory to file every</source>
-        <translation type="unfinished"/>
+        <translation>Bellekte saklanan DB&apos;yi dosyaya tamamıyla kaydedin</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="311"/>
@@ -3159,12 +3159,12 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="483"/>
         <source>Number of requests:</source>
-        <translation type="unfinished"/>
+        <translation>İstek sayısı:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="485"/>
         <source>Number of retries:</source>
-        <translation type="unfinished"/>
+        <translation>Yeniden deneme sayısı:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="488"/>
@@ -3225,12 +3225,12 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="522"/>
         <source>Open links in external browser in background (experimental)</source>
-        <translation>Dış tarayıcıda arkaplanda linkleri aç (Henüz deney halinde)</translation>
+        <translation>Linkleri dış tarayıcıda arkaplanda aç (deneysel)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="548"/>
         <source>Default zoom on pages:</source>
-        <translation type="unfinished"/>
+        <translation>Varsayılan yakınlaştırma:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="566"/>
@@ -3397,7 +3397,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="845"/>
         <source>Alternating row background colors</source>
-        <translation>Satır arkaplanlarına alternatif renkler</translation>
+        <translation>Alternatif satır arkaplan renkleri</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="846"/>
@@ -3447,7 +3447,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="890"/>
         <source>Style sheet for news:</source>
-        <translation type="unfinished"/>
+        <translation>Haberler için stil:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="903"/>
@@ -3467,12 +3467,12 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="936"/>
         <source>Mark displayed news as read when switching feeds</source>
-        <translation>Başka habere geçince görüntülendi olarak işaretle</translation>
+        <translation>Başka habere geçince okundu olarak işaretle</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="937"/>
         <source>Mark displayed news as read when closing tab</source>
-        <translation>Ekranı kapatınca görüntülendi olarak işaretle</translation>
+        <translation>Sekmeyi kapatınca okundu olarak işaretle</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="938"/>
@@ -3587,7 +3587,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1105"/>
         <source>Show when inactive main window</source>
-        <translation type="unfinished"/>
+        <translation>Ana pencere aktif değilken göster</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1121"/>
@@ -3622,7 +3622,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1149"/>
         <source>Show button &apos;Open in External Browser&apos;</source>
-        <translation type="unfinished"/>
+        <translation>&apos;Dış Tarayıcıda Aç&apos; butonunu göster</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1150"/>
@@ -3682,12 +3682,12 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1136"/>
         <source>item on page notification</source>
-        <translation type="unfinished"/>
+        <translation>Uyarı ekranındaki nesneler</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1137"/>
         <source>Width list items</source>
-        <translation type="unfinished"/>
+        <translation>Haber listesi nesneleri</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1139"/>
@@ -3712,7 +3712,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1106"/>
         <source>Close notification after opening news</source>
-        <translation type="unfinished"/>
+        <translation>Uyarı ekranını haberi açtıktan sonra kapat</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1160"/>
@@ -3865,7 +3865,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1687"/>
         <source>Focused news background color</source>
-        <translation>Odaklanılmış haber arkaplanları rengi</translation>
+        <translation>Odaklanılmış haber arkaplan rengi</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1690"/>
@@ -3910,7 +3910,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1714"/>
         <source>Count of unread news in feeds tree</source>
-        <translation type="unfinished"/>
+        <translation>Kaynak ağacındaki okunmamış haber sayısı</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1729"/>
@@ -3920,7 +3920,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1732"/>
         <source>Alternating row colors</source>
-        <translation type="unfinished"/>
+        <translation>Alternatif satır renkleri</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1735"/>
@@ -3935,7 +3935,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2130"/>
         <source>Auto load images in news view</source>
-        <translation type="unfinished"/>
+        <translation>Haberleri görüntülediğinde resimleri otomatik yükle</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1717"/>
@@ -3945,27 +3945,27 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="295"/>
         <source>Show feeds tree toggle</source>
-        <translation type="unfinished"/>
+        <translation>Kaynak ağacı geçişlerini göster</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="386"/>
         <source>Clear new status when minimize to tray</source>
-        <translation type="unfinished"/>
+        <translation>Simge durumuna küçültünce yeni durumları temizle</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="779"/>
         <source>Set focus on the last opened news</source>
-        <translation type="unfinished"/>
+        <translation>Son açılan haberlere odaklan</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="780"/>
         <source>Set focus at the top of news list</source>
-        <translation type="unfinished"/>
+        <translation>Haber listesinin başına odaklan</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="781"/>
         <source>Set focus on the unread news</source>
-        <translation type="unfinished"/>
+        <translation>Okunmamış haberlere odaklan</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="782"/>
@@ -3995,12 +3995,12 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1723"/>
         <source>Focused feed color</source>
-        <translation type="unfinished"/>
+        <translation>Odaklanılmış besleme rengi</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1726"/>
         <source>Focused feed background color</source>
-        <translation type="unfinished"/>
+        <translation>Odaklanılmış besleme arkaplan rengi</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1774"/>
@@ -4412,7 +4412,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/requestfeed.cpp" line="228"/>
         <source>Server requires authentication!</source>
-        <translation type="unfinished"/>
+        <translation>Sunucu yetkilendirme talep ediyor!</translation>
     </message>
     <message>
         <location filename="../src/requestfeed.cpp" line="230"/>
@@ -4445,17 +4445,17 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="637"/>
         <source>Unable to begin transaction</source>
-        <translation type="unfinished"/>
+        <translation>İşlem başlatılamıyor</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="652"/>
         <source>Unable to commit transaction</source>
-        <translation type="unfinished"/>
+        <translation>İşlemine katılım sağlanamıyor</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="667"/>
         <source>Unable to rollback transaction</source>
-        <translation type="unfinished"/>
+        <translation>İşlem geri alınamıyor</translation>
     </message>
 </context>
 <context>
@@ -4465,37 +4465,37 @@ adlı dosya bulunamadı!</translation>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="286"/>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="294"/>
         <source>Unable to fetch row</source>
-        <translation type="unfinished"/>
+        <translation>Satır alınamıyor</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="224"/>
         <source>No query</source>
-        <translation>Sorgusuz</translation>
+        <translation>Sorgu yok</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="368"/>
         <source>Unable to execute statement</source>
-        <translation type="unfinished"/>
+        <translation>İşlem yürütülemiyor</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="373"/>
         <source>Unable to execute multiple statements at a time</source>
-        <translation type="unfinished"/>
+        <translation>Çoklu işlem bir arada yürütülemiyor</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="393"/>
         <source>Unable to reset statement</source>
-        <translation type="unfinished"/>
+        <translation>İşlem yeniden başlatılamıyor</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="438"/>
         <source>Unable to bind parameters</source>
-        <translation type="unfinished"/>
+        <translation>Parametreler yürütülemiyor</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="445"/>
         <source>Parameter count mismatch</source>
-        <translation type="unfinished"/>
+        <translation>Parametre sayısı uyuşmazlığı</translation>
     </message>
 </context>
 <context>
@@ -4521,12 +4521,12 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/updateappdialog.cpp" line="45"/>
         <source>Checking for updates...</source>
-        <translation>Güncelleme Kontrol Ediliyor...</translation>
+        <translation>Güncelleme kontrol ediliyor...</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="50"/>
         <source>Loading history...</source>
-        <translation>Geçmiş Yükleniyor...</translation>
+        <translation>Geçmiş yükleniyor...</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="53"/>
@@ -4546,7 +4546,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/updateappdialog.cpp" line="140"/>
         <source>A new version of QuiteRSS is available!</source>
-        <translation>QuiteRSS&apos;nin yeni sürümü mevcut!</translation>
+        <translation>QuiteRSS&apos;in yeni sürümü mevcut!</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="143"/>
@@ -4556,12 +4556,12 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/updateappdialog.cpp" line="148"/>
         <source>Your version is:</source>
-        <translation>Sürümünüz:</translation>
+        <translation>Kullandığınız sürüm:</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="150"/>
         <source>Current version is:</source>
-        <translation>Mevcut sürümünüz:</translation>
+        <translation>Geçerli sürüm:</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="156"/>

@@ -147,7 +147,7 @@
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="122"/>
         <source>Use only essential part of EasyList (for performance reasons)</source>
-        <translation>Utilisez seulement une partie essentielle de EasyList (pour des raisons de performances)</translation>
+        <translation>Utiliser seulement une partie essentielle de EasyList (pour des raisons de performances)</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="74"/>
@@ -2906,7 +2906,7 @@ Les anciens articles pourraient réapparaître</translation>
     <message>
         <location filename="../src/notifications/notificationswidget.cpp" line="363"/>
         <source>Incoming News: %1</source>
-        <translation>Nouvelles en arrivées : %1</translation>
+        <translation>Nouvelles en arrivée : %1</translation>
     </message>
     <message>
         <location filename="../src/notifications/notificationswidget.cpp" line="368"/>
@@ -3712,7 +3712,7 @@ Les anciens articles pourraient réapparaître</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1106"/>
         <source>Close notification after opening news</source>
-        <translation type="unfinished"/>
+        <translation>Fermer la notification après ouverture de l&apos;article</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1160"/>
@@ -3822,7 +3822,7 @@ Les anciens articles pourraient réapparaître</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1638"/>
         <source>Notification font</source>
-        <translation>Police de notification</translation>
+        <translation>Police des notifications</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1645"/>

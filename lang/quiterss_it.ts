@@ -21,7 +21,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="54"/>
         <source>QuiteRSS is a open-source cross-platform RSS/Atom news reader</source>
-        <translation>QuiteRSS è un lettore di notizie RSS/Atom, open-source e multipiattaforma</translation>
+        <translation>QuiteRSS è un lettore di notizie RSS/Atom open-source e multipiattaforma</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="55"/>
@@ -314,7 +314,7 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="154"/>
         <source>Feed URL or website address:</source>
-        <translation>URL della fonte o indirizzo web:</translation>
+        <translation>URL della fonte o indirizzo del sito:</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="187"/>
@@ -3712,7 +3712,7 @@ Le notizie vecchie potrebbero riapparire.</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1106"/>
         <source>Close notification after opening news</source>
-        <translation type="unfinished"/>
+        <translation>Chiudi la notifica dopo l&apos;apertura delle notizie</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1160"/>

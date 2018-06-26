@@ -3710,7 +3710,7 @@ Staré správy sa môžu znova objaviť</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1106"/>
         <source>Close notification after opening news</source>
-        <translation type="unfinished"/>
+        <translation>Zatvoriť oznámenie po otvorení novinky</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1160"/>

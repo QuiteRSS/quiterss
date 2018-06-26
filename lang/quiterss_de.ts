@@ -3710,7 +3710,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1106"/>
         <source>Close notification after opening news</source>
-        <translation type="unfinished"/>
+        <translation>Popup schließen, wenn Nachricht geöffnet wurde</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1160"/>

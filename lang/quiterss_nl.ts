@@ -3712,7 +3712,7 @@ werd niet gevonden</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1106"/>
         <source>Close notification after opening news</source>
-        <translation type="unfinished"/>
+        <translation>Kennisgeving na het openen van nieuws sluiten</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1160"/>
