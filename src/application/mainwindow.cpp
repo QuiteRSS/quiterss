@@ -1447,6 +1447,12 @@ void MainWindow::createActions()
   redditShareAct_->setIcon(QIcon(":/share/images/share/reddit.ico"));
   shareGroup_->addAction(redditShareAct_);
 
+  hackerNewsShareAct_ = new QAction(this);
+  hackerNewsShareAct_->setObjectName("hackerNewsShareAct");
+  hackerNewsShareAct_->setText("HackerNews");
+  hackerNewsShareAct_->setIcon(QIcon(":/share/images/share/hackernews.png"));
+  shareGroup_->addAction(hackerNewsShareAct_);
+
   this->addActions(shareGroup_->actions());
   connect(shareGroup_, SIGNAL(triggered(QAction*)),
           this, SLOT(slotShareNews(QAction*)));

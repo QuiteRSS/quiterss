@@ -166,5 +166,6 @@
         <file>images/share/vk.png</file>
         <file>images/share/instapaper.png</file>
         <file>images/share/reddit.ico</file>
+        <file>images/share/hackernews.png</file>
     </qresource>
 </RCC>

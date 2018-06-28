@@ -2760,6 +2760,17 @@ void NewsTabWidget::slotShareNews(QAction *action)
         url.addQueryItem("url", linkString);
         url.addQueryItem("title", title);
 #endif
+      } else if (action->objectName() == "hackerNewsShareAct") {
+        url.setUrl("http://news.ycombinator.com/submitlink");
+#ifdef HAVE_QT5
+        QUrlQuery urlQuery;
+        urlQuery.addQueryItem("u", linkString);
+        urlQuery.addQueryItem("t", title);
+        url.setQuery(urlQuery);
+#else
+        url.addQueryItem("u", linkString);
+        url.addQueryItem("t", title);
+#endif
       }
 
       if (mainWindow_->externalBrowserOn_ <= 0) {
