@@ -2,6 +2,17 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
+<p><b>Version 0.18.12</b> (02 Jul 2018)
+<ul>
+<li>Added: Share. Hacker News</li>
+
+<li>Changed: Support for Qt 5.11 (Linux)</li>
+<li>Changed: High DPI support</li>
+<li>Changed: SQLite 3.24.0</li>
+
+<li>Fixed: Downloading feeds' icons for some feeds</li>
+</ul>
+<!---------------------------------------------------------------------------->
 <p><b>Version 0.18.11</b> (31 May 2018)
 <ul>
 <li>Added: Notifications. Option "Close notification after opening news"</li>
