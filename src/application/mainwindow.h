@@ -227,6 +227,8 @@ public:
   bool notDeleteStarred_;
   bool notDeleteLabeled_;
   bool markIdenticalNewsRead_;
+  bool avoidOldNews_;
+  QDate avoidedOldNewsDate_;
 
   bool autoLoadImages_;
   bool openLinkInBackground_;

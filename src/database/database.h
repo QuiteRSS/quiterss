@@ -36,6 +36,8 @@ private:
   static void createTables(QSqlDatabase &db);
   static void prepareDatabase();
   static void createLabels(QSqlDatabase &db);
+  static void addColumnsToFeedsTables(QSqlDatabase &db);
+
 
   static QStringList tablesList() {
     QStringList tables;

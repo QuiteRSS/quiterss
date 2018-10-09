@@ -156,6 +156,9 @@ public:
   QCheckBox *cleanUpDeleted_;
   QCheckBox *optimizeDB_;
 
+  QGroupBox *avoidedOldNewsDateOn_;
+  QCalendarWidget *avoidedOldNewsDate_;
+
   // labels
   QStringList idLabels_;
   QTreeWidget *labelsTree_;
@@ -281,6 +284,7 @@ private:
   QWidget *languageWidget_;
   QTabWidget *fontsColorsWidget_;
   QWidget *shortcutWidget_;
+  QWidget *avoidOldNewsWidget_;
 
   // general
   void createGeneralWidget();
