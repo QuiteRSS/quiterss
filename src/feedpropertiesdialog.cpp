@@ -19,8 +19,8 @@
 #include "feedpropertiesdialog.h"
 
 FeedPropertiesDialog::FeedPropertiesDialog(bool isFeed, QWidget *parent)
-    : Dialog(parent)
-    , isFeed_(isFeed)
+  : Dialog(parent)
+  , isFeed_(isFeed)
 {
     setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
     setWindowTitle(tr("Properties"));
