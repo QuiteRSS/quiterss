@@ -2053,6 +2053,8 @@ void MainWindow::loadSettings()
   notDeleteStarred_ = settings.value("notDeleteStarred", false).toBool();
   notDeleteLabeled_ = settings.value("notDeleteLabeled", false).toBool();
   markIdenticalNewsRead_ = settings.value("markIdenticalNewsRead", true).toBool();
+  avoidOldNews_ = settings.value("avoidOldNews", false).toBool();
+  avoidedOldNewsDate_ = settings.value("avoidedOldNewsDate").toDate();
 
   mainNewsFilter_ = settings.value("mainNewsFilter", "filterNewsAll_").toString();
 
@@ -2369,6 +2371,8 @@ void MainWindow::saveSettings()
   settings.setValue("notDeleteStarred", notDeleteStarred_);
   settings.setValue("notDeleteLabeled", notDeleteLabeled_);
   settings.setValue("markIdenticalNewsRead", markIdenticalNewsRead_);
+  settings.setValue("avoidOldNews", avoidOldNews_);
+  settings.setValue("avoidedOldNewsDate", avoidedOldNewsDate_);
 
   settings.setValue("mainNewsFilter", mainNewsFilter_);
 
@@ -3445,6 +3449,13 @@ void MainWindow::showOptionDlg(int index)
   optionsDialog_->notDeleteStarred_->setChecked(notDeleteStarred_);
   optionsDialog_->notDeleteLabeled_->setChecked(notDeleteLabeled_);
   optionsDialog_->markIdenticalNewsRead_->setChecked(markIdenticalNewsRead_);
+  optionsDialog_->avoidedOldNewsDateOn_->setChecked(avoidOldNews_);
+
+  if (!avoidedOldNewsDate_.isNull() && avoidedOldNewsDate_.isValid()) {
+    optionsDialog_->avoidedOldNewsDate_->setSelectedDate(avoidedOldNewsDate_);
+  } else {
+    optionsDialog_->avoidedOldNewsDate_->setSelectedDate(QDate::currentDate());
+  }
 
   for (int i = 0; i < optionsDialog_->mainNewsFilter_->count(); i++) {
     if (optionsDialog_->mainNewsFilter_->itemData(i).toString() == mainNewsFilter_) {
@@ -3880,6 +3891,13 @@ void MainWindow::showOptionDlg(int index)
   notDeleteStarred_ = optionsDialog_->notDeleteStarred_->isChecked();
   notDeleteLabeled_ = optionsDialog_->notDeleteLabeled_->isChecked();
   markIdenticalNewsRead_ = optionsDialog_->markIdenticalNewsRead_->isChecked();
+  avoidOldNews_ = optionsDialog_->avoidedOldNewsDateOn_->isChecked();
+
+  if (!optionsDialog_->avoidedOldNewsDate_->selectedDate().isNull() && optionsDialog_->avoidedOldNewsDate_->selectedDate().isValid()) {
+    avoidedOldNewsDate_ = optionsDialog_->avoidedOldNewsDate_->selectedDate();
+  } else {
+    avoidedOldNewsDate_ = QDate::currentDate();
+  }
 
   mainNewsFilter_ = optionsDialog_->mainNewsFilter_->itemData(
         optionsDialog_->mainNewsFilter_->currentIndex()).toString();
@@ -5298,6 +5316,15 @@ void MainWindow::showFeedPropertiesDlg()
   properties.general.duplicateNewsMode =
       feedsModel_->dataField(index, "duplicateNewsMode").toBool();
 
+  properties.general.addSingleNewsAnyDateOn =
+      feedsModel_->dataField(index, "addSingleNewsAnyDateOn").toBool();
+
+  properties.general.avoidedOldSingleNewsDateOn =
+      feedsModel_->dataField(index, "avoidedOldSingleNewsDateOn").toBool();
+
+  properties.general.avoidedOldSingleNewsDate =
+      feedsModel_->dataField(index, "avoidedOldSingleNewsDate").toDate();
+
   Settings settings;
   settings.beginGroup("NewsHeader");
   QString indexColumnsStr = settings.value("columns").toString();
@@ -5422,7 +5449,8 @@ void MainWindow::showFeedPropertiesDlg()
 
   q.prepare("UPDATE feeds SET text = ?, xmlUrl = ?, displayOnStartup = ?, "
             "displayEmbeddedImages = ?, displayNews = ?, layoutDirection = ?, "
-            "label = ?, duplicateNewsMode = ?, authentication = ?, disableUpdate = ?, "
+            "label = ?, duplicateNewsMode = ?, addSingleNewsAnyDateOn = ?, avoidedOldSingleNewsDateOn = ?, avoidedOldSingleNewsDate = ?,"
+            " authentication = ?, disableUpdate = ?, "
             "javaScriptEnable = ? WHERE id == ?");
   q.addBindValue(properties.general.text);
   q.addBindValue(properties.general.url);
@@ -5435,6 +5463,9 @@ void MainWindow::showFeedPropertiesDlg()
   else
     q.addBindValue("");
   q.addBindValue(properties.general.duplicateNewsMode ? 1 : 0);
+  q.addBindValue(properties.general.addSingleNewsAnyDateOn ? 1 : 0);
+  q.addBindValue(properties.general.avoidedOldSingleNewsDateOn ? 1 : 0);
+  q.addBindValue(properties.general.avoidedOldSingleNewsDate);
   q.addBindValue(properties.authentication.on ? 1 : 0);
   q.addBindValue(properties.general.disableUpdate ? 1 : 0);
   q.addBindValue(properties.display.javaScriptEnable);
@@ -5539,6 +5570,9 @@ void MainWindow::showFeedPropertiesDlg()
   QModelIndex indexRTL     = feedsModel_->indexSibling(index, "layoutDirection");
   QModelIndex indexLabel   = feedsModel_->indexSibling(index, "label");
   QModelIndex indexDuplicate = feedsModel_->indexSibling(index, "duplicateNewsMode");
+  QModelIndex indexaddSingleNewsAnyDateOn = feedsModel_->indexSibling(index, "addSingleNewsAnyDateOn");
+  QModelIndex indexavoidedOldSingleNewsDateOn = feedsModel_->indexSibling(index, "avoidedOldSingleNewsDateOn");
+  QModelIndex indexavoidedOldSingleNewsDate = feedsModel_->indexSibling(index, "avoidedOldSingleNewsDate");
   QModelIndex indexAuthentication = feedsModel_->indexSibling(index, "authentication");
   QModelIndex indexDisableUpdate = feedsModel_->indexSibling(index, "disableUpdate");
   QModelIndex indexJavaScript = feedsModel_->indexSibling(index, "javaScriptEnable");
@@ -5550,6 +5584,9 @@ void MainWindow::showFeedPropertiesDlg()
   feedsModel_->setData(indexRTL, properties.display.layoutDirection);
   feedsModel_->setData(indexLabel, properties.general.starred ? "starred" : "");
   feedsModel_->setData(indexDuplicate, properties.general.duplicateNewsMode ? 1 : 0);
+  feedsModel_->setData(indexaddSingleNewsAnyDateOn, properties.general.addSingleNewsAnyDateOn ? 1 : 0);
+  feedsModel_->setData(indexavoidedOldSingleNewsDateOn, properties.general.avoidedOldSingleNewsDateOn ? 1 : 0);
+  feedsModel_->setData(indexavoidedOldSingleNewsDate, properties.general.avoidedOldSingleNewsDate);
   feedsModel_->setData(indexAuthentication, properties.authentication.on ? 1 : 0);
   feedsModel_->setData(indexDisableUpdate, properties.general.disableUpdate ? 1 : 0);
   feedsModel_->setData(indexJavaScript, properties.display.javaScriptEnable);

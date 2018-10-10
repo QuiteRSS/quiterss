@@ -118,6 +118,9 @@ private:
   int parseFeedId_;
   bool duplicateNewsMode_;
   bool feedChanged_;
+  bool addSingleNewsAnyDate_;
+  bool avoidedOldSingleNews_;
+  QDate avoidedOldSingleNewsDate_;
 
   QStringList guidList_;
   QStringList linkList_;
