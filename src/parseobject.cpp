@@ -474,7 +474,7 @@ void ParseObject::addAtomNewsIntoBase(NewsItemStruct *newsItem)
    }
 
   // if duplicates not found and is old news, add them into base
-  if (isDuplicate == false and isOld == false) {
+  if (!isDuplicate && !isOld) {
     bool read = false;
     if (mainApp->mainWindow()->markIdenticalNewsRead_) {
       q.prepare("SELECT id FROM news WHERE title LIKE :title AND feedId!=:id");
@@ -754,7 +754,7 @@ void ParseObject::addRssNewsIntoBase(NewsItemStruct *newsItem)
    }
 
  // if duplicates not found And old news, add them into base
- if (isDuplicate == false and isOld == false) {
+ if (!isDuplicate && !isOld) {
     bool read = false;
     if (mainApp->mainWindow()->markIdenticalNewsRead_) {
       q.prepare("SELECT id FROM news WHERE title LIKE :title AND feedId!=:id");
