@@ -256,8 +256,12 @@ void RequestFeed::finished(QNetworkReply *reply)
             if (redirectionTarget.host().isEmpty()) {
               if (redirectionTarget.path() == ".") {
                 redirectionTarget.setUrl(replyUrl.scheme() + "://" + host + replyUrl.path());
-                if (!redirectionTarget.query().isEmpty()) {
-                  redirectionTarget.setQuery(redirectionTarget.query());
+                if (redirectionTarget.hasQuery()) {
+#if QT_VERSION >= 0x050000
+                    redirectionTarget.setQuery(redirectionTarget.query());
+#else
+                    redirectionTarget.setEncodedQuery(redirectionTarget.encodedQuery());
+#endif
                 }
               } else {
                 redirectionTarget.setUrl(replyUrl.scheme() + "://" + host + redirectionTarget.toString());
