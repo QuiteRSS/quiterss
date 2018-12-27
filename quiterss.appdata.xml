@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright (C) 2011-2015 QuiteRSS Team <quiterssteam@gmail.com> -->
-<application>
-  <id type="desktop">quiterss.desktop</id>
+<component type="desktop-application">
+  <id>org.quiterss.quiterss</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0+</project_license>
   <name>QuiteRSS</name>
@@ -15,10 +15,17 @@
     </p>
   </description>
   <screenshots>
-  <screenshot type="default" width="790" height="538">https://github.com/QuiteRSS/tools/raw/master/screenshots/screenshots01.png</screenshot>
-  <screenshot width="790" height="538">https://github.com/QuiteRSS/tools/raw/master/screenshots/screenshots02.png</screenshot>
-  <screenshot width="683" height="595">https://github.com/QuiteRSS/tools/raw/master/screenshots/screenshots07.png</screenshot>
+  <screenshot type="default">
+    <image width="790" height="538">https://github.com/QuiteRSS/tools/raw/master/screenshots/screenshots01.png</image>
+  </screenshot>
+  <screenshot>
+    <image width="790" height="538">https://github.com/QuiteRSS/tools/raw/master/screenshots/screenshots02.png</image>
+  </screenshot>
+  <screenshot>
+    <image width="683" height="595">https://github.com/QuiteRSS/tools/raw/master/screenshots/screenshots07.png</image>
+  </screenshot>
   </screenshots>
+  <launchable type="desktop-id">quiterss.desktop</launchable>
   <url type="homepage">https://quiterss.org</url>
-  <updatecontact>quiterssteam@gmail.com</updatecontact>
-</application>
+  <update_contact>quiterssteam@gmail.com</update_contact>
+</component>
