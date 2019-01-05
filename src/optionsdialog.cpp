@@ -795,6 +795,24 @@ void OptionsDialog::createFeedsWidget()
 
   markIdenticalNewsRead_ = new QCheckBox(tr("Automatically mark identical news as read"));
 
+  QFrame *hLine = new QFrame();
+  hLine->setFrameStyle(QFrame::HLine | QFrame::Sunken);
+
+  avoidedOldNewsDate_ = new QCalendarWidget();
+  avoidedOldNewsDate_->setFixedWidth(400);
+  avoidedOldNewsDate_->setSelectedDate(QDate::currentDate());
+  avoidedOldNewsDate_->setVerticalHeaderFormat(QCalendarWidget::NoVerticalHeader);
+  avoidedOldNewsDate_->setHorizontalHeaderFormat(QCalendarWidget::SingleLetterDayNames);
+  QHBoxLayout *avoidedOldNewsDateLayout = new QHBoxLayout();
+  avoidedOldNewsDateLayout->addWidget(avoidedOldNewsDate_);
+
+  avoidedOldNewsDateOn_ = new QGroupBox(tr("Avoid adding news before this date into the database:"));
+  avoidedOldNewsDateOn_->setFixedWidth(500);
+  avoidedOldNewsDateOn_->setStyleSheet("QGroupBox {padding-top: 25}");
+  avoidedOldNewsDateOn_->setCheckable(true);
+  avoidedOldNewsDateOn_->setChecked(false);
+  avoidedOldNewsDateOn_->setLayout(avoidedOldNewsDateLayout);
+
   QVBoxLayout *generalFeedsLayout = new QVBoxLayout();
   generalFeedsLayout->addWidget(updateFeedsStartUp_);
   generalFeedsLayout->addLayout(updateFeedsLayout);
@@ -802,6 +820,10 @@ void OptionsDialog::createFeedsWidget()
   generalFeedsLayout->addWidget(new QLabel(tr("Action on feed opening:")));
   generalFeedsLayout->addLayout(openingFeedsLayout);
   generalFeedsLayout->addWidget(markIdenticalNewsRead_);
+  generalFeedsLayout->addSpacing(15);
+  generalFeedsLayout->addWidget(hLine);
+  generalFeedsLayout->addSpacing(7);
+  generalFeedsLayout->addWidget(avoidedOldNewsDateOn_);
   generalFeedsLayout->addStretch();
 
   QWidget *generalFeedsWidget = new QWidget();

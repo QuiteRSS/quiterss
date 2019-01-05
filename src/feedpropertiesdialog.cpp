@@ -129,6 +129,25 @@ QWidget *FeedPropertiesDialog::createGeneralTab()
   layoutGeneralGrid->addWidget(labelURLCapt, 1, 0);
   layoutGeneralGrid->addWidget(editURL, 1, 1);
 
+  addSingleNewsAnyDateOn_ = new QCheckBox(tr("Add news with any date into the database"));
+  addSingleNewsAnyDateOn_->setFixedWidth(450);
+  addSingleNewsAnyDateOn_->setCheckable(true);
+  addSingleNewsAnyDateOn_->setChecked(false);
+
+  avoidedOldSingleNewsDate_ = new QCalendarWidget();
+  avoidedOldSingleNewsDate_->setFixedWidth(400);
+  avoidedOldSingleNewsDate_->setSelectedDate(QDate::currentDate());
+  avoidedOldSingleNewsDate_->setVerticalHeaderFormat(QCalendarWidget::NoVerticalHeader);
+  avoidedOldSingleNewsDate_->setHorizontalHeaderFormat(QCalendarWidget::SingleLetterDayNames);
+  QHBoxLayout *avoidedOldNewsDateLayout = new QHBoxLayout();
+  avoidedOldNewsDateLayout->addWidget(avoidedOldSingleNewsDate_);
+
+  avoidedOldSingleNewsDateOn_ = new QGroupBox(tr("Avoid adding news before this date into the database:"));
+  avoidedOldSingleNewsDateOn_->setFixedWidth(450);
+  avoidedOldSingleNewsDateOn_->setCheckable(true);
+  avoidedOldSingleNewsDateOn_->setChecked(false);
+  avoidedOldSingleNewsDateOn_->setLayout(avoidedOldNewsDateLayout);
+
   QVBoxLayout *tabLayout = new QVBoxLayout(tab);
   tabLayout->setMargin(10);
   tabLayout->setSpacing(5);
@@ -142,6 +161,18 @@ QWidget *FeedPropertiesDialog::createGeneralTab()
   tabLayout->addWidget(displayOnStartup);
   tabLayout->addWidget(duplicateNewsMode_);
   tabLayout->addStretch();
+  tabLayout->addSpacing(15);
+  tabLayout->addWidget(addSingleNewsAnyDateOn_);
+  tabLayout->addStretch();
+  tabLayout->addWidget(avoidedOldSingleNewsDateOn_);
+  tabLayout->addStretch();
+
+  connect(addSingleNewsAnyDateOn_, SIGNAL(toggled(bool)),
+          this, SLOT(setGroupBoxCheckboxState(bool)));
+  connect(addSingleNewsAnyDateOn_, SIGNAL(toggled(bool)),
+          avoidedOldSingleNewsDateOn_, SLOT(setDisabled(bool)));
+  connect(addSingleNewsAnyDateOn_, SIGNAL(toggled(bool)),
+          tabLayout, SLOT(setDisabled(bool)));
 
   connect(loadTitleButton, SIGNAL(clicked()), this, SLOT(setDefaultTitle()));
   connect(selectIconButton_, SIGNAL(clicked()),
@@ -160,6 +191,9 @@ QWidget *FeedPropertiesDialog::createGeneralTab()
     labelHomepage->hide();
     starredOn_->hide();
     duplicateNewsMode_->hide();
+    addSingleNewsAnyDateOn_->hide();
+    avoidedOldSingleNewsDateOn_->hide();
+    avoidedOldSingleNewsDate_->hide();
   }
 
   return tab;
@@ -376,6 +410,10 @@ QWidget *FeedPropertiesDialog::createStatusTab()
   starredOn_->setChecked(feedProperties.general.starred);
   duplicateNewsMode_->setChecked(feedProperties.general.duplicateNewsMode);
 
+  addSingleNewsAnyDateOn_->setChecked(feedProperties.general.addSingleNewsAnyDateOn);
+  avoidedOldSingleNewsDateOn_->setChecked(feedProperties.general.avoidedOldSingleNewsDateOn);
+  avoidedOldSingleNewsDate_->setSelectedDate(feedProperties.general.avoidedOldSingleNewsDate);
+
   loadImagesOn_->setCheckState((Qt::CheckState)feedProperties.display.displayEmbeddedImages);
   javaScriptEnable_->setCheckState((Qt::CheckState)feedProperties.display.javaScriptEnable);
   showDescriptionNews_->setChecked(!feedProperties.display.displayNews);
@@ -517,6 +555,13 @@ FEED_PROPERTIES FeedPropertiesDialog::getFeedProperties()
   feedProperties.display.displayNews = !showDescriptionNews_->isChecked();
   feedProperties.general.duplicateNewsMode = duplicateNewsMode_->isChecked();
   feedProperties.display.layoutDirection = layoutDirection_->isChecked();
+  feedProperties.general.addSingleNewsAnyDateOn = addSingleNewsAnyDateOn_->isChecked();
+  feedProperties.general.avoidedOldSingleNewsDateOn = avoidedOldSingleNewsDateOn_->isChecked();
+  if (!avoidedOldSingleNewsDate_->selectedDate().isNull() && avoidedOldSingleNewsDate_->selectedDate().isValid()) {
+    feedProperties.general.avoidedOldSingleNewsDate = avoidedOldSingleNewsDate_->selectedDate();
+  } else {
+    feedProperties.general.avoidedOldSingleNewsDate = QDate::currentDate();
+  }
 
   feedProperties.column.columns.clear();
   for (int i = 0; i < columnsTree_->topLevelItemCount(); ++i) {
@@ -639,4 +684,13 @@ void FeedPropertiesDialog::defaultColumns()
       sortByColumnBox_->setCurrentIndex(i);
   }
   sortOrderBox_->setCurrentIndex(feedProperties.columnDefault.sortType);
+}
+//------------------------------------------------------------------------------
+void FeedPropertiesDialog::setGroupBoxCheckboxState(bool _on)
+{
+  if (_on) {
+    avoidedOldSingleNewsDateOn_->setChecked(false);
+  } else {
+    avoidedOldSingleNewsDateOn_->setChecked(true);
+  }
 }

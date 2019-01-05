@@ -39,6 +39,9 @@ typedef struct {
     int displayOnStartup; //!< Flag to display feed on startup in sepatare tab
     bool starred; //!< Starred feed (favourite)
     bool duplicateNewsMode; //!< Automatically delete news duplicates
+    bool avoidedOldSingleNewsDateOn; //!< Avoid adding news before this date into the database
+    bool addSingleNewsAnyDateOn; //!< Add news with any date into the database
+    QDate avoidedOldSingleNewsDate; //!< Date to avoid
   } general;
 
   //! Autthentication properties
@@ -144,6 +147,7 @@ private slots:
   void moveUpColumn();
   void moveDownColumn();
   void defaultColumns();
+  void setGroupBoxCheckboxState(bool _on);
 
 private:
   QTabWidget *tabWidget;
@@ -160,6 +164,9 @@ private:
   QCheckBox *displayOnStartup;
   QCheckBox *starredOn_;
   QCheckBox *duplicateNewsMode_;
+  QCheckBox *addSingleNewsAnyDateOn_;
+  QGroupBox *avoidedOldSingleNewsDateOn_;
+  QCalendarWidget *avoidedOldSingleNewsDate_;
 
   QWidget *createGeneralTab();
 

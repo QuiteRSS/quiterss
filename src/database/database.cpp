@@ -110,6 +110,9 @@ const QString kCreateFeedsTableQuery(
     "flags text, "                    // more flags (example "focused", "hidden")
     "authentication integer default 0, "    // enable authentification, sets on feed creation
     "duplicateNewsMode integer default 0, " // news duplicates process mode
+    "addSingleNewsAnyDateOn integer default 1, " // enable adding news with any date into the database
+    "avoidedOldSingleNewsDateOn integer default 0, " // avoid adding news before this date into the database
+    "avoidedOldSingleNewsDate varchar, " // date to avoid
     "typeFeed integer default 0, "          // reserved for future purposes
     "showNotification integer default 0, "  //
     "disableUpdate integer default 0, "     // disable update feed
@@ -208,6 +211,12 @@ const QString kCreatePasswordsTable(
     "password varchar "         // password
     ")");
 
+const QString kAddColumnsFeedsTableQuery(
+        "ALTER TABLE feeds ADD COLUMN addSingleNewsAnyDateOn integer default 1;"
+        "ALTER TABLE feeds ADD COLUMN avoidedOldSingleNewsDateOn integer default 0;"
+        "ALTER TABLE feeds ADD COLUMN avoidedOldSingleNewsDate varchar;"
+        );
+
 int Database::version()
 {
   return versionDB;
@@ -277,6 +286,8 @@ void Database::prepareDatabase()
         q.exec();
       } else {
         qWarning() << "Preparation database";
+
+        addColumnsToFeedsTables(db);
 
         // Version DB > 0.12.1
         Settings settings;
@@ -351,6 +362,7 @@ void Database::createTables(QSqlDatabase &db)
   db.transaction();
 
   db.exec(kCreateFeedsTableQuery);
+  db.exec(kAddColumnsFeedsTableQuery);
   db.exec(kCreateNewsTableQuery);
   // Create index for feedId field
   db.exec("CREATE INDEX feedId ON news(feedId)");
@@ -406,6 +418,21 @@ void Database::createLabels(QSqlDatabase &db)
     int labelId = q.lastInsertId().toInt();
     q.exec(QString("UPDATE labels SET num='%1' WHERE id=='%1'").arg(labelId));
   }
+}
+
+void Database::addColumnsToFeedsTables(QSqlDatabase &db)
+{
+    QStringList columnsList;
+    // Version > 0.18.12
+    columnsList.append(" addSingleNewsAnyDateOn integer default 1;");
+    columnsList.append(" avoidedOldSingleNewsDateOn integer default 0;");
+    columnsList.append(" avoidedOldSingleNewsDate varchar;");
+
+    db.transaction();
+    foreach (QString col, columnsList) {
+        db.exec("ALTER TABLE feeds ADD COLUMN" + col);
+    }
+    db.commit();
 }
 
 QSqlDatabase Database::connection(const QString &connectionName)

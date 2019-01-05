@@ -109,16 +109,23 @@ void ParseObject::slotParse(const QByteArray &xmlData, const int &feedId,
 
   db_.transaction();
 
-  // extract feed id and duplicate news mode from feed table
+  // extract feed id, duplicate news mode and date to avoid from feed table
   parseFeedId_ = feedId;
   QString feedUrl;
   duplicateNewsMode_ = false;
+  addSingleNewsAnyDate_ = false;
+  avoidedOldSingleNews_ = false;
+  avoidedOldSingleNewsDate_ = QDate::currentDate();
   QSqlQuery q(db_);
   q.setForwardOnly(true);
-  q.exec(QString("SELECT duplicateNewsMode, xmlUrl FROM feeds WHERE id=='%1'").arg(parseFeedId_));
+  q.exec(QString("SELECT duplicateNewsMode, xmlUrl, addSingleNewsAnyDateOn, avoidedOldSingleNewsDateOn, avoidedOldSingleNewsDate"
+                 " FROM feeds WHERE id=='%1'").arg(parseFeedId_));
   if (q.first()) {
     duplicateNewsMode_ = q.value(0).toBool();
     feedUrl = q.value(1).toString();
+    addSingleNewsAnyDate_ = q.value(2).toBool();
+    avoidedOldSingleNews_ = q.value(3).toBool();
+    avoidedOldSingleNewsDate_ = q.value(4).toDate();
   }
 
   // id not found (ex. feed deleted while updating)
@@ -453,8 +460,21 @@ void ParseObject::addAtomNewsIntoBase(NewsItemStruct *newsItem)
     if (isDuplicate) break;
   }
 
-  // if duplicates not found, add news into base
-  if (!isDuplicate) {
+  // Verify old news before a date to avoid adding them to base
+  bool isOld = false;
+  QDateTime pubDate_ = QDateTime::fromString(newsItem->updated, "yyyy-MM-ddTHH:mm:ss");
+  QDateTime avoidedDate_ = QDateTime(mainApp->mainWindow()->avoidedOldNewsDate_);
+  if (!addSingleNewsAnyDate_) {      //
+    if (avoidedOldSingleNews_ ) {     // avoid adding old single news
+      if (QDateTime(avoidedOldSingleNewsDate_) > pubDate_)
+        isOld = true;
+      } else if (mainApp->mainWindow()->avoidOldNews_ && avoidedDate_ > pubDate_) {   // avoid adding old news
+        isOld = true;
+      }
+   }
+
+  // if duplicates not found and is old news, add them into base
+  if (!isDuplicate && !isOld) {
     bool read = false;
     if (mainApp->mainWindow()->markIdenticalNewsRead_) {
       q.prepare("SELECT id FROM news WHERE title LIKE :title AND feedId!=:id");
@@ -720,8 +740,21 @@ void ParseObject::addRssNewsIntoBase(NewsItemStruct *newsItem)
     if (isDuplicate) break;
   }
 
-  // if duplicates not found, add news into base
-  if (!isDuplicate) {
+  // Verify old news before a date to avoid adding them to base
+  bool isOld = false;
+  QDateTime pubDate_ = QDateTime::fromString(newsItem->updated, "yyyy-MM-ddTHH:mm:ss");
+  QDateTime avoidedDate_ = QDateTime(mainApp->mainWindow()->avoidedOldNewsDate_);
+  if (!addSingleNewsAnyDate_) {      //
+    if (avoidedOldSingleNews_ ) {     // avoid adding old single news
+      if (QDateTime(avoidedOldSingleNewsDate_) > pubDate_)
+        isOld = true;
+      } else if (mainApp->mainWindow()->avoidOldNews_ && avoidedDate_ > pubDate_) {   // avoid adding old news
+              isOld = true;
+      }
+   }
+
+ // if duplicates not found And old news, add them into base
+ if (!isDuplicate && !isOld) {
     bool read = false;
     if (mainApp->mainWindow()->markIdenticalNewsRead_) {
       q.prepare("SELECT id FROM news WHERE title LIKE :title AND feedId!=:id");
