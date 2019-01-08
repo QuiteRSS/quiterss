@@ -255,12 +255,15 @@ void RequestFeed::finished(QNetworkReply *reply)
             QString host(QUrl::fromEncoded(feedUrl.toUtf8()).host());
             if (redirectionTarget.host().isEmpty()) {
               if (redirectionTarget.path() == ".") {
-                redirectionTarget.setUrl(replyUrl.scheme() + "://" + host + replyUrl.path());
                 if (redirectionTarget.hasQuery()) {
 #if QT_VERSION >= 0x050000
-                    redirectionTarget.setQuery(redirectionTarget.query());
+                  QString query = redirectionTarget.query();
+                  redirectionTarget.setUrl(replyUrl.scheme() + "://" + host + replyUrl.path());
+                  redirectionTarget.setQuery(query);
 #else
-                    redirectionTarget.setEncodedQuery(redirectionTarget.encodedQuery());
+                  QByteArray query = redirectionTarget.encodedQuery();
+                  redirectionTarget.setUrl(replyUrl.scheme() + "://" + host + replyUrl.path());
+                  redirectionTarget.setEncodedQuery(query);
 #endif
                 }
               } else {
@@ -270,11 +273,11 @@ void RequestFeed::finished(QNetworkReply *reply)
             if (redirectionTarget.scheme().isEmpty())
               redirectionTarget.setScheme(QUrl(feedUrl).scheme());
             if (reply->operation() == QNetworkAccessManager::HeadOperation) {
-              qDebug() << objectName() << "  head redirect...";
+              qDebug() << objectName() << "  head redirect..." << redirectionTarget.toString();
               emit signalHead(redirectionTarget, feedId, feedUrl, feedDate, count);
             }
             else {
-              qDebug() << objectName() << "  get redirect...";
+              qDebug() << objectName() << "  get redirect..." << redirectionTarget.toString();
               emit signalGet(redirectionTarget, feedId, feedUrl, feedDate, count);
             }
           }
