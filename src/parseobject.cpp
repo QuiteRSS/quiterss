@@ -347,13 +347,15 @@ void ParseObject::parseAtom(const QString &feedUrl, const QDomDocument &doc)
       newsItem.authorEmail = authorElem.namedItem("email").toElement().text();
     }
 
-    newsItem.description = newsList.item(i).namedItem("summary").toElement().text();
+    QDomNode nodeSummary = newsList.item(i).namedItem("summary");
+    if (!nodeSummary.isNull()) {
+      QTextStream in(&newsItem.description);
+      nodeSummary.save(in, 0);
+    }
     QDomNode nodeContent = newsList.item(i).namedItem("content");
-    if (nodeContent.toElement().attribute("type") == "xhtml") {
+    if (!nodeContent.isNull()) {
       QTextStream in(&newsItem.content);
       nodeContent.save(in, 0);
-    } else {
-      newsItem.content = nodeContent.toElement().text();
     }
     if (newsItem.content.isEmpty()) {
       nodeContent = newsList.item(i).namedItem("media:group");
@@ -621,8 +623,16 @@ void ParseObject::parseRss(const QString &feedUrl, const QDomDocument &doc)
       url.setScheme(QUrl(feedUrl).scheme());
     newsItem.link = url.toString();
 
-    newsItem.description = newsList.item(i).namedItem("description").toElement().text();
-    newsItem.content = newsList.item(i).namedItem("content:encoded").toElement().text();
+    QDomNode nodeSummary = newsList.item(i).namedItem("description");
+    if (!nodeSummary.isNull()) {
+      QTextStream in(&newsItem.description);
+      nodeSummary.save(in, 0);
+    }
+    QDomNode nodeContent = newsList.item(i).namedItem("content:encoded");
+    if (!nodeContent.isNull()) {
+      QTextStream in(&newsItem.content);
+      nodeContent.save(in, 0);
+    }
     if (newsItem.content.isEmpty() || (newsItem.description.length() > newsItem.content.length())) {
       newsItem.content.clear();
     } else {
