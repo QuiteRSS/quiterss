@@ -171,8 +171,6 @@ QWidget *FeedPropertiesDialog::createGeneralTab()
           this, SLOT(setGroupBoxCheckboxState(bool)));
   connect(addSingleNewsAnyDateOn_, SIGNAL(toggled(bool)),
           avoidedOldSingleNewsDateOn_, SLOT(setDisabled(bool)));
-  connect(addSingleNewsAnyDateOn_, SIGNAL(toggled(bool)),
-          tabLayout, SLOT(setDisabled(bool)));
 
   connect(loadTitleButton, SIGNAL(clicked()), this, SLOT(setDefaultTitle()));
   connect(selectIconButton_, SIGNAL(clicked()),
