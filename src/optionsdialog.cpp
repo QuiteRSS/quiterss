@@ -160,7 +160,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
   categoriesTree_->installEventFilter(this);
 
   setMinimumSize(500, 400);
-  resize(700, 560);
+  resize(700, 580);
 
   Settings settings;
   restoreGeometry(settings.value("options/geometry").toByteArray());
@@ -795,20 +795,16 @@ void OptionsDialog::createFeedsWidget()
 
   markIdenticalNewsRead_ = new QCheckBox(tr("Automatically mark identical news as read"));
 
-  QFrame *hLine = new QFrame();
-  hLine->setFrameStyle(QFrame::HLine | QFrame::Sunken);
-
   avoidedOldNewsDate_ = new QCalendarWidget();
-  avoidedOldNewsDate_->setFixedWidth(400);
   avoidedOldNewsDate_->setSelectedDate(QDate::currentDate());
   avoidedOldNewsDate_->setVerticalHeaderFormat(QCalendarWidget::NoVerticalHeader);
   avoidedOldNewsDate_->setHorizontalHeaderFormat(QCalendarWidget::SingleLetterDayNames);
   QHBoxLayout *avoidedOldNewsDateLayout = new QHBoxLayout();
+  avoidedOldNewsDateLayout->setMargin(5);
   avoidedOldNewsDateLayout->addWidget(avoidedOldNewsDate_);
+  avoidedOldNewsDateLayout->addStretch();
 
   avoidedOldNewsDateOn_ = new QGroupBox(tr("Avoid adding news before this date into the database:"));
-  avoidedOldNewsDateOn_->setFixedWidth(500);
-  avoidedOldNewsDateOn_->setStyleSheet("QGroupBox {padding-top: 25}");
   avoidedOldNewsDateOn_->setCheckable(true);
   avoidedOldNewsDateOn_->setChecked(false);
   avoidedOldNewsDateOn_->setLayout(avoidedOldNewsDateLayout);
@@ -821,8 +817,6 @@ void OptionsDialog::createFeedsWidget()
   generalFeedsLayout->addLayout(openingFeedsLayout);
   generalFeedsLayout->addWidget(markIdenticalNewsRead_);
   generalFeedsLayout->addSpacing(15);
-  generalFeedsLayout->addWidget(hLine);
-  generalFeedsLayout->addSpacing(7);
   generalFeedsLayout->addWidget(avoidedOldNewsDateOn_);
   generalFeedsLayout->addStretch();
 

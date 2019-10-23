@@ -130,20 +130,19 @@ QWidget *FeedPropertiesDialog::createGeneralTab()
   layoutGeneralGrid->addWidget(editURL, 1, 1);
 
   addSingleNewsAnyDateOn_ = new QCheckBox(tr("Add news with any date into the database"));
-  addSingleNewsAnyDateOn_->setFixedWidth(450);
   addSingleNewsAnyDateOn_->setCheckable(true);
   addSingleNewsAnyDateOn_->setChecked(false);
 
   avoidedOldSingleNewsDate_ = new QCalendarWidget();
-  avoidedOldSingleNewsDate_->setFixedWidth(400);
   avoidedOldSingleNewsDate_->setSelectedDate(QDate::currentDate());
   avoidedOldSingleNewsDate_->setVerticalHeaderFormat(QCalendarWidget::NoVerticalHeader);
   avoidedOldSingleNewsDate_->setHorizontalHeaderFormat(QCalendarWidget::SingleLetterDayNames);
   QHBoxLayout *avoidedOldNewsDateLayout = new QHBoxLayout();
+  avoidedOldNewsDateLayout->setMargin(5);
   avoidedOldNewsDateLayout->addWidget(avoidedOldSingleNewsDate_);
+  avoidedOldNewsDateLayout->addStretch();
 
   avoidedOldSingleNewsDateOn_ = new QGroupBox(tr("Avoid adding news before this date into the database:"));
-  avoidedOldSingleNewsDateOn_->setFixedWidth(450);
   avoidedOldSingleNewsDateOn_->setCheckable(true);
   avoidedOldSingleNewsDateOn_->setChecked(false);
   avoidedOldSingleNewsDateOn_->setLayout(avoidedOldNewsDateLayout);
@@ -160,10 +159,8 @@ QWidget *FeedPropertiesDialog::createGeneralTab()
   tabLayout->addWidget(starredOn_);
   tabLayout->addWidget(displayOnStartup);
   tabLayout->addWidget(duplicateNewsMode_);
-  tabLayout->addStretch();
   tabLayout->addSpacing(15);
   tabLayout->addWidget(addSingleNewsAnyDateOn_);
-  tabLayout->addStretch();
   tabLayout->addWidget(avoidedOldSingleNewsDateOn_);
   tabLayout->addStretch();
 
