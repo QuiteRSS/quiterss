@@ -2639,15 +2639,6 @@ void NewsTabWidget::slotShareNews(QAction *action)
         url.addQueryItem("url", linkString);
         url.addQueryItem("title", title);
 #endif
-      } else if (action->objectName() == "gplusShareAct") {
-        url.setUrl("https://plus.google.com/share");
-#ifdef HAVE_QT5
-        QUrlQuery urlQuery;
-        urlQuery.addQueryItem("url", linkString);
-        url.setQuery(urlQuery);
-#else
-        url.addQueryItem("url", linkString);
-#endif
       } else if (action->objectName() == "facebookShareAct") {
         url.setUrl("https://www.facebook.com/sharer.php");
 #ifdef HAVE_QT5

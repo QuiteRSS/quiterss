@@ -153,7 +153,6 @@ public:
   QAction *shareMenuAct_;
   QAction *emailShareAct_;
   QAction *evernoteShareAct_;
-  QAction *gplusShareAct_;
   QAction *facebookShareAct_;
   QAction *livejournalShareAct_;
   QAction *pocketShareAct_;

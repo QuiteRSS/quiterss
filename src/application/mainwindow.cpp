@@ -1381,12 +1381,6 @@ void MainWindow::createActions()
   evernoteShareAct_->setIcon(QIcon(":/share/images/share/evernote.png"));
   shareGroup_->addAction(evernoteShareAct_);
 
-  gplusShareAct_ = new QAction(this);
-  gplusShareAct_->setObjectName("gplusShareAct");
-  gplusShareAct_->setText("Google+");
-  gplusShareAct_->setIcon(QIcon(":/share/images/share/gplus.png"));
-  shareGroup_->addAction(gplusShareAct_);
-
   facebookShareAct_ = new QAction(this);
   facebookShareAct_->setObjectName("facebookShareAct");
   facebookShareAct_->setText("Facebook");
