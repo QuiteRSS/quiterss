@@ -533,8 +533,6 @@ void FeedPropertiesDialog::slotFaviconUpdate(const QString &feedUrl, const QByte
 //------------------------------------------------------------------------------
 FEED_PROPERTIES FeedPropertiesDialog::getFeedProperties()
 {
-  feedProperties = feedProperties;
-
   feedProperties.general.text = editTitle->text();
   feedProperties.general.url = editURL->text();
 
