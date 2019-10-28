@@ -1211,8 +1211,6 @@ void UpdateObject::cleanUpShutdown()
   bool optimizeDB = settings.value("optimizeDB", false).toBool();
   settings.endGroup();
 
-  if (!mainApp->storeDBMemory())
-    db_ = QSqlDatabase::database();
   db_.transaction();
 
   QSqlQuery q(db_);
