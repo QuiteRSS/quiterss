@@ -20,183 +20,7 @@
 #include "mainapplication.h"
 #include "database.h"
 #include "settings.h"
-
-#if defined(Q_OS_WIN)
-#include <windows.h>
-#include <psapi.h>
-#endif
-
-CleanUpThread::CleanUpThread(QObject *parent)
-  : QThread(parent)
-  , maxDayCleanUp_(0)
-  , maxNewsCleanUp_(0)
-  , dayCleanUpOn_(false)
-  , newsCleanUpOn_(false)
-  , readCleanUp_(false)
-  , neverUnreadCleanUp_(false)
-  , neverStarCleanUp_(false)
-  , neverLabelCleanUp_(false)
-  , cleanUpDeleted_(false)
-  , fullCleanUp_(false)
-  , countDeleted(0)
-{
-}
-
-CleanUpThread::~CleanUpThread()
-{
-  exit();
-  wait();
-}
-
-/*virtual*/ void CleanUpThread::run()
-{
-  QSqlQuery q;
-  QString qStr;
-  QSqlDatabase db = QSqlDatabase::database();
-  db.transaction();
-
-  q.exec("SELECT count(id) FROM news WHERE deleted < 2");
-  if (q.first()) countDeleted = q.value(0).toInt();
-
-  foreach (QString feedId, feedsIdList_) {
-    int cntT = 0;
-    int cntNews = 0;
-
-    qStr = QString("SELECT undeleteCount FROM feeds WHERE id=='%1'").
-        arg(feedId);
-    q.exec(qStr);
-    if (q.next()) cntNews = q.value(0).toInt();
-
-    if (fullCleanUp_)
-      q.exec(QString("DELETE FROM news WHERE feedId=='%1' AND deleted >= 2").arg(feedId));
-
-    QString qStr1 = QString("UPDATE news SET description='', content='', received='', "
-                            "author_name='', author_uri='', author_email='', "
-                            "category='', new='', read='', starred='', label='', "
-                            "deleteDate='', feedParentId='', deleted=2");
-
-    qStr = QString("SELECT id, received FROM news WHERE feedId=='%1' AND deleted = 0").arg(feedId);
-    if (neverUnreadCleanUp_) qStr.append(" AND read!=0");
-    if (neverStarCleanUp_) qStr.append(" AND starred==0");
-    if (neverLabelCleanUp_) qStr.append(" AND (label=='' OR label==',' OR label IS NULL)");
-    qStr.append(" ORDER BY published");
-    q.exec(qStr);
-    while (q.next()) {
-      int newsId = q.value(0).toInt();
-
-      if (newsCleanUpOn_ && (cntT < (cntNews - maxNewsCleanUp_))) {
-        if (fullCleanUp_)
-          qStr = QString("DELETE FROM news WHERE id='%1'").arg(newsId);
-        else
-          qStr = QString("%1 WHERE id=='%2'").arg(qStr1).arg(newsId);
-        QSqlQuery qt;
-        qt.exec(qStr);
-        cntT++;
-        continue;
-      }
-
-      QDateTime dateTime = QDateTime::fromString(q.value(1).toString(), Qt::ISODate);
-      if (dayCleanUpOn_ &&
-          (dateTime.daysTo(QDateTime::currentDateTime()) > maxDayCleanUp_)) {
-        if (fullCleanUp_)
-          qStr = QString("DELETE FROM news WHERE id='%1'").arg(newsId);
-        else
-          qStr = QString("%1 WHERE id=='%2'").arg(qStr1).arg(newsId);
-        QSqlQuery qt;
-        qt.exec(qStr);
-        cntT++;
-        continue;
-      }
-
-      if (readCleanUp_) {
-        if (fullCleanUp_)
-          qStr = QString("DELETE FROM news WHERE id='%1'").arg(newsId);
-        else
-          qStr = QString("%1 WHERE read!=0 AND id=='%2'").arg(qStr1).arg(newsId);
-        QSqlQuery qt;
-        qt.exec(qStr);
-        cntT++;
-      }
-    }
-
-    int undeleteCount = 0;
-    qStr = QString("SELECT count(id) FROM news WHERE feedId=='%1' AND deleted==0").
-        arg(feedId);
-    q.exec(qStr);
-    if (q.next()) undeleteCount = q.value(0).toInt();
-
-    int unreadCount = 0;
-    qStr = QString("SELECT count(read) FROM news WHERE feedId=='%1' AND read==0 AND deleted==0").
-        arg(feedId);
-    q.exec(qStr);
-    if (q.next()) unreadCount = q.value(0).toInt();
-
-    int newCount = 0;
-    qStr = QString("SELECT count(new) FROM news WHERE feedId=='%1' AND new==1 AND deleted==0").
-        arg(feedId);
-    q.exec(qStr);
-    if (q.next()) newCount = q.value(0).toInt();
-
-    qStr = QString("UPDATE feeds SET unread='%1', newCount='%2', undeleteCount='%3' WHERE id=='%4'").
-        arg(unreadCount).arg(newCount).arg(undeleteCount).arg(feedId);
-    q.exec(qStr);
-  }
-
-  foreach (int folderIdStart, foldersIdList_) {
-    if (folderIdStart < 1) continue;
-
-    int categoryId = folderIdStart;
-    // Process all parents
-    while (0 < categoryId) {
-      int unreadCount = -1;
-      int undeleteCount = -1;
-      int newCount = -1;
-
-      // Calculate sum of all feeds with same parent
-      qStr = QString("SELECT sum(unread), sum(undeleteCount), sum(newCount) "
-                     "FROM feeds WHERE parentId=='%1'").arg(categoryId);
-      q.exec(qStr);
-      if (q.next()) {
-        unreadCount   = q.value(0).toInt();
-        undeleteCount = q.value(1).toInt();
-        newCount = q.value(2).toInt();
-      }
-
-      if (unreadCount != -1) {
-        qStr = QString("UPDATE feeds SET unread='%1', undeleteCount='%2', newCount='%3' WHERE id=='%4'").
-            arg(unreadCount).arg(undeleteCount).arg(newCount).arg(categoryId);
-        q.exec(qStr);
-      }
-
-      // go to next parent's parent
-      qStr = QString("SELECT parentId FROM feeds WHERE id=='%1'").
-          arg(categoryId);
-      categoryId = 0;
-      q.exec(qStr);
-      if (q.next()) categoryId = q.value(0).toInt();
-    }
-  }
-
-  if (cleanUpDeleted_) {
-    q.exec("UPDATE news SET description='', content='', received='', "
-           "author_name='', author_uri='', author_email='', "
-           "category='', new='', read='', starred='', label='', "
-           "deleteDate='', feedParentId='', deleted=2 WHERE deleted==1");
-  }
-
-  q.exec("SELECT count(id) FROM news WHERE deleted < 2");
-  if (q.first()) countDeleted = countDeleted - q.value(0).toInt();
-
-  q.finish();
-  db.commit();
-
-  if (!mainApp->storeDBMemory()) {
-    db.exec("VACUUM");
-  } else {
-    Database::sqliteDBMemFile(db);
-    Database::setVacuum();
-  }
-}
+#include "updatefeeds.h"
 
 CleanUpWizard::CleanUpWizard(QWidget *parent)
   : QWizard(parent)
@@ -215,8 +39,6 @@ CleanUpWizard::CleanUpWizard(QWidget *parent)
 
   Settings settings;
   restoreGeometry(settings.value("CleanUpWizard/geometry").toByteArray());
-
-  cleanUpThread_ = new CleanUpThread(this);
 
   connect(button(QWizard::FinishButton), SIGNAL(clicked()),
           this, SLOT(finishButtonClicked()));
@@ -371,14 +193,14 @@ QWizardPage *CleanUpWizard::createCleanUpOptionsPage()
 
   Settings settings;
   settings.beginGroup("CleanUpWizard");
-  maxDayCleanUp_->setValue(settings.value("maxDay", 30).toInt());
-  maxNewsCleanUp_->setValue(settings.value("maxNews", 200).toInt());
-  dayCleanUpOn_->setChecked(settings.value("maxDayOn", true).toBool());
-  newsCleanUpOn_->setChecked(settings.value("maxNewsOn", true).toBool());
+  maxDayCleanUp_->setValue(settings.value("maxDayClearUp", 30).toInt());
+  maxNewsCleanUp_->setValue(settings.value("maxNewsClearUp", 200).toInt());
+  dayCleanUpOn_->setChecked(settings.value("dayClearUpOn", true).toBool());
+  newsCleanUpOn_->setChecked(settings.value("newsClearUpOn", true).toBool());
   readCleanUp_->setChecked(settings.value("readCleanUp", false).toBool());
-  neverUnreadCleanUp_->setChecked(settings.value("neverUnread", true).toBool());
-  neverStarCleanUp_->setChecked(settings.value("neverStar", true).toBool());
-  neverLabelCleanUp_->setChecked(settings.value("neverLabel", true).toBool());
+  neverUnreadCleanUp_->setChecked(settings.value("neverUnreadClearUp", true).toBool());
+  neverStarCleanUp_->setChecked(settings.value("neverStarClearUp", true).toBool());
+  neverLabelCleanUp_->setChecked(settings.value("neverLabelClearUp", true).toBool());
   cleanUpDeleted_->setChecked(settings.value("cleanUpDeleted", true).toBool());
   fullCleanUp_->setChecked(settings.value("fullCleanUp", false).toBool());
   settings.endGroup();
@@ -462,26 +284,30 @@ void CleanUpWizard::finishButtonClicked()
     treeItem = feedsTree_->itemBelow(treeItem);
   }
 
-  cleanUpThread_->maxDayCleanUp_ = maxDayCleanUp_->value();
-  cleanUpThread_->maxNewsCleanUp_ = maxNewsCleanUp_->value();
-  cleanUpThread_->dayCleanUpOn_ = dayCleanUpOn_->isChecked();
-  cleanUpThread_->newsCleanUpOn_ = newsCleanUpOn_->isChecked();
-  cleanUpThread_->readCleanUp_ = readCleanUp_->isChecked();
-  cleanUpThread_->neverUnreadCleanUp_ = neverUnreadCleanUp_->isChecked();
-  cleanUpThread_->neverStarCleanUp_ = neverStarCleanUp_->isChecked();
-  cleanUpThread_->neverLabelCleanUp_ = neverLabelCleanUp_->isChecked();
-  cleanUpThread_->cleanUpDeleted_ = cleanUpDeleted_->isChecked();
-  cleanUpThread_->fullCleanUp_ = fullCleanUp_->isChecked();
-  cleanUpThread_->feedsIdList_ = feedsIdList;
-  cleanUpThread_->foldersIdList_ = foldersIdList;
+  Settings settings;
+  settings.beginGroup("CleanUpWizard");
+  settings.setValue("feedsIdList", feedsIdList);
+  settings.setValue("maxDayClearUp", maxDayCleanUp_->value());
+  settings.setValue("maxNewsClearUp", maxNewsCleanUp_->value());
+  settings.setValue("dayClearUpOn", dayCleanUpOn_->isChecked());
+  settings.setValue("newsClearUpOn", newsCleanUpOn_->isChecked());
+  settings.setValue("readClearUp", readCleanUp_->isChecked());
+  settings.setValue("neverUnreadClearUp", neverUnreadCleanUp_->isChecked());
+  settings.setValue("neverStarClearUp", neverStarCleanUp_->isChecked());
+  settings.setValue("neverLabelClearUp", neverLabelCleanUp_->isChecked());
+  settings.setValue("cleanUpDeleted", cleanUpDeleted_->isChecked());
+  settings.setValue("fullCleanUp", fullCleanUp_->isChecked());
+  settings.endGroup();
 
-  connect(cleanUpThread_, SIGNAL(finished()),
-          this, SLOT(finishCleanUp()));
+  connect(this, SIGNAL(signalStartCleanUp(bool, QStringList, QList<int>)),
+          mainApp->updateFeeds()->updateObject_, SLOT(startCleanUp(bool, QStringList, QList<int>)));
+  connect(mainApp->updateFeeds()->updateObject_, SIGNAL(signalFinishCleanUp(int)),
+          this, SLOT(finishCleanUp(int)));
 
-  cleanUpThread_->start();
+  emit signalStartCleanUp(false, feedsIdList, foldersIdList);
 }
 
-void CleanUpWizard::finishCleanUp()
+void CleanUpWizard::finishCleanUp(int countDeleted)
 {
   int feedId = -1;
   MainWindow *mainWindow = mainApp->mainWindow();
@@ -502,26 +328,11 @@ void CleanUpWizard::finishCleanUp()
   mainWindow->feedsModelReload();
   mainWindow->recountCategoryCounts();
 
-  Settings settings;
-  settings.beginGroup("CleanUpWizard");
-  settings.setValue("feedsIdList", cleanUpThread_->feedsIdList_);
-  settings.setValue("maxDay", maxDayCleanUp_->value());
-  settings.setValue("maxNews", maxNewsCleanUp_->value());
-  settings.setValue("maxDayOn", dayCleanUpOn_->isChecked());
-  settings.setValue("maxNewsOn", newsCleanUpOn_->isChecked());
-  settings.setValue("readCleanUp", readCleanUp_->isChecked());
-  settings.setValue("neverUnread", neverUnreadCleanUp_->isChecked());
-  settings.setValue("neverStar", neverStarCleanUp_->isChecked());
-  settings.setValue("neverLabel", neverLabelCleanUp_->isChecked());
-  settings.setValue("cleanUpDeleted", cleanUpDeleted_->isChecked());
-  settings.setValue("fullCleanUp", fullCleanUp_->isChecked());
-  settings.endGroup();
-
   selectedPage_ = true;
 
   accept();
 
   QMessageBox::information(this, tr("Information"),
                            tr("Clean Up wizard deleted %1 news").
-                           arg(cleanUpThread_->countDeleted));
+                           arg(countDeleted));
 }

@@ -23,36 +23,6 @@
 #else
 #include <QtGui>
 #endif
-#include <QThread>
-#include <QtSql>
-
-class CleanUpThread;
-
-class CleanUpThread : public QThread
-{
-  Q_OBJECT
-public:
-  explicit CleanUpThread(QObject *parent);
-  ~CleanUpThread();
-
-  int maxDayCleanUp_;
-  int maxNewsCleanUp_;
-  bool dayCleanUpOn_;
-  bool newsCleanUpOn_;
-  bool readCleanUp_;
-  bool neverUnreadCleanUp_;
-  bool neverStarCleanUp_;
-  bool neverLabelCleanUp_;
-  bool cleanUpDeleted_;
-  bool fullCleanUp_;
-  QStringList feedsIdList_;
-  QList<int> foldersIdList_;
-  int countDeleted;
-
-protected:
-  virtual void run();
-
-};
 
 class CleanUpWizard : public QWizard
 {
@@ -61,8 +31,12 @@ public:
   explicit CleanUpWizard(QWidget *parent);
   ~CleanUpWizard();
 
+signals:
+  void signalStartCleanUp(bool isShutdown, QStringList feedsIdList,
+                          QList<int> foldersIdList);
+
 public slots:
-  void finishCleanUp();
+  void finishCleanUp(int countDeleted);
 
 protected:
   virtual void closeEvent(QCloseEvent*);
@@ -92,7 +66,6 @@ private:
   QCheckBox *cleanUpDeleted_;
   QCheckBox *fullCleanUp_;
   QProgressBar *progressBar_;
-  CleanUpThread *cleanUpThread_;
 
 };
 
