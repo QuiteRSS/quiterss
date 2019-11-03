@@ -1386,7 +1386,7 @@ void OptionsDialog::createLanguageWidget()
   treeItem.clear();
   treeItem << "de" << QString::fromUtf8("Deutsch [DE]")
            << QString(STRPRODUCTVER)
-           << "Lyudmila Kremova" << "alis-dcm@yandex.ru";
+           << "oxyd24" << "";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/flags/flag_DE"));
   languageFileList_->addTopLevelItem(languageItem);
