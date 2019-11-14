@@ -2,6 +2,19 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
+<p><b>Version 0.19.0</b> (15 Nov 2019)
+<ul>
+<li>Main: Switch to Qt 5.13</li>
+<li>Main: Embedded browser - WebKit 602.1</li>
+<li>Added: Calendar to avoid downloading old new</li>
+
+<li>Changed: SQLite 3.30.1</li>
+<li>Removed: Share. Google+</li>
+
+<li>Fixed: Description of some feeds</li>
+<li>Fixed: Parsing of some feeds</li>
+</ul>
+<!---------------------------------------------------------------------------->
 <p><b>Version 0.18.12</b> (02 Jul 2018)
 <ul>
 <li>Added: Share. Hacker News</li>

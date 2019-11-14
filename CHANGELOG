@@ -1,3 +1,12 @@
+Version 0.19.0 (15 Nov 2019)
+  * Main: Switch to Qt 5.13
+  * Main: Embedded browser - WebKit 602.1
+  * Added: Calendar to avoid downloading old new
+  * Changed: SQLite 3.30.1
+  * Removed: Share. Google+
+  * Fixed: Description of some feeds
+  * Fixed: Parsing of some feeds
+
 Version 0.18.12 (02 Jul 2018)
   * Added: Share. Hacker News
   * Changed: Support for Qt 5.11 (Linux)
