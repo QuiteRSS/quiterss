@@ -3712,7 +3712,7 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1106"/>
         <source>Close notification after opening news</source>
-        <translation type="unfinished"/>
+        <translation>Sulje ilmoitus uutisen avaamisen jälkeen</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1160"/>

@@ -3712,7 +3712,7 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1106"/>
         <source>Close notification after opening news</source>
-        <translation type="unfinished"/>
+        <translation>Pechar notificacións despois de abrir as novas</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1160"/>

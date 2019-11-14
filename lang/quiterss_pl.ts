@@ -3712,7 +3712,7 @@ Starsze wiadomości mogą pojawić się ponownie</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1106"/>
         <source>Close notification after opening news</source>
-        <translation type="unfinished"/>
+        <translation>Zamknij powiadomienie po otwarciu wiadomości</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1160"/>

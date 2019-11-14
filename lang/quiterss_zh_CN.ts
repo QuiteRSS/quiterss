@@ -455,7 +455,7 @@
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="140"/>
         <source>Clear &apos;Deleted&apos;</source>
-        <translation>清空 &apos;删除的&apos;</translation>
+        <translation>清空 ‘删除的’</translation>
     </message>
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="143"/>
@@ -518,7 +518,7 @@
     <message>
         <location filename="../src/cleanupwizard.cpp" line="356"/>
         <source>Clean up &apos;Deleted&apos;</source>
-        <translation>清理”删除的“</translation>
+        <translation>清理“删除的”</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="357"/>
@@ -3482,7 +3482,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="949"/>
         <source>Change behavior of action &apos;Next Unread News&apos;</source>
-        <translation>改变 &apos;下一个未读消息&apos; 行为</translation>
+        <translation>改变 ‘下一个未读消息’ 行为</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="942"/>
@@ -3542,7 +3542,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="991"/>
         <source>Clean up &apos;Deleted&apos;</source>
-        <translation>清理’删除的‘</translation>
+        <translation>清理‘删除的’</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="992"/>
@@ -3617,7 +3617,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1148"/>
         <source>Show button &apos;Mark Read/Unread&apos;</source>
-        <translation>显示 ’标记已读/未读&apos; 按钮</translation>
+        <translation>显示 ‘标记已读/未读’ 按钮</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1149"/>
@@ -3712,7 +3712,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1106"/>
         <source>Close notification after opening news</source>
-        <translation type="unfinished"/>
+        <translation>打开消息后关闭通知</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1160"/>

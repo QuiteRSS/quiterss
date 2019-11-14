@@ -26,7 +26,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="55"/>
         <source>Includes:</source>
-        <translation>Includes:</translation>
+        <translation>以下を含みます:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="126"/>
@@ -1447,7 +1447,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="1853"/>
         <source>&amp;AdBlock</source>
-        <translation>AdBlock&amp;(A)</translation>
+        <translation>AdBlock(&amp;A)</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2276"/>
@@ -3712,7 +3712,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1106"/>
         <source>Close notification after opening news</source>
-        <translation type="unfinished"/>
+        <translation>ニュースを開いたら通知を閉じる</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1160"/>

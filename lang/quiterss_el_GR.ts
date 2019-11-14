@@ -3712,7 +3712,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1106"/>
         <source>Close notification after opening news</source>
-        <translation type="unfinished"/>
+        <translation>Κλείσιμο των ειδοποιήσεων μετά από από το άνοιγμα της είδησης</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1160"/>
