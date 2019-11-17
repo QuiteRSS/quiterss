@@ -150,11 +150,11 @@ void RequestFeed::getQueuedUrl()
 void RequestFeed::slotHead(const QUrl &getUrl, const int &id, const QString &feedUrl,
                             const QDateTime &date, const int &count)
 {
-  qDebug() << objectName() << "::head:" << getUrl.toEncoded() << "feed:" << feedUrl;
+  qDebug() << objectName() << "::head:" << getUrl.toEncoded() << "feed:" << feedUrl << count;
   QNetworkRequest request(getUrl);
-//  QString userAgent = QString("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/%1 (KHTML, like Gecko) QuiteRSS/%2 Safari/%1").
-//      arg(qWebKitVersion()).arg(STRPRODUCTVER);
-//  request.setRawHeader("User-Agent", userAgent.toUtf8());
+  QString userAgent = QString("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/%1 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/%1").
+      arg(qWebKitVersion());
+  request.setRawHeader("User-Agent", userAgent.toUtf8());
 
   currentUrls_.append(getUrl);
   currentIds_.append(id);
@@ -175,12 +175,12 @@ void RequestFeed::slotHead(const QUrl &getUrl, const int &id, const QString &fee
 void RequestFeed::slotGet(const QUrl &getUrl, const int &id, const QString &feedUrl,
                            const QDateTime &date, const int &count)
 {
-  qDebug() << objectName() << "::get:" << getUrl.toEncoded() << "feed:" << feedUrl;
+  qDebug() << objectName() << "::get:" << getUrl.toEncoded() << "feed:" << feedUrl << count;
   QNetworkRequest request(getUrl);
   request.setRawHeader("Accept", "application/atom+xml,application/rss+xml;q=0.9,application/xml;q=0.8,text/xml;q=0.7,*/*;q=0.6");
-//  QString userAgent = QString("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/%1 (KHTML, like Gecko) QuiteRSS/%2 Safari/%1").
-//      arg(qWebKitVersion()).arg(STRPRODUCTVER);
-//  request.setRawHeader("User-Agent", userAgent.toUtf8());
+  QString userAgent = QString("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/%1 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/%1").
+      arg(qWebKitVersion());
+  request.setRawHeader("User-Agent", userAgent.toUtf8());
 
   currentUrls_.append(getUrl);
   currentIds_.append(id);
