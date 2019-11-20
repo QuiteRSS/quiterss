@@ -1842,12 +1842,8 @@ void NewsTabWidget::loadNewspaper(int refresh)
  *----------------------------------------------------------------------------*/
 void NewsTabWidget::slotSetHtmlWebView(const QString &html, const QUrl &baseUrl)
 {
-  QUrl url = baseUrl;
-#if QT_VERSION >= 0x050900
-  url.setScheme("");
-#endif
   webView_->history()->setMaximumItemCount(0);
-  webView_->setHtml(html, url);
+  webView_->setHtml(html, baseUrl);
   webView_->history()->setMaximumItemCount(100);
 }
 
