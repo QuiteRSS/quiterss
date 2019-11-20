@@ -422,8 +422,8 @@ void NewsTabWidget::createWebWidget()
           this, SLOT(openPageInExternalBrowser()));
   connect(urlExternalBrowserAct_, SIGNAL(triggered()),
           this, SLOT(openUrlInExternalBrowser()));
-  connect(this, SIGNAL(signalSetHtmlWebView(QString,QUrl)),
-          SLOT(slotSetHtmlWebView(QString,QUrl)), Qt::QueuedConnection);
+  connect(this, SIGNAL(signalSetHtmlWebView(QString)),
+          SLOT(slotSetHtmlWebView(QString)), Qt::QueuedConnection);
   connect(webView_, SIGNAL(loadStarted()), this, SLOT(slotLoadStarted()));
   connect(webView_, SIGNAL(loadFinished(bool)), this, SLOT(slotLoadFinished(bool)));
   connect(webView_, SIGNAL(linkClicked(QUrl)), this, SLOT(slotLinkClicked(QUrl)));
@@ -1529,10 +1529,18 @@ void NewsTabWidget::updateWebView(QModelIndex index)
         content = content.remove(reg);
       }
 
+      QUrl url;
+      url.setScheme(newsUrl.scheme());
+      url.setHost(newsUrl.host());
+      if (url.host().indexOf('.') == -1) {
+        QUrl hostUrl = feedsModel_->dataField(feedIndex, "htmlUrl").toString();
+        url.setHost(hostUrl.host());
+      }
+
       if (ltr)
-        htmlStr = htmlString_.arg(cssStr, titleString, dateString, authorString, content);
+        htmlStr = htmlString_.arg(cssStr, titleString, dateString, authorString, content, url.toString());
       else
-        htmlStr = htmlRtlString_.arg(cssStr, titleString, dateString, authorString, content);
+        htmlStr = htmlRtlString_.arg(cssStr, titleString, dateString, authorString, content, url.toString());
     } else {
       if (!autoLoadImages_) {
         content = content.remove(QzRegExp("<img[^>]+>", Qt::CaseInsensitive));
@@ -1543,15 +1551,7 @@ void NewsTabWidget::updateWebView(QModelIndex index)
 
     htmlStr = htmlStr.replace("src=\"//", "src=\"http://");
 
-    QUrl url;
-    url.setScheme(newsUrl.scheme());
-    url.setHost(newsUrl.host());
-    if (url.host().indexOf('.') == -1) {
-      QUrl hostUrl = feedsModel_->dataField(feedIndex, "htmlUrl").toString();
-      url.setHost(hostUrl.host());
-    }
-
-    emit signalSetHtmlWebView(htmlStr, url);
+    emit signalSetHtmlWebView(htmlStr);
   }
 }
 
@@ -1585,9 +1585,9 @@ void NewsTabWidget::loadNewspaper(int refresh)
         arg(ltr ? "left" : "right"). // text-align
         arg(ltr ? "ltr" : "rtl"). // direction
         arg(ltr ? "right" : "left"); // "Date" text-align
-    htmlStr = newspaperHeadHtml_.arg(cssStr);
+    htmlStr = newspaperHeadHtml_.arg(cssStr, hostUrl.toString());
 
-    webView_->setHtml(htmlStr, hostUrl);
+    webView_->setHtml(htmlStr);
   }
 
   int idx = -1;
@@ -1840,10 +1840,10 @@ void NewsTabWidget::loadNewspaper(int refresh)
 
 /** @brief Asynchorous update web view
  *----------------------------------------------------------------------------*/
-void NewsTabWidget::slotSetHtmlWebView(const QString &html, const QUrl &baseUrl)
+void NewsTabWidget::slotSetHtmlWebView(const QString &html)
 {
   webView_->history()->setMaximumItemCount(0);
-  webView_->setHtml(html, baseUrl);
+  webView_->setHtml(html);
   webView_->history()->setMaximumItemCount(100);
 }
 

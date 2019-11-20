@@ -166,7 +166,7 @@ private slots:
   void slotSetItemStar(QModelIndex index, int starred);
   void slotMarkReadTimeout();
 
-  void slotSetHtmlWebView(const QString &html, const QUrl &baseUrl);
+  void slotSetHtmlWebView(const QString &html);
   void webHomePage();
   void openPageInExternalBrowser();
   void slotLinkClicked(QUrl url);
