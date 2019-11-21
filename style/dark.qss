@@ -1,0 +1,251 @@
+/* QuiteRSS Dark Style */
+
+QWidget {
+    background-color: #464546; /* dark */
+    alternate-background-color: #3a393a; /* veryDark */
+    color: #e1e0e1; /* veryLight */
+    selection-background-color: #2a82da;
+    selection-color: white;
+}
+
+QMenuBar {
+	background: #3a393a;
+	color: #e1e0e1;
+	padding: 1px;
+}
+
+QMenuBar::item {
+	padding: 3px 6px;
+	background: transparent;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+}
+
+QMenuBar::item:selected {
+	border: 1px solid #e1e0e1;
+	background: #464546;
+}
+
+QMenuBar::item:pressed {
+	border: 1px solid white;
+	border-bottom: none;
+	background: #3a393a;
+	color: white;
+}
+
+#feedsView_, #newsCategoriesTree_ {
+	background: #464546;
+}
+
+#feedsView_::item, #newsView_::item, #newsCategoriesTree_::item {
+	min-height: 20px;
+}
+
+#categoriesLabel_, #newsTextTitle_ {
+	color: #e1e0e1;
+}
+
+#feedsPanel_, #categoriesPanel_, #stackedWidget_ {
+	background: #464546;
+}
+
+#tabBar_ QTabWidget::pane {
+	background: white;
+	border: 1px solid gray;
+}
+
+#tabBar_ QTabWidget::tab-bar {
+	bottom: -1px;
+}
+
+#tabBar_::tab {
+	background-color: transparent;
+	border: 1px solid gray;
+	border-bottom: none;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	padding: 4px 1px 4px 1px;
+	margin: 0;
+	margin-top: 1px;
+	margin-right: -1px;
+}
+
+#tabBar_::tab:last {
+	margin-right: 0px;
+}
+
+#tabBar_::tab:selected {
+	background: #464546;
+	color: #000000;
+	border-bottom: none;
+	padding-bottom: 5px;
+}
+
+#tabBar_::tab:hover:!selected {
+	background: #f8f8f8;
+	color: #000000;
+	border-bottom: 1px solid gray;
+}
+
+#tabBar_ QToolButton {
+	border: 1px solid gray;
+	border-radius: 2px;
+}
+
+#tabBarWidget {
+	border-bottom: 1px solid gray;
+}
+
+QToolBar {
+	border-style: none;
+}
+
+#buttonColumnView {
+	border: 1px solid #e1e0e1;
+	border-top: none;
+	border-bottom: 1px solid #D5D5D5;
+	padding: 5px 0px 1px 0px;
+	background-color: #3a393a;
+}
+
+#buttonColumnView:hover, #buttonColumnView:pressed {
+	border-color: white;
+	background-color: #464546;
+}
+
+#progressBar_, #splashProgress {
+	border: 1px solid #A5A5A5;
+	border-radius: 2px;
+	background: #464546;
+}
+
+#progressBar_::chunk, #splashProgress::chunk {
+	background: #2a82da;
+	width: 1px;
+}
+
+QHeaderView {
+	background-color: #3a393a;
+	color: #e1e0e1;
+}
+
+QHeaderView::section {
+	border-right: 1px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+								stop: 0 #f0f0f0, stop: 1.0 #D5D5D5);
+	border-bottom: 1px solid #D5D5D5;
+	border-top: none;
+	border-left: none;
+	background-color: transparent;
+	padding: 2px;
+	padding-left: 3px;
+}
+
+QHeaderView::section:hover {
+	border: 1px solid white;
+	border-top: none;
+	background-color: #464546;
+}
+
+QHeaderView::down-arrow {
+	subcontrol-origin: padding;
+	subcontrol-position: center top;
+	image: url(:/images/images/sortIndicatorD.png);
+}
+
+QHeaderView::up-arrow {
+	subcontrol-origin: padding;
+	subcontrol-position: center top;
+	image: url(:/images/images/sortIndicatorA.png);
+}
+
+#webViewProgress_ {
+	border: 1px solid #D5D5D5;
+	border-left: none;
+	border-right: none;
+	border-bottom: none;
+	text-align: center;
+	background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+								stop:0 #f9f9f9,
+								stop:0.4 #f1f1f1,
+								stop:0.6 #e9e9e9,
+								stop:1 #f1f1f1);
+}
+
+#webViewProgress_::chunk {
+	background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+								stop:0 #f1f1f1,
+								stop:0.4 #d9d9d9,
+								stop:0.6 #d1d1d1,
+								stop:1 #d9d9d9);
+	width: 10px;
+}
+
+#contentLabel_ {
+	background-color: #464546;
+	color: #e1e0e1;
+}
+
+#categoriesTree {
+	padding: 1px;
+}
+
+#categoriesTree::item, #fontTree::item,
+#languageFileList_::item, #filtersTree::item,
+#shortcutTree::item, #labelsTree_::item,
+#colorsTree_::item {
+	min-height: 20px;
+}
+
+#foldersTree_::item, #feedsTreeFR::item, #feedsTreeNotify_::item {
+	min-height: 18px;
+}
+
+QStatusBar #progressBar_{
+	margin-right: 5px;
+}
+
+QMainWindow::separator {
+	border: none;
+}
+
+#infoWidgetFR, #actionsWidgetFR {
+	background: white;
+}
+
+#notificationWidget {
+	border: 1px solid gray;
+	border-radius: 8px;
+}
+
+#titleNotification {
+	border-bottom: 1px solid gray;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+}
+
+#bottomNotification {
+	border-top: 1px solid gray;
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+}
+
+#feedItemNotification {
+	border-bottom: 1px solid gray;
+}
+
+#click2flash-frame {
+	border: 1px solid #e4e4e4;
+	background: #f4f4f4;
+}
+
+#click2flash-toolbutton {
+	background: url(:/images/images/flash.png) no-repeat;
+	background-position: center;
+	border: none;
+}
+
+#click2flash-toolbutton:hover {
+	background: url(:/images/images/flashstart.png) no-repeat;
+	background-position: center;
+	border:none;
+}

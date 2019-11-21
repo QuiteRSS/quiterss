@@ -567,6 +567,7 @@ private:
   QAction *layoutToggle_;
   QAction *systemStyle_;
   QAction *system2Style_;
+  QAction *darkStyle_;
   QAction *greenStyle_;
   QAction *orangeStyle_;
   QAction *purpleStyle_;
