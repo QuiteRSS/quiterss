@@ -937,10 +937,10 @@ QString ParseObject::parseDate(const QString &dateString, const QString &urlStri
 void ParseObject::runUserFilter(int feedId, int filterId)
 {
   QSqlQuery q(db_);
-  bool onlyNew = true;
+  bool isAllFilters = true;
 
   if (filterId != -1) {
-    onlyNew = false;
+    isAllFilters = false;
     q.exec(QString("SELECT enable, type FROM filters WHERE id='%1' AND feeds LIKE '%,%2,%'").
            arg(filterId).arg(feedId));
   } else {
@@ -949,9 +949,9 @@ void ParseObject::runUserFilter(int feedId, int filterId)
   }
 
   while (q.next()) {
-    if ((q.value(0).toInt() == 0) && onlyNew) continue;
+    if ((q.value(0).toInt() == 0) && isAllFilters) continue;
 
-    if (onlyNew)
+    if (isAllFilters)
       filterId = q.value(2).toInt();
     int filterType = q.value(1).toInt();
 
@@ -1000,8 +1000,6 @@ void ParseObject::runUserFilter(int feedId, int filterId)
       qStr.append(qStr1);
 
     whereStr = QString(" WHERE feedId='%1' AND deleted=0").arg(feedId);
-
-    if (onlyNew) whereStr.append(" AND new=1");
 
     qStr2.clear();
     switch (filterType) {
