@@ -397,6 +397,8 @@ void MainApplication::setStyleApplication()
     fileName.append("/style/system.qss");
   } else if (styleApplication_ == "system2Style_") {
     fileName.append("/style/system2.qss");
+  } else if (styleApplication_ == "darkStyle_") {
+    fileName.append("/style/dark.qss");
   } else if (styleApplication_ == "orangeStyle_") {
     fileName.append("/style/orange.qss");
   } else if (styleApplication_ == "purpleStyle_") {
