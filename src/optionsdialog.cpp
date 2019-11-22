@@ -1608,7 +1608,7 @@ void OptionsDialog::createLanguageWidget()
   languageFileList_->addTopLevelItem(languageItem);
 
   QString linkWikiStr =
-      QString("<a href='http://quiterss.org/en/development'>Link for translators</a>");
+      QString("<a href='https://quiterss.org/en/development'>Link for translators</a>");
   QLabel *linkTranslators = new QLabel(linkWikiStr);
   linkTranslators->setOpenExternalLinks(true);
 
