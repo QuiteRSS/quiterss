@@ -249,3 +249,9 @@ QMainWindow::separator {
 	background-position: center;
 	border:none;
 }
+
+#pushButtonNull {
+	background: #656565;
+	border: none; 
+	padding: 0px;
+}
