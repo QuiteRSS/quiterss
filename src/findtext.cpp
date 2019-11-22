@@ -73,7 +73,7 @@ FindTextContent::FindTextContent(QWidget *parent)
   findButton_->setIcon(QIcon(findPixmap));
   findButton_->setIconSize(findPixmap.size());
   findButton_->setCursor(Qt::ArrowCursor);
-  findButton_->setStyleSheet("QToolButton { border: none; padding: 0px; }");
+  findButton_->setStyleSheet("QToolButton { border: none; padding: 0px; background: none; }");
 
   connect(findButton_, SIGNAL(clicked()), this, SLOT(slotMenuFind()));
   connect(findGroup_, SIGNAL(triggered(QAction*)),
@@ -85,14 +85,14 @@ FindTextContent::FindTextContent(QWidget *parent)
   clearButton_->setIcon(QIcon(pixmap));
   clearButton_->setIconSize(pixmap.size());
   clearButton_->setCursor(Qt::ArrowCursor);
-  clearButton_->setStyleSheet("QToolButton { border: none; padding: 0px; }");
+  clearButton_->setStyleSheet("QToolButton { border: none; padding: 0px; background: none; }");
   clearButton_->hide();
   connect(clearButton_, SIGNAL(clicked()), this, SLOT(slotClear()));
   connect(this, SIGNAL(textChanged(const QString&)),
           SLOT(updateClearButton(const QString&)));
 
   findLabel_ = new QLabel(tr("Find in News"), this);
-  findLabel_->setStyleSheet("QLabel { color: gray; }");
+  findLabel_->setStyleSheet("QLabel { color: gray; background: none; }");
 
   int frameWidth = style()->pixelMetric(QStyle::PM_DefaultFrameWidth);
   setStyleSheet(QString("QLineEdit { padding-right: %1px; padding-left: %2px; }").

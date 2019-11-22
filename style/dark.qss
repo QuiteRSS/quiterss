@@ -35,6 +35,7 @@ QMenuBar::item:pressed {
 
 #feedsView_, #newsCategoriesTree_ {
 	background: #464546;
+	color: #e1e0e1;
 }
 
 #feedsView_::item, #newsView_::item, #newsCategoriesTree_::item {
@@ -101,16 +102,11 @@ QToolBar {
 }
 
 #buttonColumnView {
-	border: 1px solid #e1e0e1;
+	border: 1px solid gray;
 	border-top: none;
-	border-bottom: 1px solid #D5D5D5;
+	border-bottom: none;
 	padding: 5px 0px 1px 0px;
 	background-color: #3a393a;
-}
-
-#buttonColumnView:hover, #buttonColumnView:pressed {
-	border-color: white;
-	background-color: #464546;
 }
 
 #progressBar_, #splashProgress {
@@ -130,20 +126,13 @@ QHeaderView {
 }
 
 QHeaderView::section {
-	border-right: 1px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-								stop: 0 #f0f0f0, stop: 1.0 #D5D5D5);
-	border-bottom: 1px solid #D5D5D5;
+	border-right: 1px solid gray;
+	border-bottom: 1px solid gray;
 	border-top: none;
 	border-left: none;
 	background-color: transparent;
 	padding: 2px;
 	padding-left: 3px;
-}
-
-QHeaderView::section:hover {
-	border: 1px solid white;
-	border-top: none;
-	background-color: #464546;
 }
 
 QHeaderView::down-arrow {
@@ -233,6 +222,15 @@ QMainWindow::separator {
 	border-bottom: 1px solid gray;
 }
 
+QLineEdit {
+	border: 1 solid #3a393a;
+	background-color: #656565;
+}
+
+QLineEdit:focus {
+	border: 1 solid #2a82da;
+}
+
 #click2flash-frame {
 	border: 1px solid #e4e4e4;
 	background: #f4f4f4;
@@ -254,4 +252,22 @@ QMainWindow::separator {
 	background: #656565;
 	border: none; 
 	padding: 0px;
+}
+
+QScrollBar:vertical {
+  border: none;
+  background: none;
+  width: 10px;
+  margin: 0px;
+  padding: 0px;
+}
+QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+  background: #464546;
+}
+QScrollBar::handle:vertical {
+  background: #858585;
+  min-height: 20px;
+}
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+  height: 0px;
 }

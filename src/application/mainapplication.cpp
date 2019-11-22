@@ -539,6 +539,15 @@ QString MainApplication::styleSheetNewsDefaultFile() const
   }
 }
 
+QString MainApplication::styleSheetNewsDarkFile() const
+{
+  if (isPortable_) {
+    return "style/news_dark.css";
+  } else {
+    return resourcesDir_ % "/style/news_dark.css";
+  }
+}
+
 UpdateFeeds *MainApplication::updateFeeds()
 {
   return updateFeeds_;

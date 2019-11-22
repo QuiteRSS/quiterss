@@ -603,7 +603,7 @@ void MainWindow::createStatusBar()
   stopUpdateButton_->setCursor(Qt::ArrowCursor);
   stopUpdateButton_->setDefaultAction(stopUpdateAct_);
   stopUpdateButton_->setStyleSheet(
-        "QToolButton { border: none; padding: 0px; }"
+        "QToolButton { border: none; padding: 0px; background: none; }"
         "QToolButton:hover { background: rgba(150, 150, 150, 60) }"
         );
   stopUpdateButton_->move(progressBar_->rect().right() - stopUpdateButton_->sizeHint().width(),
@@ -616,13 +616,13 @@ void MainWindow::createStatusBar()
   loadImagesButton->setFocusPolicy(Qt::NoFocus);
   loadImagesButton->setIconSize(QSize(16,16));
   loadImagesButton->setDefaultAction(autoLoadImagesToggle_);
-  loadImagesButton->setStyleSheet("QToolButton { border: none; padding: 0px; }");
+  loadImagesButton->setStyleSheet("QToolButton { border: none; padding: 0px; background: none; }");
 
   QToolButton *fullScreenButton = new QToolButton(this);
   fullScreenButton->setFocusPolicy(Qt::NoFocus);
   loadImagesButton->setIconSize(QSize(16,16));
   fullScreenButton->setDefaultAction(fullScreenAct_);
-  fullScreenButton->setStyleSheet("QToolButton { border: none; padding: 0px; }");
+  fullScreenButton->setStyleSheet("QToolButton { border: none; padding: 0px; background: none; }");
   statusBar()->installEventFilter(this);
 
   statusBar()->addPermanentWidget(progressBar_);
@@ -6198,6 +6198,24 @@ void MainWindow::setStyleApp(QAction *pAct)
     fileName.append("/style/system2.qss");
   } else if (pAct->objectName() == "darkStyle_") {
     fileName.append("/style/dark.qss");
+
+    feedsModel_->textColor_ = "#e1e0e1";
+    newsBackgroundColor_ = "#464546";
+    newsTitleBackgroundColor_ = "#464546";
+    titleColor_ = "#e1e0e1";
+    newsTextColor_ = "#e1e0e1";
+    dateColor_ = "#a5a5a5";
+    authorColor_ = "#a5a5a5";
+    Settings settings;
+    settings.setValue("Settings/styleSheetNews", mainApp->styleSheetNewsDarkFile());
+    settings.beginGroup("Color");
+    settings.setValue("feedsListTextColor", feedsModel_->textColor_);
+    settings.setValue("titleColor", titleColor_);
+    settings.setValue("newsTextColor", newsTextColor_);
+    settings.setValue("newsTitleBackgroundColor", newsTitleBackgroundColor_);
+    settings.setValue("newsBackgroundColor", newsBackgroundColor_);
+    settings.setValue("dateColor", dateColor_);
+    settings.setValue("authorColor", authorColor_);
   } else if (pAct->objectName() == "orangeStyle_") {
     fileName.append("/style/orange.qss");
   } else if (pAct->objectName() == "purpleStyle_") {
@@ -6224,6 +6242,12 @@ void MainWindow::setStyleApp(QAction *pAct)
                 "stop: 0 %1, stop: 0.07 %2);}").
         arg(feedsPanel_->palette().background().color().name()).
         arg(qApp->palette().color(QPalette::Dark).name()));
+
+  if (currentNewsTab != NULL) {
+    if (currentNewsTab->type_ < NewsTabWidget::TabTypeWeb)
+      currentNewsTab->newsHeader_->saveStateColumns(currentNewsTab);
+    currentNewsTab->setSettings(false);
+  }
 }
 
 /** Switch focus forward between feed tree, news list and browser
