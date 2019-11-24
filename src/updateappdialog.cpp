@@ -70,8 +70,8 @@ UpdateAppDialog::UpdateAppDialog(const QString &lang, QWidget *parent, bool show
 
     QString urlHistory;
     if (lang_.contains("ru", Qt::CaseInsensitive))
-      urlHistory = "http://quiterss.org/files/updates_new/HISTORY_RU";
-    else urlHistory = "http://quiterss.org/files/updates_new/HISTORY_EN";
+      urlHistory = "https://quiterss.org/files/updates_new/HISTORY_RU";
+    else urlHistory = "https://quiterss.org/files/updates_new/HISTORY_EN";
     historyReply_ = networkManagerProxy_->get(QNetworkRequest(QUrl(urlHistory)));
     connect(historyReply_, SIGNAL(finished()), this, SLOT(slotFinishHistoryReply()));
 
@@ -130,8 +130,8 @@ void UpdateAppDialog::finishUpdatesChecking()
     } else {
       QString urlDownloads;
       if (lang_.contains("ru", Qt::CaseInsensitive))
-        urlDownloads = "http://quiterss.org/ru/download";
-      else urlDownloads = "http://quiterss.org/en/download";
+        urlDownloads = "https://quiterss.org/ru/download";
+      else urlDownloads = "https://quiterss.org/en/download";
 
       str =
           tr("A new version of QuiteRSS is available!") +
@@ -218,7 +218,7 @@ void UpdateAppDialog::renderStatistics()
   Settings settings;
   bool updateCheckEnabled = settings.value("Settings/updateCheckEnabled", true).toBool();
   if (updateCheckEnabled || showDialog_) {
-    QNetworkRequest request(QUrl("http://quiterss.org/files/updates_new/VersionNo.h"));
+    QNetworkRequest request(QUrl("https://quiterss.org/files/updates_new/VersionNo.h"));
     reply_ = networkManagerProxy_->get(request);
     connect(reply_, SIGNAL(finished()), this, SLOT(finishUpdatesChecking()));
   } else {
