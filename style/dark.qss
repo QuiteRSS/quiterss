@@ -7,6 +7,9 @@ QWidget {
     selection-background-color: #2a82da;
     selection-color: white;
 }
+QWidget:disabled {
+	color: gray;
+}
 
 QMenuBar {
 	background: #3a393a;
@@ -17,20 +20,10 @@ QMenuBar {
 QMenuBar::item {
 	padding: 3px 6px;
 	background: transparent;
-	border-top-left-radius: 4px;
-	border-top-right-radius: 4px;
 }
 
 QMenuBar::item:selected {
-	border: 1px solid #e1e0e1;
-	background: #464546;
-}
-
-QMenuBar::item:pressed {
-	border: 1px solid white;
-	border-bottom: none;
-	background: #3a393a;
-	color: white;
+	background: #555555;
 }
 
 #feedsView_, #newsCategoriesTree_ {
@@ -50,47 +43,52 @@ QMenuBar::item:pressed {
 	background: #464546;
 }
 
-#tabBar_ QTabWidget::pane {
-	background: white;
+QTabWidget::pane {
 	border: 1px solid gray;
 }
 
-#tabBar_ QTabWidget::tab-bar {
+QTabWidget::tab-bar {
 	bottom: -1px;
 }
 
-#tabBar_::tab {
+QTabBar::tab {
 	background-color: transparent;
 	border: 1px solid gray;
 	border-bottom: none;
 	border-top-left-radius: 4px;
 	border-top-right-radius: 4px;
-	padding: 4px 1px 4px 1px;
+	padding: 4px;
 	margin: 0;
 	margin-top: 1px;
 	margin-right: -1px;
 }
 
-#tabBar_::tab:last {
+#tabBar_::tab {
+	padding: 4px 1px 4px 1px;
+}
+
+QTabBar::tab:last {
 	margin-right: 0px;
 }
 
-#tabBar_::tab:selected {
+QTabBar::tab:selected {
 	background: #464546;
-	color: #000000;
 	border-bottom: none;
 	padding-bottom: 5px;
 }
 
-#tabBar_::tab:hover:!selected {
-	background: #f8f8f8;
-	color: #000000;
+QTabBar::tab:!selected {
+	background-color: #3a393a;
 	border-bottom: 1px solid gray;
 }
 
-#tabBar_ QToolButton {
+QTabBar QToolButton {
 	border: 1px solid gray;
 	border-radius: 2px;
+}
+
+QTabBar QWidget {
+	background: none;
 }
 
 #tabBarWidget {
@@ -103,10 +101,13 @@ QToolBar {
 
 #buttonColumnView {
 	border: 1px solid gray;
+	border-radius: 0px;
 	border-top: none;
 	border-bottom: none;
-	padding: 5px 0px 1px 0px;
+	margin-bottom: 1px;
+	padding: 5px 0px 2px 0px;
 	background-color: #3a393a;
+	min-width: 10px;
 }
 
 #progressBar_, #splashProgress {
@@ -131,7 +132,7 @@ QHeaderView::section {
 	border-top: none;
 	border-left: none;
 	background-color: transparent;
-	padding: 2px;
+	/*padding: 2px;*/
 	padding-left: 3px;
 }
 
@@ -158,6 +159,7 @@ QHeaderView::up-arrow {
 								stop:0.4 #f1f1f1,
 								stop:0.6 #e9e9e9,
 								stop:1 #f1f1f1);
+	color: #000000;
 }
 
 #webViewProgress_::chunk {
@@ -167,6 +169,10 @@ QHeaderView::up-arrow {
 								stop:0.6 #d1d1d1,
 								stop:1 #d9d9d9);
 	width: 10px;
+}
+
+#webViewProgressLabel_ {
+	color: #000000;
 }
 
 #contentLabel_ {
@@ -198,7 +204,7 @@ QMainWindow::separator {
 }
 
 #infoWidgetFR, #actionsWidgetFR {
-	background: white;
+	
 }
 
 #notificationWidget {
@@ -224,11 +230,13 @@ QMainWindow::separator {
 
 QLineEdit {
 	border: 1 solid #3a393a;
-	background-color: #656565;
+	background-color: #555555;
+	border-radius: 2px;
 }
 
 QLineEdit:focus {
 	border: 1 solid #2a82da;
+	color: white;
 }
 
 #click2flash-frame {
@@ -249,25 +257,95 @@ QLineEdit:focus {
 }
 
 #pushButtonNull {
-	background: #656565;
+	background: #3a393a;
 	border: none; 
 	padding: 0px;
+	min-width: 6px;
+}
+
+QPushButton {
+	border: 1 solid #3a393a;
+	background-color: #555555;
+	padding: 4px;
+	border-radius: 2px;
+	min-width: 80px;
+}
+
+QPushButton:focus {
+	border: 1 solid #2a82da;
+	color: white;
 }
 
 QScrollBar:vertical {
-  border: none;
   background: none;
+  border: none;
   width: 10px;
   margin: 0px;
   padding: 0px;
 }
+
 QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
-  background: #464546;
+  background: #3a393a;
 }
+
 QScrollBar::handle:vertical {
-  background: #858585;
+  background: #555555;
   min-height: 20px;
 }
+
 QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
   height: 0px;
+}
+
+QGroupBox {
+	border: 1px solid gray;
+	margin-top: 2ex;
+}
+
+QGroupBox::title {
+	subcontrol-origin: margin;
+	left: 5px;
+	padding-left: 3px;
+}
+
+QComboBox {
+	border: 1 solid #3a393a;
+	background-color: #555555;
+	border-radius: 2px;
+	padding: 2px;
+	padding-left: 4px;
+	min-width: 2em;
+}
+
+QComboBox:on { 
+	color: white;
+}
+
+QComboBox::drop-down {
+	border: none;
+	subcontrol-origin: padding;
+	subcontrol-position: top right;
+	width: 15px;
+}
+
+QComboBox::down-arrow {
+	image: url(:/images/images/bullet_down.png);
+}
+
+QComboBox::down-arrow:on {
+	top: 1px;
+	left: 1px;
+}
+
+QSpinBox {
+	border: 1 solid #3a393a;
+	background-color: #555555;
+	border-radius: 2px;
+	padding: 2px;
+	padding-left: 4px;
+}
+
+QSpinBox:focus {
+	border: 1 solid #2a82da;
+	color: white;
 }

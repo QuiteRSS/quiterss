@@ -61,7 +61,7 @@ public:
   QString cacheDefaultDir() const;
   QString soundNotifyDefaultFile() const;
   QString styleSheetNewsDefaultFile() const;
-  QString styleSheetNewsDarkFile() const;
+  QString styleSheetWebDarkFile() const;
 
   bool storeDBMemory() const;
   bool dbFileExists() const { return dbFileExists_; }

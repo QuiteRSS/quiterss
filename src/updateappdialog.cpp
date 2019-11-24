@@ -126,9 +126,7 @@ void UpdateAppDialog::finishUpdatesChecking()
 
     if (version.contains(curVersion)) {
       str =
-          "<a><font color=#4b4b4b>" +
-          tr("You already have the latest version") +
-          "</a>";
+          tr("You already have the latest version");
     } else {
       QString urlDownloads;
       if (lang_.contains("ru", Qt::CaseInsensitive))
@@ -136,8 +134,7 @@ void UpdateAppDialog::finishUpdatesChecking()
       else urlDownloads = "http://quiterss.org/en/download";
 
       str =
-          "<a><font color=#FF8040>" +
-          tr("A new version of QuiteRSS is available!") + "</a>"
+          tr("A new version of QuiteRSS is available!") +
           "<p>" + QString("<a href=\"%1\">%2</a>").
           arg(urlDownloads).
           arg(tr("Click here to go to the download page"));

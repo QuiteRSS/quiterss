@@ -71,6 +71,7 @@ DownloadItem::DownloadItem(QListWidgetItem *item,
   if (total > 0) total_ = total;
 
   fileNameLabel_ = new QLabel();
+  fileNameLabel_->setStyleSheet("background: none;");
   QFileInfo info(fileName);
   fileNameLabel_->setText(info.fileName());
   QFont font = fileNameLabel_->font();
@@ -95,6 +96,7 @@ DownloadItem::DownloadItem(QListWidgetItem *item,
   progressFrame_->setLayout(progressLayout);
 
   downloadInfo_ = new QLabel();
+  downloadInfo_->setStyleSheet("background: none;");
   downloadInfo_->setText(tr("Remaining time unavailable"));
 
   QVBoxLayout *mainLayout = new QVBoxLayout();

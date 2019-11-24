@@ -347,6 +347,8 @@ void NewsTabWidget::createWebWidget()
           webViewProgress_, SLOT(setValue(int)), Qt::QueuedConnection);
 
   webViewProgressLabel_ = new QLabel(this);
+  webViewProgressLabel_->setObjectName("webViewProgressLabel_");
+  webViewProgressLabel_->setStyleSheet("background: none;");
   QHBoxLayout *progressLayout = new QHBoxLayout();
   progressLayout->setMargin(0);
   progressLayout->addWidget(webViewProgressLabel_, 0, Qt::AlignLeft|Qt::AlignVCenter);
@@ -461,6 +463,12 @@ void NewsTabWidget::setSettings(bool init, bool newTab)
   Settings settings;
 
   if (type_ == TabTypeDownloads) return;
+
+  QString style = settings.value("Settings/styleApplication", "defaultStyle_").toString();
+  if (style == "darkStyle_")
+    newsIconMovie_->setFileName(":/images/loading_dark");
+  else
+    newsIconMovie_->setFileName(":/images/loading");
 
   if (newTab) {
     if (type_ < TabTypeWeb) {

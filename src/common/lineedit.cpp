@@ -38,12 +38,12 @@ LineEdit::LineEdit(QWidget *parent, const QString &text)
   clearButton->setIcon(QIcon(pixmap));
   clearButton->setIconSize(pixmap.size());
   clearButton->setCursor(Qt::ArrowCursor);
-  clearButton->setStyleSheet("QToolButton { border: none; padding: 0px; }");
+  clearButton->setStyleSheet("QToolButton { border: none; padding: 0px; background: none; }");
   clearButton->hide();
 
   if (!text.isEmpty()) {
     textLabel_ = new QLabel(this);
-    textLabel_->setStyleSheet("QLabel { color: gray; }");
+    textLabel_->setStyleSheet("QLabel { color: gray; background: none; }");
     textLabel_->setText(text);
   }
 

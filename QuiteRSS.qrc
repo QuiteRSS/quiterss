@@ -98,6 +98,8 @@
         <file alias="cleanup">images/cleanup.png</file>
         <file alias="quiterss128">images/128x128/quiterss.png</file>
         <file alias="quiterss128_NewNews">images/quiterss128_NewNews.png</file>
+        <file>images/bullet_down.png</file>
+        <file alias="loading_dark">images/loading_dark.gif</file>
     </qresource>
     <qresource prefix="/style">
         <file alias="systemStyle">style/system.qss</file>

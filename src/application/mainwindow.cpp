@@ -6191,6 +6191,10 @@ void MainWindow::slotFeedPageDownPressed()
  *---------------------------------------------------------------------------*/
 void MainWindow::setStyleApp(QAction *pAct)
 {
+  Settings settings;
+
+  settings.setValue("Settings/styleApplication", pAct->objectName());
+
   QString fileName(mainApp->resourcesDir());
   if (pAct->objectName() == "systemStyle_") {
     fileName.append("/style/system.qss");
@@ -6200,22 +6204,39 @@ void MainWindow::setStyleApp(QAction *pAct)
     fileName.append("/style/dark.qss");
 
     feedsModel_->textColor_ = "#e1e0e1";
+    newsListTextColor_ = "#e1e0e1";
+    newsListBackgroundColor_ = "#464546";
+    newNewsTextColor_ = "#e1e0e1";
+    unreadNewsTextColor_ = "#e1e0e1";
     newsBackgroundColor_ = "#464546";
     newsTitleBackgroundColor_ = "#464546";
     titleColor_ = "#e1e0e1";
     newsTextColor_ = "#e1e0e1";
     dateColor_ = "#a5a5a5";
     authorColor_ = "#a5a5a5";
-    Settings settings;
-    settings.setValue("Settings/styleSheetNews", mainApp->styleSheetNewsDarkFile());
+    notifierTextColor_ = "#e1e0e1";
+    notifierBackgroundColor_ = "#464546";
+    transparencyNotify_ = 40;
+
+    settings.beginGroup("Settings");
+    settings.setValue("userStyleBrowser", mainApp->styleSheetWebDarkFile());
+    settings.setValue("transparencyNotify", transparencyNotify_);
+    settings.endGroup();
     settings.beginGroup("Color");
     settings.setValue("feedsListTextColor", feedsModel_->textColor_);
+    settings.setValue("newsListTextColor", newsListTextColor_);
+    settings.setValue("newsListBackgroundColor", newsListBackgroundColor_);
+    settings.setValue("newNewsTextColor", newNewsTextColor_);
+    settings.setValue("unreadNewsTextColor", unreadNewsTextColor_);
     settings.setValue("titleColor", titleColor_);
     settings.setValue("newsTextColor", newsTextColor_);
     settings.setValue("newsTitleBackgroundColor", newsTitleBackgroundColor_);
     settings.setValue("newsBackgroundColor", newsBackgroundColor_);
     settings.setValue("dateColor", dateColor_);
     settings.setValue("authorColor", authorColor_);
+    settings.setValue("notifierTextColor", notifierTextColor_);
+    settings.setValue("notifierBackgroundColor", notifierBackgroundColor_);
+    settings.endGroup();
   } else if (pAct->objectName() == "orangeStyle_") {
     fileName.append("/style/orange.qss");
   } else if (pAct->objectName() == "purpleStyle_") {
@@ -6243,6 +6264,7 @@ void MainWindow::setStyleApp(QAction *pAct)
         arg(feedsPanel_->palette().background().color().name()).
         arg(qApp->palette().color(QPalette::Dark).name()));
 
+  mainApp->reloadUserStyleBrowser();
   if (currentNewsTab != NULL) {
     if (currentNewsTab->type_ < NewsTabWidget::TabTypeWeb)
       currentNewsTab->newsHeader_->saveStateColumns(currentNewsTab);

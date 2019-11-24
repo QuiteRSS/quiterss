@@ -121,12 +121,14 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
 
   iconTitle_ = new QLabel(this);
   iconTitle_->setPixmap(QPixmap(":/images/quiterss16"));
+  iconTitle_->setStyleSheet("background: none;");
   textTitle_ = new QLabel(this);
+  textTitle_->setStyleSheet("background: none;");
 
   closeButton_ = new QToolButton(this);
   closeButton_->setToolTip(tr("Close"));
   closeButton_->setStyleSheet(
-        "QToolButton { border: none; padding: 0px; "
+        "QToolButton { border: none; padding: 0px; background: none; "
         "image: url(:/images/close); }"
         "QToolButton:hover {"
         "image: url(:/images/closeHover); }");
@@ -148,20 +150,24 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
                              arg(blueColor).arg(transparency));
 
   numPage_ = new QLabel(this);
+  numPage_->setStyleSheet("background: none;");
 
   ToolButton *markAllReadButton_ = new ToolButton(this);
   markAllReadButton_->setToolTip(tr("Mark All News Read"));
   markAllReadButton_->setIcon(QIcon(":/images/markReadAll"));
   markAllReadButton_->setAutoRaise(true);
+  markAllReadButton_->setStyleSheet("background: none;");
   prevButton_ = new ToolButton(this);
   prevButton_->setIcon(QIcon(":/images/moveLeft"));
   prevButton_->setToolTip(tr("Previous Page"));
   prevButton_->setEnabled(false);
   prevButton_->setAutoRaise(true);
+  prevButton_->setStyleSheet("background: none;");
   nextButton_ = new ToolButton(this);
   nextButton_->setIcon(QIcon(":/images/moveRight"));
   nextButton_->setToolTip(tr("Next Page"));
   nextButton_->setAutoRaise(true);
+  nextButton_->setStyleSheet("background: none;");
 
   QHBoxLayout *bottomLayout = new QHBoxLayout();
   bottomLayout->setMargin(2);
@@ -185,6 +191,7 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
                               arg(blueColor).arg(transparency));
 
   stackedWidget_ = new QStackedWidget(this);
+  stackedWidget_->setStyleSheet("background: none;");
 
   QVBoxLayout *mainLayout = new QVBoxLayout();
   mainLayout->setMargin(1);
