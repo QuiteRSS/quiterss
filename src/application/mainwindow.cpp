@@ -6202,7 +6202,21 @@ void MainWindow::setStyleApp(QAction *pAct)
     fileName.append("/style/system2.qss");
   } else if (pAct->objectName() == "darkStyle_") {
     fileName.append("/style/dark.qss");
+  } else if (pAct->objectName() == "orangeStyle_") {
+    fileName.append("/style/orange.qss");
+  } else if (pAct->objectName() == "purpleStyle_") {
+    fileName.append("/style/purple.qss");
+  } else if (pAct->objectName() == "pinkStyle_") {
+    fileName.append("/style/pink.qss");
+  } else if (pAct->objectName() == "grayStyle_") {
+    fileName.append("/style/gray.qss");
+  } else {
+    fileName.append("/style/green.qss");
+  }
 
+  QString userStyleBrowser = "";
+  if (pAct->objectName() == "darkStyle_") {
+    userStyleBrowser = mainApp->styleSheetWebDarkFile();
     feedsModel_->textColor_ = "#e1e0e1";
     newsListTextColor_ = "#e1e0e1";
     newsListBackgroundColor_ = "#464546";
@@ -6217,37 +6231,43 @@ void MainWindow::setStyleApp(QAction *pAct)
     notifierTextColor_ = "#e1e0e1";
     notifierBackgroundColor_ = "#464546";
     transparencyNotify_ = 40;
-
-    settings.beginGroup("Settings");
-    settings.setValue("userStyleBrowser", mainApp->styleSheetWebDarkFile());
-    settings.setValue("transparencyNotify", transparencyNotify_);
-    settings.endGroup();
-    settings.beginGroup("Color");
-    settings.setValue("feedsListTextColor", feedsModel_->textColor_);
-    settings.setValue("newsListTextColor", newsListTextColor_);
-    settings.setValue("newsListBackgroundColor", newsListBackgroundColor_);
-    settings.setValue("newNewsTextColor", newNewsTextColor_);
-    settings.setValue("unreadNewsTextColor", unreadNewsTextColor_);
-    settings.setValue("titleColor", titleColor_);
-    settings.setValue("newsTextColor", newsTextColor_);
-    settings.setValue("newsTitleBackgroundColor", newsTitleBackgroundColor_);
-    settings.setValue("newsBackgroundColor", newsBackgroundColor_);
-    settings.setValue("dateColor", dateColor_);
-    settings.setValue("authorColor", authorColor_);
-    settings.setValue("notifierTextColor", notifierTextColor_);
-    settings.setValue("notifierBackgroundColor", notifierBackgroundColor_);
-    settings.endGroup();
-  } else if (pAct->objectName() == "orangeStyle_") {
-    fileName.append("/style/orange.qss");
-  } else if (pAct->objectName() == "purpleStyle_") {
-    fileName.append("/style/purple.qss");
-  } else if (pAct->objectName() == "pinkStyle_") {
-    fileName.append("/style/pink.qss");
-  } else if (pAct->objectName() == "grayStyle_") {
-    fileName.append("/style/gray.qss");
   } else {
-    fileName.append("/style/green.qss");
+    QString windowTextColor = qApp->palette().brush(QPalette::WindowText).color().name();
+    feedsModel_->textColor_ = windowTextColor;
+    newsListTextColor_ = windowTextColor;
+    newsListBackgroundColor_ = "";
+    newNewsTextColor_ = windowTextColor;
+    unreadNewsTextColor_ = windowTextColor;
+    newsBackgroundColor_ = "#FFFFFF";
+    newsTitleBackgroundColor_ = "#FFFFFF";
+    titleColor_ = "#0066CC";
+    newsTextColor_ = "#000000";
+    dateColor_ = "#666666";
+    authorColor_ = "#666666";
+    notifierTextColor_ = windowTextColor;
+    notifierBackgroundColor_ = "#FFFFFF";
+    transparencyNotify_ = 60;
   }
+
+  settings.beginGroup("Settings");
+  settings.setValue("userStyleBrowser", userStyleBrowser);
+  settings.setValue("transparencyNotify", transparencyNotify_);
+  settings.endGroup();
+  settings.beginGroup("Color");
+  settings.setValue("feedsListTextColor", feedsModel_->textColor_);
+  settings.setValue("newsListTextColor", newsListTextColor_);
+  settings.setValue("newsListBackgroundColor", newsListBackgroundColor_);
+  settings.setValue("newNewsTextColor", newNewsTextColor_);
+  settings.setValue("unreadNewsTextColor", unreadNewsTextColor_);
+  settings.setValue("titleColor", titleColor_);
+  settings.setValue("newsTextColor", newsTextColor_);
+  settings.setValue("newsTitleBackgroundColor", newsTitleBackgroundColor_);
+  settings.setValue("newsBackgroundColor", newsBackgroundColor_);
+  settings.setValue("dateColor", dateColor_);
+  settings.setValue("authorColor", authorColor_);
+  settings.setValue("notifierTextColor", notifierTextColor_);
+  settings.setValue("notifierBackgroundColor", notifierBackgroundColor_);
+  settings.endGroup();
 
   QFile file(fileName);
   if (!file.open(QFile::ReadOnly)) {
