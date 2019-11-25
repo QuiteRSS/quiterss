@@ -2,6 +2,15 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
+<p><b>Version 0.19.1+</b> (xx Nov 2019)
+<ul>
+<li>Added: App style: dark</li>
+
+<li>Fixed: Problems with msvcp140.dll and vcruntime140.dll (Windows)</li>
+<li>Fixed: Images are not displayed in some feeds</li>
+<li>Fixed: Sometimes news filter did not work when updating feeds</li>
+</ul>
+<!---------------------------------------------------------------------------->
 <p><b>Version 0.19.1</b> (17 Nov 2019)
 <ul>
 <li>Changed: Qt 5.13.2 (Windows)</li>

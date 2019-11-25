@@ -1,3 +1,9 @@
+Version 0.19.1+ (xx Nov 2019)
+  * Added: App style: dark
+  * Fixed: Problems with msvcp140.dll and vcruntime140.dll (Windows)
+  * Fixed: Images are not displayed in some feeds
+  * Fixed: Sometimes news filter did not work when updating feeds
+
 Version 0.19.1 (17 Nov 2019)
   * Changed: Qt 5.13.2 (Windows)
   * Changed: OpenSSL 1.1.1d (Windows)
