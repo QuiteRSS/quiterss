@@ -2,7 +2,7 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
-<p><b>Version 0.19.1+</b> (xx Nov 2019)
+<p><b>Version 0.19.2</b> (26 Nov 2019)
 <ul>
 <li>Added: App style: dark</li>
 

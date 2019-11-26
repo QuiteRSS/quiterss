@@ -1,4 +1,4 @@
-Version 0.19.1+ (xx Nov 2019)
+Version 0.19.2 (26 Nov 2019)
   * Added: App style: dark
   * Fixed: Problems with msvcp140.dll and vcruntime140.dll (Windows)
   * Fixed: Images are not displayed in some feeds
