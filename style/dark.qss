@@ -33,6 +33,8 @@ QMenuBar::item:selected {
 
 #feedsView_::item, #newsView_::item, #newsCategoriesTree_::item {
 	min-height: 20px;
+	background-color: #464546;
+	color: #e1e0e1;
 }
 #feedsView_::item:selected, #newsView_::item:selected, #newsCategoriesTree_::item:selected {
 	background-color: #3A393B;
