@@ -33,6 +33,8 @@ QMenuBar::item:selected {
 
 #feedsView_::item, #newsView_::item, #newsCategoriesTree_::item {
 	min-height: 20px;
+	background-color: #464546;
+	color: #e1e0e1;
 }
 #feedsView_::item:selected, #newsView_::item:selected, #newsCategoriesTree_::item:selected {
 	background-color: #3A393B;
@@ -237,13 +239,13 @@ QMainWindow::separator {
 }
 
 QLineEdit {
-	border: 1 solid #3a393a;
+	border: 1px solid #3a393a;
 	background-color: #555555;
 	border-radius: 2px;
 }
 
 QLineEdit:focus {
-	border: 1 solid #2a82da;
+	border: 1px solid #2a82da;
 	color: #e1e0e1;
 }
 
@@ -272,7 +274,7 @@ QLineEdit:focus {
 }
 
 QPushButton {
-	border: 1 solid #3a393a;
+	border: 1px solid #3a393a;
 	background-color: #555555;
 	padding: 4px;
 	border-radius: 2px;
@@ -280,7 +282,7 @@ QPushButton {
 }
 
 QPushButton:focus {
-	border: 1 solid #2a82da;
+	border: 1px solid #2a82da;
 	color: #e1e0e1;
 }
 
@@ -317,7 +319,7 @@ QGroupBox::title {
 }
 
 QComboBox {
-	border: 1 solid #3a393a;
+	border: 1px solid #3a393a;
 	background-color: #555555;
 	border-radius: 2px;
 	padding: 2px;
@@ -346,7 +348,7 @@ QComboBox::down-arrow:on {
 }
 
 QSpinBox {
-	border: 1 solid #3a393a;
+	border: 1px solid #3a393a;
 	background-color: #555555;
 	border-radius: 2px;
 	padding: 2px;
@@ -354,6 +356,6 @@ QSpinBox {
 }
 
 QSpinBox:focus {
-	border: 1 solid #2a82da;
+	border: 1px solid #2a82da;
 	color: #e1e0e1;
 }
