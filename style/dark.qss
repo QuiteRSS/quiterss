@@ -4,8 +4,8 @@ QWidget {
     background-color: #464546; /* dark */
     alternate-background-color: #3a393a; /* veryDark */
     color: #e1e0e1; /* veryLight */
-    selection-background-color: #2a82da;
-    selection-color: white;
+    selection-background-color: #3A393B;
+    selection-color: #F8FD99;
 }
 QWidget:disabled {
 	color: gray;
@@ -33,7 +33,13 @@ QMenuBar::item:selected {
 
 #feedsView_::item, #newsView_::item, #newsCategoriesTree_::item {
 	min-height: 20px;
+	color: #e1e0e1;
 }
+#feedsView_::item:selected, #newsView_::item:selected, #newsCategoriesTree_::item:selected {
+	background-color: #3A393B;
+	color: #F8FD99;
+}
+
 
 #categoriesLabel_, #newsTextTitle_ {
 	color: #e1e0e1;
@@ -239,7 +245,7 @@ QLineEdit {
 
 QLineEdit:focus {
 	border: 1 solid #2a82da;
-	color: white;
+	color: #e1e0e1;
 }
 
 #click2flash-frame {
@@ -276,7 +282,7 @@ QPushButton {
 
 QPushButton:focus {
 	border: 1 solid #2a82da;
-	color: white;
+	color: #e1e0e1;
 }
 
 QScrollBar:vertical {
@@ -321,7 +327,7 @@ QComboBox {
 }
 
 QComboBox:on { 
-	color: white;
+	color: #e1e0e1;
 }
 
 QComboBox::drop-down {
@@ -350,5 +356,5 @@ QSpinBox {
 
 QSpinBox:focus {
 	border: 1 solid #2a82da;
-	color: white;
+	color: #e1e0e1;
 }
