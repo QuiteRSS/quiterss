@@ -15,14 +15,14 @@
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 * ============================================================ */
+#include "globals.h"
 #include "mainapplication.h"
 #include "logfile.h"
-
-const bool logFileOutput = 1;
+#include "settings.h"
 
 int main(int argc, char **argv)
 {
-  if (logFileOutput) {
+  if (globals.logFileOutput) {
 #if defined(HAVE_QT5)
     qInstallMessageHandler(LogFile::msgHandler);
 #else

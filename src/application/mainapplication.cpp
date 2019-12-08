@@ -20,6 +20,7 @@
 #include "common.h"
 #include "cookiejar.h"
 #include "database.h"
+#include "globals.h"
 #include "networkmanager.h"
 #include "adblockmanager.h"
 #include "settings.h"
@@ -183,33 +184,23 @@ void MainApplication::checkDir()
 #endif
 #endif
 
-  if (isPortable_) {
-    dataDir_ = QCoreApplication::applicationDirPath();
+  dataDir_ = globals.dataDir;
+  if (globals.isPortable) {
     cacheDir_ = "cache";
     soundNotifyDir_ = "sound";
   } else {
 #ifdef HAVE_QT5
-    dataDir_ = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
     cacheDir_ = QStandardPaths::writableLocation(QStandardPaths::CacheLocation);
 #else
-    dataDir_ = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
     cacheDir_ = QDesktopServices::storageLocation(QDesktopServices::CacheLocation);
 #endif
     soundNotifyDir_ = resourcesDir_ % "/sound";
-
-    QDir dir(dataDir_);
-    dir.mkpath(dataDir_);
   }
   dataDirInitialized_ = true;
 }
 
 void MainApplication::createSettings()
 {
-  QString fileName;
-  if (isPortable_)
-    fileName = mainApp->dataDir() % "/" % QCoreApplication::applicationName() % ".ini";
-  Settings::createSettings(fileName);
-
   Settings settings;
   settings.beginGroup("Settings");
   storeDBMemory_ = settings.value("storeDBMemory", true).toBool();
@@ -336,7 +327,7 @@ void MainApplication::commitData(QSessionManager &manager)
 
 bool MainApplication::isPortable() const
 {
-  return isPortable_;
+  return globals.isPortable;
 }
 
 bool MainApplication::isPortableAppsCom() const
@@ -367,7 +358,7 @@ QString MainApplication::dataDir() const
 QString MainApplication::absolutePath(const QString &path) const
 {
   QString absolutePath = path;
-  if (isPortable_) {
+  if (globals.isPortable) {
     if (!QDir::isAbsolutePath(path)) {
       absolutePath = dataDir_ % "/" % path;
     }
@@ -532,7 +523,7 @@ QString MainApplication::soundNotifyDefaultFile() const
 
 QString MainApplication::styleSheetNewsDefaultFile() const
 {
-  if (isPortable_) {
+  if (globals.isPortable) {
     return "style/news.css";
   } else {
     return resourcesDir_ % "/style/news.css";
@@ -541,7 +532,7 @@ QString MainApplication::styleSheetNewsDefaultFile() const
 
 QString MainApplication::styleSheetWebDarkFile() const
 {
-  if (isPortable_) {
+  if (globals.isPortable) {
     return "style/web_dark.css";
   } else {
     return resourcesDir_ % "/style/web_dark.css";

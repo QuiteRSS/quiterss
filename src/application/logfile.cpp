@@ -38,37 +38,14 @@ void LogFile::msgHandler(QtMsgType type, const QMessageLogContext &, const QStri
     return;
 
   if (type == QtDebugMsg) {
-    Settings settings; // FIXME: possible race with Settings::createSettings()?
+    Settings settings;
     settings.beginGroup("Settings");
     if (settings.value("noDebugOutput", true).toBool())
       return;
   }
 
-  bool isPortable = false;
-#if defined(Q_OS_WIN)
-  isPortable = true;
-  QString fileName(QCoreApplication::applicationDirPath() + "/portable.dat");
-  if (!QFile::exists(fileName)) {
-    isPortable = false;
-  }
-#endif
-  QString dataDir;
-
-  if (isPortable) {
-    dataDir = QCoreApplication::applicationDirPath();
-  } else {
-#ifdef HAVE_QT5
-    dataDir = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
-#else
-    dataDir = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
-#endif
-
-    QDir dir(dataDir);
-    dir.mkpath(dataDir);
-  }
-
   QFile file;
-  file.setFileName(dataDir + "/debug.log");
+  file.setFileName(globals.dataDir + "/debug.log");
   QIODevice::OpenMode openMode = QIODevice::WriteOnly | QIODevice::Text;
 
   if (file.exists() && (file.size() < (qint64)maxLogFileSize)) {
@@ -112,37 +89,14 @@ void LogFile::msgHandler(QtMsgType type, const char *msg)
     return;
 
   if (type == QtDebugMsg) {
-    Settings settings; // FIXME: possible race with Settings::createSettings()?
+    Settings settings;
     settings.beginGroup("Settings");
     if (settings.value("noDebugOutput", true).toBool())
       return;
   }
 
-  bool isPortable = false;
-#if defined(Q_OS_WIN)
-  isPortable = true;
-  QString fileName(QCoreApplication::applicationDirPath() + "/portable.dat");
-  if (!QFile::exists(fileName)) {
-    isPortable = false;
-  }
-#endif
-  QString dataDir;
-
-  if (isPortable) {
-    dataDir = QCoreApplication::applicationDirPath();
-  } else {
-#ifdef HAVE_QT5
-    dataDir = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
-#else
-    dataDir = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
-#endif
-
-    QDir dir(dataDir);
-    dir.mkpath(dataDir);
-  }
-
   QFile file;
-  file.setFileName(dataDir + "/debug.log");
+  file.setFileName(globals.dataDir + "/debug.log");
   QIODevice::OpenMode openMode = QIODevice::WriteOnly | QIODevice::Text;
 
   if (file.exists() && (file.size() < (qint64)maxLogFileSize)) {
