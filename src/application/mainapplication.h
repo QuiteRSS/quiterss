@@ -52,7 +52,6 @@ public:
   bool isClosing() const;
   bool isNoDebugOutput() const { return noDebugOutput_; }
   void showClosingWidget();
-  bool dataDirInitialized() const { return dataDirInitialized_; }
 
   QString resourcesDir() const;
   QString dataDir() const;
@@ -103,7 +102,6 @@ private slots:
   void commitData(QSessionManager &manager);
 
 private:
-  void checkPortable();
   void checkDir();
   void createSettings();
   void createGoogleAnalytics();
@@ -116,10 +114,8 @@ private:
 
   QUrl userStyleSheet(const QString &filePath) const;
 
-  bool isPortable_;
   bool isPortableAppsCom_;
   bool isClosing_;
-  bool dataDirInitialized_;
 
   QString resourcesDir_;
   QString dataDir_;

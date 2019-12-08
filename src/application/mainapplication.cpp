@@ -30,10 +30,8 @@
 
 MainApplication::MainApplication(int &argc, char **argv)
   : QtSingleApplication(argc, argv)
-  , isPortable_(false)
   , isPortableAppsCom_(false)
   , isClosing_(false)
-  , dataDirInitialized_(false)
   , dbFileExists_(false)
   , translator_(0)
   , mainWindow_(0)
@@ -67,8 +65,6 @@ MainApplication::MainApplication(int &argc, char **argv)
   setWindowIcon(QIcon(":/images/quiterss128"));
   setQuitOnLastWindowClosed(false);
   QSettings::setDefaultFormat(QSettings::IniFormat);
-
-  checkPortable();
 
   checkDir();
 
@@ -154,24 +150,6 @@ void MainApplication::receiveMessage(const QString &message)
   }
 }
 
-void MainApplication::checkPortable()
-{
-#if defined(Q_OS_WIN)
-  isPortable_ = true;
-  QString fileName(QCoreApplication::applicationDirPath() + "/portable.dat");
-  if (!QFile::exists(fileName)) {
-    isPortable_ = false;
-  }
-  if (isPortable_) {
-    fileName = QCoreApplication::applicationDirPath() + "/../../QuiteRSSPortable.exe";
-    if (QFile::exists(fileName)) {
-      isPortableAppsCom_ = true;
-      QFile::remove(QCoreApplication::applicationDirPath() + "/Updater.exe");
-    }
-  }
-#endif
-}
-
 void MainApplication::checkDir()
 {
 #if defined(Q_OS_WIN) || defined(Q_OS_OS2)
@@ -196,7 +174,6 @@ void MainApplication::checkDir()
 #endif
     soundNotifyDir_ = resourcesDir_ % "/sound";
   }
-  dataDirInitialized_ = true;
 }
 
 void MainApplication::createSettings()
