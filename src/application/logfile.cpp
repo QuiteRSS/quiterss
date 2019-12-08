@@ -24,6 +24,7 @@
 #endif
 #include <QDir>
 
+#include "globals.h"
 #include "settings.h"
 
 LogFile::LogFile()
