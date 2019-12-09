@@ -118,6 +118,7 @@ HEADERS += \
     src/network/networkmanagerproxy.h \
     src/adblock/adblockmatcher.h \
     src/feedsview/feedsproxymodel.h \
+    src/main/globals.h \
 
 SOURCES += \
     src/parseobject.cpp \
@@ -154,6 +155,7 @@ SOURCES += \
     src/application/settings.cpp \
     src/application/logfile.cpp \
     src/application/mainwindow.cpp \
+    src/main/globals.cpp \
     src/main/main.cpp \
     src/adblock/adblocktreewidget.cpp \
     src/adblock/adblocksubscription.cpp \

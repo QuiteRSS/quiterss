@@ -17,7 +17,15 @@
 * ============================================================ */
 #include "logfile.h"
 
-#include "mainapplication.h"
+#ifdef HAVE_QT5
+#include <QStandardPaths>
+#else
+#include <QDesktopServices>
+#endif
+#include <QDir>
+
+#include "globals.h"
+#include "settings.h"
 
 LogFile::LogFile()
 {
@@ -26,20 +34,18 @@ LogFile::LogFile()
 #ifdef HAVE_QT5
 void LogFile::msgHandler(QtMsgType type, const QMessageLogContext &, const QString &msg)
 {
-  if (!mainApp)
-    return;
   if (msg.startsWith("libpng warning: iCCP"))
     return;
 
   if (type == QtDebugMsg) {
-    if (mainApp->isNoDebugOutput()) return;
+    Settings settings;
+    settings.beginGroup("Settings");
+    if (settings.value("noDebugOutput", true).toBool())
+      return;
   }
 
-  if (!mainApp->dataDirInitialized())
-    return;
-
   QFile file;
-  file.setFileName(mainApp->dataDir() + "/debug.log");
+  file.setFileName(globals.dataDir + "/debug.log");
   QIODevice::OpenMode openMode = QIODevice::WriteOnly | QIODevice::Text;
 
   if (file.exists() && (file.size() < (qint64)maxLogFileSize)) {
@@ -83,11 +89,14 @@ void LogFile::msgHandler(QtMsgType type, const char *msg)
     return;
 
   if (type == QtDebugMsg) {
-    if (mainApp->isNoDebugOutput()) return;
+    Settings settings;
+    settings.beginGroup("Settings");
+    if (settings.value("noDebugOutput", true).toBool())
+      return;
   }
 
   QFile file;
-  file.setFileName(mainApp->dataDir() + "/debug.log");
+  file.setFileName(globals.dataDir + "/debug.log");
   QIODevice::OpenMode openMode = QIODevice::WriteOnly | QIODevice::Text;
 
   if (file.exists() && (file.size() < (qint64)maxLogFileSize)) {

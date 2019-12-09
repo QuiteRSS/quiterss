@@ -19,26 +19,26 @@
 
 #include <QCoreApplication>
 
-QSettings *Settings::settings_ = 0;
+#include "globals.h"
 
 Settings::Settings()
 {
-  if (!settings_->group().isEmpty())
-    settings_->endGroup();
+  if (!globals.settings->group().isEmpty())
+    globals.settings->endGroup();
 }
 
 Settings::~Settings()
 {
-  if (!settings_->group().isEmpty())
-    settings_->endGroup();
+  if (!globals.settings->group().isEmpty())
+    globals.settings->endGroup();
 }
 
 void Settings::createSettings(const QString &fileName)
 {
   if (!fileName.isEmpty()) {
-    settings_ = new QSettings(fileName, QSettings::IniFormat);
+    globals.settings = new QSettings(fileName, QSettings::IniFormat);
   } else {
-    settings_ = new QSettings(QSettings::IniFormat,
+    globals.settings = new QSettings(QSettings::IniFormat,
                               QSettings::UserScope,
                               QCoreApplication::organizationName(),
                               QCoreApplication::applicationName());
@@ -47,40 +47,40 @@ void Settings::createSettings(const QString &fileName)
 
 QSettings* Settings::getSettings()
 {
-    return settings_;
+    return globals.settings;
 }
 
 void Settings::syncSettings()
 {
-  settings_->sync();
+  globals.settings->sync();
 }
 
 QString Settings::fileName()
 {
-  return settings_->fileName();
+  return globals.settings->fileName();
 }
 
 void Settings::beginGroup(const QString &prefix)
 {
-  settings_->beginGroup(prefix);
+  globals.settings->beginGroup(prefix);
 }
 
 void Settings::endGroup()
 {
-  settings_->endGroup();
+  globals.settings->endGroup();
 }
 
 void Settings::setValue(const QString &key, const QVariant &defaultValue)
 {
-  settings_->setValue(key, defaultValue);
+  globals.settings->setValue(key, defaultValue);
 }
 
 QVariant Settings::value(const QString &key, const QVariant &defaultValue)
 {
-  return settings_->value(key, defaultValue);
+  return globals.settings->value(key, defaultValue);
 }
 
 bool Settings::contains(const QString &key)
 {
-  return settings_->contains(key);
+  return globals.settings->contains(key);
 }

@@ -15,32 +15,24 @@
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 * ============================================================ */
-#include "globals.h"
-#include "mainapplication.h"
-#include "logfile.h"
-#include "settings.h"
+#ifndef GLOBALS_H
+#define GLOBALS_H
 
-int main(int argc, char **argv)
+#include <QSettings>
+#include <QString>
+
+class Globals
 {
-  if (globals.logFileOutput) {
-#if defined(HAVE_QT5)
-    qInstallMessageHandler(LogFile::msgHandler);
-#else
-    qInstallMsgHandler(LogFile::msgHandler);
-#endif
-  }
+public:
+  Globals();
 
-#if QT_VERSION >= 0x050600
-  QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-#elif QT_VERSION >= 0x050400
-  QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
-  qputenv("QT_DEVICE_PIXEL_RATIO", "auto");
-#endif
+  // public on purpose
+  const bool logFileOutput;
+  bool isPortable;
+  QString dataDir;
+  QSettings *settings;
+};
 
-  MainApplication app(argc, argv);
+extern Globals globals;
 
-  if (app.isClosing())
-    return 0;
-
-  return app.exec();
-}
+#endif // GLOBALS_H
