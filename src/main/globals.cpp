@@ -71,7 +71,7 @@ void Globals::init()
     soundNotifyDir_ = "sound";
   } else {
 #ifdef HAVE_QT5
-    dataDir_ = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
+    dataDir_ = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
     cacheDir_ = QStandardPaths::writableLocation(QStandardPaths::CacheLocation);
 #else
     dataDir_ = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
