@@ -38,14 +38,12 @@ void LogFile::msgHandler(QtMsgType type, const QMessageLogContext &, const QStri
     return;
 
   if (type == QtDebugMsg) {
-    Settings settings;
-    settings.beginGroup("Settings");
-    if (settings.value("noDebugOutput", true).toBool())
+    if (globals.noDebugOutput_)
       return;
   }
 
   QFile file;
-  file.setFileName(globals.dataDir + "/debug.log");
+  file.setFileName(globals.dataDir_ + "/debug.log");
   QIODevice::OpenMode openMode = QIODevice::WriteOnly | QIODevice::Text;
 
   if (file.exists() && (file.size() < (qint64)maxLogFileSize)) {
@@ -89,14 +87,12 @@ void LogFile::msgHandler(QtMsgType type, const char *msg)
     return;
 
   if (type == QtDebugMsg) {
-    Settings settings;
-    settings.beginGroup("Settings");
-    if (settings.value("noDebugOutput", true).toBool())
+    if (globals.noDebugOutput_)
       return;
   }
 
   QFile file;
-  file.setFileName(globals.dataDir + "/debug.log");
+  file.setFileName(globals.dataDir_ + "/debug.log");
   QIODevice::OpenMode openMode = QIODevice::WriteOnly | QIODevice::Text;
 
   if (file.exists() && (file.size() < (qint64)maxLogFileSize)) {

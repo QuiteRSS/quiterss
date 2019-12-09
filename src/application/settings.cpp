@@ -19,26 +19,26 @@
 
 #include <QCoreApplication>
 
-#include "globals.h"
+QSettings *Settings::settings_ = 0;
 
 Settings::Settings()
 {
-  if (!globals.settings->group().isEmpty())
-    globals.settings->endGroup();
+  if (!settings_->group().isEmpty())
+    settings_->endGroup();
 }
 
 Settings::~Settings()
 {
-  if (!globals.settings->group().isEmpty())
-    globals.settings->endGroup();
+  if (!settings_->group().isEmpty())
+    settings_->endGroup();
 }
 
 void Settings::createSettings(const QString &fileName)
 {
   if (!fileName.isEmpty()) {
-    globals.settings = new QSettings(fileName, QSettings::IniFormat);
+    settings_ = new QSettings(fileName, QSettings::IniFormat);
   } else {
-    globals.settings = new QSettings(QSettings::IniFormat,
+    settings_ = new QSettings(QSettings::IniFormat,
                               QSettings::UserScope,
                               QCoreApplication::organizationName(),
                               QCoreApplication::applicationName());
@@ -47,40 +47,40 @@ void Settings::createSettings(const QString &fileName)
 
 QSettings* Settings::getSettings()
 {
-    return globals.settings;
+    return settings_;
 }
 
 void Settings::syncSettings()
 {
-  globals.settings->sync();
+  settings_->sync();
 }
 
 QString Settings::fileName()
 {
-  return globals.settings->fileName();
+  return settings_->fileName();
 }
 
 void Settings::beginGroup(const QString &prefix)
 {
-  globals.settings->beginGroup(prefix);
+  settings_->beginGroup(prefix);
 }
 
 void Settings::endGroup()
 {
-  globals.settings->endGroup();
+  settings_->endGroup();
 }
 
 void Settings::setValue(const QString &key, const QVariant &defaultValue)
 {
-  globals.settings->setValue(key, defaultValue);
+  settings_->setValue(key, defaultValue);
 }
 
 QVariant Settings::value(const QString &key, const QVariant &defaultValue)
 {
-  return globals.settings->value(key, defaultValue);
+  return settings_->value(key, defaultValue);
 }
 
 bool Settings::contains(const QString &key)
 {
-  return globals.settings->contains(key);
+  return settings_->contains(key);
 }

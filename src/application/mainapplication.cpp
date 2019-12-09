@@ -66,8 +66,6 @@ MainApplication::MainApplication(int &argc, char **argv)
   setQuitOnLastWindowClosed(false);
   QSettings::setDefaultFormat(QSettings::IniFormat);
 
-  checkDir();
-
   createSettings();
 
   qWarning() << "Run application!";
@@ -150,32 +148,6 @@ void MainApplication::receiveMessage(const QString &message)
   }
 }
 
-void MainApplication::checkDir()
-{
-#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
-  resourcesDir_ = QCoreApplication::applicationDirPath();
-#else
-#if defined(Q_OS_MAC)
-  resourcesDir_ = QCoreApplication::applicationDirPath() + "/../Resources";
-#else
-  resourcesDir_ = RESOURCES_DIR;
-#endif
-#endif
-
-  dataDir_ = globals.dataDir;
-  if (globals.isPortable) {
-    cacheDir_ = "cache";
-    soundNotifyDir_ = "sound";
-  } else {
-#ifdef HAVE_QT5
-    cacheDir_ = QStandardPaths::writableLocation(QStandardPaths::CacheLocation);
-#else
-    cacheDir_ = QDesktopServices::storageLocation(QDesktopServices::CacheLocation);
-#endif
-    soundNotifyDir_ = resourcesDir_ % "/sound";
-  }
-}
-
 void MainApplication::createSettings()
 {
   Settings settings;
@@ -185,12 +157,11 @@ void MainApplication::createSettings()
   styleApplication_ = settings.value("styleApplication", "greenStyle_").toString();
   showSplashScreen_ = settings.value("showSplashScreen", true).toBool();
   updateFeedsStartUp_ = settings.value("autoUpdatefeedsStartUp", false).toBool();
-  noDebugOutput_ = settings.value("noDebugOutput", true).toBool();
 
   QString strLang;
   QString strLocalLang = QLocale::system().name();
   bool findLang = false;
-  QDir langDir(resourcesDir_ + "/lang");
+  QDir langDir(resourcesDir() + "/lang");
   foreach (QString file, langDir.entryList(QStringList("*.qm"), QDir::Files)) {
     strLang = file.section('.', 0, 0).section('_', 1);
     if (strLocalLang == strLang) {
@@ -304,7 +275,7 @@ void MainApplication::commitData(QSessionManager &manager)
 
 bool MainApplication::isPortable() const
 {
-  return globals.isPortable;
+  return globals.isPortable_;
 }
 
 bool MainApplication::isPortableAppsCom() const
@@ -322,22 +293,27 @@ bool MainApplication::isClosing() const
   return isClosing_;
 }
 
+bool MainApplication::isNoDebugOutput() const
+{
+  return globals.noDebugOutput_;
+}
+
 QString MainApplication::resourcesDir() const
 {
-  return resourcesDir_;
+  return globals.resourcesDir_;
 }
 
 QString MainApplication::dataDir() const
 {
-  return dataDir_;
+  return globals.dataDir_;
 }
 
 QString MainApplication::absolutePath(const QString &path) const
 {
   QString absolutePath = path;
-  if (globals.isPortable) {
+  if (isPortable()) {
     if (!QDir::isAbsolutePath(path)) {
-      absolutePath = dataDir_ % "/" % path;
+      absolutePath = dataDir() % "/" % path;
     }
   }
   return absolutePath;
@@ -345,7 +321,7 @@ QString MainApplication::absolutePath(const QString &path) const
 
 QString MainApplication::dbFileName() const
 {
-  return dataDir_ % "/feeds.db";
+  return dataDir() % "/feeds.db";
 }
 
 bool MainApplication::isSaveDataLastFeed() const
@@ -360,7 +336,7 @@ bool MainApplication::storeDBMemory() const
 
 void MainApplication::setStyleApplication()
 {
-  QString fileName(resourcesDir_);
+  QString fileName(resourcesDir());
   if (styleApplication_ == "systemStyle_") {
     fileName.append("/style/system.qss");
   } else if (styleApplication_ == "system2Style_") {
@@ -394,7 +370,7 @@ void MainApplication::setTranslateApplication()
   if (!translator_)
     translator_ = new QTranslator(this);
   removeTranslator(translator_);
-  translator_->load(resourcesDir_ + QString("/lang/quiterss_%1").arg(langFileName_));
+  translator_->load(resourcesDir() + QString("/lang/quiterss_%1").arg(langFileName_));
   installTranslator(translator_);
 }
 
@@ -463,8 +439,8 @@ void MainApplication::setDiskCache()
       diskCache_ = new QNetworkDiskCache(this);
     }
 
-    QString diskCacheDirPath = settings.value("dirDiskCache", cacheDir_).toString();
-    if (diskCacheDirPath.isEmpty()) diskCacheDirPath = cacheDir_;
+    QString diskCacheDirPath = settings.value("dirDiskCache", cacheDefaultDir()).toString();
+    if (diskCacheDirPath.isEmpty()) diskCacheDirPath = cacheDefaultDir();
     diskCacheDirPath = absolutePath(diskCacheDirPath);
 
     bool cleanDiskCache = settings.value("cleanDiskCache", true).toBool();
@@ -490,29 +466,29 @@ void MainApplication::setDiskCache()
 
 QString MainApplication::cacheDefaultDir() const
 {
-  return cacheDir_;
+  return globals.cacheDir_;
 }
 
 QString MainApplication::soundNotifyDefaultFile() const
 {
-  return soundNotifyDir_ % "/notification.wav";
+  return globals.soundNotifyDir_ % "/notification.wav";
 }
 
 QString MainApplication::styleSheetNewsDefaultFile() const
 {
-  if (globals.isPortable) {
+  if (isPortable()) {
     return "style/news.css";
   } else {
-    return resourcesDir_ % "/style/news.css";
+    return resourcesDir() % "/style/news.css";
   }
 }
 
 QString MainApplication::styleSheetWebDarkFile() const
 {
-  if (globals.isPortable) {
+  if (isPortable()) {
     return "style/web_dark.css";
   } else {
-    return resourcesDir_ % "/style/web_dark.css";
+    return resourcesDir() % "/style/web_dark.css";
   }
 }
 

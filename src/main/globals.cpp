@@ -31,37 +31,59 @@
 Globals globals;
 
 Globals::Globals()
-  : logFileOutput(false)
-  , isPortable(false)
-  , dataDir()
-  , settings(NULL)
+  : logFileOutput_(false)
+  , noDebugOutput_(true)
+  , isPortable_(false)
+  , resourcesDir_()
+  , dataDir_()
+  , cacheDir_()
+  , soundNotifyDir_()
 {
   // isPortable ...
 #if defined(Q_OS_WIN)
-  isPortable = true;
+  isPortable_ = true;
   QString fileName(QCoreApplication::applicationDirPath() + "/portable.dat");
   if (!QFile::exists(fileName)) {
-    isPortable = false;
+    isPortable_ = false;
   }
 #endif
 
-  // dataDir ...
-  if (isPortable) {
-    dataDir = QCoreApplication::applicationDirPath();
-  } else {
-#ifdef HAVE_QT5
-    dataDir = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
+  // Check Dir ...
+#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
+  resourcesDir_ = QCoreApplication::applicationDirPath();
 #else
-    dataDir = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
+#if defined(Q_OS_MAC)
+  resourcesDir_ = QCoreApplication::applicationDirPath() + "/../Resources";
+#else
+  resourcesDir_ = RESOURCES_DIR;
+#endif
 #endif
 
-    QDir dir(dataDir);
-    dir.mkpath(dataDir);
+  if (isPortable_) {
+    dataDir_ = QCoreApplication::applicationDirPath();
+    cacheDir_ = "cache";
+    soundNotifyDir_ = "sound";
+  } else {
+#ifdef HAVE_QT5
+    dataDir_ = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
+    cacheDir_ = QStandardPaths::writableLocation(QStandardPaths::CacheLocation);
+#else
+    dataDir_ = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
+    cacheDir_ = QDesktopServices::storageLocation(QDesktopServices::CacheLocation);
+#endif
+    soundNotifyDir_ = resourcesDir_ % "/sound";
+
+    QDir dir(dataDir_);
+    dir.mkpath(dataDir_);
   }
 
   // settings ...
   QString settingsFileName;
-  if (isPortable)
-    settingsFileName = dataDir % "/" % QCoreApplication::applicationName() % ".ini";
+  if (isPortable_)
+    settingsFileName = dataDir_ % "/" % QCoreApplication::applicationName() % ".ini";
   Settings::createSettings(settingsFileName);
+
+  Settings settings;
+  settings.beginGroup("Settings");
+  noDebugOutput_ = settings.value("noDebugOutput", true).toBool();
 }

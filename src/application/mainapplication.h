@@ -50,7 +50,7 @@ public:
   bool isPortableAppsCom() const;
   void setClosing();
   bool isClosing() const;
-  bool isNoDebugOutput() const { return noDebugOutput_; }
+  bool isNoDebugOutput() const;
   void showClosingWidget();
 
   QString resourcesDir() const;
@@ -102,7 +102,6 @@ private slots:
   void commitData(QSessionManager &manager);
 
 private:
-  void checkDir();
   void createSettings();
   void createGoogleAnalytics();
   void connectDatabase();
@@ -117,18 +116,12 @@ private:
   bool isPortableAppsCom_;
   bool isClosing_;
 
-  QString resourcesDir_;
-  QString dataDir_;
-  QString cacheDir_;
-  QString soundNotifyDir_;
-
   bool storeDBMemory_;
   bool dbFileExists_;
   bool isSaveDataLastFeed_;
   QString styleApplication_;
   bool showSplashScreen_;
   bool updateFeedsStartUp_;
-  bool noDebugOutput_;
 
   QTranslator *translator_;
   QString langFileName_;

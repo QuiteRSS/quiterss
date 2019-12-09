@@ -18,7 +18,6 @@
 #ifndef GLOBALS_H
 #define GLOBALS_H
 
-#include <QSettings>
 #include <QString>
 
 class Globals
@@ -27,10 +26,13 @@ public:
   Globals();
 
   // public on purpose
-  const bool logFileOutput;
-  bool isPortable;
-  QString dataDir;
-  QSettings *settings;
+  const bool logFileOutput_;
+  bool noDebugOutput_;
+  bool isPortable_;
+  QString resourcesDir_;
+  QString dataDir_;
+  QString cacheDir_;
+  QString soundNotifyDir_;
 };
 
 extern Globals globals;

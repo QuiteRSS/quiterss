@@ -18,11 +18,10 @@
 #include "globals.h"
 #include "mainapplication.h"
 #include "logfile.h"
-#include "settings.h"
 
 int main(int argc, char **argv)
 {
-  if (globals.logFileOutput) {
+  if (globals.logFileOutput_) {
 #if defined(HAVE_QT5)
     qInstallMessageHandler(LogFile::msgHandler);
 #else
