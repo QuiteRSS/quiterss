@@ -25,9 +25,12 @@ class Globals
 public:
   Globals();
 
+  void init();
+
   // public on purpose
   const bool logFileOutput_;
   bool noDebugOutput_;
+  bool isInit_;
   bool isPortable_;
   QString resourcesDir_;
   QString dataDir_;

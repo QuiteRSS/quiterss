@@ -31,13 +31,19 @@
 Globals globals;
 
 Globals::Globals()
-  : logFileOutput_(false)
+  : logFileOutput_(true)
   , noDebugOutput_(true)
+  , isInit_(false)
   , isPortable_(false)
   , resourcesDir_()
   , dataDir_()
   , cacheDir_()
   , soundNotifyDir_()
+{
+
+}
+
+void Globals::init()
 {
   // isPortable ...
 #if defined(Q_OS_WIN)
@@ -86,4 +92,6 @@ Globals::Globals()
   Settings settings;
   settings.beginGroup("Settings");
   noDebugOutput_ = settings.value("noDebugOutput", true).toBool();
+
+  isInit_ = true;
 }

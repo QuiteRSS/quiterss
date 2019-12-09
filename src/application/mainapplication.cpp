@@ -41,6 +41,8 @@ MainApplication::MainApplication(int &argc, char **argv)
   , downloadManager_(0)
   , analytics_(0)
 {
+  globals.init();
+
   QString message = arguments().value(1);
   if (isRunning()) {
     if (argc == 1) {

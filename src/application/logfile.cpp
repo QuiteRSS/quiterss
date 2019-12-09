@@ -34,6 +34,8 @@ LogFile::LogFile()
 #ifdef HAVE_QT5
 void LogFile::msgHandler(QtMsgType type, const QMessageLogContext &, const QString &msg)
 {
+  if (!globals.isInit_)
+    return;
   if (msg.startsWith("libpng warning: iCCP"))
     return;
 
@@ -83,6 +85,8 @@ void LogFile::msgHandler(QtMsgType type, const QMessageLogContext &, const QStri
 #else
 void LogFile::msgHandler(QtMsgType type, const char *msg)
 {
+  if (!globals.isInit_)
+    return;
   if (QString::fromUtf8(msg) == "QFont::setPixelSize: Pixel size <= 0 (0)")
     return;
 
