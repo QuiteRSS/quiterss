@@ -66,7 +66,6 @@ MainApplication::MainApplication(int &argc, char **argv)
 
   setWindowIcon(QIcon(":/images/quiterss128"));
   setQuitOnLastWindowClosed(false);
-  QSettings::setDefaultFormat(QSettings::IniFormat);
 
   createSettings();
 

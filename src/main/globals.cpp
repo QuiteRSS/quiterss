@@ -71,7 +71,7 @@ void Globals::init()
     soundNotifyDir_ = "sound";
   } else {
 #ifdef HAVE_QT5
-    dataDir_ = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+    dataDir_ = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
     cacheDir_ = QStandardPaths::writableLocation(QStandardPaths::CacheLocation);
 #else
     dataDir_ = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
@@ -84,6 +84,7 @@ void Globals::init()
   }
 
   // settings ...
+  QSettings::setDefaultFormat(QSettings::IniFormat);
   QString settingsFileName;
   if (isPortable_)
     settingsFileName = dataDir_ % "/" % QCoreApplication::applicationName() % ".ini";
