@@ -41,6 +41,9 @@ MainApplication::MainApplication(int &argc, char **argv)
   , downloadManager_(0)
   , analytics_(0)
 {
+  setApplicationName("QuiteRss");
+  setOrganizationName("QuiteRss");
+  setApplicationVersion(STRPRODUCTVER);
   globals.init();
 
   QString message = arguments().value(1);
@@ -61,9 +64,6 @@ MainApplication::MainApplication(int &argc, char **argv)
     }
   }
 
-  setApplicationName("QuiteRss");
-  setOrganizationName("QuiteRss");
-  setApplicationVersion(STRPRODUCTVER);
   setWindowIcon(QIcon(":/images/quiterss128"));
   setQuitOnLastWindowClosed(false);
   QSettings::setDefaultFormat(QSettings::IniFormat);
