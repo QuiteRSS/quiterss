@@ -27,6 +27,8 @@
 #endif
 #include <qtsingleapplication.h>
 #include <QNetworkDiskCache>
+#include <QLocale>
+#include <QLibraryInfo>
 
 #include "cookiejar.h"
 #include "downloadmanager.h"
@@ -124,6 +126,7 @@ private:
   bool updateFeedsStartUp_;
 
   QTranslator *translator_;
+  QTranslator *qt_translator_;
   QString langFileName_;
   SplashScreen *splashScreen_;
   MainWindow *mainWindow_;

@@ -34,6 +34,7 @@ MainApplication::MainApplication(int &argc, char **argv)
   , isClosing_(false)
   , dbFileExists_(false)
   , translator_(0)
+  , qt_translator_(0)
   , mainWindow_(0)
   , networkManager_(0)
   , cookieJar_(0)
@@ -373,6 +374,11 @@ void MainApplication::setTranslateApplication()
   removeTranslator(translator_);
   translator_->load(resourcesDir() + QString("/lang/quiterss_%1").arg(langFileName_));
   installTranslator(translator_);
+  if (!qt_translator_)
+    qt_translator_ = new QTranslator(this);
+  qt_translator_ = new QTranslator(this);
+  qt_translator_->load(QLibraryInfo::location (QLibraryInfo::TranslationsPath) + "/qtbase_" + QLocale::system().name());
+  installTranslator(qt_translator_);
 }
 
 void MainApplication::showSplashScreen()
