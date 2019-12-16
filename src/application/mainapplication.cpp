@@ -374,10 +374,15 @@ void MainApplication::setTranslateApplication()
   removeTranslator(translator_);
   translator_->load(resourcesDir() + QString("/lang/quiterss_%1").arg(langFileName_));
   installTranslator(translator_);
+
   if (!qt_translator_)
     qt_translator_ = new QTranslator(this);
-  qt_translator_ = new QTranslator(this);
-  qt_translator_->load(QLibraryInfo::location (QLibraryInfo::TranslationsPath) + "/qtbase_" + QLocale::system().name());
+  removeTranslator(qt_translator_);
+#ifdef HAVE_X11
+  qt_translator_->load(QLibraryInfo::location (QLibraryInfo::TranslationsPath) + "/qtbase_" + langFileName_);
+#else
+  qt_translator_->load(resourcesDir() + "/lang/qtbase_" + langFileName_);
+#endif
   installTranslator(qt_translator_);
 }
 
