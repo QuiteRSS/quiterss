@@ -221,7 +221,7 @@
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="173"/>
         <source>No content blocked</source>
-        <translation>ブロックコンテンツ無し</translation>
+        <translation>ブロックコンテンツなし</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="176"/>

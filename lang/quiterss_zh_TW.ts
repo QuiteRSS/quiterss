@@ -9,7 +9,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="42"/>
         <source>Revision</source>
-        <translation>Revision</translation>
+        <translation>修訂</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="50"/>
@@ -21,7 +21,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="54"/>
         <source>QuiteRSS is a open-source cross-platform RSS/Atom news reader</source>
-        <translation>QuiteRSS 是一個開放原始碼的跨平台 RSS / Atom 訊息閱讀器</translation>
+        <translation>QuiteRSS 是一個開放源碼的跨平台 RSS/Atom 規格新聞閱讀器</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="55"/>
@@ -76,7 +76,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="161"/>
         <source>License</source>
-        <translation>授權</translation>
+        <translation>授權書</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="162"/>
@@ -94,7 +94,7 @@
     <message>
         <location filename="../src/adblock/adblockaddsubscriptiondialog.ui" line="23"/>
         <source>Title:</source>
-        <translation>標題：</translation>
+        <translation>標題:</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockaddsubscriptiondialog.ui" line="33"/>
@@ -147,7 +147,7 @@
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="122"/>
         <source>Use only essential part of EasyList (for performance reasons)</source>
-        <translation>僅使用 EasyList 的重要部分 (避免拖慢效能)</translation>
+        <translation>僅使用 EasyList 的重要部分 (以免降低效能)</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="74"/>
@@ -195,7 +195,7 @@
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="133"/>
         <source>Show AdBlock &amp;Settings</source>
-        <translation>顯示 AdBlock 選項 (&amp;S)</translation>
+        <translation>顯示 AdBlock 選項(&amp;S)</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="141"/>
@@ -283,13 +283,13 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="37"/>
         <source>Add Feed</source>
-        <translation>加入 Feed</translation>
+        <translation>新增新聞源</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="101"/>
         <location filename="../src/addfeedwizard.cpp" line="175"/>
         <source>Create New Feed</source>
-        <translation>建立新的 Feed</translation>
+        <translation>建立新的新聞源</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="110"/>
@@ -314,17 +314,17 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="154"/>
         <source>Feed URL or website address:</source>
-        <translation>Feed 或網站網址：</translation>
+        <translation>新聞源或網站網址: </translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="187"/>
         <source>Feeds</source>
-        <translation>Feeds</translation>
+        <translation>新聞源</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="191"/>
         <source>All Feeds</source>
-        <translation>所有 Feeds</translation>
+        <translation>所有新聞源</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="231"/>
@@ -334,7 +334,7 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="246"/>
         <source>Displayed name:</source>
-        <translation>顯示名稱：</translation>
+        <translation>顯示的名稱: </translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="248"/>
@@ -350,13 +350,13 @@
         <location filename="../src/addfeedwizard.cpp" line="357"/>
         <location filename="../src/addfeedwizard.cpp" line="519"/>
         <source>Duplicate feed!</source>
-        <translation>Feed 重複！</translation>
+        <translation>新聞源重複！</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="521"/>
         <location filename="../src/addfeedwizard.cpp" line="543"/>
         <source>Can&apos;t find feed URL!</source>
-        <translation>找不到 Feed 的網址！</translation>
+        <translation>找不到新聞源的網址！</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="562"/>
@@ -369,17 +369,17 @@
     <message>
         <location filename="../src/addfolderdialog.cpp" line="24"/>
         <source>Add Folder</source>
-        <translation>加入資料夾</translation>
+        <translation>新增資料夾</translation>
     </message>
     <message>
         <location filename="../src/addfolderdialog.cpp" line="37"/>
         <source>Feeds</source>
-        <translation>Feeds</translation>
+        <translation>新聞源</translation>
     </message>
     <message>
         <location filename="../src/addfolderdialog.cpp" line="41"/>
         <source>All Feeds</source>
-        <translation>所有 Feeds</translation>
+        <translation>所有新聞源</translation>
     </message>
     <message>
         <location filename="../src/addfolderdialog.cpp" line="79"/>
@@ -402,7 +402,7 @@
     <message>
         <location filename="../src/network/authenticationdialog.cpp" line="46"/>
         <source>Authorization required</source>
-        <translation>需要身份認證</translation>
+        <translation>需要授權</translation>
     </message>
     <message>
         <location filename="../src/network/authenticationdialog.cpp" line="55"/>
@@ -430,12 +430,12 @@
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="57"/>
         <source>Unread</source>
-        <translation> 未讀</translation>
+        <translation>未讀</translation>
     </message>
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="62"/>
         <source>Starred</source>
-        <translation> 標星</translation>
+        <translation>標星</translation>
     </message>
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="67"/>
@@ -450,17 +450,17 @@
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="137"/>
         <source>Open in New Tab</source>
-        <translation> 在新標籤頁中開啟</translation>
+        <translation>在新分頁中開啟</translation>
     </message>
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="140"/>
         <source>Clear &apos;Deleted&apos;</source>
-        <translation> 清空「已刪除」</translation>
+        <translation>清除「已刪除」</translation>
     </message>
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="143"/>
         <source>Mark Read</source>
-        <translation>標記為已讀</translation>
+        <translation>標示成已讀</translation>
     </message>
 </context>
 <context>
@@ -473,12 +473,12 @@
     <message>
         <location filename="../src/cleanupwizard.cpp" line="241"/>
         <source>Choose Feeds</source>
-        <translation>選擇 Feeds</translation>
+        <translation>選擇新聞源</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="254"/>
         <source>All Feeds</source>
-        <translation> 所有 Feeds</translation>
+        <translation>所有新聞源</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="324"/>
@@ -488,37 +488,37 @@
     <message>
         <location filename="../src/cleanupwizard.cpp" line="326"/>
         <source>Maximum age of news in days to keep:</source>
-        <translation> 保留的最大天數: </translation>
+        <translation>保留新聞天數上限: </translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="333"/>
         <source>Maximum number of news to keep:</source>
-        <translation>保留的最大訊息數: </translation>
+        <translation>保留新聞筆數上限: </translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="340"/>
         <source>Delete read news</source>
-        <translation> 刪除已讀訊息</translation>
+        <translation>刪除已讀新聞</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="341"/>
         <source>Never delete unread news</source>
-        <translation> 不要刪除未讀訊息</translation>
+        <translation>不刪除未讀新聞</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="342"/>
         <source>Never delete starred news</source>
-        <translation> 不要刪除標星的訊息</translation>
+        <translation>不刪除標星的新聞</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="343"/>
         <source>Never delete labeled news</source>
-        <translation> 不要刪除有標籤的訊息</translation>
+        <translation>不刪除有標籤的新聞</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="356"/>
         <source>Clean up &apos;Deleted&apos;</source>
-        <translation>清理「已刪除」</translation>
+        <translation>清除「已刪除」</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="357"/>
@@ -529,8 +529,8 @@
         <location filename="../src/cleanupwizard.cpp" line="361"/>
         <source>Totally remove records that had marked 'deleted' from DB.
 Ancient news could reappear</source>
-        <translation>從資料庫中完全刪除已標記為「已刪除」的記錄。
-舊的訊息可能會再次出現</translation>
+        <translation>將資料庫中標示成「已刪除」的記錄全刪除。
+舊的新聞可能會浮現</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="524"/>
@@ -540,7 +540,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="525"/>
         <source>Clean Up wizard deleted %1 news</source>
-        <translation>清理精靈刪除了 %1 筆訊息</translation>
+        <translation>清除精靈刪除了 %1 筆新聞</translation>
     </message>
 </context>
 <context>
@@ -558,7 +558,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/plugins/clicktoflash.cpp" line="133"/>
         <source>Add &apos;%1&apos; to whitelist</source>
-        <translation>加入「%1」到白名單</translation>
+        <translation>將「%1」加入白名單</translation>
     </message>
 </context>
 <context>
@@ -571,12 +571,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="37"/>
         <source>Customize Feeds Toolbar</source>
-        <translation>自訂 Feeds 工具列</translation>
+        <translation>自訂新聞源工具列</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="40"/>
         <source>Customize News Toolbar</source>
-        <translation>自訂訊息工具列</translation>
+        <translation>自訂新聞工具列</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="79"/>
@@ -620,7 +620,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="112"/>
         <source>Normal</source>
-        <translation>正常</translation>
+        <translation>普通</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="112"/>
@@ -640,7 +640,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="150"/>
         <source>Add</source>
-        <translation>加入</translation>
+        <translation>新增</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="157"/>
@@ -674,12 +674,12 @@ Ancient news could reappear</source>
         <location filename="../src/downloads/downloaditem.cpp" line="161"/>
         <location filename="../src/downloads/downloaditem.cpp" line="188"/>
         <source>Error: Cannot write to file!</source>
-        <translation>錯誤：無法寫入檔案！</translation>
+        <translation>錯誤: 無法寫入檔案！</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="228"/>
         <source>Error: </source>
-        <translation>錯誤：</translation>
+        <translation>錯誤: </translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="262"/>
@@ -783,9 +783,9 @@ Ancient news could reappear</source>
         <source>Sorry, the file 
  %1 
  was not found!</source>
-        <translation>抱歉，檔案 ⏎
+        <translation>抱歉，找不到 ⏎
 %1 ⏎
-找不到！</translation>
+檔案！</translation>
     </message>
 </context>
 <context>
@@ -814,12 +814,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="174"/>
         <source>Executable: </source>
-        <translation>可執行檔：</translation>
+        <translation>可執行檔: </translation>
     </message>
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="175"/>
         <source>Arguments: </source>
-        <translation>參數：</translation>
+        <translation>參數: </translation>
     </message>
 </context>
 <context>
@@ -852,22 +852,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="57"/>
         <source>Title:</source>
-        <translation>標題：</translation>
+        <translation>標題: </translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="58"/>
         <source>Homepage:</source>
-        <translation>首頁：</translation>
+        <translation>首頁: </translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="59"/>
         <source>Feed URL:</source>
-        <translation>Feed 網址：</translation>
+        <translation>新聞源網址: </translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="66"/>
         <source>Load Title</source>
-        <translation> 載入標題</translation>
+        <translation>載入標題</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="70"/>
@@ -877,12 +877,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="72"/>
         <source>Select Icon...</source>
-        <translation> 選擇圖示...</translation>
+        <translation>選擇圖示...</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="75"/>
         <source>Select Icon</source>
-        <translation> 選擇圖示</translation>
+        <translation>選擇圖示</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="85"/>
@@ -922,17 +922,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="118"/>
         <source>Display in new tab on startup</source>
-        <translation>啟動時，在新標籤頁中顯示</translation>
+        <translation>啟動時，於新分頁顯示</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="177"/>
         <source>Show news&apos; description instead of loading web page</source>
-        <translation>顯示訊息的描述，而不是載入網頁</translation>
+        <translation>顯示新聞的描述，而不是載入網頁</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="119"/>
         <source>Automatically delete duplicate news</source>
-        <translation>自動刪除重複的訊息</translation>
+        <translation>自動刪除重複的新聞</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="32"/>
@@ -947,7 +947,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="179"/>
         <source>Right-to-left layout</source>
-        <translation>由右至左版面</translation>
+        <translation>由右至左排版</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="219"/>
@@ -962,12 +962,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="224"/>
         <source>Sort by:</source>
-        <translation>排序依：</translation>
+        <translation>排序依: </translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="238"/>
         <source>Add</source>
-        <translation>加入</translation>
+        <translation>新增</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="245"/>
@@ -1007,32 +1007,32 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="321"/>
         <source>Feeds count:</source>
-        <translation>Feeds 數量:</translation>
+        <translation>新聞源數量:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="324"/>
         <source>Description:</source>
-        <translation>描述：</translation>
+        <translation>描述: </translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="331"/>
         <source>Status:</source>
-        <translation>狀態：</translation>
+        <translation>狀態: </translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="333"/>
         <source>Created:</source>
-        <translation>建立：</translation>
+        <translation>建立: </translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="335"/>
         <source>Last update:</source>
-        <translation>最近更新：</translation>
+        <translation>最近更新: </translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="337"/>
         <source>News count:</source>
-        <translation>訊息統計：</translation>
+        <translation>新聞數量: </translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="407"/>
@@ -1062,12 +1062,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="451"/>
         <source>Select Image</source>
-        <translation> 選擇圖片</translation>
+        <translation>選擇圖片</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="458"/>
         <source>Load icon: can&apos;t open a file!</source>
-        <translation> 載入圖示: 不能開啟檔案！</translation>
+        <translation>載入圖示時不能開啟檔案！</translation>
     </message>
 </context>
 <context>
@@ -1075,52 +1075,52 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsfilters/filterrulesdialog.cpp" line="27"/>
         <source>Filter Rules</source>
-        <translation>篩選器規則</translation>
+        <translation>篩選規則</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/filterrulesdialog.cpp" line="43"/>
         <source>Feeds</source>
-        <translation>Feeds</translation>
+        <translation>新聞源</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/filterrulesdialog.cpp" line="47"/>
         <source>All Feeds</source>
-        <translation>所有 Feeds</translation>
+        <translation>所有新聞源</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/filterrulesdialog.cpp" line="114"/>
         <source>Filter name:</source>
-        <translation>篩選器名稱：</translation>
+        <translation>篩選規則的名稱: </translation>
     </message>
     <message>
         <location filename="../src/newsfilters/filterrulesdialog.cpp" line="120"/>
         <source>Match all news</source>
-        <translation>相符所有訊息</translation>
+        <translation>對勾選新聞源的所有新聞</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/filterrulesdialog.cpp" line="120"/>
         <source>Match all conditions</source>
-        <translation>相符所有條件</translation>
+        <translation>符合下面所有條件後</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/filterrulesdialog.cpp" line="121"/>
         <source>Match any condition</source>
-        <translation>相符任何條件</translation>
+        <translation>符合下面任一條件後</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/filterrulesdialog.cpp" line="172"/>
         <source>Perform these actions:</source>
-        <translation>執行下列操作：</translation>
+        <translation>執行下列操作: </translation>
     </message>
     <message>
         <location filename="../src/newsfilters/filterrulesdialog.cpp" line="316"/>
         <source>Please enter name for the filter.</source>
-        <translation>請為篩選器輸入名稱。</translation>
+        <translation>請輸入篩選規則的名稱。</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/filterrulesdialog.cpp" line="328"/>
         <source>Please enter search condition for the news filter.</source>
-        <translation>請為訊息篩選器輸入搜尋條件。</translation>
+        <translation>請輸入新聞篩選規則。</translation>
     </message>
 </context>
 <context>
@@ -1142,37 +1142,37 @@ Ancient news could reappear</source>
         <location filename="../src/findtext.cpp" line="94"/>
         <location filename="../src/findtext.cpp" line="109"/>
         <source>Find in News</source>
-        <translation>在訊息中尋找</translation>
+        <translation>在新聞中找</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="110"/>
         <source>Find in Titles</source>
-        <translation>尋找標題</translation>
+        <translation>在標題中找</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="111"/>
         <source>Find in Authors</source>
-        <translation>尋找作者</translation>
+        <translation>在作者中找</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="112"/>
         <source>Find in Categories</source>
-        <translation>尋找分類</translation>
+        <translation>在分類中找</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="113"/>
         <source>Find in Descriptions</source>
-        <translation>搜尋描述</translation>
+        <translation>在描述中找</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="114"/>
         <source>Find in Links</source>
-        <translation>在鏈結中搜尋</translation>
+        <translation>在連結中找</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="115"/>
         <source>Find in Browser</source>
-        <translation>在瀏覽器中尋找</translation>
+        <translation>在瀏覽器中找</translation>
     </message>
 </context>
 <context>
@@ -1188,7 +1188,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsfilters/itemaction.cpp" line="26"/>
         <source>Mark News as Read</source>
-        <translation>標記訊息為已讀</translation>
+        <translation>將新聞標示成已讀</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/itemaction.cpp" line="26"/>
@@ -1203,7 +1203,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsfilters/itemaction.cpp" line="27"/>
         <source>Add Label</source>
-        <translation>加入標籤</translation>
+        <translation>加標籤</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/itemaction.cpp" line="28"/>
@@ -1213,7 +1213,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsfilters/itemaction.cpp" line="28"/>
         <source>Show News in Notifier</source>
-        <translation>在通知器中顯示新聞</translation>
+        <translation>在通知中顯示新聞標題</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/itemaction.cpp" line="37"/>
@@ -1228,12 +1228,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsfilters/itemaction.cpp" line="63"/>
         <source>Add Action</source>
-        <translation>加入操作</translation>
+        <translation>加操作</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/itemaction.cpp" line="67"/>
         <source>Delete Action</source>
-        <translation>刪除操作</translation>
+        <translation>刪操作</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/itemaction.cpp" line="116"/>
@@ -1278,13 +1278,13 @@ Ancient news could reappear</source>
         <location filename="../src/newsfilters/itemcondition.cpp" line="31"/>
         <location filename="../src/newsfilters/itemcondition.cpp" line="106"/>
         <source>Link</source>
-        <translation>鏈結</translation>
+        <translation>連結</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/itemcondition.cpp" line="31"/>
         <location filename="../src/newsfilters/itemcondition.cpp" line="112"/>
         <source>News</source>
-        <translation>訊息</translation>
+        <translation>新聞</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/itemcondition.cpp" line="36"/>
@@ -1304,12 +1304,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsfilters/itemcondition.cpp" line="43"/>
         <source>Add Condition</source>
-        <translation>加入條件</translation>
+        <translation>加條件</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/itemcondition.cpp" line="47"/>
         <source>Delete Condition</source>
-        <translation>刪除條件</translation>
+        <translation>刪條件</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/itemcondition.cpp" line="81"/>
@@ -1354,14 +1354,14 @@ Ancient news could reappear</source>
         <location filename="../src/newsfilters/itemcondition.cpp" line="98"/>
         <location filename="../src/newsfilters/itemcondition.cpp" line="109"/>
         <source>begins with</source>
-        <translation>以...開始</translation>
+        <translation>開頭是</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/itemcondition.cpp" line="83"/>
         <location filename="../src/newsfilters/itemcondition.cpp" line="98"/>
         <location filename="../src/newsfilters/itemcondition.cpp" line="109"/>
         <source>ends with</source>
-        <translation>以...結尾</translation>
+        <translation>結尾是</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/itemcondition.cpp" line="84"/>
@@ -1411,12 +1411,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/labeldialog.cpp" line="71"/>
         <source>Color text:</source>
-        <translation>文字顏色: </translation>
+        <translation>文字色: </translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="74"/>
         <source>Color background:</source>
-        <translation>背景顏色: </translation>
+        <translation>背景色: </translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="144"/>
@@ -1431,7 +1431,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/labeldialog.cpp" line="153"/>
         <source>Load icon: can&apos;t open a file!</source>
-        <translation>載入圖示：無法開啟檔案！</translation>
+        <translation>載入圖示: 無法開啟檔案！</translation>
     </message>
 </context>
 <context>
@@ -1439,7 +1439,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainapplication.cpp" line="328"/>
         <source>Saving data...</source>
-        <translation>正在儲存資料…</translation>
+        <translation>儲存資料中…</translation>
     </message>
 </context>
 <context>
@@ -1468,12 +1468,12 @@ Ancient news could reappear</source>
         <location filename="../src/application/mainwindow.cpp" line="2736"/>
         <location filename="../src/application/mainwindow.cpp" line="2765"/>
         <source>Select OPML-File</source>
-        <translation>選擇 OPML 檔案</translation>
+        <translation>選擇 OPML 檔</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2738"/>
         <source>OPML-Files (*.%1 *.%2)</source>
-        <translation>OPML 檔案 (*.%1 *.%2)</translation>
+        <translation>OPML 檔 (*.%1 *.%2)</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2742"/>
@@ -1483,7 +1483,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2750"/>
         <source>Import: can&apos;t open a file</source>
-        <translation>匯入: 無法開啟檔案</translation>
+        <translation>匯入時無法開啟檔案</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2767"/>
@@ -1498,7 +1498,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2777"/>
         <source>Export: can&apos;t open a file</source>
-        <translation>匯出: 無法開啟檔案</translation>
+        <translation>匯出時無法開啟檔案</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="3046"/>
@@ -1516,7 +1516,7 @@ Ancient news could reappear</source>
         <location filename="../src/application/mainwindow.cpp" line="6331"/>
         <location filename="../src/application/mainwindow.cpp" line="7390"/>
         <source>All: %1</source>
-        <translation>所有: %1</translation>
+        <translation>總共: %1</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="3625"/>
@@ -1529,29 +1529,29 @@ Ancient news could reappear</source>
         <location filename="../src/application/mainwindow.cpp" line="4818"/>
         <location filename="../src/application/mainwindow.cpp" line="5711"/>
         <source>New News: %1</source>
-        <translation>新的訊息: %1</translation>
+        <translation>新進新聞: %1</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4820"/>
         <location filename="../src/application/mainwindow.cpp" line="5713"/>
         <source>Unread News: %1</source>
-        <translation>未讀的訊息: %1</translation>
+        <translation>未讀新聞: %1</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4825"/>
         <source>&amp;Add</source>
-        <translation>加入(&amp;A)</translation>
+        <translation>新增(&amp;A)</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4826"/>
         <location filename="../src/application/mainwindow.cpp" line="4829"/>
         <source>Add New Feed</source>
-        <translation>加入新的 Feed</translation>
+        <translation>新增新聞源</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4828"/>
         <source>&amp;Feed...</source>
-        <translation>Feeds(&amp;F)...</translation>
+        <translation>新聞源(&amp;F)...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4833"/>
@@ -1561,7 +1561,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4834"/>
         <source>Add New Folder</source>
-        <translation>加入新的資料夾</translation>
+        <translation>新增資料夾</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4836"/>
@@ -1577,27 +1577,27 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4839"/>
         <source>Delete Selected Feed</source>
-        <translation>刪除選取的 Feed</translation>
+        <translation>刪除所選的新聞源</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4841"/>
         <source>&amp;Import Feeds...</source>
-        <translation>匯入 Feeds(&amp;I)...</translation>
+        <translation>匯入新聞源(&amp;I)...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4842"/>
         <source>Import Feeds from OPML File</source>
-        <translation>從 OPML 檔案匯入 Feeds</translation>
+        <translation>從 OPML 檔匯入新聞源</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4844"/>
         <source>&amp;Export Feeds...</source>
-        <translation>匯出 Feeds(&amp;E)...</translation>
+        <translation>匯出新聞源(&amp;E)...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4845"/>
         <source>Export Feeds to OPML File</source>
-        <translation>匯出  Feeds 到 OPML 檔案</translation>
+        <translation>匯出新聞源成 OPML 檔</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4850"/>
@@ -1607,12 +1607,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4852"/>
         <source>Update Feed</source>
-        <translation>更新 Feed</translation>
+        <translation>更新此源的新聞</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4853"/>
         <source>Update Current Feed</source>
-        <translation>更新目前 Feed</translation>
+        <translation>更新此新聞源的新聞</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4855"/>
@@ -1622,28 +1622,28 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4856"/>
         <source>Update All Feeds</source>
-        <translation>更新所有 Feeds</translation>
+        <translation>更新所有新聞源</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4861"/>
         <source>Mark All Feeds Read</source>
-        <translation>標記所有 Feeds 已讀</translation>
+        <translation>標示所有新聞源成已讀</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4863"/>
         <source>Mark Read/Unread</source>
-        <translation>標記為已讀/未讀</translation>
+        <translation>標示成已讀/未讀</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4864"/>
         <source>Mark Current News Read/Unread</source>
-        <translation>標記目前訊息為已讀/未讀</translation>
+        <translation>標示目前新聞成已讀/未讀</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4866"/>
         <location filename="../src/application/mainwindow.cpp" line="4867"/>
         <source>Mark All News Read</source>
-        <translation>標記所有訊息為已讀</translation>
+        <translation>標示所有新聞成已讀</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4869"/>
@@ -1656,17 +1656,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4871"/>
         <source>Clean Up...</source>
-        <translation>清理...</translation>
+        <translation>清除...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4873"/>
         <source>News Filters...</source>
-        <translation>訊息篩選器...</translation>
+        <translation>新聞篩選規則...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4874"/>
         <source>Filter News...</source>
-        <translation>篩選訊息...</translation>
+        <translation>篩選新聞...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4876"/>
@@ -1681,65 +1681,65 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4879"/>
         <source>Filter Feeds</source>
-        <translation>篩選 Feeds</translation>
+        <translation>篩選新聞源</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4880"/>
         <location filename="../src/application/mainwindow.cpp" line="4887"/>
         <source>Show All</source>
-        <translation>全部顯示</translation>
+        <translation>全部</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4881"/>
         <location filename="../src/application/mainwindow.cpp" line="4888"/>
         <source>Show New</source>
-        <translation>顯示新的</translation>
+        <translation>新進的新聞</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4882"/>
         <location filename="../src/application/mainwindow.cpp" line="4889"/>
         <source>Show Unread</source>
-        <translation>顯示未讀的</translation>
+        <translation>未讀的新聞</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4883"/>
         <source>Show Starred Feeds</source>
-        <translation>顯示標星的 Feeds</translation>
+        <translation>標星的新聞源</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4884"/>
         <source>Show Not Working Feeds</source>
-        <translation>顯示沒有工作的 Feeds</translation>
+        <translation>沒有活動的新聞源</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4886"/>
         <source>Filter News</source>
-        <translation>篩選訊息</translation>
+        <translation>篩選新聞</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4890"/>
         <source>Show Starred</source>
-        <translation>顯示標星的</translation>
+        <translation>標星的新聞</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4891"/>
         <source>Show Not Starred</source>
-        <translation>顯示未標星的</translation>
+        <translation>未標星的新聞</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4892"/>
         <source>Show Unread or Starred</source>
-        <translation>顯示未讀的或者標星的</translation>
+        <translation>未讀的或標星的新聞</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4893"/>
         <source>Show Last Day</source>
-        <translation>顯示最近 1 天</translation>
+        <translation>最近一天的新聞</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4894"/>
         <source>Show Last 7 Days</source>
-        <translation>顯示最近 7 天</translation>
+        <translation>最近七天的新聞</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4896"/>
@@ -1759,42 +1759,42 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4900"/>
         <source>Report a Problem...</source>
-        <translation>報告問題...</translation>
+        <translation>提報問題...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4902"/>
         <source>Open News</source>
-        <translation>開啟訊息</translation>
+        <translation>開啟新聞</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4904"/>
         <source>Open in Browser</source>
-        <translation>在瀏覽器中開啟</translation>
+        <translation>於瀏覽器開啟</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4905"/>
         <source>Open in External Browser</source>
-        <translation>在外部瀏覽器中開啟</translation>
+        <translation>於外部瀏覽器開啟</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4906"/>
         <source>Open News in External Browser</source>
-        <translation>在外部瀏覽器中開啟訊息</translation>
+        <translation>於外部瀏覽器開啟新聞</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4908"/>
         <source>Open News in New Tab</source>
-        <translation>在新標籤頁中開啟訊息</translation>
+        <translation>於新分頁開啟新聞</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4909"/>
         <source>Open in Background Tab</source>
-        <translation>在背景標籤頁中開啟</translation>
+        <translation>在背景開啟分頁</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4910"/>
         <source>Open News in Background Tab</source>
-        <translation>在背景標籤頁中開啟訊息</translation>
+        <translation>在背景分頁開啟新聞</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4911"/>
@@ -1804,7 +1804,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4912"/>
         <source>Mark News Star</source>
-        <translation>訊息標星</translation>
+        <translation>將新聞標星</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4913"/>
@@ -1814,17 +1814,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4914"/>
         <source>Delete Selected News</source>
-        <translation>刪除選取的訊息</translation>
+        <translation>刪除選取的新聞</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4915"/>
         <source>Delete All News</source>
-        <translation>刪除所有訊息</translation>
+        <translation>刪除所有新聞</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4916"/>
         <source>Delete All News from List</source>
-        <translation>從列表中刪除所有訊息</translation>
+        <translation>從列表中刪除所有新聞</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4917"/>
@@ -1834,7 +1834,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4918"/>
         <source>Restore News</source>
-        <translation>恢復訊息</translation>
+        <translation>恢復新聞</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4919"/>
@@ -1844,17 +1844,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4922"/>
         <source>Restore last deleted news</source>
-        <translation>恢復最近刪除的訊息</translation>
+        <translation>恢復最近刪除的新聞</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4924"/>
         <source>Mark Read</source>
-        <translation>標記為已讀</translation>
+        <translation>標示成已讀</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4925"/>
         <source>Mark Feed Read</source>
-        <translation>標記 Feed 為已讀</translation>
+        <translation>標示新聞源成已讀</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4926"/>
@@ -1870,12 +1870,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4992"/>
         <source>Count Unread News</source>
-        <translation>未讀訊息數量</translation>
+        <translation>未讀新聞數量</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4993"/>
         <source>Count All News</source>
-        <translation>所有訊息數量</translation>
+        <translation>所有新聞數量</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4994"/>
@@ -1900,12 +1900,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5019"/>
         <source>Save page in database</source>
-        <translation>將頁面儲存於資料庫</translation>
+        <translation>將網頁儲存於資料庫</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5020"/>
         <source>Save page in database instead of news description</source>
-        <translation>將頁面儲存於資料庫，而非只有訊息描述</translation>
+        <translation>將網頁儲存於資料庫，而非只存新聞描述</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2631"/>
@@ -1915,7 +1915,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="2632"/>
         <source>Are you sure to delete selected elements?</source>
-        <translation>您確定要刪除選擇的元素？</translation>
+        <translation>您確定要刪除所選的？</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4823"/>
@@ -1925,12 +1925,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4831"/>
         <source>Add Feed...</source>
-        <translation>加入 Feed...</translation>
+        <translation>新增新聞源...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4847"/>
         <source>&amp;Create Backup...</source>
-        <translation>建立備份 (&amp;C)…</translation>
+        <translation>建立備份(&amp;C)…</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4848"/>
@@ -1941,17 +1941,17 @@ Ancient news could reappear</source>
         <location filename="../src/application/mainwindow.cpp" line="4858"/>
         <location filename="../src/application/mainwindow.cpp" line="4859"/>
         <source>Stop Update Feeds</source>
-        <translation>停止更新 Feed</translation>
+        <translation>停止更新新聞源的新聞</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4903"/>
         <source>Open News Description</source>
-        <translation>開啟訊息描述</translation>
+        <translation>開啟新聞描述</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4920"/>
         <source>Copy News Link</source>
-        <translation>複製訊息連結</translation>
+        <translation>複製新聞連結</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4930"/>
@@ -1961,12 +1961,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4931"/>
         <source>Fee&amp;ds</source>
-        <translation>Fee&amp;ds</translation>
+        <translation>新聞源(&amp;D)</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4932"/>
         <source>&amp;News</source>
-        <translation>訊息(&amp;N)</translation>
+        <translation>新聞(&amp;N)</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4933"/>
@@ -2007,12 +2007,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4941"/>
         <source>Feeds Toolbar...</source>
-        <translation>Feeds 工具列...</translation>
+        <translation>新聞源工具列...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4942"/>
         <source>News Toolbar...</source>
-        <translation>訊息工具列...</translation>
+        <translation>新聞工具列...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4944"/>
@@ -2033,7 +2033,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4948"/>
         <source>Classic</source>
-        <translation>京點</translation>
+        <translation>經典</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4949"/>
@@ -2088,22 +2088,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4962"/>
         <source>Top</source>
-        <translation>頂部</translation>
+        <translation>上方</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4963"/>
         <source>Bottom</source>
-        <translation>底部</translation>
+        <translation>下方</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4964"/>
         <source>Right</source>
-        <translation>右邊</translation>
+        <translation>右方</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4965"/>
         <source>Left</source>
-        <translation>左邊</translation>
+        <translation>左方</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4967"/>
@@ -2113,67 +2113,67 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4969"/>
         <source>Previous Feed</source>
-        <translation>前一個 Feed</translation>
+        <translation>上一個新聞源</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4970"/>
         <source>Next Feed</source>
-        <translation>下一個 Feed</translation>
+        <translation>下一個新聞源</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4971"/>
         <source>Previous News</source>
-        <translation>前面的訊息</translation>
+        <translation>上一個新聞</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4972"/>
         <source>Next News</source>
-        <translation>後面的訊息</translation>
+        <translation>下一個新聞</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4973"/>
         <source>News Page Up</source>
-        <translation>訊息向上翻頁</translation>
+        <translation>新聞向上翻頁</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4974"/>
         <source>News Page Down</source>
-        <translation>訊息向下翻頁</translation>
+        <translation>新聞向下翻頁</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4976"/>
         <source>Next Unread News</source>
-        <translation>後面未讀的訊息</translation>
+        <translation>下一未讀的新聞</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4977"/>
         <source>Previous Unread News</source>
-        <translation>前面未讀的訊息</translation>
+        <translation>上一未讀的新聞</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4979"/>
         <source>Switch Focus to Next Panel</source>
-        <translation>焦點切換到下一個面板</translation>
+        <translation>焦點換到下一窗格</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4981"/>
         <source>Switch Focus to Next Panel (Tree Feeds, List News, Browser)</source>
-        <translation>焦點切換到下一個面板 (Feeds 樹、訊息列表、瀏覽器)</translation>
+        <translation>焦點換到下一窗格 (新聞源樹，或新聞列表，或瀏覽器)</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4982"/>
         <source>Switch Focus to Previous Panel</source>
-        <translation>焦點切換到前一個面板</translation>
+        <translation>焦點換到上一窗格</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4984"/>
         <source>Switch Focus to Previous Panel (Tree Feeds, Browser, List News)</source>
-        <translation>焦點切換到前一個面板 (Feeds 樹、訊息列表、瀏覽器)</translation>
+        <translation>焦點換到上一窗格 (新聞源樹，或新聞列表，或瀏覽器)</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4986"/>
         <source>Show/Hide Tree Feeds</source>
-        <translation>顯示/隱藏 Feeds 樹</translation>
+        <translation>顯示/隱藏新聞源樹</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4988"/>
@@ -2183,12 +2183,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4989"/>
         <source>Minimize Application to Tray</source>
-        <translation>最小化程式到系統匣</translation>
+        <translation>最小化應用程式到系統匣</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4991"/>
         <source>Columns</source>
-        <translation>列</translation>
+        <translation>欄</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4996"/>
@@ -2199,7 +2199,7 @@ Ancient news could reappear</source>
         <location filename="../src/application/mainwindow.cpp" line="4998"/>
         <location filename="../src/application/mainwindow.cpp" line="4999"/>
         <source>Search Feed</source>
-        <translation>搜尋 Feed</translation>
+        <translation>搜尋新聞源</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5001"/>
@@ -2214,7 +2214,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5003"/>
         <source>Zoom in in browser</source>
-        <translation>在瀏覽器中放大</translation>
+        <translation>瀏覽器的網頁放大</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5004"/>
@@ -2224,7 +2224,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5005"/>
         <source>Zoom out in browser</source>
-        <translation>在瀏覽器中縮小</translation>
+        <translation>瀏覽器的網頁縮小</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5006"/>
@@ -2269,12 +2269,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5024"/>
         <source>Feeds Toolbar</source>
-        <translation>Feeds 工具列</translation>
+        <translation>新聞源工具列</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5025"/>
         <source>News Toolbar</source>
-        <translation>訊息工具列</translation>
+        <translation>新聞工具列</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5026"/>
@@ -2284,7 +2284,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5027"/>
         <source>Panel Categories</source>
-        <translation>面板分類</translation>
+        <translation>分類窗格</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5028"/>
@@ -2301,7 +2301,7 @@ Ancient news could reappear</source>
         <location filename="../src/application/mainwindow.cpp" line="5033"/>
         <location filename="../src/application/mainwindow.cpp" line="5034"/>
         <source>Stay On Top</source>
-        <translation>留在最上面</translation>
+        <translation>維持在最上層</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5036"/>
@@ -2322,27 +2322,27 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5046"/>
         <source>Close Tab</source>
-        <translation>關閉標籤頁</translation>
+        <translation>關閉分頁</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5047"/>
         <source>Close Other Tabs</source>
-        <translation>關閉其他標籤頁</translation>
+        <translation>關閉其他分頁</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5048"/>
         <source>Close All Tabs</source>
-        <translation>關閉所有標籤頁</translation>
+        <translation>關閉所有分頁</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5049"/>
         <source>Switch to next tab</source>
-        <translation>切換到下一個標籤頁</translation>
+        <translation>切換到下一分頁</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5050"/>
         <source>Switch to previous tab</source>
-        <translation>切換到前一個標籤頁</translation>
+        <translation>切換到上一分頁</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5052"/>
@@ -2367,12 +2367,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5057"/>
         <source>Decrease news list/increase browser</source>
-        <translation>減少訊息清單/增加瀏覽器</translation>
+        <translation>縮減新聞列表/加大瀏覽器窗格</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5058"/>
         <source>Increase news list/decrease browser</source>
-        <translation>增加訊息清單/減少瀏覽器</translation>
+        <translation>加大新聞列表/縮減瀏覽器窗格</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5060"/>
@@ -2382,7 +2382,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5062"/>
         <source>Open Homepage Feed</source>
-        <translation>開啟首頁 Feed</translation>
+        <translation>開啟新聞源網站首頁</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5063"/>
@@ -2417,7 +2417,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5070"/>
         <source>Setting Page: Labels</source>
-        <translation>設定頁面：標籤</translation>
+        <translation>設定頁面: 標籤</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5072"/>
@@ -2478,7 +2478,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="7589"/>
         <source>Save As: can&apos;t open a file</source>
-        <translation>另存: 不能開啟檔案</translation>
+        <translation>另存時不能開啟檔案</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="8083"/>
@@ -2503,17 +2503,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.h" line="104"/>
         <source>To Do</source>
-        <translation>計劃</translation>
+        <translation>待辦</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.h" line="104"/>
         <source>Later</source>
-        <translation>以後</translation>
+        <translation>稍等</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.h" line="104"/>
         <source>Amusingly</source>
-        <translation>有趣的</translation>
+        <translation>有趣</translation>
     </message>
 </context>
 <context>
@@ -2521,37 +2521,37 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="230"/>
         <source>SSL Certificate Error!</source>
-        <translation>SSL 認證錯誤！</translation>
+        <translation>SSL 安全性憑證錯誤！</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="231"/>
         <source>The &quot;%1&quot; server has the following errors in the SSL certificate:</source>
-        <translation>「%1」伺服器有以下的 SSL 憑證錯誤：</translation>
+        <translation>&quot;%1&quot; 伺服器在 SSL 安全性憑證有以下錯誤：</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="247"/>
         <source>&lt;b&gt;Organization: &lt;/b&gt;</source>
-        <translation>&lt;b&gt;組織： &lt;/b&gt;</translation>
+        <translation>&lt;b&gt;組織: &lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="250"/>
         <source>&lt;b&gt;Domain Name: &lt;/b&gt;</source>
-        <translation>&lt;b&gt;網域名稱： &lt;/b&gt;</translation>
+        <translation>&lt;b&gt;網域名稱: &lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="253"/>
         <source>&lt;b&gt;Expiration Date: &lt;/b&gt;</source>
-        <translation>&lt;b&gt;失效日期： &lt;/b&gt;</translation>
+        <translation>&lt;b&gt;失效日期: &lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="260"/>
         <source>&lt;b&gt;Error: &lt;/b&gt;</source>
-        <translation>&lt;b&gt;錯誤： &lt;/b&gt;</translation>
+        <translation>&lt;b&gt;錯誤: &lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="268"/>
         <source>Would you like to make an exception for this certificate?</source>
-        <translation>您想要將這個憑證作為例外嗎？</translation>
+        <translation>您要將這個安全性憑證作為例外嗎？</translation>
     </message>
 </context>
 <context>
@@ -2559,17 +2559,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsfilters/newsfiltersdialog.cpp" line="28"/>
         <source>News Filters</source>
-        <translation>訊息篩選器</translation>
+        <translation>新聞篩選規則</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/newsfiltersdialog.cpp" line="46"/>
         <source>Feeds</source>
-        <translation>Feeds</translation>
+        <translation>新聞源</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/newsfiltersdialog.cpp" line="46"/>
         <source>Filter Name</source>
-        <translation>過濾器名稱</translation>
+        <translation>篩選規則的名稱</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/newsfiltersdialog.cpp" line="91"/>
@@ -2599,17 +2599,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsfilters/newsfiltersdialog.cpp" line="107"/>
         <source>Run Filter</source>
-        <translation>執行篩選器</translation>
+        <translation>執行篩選</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/newsfiltersdialog.cpp" line="259"/>
         <source>Delete Filter</source>
-        <translation>刪除篩選器</translation>
+        <translation>刪除篩選規則</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/newsfiltersdialog.cpp" line="260"/>
         <source>Are you sure you want to delete the filter &apos;%1&apos;?</source>
-        <translation>您確定要刪除過濾器「%1」嗎？</translation>
+        <translation>確定要刪除「%1」這個篩選規則嗎？</translation>
     </message>
 </context>
 <context>
@@ -2617,7 +2617,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsview/newsheader.cpp" line="396"/>
         <source>Icon Feed</source>
-        <translation>圖示 Feed</translation>
+        <translation>圖示</translation>
     </message>
     <message>
         <location filename="../src/newsview/newsheader.cpp" line="397"/>
@@ -2662,7 +2662,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsview/newsheader.cpp" line="405"/>
         <source>Feed Title</source>
-        <translation>Feed 標題</translation>
+        <translation>新聞標題</translation>
     </message>
     <message>
         <location filename="../src/newsview/newsheader.cpp" line="406"/>
@@ -2675,12 +2675,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/notifications/notificationsnewsitem.cpp" line="37"/>
         <source>Mark Read/Unread</source>
-        <translation>標記 已讀/未讀</translation>
+        <translation>標示 已讀/未讀</translation>
     </message>
     <message>
         <location filename="../src/notifications/notificationsnewsitem.cpp" line="46"/>
         <source>Delete News</source>
-        <translation>刪除訊息</translation>
+        <translation>刪除新聞</translation>
     </message>
 </context>
 <context>
@@ -2706,12 +2706,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newstabwidget.cpp" line="606"/>
         <source>Open Page in External Browser</source>
-        <translation>在外部瀏覽器中開啟頁面</translation>
+        <translation>於外部瀏覽器開啟頁面</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="607"/>
         <source>Open Link in External Browser</source>
-        <translation>在外部瀏覽器中開啟連結</translation>
+        <translation>於外部瀏覽器開啟連結</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="2295"/>
@@ -2721,7 +2721,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newstabwidget.cpp" line="2296"/>
         <source>Open in New Tab</source>
-        <translation>在新標籤頁中開啟</translation>
+        <translation>於新分頁開啟</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="2297"/>
@@ -2782,7 +2782,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newstabwidget.cpp" line="617"/>
         <source>Auto Load Images to News View</source>
-        <translation>自動載入圖片到訊息預覽</translation>
+        <translation>檢視新聞時自動載入圖片</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="619"/>
@@ -2792,27 +2792,27 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newstabwidget.cpp" line="620"/>
         <source>No Load Images to News View</source>
-        <translation>不載入圖片到訊息預覽</translation>
+        <translation>檢視新聞時不載入圖片</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="625"/>
         <source>Close Tab</source>
-        <translation>關閉標籤頁</translation>
+        <translation>關閉分頁</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="638"/>
         <source>Auto Load Images in News View</source>
-        <translation>自動於訊息檢視中載入圖片</translation>
+        <translation>檢視新聞時自動載入圖片</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="641"/>
         <source>Don&apos;t Load Images</source>
-        <translation>不要載入圖片</translation>
+        <translation>不載入圖片</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="642"/>
         <source>Don&apos;t Load Images in News View</source>
-        <translation>不要在訊息檢視中載入圖片</translation>
+        <translation>檢視新聞時不載入圖片</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1438"/>
@@ -2853,12 +2853,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1647"/>
         <source>Mark Read/Unread</source>
-        <translation>標示為已讀 / 未讀</translation>
+        <translation>標示成 已讀/未讀</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1784"/>
         <source>Mark News Star</source>
-        <translation>為新聞標星</translation>
+        <translation>將新聞標星</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1788"/>
@@ -2873,7 +2873,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1796"/>
         <source>Open News in External Browser</source>
-        <translation>用外部瀏覽器開啟新聞</translation>
+        <translation>於外部瀏覽器開啟新聞</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1800"/>
@@ -2891,7 +2891,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/notifications/notificationswidget.cpp" line="153"/>
         <source>Mark All News Read</source>
-        <translation>標記所有訊息為已讀</translation>
+        <translation>標示所有新聞成已讀</translation>
     </message>
     <message>
         <location filename="../src/notifications/notificationswidget.cpp" line="158"/>
@@ -2906,7 +2906,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/notifications/notificationswidget.cpp" line="363"/>
         <source>Incoming News: %1</source>
-        <translation>收到的訊息: %1</translation>
+        <translation>收到的新聞: %1 筆</translation>
     </message>
     <message>
         <location filename="../src/notifications/notificationswidget.cpp" line="368"/>
@@ -2949,7 +2949,7 @@ Ancient news could reappear</source>
         <location filename="../src/optionsdialog.cpp" line="77"/>
         <location filename="../src/optionsdialog.cpp" line="1161"/>
         <source>Feeds</source>
-        <translation>Feeds</translation>
+        <translation>新聞源</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="80"/>
@@ -2961,7 +2961,7 @@ Ancient news could reappear</source>
         <location filename="../src/optionsdialog.cpp" line="83"/>
         <location filename="../src/optionsdialog.cpp" line="1909"/>
         <source>Notifications</source>
-        <translation>通告</translation>
+        <translation>通知</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="86"/>
@@ -2977,38 +2977,38 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="92"/>
         <source>Fonts &amp; Colors</source>
-        <translation>字型及色彩</translation>
+        <translation>字型及顏色</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="95"/>
         <source>Keyboard Shortcuts</source>
-        <translation>鍵盤快速鍵</translation>
+        <translation>鍵盤快鍵</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="267"/>
         <location filename="../src/optionsdialog.cpp" line="2239"/>
         <source>Warning: key is already assigned to</source>
-        <translation>警告：按鍵已經分配給</translation>
+        <translation>警告，因為按鍵已經分配給</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="291"/>
         <source>Show splash screen on startup</source>
-        <translation>在啟動時顯示啟動畫面</translation>
+        <translation>啟動時顯示啟動畫面</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="292"/>
         <source>Reopen last opened feeds on startup</source>
-        <translation>在啟動時重新開啟最近開啟的 feeds</translation>
+        <translation>啟動時開啟上次最後開啟的新聞源</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="293"/>
         <source>Open new tab next to active</source>
-        <translation>在目前標籤旁邊開啟一個新的標籤</translation>
+        <translation>在目前分頁旁開一新分頁</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="294"/>
         <source>Hide feeds tree when opening tabs</source>
-        <translation>開啟標籤頁時，隱藏 feeds 樹</translation>
+        <translation>開啟分頁時，隱藏新聞源樹</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="296"/>
@@ -3018,12 +3018,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="297"/>
         <source>Automatically collapse folders</source>
-        <translation>自動折疊資料夾</translation>
+        <translation>自動收合資料夾</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="298"/>
         <source>Show close button on tab</source>
-        <translation>在分頁標籤中顯示關閉按鈕</translation>
+        <translation>在分頁上顯示關閉按鈕</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="300"/>
@@ -3038,7 +3038,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="302"/>
         <source>Store a DB in memory (requires program restart)</source>
-        <translation>在記憶體中儲存資料庫 (需要重新啟動程式)</translation>
+        <translation>在記憶體中存一個資料庫 (需要重新啟動程式)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="309"/>
@@ -3084,27 +3084,27 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="374"/>
         <source>Change icon for incoming new news</source>
-        <translation>變更收到新訊息的圖示</translation>
+        <translation>新進新聞時變更圖示</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="375"/>
         <source>Show count of new news</source>
-        <translation>顯示新的訊息數</translation>
+        <translation>顯示新進新聞數</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="376"/>
         <source>Show count of unread news</source>
-        <translation>顯示未讀訊息數</translation>
+        <translation>顯示未讀新聞數</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="385"/>
         <source>Single click instead of double click for show window</source>
-        <translation>按一下就顯示視窗</translation>
+        <translation>單按就顯示視窗</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="387"/>
         <source>Empty working set on minimize to tray</source>
-        <translation>清空工作組最小化到系統匣</translation>
+        <translation>最小化到系統匣時，清理記憶體內工作集</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="391"/>
@@ -3124,12 +3124,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="420"/>
         <source>System proxy configuration (if available)</source>
-        <translation>系統代理組態 (如果可用)</translation>
+        <translation>系統的代理伺服器組態 (如果有)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="421"/>
         <source>Manual proxy configuration:</source>
-        <translation>手動設定 Proxy: </translation>
+        <translation>手工設定代理伺服器: </translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="440"/>
@@ -3139,7 +3139,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="442"/>
         <source>Port:</source>
-        <translation>連接埠: </translation>
+        <translation>埠號：</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="450"/>
@@ -3154,32 +3154,32 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="481"/>
         <source>Request timeout:</source>
-        <translation>請求逾時:</translation>
+        <translation>請求逾時: </translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="483"/>
         <source>Number of requests:</source>
-        <translation>請求數量:</translation>
+        <translation>請求次數: </translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="485"/>
         <source>Number of retries:</source>
-        <translation>重試數量:</translation>
+        <translation>重試次數: </translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="488"/>
         <source>Options network requests when updating feeds (requires program restart):</source>
-        <translation>當更新訂閱 feeds 時 (需要重新啟動程式)，請求網路選項：</translation>
+        <translation>更新新聞源時 (需要重新啟動程式)，網路請求之選項:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="505"/>
         <source>Use embedded browser</source>
-        <translation>使用嵌入式瀏覽器</translation>
+        <translation>使用嵌入的瀏覽器</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="506"/>
         <source>Use external browser</source>
-        <translation>使用外部瀏覽器</translation>
+        <translation>使用外部的瀏覽器</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="507"/>
@@ -3189,7 +3189,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="508"/>
         <source>Following external browser:</source>
-        <translation>以下外部瀏覽器: </translation>
+        <translation>下面的外部瀏覽器: </translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="511"/>
@@ -3220,17 +3220,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="521"/>
         <source>Open links in embedded browser in background</source>
-        <translation>在嵌入瀏覽器背景開啟連結</translation>
+        <translation>在背景於嵌入瀏覽器開啟連結</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="522"/>
         <source>Open links in external browser in background (experimental)</source>
-        <translation>在外部瀏覽器背景開啟連結 (實驗性)</translation>
+        <translation>在背景於外部瀏覽器開啟連結 (實驗性)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="548"/>
         <source>Default zoom on pages:</source>
-        <translation>頁面的預設縮放：</translation>
+        <translation>網頁的預設縮放: </translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="566"/>
@@ -3250,22 +3250,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="572"/>
         <source>User style sheet:</source>
-        <translation>使用者樣式表：</translation>
+        <translation>使用者樣式表: </translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="601"/>
         <source>Maximum pages in cache</source>
-        <translation>快取中的最大頁數</translation>
+        <translation>快取中的頁數上限</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="612"/>
         <source>Store cache in:</source>
-        <translation>儲存快取於：</translation>
+        <translation>儲存快取於: </translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="620"/>
         <source>Maximum size of disk cache</source>
-        <translation>磁碟快取的最大大小</translation>
+        <translation>磁碟快取的上限量</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="622"/>
@@ -3300,22 +3300,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="655"/>
         <source>Cookies:</source>
-        <translation>Cookies：</translation>
+        <translation>Cookies: </translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="664"/>
         <source>Click To Flash is a plugin which blocks auto loading of Flash content at page. You can always load it manually by clicking on the Flash play icon.</source>
-        <translation>Click To Flash 是一個阻止網頁中的 Flash 內容自動載入的外掛程式。按一下 Flash 播放圖示播放。</translation>
+        <translation>Click To Flash 是一個阻止網頁中的 Flash 內容自動載入的外掛程式。您總是可以按一下 Flash 播放圖示去載入 Flash 內容。</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="669"/>
         <source>Use Click to Flash</source>
-        <translation>使用 Click to Flash 功能</translation>
+        <translation>使用 Click to Flash 外掛</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="681"/>
         <source>Add...</source>
-        <translation>加入...</translation>
+        <translation>新增...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="683"/>
@@ -3325,12 +3325,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="724"/>
         <source>Ask where to save each file before downloading</source>
-        <translation>下載每個檔案前詢問儲存位置</translation>
+        <translation>下載檔案前詢問儲存位置</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="734"/>
         <source>Download location:</source>
-        <translation>下載位置：</translation>
+        <translation>下載位置: </translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="743"/>
@@ -3340,7 +3340,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="745"/>
         <source>Click to Flash</source>
-        <translation>Click to Flash</translation>
+        <translation>Click to Flash 外掛</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="747"/>
@@ -3350,12 +3350,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="756"/>
         <source>Automatically update the feeds on startup</source>
-        <translation>在啟動時自動更新 feeds</translation>
+        <translation>啟動時自動更新新聞</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="757"/>
         <source>Automatically update the feeds every</source>
-        <translation>自動更新 feeds 每</translation>
+        <translation>自動更新新聞源，每</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="767"/>
@@ -3397,7 +3397,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="845"/>
         <source>Alternating row background colors</source>
-        <translation>交替行的背景顏色</translation>
+        <translation>交替變換橫列背景色</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="846"/>
@@ -3407,52 +3407,52 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="849"/>
         <source>Show All</source>
-        <translation> 全部顯示</translation>
+        <translation>顯示全部</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="849"/>
         <source>Show New</source>
-        <translation> 顯示新的</translation>
+        <translation>顯示新進的新聞</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="849"/>
         <source>Show Unread</source>
-        <translation> 顯示未讀的</translation>
+        <translation>顯示未讀的新聞</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="850"/>
         <source>Show Starred</source>
-        <translation> 顯示標星的</translation>
+        <translation>顯示標星的新聞</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="850"/>
         <source>Show Not Starred</source>
-        <translation> 顯示未標星的</translation>
+        <translation>顯示未標星的新聞</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="851"/>
         <source>Show Unread or Starred</source>
-        <translation> 顯示未讀的或者標星的</translation>
+        <translation>顯示未讀或標星的新聞</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="851"/>
         <source>Show Last Day</source>
-        <translation> 顯示最近一天</translation>
+        <translation>顯示最近一天的新聞</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="852"/>
         <source>Show Last 7 Days</source>
-        <translation> 顯示最近 7 天</translation>
+        <translation>顯示最近七天的新聞</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="890"/>
         <source>Style sheet for news:</source>
-        <translation>訊息樣式表:</translation>
+        <translation>新聞樣式表: </translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="903"/>
         <source>Mark news as read:</source>
-        <translation>標記訊息為已讀: </translation>
+        <translation>標示新聞成已讀: </translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="913"/>
@@ -3462,22 +3462,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="930"/>
         <source>after switching to another news</source>
-        <translation>切換到另一條訊息後</translation>
+        <translation>切換到另一條新聞後</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="936"/>
         <source>Mark displayed news as read when switching feeds</source>
-        <translation>切換 feeds 時，將已閱讀的文章標記為已讀</translation>
+        <translation>切換新聞源時，將已閱讀的文章標示成已讀</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="937"/>
         <source>Mark displayed news as read when closing tab</source>
-        <translation>關閉分頁時，將已閱讀的文章標記為已讀</translation>
+        <translation>關閉分頁時，將已閱讀的文章標示成已讀</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="938"/>
         <source>Mark displayed news as read on minimize</source>
-        <translation>最小化時，將已閱讀的文章標記為已讀</translation>
+        <translation>最小化時，將已閱讀的文章標示成已讀</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="949"/>
@@ -3487,27 +3487,27 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="942"/>
         <source>starred news</source>
-        <translation>標星的訊息</translation>
+        <translation>標星的新聞</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="943"/>
         <source>labeled news</source>
-        <translation>有標籤的訊息</translation>
+        <translation>有標籤的新聞</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="796"/>
         <source>Automatically mark identical news as read</source>
-        <translation>自動將相同的訊息標記為已讀</translation>
+        <translation>自動將相同的新聞標示成已讀</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="956"/>
         <source>Prevent accidental deletion of:</source>
-        <translation>防止意外刪除：</translation>
+        <translation>防止意外刪除: </translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="969"/>
         <source>Enable cleanup on shutdown</source>
-        <translation>關閉時進行清理</translation>
+        <translation>啟用關閉時的清理</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="972"/>
@@ -3522,42 +3522,42 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="986"/>
         <source>Delete read news</source>
-        <translation>刪除已讀訊息</translation>
+        <translation>刪除已讀新聞</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="987"/>
         <source>Never delete unread news</source>
-        <translation>不要刪除未讀訊息</translation>
+        <translation>不刪除未讀新聞</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="988"/>
         <source>Never delete starred news</source>
-        <translation>不要刪除標星的訊息</translation>
+        <translation>不刪除標星的新聞</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="989"/>
         <source>Never delete labeled news</source>
-        <translation>不要刪除有標籤的訊息</translation>
+        <translation>不刪除有標籤的新聞</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="991"/>
         <source>Clean up &apos;Deleted&apos;</source>
-        <translation>清理「已刪除」</translation>
+        <translation>清除「已刪除」</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="992"/>
         <source>Enable DB optimization (slower shutdown)</source>
-        <translation>最佳化資料庫 (關閉速度較慢)</translation>
+        <translation>啟用資料庫最佳化 (關閉速度較慢)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1021"/>
         <source>Reading</source>
-        <translation>閱讀中</translation>
+        <translation>閱讀</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1022"/>
         <source>Clean Up</source>
-        <translation>清理</translation>
+        <translation>清除</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1039"/>
@@ -3602,37 +3602,37 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1145"/>
         <source>Show titles feeds</source>
-        <translation>顯示標題 feeds</translation>
+        <translation>顯示新聞源標題</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1146"/>
         <source>Show icon feed</source>
-        <translation>顯示圖示 feed</translation>
+        <translation>顯示圖示</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1147"/>
         <source>Show button &apos;Mark All News Read&apos;</source>
-        <translation>顯示「標示所有訊息為已讀」按鈕</translation>
+        <translation>顯示「標示所有新聞成已讀」按鈕</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1148"/>
         <source>Show button &apos;Mark Read/Unread&apos;</source>
-        <translation>顯示「標示 已讀/未讀」按鈕</translation>
+        <translation>顯示「標示成 已讀/未讀」按鈕</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1149"/>
         <source>Show button &apos;Open in External Browser&apos;</source>
-        <translation>顯示「在外部瀏覽器中開啟」按鈕</translation>
+        <translation>顯示「於外部瀏覽器開啟」按鈕</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1150"/>
         <source>Show button &apos;Delete News&apos;</source>
-        <translation>顯示「刪除訊息」按鈕</translation>
+        <translation>顯示「刪除新聞」按鈕</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1197"/>
         <source>Play sound for incoming new news</source>
-        <translation>收到新的訊息播放聲音</translation>
+        <translation>新進新聞時播放音效</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1203"/>
@@ -3642,7 +3642,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1084"/>
         <source>Display notification for incoming news</source>
-        <translation>收到訊息顯示通告</translation>
+        <translation>收到新聞時顯示通知</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1097"/>
@@ -3667,7 +3667,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1117"/>
         <source>Review</source>
-        <translation>審查</translation>
+        <translation>評估</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1124"/>
@@ -3677,17 +3677,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1134"/>
         <source>Show maximum of</source>
-        <translation>顯示最大</translation>
+        <translation>通知頁最多顯示</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1136"/>
         <source>item on page notification</source>
-        <translation>通告頁上的項目</translation>
+        <translation>個項目</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1137"/>
         <source>Width list items</source>
-        <translation>清單項目寬度</translation>
+        <translation>項目列表寬度</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1139"/>
@@ -3697,12 +3697,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1140"/>
         <source>Close notification after</source>
-        <translation>在...之後關閉通告</translation>
+        <translation>關閉通知於</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1101"/>
         <source>Do not show notification in fullscreen mode</source>
-        <translation>在全螢幕模式下不顯示提醒</translation>
+        <translation>在全螢幕模式不顯示通知</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1020"/>
@@ -3712,12 +3712,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1106"/>
         <source>Close notification after opening news</source>
-        <translation type="unfinished"/>
+        <translation>開啟新聞後關閉通知</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1160"/>
         <source>Only show selected feeds:</source>
-        <translation>只顯示選取的 feeds: </translation>
+        <translation>只顯示選取的新聞源: </translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1226"/>
@@ -3732,12 +3732,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1238"/>
         <source>Selection of feeds</source>
-        <translation>選擇 feed</translation>
+        <translation>選擇新聞源</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1254"/>
         <source>All Feeds</source>
-        <translation>所有 Feeds</translation>
+        <translation>所有新聞源</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1281"/>
@@ -3762,7 +3762,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1300"/>
         <source>Delete All</source>
-        <translation>全部刪除</translation>
+        <translation>刪除全部</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1302"/>
@@ -3802,27 +3802,27 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1626"/>
         <source>Feeds list font</source>
-        <translation>Feeds 列表字型</translation>
+        <translation>新聞源列表字型</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1629"/>
         <source>News list font</source>
-        <translation>訊息列表字型</translation>
+        <translation>新聞列表字型</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1632"/>
         <source>News title font</source>
-        <translation>訊息標題字型</translation>
+        <translation>新聞標題字型</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1635"/>
         <source>News text font</source>
-        <translation>訊息文字字型</translation>
+        <translation>新聞文字字型</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1638"/>
         <source>Notification font</source>
-        <translation>通告字型</translation>
+        <translation>通知字型</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1645"/>
@@ -3840,112 +3840,112 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1672"/>
         <source>Feeds list color</source>
-        <translation>Feeds 列表色彩</translation>
+        <translation>新聞源列表色</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1675"/>
         <source>Feeds list background</source>
-        <translation>Feeds 列表背景</translation>
+        <translation>新聞源列表背景</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1678"/>
         <source>News list color</source>
-        <translation>訊息列表色彩</translation>
+        <translation>新聞列表色</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1681"/>
         <source>News list background</source>
-        <translation>訊息列表背景</translation>
+        <translation>新聞列表背景</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1684"/>
         <source>Focused news color</source>
-        <translation>焦點訊息色彩</translation>
+        <translation>焦點新聞色</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1687"/>
         <source>Focused news background color</source>
-        <translation>焦點訊息背景色彩</translation>
+        <translation>焦點新聞背景色</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1690"/>
         <source>Link color</source>
-        <translation>連結色彩</translation>
+        <translation>連結色</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1693"/>
         <source>Title color</source>
-        <translation>標題色彩</translation>
+        <translation>標題色</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1696"/>
         <source>Date color</source>
-        <translation>日期色彩</translation>
+        <translation>日期色</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1699"/>
         <source>Author color</source>
-        <translation>作者色彩</translation>
+        <translation>作者色</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1702"/>
         <source>News text color</source>
-        <translation>訊息文字顏色</translation>
+        <translation>新聞文字色</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1705"/>
         <source>News title background</source>
-        <translation>訊息標題背景</translation>
+        <translation>新聞標題背景</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1708"/>
         <source>News background</source>
-        <translation>訊息背景</translation>
+        <translation>新聞背景</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1711"/>
         <source>Feed with new news</source>
-        <translation>Feed 的新消息</translation>
+        <translation>有新進消息的新聞源</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1714"/>
         <source>Count of unread news in feeds tree</source>
-        <translation>在 Feed 樹中計算未讀訊息數</translation>
+        <translation>新聞源樹中的未讀新聞數</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1729"/>
         <source>Disabled feed</source>
-        <translation>已停用的 feed</translation>
+        <translation>已停用的新聞源</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1732"/>
         <source>Alternating row colors</source>
-        <translation>交錯顯示每欄顏色</translation>
+        <translation>交替變換每列顏色</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1735"/>
         <source>Notification text color</source>
-        <translation>通知文字色彩</translation>
+        <translation>通知文字色</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1738"/>
         <source>Notification background color</source>
-        <translation>通知背景顏色</translation>
+        <translation>通知背景色</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2130"/>
         <source>Auto load images in news view</source>
-        <translation>自動於訊息檢視中載入圖片</translation>
+        <translation>檢視新聞時自動載入圖片</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1717"/>
         <source>Text color of new news</source>
-        <translation>新訊息的文字顏色</translation>
+        <translation>新進新聞的文字色</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="295"/>
         <source>Show feeds tree toggle</source>
-        <translation>顯示 Feed 樹切換開關</translation>
+        <translation>顯示新聞源樹切換開關</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="386"/>
@@ -3955,52 +3955,52 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="779"/>
         <source>Set focus on the last opened news</source>
-        <translation>將焦點移動至先前開啟的訊息</translation>
+        <translation>焦點設到最後開啟的新聞</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="780"/>
         <source>Set focus at the top of news list</source>
-        <translation>將焦點移動至訊息清單頂端</translation>
+        <translation>焦點設到新聞列表頂端</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="781"/>
         <source>Set focus on the unread news</source>
-        <translation>將焦點移動至未讀訊息</translation>
+        <translation>焦點設到未讀新聞</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="782"/>
         <source>Open the news</source>
-        <translation>開啟訊息</translation>
+        <translation>開啟新聞</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="866"/>
         <source>Default news filter:</source>
-        <translation>預設訊息篩選器:</translation>
+        <translation>新聞篩選的預設規則: </translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="802"/>
         <source>Action on feed opening:</source>
-        <translation>feed 開啟行為:</translation>
+        <translation>新聞源開啟時: </translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="880"/>
         <source>Show news description instead of loading web page</source>
-        <translation>顯示訊息描述，而不直接載入網頁</translation>
+        <translation>顯示新聞描述，而不載入網頁</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1720"/>
         <source>Text color of unread news</source>
-        <translation>未讀訊息的文字顏色</translation>
+        <translation>未讀新聞的文字色</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1723"/>
         <source>Focused feed color</source>
-        <translation>焦點 feed 色彩</translation>
+        <translation>焦點所在的新聞源文字色</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1726"/>
         <source>Focused feed background color</source>
-        <translation>焦點 feed 背景色彩</translation>
+        <translation>焦點所在的新聞源背景色</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1774"/>
@@ -4010,7 +4010,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1776"/>
         <source>Fixed</source>
-        <translation>固定字型</translation>
+        <translation>等寬</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1778"/>
@@ -4020,17 +4020,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1780"/>
         <source>Sans Serif</source>
-        <translation>新細明體</translation>
+        <translation>無襯線字型</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1782"/>
         <source>Cursive</source>
-        <translation>草稿</translation>
+        <translation>斜體</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1784"/>
         <source>Fantasy</source>
-        <translation>幻想</translation>
+        <translation>創意體</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1799"/>
@@ -4040,7 +4040,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1801"/>
         <source>Fixed font size</source>
-        <translation>固定字型大小</translation>
+        <translation>等寬字型大小</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1803"/>
@@ -4055,12 +4055,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1809"/>
         <source>Font families:</source>
-        <translation>字型家族：</translation>
+        <translation>字型家族: </translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1811"/>
         <source>Font sizes:</source>
-        <translation>字形大小：</translation>
+        <translation>字型大小: </translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1820"/>
@@ -4075,12 +4075,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1822"/>
         <source>Colors</source>
-        <translation>色彩</translation>
+        <translation>顏色</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1829"/>
         <source>Filter</source>
-        <translation>篩選器</translation>
+        <translation>篩選規則</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1855"/>
@@ -4095,12 +4095,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1855"/>
         <source>Shortcut</source>
-        <translation>快速鍵</translation>
+        <translation>快鍵</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1863"/>
         <source>Shortcut:</source>
-        <translation>快速鍵: </translation>
+        <translation>快鍵: </translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2294"/>
@@ -4123,12 +4123,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2845"/>
         <source>Add site to whitelist</source>
-        <translation>加入網站到白名單</translation>
+        <translation>將網站加入白名單</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2846"/>
         <source>Site without &apos;http://&apos; (ex. youtube.com)</source>
-        <translation>網站不含「http://」(例如：youtube.com)</translation>
+        <translation>網站不含「http://」(例如 youtube.com)</translation>
     </message>
 </context>
 <context>
@@ -4207,69 +4207,69 @@ Ancient news could reappear</source>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="1490"/>
         <source>Unknown error</source>
-        <translation> 未知錯誤</translation>
+        <translation> 未知的錯誤</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2419"/>
         <source>Connecting to host failed:
 %1</source>
-        <translation>連線到主機失敗：
+        <translation>連線到主機失敗: 
 %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2423"/>
         <source>Login failed:
 %1</source>
-        <translation>登入失敗：
+        <translation>登入失敗: 
 %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2427"/>
         <source>Listing directory failed:
 %1</source>
-        <translation>列出目錄失敗：
+        <translation>列出目錄失敗: 
 %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2431"/>
         <source>Changing directory failed:
 %1</source>
-        <translation>變更目錄失敗：
+        <translation>切換目錄失敗: 
 %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2435"/>
         <source>Downloading file failed:
 %1</source>
-        <translation>檔案下載失敗：
+        <translation>檔案下載失敗: 
 %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2439"/>
         <source>Uploading file failed:
 %1</source>
-        <translation>檔案上傳失敗：
+        <translation>檔案上傳失敗: 
 %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2443"/>
         <source>Removing file failed:
 %1</source>
-        <translation>檔案移除失敗：
+        <translation>檔案移除失敗: 
 %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2447"/>
         <source>Creating directory failed:
 %1</source>
-        <translation>建立目錄失敗：
+        <translation>建立目錄失敗: 
 %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2451"/>
         <source>Removing directory failed:
 %1</source>
-        <translation>移除目錄失敗：
+        <translation>移除目錄失敗: 
 %1</translation>
     </message>
     <message>
@@ -4413,7 +4413,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/webview/rssdetectionwidget.cpp" line="56"/>
         <source>Untitled feed</source>
-        <translation>未命名 feed</translation>
+        <translation>未命名的新聞源</translation>
     </message>
 </context>
 <context>
@@ -4426,12 +4426,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/requestfeed.cpp" line="230"/>
         <source>Server replied: Not Found!</source>
-        <translation>伺服器回應：找不到！</translation>
+        <translation>伺服器回應: 找不到！</translation>
     </message>
     <message>
         <location filename="../src/requestfeed.cpp" line="273"/>
         <source>Redirect error!</source>
-        <translation>重新導向錯誤！</translation>
+        <translation>重新導向發生錯誤！</translation>
     </message>
     <message>
         <location filename="../src/requestfeed.cpp" line="355"/>
@@ -4454,17 +4454,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="637"/>
         <source>Unable to begin transaction</source>
-        <translation>無法開始交易</translation>
+        <translation>無法開始存取</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="652"/>
         <source>Unable to commit transaction</source>
-        <translation>無法進行交易</translation>
+        <translation>無法進行存取</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="667"/>
         <source>Unable to rollback transaction</source>
-        <translation>無法還原交易</translation>
+        <translation>無法還原存取</translation>
     </message>
 </context>
 <context>
@@ -4474,7 +4474,7 @@ Ancient news could reappear</source>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="286"/>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="294"/>
         <source>Unable to fetch row</source>
-        <translation>無法取回欄位</translation>
+        <translation>無法取回橫列</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="224"/>
@@ -4484,17 +4484,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="368"/>
         <source>Unable to execute statement</source>
-        <translation>無法執行表達式</translation>
+        <translation>無法執行命令</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="373"/>
         <source>Unable to execute multiple statements at a time</source>
-        <translation>無法一次執行多個表達式</translation>
+        <translation>無法一次執行多個命令</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="393"/>
         <source>Unable to reset statement</source>
-        <translation>無法重設表達式</translation>
+        <translation>無法重設命令</translation>
     </message>
     <message>
         <location filename="../3rdparty/sqlitex/sqlitedriver.cpp" line="438"/>
@@ -4512,7 +4512,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/network/sslerrordialog.cpp" line="24"/>
         <source>SSL Certificate Error!</source>
-        <translation>SSL 認證錯誤！</translation>
+        <translation>SSL 安全性憑證錯誤！</translation>
     </message>
     <message>
         <location filename="../src/network/sslerrordialog.cpp" line="34"/>
@@ -4530,7 +4530,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/updateappdialog.cpp" line="45"/>
         <source>Checking for updates...</source>
-        <translation>正檢查更新...</translation>
+        <translation>檢查更新中...</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="50"/>
@@ -4550,17 +4550,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/updateappdialog.cpp" line="130"/>
         <source>You already have the latest version</source>
-        <translation>您已經是最新版本</translation>
+        <translation>您已有最新版</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="140"/>
         <source>A new version of QuiteRSS is available!</source>
-        <translation>有新版的 QuiteRSS 可以下載！</translation>
+        <translation>有新版 QuiteRSS 可下載！</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="143"/>
         <source>Click here to go to the download page</source>
-        <translation>點擊這裡進入下載頁面</translation>
+        <translation>點按這裡至下載頁面</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="148"/>
