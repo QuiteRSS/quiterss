@@ -222,6 +222,13 @@ void MainApplication::connectDatabase()
     }
   }
 
+#if defined(HAVE_QT5) && defined(HAVE_X11)
+  fileName = "~/.local/share/data/QuiteRss/QuiteRss/feeds.db";
+  if (!QFile(dbFileName()).exists() && QFile(fileName).exists()) {
+    QFile::copy(fileName, dbFileName());
+  }
+#endif
+
   if (QFile(dbFileName()).exists()) {
     dbFileExists_ = true;
   }
