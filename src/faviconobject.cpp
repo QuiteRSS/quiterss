@@ -18,14 +18,10 @@
 #include "faviconobject.h"
 #include "VersionNo.h"
 #include "mainapplication.h"
+#include "globals.h"
 
 #include <QDebug>
 #include <QtSql>
-#ifdef HAVE_QT5
-#include <QWebPage>
-#else
-#include <qwebkitversion.h>
-#endif
 #include <qzregexp.h>
 
 #define REPLY_MAX_COUNT 4
@@ -113,9 +109,7 @@ void FaviconObject::getQueuedUrl()
 void FaviconObject::slotGet(const QUrl &getUrl, const QString &feedUrl, const int &cnt)
 {
   QNetworkRequest request(getUrl);
-  QString userAgent = QString("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/%1 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/%1").
-      arg(qWebKitVersion());
-  request.setRawHeader("User-Agent", userAgent.toUtf8());
+  request.setRawHeader("User-Agent", globals.userAgent().toUtf8());
 
   currentUrls_.append(getUrl);
   currentFeeds_.append(feedUrl);

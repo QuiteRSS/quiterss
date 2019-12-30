@@ -27,6 +27,8 @@ public:
 
   void init();
 
+  QString userAgent() const { return userAgent_; }
+
   // public on purpose
   const bool logFileOutput_;
   bool noDebugOutput_;
@@ -36,6 +38,10 @@ public:
   QString dataDir_;
   QString cacheDir_;
   QString soundNotifyDir_;
+
+private:
+  QString userAgent_;
+
 };
 
 extern Globals globals;

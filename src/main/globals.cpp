@@ -19,8 +19,10 @@
 
 #ifdef HAVE_QT5
 #include <QStandardPaths>
+#include <QWebPage>
 #else
 #include <QDesktopServices>
+#include <qwebkitversion.h>
 #endif
 #include <QCoreApplication>
 #include <QDir>
@@ -93,6 +95,8 @@ void Globals::init()
   Settings settings;
   settings.beginGroup("Settings");
   noDebugOutput_ = settings.value("noDebugOutput", true).toBool();
+  userAgent_ = settings.value("userAgent", QString("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/%1 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/%1").
+                              arg(qWebKitVersion())).toString();
 
   isInit_ = true;
 }
