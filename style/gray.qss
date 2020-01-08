@@ -62,6 +62,10 @@ QMenuBar::item:pressed {
 	bottom: -1px;
 }
 
+QTabBar {
+	qproperty-drawBase: 0;
+}
+
 #tabBar_::tab {
 	background-color: transparent;
 	border: 1px solid gray;

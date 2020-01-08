@@ -58,6 +58,10 @@ QTabWidget::tab-bar {
 	bottom: -1px;
 }
 
+QTabBar {
+	qproperty-drawBase: 0;
+}
+
 QTabBar::tab, #tabBar_::tab {
 	background-color: transparent;
 	border: 1px solid gray;

@@ -1,4 +1,4 @@
-/* QuiteRSS Green Style */
+/* QuiteRSS Pink Style */
 
 QMenuBar {
 	background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
@@ -60,6 +60,10 @@ QMenuBar::item:pressed {
 
 #tabBar_ QTabWidget::tab-bar {
 	bottom: -1px;
+}
+
+QTabBar {
+	qproperty-drawBase: 0;
 }
 
 #tabBar_::tab {
