@@ -3028,7 +3028,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="300"/>
         <source>Automatically check for updates</source>
-        <translation>自動的に最新状態をチェックする</translation>
+        <translation>自動で最新版を確認する</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="301"/>
