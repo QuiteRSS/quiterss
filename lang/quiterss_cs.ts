@@ -112,7 +112,7 @@
     <message>
         <location filename="../src/adblock/adblocksubscription.cpp" line="323"/>
         <location filename="../src/adblock/adblocksubscription.cpp" line="330"/>
-        <location filename="../src/application/mainwindow.cpp" line="5146"/>
+        <location filename="../src/application/mainwindow.cpp" line="5168"/>
         <source>Custom Rules</source>
         <translation>Vlastní filtry</translation>
     </message>
@@ -466,79 +466,79 @@
 <context>
     <name>CleanUpWizard</name>
     <message>
-        <location filename="../src/cleanupwizard.cpp" line="207"/>
+        <location filename="../src/cleanupwizard.cpp" line="31"/>
         <source>Clean Up</source>
         <translation>Čištění</translation>
     </message>
     <message>
-        <location filename="../src/cleanupwizard.cpp" line="241"/>
+        <location filename="../src/cleanupwizard.cpp" line="63"/>
         <source>Choose Feeds</source>
         <translation>Výběr kanálů</translation>
     </message>
     <message>
-        <location filename="../src/cleanupwizard.cpp" line="254"/>
+        <location filename="../src/cleanupwizard.cpp" line="76"/>
         <source>All Feeds</source>
         <translation>Všechny kanály</translation>
     </message>
     <message>
-        <location filename="../src/cleanupwizard.cpp" line="324"/>
+        <location filename="../src/cleanupwizard.cpp" line="146"/>
         <source>Clean Up Options</source>
         <translation>Nastavení čištění</translation>
     </message>
     <message>
-        <location filename="../src/cleanupwizard.cpp" line="326"/>
+        <location filename="../src/cleanupwizard.cpp" line="148"/>
         <source>Maximum age of news in days to keep:</source>
         <translation>Smazat novinky starší více než (dnů):</translation>
     </message>
     <message>
-        <location filename="../src/cleanupwizard.cpp" line="333"/>
+        <location filename="../src/cleanupwizard.cpp" line="155"/>
         <source>Maximum number of news to keep:</source>
         <translation>Smazat novinky přesahující celkový počet (nejstarší):</translation>
     </message>
     <message>
-        <location filename="../src/cleanupwizard.cpp" line="340"/>
+        <location filename="../src/cleanupwizard.cpp" line="162"/>
         <source>Delete read news</source>
         <translation>Smazat přečtené novinky</translation>
     </message>
     <message>
-        <location filename="../src/cleanupwizard.cpp" line="341"/>
+        <location filename="../src/cleanupwizard.cpp" line="163"/>
         <source>Never delete unread news</source>
         <translation>Nikdy nemazat nepřečtené novinky</translation>
     </message>
     <message>
-        <location filename="../src/cleanupwizard.cpp" line="342"/>
+        <location filename="../src/cleanupwizard.cpp" line="164"/>
         <source>Never delete starred news</source>
         <translation>Nikdy nemazat novinky označené hvězdičkou</translation>
     </message>
     <message>
-        <location filename="../src/cleanupwizard.cpp" line="343"/>
+        <location filename="../src/cleanupwizard.cpp" line="165"/>
         <source>Never delete labeled news</source>
         <translation>Nikdy nemazat novinky označené štítkem</translation>
     </message>
     <message>
-        <location filename="../src/cleanupwizard.cpp" line="356"/>
+        <location filename="../src/cleanupwizard.cpp" line="178"/>
         <source>Clean up &apos;Deleted&apos;</source>
         <translation>Odstranit &apos;Smazané&apos;</translation>
     </message>
     <message>
-        <location filename="../src/cleanupwizard.cpp" line="357"/>
+        <location filename="../src/cleanupwizard.cpp" line="179"/>
         <source>Purge DB</source>
         <translation>Vyčistit DB</translation>
     </message>
     <message>
-        <location filename="../src/cleanupwizard.cpp" line="361"/>
+        <location filename="../src/cleanupwizard.cpp" line="183"/>
         <source>Totally remove records that had marked 'deleted' from DB.
 Ancient news could reappear</source>
         <translation>Úplně odstranit záznamy označené &apos;Smazané&apos; z DB.
 Staré novinky se mohou znovu objevit</translation>
     </message>
     <message>
-        <location filename="../src/cleanupwizard.cpp" line="524"/>
+        <location filename="../src/cleanupwizard.cpp" line="335"/>
         <source>Information</source>
         <translation>Informace</translation>
     </message>
     <message>
-        <location filename="../src/cleanupwizard.cpp" line="525"/>
+        <location filename="../src/cleanupwizard.cpp" line="336"/>
         <source>Clean Up wizard deleted %1 news</source>
         <translation>Průvodce čištěním odstranil %1 novinek</translation>
     </message>
@@ -666,120 +666,120 @@ Staré novinky se mohou znovu objevit</translation>
 <context>
     <name>DownloadItem</name>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="98"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="100"/>
         <source>Remaining time unavailable</source>
         <translation>Zbývající čas není dostupný</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="161"/>
-        <location filename="../src/downloads/downloaditem.cpp" line="188"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="163"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="190"/>
         <source>Error: Cannot write to file!</source>
         <translation>Chyba: Nelze zapisovat do souboru!</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="228"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="230"/>
         <source>Error: </source>
         <translation>Chyba:</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="262"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="264"/>
         <source>few seconds</source>
         <translation>pár sekund</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="264"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="266"/>
         <source>seconds</source>
         <translation>sekund</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="266"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="268"/>
         <source>minutes</source>
         <translation>minut</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="268"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="270"/>
         <source>hours</source>
         <translation>hodin</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="239"/>
-        <location filename="../src/downloads/downloaditem.cpp" line="275"/>
-        <location filename="../src/downloads/downloaditem.cpp" line="319"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="241"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="277"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="321"/>
         <source>Unknown size</source>
         <translation>Neznámá velikost</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="292"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="294"/>
         <source>Unknown speed</source>
         <translation>Neznámá rychlost</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="320"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="322"/>
         <source>%2 - unknown size (%3)</source>
         <translation>%2 - neznámá velikost (%3)</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="322"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="324"/>
         <source>Remaining %1 - %2 of %3 (%4)</source>
         <translation>Zbývá %1 - %2 z %3 (%4)</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="341"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="343"/>
         <source>Cancelled - %1</source>
         <translation>Zrušeno - %1</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="352"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="354"/>
         <source>Delete file</source>
         <translation>Smazat soubor</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="353"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="355"/>
         <source>Do you want to also delete downloaded file?</source>
         <translation>Chcete také smazat stažený soubor?</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="370"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="372"/>
         <source>Open File</source>
         <translation>Otevřít soubor</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="372"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="374"/>
         <source>Open Folder</source>
         <translation>Otevřít složku</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="374"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="376"/>
         <source>Copy Download Link</source>
         <translation>Kopírovat odkaz ke stažení</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="376"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="378"/>
         <source>Cancel Downloading</source>
         <translation>Zrušit stahování</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="377"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="379"/>
         <source>Remove</source>
         <translation>Odebrat</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="379"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="381"/>
         <source>Cancelled</source>
         <translation>Zrušeno</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="379"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="381"/>
         <source>Error</source>
         <translation>Chyba</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="405"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="407"/>
         <source>Not found</source>
         <translation>Nenalezeno</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="406"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="408"/>
         <source>Sorry, the file 
  %1 
  was not found!</source>
@@ -915,7 +915,7 @@ nebyl nalezen!</translation>
         <translation>Označené hvězdičkou</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="172"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="201"/>
         <source>Load images</source>
         <translation>Načítat obrázky</translation>
     </message>
@@ -925,7 +925,7 @@ nebyl nalezen!</translation>
         <translation>Po spuštění zobrazit v nové záložce</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="177"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="206"/>
         <source>Show news&apos; description instead of loading web page</source>
         <translation>Zobrazovat popis novinky místo načítání webové stránky</translation>
     </message>
@@ -940,132 +940,142 @@ nebyl nalezen!</translation>
         <translation>Zobrazení</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="174"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="132"/>
+        <source>Add news with any date into the database</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/feedpropertiesdialog.cpp" line="145"/>
+        <source>Avoid adding news before this date into the database:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/feedpropertiesdialog.cpp" line="203"/>
         <source>Enable JavaScript</source>
         <translation>Povolit JavaScript</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="179"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="208"/>
         <source>Right-to-left layout</source>
         <translation>Rozvržení zprava doleva</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="219"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="248"/>
         <source>Ascending</source>
         <translation>Vzestupně</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="219"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="248"/>
         <source>Descending</source>
         <translation>Sestupně</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="224"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="253"/>
         <source>Sort by:</source>
         <translation>Řadit dle:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="238"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="267"/>
         <source>Add</source>
         <translation>Přidat</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="245"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="274"/>
         <source>Remove</source>
         <translation>Odebrat</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="249"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="278"/>
         <source>Move up</source>
         <translation>Posunout nahoru</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="252"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="281"/>
         <source>Move down</source>
         <translation>Posunout dolů</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="256"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="285"/>
         <source>Default</source>
         <translation>Výchozí</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="286"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="315"/>
         <source>Server requires authentication:</source>
         <translation>Server vyžaduje přihlášení:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="295"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="324"/>
         <source>Username:</source>
         <translation>Uživatelské jméno:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="297"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="326"/>
         <source>Password:</source>
         <translation>Heslo:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="321"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="350"/>
         <source>Feeds count:</source>
         <translation>Počet kanálů:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="324"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="353"/>
         <source>Description:</source>
         <translation>Popis:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="331"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="360"/>
         <source>Status:</source>
         <translation>Stav:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="333"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="362"/>
         <source>Created:</source>
         <translation>Vytvořeno:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="335"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="364"/>
         <source>Last update:</source>
         <translation>Poslední aktualizace:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="337"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="366"/>
         <source>News count:</source>
         <translation>Počet novinek:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="407"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="440"/>
         <source>Good</source>
         <translation>Dobrý</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="415"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="448"/>
         <source>Long ago ;-)</source>
         <translation>Kdysi dávno ;-)</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="426"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="459"/>
         <source>new</source>
         <translation>nové</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="428"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="461"/>
         <source>unread</source>
         <translation>nepřečteno</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="449"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="482"/>
         <source>Image files</source>
         <translation>Obrázky</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="451"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="484"/>
         <source>Select Image</source>
         <translation>Vybrat obrázek</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="458"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="491"/>
         <source>Load icon: can&apos;t open a file!</source>
         <translation>Výběr ikonky: soubor nelze otevřít</translation>
     </message>
@@ -1178,7 +1188,7 @@ nebyl nalezen!</translation>
 <context>
     <name>FtpDownloader</name>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="471"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="473"/>
         <source>Canceled!</source>
         <translation>Zrušeno!</translation>
     </message>
@@ -1437,7 +1447,7 @@ nebyl nalezen!</translation>
 <context>
     <name>MainApplication</name>
     <message>
-        <location filename="../src/application/mainapplication.cpp" line="328"/>
+        <location filename="../src/application/mainapplication.cpp" line="322"/>
         <source>Saving data...</source>
         <translation>Ukládání dat...</translation>
     </message>
@@ -1445,1043 +1455,1048 @@ nebyl nalezen!</translation>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="1853"/>
+        <location filename="../src/application/mainwindow.cpp" line="1856"/>
         <source>&amp;AdBlock</source>
         <translation>&amp;AdBlock</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2276"/>
-        <location filename="../src/application/mainwindow.cpp" line="5040"/>
-        <location filename="../src/application/mainwindow.cpp" line="7432"/>
-        <location filename="../src/application/mainwindow.cpp" line="7454"/>
+        <location filename="../src/application/mainwindow.cpp" line="2281"/>
+        <location filename="../src/application/mainwindow.cpp" line="5062"/>
+        <location filename="../src/application/mainwindow.cpp" line="7575"/>
+        <location filename="../src/application/mainwindow.cpp" line="7597"/>
         <source>Hide Categories</source>
         <translation>Skrýt kategorie</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2280"/>
-        <location filename="../src/application/mainwindow.cpp" line="5038"/>
-        <location filename="../src/application/mainwindow.cpp" line="7438"/>
+        <location filename="../src/application/mainwindow.cpp" line="2285"/>
+        <location filename="../src/application/mainwindow.cpp" line="5060"/>
+        <location filename="../src/application/mainwindow.cpp" line="7581"/>
         <source>Show Categories</source>
         <translation>Zobrazit kategorie</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2736"/>
-        <location filename="../src/application/mainwindow.cpp" line="2765"/>
+        <location filename="../src/application/mainwindow.cpp" line="2743"/>
+        <location filename="../src/application/mainwindow.cpp" line="2772"/>
         <source>Select OPML-File</source>
         <translation>Vybrat soubor OPML</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2738"/>
+        <location filename="../src/application/mainwindow.cpp" line="2745"/>
         <source>OPML-Files (*.%1 *.%2)</source>
         <translation>Soubory OPML (*.%1 *.%2)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2742"/>
+        <location filename="../src/application/mainwindow.cpp" line="2749"/>
         <source>Import canceled</source>
         <translation>Import zrušen</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2750"/>
+        <location filename="../src/application/mainwindow.cpp" line="2757"/>
         <source>Import: can&apos;t open a file</source>
         <translation>Import: nelze otevřit soubor</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2767"/>
+        <location filename="../src/application/mainwindow.cpp" line="2774"/>
         <source>OPML-Files (*.%1)</source>
         <translation>Soubory OPML (*.%1)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2771"/>
+        <location filename="../src/application/mainwindow.cpp" line="2778"/>
         <source>Export canceled</source>
         <translation>Export zrušen</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2777"/>
+        <location filename="../src/application/mainwindow.cpp" line="2784"/>
         <source>Export: can&apos;t open a file</source>
         <translation>Export: nelze otevřít soubor</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="3046"/>
-        <location filename="../src/application/mainwindow.cpp" line="4205"/>
-        <location filename="../src/application/mainwindow.cpp" line="4810"/>
-        <location filename="../src/application/mainwindow.cpp" line="6330"/>
-        <location filename="../src/application/mainwindow.cpp" line="7389"/>
+        <location filename="../src/application/mainwindow.cpp" line="3053"/>
+        <location filename="../src/application/mainwindow.cpp" line="4226"/>
+        <location filename="../src/application/mainwindow.cpp" line="4831"/>
+        <location filename="../src/application/mainwindow.cpp" line="6473"/>
+        <location filename="../src/application/mainwindow.cpp" line="7532"/>
         <source>Unread: %1</source>
         <translation>Nepřečteno: %1</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="3047"/>
-        <location filename="../src/application/mainwindow.cpp" line="4206"/>
-        <location filename="../src/application/mainwindow.cpp" line="4813"/>
-        <location filename="../src/application/mainwindow.cpp" line="6331"/>
-        <location filename="../src/application/mainwindow.cpp" line="7390"/>
+        <location filename="../src/application/mainwindow.cpp" line="3054"/>
+        <location filename="../src/application/mainwindow.cpp" line="4227"/>
+        <location filename="../src/application/mainwindow.cpp" line="4834"/>
+        <location filename="../src/application/mainwindow.cpp" line="6474"/>
+        <location filename="../src/application/mainwindow.cpp" line="7533"/>
         <source>All: %1</source>
         <translation>Vše: %1</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="3625"/>
-        <location filename="../src/application/mainwindow.cpp" line="3630"/>
-        <location filename="../src/application/mainwindow.cpp" line="3635"/>
+        <location filename="../src/application/mainwindow.cpp" line="3639"/>
+        <location filename="../src/application/mainwindow.cpp" line="3644"/>
+        <location filename="../src/application/mainwindow.cpp" line="3649"/>
         <source>(Browser)</source>
         <translation>(Prohlížeč)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4818"/>
-        <location filename="../src/application/mainwindow.cpp" line="5711"/>
+        <location filename="../src/application/mainwindow.cpp" line="4839"/>
+        <location filename="../src/application/mainwindow.cpp" line="5786"/>
         <source>New News: %1</source>
         <translation>Nové novinky: %1</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4820"/>
-        <location filename="../src/application/mainwindow.cpp" line="5713"/>
+        <location filename="../src/application/mainwindow.cpp" line="4841"/>
+        <location filename="../src/application/mainwindow.cpp" line="5788"/>
         <source>Unread News: %1</source>
         <translation>Nepřečtené novinky: %1</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4825"/>
+        <location filename="../src/application/mainwindow.cpp" line="4846"/>
         <source>&amp;Add</source>
         <translation>Přid&amp;at</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4826"/>
-        <location filename="../src/application/mainwindow.cpp" line="4829"/>
+        <location filename="../src/application/mainwindow.cpp" line="4847"/>
+        <location filename="../src/application/mainwindow.cpp" line="4850"/>
         <source>Add New Feed</source>
         <translation>Přidat nový kanál</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4828"/>
+        <location filename="../src/application/mainwindow.cpp" line="4849"/>
         <source>&amp;Feed...</source>
         <translation>&amp;Kanál...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4833"/>
+        <location filename="../src/application/mainwindow.cpp" line="4854"/>
         <source>F&amp;older...</source>
         <translation>Sl&amp;ožka...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4834"/>
+        <location filename="../src/application/mainwindow.cpp" line="4855"/>
         <source>Add New Folder</source>
         <translation>Přidat novou složku</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4836"/>
-        <location filename="../src/application/mainwindow.cpp" line="4907"/>
+        <location filename="../src/application/mainwindow.cpp" line="4857"/>
+        <location filename="../src/application/mainwindow.cpp" line="4928"/>
         <source>Open in New Tab</source>
         <translation>Otevřít v nové záložce</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4838"/>
+        <location filename="../src/application/mainwindow.cpp" line="4859"/>
         <source>&amp;Delete...</source>
         <translation>&amp;Smazat...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4839"/>
+        <location filename="../src/application/mainwindow.cpp" line="4860"/>
         <source>Delete Selected Feed</source>
         <translation>Smazat vybraný kanál</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4841"/>
+        <location filename="../src/application/mainwindow.cpp" line="4862"/>
         <source>&amp;Import Feeds...</source>
         <translation>&amp;Importovat kanály...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4842"/>
+        <location filename="../src/application/mainwindow.cpp" line="4863"/>
         <source>Import Feeds from OPML File</source>
         <translation>Importovat kanýly z OPML souboru</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4844"/>
+        <location filename="../src/application/mainwindow.cpp" line="4865"/>
         <source>&amp;Export Feeds...</source>
         <translation>&amp;Exportovat kanály...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4845"/>
+        <location filename="../src/application/mainwindow.cpp" line="4866"/>
         <source>Export Feeds to OPML File</source>
         <translation>Exportovat kanály do OPML souboru</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4850"/>
+        <location filename="../src/application/mainwindow.cpp" line="4871"/>
         <source>E&amp;xit</source>
         <translation>U&amp;končit</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4852"/>
+        <location filename="../src/application/mainwindow.cpp" line="4873"/>
         <source>Update Feed</source>
         <translation>Aktualizovat kanál</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4853"/>
+        <location filename="../src/application/mainwindow.cpp" line="4874"/>
         <source>Update Current Feed</source>
         <translation>Aktualizovat vybraný kanál</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4855"/>
+        <location filename="../src/application/mainwindow.cpp" line="4876"/>
         <source>Update All</source>
         <translation>Aktualizovat vše</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4856"/>
+        <location filename="../src/application/mainwindow.cpp" line="4877"/>
         <source>Update All Feeds</source>
         <translation>Aktualizovat všechny kanály</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4861"/>
+        <location filename="../src/application/mainwindow.cpp" line="4882"/>
         <source>Mark All Feeds Read</source>
         <translation>Označit všechny kanály za přečtené</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4863"/>
+        <location filename="../src/application/mainwindow.cpp" line="4884"/>
         <source>Mark Read/Unread</source>
         <translation>Označit za přečtené/nepřetené</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4864"/>
+        <location filename="../src/application/mainwindow.cpp" line="4885"/>
         <source>Mark Current News Read/Unread</source>
         <translation>Označit aktuální novinku za přečtenou/nepřečtenou</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4866"/>
-        <location filename="../src/application/mainwindow.cpp" line="4867"/>
+        <location filename="../src/application/mainwindow.cpp" line="4887"/>
+        <location filename="../src/application/mainwindow.cpp" line="4888"/>
         <source>Mark All News Read</source>
         <translation>Označit všechny novinky za přečtené</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4869"/>
-        <location filename="../src/application/mainwindow.cpp" line="8015"/>
-        <location filename="../src/application/mainwindow.cpp" line="8021"/>
-        <location filename="../src/application/mainwindow.cpp" line="8031"/>
+        <location filename="../src/application/mainwindow.cpp" line="4890"/>
+        <location filename="../src/application/mainwindow.cpp" line="8158"/>
+        <location filename="../src/application/mainwindow.cpp" line="8164"/>
+        <location filename="../src/application/mainwindow.cpp" line="8174"/>
         <source>Downloads</source>
         <translation>Stahování</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4871"/>
+        <location filename="../src/application/mainwindow.cpp" line="4892"/>
         <source>Clean Up...</source>
         <translation>Čištění...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4873"/>
+        <location filename="../src/application/mainwindow.cpp" line="4894"/>
         <source>News Filters...</source>
         <translation>Filtry novinek...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4874"/>
+        <location filename="../src/application/mainwindow.cpp" line="4895"/>
         <source>Filter News...</source>
         <translation>Filtr novinky...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4876"/>
+        <location filename="../src/application/mainwindow.cpp" line="4897"/>
         <source>Options...</source>
         <translation>Nastavení...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4877"/>
+        <location filename="../src/application/mainwindow.cpp" line="4898"/>
         <source>Open Options Dialog</source>
         <translation>Otevřít dialogové okno s nastavením</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4879"/>
+        <location filename="../src/application/mainwindow.cpp" line="4900"/>
         <source>Filter Feeds</source>
         <translation>Filtr kanálů</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4880"/>
-        <location filename="../src/application/mainwindow.cpp" line="4887"/>
+        <location filename="../src/application/mainwindow.cpp" line="4901"/>
+        <location filename="../src/application/mainwindow.cpp" line="4908"/>
         <source>Show All</source>
         <translation>Zobrazit vše</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4881"/>
-        <location filename="../src/application/mainwindow.cpp" line="4888"/>
+        <location filename="../src/application/mainwindow.cpp" line="4902"/>
+        <location filename="../src/application/mainwindow.cpp" line="4909"/>
         <source>Show New</source>
         <translation>Zobrazit nové</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4882"/>
-        <location filename="../src/application/mainwindow.cpp" line="4889"/>
+        <location filename="../src/application/mainwindow.cpp" line="4903"/>
+        <location filename="../src/application/mainwindow.cpp" line="4910"/>
         <source>Show Unread</source>
         <translation>Zobrazit nepřečtené</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4883"/>
+        <location filename="../src/application/mainwindow.cpp" line="4904"/>
         <source>Show Starred Feeds</source>
         <translation>Zobrazit kanály označené hvězdičkou</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4884"/>
+        <location filename="../src/application/mainwindow.cpp" line="4905"/>
         <source>Show Not Working Feeds</source>
         <translation>Zobrazit nefunkční kanály</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4886"/>
+        <location filename="../src/application/mainwindow.cpp" line="4907"/>
         <source>Filter News</source>
         <translation>Filtr novinek</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4890"/>
+        <location filename="../src/application/mainwindow.cpp" line="4911"/>
         <source>Show Starred</source>
         <translation>Zobrazit označené hvězdičkou</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4891"/>
+        <location filename="../src/application/mainwindow.cpp" line="4912"/>
         <source>Show Not Starred</source>
         <translation>Zobrazit neoznačené hvězdičkou</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4892"/>
+        <location filename="../src/application/mainwindow.cpp" line="4913"/>
         <source>Show Unread or Starred</source>
         <translation>Zobrazit nepřečtené nebo označené hvězdičkou</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4893"/>
+        <location filename="../src/application/mainwindow.cpp" line="4914"/>
         <source>Show Last Day</source>
         <translation>Zobrazit za poslední den</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4894"/>
+        <location filename="../src/application/mainwindow.cpp" line="4915"/>
         <source>Show Last 7 Days</source>
         <translation>Zobrazit za posledních 7 dní</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4896"/>
+        <location filename="../src/application/mainwindow.cpp" line="4917"/>
         <source>About...</source>
         <translation>O aplikaci...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4897"/>
+        <location filename="../src/application/mainwindow.cpp" line="4918"/>
         <source>Show &apos;About&apos; Dialog</source>
         <translation>Otevřít dialogové okno s informacemi o aplikaci</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4899"/>
+        <location filename="../src/application/mainwindow.cpp" line="4920"/>
         <source>Check for Updates...</source>
         <translation>Zkontrolovat aktualizace...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4900"/>
+        <location filename="../src/application/mainwindow.cpp" line="4921"/>
         <source>Report a Problem...</source>
         <translation>Nahlásit problém...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4902"/>
+        <location filename="../src/application/mainwindow.cpp" line="4923"/>
         <source>Open News</source>
         <translation>Otevřít novinky</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4904"/>
+        <location filename="../src/application/mainwindow.cpp" line="4925"/>
         <source>Open in Browser</source>
         <translation>Otevřít v prohlížeči</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4905"/>
+        <location filename="../src/application/mainwindow.cpp" line="4926"/>
         <source>Open in External Browser</source>
         <translation>Otevřít v externím prohlížeči</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4906"/>
+        <location filename="../src/application/mainwindow.cpp" line="4927"/>
         <source>Open News in External Browser</source>
         <translation>Otevřít novinku v externím prohlížeči</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4908"/>
+        <location filename="../src/application/mainwindow.cpp" line="4929"/>
         <source>Open News in New Tab</source>
         <translation>Otevřít v nové záložce</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4909"/>
+        <location filename="../src/application/mainwindow.cpp" line="4930"/>
         <source>Open in Background Tab</source>
         <translation>Otevřít v nové záložce na pozadí</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4910"/>
+        <location filename="../src/application/mainwindow.cpp" line="4931"/>
         <source>Open News in Background Tab</source>
         <translation>Otevřít novinku v nové záložce na pozadí</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4911"/>
+        <location filename="../src/application/mainwindow.cpp" line="4932"/>
         <source>Star</source>
         <translation>Hvězdička</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4912"/>
+        <location filename="../src/application/mainwindow.cpp" line="4933"/>
         <source>Mark News Star</source>
         <translation>Označit novinky hvězdičkou</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4913"/>
+        <location filename="../src/application/mainwindow.cpp" line="4934"/>
         <source>Delete</source>
         <translation>Smazat</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4914"/>
+        <location filename="../src/application/mainwindow.cpp" line="4935"/>
         <source>Delete Selected News</source>
         <translation>Smazat vybrané novinky</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4915"/>
+        <location filename="../src/application/mainwindow.cpp" line="4936"/>
         <source>Delete All News</source>
         <translation>Smazat všechny novinky</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4916"/>
+        <location filename="../src/application/mainwindow.cpp" line="4937"/>
         <source>Delete All News from List</source>
         <translation>Smazat všechny novinky ze seznamu</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4917"/>
+        <location filename="../src/application/mainwindow.cpp" line="4938"/>
         <source>Restore</source>
         <translation>Obnovit</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4918"/>
+        <location filename="../src/application/mainwindow.cpp" line="4939"/>
         <source>Restore News</source>
         <translation>Obnovit novinky</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4919"/>
+        <location filename="../src/application/mainwindow.cpp" line="4940"/>
         <source>Copy Link</source>
         <translation>Kopírovat odkaz</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4922"/>
+        <location filename="../src/application/mainwindow.cpp" line="4943"/>
         <source>Restore last deleted news</source>
         <translation>Obnovit poslední smazanou novinku</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4924"/>
+        <location filename="../src/application/mainwindow.cpp" line="4945"/>
         <source>Mark Read</source>
         <translation>Označit za přečtené</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4925"/>
+        <location filename="../src/application/mainwindow.cpp" line="4946"/>
         <source>Mark Feed Read</source>
         <translation>Označit kanál za přečtený</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4926"/>
-        <location filename="../src/application/mainwindow.cpp" line="4927"/>
+        <location filename="../src/application/mainwindow.cpp" line="4947"/>
+        <location filename="../src/application/mainwindow.cpp" line="4948"/>
         <source>Properties</source>
         <translation>Předvolby</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4929"/>
+        <location filename="../src/application/mainwindow.cpp" line="4950"/>
         <source>&amp;File</source>
         <translation>&amp;Soubor</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4992"/>
+        <location filename="../src/application/mainwindow.cpp" line="5014"/>
         <source>Count Unread News</source>
         <translation>Počet nepřečtených novinek</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4993"/>
+        <location filename="../src/application/mainwindow.cpp" line="5015"/>
         <source>Count All News</source>
         <translation>Počet všech novinek</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4994"/>
+        <location filename="../src/application/mainwindow.cpp" line="5016"/>
         <source>Last Update</source>
         <translation>Poslední aktualizace</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5007"/>
+        <location filename="../src/application/mainwindow.cpp" line="5029"/>
         <source>Reset browser zoom</source>
         <translation>Obnovit výchozí zobrazení v prohlížeči</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5010"/>
+        <location filename="../src/application/mainwindow.cpp" line="5032"/>
         <source>Print Web Page</source>
         <translation>Tisk webové stránky</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5012"/>
+        <location filename="../src/application/mainwindow.cpp" line="5034"/>
         <source>Preview Web Page</source>
         <translation>Náhled webové stránky</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5019"/>
+        <location filename="../src/application/mainwindow.cpp" line="5041"/>
         <source>Save page in database</source>
         <translation>Uložit stránku v databázi</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5020"/>
+        <location filename="../src/application/mainwindow.cpp" line="5042"/>
         <source>Save page in database instead of news description</source>
         <translation>Uložit stránku do databáze místo popisu novinky</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2631"/>
+        <location filename="../src/application/mainwindow.cpp" line="2638"/>
         <source>Confirm Delete</source>
         <translation>Potvrzení smazání</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="2632"/>
+        <location filename="../src/application/mainwindow.cpp" line="2639"/>
         <source>Are you sure to delete selected elements?</source>
         <translation>Opravdu chcete smazat vybrané elementy?</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4823"/>
+        <location filename="../src/application/mainwindow.cpp" line="4844"/>
         <source>Menu</source>
         <translation>Hlavní nabídka</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4831"/>
+        <location filename="../src/application/mainwindow.cpp" line="4852"/>
         <source>Add Feed...</source>
         <translation>Přidat kanál...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4847"/>
+        <location filename="../src/application/mainwindow.cpp" line="4868"/>
         <source>&amp;Create Backup...</source>
         <translation>&amp;Vytvořit zálohu...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4848"/>
+        <location filename="../src/application/mainwindow.cpp" line="4869"/>
         <source>S&amp;how Menu Bar</source>
         <translation>Zobrazit hlavní nabídku</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4858"/>
-        <location filename="../src/application/mainwindow.cpp" line="4859"/>
+        <location filename="../src/application/mainwindow.cpp" line="4879"/>
+        <location filename="../src/application/mainwindow.cpp" line="4880"/>
         <source>Stop Update Feeds</source>
         <translation>Zastavit aktualizaci kanálů</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4903"/>
+        <location filename="../src/application/mainwindow.cpp" line="4924"/>
         <source>Open News Description</source>
         <translation>Otevřít popis novinky</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4920"/>
+        <location filename="../src/application/mainwindow.cpp" line="4941"/>
         <source>Copy News Link</source>
         <translation>Kopírovat odkaz novinky</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4930"/>
+        <location filename="../src/application/mainwindow.cpp" line="4951"/>
         <source>&amp;View</source>
         <translation>&amp;Zobrazit</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4931"/>
+        <location filename="../src/application/mainwindow.cpp" line="4952"/>
         <source>Fee&amp;ds</source>
         <translation>Kanál&amp;y</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4932"/>
+        <location filename="../src/application/mainwindow.cpp" line="4953"/>
         <source>&amp;News</source>
         <translation>&amp;Novinky</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4933"/>
+        <location filename="../src/application/mainwindow.cpp" line="4954"/>
         <source>&amp;Browser</source>
         <translation>&amp;Prohlížeč</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4934"/>
+        <location filename="../src/application/mainwindow.cpp" line="4955"/>
         <source>&amp;Tools</source>
         <translation>&amp;Nástroje</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4935"/>
+        <location filename="../src/application/mainwindow.cpp" line="4956"/>
         <source>&amp;Help</source>
         <translation>&amp;Nápověda</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4937"/>
-        <location filename="../src/application/mainwindow.cpp" line="5023"/>
+        <location filename="../src/application/mainwindow.cpp" line="4958"/>
+        <location filename="../src/application/mainwindow.cpp" line="5045"/>
         <source>Main Toolbar</source>
         <translation>Hlavní nástrojovou lištu </translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4938"/>
+        <location filename="../src/application/mainwindow.cpp" line="4959"/>
         <source>Customize Toolbar</source>
         <translation>Upravit nástrojovou lištu</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4939"/>
+        <location filename="../src/application/mainwindow.cpp" line="4960"/>
         <source>Main Toolbar...</source>
         <translation>Hlavní nástrojovou lištu...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4940"/>
+        <location filename="../src/application/mainwindow.cpp" line="4961"/>
         <source>Customize Toolbar...</source>
         <translation>Upravit nástrojovou lištu...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4941"/>
+        <location filename="../src/application/mainwindow.cpp" line="4962"/>
         <source>Feeds Toolbar...</source>
         <translation>Nástrojovou lištu kanálů...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4942"/>
+        <location filename="../src/application/mainwindow.cpp" line="4963"/>
         <source>News Toolbar...</source>
         <translation>Nástrojovou lištu novinek...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4944"/>
+        <location filename="../src/application/mainwindow.cpp" line="4965"/>
         <source>Lock Toolbar</source>
         <translation>Uzamknout nástrojovou lištu</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4945"/>
+        <location filename="../src/application/mainwindow.cpp" line="4966"/>
         <source>Hide Toolbar</source>
         <translation>Skrýt nástrojovou lištu</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4947"/>
-        <location filename="../src/application/mainwindow.cpp" line="4950"/>
+        <location filename="../src/application/mainwindow.cpp" line="4968"/>
+        <location filename="../src/application/mainwindow.cpp" line="4971"/>
         <source>Layout</source>
         <translation>Rozvržení</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4948"/>
+        <location filename="../src/application/mainwindow.cpp" line="4969"/>
         <source>Classic</source>
         <translation>Klasické</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4949"/>
+        <location filename="../src/application/mainwindow.cpp" line="4970"/>
         <source>Newspaper</source>
         <translation>Noviny</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4952"/>
+        <location filename="../src/application/mainwindow.cpp" line="4973"/>
         <source>Application Style</source>
         <translation>Vzhled aplikace</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4953"/>
+        <location filename="../src/application/mainwindow.cpp" line="4974"/>
         <source>System</source>
         <translation>Systém</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4954"/>
+        <location filename="../src/application/mainwindow.cpp" line="4975"/>
         <source>System2</source>
         <translation>Systém 2</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4955"/>
+        <location filename="../src/application/mainwindow.cpp" line="4976"/>
+        <source>Dark</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/application/mainwindow.cpp" line="4977"/>
         <source>Green</source>
         <translation>Zelený</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4956"/>
+        <location filename="../src/application/mainwindow.cpp" line="4978"/>
         <source>Orange</source>
         <translation>Oranžový</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4957"/>
+        <location filename="../src/application/mainwindow.cpp" line="4979"/>
         <source>Purple</source>
         <translation>Fialový</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4958"/>
+        <location filename="../src/application/mainwindow.cpp" line="4980"/>
         <source>Pink</source>
         <translation>Růžový</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4959"/>
+        <location filename="../src/application/mainwindow.cpp" line="4981"/>
         <source>Gray</source>
         <translation>Šedý</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4961"/>
+        <location filename="../src/application/mainwindow.cpp" line="4983"/>
         <source>Browser Position</source>
         <translation>Umístění prohlížeče</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4962"/>
+        <location filename="../src/application/mainwindow.cpp" line="4984"/>
         <source>Top</source>
         <translation>Nahoře</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4963"/>
+        <location filename="../src/application/mainwindow.cpp" line="4985"/>
         <source>Bottom</source>
         <translation>Dole</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4964"/>
+        <location filename="../src/application/mainwindow.cpp" line="4986"/>
         <source>Right</source>
         <translation>Vpravo</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4965"/>
+        <location filename="../src/application/mainwindow.cpp" line="4987"/>
         <source>Left</source>
         <translation>Vlevo</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4967"/>
+        <location filename="../src/application/mainwindow.cpp" line="4989"/>
         <source>Show Window</source>
         <translation>Zobrazit okno</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4969"/>
+        <location filename="../src/application/mainwindow.cpp" line="4991"/>
         <source>Previous Feed</source>
         <translation>Předchozí kanál</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4970"/>
+        <location filename="../src/application/mainwindow.cpp" line="4992"/>
         <source>Next Feed</source>
         <translation>Další kanál</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4971"/>
+        <location filename="../src/application/mainwindow.cpp" line="4993"/>
         <source>Previous News</source>
         <translation>Předchozí novinka</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4972"/>
+        <location filename="../src/application/mainwindow.cpp" line="4994"/>
         <source>Next News</source>
         <translation>Další novinka</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4973"/>
+        <location filename="../src/application/mainwindow.cpp" line="4995"/>
         <source>News Page Up</source>
         <translation>Posunout stránku novinek nahoru</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4974"/>
+        <location filename="../src/application/mainwindow.cpp" line="4996"/>
         <source>News Page Down</source>
         <translation>Posunout stránku novinek dolů</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4976"/>
+        <location filename="../src/application/mainwindow.cpp" line="4998"/>
         <source>Next Unread News</source>
         <translation>Další nepřečtená novinka</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4977"/>
+        <location filename="../src/application/mainwindow.cpp" line="4999"/>
         <source>Previous Unread News</source>
         <translation>Předchozí nepřečtená novinka</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4979"/>
+        <location filename="../src/application/mainwindow.cpp" line="5001"/>
         <source>Switch Focus to Next Panel</source>
         <translation>Přepnout na další panel</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4981"/>
+        <location filename="../src/application/mainwindow.cpp" line="5003"/>
         <source>Switch Focus to Next Panel (Tree Feeds, List News, Browser)</source>
         <translation>Přepnout na další panel (Strom kanálů, Seznam novinek, Prohlížeč)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4982"/>
+        <location filename="../src/application/mainwindow.cpp" line="5004"/>
         <source>Switch Focus to Previous Panel</source>
         <translation>Přepnout na předchozí panel</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4984"/>
+        <location filename="../src/application/mainwindow.cpp" line="5006"/>
         <source>Switch Focus to Previous Panel (Tree Feeds, Browser, List News)</source>
         <translation>Přepnout na předchozí panel (Strom kanálů, Prohlížeč, Seznam novinek)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4986"/>
+        <location filename="../src/application/mainwindow.cpp" line="5008"/>
         <source>Show/Hide Tree Feeds</source>
         <translation>Zobrazit/skrýt strom kanálů</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4988"/>
+        <location filename="../src/application/mainwindow.cpp" line="5010"/>
         <source>Minimize to Tray</source>
         <translation>Minimalizovat do systémové lišty</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4989"/>
+        <location filename="../src/application/mainwindow.cpp" line="5011"/>
         <source>Minimize Application to Tray</source>
         <translation>Minimalizovat aplikaci do systémové lišty</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4991"/>
+        <location filename="../src/application/mainwindow.cpp" line="5013"/>
         <source>Columns</source>
         <translation>Sloupce</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4996"/>
+        <location filename="../src/application/mainwindow.cpp" line="5018"/>
         <source>Show Indentation</source>
         <translation>Zobrazit odsazení</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="4998"/>
-        <location filename="../src/application/mainwindow.cpp" line="4999"/>
+        <location filename="../src/application/mainwindow.cpp" line="5020"/>
+        <location filename="../src/application/mainwindow.cpp" line="5021"/>
         <source>Search Feed</source>
         <translation>Najít kanál</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5001"/>
+        <location filename="../src/application/mainwindow.cpp" line="5023"/>
         <source>Zoom</source>
         <translation>Zobrazení</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5002"/>
+        <location filename="../src/application/mainwindow.cpp" line="5024"/>
         <source>Zoom In</source>
         <translation>Přiblížit</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5003"/>
+        <location filename="../src/application/mainwindow.cpp" line="5025"/>
         <source>Zoom in in browser</source>
         <translation>Přiblížit v prohlížeči</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5004"/>
+        <location filename="../src/application/mainwindow.cpp" line="5026"/>
         <source>Zoom Out</source>
         <translation>Oddálit</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5005"/>
+        <location filename="../src/application/mainwindow.cpp" line="5027"/>
         <source>Zoom out in browser</source>
         <translation>Oddálit v prohlížeči</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5006"/>
+        <location filename="../src/application/mainwindow.cpp" line="5028"/>
         <source>100%</source>
         <translation>100%</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5009"/>
+        <location filename="../src/application/mainwindow.cpp" line="5031"/>
         <source>Print...</source>
         <translation>Tisk...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5011"/>
+        <location filename="../src/application/mainwindow.cpp" line="5033"/>
         <source>Print Preview...</source>
         <translation>Náhled tisku...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5014"/>
+        <location filename="../src/application/mainwindow.cpp" line="5036"/>
         <source>Page up (Browser)</source>
         <translation>Posunout stránku výše (prohlížeč)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5015"/>
+        <location filename="../src/application/mainwindow.cpp" line="5037"/>
         <source>Page down (Browser)</source>
         <translation>Posunout stránku níže (prohlížeč)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5017"/>
+        <location filename="../src/application/mainwindow.cpp" line="5039"/>
         <source>Save As...</source>
         <translation>Uložit jako...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5018"/>
+        <location filename="../src/application/mainwindow.cpp" line="5040"/>
         <source>Save Page As...</source>
         <translation>Uložit stránku jako...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5022"/>
+        <location filename="../src/application/mainwindow.cpp" line="5044"/>
         <source>Show/Hide</source>
         <translation>Zobrazit/Skrýt</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5024"/>
+        <location filename="../src/application/mainwindow.cpp" line="5046"/>
         <source>Feeds Toolbar</source>
         <translation>Nástrojovou lištu kanálů</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5025"/>
+        <location filename="../src/application/mainwindow.cpp" line="5047"/>
         <source>News Toolbar</source>
         <translation>Nástrojovou lištu novinek</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5026"/>
+        <location filename="../src/application/mainwindow.cpp" line="5048"/>
         <source>Browser Toolbar</source>
         <translation>Nástrojovou lištu prohlížeče</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5027"/>
+        <location filename="../src/application/mainwindow.cpp" line="5049"/>
         <source>Panel Categories</source>
         <translation>Panel kategorií</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5028"/>
+        <location filename="../src/application/mainwindow.cpp" line="5050"/>
         <source>Status Bar</source>
         <translation>Stavový řádek</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5030"/>
-        <location filename="../src/application/mainwindow.cpp" line="5031"/>
+        <location filename="../src/application/mainwindow.cpp" line="5052"/>
+        <location filename="../src/application/mainwindow.cpp" line="5053"/>
         <source>Full Screen</source>
         <translation>Celá obrazovka</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5033"/>
-        <location filename="../src/application/mainwindow.cpp" line="5034"/>
+        <location filename="../src/application/mainwindow.cpp" line="5055"/>
+        <location filename="../src/application/mainwindow.cpp" line="5056"/>
         <source>Stay On Top</source>
         <translation>Vždy navrchu</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5036"/>
+        <location filename="../src/application/mainwindow.cpp" line="5058"/>
         <source>Categories</source>
         <translation>Kategorie</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5042"/>
-        <location filename="../src/application/mainwindow.cpp" line="5043"/>
+        <location filename="../src/application/mainwindow.cpp" line="5064"/>
+        <location filename="../src/application/mainwindow.cpp" line="5065"/>
         <source>Label</source>
         <translation>Štítek</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5044"/>
+        <location filename="../src/application/mainwindow.cpp" line="5066"/>
         <source>Show labels menu</source>
         <translation>Zobrazit nabídku štítků</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5046"/>
+        <location filename="../src/application/mainwindow.cpp" line="5068"/>
         <source>Close Tab</source>
         <translation>Zavřít záložku</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5047"/>
+        <location filename="../src/application/mainwindow.cpp" line="5069"/>
         <source>Close Other Tabs</source>
         <translation>Zavřít ostatní záložky</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5048"/>
+        <location filename="../src/application/mainwindow.cpp" line="5070"/>
         <source>Close All Tabs</source>
         <translation>Zavřít všechny záložky</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5049"/>
+        <location filename="../src/application/mainwindow.cpp" line="5071"/>
         <source>Switch to next tab</source>
         <translation>Přepnout na další záložku</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5050"/>
+        <location filename="../src/application/mainwindow.cpp" line="5072"/>
         <source>Switch to previous tab</source>
         <translation>Přepnout na předchozí záložku</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5052"/>
+        <location filename="../src/application/mainwindow.cpp" line="5074"/>
         <source>Unread</source>
         <translation>Nepřečteno</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5053"/>
+        <location filename="../src/application/mainwindow.cpp" line="5075"/>
         <source>Starred</source>
         <translation>Označit hvězdičkou</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5054"/>
+        <location filename="../src/application/mainwindow.cpp" line="5076"/>
         <source>Deleted</source>
         <translation>Smazané</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5055"/>
+        <location filename="../src/application/mainwindow.cpp" line="5077"/>
         <source>Labels</source>
         <translation>Štítky</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5057"/>
+        <location filename="../src/application/mainwindow.cpp" line="5079"/>
         <source>Decrease news list/increase browser</source>
         <translation>Zmenšit seznam novinek/zvětšit prohlížeč</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5058"/>
+        <location filename="../src/application/mainwindow.cpp" line="5080"/>
         <source>Increase news list/decrease browser</source>
         <translation>Zvětšit seznam novinek/změnšit prohlížeč</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5060"/>
+        <location filename="../src/application/mainwindow.cpp" line="5082"/>
         <source>Find</source>
         <translation>Najít</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5062"/>
+        <location filename="../src/application/mainwindow.cpp" line="5084"/>
         <source>Open Homepage Feed</source>
         <translation>Otevřít domovskou stránku kanálu</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5063"/>
+        <location filename="../src/application/mainwindow.cpp" line="5085"/>
         <source>Sort by Name</source>
         <translation>Řadit dle názvu</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5064"/>
+        <location filename="../src/application/mainwindow.cpp" line="5086"/>
         <source>Collapse All Folders</source>
         <translation>Sbalit všechny složky</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5065"/>
+        <location filename="../src/application/mainwindow.cpp" line="5087"/>
         <source>Expand All Folders</source>
         <translation>Rozbalit všechny složky</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5066"/>
+        <location filename="../src/application/mainwindow.cpp" line="5088"/>
         <source>Next Folder</source>
         <translation>Další složka</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5067"/>
+        <location filename="../src/application/mainwindow.cpp" line="5089"/>
         <source>Previous Folder</source>
         <translation>Předchozí složka</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5068"/>
+        <location filename="../src/application/mainwindow.cpp" line="5090"/>
         <source>Expand Folder</source>
         <translation>Rozbalit složku</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5070"/>
+        <location filename="../src/application/mainwindow.cpp" line="5092"/>
         <source>Setting Page: Labels</source>
         <translation>Stránka nastavení: Štítky</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5072"/>
+        <location filename="../src/application/mainwindow.cpp" line="5094"/>
         <source>Share</source>
         <translation>Sdílet</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5074"/>
+        <location filename="../src/application/mainwindow.cpp" line="5096"/>
         <source>Sort By</source>
         <translation>Řadit dle</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5075"/>
+        <location filename="../src/application/mainwindow.cpp" line="5097"/>
         <source>Ascending</source>
         <translation>Vzestupně</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5076"/>
+        <location filename="../src/application/mainwindow.cpp" line="5098"/>
         <source>Descending</source>
         <translation>Sestupně</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5982"/>
+        <location filename="../src/application/mainwindow.cpp" line="6057"/>
         <source>Check for updates</source>
         <translation>Zkontrolovat aktualizace</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5983"/>
+        <location filename="../src/application/mainwindow.cpp" line="6058"/>
         <source>A new version of QuiteRSS...</source>
         <translation>Nová verze QuiteRSS...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="6394"/>
+        <location filename="../src/application/mainwindow.cpp" line="6537"/>
         <source>Loading...</source>
         <translation>Načítání...</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="7006"/>
-        <location filename="../src/application/mainwindow.cpp" line="7023"/>
+        <location filename="../src/application/mainwindow.cpp" line="7149"/>
+        <location filename="../src/application/mainwindow.cpp" line="7166"/>
         <source>Web Page</source>
         <translation>Webová stránka</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="7581"/>
+        <location filename="../src/application/mainwindow.cpp" line="7724"/>
         <source>Save As</source>
         <translation>Uložit jako</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="7583"/>
+        <location filename="../src/application/mainwindow.cpp" line="7726"/>
         <source>HTML-Files (*.%1)</source>
         <translation>HTML soubory (*.%1)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="7583"/>
+        <location filename="../src/application/mainwindow.cpp" line="7726"/>
         <source>Text files (*.%2)</source>
         <translation>Textové soubory (*.%2)</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="7589"/>
+        <location filename="../src/application/mainwindow.cpp" line="7732"/>
         <source>Save As: can&apos;t open a file</source>
         <translation>Uložit jako: nelze otevřít soubor</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="8083"/>
+        <location filename="../src/application/mainwindow.cpp" line="8226"/>
         <source>Choose Directory</source>
         <translation>Vybrat adresář</translation>
     </message>
@@ -2694,189 +2709,189 @@ nebyl nalezen!</translation>
 <context>
     <name>NewsTabWidget</name>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="603"/>
+        <location filename="../src/newstabwidget.cpp" line="611"/>
         <source>Loading... (%p%)</source>
         <translation>Načítání... (%p%)</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="605"/>
+        <location filename="../src/newstabwidget.cpp" line="613"/>
         <source>Home</source>
         <translation>Domů</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="606"/>
+        <location filename="../src/newstabwidget.cpp" line="614"/>
         <source>Open Page in External Browser</source>
         <translation>Otevřít stránku v externím prohlížeči</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="607"/>
+        <location filename="../src/newstabwidget.cpp" line="615"/>
         <source>Open Link in External Browser</source>
         <translation>Otevřít odkaz v externím prohlížeči</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2295"/>
+        <location filename="../src/newstabwidget.cpp" line="2299"/>
         <source>Open Link</source>
         <translation>Otevřít odkaz</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2296"/>
+        <location filename="../src/newstabwidget.cpp" line="2300"/>
         <source>Open in New Tab</source>
         <translation>Otevřít odkaz v nové záložce</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2297"/>
+        <location filename="../src/newstabwidget.cpp" line="2301"/>
         <source>Save Link...</source>
         <translation>Uložit odkaz...</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2298"/>
+        <location filename="../src/newstabwidget.cpp" line="2302"/>
         <source>Save Image...</source>
         <translation>Uložit obrázek...</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2299"/>
+        <location filename="../src/newstabwidget.cpp" line="2303"/>
         <source>Copy Link</source>
         <translation>Kopírovat odkaz</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2300"/>
+        <location filename="../src/newstabwidget.cpp" line="2304"/>
         <source>Copy</source>
         <translation>Kopírovat</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2301"/>
+        <location filename="../src/newstabwidget.cpp" line="2305"/>
         <source>Go Back</source>
         <translation>Vrátit se zpět</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2302"/>
+        <location filename="../src/newstabwidget.cpp" line="2306"/>
         <source>Go Forward</source>
         <translation>Vpřed</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2303"/>
+        <location filename="../src/newstabwidget.cpp" line="2307"/>
         <source>Stop</source>
         <translation>Zastavit</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2304"/>
+        <location filename="../src/newstabwidget.cpp" line="2308"/>
         <source>Reload</source>
         <translation>Znovu načíst</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2305"/>
+        <location filename="../src/newstabwidget.cpp" line="2309"/>
         <source>Copy Image</source>
         <translation>Kopírovat obrázek</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="2307"/>
+        <location filename="../src/newstabwidget.cpp" line="2311"/>
         <source>Copy Image Address</source>
         <translation>Kopírovat adresu obrázku</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="616"/>
-        <location filename="../src/newstabwidget.cpp" line="637"/>
+        <location filename="../src/newstabwidget.cpp" line="624"/>
+        <location filename="../src/newstabwidget.cpp" line="645"/>
         <source>Load Images</source>
         <translation>Načítat obrázky</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="617"/>
+        <location filename="../src/newstabwidget.cpp" line="625"/>
         <source>Auto Load Images to News View</source>
         <translation>Automaticky načítat obrázky v přehledu novinek</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="619"/>
+        <location filename="../src/newstabwidget.cpp" line="627"/>
         <source>No Load Images</source>
         <translation>Nenačítat obrázky</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="620"/>
+        <location filename="../src/newstabwidget.cpp" line="628"/>
         <source>No Load Images to News View</source>
         <translation>Nenačítat obrázky v přehledu novinek</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="625"/>
+        <location filename="../src/newstabwidget.cpp" line="633"/>
         <source>Close Tab</source>
         <translation>Zavřít záložku</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="638"/>
+        <location filename="../src/newstabwidget.cpp" line="646"/>
         <source>Auto Load Images in News View</source>
         <translation>Automaticky načítat obrázky v zobrazení novinek</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="641"/>
+        <location filename="../src/newstabwidget.cpp" line="649"/>
         <source>Don&apos;t Load Images</source>
         <translation>Nenačítat obrázky</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="642"/>
+        <location filename="../src/newstabwidget.cpp" line="650"/>
         <source>Don&apos;t Load Images in News View</source>
         <translation>Nenačítat obrázky v zobrazení novinek</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1438"/>
-        <location filename="../src/newstabwidget.cpp" line="1717"/>
+        <location filename="../src/newstabwidget.cpp" line="1446"/>
+        <location filename="../src/newstabwidget.cpp" line="1725"/>
         <source>Comments</source>
         <translation>Komentáře</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1445"/>
-        <location filename="../src/newstabwidget.cpp" line="1723"/>
+        <location filename="../src/newstabwidget.cpp" line="1453"/>
+        <location filename="../src/newstabwidget.cpp" line="1731"/>
         <source>Author: %1</source>
         <translation>Autor: %1</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1499"/>
-        <location filename="../src/newstabwidget.cpp" line="1754"/>
+        <location filename="../src/newstabwidget.cpp" line="1507"/>
+        <location filename="../src/newstabwidget.cpp" line="1762"/>
         <source>audio</source>
         <translation>audio</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1505"/>
-        <location filename="../src/newstabwidget.cpp" line="1759"/>
+        <location filename="../src/newstabwidget.cpp" line="1513"/>
+        <location filename="../src/newstabwidget.cpp" line="1767"/>
         <source>video</source>
         <translation>video</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1511"/>
-        <location filename="../src/newstabwidget.cpp" line="1763"/>
+        <location filename="../src/newstabwidget.cpp" line="1519"/>
+        <location filename="../src/newstabwidget.cpp" line="1771"/>
         <source>media</source>
         <translation>multimedia</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1515"/>
-        <location filename="../src/newstabwidget.cpp" line="1766"/>
+        <location filename="../src/newstabwidget.cpp" line="1523"/>
+        <location filename="../src/newstabwidget.cpp" line="1774"/>
         <source>Link to</source>
         <translation>Odkaz na</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1647"/>
+        <location filename="../src/newstabwidget.cpp" line="1655"/>
         <source>Mark Read/Unread</source>
         <translation>Označit za přečtené/nepřetené</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1784"/>
+        <location filename="../src/newstabwidget.cpp" line="1792"/>
         <source>Mark News Star</source>
         <translation>Označit novinky hvězdičkou</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1788"/>
+        <location filename="../src/newstabwidget.cpp" line="1796"/>
         <source>Label</source>
         <translation>Štítek</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1792"/>
+        <location filename="../src/newstabwidget.cpp" line="1800"/>
         <source>Share</source>
         <translation>Sdílet</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1796"/>
+        <location filename="../src/newstabwidget.cpp" line="1804"/>
         <source>Open News in External Browser</source>
         <translation>Otevřít novinku v externím prohlížeči</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1800"/>
+        <location filename="../src/newstabwidget.cpp" line="1808"/>
         <source>Delete</source>
         <translation>Smazat</translation>
     </message>
@@ -2884,34 +2899,34 @@ nebyl nalezen!</translation>
 <context>
     <name>NotificationWidget</name>
     <message>
-        <location filename="../src/notifications/notificationswidget.cpp" line="127"/>
+        <location filename="../src/notifications/notificationswidget.cpp" line="129"/>
         <source>Close</source>
         <translation>Zavřít</translation>
     </message>
     <message>
-        <location filename="../src/notifications/notificationswidget.cpp" line="153"/>
+        <location filename="../src/notifications/notificationswidget.cpp" line="156"/>
         <source>Mark All News Read</source>
         <translation>Označit všechny novinky za přečtené</translation>
     </message>
     <message>
-        <location filename="../src/notifications/notificationswidget.cpp" line="158"/>
+        <location filename="../src/notifications/notificationswidget.cpp" line="162"/>
         <source>Previous Page</source>
         <translation>Předchozí stránka</translation>
     </message>
     <message>
-        <location filename="../src/notifications/notificationswidget.cpp" line="163"/>
+        <location filename="../src/notifications/notificationswidget.cpp" line="168"/>
         <source>Next Page</source>
         <translation>Další stránka</translation>
     </message>
     <message>
-        <location filename="../src/notifications/notificationswidget.cpp" line="363"/>
+        <location filename="../src/notifications/notificationswidget.cpp" line="370"/>
         <source>Incoming News: %1</source>
         <translation>Příchozí novinky: %1</translation>
     </message>
     <message>
-        <location filename="../src/notifications/notificationswidget.cpp" line="368"/>
-        <location filename="../src/notifications/notificationswidget.cpp" line="458"/>
-        <location filename="../src/notifications/notificationswidget.cpp" line="470"/>
+        <location filename="../src/notifications/notificationswidget.cpp" line="375"/>
+        <location filename="../src/notifications/notificationswidget.cpp" line="465"/>
+        <location filename="../src/notifications/notificationswidget.cpp" line="477"/>
         <source>Page %1 of %2</source>
         <translation>Stránka %1 ze %2</translation>
     </message>
@@ -2926,7 +2941,7 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="65"/>
         <location filename="../src/optionsdialog.cpp" line="742"/>
-        <location filename="../src/optionsdialog.cpp" line="1019"/>
+        <location filename="../src/optionsdialog.cpp" line="1035"/>
         <source>General</source>
         <translation>Obecné</translation>
     </message>
@@ -2947,19 +2962,19 @@ nebyl nalezen!</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="77"/>
-        <location filename="../src/optionsdialog.cpp" line="1161"/>
+        <location filename="../src/optionsdialog.cpp" line="1177"/>
         <source>Feeds</source>
         <translation>Kanály</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="80"/>
-        <location filename="../src/optionsdialog.cpp" line="1907"/>
+        <location filename="../src/optionsdialog.cpp" line="1923"/>
         <source>Labels</source>
         <translation>Štítky</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="83"/>
-        <location filename="../src/optionsdialog.cpp" line="1909"/>
+        <location filename="../src/optionsdialog.cpp" line="1925"/>
         <source>Notifications</source>
         <translation>Oznámení</translation>
     </message>
@@ -2970,7 +2985,7 @@ nebyl nalezen!</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="89"/>
-        <location filename="../src/optionsdialog.cpp" line="1334"/>
+        <location filename="../src/optionsdialog.cpp" line="1350"/>
         <source>Language</source>
         <translation>Jazyk</translation>
     </message>
@@ -2986,7 +3001,7 @@ nebyl nalezen!</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="267"/>
-        <location filename="../src/optionsdialog.cpp" line="2239"/>
+        <location filename="../src/optionsdialog.cpp" line="2255"/>
         <source>Warning: key is already assigned to</source>
         <translation>Varování: klíč je již přidělen k</translation>
     </message>
@@ -3196,14 +3211,14 @@ nebyl nalezen!</translation>
         <location filename="../src/optionsdialog.cpp" line="525"/>
         <location filename="../src/optionsdialog.cpp" line="606"/>
         <location filename="../src/optionsdialog.cpp" line="720"/>
-        <location filename="../src/optionsdialog.cpp" line="871"/>
-        <location filename="../src/optionsdialog.cpp" line="1202"/>
+        <location filename="../src/optionsdialog.cpp" line="887"/>
+        <location filename="../src/optionsdialog.cpp" line="1218"/>
         <source>Browse...</source>
         <translation>Procházet...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="513"/>
-        <location filename="../src/optionsdialog.cpp" line="2125"/>
+        <location filename="../src/optionsdialog.cpp" line="2141"/>
         <source>Load images</source>
         <translation>Načíst obrázky</translation>
     </message>
@@ -3359,8 +3374,8 @@ nebyl nalezen!</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="767"/>
-        <location filename="../src/optionsdialog.cpp" line="924"/>
-        <location filename="../src/optionsdialog.cpp" line="1142"/>
+        <location filename="../src/optionsdialog.cpp" line="940"/>
+        <location filename="../src/optionsdialog.cpp" line="1158"/>
         <source>seconds</source>
         <translation>sekundách</translation>
     </message>
@@ -3375,122 +3390,127 @@ nebyl nalezen!</translation>
         <translation>Nedělat nic</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="814"/>
+        <location filename="../src/optionsdialog.cpp" line="807"/>
+        <source>Avoid adding news before this date into the database:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="830"/>
         <source>Dec</source>
         <translation>Pro</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="815"/>
+        <location filename="../src/optionsdialog.cpp" line="831"/>
         <source>December</source>
         <translation>Prosinec</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="838"/>
+        <location filename="../src/optionsdialog.cpp" line="854"/>
         <source>Display format for date:</source>
         <translation>Zobrazovaný formát data:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="841"/>
+        <location filename="../src/optionsdialog.cpp" line="857"/>
         <source>time:</source>
         <translation>času:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="845"/>
+        <location filename="../src/optionsdialog.cpp" line="861"/>
         <source>Alternating row background colors</source>
         <translation>Označit každý druhý řádek seznamu novinek jinou barvou</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="846"/>
+        <location filename="../src/optionsdialog.cpp" line="862"/>
         <source>Simplified representation of date and time</source>
         <translation>Zjednodušený formát data a času</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="849"/>
+        <location filename="../src/optionsdialog.cpp" line="865"/>
         <source>Show All</source>
         <translation>Zobrazit vše</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="849"/>
+        <location filename="../src/optionsdialog.cpp" line="865"/>
         <source>Show New</source>
         <translation>Zobrazit nové</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="849"/>
+        <location filename="../src/optionsdialog.cpp" line="865"/>
         <source>Show Unread</source>
         <translation>Zobrazit nepřečtené</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="850"/>
+        <location filename="../src/optionsdialog.cpp" line="866"/>
         <source>Show Starred</source>
         <translation>Zobrazit označené hvězdičkou</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="850"/>
+        <location filename="../src/optionsdialog.cpp" line="866"/>
         <source>Show Not Starred</source>
         <translation>Zobrazit neoznačené hvězdičkou</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="851"/>
+        <location filename="../src/optionsdialog.cpp" line="867"/>
         <source>Show Unread or Starred</source>
         <translation>Zobrazit nepřečtené nebo označené hvězdičkou</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="851"/>
+        <location filename="../src/optionsdialog.cpp" line="867"/>
         <source>Show Last Day</source>
         <translation>Zobrazit za poslední den</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="852"/>
+        <location filename="../src/optionsdialog.cpp" line="868"/>
         <source>Show Last 7 Days</source>
         <translation>Zobrazit za posledních 7 dní</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="890"/>
+        <location filename="../src/optionsdialog.cpp" line="906"/>
         <source>Style sheet for news:</source>
         <translation>CSS styly pro novinky:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="903"/>
+        <location filename="../src/optionsdialog.cpp" line="919"/>
         <source>Mark news as read:</source>
         <translation>Označit novinku za přečtenou:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="913"/>
+        <location filename="../src/optionsdialog.cpp" line="929"/>
         <source>on selecting. With timeout</source>
         <translation>při vybrání s prodlevou</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="930"/>
+        <location filename="../src/optionsdialog.cpp" line="946"/>
         <source>after switching to another news</source>
         <translation>po přechodu na jinou novinku</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="936"/>
+        <location filename="../src/optionsdialog.cpp" line="952"/>
         <source>Mark displayed news as read when switching feeds</source>
         <translation>Označit novinky za přečtené při změně kanálu</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="937"/>
+        <location filename="../src/optionsdialog.cpp" line="953"/>
         <source>Mark displayed news as read when closing tab</source>
         <translation>Označit novinky za přečtené při zavření záložky</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="938"/>
+        <location filename="../src/optionsdialog.cpp" line="954"/>
         <source>Mark displayed news as read on minimize</source>
         <translation>Označit novinky za přečtené při minimalizaci okna</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="949"/>
+        <location filename="../src/optionsdialog.cpp" line="965"/>
         <source>Change behavior of action &apos;Next Unread News&apos;</source>
         <translation>Změnit chování akce &apos;Další nepřečtené novinky&apos;</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="942"/>
+        <location filename="../src/optionsdialog.cpp" line="958"/>
         <source>starred news</source>
         <translation>novinky označené hvězdičkou</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="943"/>
+        <location filename="../src/optionsdialog.cpp" line="959"/>
         <source>labeled news</source>
         <translation>novinky označené štítkem</translation>
     </message>
@@ -3500,445 +3520,445 @@ nebyl nalezen!</translation>
         <translation>Automaticky označit stejné novinky jako přečtené</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="956"/>
+        <location filename="../src/optionsdialog.cpp" line="972"/>
         <source>Prevent accidental deletion of:</source>
         <translation>Zabránit náhodnému odstranění:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="969"/>
+        <location filename="../src/optionsdialog.cpp" line="985"/>
         <source>Enable cleanup on shutdown</source>
         <translation>Povolit čištění při vypínání</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="972"/>
+        <location filename="../src/optionsdialog.cpp" line="988"/>
         <source>Maximum age of news in days to keep:</source>
         <translation>Smazat novinky starší více než (dnů):</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="979"/>
+        <location filename="../src/optionsdialog.cpp" line="995"/>
         <source>Maximum number of news to keep:</source>
         <translation>Smazat novinky přesahující celkový počet (nejstarší):</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="986"/>
+        <location filename="../src/optionsdialog.cpp" line="1002"/>
         <source>Delete read news</source>
         <translation>Smazat přečtené novinky</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="987"/>
+        <location filename="../src/optionsdialog.cpp" line="1003"/>
         <source>Never delete unread news</source>
         <translation>Nikdy nemazat nepřečtené novinky</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="988"/>
+        <location filename="../src/optionsdialog.cpp" line="1004"/>
         <source>Never delete starred news</source>
         <translation>Nikdy nemazat novinky označené hvězdičkou</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="989"/>
+        <location filename="../src/optionsdialog.cpp" line="1005"/>
         <source>Never delete labeled news</source>
         <translation>Nikdy nemazat novinky označené štítkem</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="991"/>
+        <location filename="../src/optionsdialog.cpp" line="1007"/>
         <source>Clean up &apos;Deleted&apos;</source>
         <translation>Odstranit &apos;Smazané&apos;</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="992"/>
+        <location filename="../src/optionsdialog.cpp" line="1008"/>
         <source>Enable DB optimization (slower shutdown)</source>
         <translation>Povolit optimalizaci DB (pomalejší vypínání)</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1021"/>
+        <location filename="../src/optionsdialog.cpp" line="1037"/>
         <source>Reading</source>
         <translation>Čtení</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1022"/>
+        <location filename="../src/optionsdialog.cpp" line="1038"/>
         <source>Clean Up</source>
         <translation>Čištění</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1039"/>
+        <location filename="../src/optionsdialog.cpp" line="1055"/>
         <source>New...</source>
         <translation>Nový...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1041"/>
+        <location filename="../src/optionsdialog.cpp" line="1057"/>
         <source>Edit...</source>
         <translation>Upravit...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1044"/>
+        <location filename="../src/optionsdialog.cpp" line="1060"/>
         <source>Delete...</source>
         <translation>Smazat...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1048"/>
+        <location filename="../src/optionsdialog.cpp" line="1064"/>
         <source>Move up</source>
         <translation>Nahoru</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1051"/>
+        <location filename="../src/optionsdialog.cpp" line="1067"/>
         <source>Move down</source>
         <translation>Dolů</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1105"/>
+        <location filename="../src/optionsdialog.cpp" line="1121"/>
         <source>Show when inactive main window</source>
         <translation>Zobrazit při neaktivním hlavním okně</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1121"/>
+        <location filename="../src/optionsdialog.cpp" line="1137"/>
         <source>Screen</source>
         <translation>Obrazovka</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1131"/>
+        <location filename="../src/optionsdialog.cpp" line="1147"/>
         <source>Transparency</source>
         <translation>Průhlednost</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1145"/>
+        <location filename="../src/optionsdialog.cpp" line="1161"/>
         <source>Show titles feeds</source>
         <translation>Zobrazit názvy kanálů</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1146"/>
+        <location filename="../src/optionsdialog.cpp" line="1162"/>
         <source>Show icon feed</source>
         <translation>Zobrazit ikonku kanálu</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1147"/>
+        <location filename="../src/optionsdialog.cpp" line="1163"/>
         <source>Show button &apos;Mark All News Read&apos;</source>
         <translation>Zobrazit tlačítko &apos;Označit všechny novinky za přečtené&apos;</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1148"/>
+        <location filename="../src/optionsdialog.cpp" line="1164"/>
         <source>Show button &apos;Mark Read/Unread&apos;</source>
         <translation>Zobrazit tlačítko &apos;Označit za přečtené/nepřečtené&apos;</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1149"/>
+        <location filename="../src/optionsdialog.cpp" line="1165"/>
         <source>Show button &apos;Open in External Browser&apos;</source>
         <translation>Zobrazit tlačítko &apos;Otevřít v externím prohlížeči&apos;</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1150"/>
+        <location filename="../src/optionsdialog.cpp" line="1166"/>
         <source>Show button &apos;Delete News&apos;</source>
         <translation>Zobrazit tlačítko &apos;Smazat novinku&apos;</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1197"/>
+        <location filename="../src/optionsdialog.cpp" line="1213"/>
         <source>Play sound for incoming new news</source>
         <translation>Přehrát zvuk při přijení novinky:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1203"/>
+        <location filename="../src/optionsdialog.cpp" line="1219"/>
         <source>Play</source>
         <translation>Přehrát</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1084"/>
+        <location filename="../src/optionsdialog.cpp" line="1100"/>
         <source>Display notification for incoming news</source>
         <translation>Zobrazit oznámení pro nově příchozí novinky</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1097"/>
+        <location filename="../src/optionsdialog.cpp" line="1113"/>
         <source>Top Left</source>
         <translation>Vlevo nahoře</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1097"/>
+        <location filename="../src/optionsdialog.cpp" line="1113"/>
         <source>Top Right</source>
         <translation>Vpravo nahoře</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1098"/>
+        <location filename="../src/optionsdialog.cpp" line="1114"/>
         <source>Bottom Left</source>
         <translation>Vlevo dole</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1098"/>
+        <location filename="../src/optionsdialog.cpp" line="1114"/>
         <source>Bottom Right</source>
         <translation>Vpravo dole</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1117"/>
+        <location filename="../src/optionsdialog.cpp" line="1133"/>
         <source>Review</source>
         <translation>Náhled</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1124"/>
+        <location filename="../src/optionsdialog.cpp" line="1140"/>
         <source>Position</source>
         <translation>Umístění</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1134"/>
+        <location filename="../src/optionsdialog.cpp" line="1150"/>
         <source>Show maximum of</source>
         <translation>Zobrazit maximálně</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1136"/>
+        <location filename="../src/optionsdialog.cpp" line="1152"/>
         <source>item on page notification</source>
         <translation>položek v okně upozornění</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1137"/>
+        <location filename="../src/optionsdialog.cpp" line="1153"/>
         <source>Width list items</source>
         <translation>Šířka položek seznamu</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1139"/>
+        <location filename="../src/optionsdialog.cpp" line="1155"/>
         <source>pixels</source>
         <translation>pixelů</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1140"/>
+        <location filename="../src/optionsdialog.cpp" line="1156"/>
         <source>Close notification after</source>
         <translation>Zavřít okno po</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1101"/>
+        <location filename="../src/optionsdialog.cpp" line="1117"/>
         <source>Do not show notification in fullscreen mode</source>
         <translation>Nezobrazovat oznámení v režimu celé obrazovky</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1020"/>
+        <location filename="../src/optionsdialog.cpp" line="1036"/>
         <source>Display</source>
         <translation>Zobrazení</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1106"/>
+        <location filename="../src/optionsdialog.cpp" line="1122"/>
         <source>Close notification after opening news</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1160"/>
+        <location filename="../src/optionsdialog.cpp" line="1176"/>
         <source>Only show selected feeds:</source>
         <translation>Zobrazovat pouze pro vybrané kanály:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1226"/>
+        <location filename="../src/optionsdialog.cpp" line="1242"/>
         <source>Notification</source>
         <translation>Upozornění</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1227"/>
+        <location filename="../src/optionsdialog.cpp" line="1243"/>
         <source>Sound</source>
         <translation>Zvuk</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1238"/>
+        <location filename="../src/optionsdialog.cpp" line="1254"/>
         <source>Selection of feeds</source>
         <translation>Výběr kanálů</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1254"/>
+        <location filename="../src/optionsdialog.cpp" line="1270"/>
         <source>All Feeds</source>
         <translation>Všechny kanály</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1281"/>
+        <location filename="../src/optionsdialog.cpp" line="1297"/>
         <source>Site</source>
         <translation>Stránka</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1281"/>
+        <location filename="../src/optionsdialog.cpp" line="1297"/>
         <source>User</source>
         <translation>Uživatelské jméno</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1281"/>
+        <location filename="../src/optionsdialog.cpp" line="1297"/>
         <source>Password</source>
         <translation>Heslo</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1298"/>
+        <location filename="../src/optionsdialog.cpp" line="1314"/>
         <source>Delete</source>
         <translation>Smazat</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1300"/>
+        <location filename="../src/optionsdialog.cpp" line="1316"/>
         <source>Delete All</source>
         <translation>Smazat vše</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1302"/>
+        <location filename="../src/optionsdialog.cpp" line="1318"/>
         <source>Show Passwords</source>
         <translation>Zobrazit hesla</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1334"/>
+        <location filename="../src/optionsdialog.cpp" line="1350"/>
         <source>Version</source>
         <translation>Verze</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1335"/>
+        <location filename="../src/optionsdialog.cpp" line="1351"/>
         <source>Author</source>
         <translation>Autor</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1335"/>
+        <location filename="../src/optionsdialog.cpp" line="1351"/>
         <source>Contact</source>
         <translation>Kontakt</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1601"/>
+        <location filename="../src/optionsdialog.cpp" line="1617"/>
         <source>Choose language:</source>
         <translation>Výběr jazyka:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1622"/>
+        <location filename="../src/optionsdialog.cpp" line="1638"/>
         <source>Type</source>
         <translation>Druh</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1622"/>
+        <location filename="../src/optionsdialog.cpp" line="1638"/>
         <source>Font</source>
         <translation>Písmo</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1626"/>
+        <location filename="../src/optionsdialog.cpp" line="1642"/>
         <source>Feeds list font</source>
         <translation>Písmo seznamu kanálů</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1629"/>
+        <location filename="../src/optionsdialog.cpp" line="1645"/>
         <source>News list font</source>
         <translation>Písmo seznamu novinek</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1632"/>
+        <location filename="../src/optionsdialog.cpp" line="1648"/>
         <source>News title font</source>
         <translation>Písmo titulku novinek</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1635"/>
+        <location filename="../src/optionsdialog.cpp" line="1651"/>
         <source>News text font</source>
         <translation>Písmo textu novinek</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1638"/>
+        <location filename="../src/optionsdialog.cpp" line="1654"/>
         <source>Notification font</source>
         <translation>Písmo okna oznámení</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1645"/>
-        <location filename="../src/optionsdialog.cpp" line="1746"/>
+        <location filename="../src/optionsdialog.cpp" line="1661"/>
+        <location filename="../src/optionsdialog.cpp" line="1762"/>
         <source>Change...</source>
         <translation>Změnit...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1647"/>
-        <location filename="../src/optionsdialog.cpp" line="1748"/>
-        <location filename="../src/optionsdialog.cpp" line="1860"/>
+        <location filename="../src/optionsdialog.cpp" line="1663"/>
+        <location filename="../src/optionsdialog.cpp" line="1764"/>
+        <location filename="../src/optionsdialog.cpp" line="1876"/>
         <source>Reset</source>
         <translation>Výchozí</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1672"/>
+        <location filename="../src/optionsdialog.cpp" line="1688"/>
         <source>Feeds list color</source>
         <translation>Barva seznamu kanálů</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1675"/>
+        <location filename="../src/optionsdialog.cpp" line="1691"/>
         <source>Feeds list background</source>
         <translation>Barva pozadí seznamu kanálů</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1678"/>
+        <location filename="../src/optionsdialog.cpp" line="1694"/>
         <source>News list color</source>
         <translation>Barva seznamu novinek</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1681"/>
+        <location filename="../src/optionsdialog.cpp" line="1697"/>
         <source>News list background</source>
         <translation>Barva pozadí seznamu novinek</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1684"/>
+        <location filename="../src/optionsdialog.cpp" line="1700"/>
         <source>Focused news color</source>
         <translation>Barva označené novinky</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1687"/>
+        <location filename="../src/optionsdialog.cpp" line="1703"/>
         <source>Focused news background color</source>
         <translation>Barva pozadí označené novinky</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1690"/>
+        <location filename="../src/optionsdialog.cpp" line="1706"/>
         <source>Link color</source>
         <translation>Barva odkazu</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1693"/>
+        <location filename="../src/optionsdialog.cpp" line="1709"/>
         <source>Title color</source>
         <translation>Barva titulku</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1696"/>
+        <location filename="../src/optionsdialog.cpp" line="1712"/>
         <source>Date color</source>
         <translation>Barva data</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1699"/>
+        <location filename="../src/optionsdialog.cpp" line="1715"/>
         <source>Author color</source>
         <translation>Barva autora</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1702"/>
+        <location filename="../src/optionsdialog.cpp" line="1718"/>
         <source>News text color</source>
         <translation>Barva písma novinek</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1705"/>
+        <location filename="../src/optionsdialog.cpp" line="1721"/>
         <source>News title background</source>
         <translation>Barva pozadí titulku</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1708"/>
+        <location filename="../src/optionsdialog.cpp" line="1724"/>
         <source>News background</source>
         <translation>Barva pozadí novinky</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1711"/>
+        <location filename="../src/optionsdialog.cpp" line="1727"/>
         <source>Feed with new news</source>
         <translation>Kanál s novou novinkou</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1714"/>
+        <location filename="../src/optionsdialog.cpp" line="1730"/>
         <source>Count of unread news in feeds tree</source>
         <translation>Počet nepřečtených novinek v seznamu kanálů</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1729"/>
+        <location filename="../src/optionsdialog.cpp" line="1745"/>
         <source>Disabled feed</source>
         <translation>Zakázaný kanál</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1732"/>
+        <location filename="../src/optionsdialog.cpp" line="1748"/>
         <source>Alternating row colors</source>
         <translation>Barva pozadí každého druhého řádku</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1735"/>
+        <location filename="../src/optionsdialog.cpp" line="1751"/>
         <source>Notification text color</source>
         <translation>Barva písma upozornění</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1738"/>
+        <location filename="../src/optionsdialog.cpp" line="1754"/>
         <source>Notification background color</source>
         <translation>Barva pozadí upozornění</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2130"/>
+        <location filename="../src/optionsdialog.cpp" line="2146"/>
         <source>Auto load images in news view</source>
         <translation>Automaticky načítat obrázky v zobrazení novinek</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1717"/>
+        <location filename="../src/optionsdialog.cpp" line="1733"/>
         <source>Text color of new news</source>
         <translation>Barva písma nově přijaté novinky</translation>
     </message>
@@ -3973,160 +3993,160 @@ nebyl nalezen!</translation>
         <translation>Otevřít novinku</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="866"/>
+        <location filename="../src/optionsdialog.cpp" line="882"/>
         <source>Default news filter:</source>
         <translation>Výchozí filtr novinek:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="802"/>
+        <location filename="../src/optionsdialog.cpp" line="816"/>
         <source>Action on feed opening:</source>
         <translation>Akce při otevření kanálu:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="880"/>
+        <location filename="../src/optionsdialog.cpp" line="896"/>
         <source>Show news description instead of loading web page</source>
         <translation>Zobrazovat popis novinky místo načítání webové stránky</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1720"/>
+        <location filename="../src/optionsdialog.cpp" line="1736"/>
         <source>Text color of unread news</source>
         <translation>Barva písma nepřečtené novinky</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1723"/>
+        <location filename="../src/optionsdialog.cpp" line="1739"/>
         <source>Focused feed color</source>
         <translation>Barva označeného kanálu</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1726"/>
+        <location filename="../src/optionsdialog.cpp" line="1742"/>
         <source>Focused feed background color</source>
         <translation>Barva pozadí označeného kanálu</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1774"/>
+        <location filename="../src/optionsdialog.cpp" line="1790"/>
         <source>Standard</source>
         <translation>Standardní</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1776"/>
+        <location filename="../src/optionsdialog.cpp" line="1792"/>
         <source>Fixed</source>
         <translation>S pevnou šířkou</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1778"/>
+        <location filename="../src/optionsdialog.cpp" line="1794"/>
         <source>Serif</source>
         <translation>Patkové</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1780"/>
+        <location filename="../src/optionsdialog.cpp" line="1796"/>
         <source>Sans Serif</source>
         <translation>Bezpatkové</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1782"/>
+        <location filename="../src/optionsdialog.cpp" line="1798"/>
         <source>Cursive</source>
         <translation>Kurzíva</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1784"/>
+        <location filename="../src/optionsdialog.cpp" line="1800"/>
         <source>Fantasy</source>
         <translation>Fantasy</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1799"/>
+        <location filename="../src/optionsdialog.cpp" line="1815"/>
         <source>Default font size</source>
         <translation>Výchozí velikost písma</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1801"/>
+        <location filename="../src/optionsdialog.cpp" line="1817"/>
         <source>Fixed font size</source>
         <translation>Velikost písma s pevnou šířkou</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1803"/>
+        <location filename="../src/optionsdialog.cpp" line="1819"/>
         <source>Minimum font size</source>
         <translation>Minimální velikost písma</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1805"/>
+        <location filename="../src/optionsdialog.cpp" line="1821"/>
         <source>Minimum logical font size</source>
         <translation>Minimální logická velikost písma</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1809"/>
+        <location filename="../src/optionsdialog.cpp" line="1825"/>
         <source>Font families:</source>
         <translation>Písmo:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1811"/>
+        <location filename="../src/optionsdialog.cpp" line="1827"/>
         <source>Font sizes:</source>
         <translation>Velikost písma:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1820"/>
+        <location filename="../src/optionsdialog.cpp" line="1836"/>
         <source>Fonts</source>
         <translation>Písma</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1821"/>
+        <location filename="../src/optionsdialog.cpp" line="1837"/>
         <source>Fonts Browser</source>
         <translation>Písma v prohlížeči</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1822"/>
+        <location filename="../src/optionsdialog.cpp" line="1838"/>
         <source>Colors</source>
         <translation>Barvy</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1829"/>
+        <location filename="../src/optionsdialog.cpp" line="1845"/>
         <source>Filter</source>
         <translation>Filtr</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1855"/>
+        <location filename="../src/optionsdialog.cpp" line="1871"/>
         <source>Action</source>
         <translation>Akce</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1855"/>
+        <location filename="../src/optionsdialog.cpp" line="1871"/>
         <source>Description</source>
         <translation>Popis</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1855"/>
+        <location filename="../src/optionsdialog.cpp" line="1871"/>
         <source>Shortcut</source>
         <translation>Zkratka</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1863"/>
+        <location filename="../src/optionsdialog.cpp" line="1879"/>
         <source>Shortcut:</source>
         <translation>Zkratka</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2294"/>
-        <location filename="../src/optionsdialog.cpp" line="2329"/>
+        <location filename="../src/optionsdialog.cpp" line="2310"/>
+        <location filename="../src/optionsdialog.cpp" line="2345"/>
         <source>Open File...</source>
         <translation>Otevřít soubor...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2314"/>
-        <location filename="../src/optionsdialog.cpp" line="2826"/>
+        <location filename="../src/optionsdialog.cpp" line="2330"/>
+        <location filename="../src/optionsdialog.cpp" line="2842"/>
         <source>Select Style Sheet File</source>
         <translation>Vybrat soubor se styly</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2835"/>
-        <location filename="../src/optionsdialog.cpp" line="2864"/>
+        <location filename="../src/optionsdialog.cpp" line="2851"/>
+        <location filename="../src/optionsdialog.cpp" line="2880"/>
         <source>Open Directory...</source>
         <translation>Otevřít adresář...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2845"/>
+        <location filename="../src/optionsdialog.cpp" line="2861"/>
         <source>Add site to whitelist</source>
         <translation>Přidat stránku na whitelist</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2846"/>
+        <location filename="../src/optionsdialog.cpp" line="2862"/>
         <source>Site without &apos;http://&apos; (ex. youtube.com)</source>
         <translation>Stránka bez &apos;http://&apos; (např. youtube.com)</translation>
     </message>
@@ -4134,17 +4154,17 @@ nebyl nalezen!</translation>
 <context>
     <name>QAbstractSpinBox</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5100"/>
+        <location filename="../src/application/mainwindow.cpp" line="5122"/>
         <source>&amp;Step up</source>
         <translation>&amp;Zvýšit hodnotu</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5101"/>
+        <location filename="../src/application/mainwindow.cpp" line="5123"/>
         <source>Step &amp;down</source>
         <translation>Snížit ho&amp;dnotu</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5102"/>
+        <location filename="../src/application/mainwindow.cpp" line="5124"/>
         <source>&amp;Select All</source>
         <translation>&amp;Vybrat vše</translation>
     </message>
@@ -4152,22 +4172,22 @@ nebyl nalezen!</translation>
 <context>
     <name>QDialogButtonBox</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5078"/>
+        <location filename="../src/application/mainwindow.cpp" line="5100"/>
         <source>Close</source>
         <translation>Zavřít</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5079"/>
+        <location filename="../src/application/mainwindow.cpp" line="5101"/>
         <source>Cancel</source>
         <translation>Zrušit</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5080"/>
+        <location filename="../src/application/mainwindow.cpp" line="5102"/>
         <source>&amp;Yes</source>
         <translation>&amp;Ano</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5081"/>
+        <location filename="../src/application/mainwindow.cpp" line="5103"/>
         <source>&amp;No</source>
         <translation>&amp;Ne</translation>
     </message>
@@ -4281,37 +4301,37 @@ nebyl nalezen!</translation>
 <context>
     <name>QLineEdit</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5083"/>
+        <location filename="../src/application/mainwindow.cpp" line="5105"/>
         <source>&amp;Undo</source>
         <translation>&amp;Vrátit</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5084"/>
+        <location filename="../src/application/mainwindow.cpp" line="5106"/>
         <source>&amp;Redo</source>
         <translation>&amp;Opakovat</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5085"/>
+        <location filename="../src/application/mainwindow.cpp" line="5107"/>
         <source>Cu&amp;t</source>
         <translation>Vyjmou&amp;t</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5086"/>
+        <location filename="../src/application/mainwindow.cpp" line="5108"/>
         <source>&amp;Copy</source>
         <translation>&amp;Kopírovat</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5087"/>
+        <location filename="../src/application/mainwindow.cpp" line="5109"/>
         <source>&amp;Paste</source>
         <translation>&amp;Vložit</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5088"/>
+        <location filename="../src/application/mainwindow.cpp" line="5110"/>
         <source>Delete</source>
         <translation>Smazat</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5089"/>
+        <location filename="../src/application/mainwindow.cpp" line="5111"/>
         <source>Select All</source>
         <translation>Vybrat vše</translation>
     </message>
@@ -4319,7 +4339,7 @@ nebyl nalezen!</translation>
 <context>
     <name>QMultiInputContext</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5104"/>
+        <location filename="../src/application/mainwindow.cpp" line="5126"/>
         <source>Select IM</source>
         <translation>Vybrat IM</translation>
     </message>
@@ -4337,7 +4357,7 @@ nebyl nalezen!</translation>
         <translation>Nelze spustit externí program! %1</translation>
     </message>
     <message>
-        <location filename="../src/database/database.cpp" line="261"/>
+        <location filename="../src/database/database.cpp" line="270"/>
         <source>Error</source>
         <translation>Chyba</translation>
     </message>
@@ -4345,42 +4365,42 @@ nebyl nalezen!</translation>
 <context>
     <name>QTextControl</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5091"/>
+        <location filename="../src/application/mainwindow.cpp" line="5113"/>
         <source>&amp;Undo</source>
         <translation>&amp;Vrátit</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5092"/>
+        <location filename="../src/application/mainwindow.cpp" line="5114"/>
         <source>&amp;Redo</source>
         <translation>&amp;Opakovat</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5093"/>
+        <location filename="../src/application/mainwindow.cpp" line="5115"/>
         <source>Cu&amp;t</source>
         <translation>Vyjmou&amp;t</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5094"/>
+        <location filename="../src/application/mainwindow.cpp" line="5116"/>
         <source>&amp;Copy</source>
         <translation>&amp;Kopírovat</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5095"/>
+        <location filename="../src/application/mainwindow.cpp" line="5117"/>
         <source>&amp;Paste</source>
         <translation>&amp;Vložit</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5096"/>
+        <location filename="../src/application/mainwindow.cpp" line="5118"/>
         <source>Delete</source>
         <translation>Smazat</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5097"/>
+        <location filename="../src/application/mainwindow.cpp" line="5119"/>
         <source>Select All</source>
         <translation>Vybrat vše</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5098"/>
+        <location filename="../src/application/mainwindow.cpp" line="5120"/>
         <source>Copy &amp;Link Location</source>
         <translation>Kopírovat odkaz &amp;umístění</translation>
     </message>
@@ -4388,22 +4408,22 @@ nebyl nalezen!</translation>
 <context>
     <name>QWizard</name>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5106"/>
+        <location filename="../src/application/mainwindow.cpp" line="5128"/>
         <source>Cancel</source>
         <translation>Zrušit</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5107"/>
+        <location filename="../src/application/mainwindow.cpp" line="5129"/>
         <source>&lt; &amp;Back</source>
         <translation>&lt; &amp;Zpět</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5108"/>
+        <location filename="../src/application/mainwindow.cpp" line="5130"/>
         <source>&amp;Finish</source>
         <translation>&amp;Dokončit</translation>
     </message>
     <message>
-        <location filename="../src/application/mainwindow.cpp" line="5109"/>
+        <location filename="../src/application/mainwindow.cpp" line="5131"/>
         <source>&amp;Next &gt;</source>
         <translation>&amp;Další &gt;</translation>
     </message>
@@ -4429,12 +4449,12 @@ nebyl nalezen!</translation>
         <translation>Odpoveď serveru: Nenalezeno!</translation>
     </message>
     <message>
-        <location filename="../src/requestfeed.cpp" line="273"/>
+        <location filename="../src/requestfeed.cpp" line="285"/>
         <source>Redirect error!</source>
         <translation>Chyba přesměrování!</translation>
     </message>
     <message>
-        <location filename="../src/requestfeed.cpp" line="355"/>
+        <location filename="../src/requestfeed.cpp" line="367"/>
         <source>Request timeout!</source>
         <translation>Časový limit požadavku vypršel!</translation>
     </message>
@@ -4548,32 +4568,32 @@ nebyl nalezen!</translation>
         <translation>&amp;Instalovat</translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="130"/>
+        <location filename="../src/updateappdialog.cpp" line="129"/>
         <source>You already have the latest version</source>
         <translation>Nejsou dostupné žádné aktualizace</translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="140"/>
+        <location filename="../src/updateappdialog.cpp" line="137"/>
         <source>A new version of QuiteRSS is available!</source>
         <translation>Je dostupná nová verze QuiteRSS!</translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="143"/>
+        <location filename="../src/updateappdialog.cpp" line="140"/>
         <source>Click here to go to the download page</source>
         <translation>Klikněte zde pro přechod na stránku ke stažení</translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="148"/>
+        <location filename="../src/updateappdialog.cpp" line="145"/>
         <source>Your version is:</source>
         <translation>Vaše verze:</translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="150"/>
+        <location filename="../src/updateappdialog.cpp" line="147"/>
         <source>Current version is:</source>
         <translation>Nejnovější verze:</translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="156"/>
+        <location filename="../src/updateappdialog.cpp" line="153"/>
         <source>Error checking updates</source>
         <translation>Chyba kontroly aktualizací</translation>
     </message>
