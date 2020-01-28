@@ -940,12 +940,12 @@ Staré správy sa môžu znova objaviť</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="132"/>
         <source>Add news with any date into the database</source>
-        <translation type="unfinished"/>
+        <translation>Vložiť do databázy novinky s akýmkoľvek dátumom</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="145"/>
         <source>Avoid adding news before this date into the database:</source>
-        <translation type="unfinished"/>
+        <translation>Zabrániť pridaniu noviniek do databázy pred týmto dátumom:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="203"/>
@@ -2066,7 +2066,7 @@ Staré správy sa môžu znova objaviť</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4976"/>
         <source>Dark</source>
-        <translation type="unfinished"/>
+        <translation>Tmavá</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4977"/>
@@ -3390,7 +3390,7 @@ Staré správy sa môžu znova objaviť</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="807"/>
         <source>Avoid adding news before this date into the database:</source>
-        <translation type="unfinished"/>
+        <translation>Zabrániť pridaniu noviniek do databázy pred týmto dátumom:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="830"/>

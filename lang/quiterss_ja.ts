@@ -2068,7 +2068,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4976"/>
         <source>Dark</source>
-        <translation type="unfinished"/>
+        <translation>ダーク</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4977"/>
