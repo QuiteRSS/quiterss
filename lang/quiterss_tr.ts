@@ -942,12 +942,12 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="132"/>
         <source>Add news with any date into the database</source>
-        <translation type="unfinished"/>
+        <translation>Veritabanına herhangi bir tarihli haber ekle</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="145"/>
         <source>Avoid adding news before this date into the database:</source>
-        <translation type="unfinished"/>
+        <translation>Veritabanına bu tarihten önce bir haber eklemekten kaçın:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="203"/>
@@ -2068,7 +2068,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4976"/>
         <source>Dark</source>
-        <translation type="unfinished"/>
+        <translation>Koyu</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4977"/>
@@ -3392,7 +3392,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="807"/>
         <source>Avoid adding news before this date into the database:</source>
-        <translation type="unfinished"/>
+        <translation>Veritabanına bu tarihten önce bir haber eklemekten kaçın:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="830"/>
