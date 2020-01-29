@@ -4,7 +4,7 @@
 <!---------------------------------------------------------------------------->
 <p><b>Version 0.19.3</b> (29 Jan 2020)
 <ul>
-<li>Changed: Qt 5.14.1 (Windows)</li>
+<li>Changed: Qt 5.14.0 (Windows)</li>
 <li>Changed: SQLite 3.31.1</li>
 <li>Changed: App style: dark</li>
 

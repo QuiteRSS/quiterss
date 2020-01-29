@@ -1,5 +1,5 @@
 Version 0.19.3 (29 Jan 2020)
-  * Changed: Qt 5.14.1 (Windows)
+  * Changed: Qt 5.14.0 (Windows)
   * Changed: SQLite 3.31.1
   * Changed: App style: dark
   * Fixed: Application crash (Linux)
