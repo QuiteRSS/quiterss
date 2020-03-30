@@ -942,12 +942,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="132"/>
         <source>Add news with any date into the database</source>
-        <translation type="unfinished"/>
+        <translation>기간에 상관없이 데이터베이스에 뉴스 추가</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="145"/>
         <source>Avoid adding news before this date into the database:</source>
-        <translation type="unfinished"/>
+        <translation>지정 날짜 이전의 뉴스를 데이터베이스에 추가하지 않음:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="203"/>
@@ -2068,7 +2068,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4976"/>
         <source>Dark</source>
-        <translation type="unfinished"/>
+        <translation>다크</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4977"/>
@@ -3392,7 +3392,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="807"/>
         <source>Avoid adding news before this date into the database:</source>
-        <translation type="unfinished"/>
+        <translation>지정 날짜 이전의 뉴스를 데이터베이스에 추가하지 않음:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="830"/>
@@ -3732,7 +3732,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1122"/>
         <source>Close notification after opening news</source>
-        <translation type="unfinished"/>
+        <translation>뉴스를 연 후 알림 닫기</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1176"/>

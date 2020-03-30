@@ -455,7 +455,7 @@
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="140"/>
         <source>Clear &apos;Deleted&apos;</source>
-        <translation>&apos;削除&apos; にマークされたニュースを削除</translation>
+        <translation>「削除」にマークされたニュースを削除</translation>
     </message>
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="143"/>
@@ -518,7 +518,7 @@
     <message>
         <location filename="../src/cleanupwizard.cpp" line="178"/>
         <source>Clean up &apos;Deleted&apos;</source>
-        <translation>&apos;削除&apos; にマークされたニュースを削除する</translation>
+        <translation>「削除」にマークされたニュースを削除する</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="179"/>
@@ -529,7 +529,7 @@
         <location filename="../src/cleanupwizard.cpp" line="183"/>
         <source>Totally remove records that had marked 'deleted' from DB.
 Ancient news could reappear</source>
-        <translation>&apos;削除&apos; にマークされている全レコードを DB から削除します。
+        <translation>「削除」にマークされている全レコードを DB から削除します。
 とても古いニュースが再び表示されるかもしれません</translation>
     </message>
     <message>
@@ -942,12 +942,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="132"/>
         <source>Add news with any date into the database</source>
-        <translation type="unfinished"/>
+        <translation>すべての日付のニュースをデータベースに追加</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="145"/>
         <source>Avoid adding news before this date into the database:</source>
-        <translation type="unfinished"/>
+        <translation>これ以前の日付のニュースはデータベースに追加しない:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="203"/>
@@ -3315,7 +3315,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="655"/>
         <source>Cookies:</source>
-        <translation>Cookies:</translation>
+        <translation>Cookie:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="664"/>
@@ -3392,7 +3392,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="807"/>
         <source>Avoid adding news before this date into the database:</source>
-        <translation type="unfinished"/>
+        <translation>これ以前の日付のニュースはデータベースに追加しない:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="830"/>
@@ -3502,7 +3502,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="965"/>
         <source>Change behavior of action &apos;Next Unread News&apos;</source>
-        <translation>&apos;次の未読ニュース&apos; の振る舞いを変更する</translation>
+        <translation>「次の未読ニュース」 の振る舞いを変更する</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="958"/>
@@ -3562,7 +3562,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1007"/>
         <source>Clean up &apos;Deleted&apos;</source>
-        <translation>&apos;削除&apos; にマークされたニュースをクリアする</translation>
+        <translation>「削除」にマークされたニュースをクリアする</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1008"/>
@@ -3632,22 +3632,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1163"/>
         <source>Show button &apos;Mark All News Read&apos;</source>
-        <translation>&apos;全ニュースを既読にする&apos; ボタンを表示</translation>
+        <translation>「全ニュースを既読にする」ボタンを表示</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1164"/>
         <source>Show button &apos;Mark Read/Unread&apos;</source>
-        <translation>&apos;既読/未読にする&apos; ボタンを表示</translation>
+        <translation>「既読/未読にする」ボタンを表示</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1165"/>
         <source>Show button &apos;Open in External Browser&apos;</source>
-        <translation>&apos;外部ブラウザーで開く&apos; ボタンを表示</translation>
+        <translation>「外部ブラウザーで開く」ボタンを表示</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1166"/>
         <source>Show button &apos;Delete News&apos;</source>
-        <translation>&apos;ニュースを削除&apos; ボタンを表示</translation>
+        <translation>「ニュースを削除」ボタンを表示</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1213"/>
@@ -4148,7 +4148,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2862"/>
         <source>Site without &apos;http://&apos; (ex. youtube.com)</source>
-        <translation>サイト名に &apos;http://&apos; は付けないでください (例: youtube.com)</translation>
+        <translation>サイト名に http:// は付けないでください (例: youtube.com)</translation>
     </message>
 </context>
 <context>
