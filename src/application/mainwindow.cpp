@@ -6231,6 +6231,7 @@ void MainWindow::setStyleApp(QAction *pAct)
     notifierTextColor_ = "#e1e0e1";
     notifierBackgroundColor_ = "#464546";
     transparencyNotify_ = 40;
+    alternatingRowColors_ = "#3a393a";
   } else {
     QString windowTextColor = qApp->palette().brush(QPalette::WindowText).color().name();
     feedsModel_->textColor_ = windowTextColor;
@@ -6247,6 +6248,7 @@ void MainWindow::setStyleApp(QAction *pAct)
     notifierTextColor_ = windowTextColor;
     notifierBackgroundColor_ = "#FFFFFF";
     transparencyNotify_ = 60;
+    alternatingRowColors_ = qApp->palette().color(QPalette::AlternateBase).name();
   }
 
   settings.beginGroup("Settings");
@@ -6267,6 +6269,7 @@ void MainWindow::setStyleApp(QAction *pAct)
   settings.setValue("authorColor", authorColor_);
   settings.setValue("notifierTextColor", notifierTextColor_);
   settings.setValue("notifierBackgroundColor", notifierBackgroundColor_);
+  settings.setValue("alternatingRowColors", alternatingRowColors_);
   settings.endGroup();
 
   QFile file(fileName);
