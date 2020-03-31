@@ -2082,8 +2082,10 @@ void MainWindow::loadSettings()
   QWebSettings::globalSettings()->setAttribute(
         QWebSettings::PluginsEnabled, pluginsEnable_);
   QWebSettings::globalSettings()->setMaximumPagesInCache(maxPagesInCache_);
+#if QT_VERSION >= 0x050D02
   QWebSettings::globalSettings()->setAttribute(
         QWebSettings::ErrorPageEnabled, false);
+#endif
 
   soundNewNews_ = settings.value("soundNewNews", true).toBool();
   soundNotifyPath_ = settings.value("soundNotifyPath", mainApp->soundNotifyDefaultFile()).toString();
