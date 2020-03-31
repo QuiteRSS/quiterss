@@ -942,12 +942,12 @@ Noticias antiguas podrían reaparecer.</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="132"/>
         <source>Add news with any date into the database</source>
-        <translation type="unfinished"/>
+        <translation>Agregue noticias con cualquier fecha en la base de datos</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="145"/>
         <source>Avoid adding news before this date into the database:</source>
-        <translation type="unfinished"/>
+        <translation>Evite agregar noticias antes de esta fecha en la base de datos:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="203"/>
@@ -2068,7 +2068,7 @@ Noticias antiguas podrían reaparecer.</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4976"/>
         <source>Dark</source>
-        <translation type="unfinished"/>
+        <translation>Oscuro</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4977"/>
@@ -2703,7 +2703,7 @@ Noticias antiguas podrían reaparecer.</translation>
     <message>
         <location filename="../src/newsview/newsmodel.cpp" line="163"/>
         <source>(no title)</source>
-        <translation type="unfinished"/>
+        <translation>(sin título)</translation>
     </message>
 </context>
 <context>
@@ -3392,7 +3392,7 @@ Noticias antiguas podrían reaparecer.</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="807"/>
         <source>Avoid adding news before this date into the database:</source>
-        <translation type="unfinished"/>
+        <translation>Evite agregar noticias antes de esta fecha en la base de datos:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="830"/>
@@ -3732,7 +3732,7 @@ Noticias antiguas podrían reaparecer.</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1122"/>
         <source>Close notification after opening news</source>
-        <translation type="unfinished"/>
+        <translation>Cerrar notificación luego de abrir noticias</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1176"/>
@@ -4025,7 +4025,7 @@ Noticias antiguas podrían reaparecer.</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1790"/>
         <source>Standard</source>
-        <translation>Estandar</translation>
+        <translation>Estándar</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1792"/>

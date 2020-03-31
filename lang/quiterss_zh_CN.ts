@@ -21,7 +21,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="54"/>
         <source>QuiteRSS is a open-source cross-platform RSS/Atom news reader</source>
-        <translation>QuiteRSS是一个开源的跨平台的RSS / Atom消息阅读器</translation>
+        <translation>QuiteRSS 是一个开源的跨平台 RSS / Atom 消息阅读器</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="55"/>
@@ -104,7 +104,7 @@
     <message>
         <location filename="../src/adblock/adblockaddsubscriptiondialog.ui" line="53"/>
         <source>Add new subscription to AdBlock:</source>
-        <translation>添加新的订阅到AdBlock：</translation>
+        <translation>添加新的订阅到 AdBlock：</translation>
     </message>
 </context>
 <context>
@@ -122,12 +122,12 @@
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="14"/>
         <source>AdBlock Configuration</source>
-        <translation>配置AdBlock</translation>
+        <translation>配置 AdBlock</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="20"/>
         <source>Enable AdBlock</source>
-        <translation>启用AdBlock</translation>
+        <translation>启用 AdBlock</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="32"/>
@@ -147,7 +147,7 @@
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="122"/>
         <source>Use only essential part of EasyList (for performance reasons)</source>
-        <translation>仅使用EasyList中的重要部分 (出于性能的原因)</translation>
+        <translation>仅用 EasyList 中的关键部分 (出于性能考虑)</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="74"/>
@@ -185,7 +185,7 @@
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="62"/>
         <source>AdBlock lets you block unwanted content on web pages</source>
-        <translation>AdBlock拦截网页上你不希望出现的内容</translation>
+        <translation>AdBlock 拦截网页上你不希望出现的内容</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="106"/>
@@ -195,7 +195,7 @@
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="133"/>
         <source>Show AdBlock &amp;Settings</source>
-        <translation>显示AdBlock的设置(&amp;S)</translation>
+        <translation>显示 AdBlock 的设置(&amp;S)</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="141"/>
@@ -283,18 +283,18 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="37"/>
         <source>Add Feed</source>
-        <translation>添加 Feed</translation>
+        <translation>添加信息源</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="101"/>
         <location filename="../src/addfeedwizard.cpp" line="175"/>
         <source>Create New Feed</source>
-        <translation>创建新的 Feed</translation>
+        <translation>创建新消息源</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="110"/>
         <source>Use title of the feed as displayed name</source>
-        <translation>使用 feed 的标题作为显示名称</translation>
+        <translation>使用信息源标题作为显示名称</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="114"/>
@@ -319,12 +319,12 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="187"/>
         <source>Feeds</source>
-        <translation>Feeds</translation>
+        <translation>信息源</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="191"/>
         <source>All Feeds</source>
-        <translation>所有 Feeds</translation>
+        <translation>所有信息源</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="231"/>
@@ -350,13 +350,13 @@
         <location filename="../src/addfeedwizard.cpp" line="357"/>
         <location filename="../src/addfeedwizard.cpp" line="519"/>
         <source>Duplicate feed!</source>
-        <translation>Feed 重复！</translation>
+        <translation>信息源重复！</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="521"/>
         <location filename="../src/addfeedwizard.cpp" line="543"/>
         <source>Can&apos;t find feed URL!</source>
-        <translation>Feed的URL不存在！</translation>
+        <translation>信息源 URL 不存在！</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="562"/>
@@ -374,12 +374,12 @@
     <message>
         <location filename="../src/addfolderdialog.cpp" line="37"/>
         <source>Feeds</source>
-        <translation>Feeds</translation>
+        <translation>信息源</translation>
     </message>
     <message>
         <location filename="../src/addfolderdialog.cpp" line="41"/>
         <source>All Feeds</source>
-        <translation>所有 Feeds</translation>
+        <translation>所有信息源</translation>
     </message>
     <message>
         <location filename="../src/addfolderdialog.cpp" line="79"/>
@@ -473,12 +473,12 @@
     <message>
         <location filename="../src/cleanupwizard.cpp" line="63"/>
         <source>Choose Feeds</source>
-        <translation>选择 Feeds</translation>
+        <translation>选择信息源</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="76"/>
         <source>All Feeds</source>
-        <translation>所有 Feeds</translation>
+        <translation>所有信息源</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="146"/>
@@ -548,7 +548,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/plugins/clicktoflash.cpp" line="130"/>
         <source>Object blocked by ClickToFlash</source>
-        <translation>对象被ClickToFlash阻止</translation>
+        <translation>对象被 ClickToFlash 阻止</translation>
     </message>
     <message>
         <location filename="../src/plugins/clicktoflash.cpp" line="132"/>
@@ -571,7 +571,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="37"/>
         <source>Customize Feeds Toolbar</source>
-        <translation>自定义 Feeds 工具栏</translation>
+        <translation>自定义信息源工具栏</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="40"/>
@@ -862,7 +862,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="59"/>
         <source>Feed URL:</source>
-        <translation>Feed的URL：</translation>
+        <translation>信息源 URL：</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="66"/>
@@ -942,12 +942,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="132"/>
         <source>Add news with any date into the database</source>
-        <translation type="unfinished"/>
+        <translation>允许数据库添加任意日期内容</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="145"/>
         <source>Avoid adding news before this date into the database:</source>
-        <translation type="unfinished"/>
+        <translation>仅允许向数据库添加此日期及之后的内容：</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="203"/>
@@ -1017,7 +1017,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="350"/>
         <source>Feeds count:</source>
-        <translation>Feeds 数量：</translation>
+        <translation>信息源数量：</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="353"/>
@@ -1090,12 +1090,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsfilters/filterrulesdialog.cpp" line="43"/>
         <source>Feeds</source>
-        <translation>Feeds</translation>
+        <translation>信息源</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/filterrulesdialog.cpp" line="47"/>
         <source>All Feeds</source>
-        <translation>所有 Feeds</translation>
+        <translation>所有信息源</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/filterrulesdialog.cpp" line="114"/>
@@ -1556,12 +1556,12 @@ Ancient news could reappear</source>
         <location filename="../src/application/mainwindow.cpp" line="4847"/>
         <location filename="../src/application/mainwindow.cpp" line="4850"/>
         <source>Add New Feed</source>
-        <translation>添加新的 Feed</translation>
+        <translation>添加新信息源</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4849"/>
         <source>&amp;Feed...</source>
-        <translation>Feeds(&amp;F)...</translation>
+        <translation>信息源(&amp;F)...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4854"/>
@@ -1587,27 +1587,27 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4860"/>
         <source>Delete Selected Feed</source>
-        <translation>删除选中的 Feed</translation>
+        <translation>删除选中的信息源</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4862"/>
         <source>&amp;Import Feeds...</source>
-        <translation>导入 Feeds(&amp;I)...</translation>
+        <translation>导入信息源(&amp;I)...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4863"/>
         <source>Import Feeds from OPML File</source>
-        <translation>从OPML文件导入 Feeds</translation>
+        <translation>从 OPML 文件导入信息源</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4865"/>
         <source>&amp;Export Feeds...</source>
-        <translation>导出 Feeds(&amp;E)...</translation>
+        <translation>导出信息源(&amp;E)...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4866"/>
         <source>Export Feeds to OPML File</source>
-        <translation>导出  Feeds 到OPML文件</translation>
+        <translation>导出信息源到 OPML 文件</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4871"/>
@@ -1617,12 +1617,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4873"/>
         <source>Update Feed</source>
-        <translation>更新 Feed</translation>
+        <translation>更新信息源</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4874"/>
         <source>Update Current Feed</source>
-        <translation>更新当前 Feed</translation>
+        <translation>更新当前信息源</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4876"/>
@@ -1632,12 +1632,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4877"/>
         <source>Update All Feeds</source>
-        <translation>更新所有 Feeds</translation>
+        <translation>更新所有信息源</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4882"/>
         <source>Mark All Feeds Read</source>
-        <translation>标记所有 Feeds 已读</translation>
+        <translation>标记所有信息源为已读</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4884"/>
@@ -1691,7 +1691,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4900"/>
         <source>Filter Feeds</source>
-        <translation>筛选 Feeds</translation>
+        <translation>筛选信息源</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4901"/>
@@ -1714,12 +1714,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4904"/>
         <source>Show Starred Feeds</source>
-        <translation>显示标星的 Feeds</translation>
+        <translation>显示标星的信息源</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4905"/>
         <source>Show Not Working Feeds</source>
-        <translation>显示没有工作的 Feeds</translation>
+        <translation>显示不工作的信息源</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4907"/>
@@ -1900,12 +1900,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5032"/>
         <source>Print Web Page</source>
-        <translation>打印Web页</translation>
+        <translation>打印 Web 页</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5034"/>
         <source>Preview Web Page</source>
-        <translation>预览Web页</translation>
+        <translation>预览 Web 页</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5041"/>
@@ -1935,7 +1935,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4852"/>
         <source>Add Feed...</source>
-        <translation>添加 Feed...</translation>
+        <translation>添加信息源...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4868"/>
@@ -1951,7 +1951,7 @@ Ancient news could reappear</source>
         <location filename="../src/application/mainwindow.cpp" line="4879"/>
         <location filename="../src/application/mainwindow.cpp" line="4880"/>
         <source>Stop Update Feeds</source>
-        <translation>停止更新 Feeds</translation>
+        <translation>停止更新信息源</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4924"/>
@@ -1971,7 +1971,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4952"/>
         <source>Fee&amp;ds</source>
-        <translation>Fee&amp;ds</translation>
+        <translation>信息源(&amp;d)</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4953"/>
@@ -2068,7 +2068,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4976"/>
         <source>Dark</source>
-        <translation type="unfinished"/>
+        <translation>暗色</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4977"/>
@@ -2128,12 +2128,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4991"/>
         <source>Previous Feed</source>
-        <translation>前一个 Feed</translation>
+        <translation>前一个信息源</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4992"/>
         <source>Next Feed</source>
-        <translation>下一个 Feed</translation>
+        <translation>下一个信息源</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4993"/>
@@ -2173,7 +2173,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5003"/>
         <source>Switch Focus to Next Panel (Tree Feeds, List News, Browser)</source>
-        <translation>焦点切换到下一个面板（Feeds树，消息列表，浏览器）</translation>
+        <translation>焦点切换到下一个面板（信息源树，消息列表，浏览器）</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5004"/>
@@ -2183,12 +2183,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5006"/>
         <source>Switch Focus to Previous Panel (Tree Feeds, Browser, List News)</source>
-        <translation>焦点切换到前一个面板（Feeds树，消息列表，浏览器）</translation>
+        <translation>焦点切换到前一个面板（信息源树，消息列表，浏览器）</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5008"/>
         <source>Show/Hide Tree Feeds</source>
-        <translation>显示/隐藏 Feeds树</translation>
+        <translation>显示/隐藏信息源树</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5010"/>
@@ -2214,7 +2214,7 @@ Ancient news could reappear</source>
         <location filename="../src/application/mainwindow.cpp" line="5020"/>
         <location filename="../src/application/mainwindow.cpp" line="5021"/>
         <source>Search Feed</source>
-        <translation>搜索 Feed</translation>
+        <translation>搜索信息源</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5023"/>
@@ -2284,7 +2284,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5046"/>
         <source>Feeds Toolbar</source>
-        <translation>Feeds 工具栏</translation>
+        <translation>信息源工具栏</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5047"/>
@@ -2397,7 +2397,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5084"/>
         <source>Open Homepage Feed</source>
-        <translation>打开Feed首页</translation>
+        <translation>打开信息源首页</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5085"/>
@@ -2462,7 +2462,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="6058"/>
         <source>A new version of QuiteRSS...</source>
-        <translation>一个新版本的QuiteRSS ...</translation>
+        <translation>发现新版本 QuiteRSS ...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="6537"/>
@@ -2536,7 +2536,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="230"/>
         <source>SSL Certificate Error!</source>
-        <translation>SSL证书错误!</translation>
+        <translation>SSL 证书错误!</translation>
     </message>
     <message>
         <location filename="../src/network/networkmanager.cpp" line="231"/>
@@ -2579,7 +2579,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsfilters/newsfiltersdialog.cpp" line="46"/>
         <source>Feeds</source>
-        <translation>Feeds</translation>
+        <translation>信息源</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/newsfiltersdialog.cpp" line="46"/>
@@ -2632,7 +2632,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsview/newsheader.cpp" line="396"/>
         <source>Icon Feed</source>
-        <translation>Feed 图标</translation>
+        <translation>信息源图标</translation>
     </message>
     <message>
         <location filename="../src/newsview/newsheader.cpp" line="397"/>
@@ -2677,7 +2677,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsview/newsheader.cpp" line="405"/>
         <source>Feed Title</source>
-        <translation>Feed 标题</translation>
+        <translation>信息源标题</translation>
     </message>
     <message>
         <location filename="../src/newsview/newsheader.cpp" line="406"/>
@@ -3013,7 +3013,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="292"/>
         <source>Reopen last opened feeds on startup</source>
-        <translation>在启动时重新打开最近打开的feeds</translation>
+        <translation>在启动时重新打开最近打开的信息源</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="293"/>
@@ -3023,12 +3023,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="294"/>
         <source>Hide feeds tree when opening tabs</source>
-        <translation>打开标签页时，隐藏feeds树</translation>
+        <translation>打开标签页时，隐藏信息源树</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="296"/>
         <source>Show default rss-icon instead of favourite one</source>
-        <translation>显示默认的RSS图标，而不是最喜欢的一个</translation>
+        <translation>显示默认 RSS 图标设置，而非个人喜好设置</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="297"/>
@@ -3048,7 +3048,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="301"/>
         <source>Help improve QuiteRSS by sending usage information</source>
-        <translation>通过发送有价值的信息帮助改善QuiteRSS</translation>
+        <translation>通过发送有价值的信息帮助改善 QuiteRSS</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="302"/>
@@ -3134,7 +3134,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="418"/>
         <source>Direct connection to the Internet</source>
-        <translation>直接连接到Internet</translation>
+        <translation>直接连接到互联网</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="420"/>
@@ -3184,7 +3184,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="488"/>
         <source>Options network requests when updating feeds (requires program restart):</source>
-        <translation>更新 feeds 时，选项的网络请求 (需要程序重新启动) ：</translation>
+        <translation>更新信息源时，选项的网络请求 (需要程序重新启动) ：</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="505"/>
@@ -3225,7 +3225,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="514"/>
         <source>Enable JavaScript</source>
-        <translation>启用JavaScript</translation>
+        <translation>启用 JavaScript</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="515"/>
@@ -3320,12 +3320,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="664"/>
         <source>Click To Flash is a plugin which blocks auto loading of Flash content at page. You can always load it manually by clicking on the Flash play icon.</source>
-        <translation>Flash点击是一个插件，可以阻止自动加载页面的Flash内容。您可以随时手动点击Flash播放图标加载它。</translation>
+        <translation>Click To Flash 是可在页面上阻止自动加载 Flash 内容的插件。您可随时手动点击 Flash 播放按钮加载内容。</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="669"/>
         <source>Use Click to Flash</source>
-        <translation>使用Flash点击插件</translation>
+        <translation>使用 Click to Flash</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="681"/>
@@ -3355,7 +3355,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="745"/>
         <source>Click to Flash</source>
-        <translation>Flash点击插件</translation>
+        <translation>Click to Flash</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="747"/>
@@ -3365,12 +3365,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="756"/>
         <source>Automatically update the feeds on startup</source>
-        <translation>在启动时自动更新 feeds</translation>
+        <translation>在启动时自动更新信息源</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="757"/>
         <source>Automatically update the feeds every</source>
-        <translation>自动更新 feeds 每</translation>
+        <translation>自动更新信息源，每</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="767"/>
@@ -3392,12 +3392,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="807"/>
         <source>Avoid adding news before this date into the database:</source>
-        <translation type="unfinished"/>
+        <translation>仅允许向数据库添加此日期及之后的内容：</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="830"/>
         <source>Dec</source>
-        <translation>Dec</translation>
+        <translation>12 月</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="831"/>
@@ -3462,7 +3462,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="868"/>
         <source>Show Last 7 Days</source>
-        <translation>显示最近7天</translation>
+        <translation>显示最近 7 天</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="906"/>
@@ -3622,12 +3622,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1161"/>
         <source>Show titles feeds</source>
-        <translation>显示 feeds 标题</translation>
+        <translation>显示信息源标题</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1162"/>
         <source>Show icon feed</source>
-        <translation>显示 feed 图标</translation>
+        <translation>显示信息源图标</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1163"/>
@@ -3737,7 +3737,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1176"/>
         <source>Only show selected feeds:</source>
-        <translation>只显示选定的 feeds: </translation>
+        <translation>只显示选定的信息源: </translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1242"/>
@@ -3752,12 +3752,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1254"/>
         <source>Selection of feeds</source>
-        <translation>选择的 feeds</translation>
+        <translation>选择的信息源</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1270"/>
         <source>All Feeds</source>
-        <translation>所有 Feeds</translation>
+        <translation>所有信息源</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1297"/>
@@ -3822,7 +3822,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1642"/>
         <source>Feeds list font</source>
-        <translation>Feeds 列表字体</translation>
+        <translation>信息源列表字体</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1645"/>
@@ -3842,7 +3842,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1654"/>
         <source>Notification font</source>
-        <translation>通告字体</translation>
+        <translation>通知字体</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1661"/>
@@ -3860,12 +3860,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1688"/>
         <source>Feeds list color</source>
-        <translation>Feeds 列表颜色</translation>
+        <translation>信息源列表颜色</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1691"/>
         <source>Feeds list background</source>
-        <translation>Feeds 列表背景</translation>
+        <translation>信息源列表背景</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1694"/>
@@ -3925,17 +3925,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1727"/>
         <source>Feed with new news</source>
-        <translation>Feed 有新消息</translation>
+        <translation>信息源有新内容</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1730"/>
         <source>Count of unread news in feeds tree</source>
-        <translation>feeds 树中未读消息计数</translation>
+        <translation>信息源树中未读消息计数</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1745"/>
         <source>Disabled feed</source>
-        <translation>禁用 feed</translation>
+        <translation>禁用信息源</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1748"/>
@@ -4000,7 +4000,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="816"/>
         <source>Action on feed opening:</source>
-        <translation>打开feed 时的动作：</translation>
+        <translation>打开信息源时的动作：</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="896"/>
@@ -4433,7 +4433,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/webview/rssdetectionwidget.cpp" line="56"/>
         <source>Untitled feed</source>
-        <translation>无标题feed</translation>
+        <translation>无标题信息源</translation>
     </message>
 </context>
 <context>
@@ -4532,7 +4532,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/network/sslerrordialog.cpp" line="24"/>
         <source>SSL Certificate Error!</source>
-        <translation>SSL证书错误!</translation>
+        <translation>SSL 证书错误!</translation>
     </message>
     <message>
         <location filename="../src/network/sslerrordialog.cpp" line="34"/>
@@ -4575,7 +4575,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/updateappdialog.cpp" line="137"/>
         <source>A new version of QuiteRSS is available!</source>
-        <translation>一个新版本的QuiteRSS 可用！</translation>
+        <translation>发现新版本 QuiteRSS ！</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="140"/>
