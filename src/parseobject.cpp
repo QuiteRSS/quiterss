@@ -310,6 +310,10 @@ void ParseObject::parseAtom(const QString &feedUrl, const QDomDocument &doc)
   if (QUrl(feedItem.link).host().isEmpty())
     feedItem.link = feedItem.linkBase + feedItem.link;
   feedItem.link = toPlainText(feedItem.link);
+  QUrl url = QUrl(feedItem.link);
+  if (url.scheme().isEmpty())
+    url.setScheme(QUrl(feedUrl).scheme());
+  feedItem.link = url.toString();
 
   QSqlQuery q(db_);
   q.setForwardOnly(true);
@@ -420,6 +424,10 @@ void ParseObject::parseAtom(const QString &feedUrl, const QDomDocument &doc)
       newsItem.link = newsItem.linkAlternate;
       newsItem.linkAlternate.clear();
     }
+    url = QUrl(newsItem.link);
+    if (url.scheme().isEmpty())
+      url.setScheme(QUrl(feedUrl).scheme());
+    newsItem.link = url.toString();
 
     addAtomNewsIntoBase(&newsItem);
   }
