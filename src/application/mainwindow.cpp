@@ -8257,11 +8257,12 @@ void MainWindow::createBackup()
 
 void MainWindow::webViewFullScreen(bool on)
 {
-  setFullScreen();
   feedsWidget_->setVisible(!on);
   pushButtonNull_->setVisible(!on);
   tabBarWidget_->setVisible(!on);
   currentNewsTab->newsWidget_->setVisible(!on);
+  currentNewsTab->webControlPanel_->setVisible(!on);
   pushButtonNull_->setVisible(!on);
   statusBar()->setVisible(!on);
+  setFullScreen();
 }
