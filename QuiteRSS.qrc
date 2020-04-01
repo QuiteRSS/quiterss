@@ -168,5 +168,8 @@
         <file>images/share/instapaper.png</file>
         <file>images/share/reddit.ico</file>
         <file>images/share/hackernews.png</file>
+        <file>images/share/telegram.png</file>
+        <file>images/share/whatsapp.png</file>
+        <file>images/share/viber.png</file>
     </qresource>
 </RCC>

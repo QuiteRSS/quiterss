@@ -164,6 +164,8 @@ public:
   QAction *instapaperShareAct_;
   QAction *redditShareAct_;
   QAction *hackerNewsShareAct_;
+  QAction *telegramShareAct_;
+  QAction *viberShareAct_;
   QAction *copyLinkAct_;
   QAction *pageUpWebViewAct_;
   QAction *pageDownWebViewAct_;

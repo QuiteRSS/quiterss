@@ -1449,6 +1449,18 @@ void MainWindow::createActions()
   hackerNewsShareAct_->setIcon(QIcon(":/share/images/share/hackernews.png"));
   shareGroup_->addAction(hackerNewsShareAct_);
 
+  telegramShareAct_ = new QAction(this);
+  telegramShareAct_->setObjectName("telegramShareAct");
+  telegramShareAct_->setText("Telegram");
+  telegramShareAct_->setIcon(QIcon(":/share/images/share/telegram.png"));
+  shareGroup_->addAction(telegramShareAct_);
+
+  viberShareAct_ = new QAction(this);
+  viberShareAct_->setObjectName("viberShareAct");
+  viberShareAct_->setText("Vider");
+  viberShareAct_->setIcon(QIcon(":/share/images/share/viber.png"));
+  shareGroup_->addAction(viberShareAct_);
+
   this->addActions(shareGroup_->actions());
   connect(shareGroup_, SIGNAL(triggered(QAction*)),
           this, SLOT(slotShareNews(QAction*)));

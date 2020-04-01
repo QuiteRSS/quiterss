@@ -2574,6 +2574,8 @@ void NewsTabWidget::setTextTab(const QString &text)
  *----------------------------------------------------------------------------*/
 void NewsTabWidget::slotShareNews(QAction *action)
 {
+  bool externalApp = false;
+
   QList<QModelIndex> indexes;
   int cnt = 0;
   if (type_ < TabTypeWeb) {
@@ -2630,7 +2632,7 @@ void NewsTabWidget::slotShareNews(QAction *action)
       url.addQueryItem("body", linkString + "\n\n" + content);
 #endif
 #endif
-      openUrl(url);
+      externalApp = true;
     } else {
       if (action->objectName() == "evernoteShareAct") {
         url.setUrl("https://www.evernote.com/clip.action");
@@ -2766,12 +2768,36 @@ void NewsTabWidget::slotShareNews(QAction *action)
         url.addQueryItem("u", linkString);
         url.addQueryItem("t", title);
 #endif
+      } else if (action->objectName() == "telegramShareAct") {
+        url.setUrl("tg://msg_url");
+#ifdef HAVE_QT5
+        QUrlQuery urlQuery;
+        urlQuery.addQueryItem("url", linkString);
+        urlQuery.addQueryItem("text", title);
+        url.setQuery(urlQuery);
+#else
+        url.addQueryItem("url", linkString);
+        url.addQueryItem("text", title);
+#endif
+        externalApp = true;
+      } else if (action->objectName() == "viberShareAct") {
+        url.setUrl("viber://forward");
+#ifdef HAVE_QT5
+        QUrlQuery urlQuery;
+        urlQuery.addQueryItem("text", title + "%20" + linkString);
+        url.setQuery(urlQuery);
+#else
+        url.addQueryItem("text", title + "%20" + linkString);
+#endif
+        externalApp = true;
       }
 
-      if (mainWindow_->externalBrowserOn_ <= 0) {
+      if ((mainWindow_->externalBrowserOn_ <= 0) && !externalApp) {
         mainWindow_->openNewsTab_ = NEW_TAB_FOREGROUND;
         mainWindow_->createWebTab(url);
-      } else openUrl(url);
+      } else {
+        QDesktopServices::openUrl(url);
+      }
     }
   }
 }
