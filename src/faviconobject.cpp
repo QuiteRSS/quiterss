@@ -29,6 +29,7 @@
 
 FaviconObject::FaviconObject(QObject *parent)
   : QObject(parent)
+  , networkManager_(NULL)
 {
   setObjectName("faviconObject_");
 
@@ -43,22 +44,25 @@ FaviconObject::FaviconObject(QObject *parent)
 
   connect(this, SIGNAL(signalGet(QUrl,QString,int)),
           SLOT(slotGet(QUrl,QString,int)));
-
-  networkManager_ = new NetworkManager(true, this);
-  connect(networkManager_, SIGNAL(finished(QNetworkReply*)),
-          this, SLOT(finished(QNetworkReply*)));
 }
 
 void FaviconObject::disconnectObjects()
 {
   disconnect(this);
-  networkManager_->disconnect(networkManager_);
+  if (networkManager_)
+    networkManager_->disconnect(networkManager_);
 }
 
 /** @brief Put requested URL in request queue
  *----------------------------------------------------------------------------*/
 void FaviconObject::requestUrl(QString urlString, QString feedUrl)
 {
+  if (!networkManager_) {
+    networkManager_ = new NetworkManager(true, this);
+    connect(networkManager_, SIGNAL(finished(QNetworkReply*)),
+            this, SLOT(finished(QNetworkReply*)));
+  }
+
   if (!timeout_->isActive())
     timeout_->start();
 

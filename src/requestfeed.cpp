@@ -29,6 +29,7 @@
 RequestFeed::RequestFeed(int timeoutRequest, int numberRequests,
                          int numberRepeats, QObject *parent)
   : QObject(parent)
+  , networkManager_(NULL)
   , timeoutRequest_(timeoutRequest)
   , numberRequests_(numberRequests)
   , numberRepeats_(numberRepeats)
@@ -43,10 +44,6 @@ RequestFeed::RequestFeed(int timeoutRequest, int numberRequests,
   getUrlTimer_->setSingleShot(true);
   getUrlTimer_->setInterval(50);
   connect(getUrlTimer_, SIGNAL(timeout()), this, SLOT(getQueuedUrl()));
-
-  networkManager_ = new NetworkManager(true, this);
-  connect(networkManager_, SIGNAL(finished(QNetworkReply*)),
-          this, SLOT(finished(QNetworkReply*)));
 
   connect(this, SIGNAL(signalHead(QUrl,int,QString,QDateTime,int)),
           SLOT(slotHead(QUrl,int,QString,QDateTime,int)),
@@ -64,7 +61,8 @@ RequestFeed::~RequestFeed()
 void RequestFeed::disconnectObjects()
 {
   disconnect(this);
-  networkManager_->disconnect(networkManager_);
+  if (networkManager_)
+    networkManager_->disconnect(networkManager_);
 }
 
 /** @brief Put URL in request queue
@@ -72,6 +70,12 @@ void RequestFeed::disconnectObjects()
 void RequestFeed::requestUrl(int id, QString urlString,
                               QDateTime date, QString userInfo)
 {
+  if (!networkManager_) {
+    networkManager_ = new NetworkManager(true, this);
+    connect(networkManager_, SIGNAL(finished(QNetworkReply*)),
+            this, SLOT(finished(QNetworkReply*)));
+  }
+
   if (!timeout_->isActive())
     timeout_->start();
 
