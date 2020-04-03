@@ -18,6 +18,9 @@
 #include "globals.h"
 #include "mainapplication.h"
 #include "logfile.h"
+#if defined(Q_OS_WIN)
+#include <windows.h>
+#endif
 
 int main(int argc, char **argv)
 {
