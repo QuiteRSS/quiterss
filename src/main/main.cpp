@@ -29,6 +29,9 @@ int main(int argc, char **argv)
 #endif
   }
 
+#ifdef Q_OS_WIN
+  SetProcessDPIAware();
+#endif
 #if QT_VERSION >= 0x050600
   QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 #elif QT_VERSION >= 0x050400
