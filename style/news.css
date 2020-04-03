@@ -108,14 +108,16 @@ a.enclosure {
 .titleTable {
   background: %8;
   border-top: 0px solid %6;
-  border-bottom: 0px solid %6;
+  border-bottom: 1px solid %6;
   text-align: %14;
   width: 100%;
   padding: 5px;
+  position: -webkit-sticky;
+  top: 0;
 }
 
 .newsTable {
-  border-top: 1px solid %6;
+  border-top: 0px solid %6;
   border-bottom: 0px solid %6;
   text-align: %14;
   direction: %15;
