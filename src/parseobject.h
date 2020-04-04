@@ -103,6 +103,8 @@ private:
   void parseAtom(const QString &feedUrl, const QDomDocument &doc);
   void parseRss(const QString &feedUrl, const QDomDocument &doc);
   QString toPlainText(const QString &text);
+  QString fromPlainText(QString text);
+  QString getCommunity(const QDomNode &nodeContent);
   QString parseDate(const QString &dateString, const QString &urlString);
   int recountFeedCounts(int feedId, const QString &feedUrl,
                         const QString &updated, const QString &lastBuildDate);

@@ -364,20 +364,30 @@ void ParseObject::parseAtom(const QString &feedUrl, const QDomDocument &doc)
     } else {
       newsItem.content = nodeContent.toElement().text();
     }
-    if (newsItem.content.isEmpty()) {
-      nodeContent = newsList.item(i).namedItem("media:group");
-      if (!nodeContent.isNull()) {
-        QString description = nodeContent.namedItem("media:description").toElement().text();
-        QString media = nodeContent.namedItem("media:thumbnail").toElement().attribute("url");
-        newsItem.content += "<p class=\"description\">" + description + "</p>";
-        newsItem.content += "<img src=\"" + media + "\" alt=\"image\"/>";
-      }
+    QString imgUrl = newsList.item(i).namedItem("media:thumbnail").toElement().attribute("url");
+    QString community = getCommunity(newsList.item(i).namedItem("media:community"));
+    nodeContent = newsList.item(i).namedItem("media:group");
+    if (!nodeContent.isNull()) {
+      QString description = nodeContent.namedItem("media:description").toElement().text();
+      if (description > newsItem.content.length())
+        newsItem.content = description;
+      newsItem.content = fromPlainText(newsItem.content);
+      if (imgUrl.isEmpty())
+        imgUrl = nodeContent.namedItem("media:thumbnail").toElement().attribute("url");
+      if (community.isEmpty())
+        community = getCommunity(nodeContent.namedItem("media:community"));
     }
     if (!(newsItem.content.isEmpty() ||
           (newsItem.description.length() > newsItem.content.length()))) {
       newsItem.description = newsItem.content;
     }
     newsItem.content.clear();
+    if (!imgUrl.isEmpty()) {
+      newsItem.description = "<p class=\"description\">" + newsItem.description + "</p>";
+      newsItem.description += "<img src=\"" + imgUrl + "\" alt=\"image\"/>";
+    }
+    if (!community.isEmpty())
+      newsItem.description += community;
 
     QDomNodeList categoryElem = newsList.item(i).toElement().elementsByTagName("category");
     for (int j = 0; j < categoryElem.size(); j++) {
@@ -646,12 +656,30 @@ void ParseObject::parseRss(const QString &feedUrl, const QDomDocument &doc)
       QTextStream in(&newsItem.content);
       nodeContent.save(in, 0);
     }
-
-    if (newsItem.content.isEmpty() || (newsItem.description.length() > newsItem.content.length())) {
-      newsItem.content.clear();
-    } else {
+    QString imgUrl = newsList.item(i).namedItem("media:thumbnail").toElement().attribute("url");
+    QString community = getCommunity(newsList.item(i).namedItem("media:community"));
+    nodeContent = newsList.item(i).namedItem("media:group");
+    if (!nodeContent.isNull()) {
+      QString description = nodeContent.namedItem("media:description").toElement().text();
+      if (description > newsItem.content.length())
+        newsItem.content = description;
+      newsItem.content = fromPlainText(newsItem.content);
+      if (imgUrl.isEmpty())
+        imgUrl = nodeContent.namedItem("media:thumbnail").toElement().attribute("url");
+      if (community.isEmpty())
+        community = getCommunity(nodeContent.namedItem("media:community"));
+    }
+    if (!(newsItem.content.isEmpty() ||
+          (newsItem.description.length() > newsItem.content.length()))) {
       newsItem.description = newsItem.content;
     }
+    newsItem.content.clear();
+    if (!imgUrl.isEmpty()) {
+      newsItem.description = "<p class=\"description\">" + newsItem.description + "</p>";
+      newsItem.description += "<img src=\"" + imgUrl + "\" alt=\"image\"/>";
+    }
+    if (!community.isEmpty())
+      newsItem.description += community;
 
     QDomNodeList categoryElem = newsList.item(i).toElement().elementsByTagName("category");
     for (int j = 0; j < categoryElem.size(); j++) {
@@ -840,6 +868,33 @@ void ParseObject::addRssNewsIntoBase(NewsItemStruct *newsItem)
 QString ParseObject::toPlainText(const QString &text)
 {
   return QTextDocumentFragment::fromHtml(text).toPlainText().simplified();
+}
+
+QString ParseObject::fromPlainText(QString text)
+{
+  text = text.replace("\r\n", "<br>");
+  text = text.replace("\n", "<br>");
+  return text;
+}
+
+QString ParseObject::getCommunity(const QDomNode &nodeContent)
+{
+  QString community;
+  if (!nodeContent.isNull()) {
+    QString count = nodeContent.namedItem("media:starRating").toElement().attribute("count");
+    QString average = nodeContent.namedItem("media:starRating").toElement().attribute("average");
+    QString min = nodeContent.namedItem("media:starRating").toElement().attribute("min");
+    QString max = nodeContent.namedItem("media:starRating").toElement().attribute("max");
+    QString views = nodeContent.namedItem("media:statistics").toElement().attribute("views");
+    if (!count.isEmpty())
+      community = QString("Count: %1, average: %2, min: %3, max: %4<br>").
+          arg(count).arg(average).arg(min).arg(max);
+    if (!views.isEmpty())
+      community += QString("Views: %1").arg(views);
+    if (!community.isEmpty())
+      community = "<p><i>" + community + "</i></p>";
+  }
+  return community;
 }
 
 /** @brief Date/time string parsing
