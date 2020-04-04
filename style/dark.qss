@@ -284,15 +284,23 @@ QPushButton:focus {
 	color: #e1e0e1;
 }
 
-QScrollBar:vertical {
+QScrollBar {
   background: none;
   border: none;
-  width: 10px;
   margin: 0px;
   padding: 0px;
 }
 
-QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+QScrollBar:vertical {
+  width: 10px;
+}
+
+QScrollBar:horizontal {
+  height: 10px;
+}
+
+QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical,
+QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal{
   background: #3a393a;
 }
 
@@ -301,8 +309,17 @@ QScrollBar::handle:vertical {
   min-height: 20px;
 }
 
+QScrollBar::handle:horizontal {
+  background: #555555;
+  min-width: 20px;
+}
+
 QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
   height: 0px;
+}
+
+QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal {
+  width: 0px;
 }
 
 QGroupBox {

@@ -1,16 +1,28 @@
 ::-webkit-scrollbar {
   background: none;
   border: none;
-  width: 10px;
   margin: 0px;
   padding: 0px;
+}
+
+::-webkit-scrollbar:vertical {
+  width: 10px;
+}
+
+::-webkit-scrollbar:horizontal {
+  height: 10px;
 }
  
 ::-webkit-scrollbar-track {
   background: #3a393a;
 }
  
-::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb:vertical {
   background: #555555;
   min-height: 20px;
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+  background: #555555;
+  min-width: 20px;
 }
