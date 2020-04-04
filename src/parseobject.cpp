@@ -369,7 +369,7 @@ void ParseObject::parseAtom(const QString &feedUrl, const QDomDocument &doc)
     nodeContent = newsList.item(i).namedItem("media:group");
     if (!nodeContent.isNull()) {
       QString description = nodeContent.namedItem("media:description").toElement().text();
-      if (description > newsItem.content.length())
+      if (description.length() > newsItem.content.length())
         newsItem.content = description;
       newsItem.content = fromPlainText(newsItem.content);
       if (imgUrl.isEmpty())
@@ -661,7 +661,7 @@ void ParseObject::parseRss(const QString &feedUrl, const QDomDocument &doc)
     nodeContent = newsList.item(i).namedItem("media:group");
     if (!nodeContent.isNull()) {
       QString description = nodeContent.namedItem("media:description").toElement().text();
-      if (description > newsItem.content.length())
+      if (description.length() > newsItem.content.length())
         newsItem.content = description;
       newsItem.content = fromPlainText(newsItem.content);
       if (imgUrl.isEmpty())
