@@ -69,6 +69,8 @@ bool FeedsProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceP
         index = sourceModel()->index(sourceRow, ((FeedsModel*)sourceModel())->indexColumnOf("text"), sourceParent);
         accept = sourceModel()->data(index, Qt::EditRole).toString().contains(findText_, Qt::CaseInsensitive);
       }
+    } else {
+      accept = acceptFolder(index);
     }
   }
 
@@ -94,4 +96,24 @@ QModelIndex FeedsProxyModel::index(int row, const QString& fieldName, const QMod
 {
   int column = ((FeedsModel*)sourceModel())->indexColumnOf(fieldName);
   return QSortFilterProxyModel::index(row, column, parent);
+}
+
+bool FeedsProxyModel::acceptFolder(const QModelIndex &indexFolder) const
+{
+  QModelIndex index;
+  bool accept = false;
+
+  for (int i = 0; i < sourceModel()->rowCount(indexFolder); ++i) {
+    index = sourceModel()->index(i, ((FeedsModel*)sourceModel())->indexColumnOf("xmlUrl"), indexFolder);
+    if (!sourceModel()->data(index, Qt::EditRole).toString().isEmpty()) {
+      index = sourceModel()->index(i, ((FeedsModel*)sourceModel())->indexColumnOf("text"), indexFolder);
+      accept = sourceModel()->data(index, Qt::EditRole).toString().contains(findText_, Qt::CaseInsensitive);
+    } else {
+      accept = acceptFolder(index);
+    }
+    if (accept)
+      break;
+  }
+
+  return accept;
 }
