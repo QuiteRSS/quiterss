@@ -85,6 +85,14 @@ void FindFeed::retranslateStrings()
   }
 }
 
+void FindFeed::keyPressEvent(QKeyEvent *event)
+{
+  if (event->key() == Qt::Key_Escape) {
+    emit signalVisible(false);
+  }
+  QLineEdit::keyPressEvent(event);
+}
+
 void FindFeed::resizeEvent(QResizeEvent *)
 {
   int frameWidth = style()->pixelMetric(QStyle::PM_DefaultFrameWidth);

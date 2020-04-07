@@ -297,6 +297,8 @@ void NewsTabWidget::createNewsList()
           this, SLOT(slotSelectFind()));
   connect(findText_, SIGNAL(returnPressed()),
           this, SLOT(slotSelectFind()));
+  connect(findText_, SIGNAL(signalVisible(bool)),
+          mainWindow_, SLOT(findText()));
 
   connect(mainWindow_->newsToolbarToggle_, SIGNAL(toggled(bool)),
           newsPanelWidget_, SLOT(setVisible(bool)));

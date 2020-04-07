@@ -36,8 +36,10 @@ public:
 signals:
   void signalClear();
   void signalSelectFind();
+  void signalVisible(bool);
 
 protected:
+  void keyPressEvent(QKeyEvent *event);
   void resizeEvent(QResizeEvent *);
   void focusInEvent(QFocusEvent *event);
   void focusOutEvent(QFocusEvent *event);

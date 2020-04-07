@@ -120,6 +120,14 @@ void FindTextContent::retranslateStrings()
   }
 }
 
+void FindTextContent::keyPressEvent(QKeyEvent *event)
+{
+  if (event->key() == Qt::Key_Escape) {
+    emit signalVisible(false);
+  }
+  QLineEdit::keyPressEvent(event);
+}
+
 void FindTextContent::resizeEvent(QResizeEvent *)
 {
   int frameWidth = style()->pixelMetric(QStyle::PM_DefaultFrameWidth);

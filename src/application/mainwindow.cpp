@@ -538,6 +538,8 @@ void MainWindow::createFeedsWidget()
           this, SLOT(slotSelectFind()));
   connect(findFeeds_, SIGNAL(returnPressed()),
           this, SLOT(slotSelectFind()));
+  connect(findFeeds_, SIGNAL(signalVisible(bool)),
+          this, SLOT(findFeedVisible(bool)));
 
   connect(categoriesTree_, SIGNAL(itemPressed(QTreeWidgetItem*,int)),
           this, SLOT(slotCategoriesClicked(QTreeWidgetItem*,int)));
@@ -6803,8 +6805,12 @@ void MainWindow::setCurrentTab(int index, bool updateCurrentTab)
  *---------------------------------------------------------------------------*/
 void MainWindow::findText()
 {
-  if (currentNewsTab->type_ < NewsTabWidget::TabTypeWeb)
-    currentNewsTab->findText_->setFocus();
+  if (currentNewsTab->type_ < NewsTabWidget::TabTypeWeb) {
+    if (!currentNewsTab->findText_->hasFocus())
+      currentNewsTab->findText_->setFocus();
+    else
+      newsView_->setFocus();
+  }
 }
 
 /** @brief Show notification on inbox news
@@ -7121,6 +7127,7 @@ void MainWindow::findFeedVisible(bool visible)
   if (visible) {
     findFeeds_->setFocus();
   } else {
+    findFeedAct_->setChecked(false);
     findFeeds_->clear();
     // Call filter explicitly, because invisible widget don't calls it
     setFeedsFilter(false);
