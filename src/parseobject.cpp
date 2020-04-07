@@ -140,6 +140,7 @@ void ParseObject::slotParse(const QByteArray &xmlData, const int &feedId,
 
   // actually parsing
   feedChanged_ = false;
+  lastBuildDate_ = dtReply;
 
   bool codecOk = false;
   QString convertData(xmlData);
@@ -245,7 +246,7 @@ void ParseObject::slotParse(const QByteArray &xmlData, const int &feedId,
   // Set feed update time and receive data from server time
   QString updated = QLocale::c().toString(QDateTime::currentDateTimeUtc(),
                                           "yyyy-MM-ddTHH:mm:ss");
-  QString lastBuildDate = dtReply.toString(Qt::ISODate);
+  QString lastBuildDate = lastBuildDate_.toString(Qt::ISODate);
   q.prepare("UPDATE feeds SET updated=?, lastBuildDate=?, status=0 WHERE id=?");
   q.addBindValue(updated);
   q.addBindValue(lastBuildDate);
@@ -559,6 +560,9 @@ void ParseObject::addAtomNewsIntoBase(NewsItemStruct *newsItem)
     qDebug() << "       " << newsItem->eUrl;
     qDebug() << "       " << newsItem->eType;
     qDebug() << "       " << newsItem->eLength;
+
+    if (lastBuildDate_ < QDateTime::fromString(newsItem->updated, Qt::ISODate))
+      lastBuildDate_ = QDateTime::fromString(newsItem->updated, Qt::ISODate);
     feedChanged_ = true;
   }
 }
@@ -861,6 +865,9 @@ void ParseObject::addRssNewsIntoBase(NewsItemStruct *newsItem)
     qDebug() << "       " << newsItem->eUrl;
     qDebug() << "       " << newsItem->eType;
     qDebug() << "       " << newsItem->eLength;
+
+    if (lastBuildDate_ < QDateTime::fromString(newsItem->updated, Qt::ISODate))
+      lastBuildDate_ = QDateTime::fromString(newsItem->updated, Qt::ISODate);
     feedChanged_ = true;
   }
 }

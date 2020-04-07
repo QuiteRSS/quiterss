@@ -129,6 +129,8 @@ private:
   QStringList titleList_;
   QStringList publishedList_;
 
+  QDateTime lastBuildDate_;
+
 };
 
 #endif // PARSEOBJECT_H
