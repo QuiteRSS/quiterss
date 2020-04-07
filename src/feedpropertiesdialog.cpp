@@ -61,6 +61,7 @@ QWidget *FeedPropertiesDialog::createGeneralTab()
   QHBoxLayout *layoutGeneralTitle = new QHBoxLayout();
   editTitle = new LineEdit();
   ToolButton *loadTitleButton = new ToolButton();
+  loadTitleButton->setObjectName("ToolButton");
   loadTitleButton->setIcon(QIcon(":/images/updateFeed"));
   loadTitleButton->setIconSize(QSize(16, 16));
   loadTitleButton->setToolTip(tr("Load Title"));
@@ -71,6 +72,7 @@ QWidget *FeedPropertiesDialog::createGeneralTab()
   selectIconMenu->addSeparator();
   selectIconMenu->addAction(tr("Select Icon..."));
   selectIconButton_ = new QToolButton(this);
+  selectIconButton_->setObjectName("ToolButton");
   selectIconButton_->setIconSize(QSize(16, 16));
   selectIconButton_->setToolTip(tr("Select Icon"));
   selectIconButton_->setFocusPolicy(Qt::NoFocus);

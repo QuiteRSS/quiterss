@@ -284,6 +284,27 @@ QPushButton:focus {
 	color: #e1e0e1;
 }
 
+#ToolButton {
+	border: 1px solid #3a393a;
+	background-color: #555555;
+	padding: 2px;
+	border-radius: 2px;
+}
+
+#ToolButton:hover {
+	border: 1px solid #2a82da;
+	color: #e1e0e1;
+}
+
+#ToolButton[popupMode="1"] {
+	padding-right: 16px;
+}
+
+#ToolButton::menu-button {
+    border: none;
+    width: 16px;
+}
+
 QScrollBar {
   background: none;
   border: none;
