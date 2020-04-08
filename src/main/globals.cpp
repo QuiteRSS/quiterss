@@ -95,8 +95,7 @@ void Globals::init()
   Settings settings;
   settings.beginGroup("Settings");
   noDebugOutput_ = settings.value("noDebugOutput", true).toBool();
-  userAgent_ = settings.value("userAgent", QString("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/%1 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/%1").
-                              arg(qWebKitVersion())).toString();
+  userAgent_ = settings.value("userAgent", "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36").toString();
 
   isInit_ = true;
 }
