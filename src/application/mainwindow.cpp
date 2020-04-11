@@ -2313,14 +2313,6 @@ void MainWindow::loadSettings()
 
   showMenuBar();
 
-  networkProxy_.setType(static_cast<QNetworkProxy::ProxyType>(
-                          settings.value("networkProxy/type", QNetworkProxy::DefaultProxy).toInt()));
-  networkProxy_.setHostName(settings.value("networkProxy/hostName", "").toString());
-  networkProxy_.setPort(    settings.value("networkProxy/port",     "").toUInt());
-  networkProxy_.setUser(    settings.value("networkProxy/user",     "").toString());
-  networkProxy_.setPassword(settings.value("networkProxy/password", "").toString());
-  setProxy(networkProxy_);
-
   adblockIcon_->setEnabled(settings.value("AdBlock/enabled", true).toBool());
 }
 
@@ -2526,12 +2518,6 @@ void MainWindow::saveSettings()
                       widget->newsTabWidgetSplitter_->saveState());
   }
 
-  settings.setValue("networkProxy/type",     networkProxy_.type());
-  settings.setValue("networkProxy/hostName", networkProxy_.hostName());
-  settings.setValue("networkProxy/port",     networkProxy_.port());
-  settings.setValue("networkProxy/user",     networkProxy_.user());
-  settings.setValue("networkProxy/password", networkProxy_.password());
-
   NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(TAB_WIDGET_PERMANENT);
   settings.setValue("feedSettings/currentId", widget->feedId_);
   settings.setValue("feedSettings/filterName",
@@ -2542,15 +2528,6 @@ void MainWindow::saveSettings()
   mainApp->cookieJar()->saveCookies();
   mainApp->c2fSaveSettings();
   AdBlockManager::instance()->save();
-}
-
-void MainWindow::setProxy(const QNetworkProxy proxy)
-{
-  networkProxy_ = proxy;
-  if (QNetworkProxy::DefaultProxy == networkProxy_.type())
-    QNetworkProxyFactory::setUseSystemConfiguration(true);
-  else
-    QNetworkProxy::setApplicationProxy(networkProxy_);
 }
 
 void MainWindow::showMainMenu()
@@ -3382,7 +3359,7 @@ void MainWindow::showOptionDlg(int index)
   optionsDialog_->clearStatusNew_->setChecked(clearStatusNew_);
   optionsDialog_->emptyWorking_->setChecked(emptyWorking_);
 
-  optionsDialog_->setProxy(networkProxy_);
+  optionsDialog_->setProxy(mainApp->networkProxy());
 
   int timeoutRequest = settings.value("Settings/timeoutRequest", 15).toInt();
   int numberRequests = settings.value("Settings/numberRequest", 10).toInt();
@@ -3802,8 +3779,7 @@ void MainWindow::showOptionDlg(int index)
   if (showTrayIcon_) traySystem->show();
   else traySystem->hide();
 
-  networkProxy_ = optionsDialog_->proxy();
-  setProxy(networkProxy_);
+  mainApp->proxySaveSettings(optionsDialog_->proxy());
 
   timeoutRequest = optionsDialog_->timeoutRequest_->value();
   numberRequests = optionsDialog_->numberRequests_->value();

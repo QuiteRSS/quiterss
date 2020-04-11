@@ -31,7 +31,6 @@
 #endif
 #include <QtSql>
 #include <QtWebKit>
-#include <QNetworkProxy>
 #include <QPrintDialog>
 #include <QPrintPreviewDialog>
 #include <QPrinter>
@@ -508,9 +507,6 @@ private:
   bool eventFilter(QObject *obj, QEvent *event);
   void changeEvent(QEvent *event);
 
-  QNetworkProxy networkProxy_;
-
-  void setProxy(const QNetworkProxy proxy);
   void createFeedsWidget();
   void createNewsTab(int index);
   void createToolBarNull();

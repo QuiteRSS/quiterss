@@ -184,10 +184,11 @@ void MainApplication::createSettings()
     }
   }
   if (!findLang) strLang = "en";
-
   langFileName_ = settings.value("langFileName", strLang).toString();
 
   settings.endGroup();
+
+  proxyLoadSettings();
 }
 
 void MainApplication::createGoogleAnalytics()
@@ -628,4 +629,44 @@ QUrl MainApplication::userStyleSheet(const QString &filePath) const
   const QString &dataString = QString("data:text/css;charset=utf-8;base64,%1").arg(encodedStyle);
 
   return QUrl(dataString);
+}
+
+void MainApplication::proxyLoadSettings()
+{
+  Settings settings;
+  settings.beginGroup("networkProxy");
+  networkProxy_.setType(static_cast<QNetworkProxy::ProxyType>(
+                          settings.value("type", QNetworkProxy::DefaultProxy).toInt()));
+  networkProxy_.setHostName(settings.value("hostName", "").toString());
+  networkProxy_.setPort(    settings.value("port",     "").toUInt());
+  networkProxy_.setUser(    settings.value("user",     "").toString());
+  networkProxy_.setPassword(settings.value("password", "").toString());
+  settings.endGroup();
+
+  setProxy();
+}
+
+void MainApplication::proxySaveSettings(const QNetworkProxy &proxy)
+{
+  networkProxy_ = proxy;
+
+  Settings settings;
+  settings.beginGroup("networkProxy");
+  settings.setValue("type",     networkProxy_.type());
+  settings.setValue("hostName", networkProxy_.hostName());
+  settings.setValue("port",     networkProxy_.port());
+  settings.setValue("user",     networkProxy_.user());
+  settings.setValue("password", networkProxy_.password());
+  settings.endGroup();
+
+  setProxy();
+}
+
+void MainApplication::setProxy()
+{
+
+  if (QNetworkProxy::DefaultProxy == networkProxy_.type())
+    QNetworkProxyFactory::setUseSystemConfiguration(true);
+  else
+    QNetworkProxy::setApplicationProxy(networkProxy_);
 }

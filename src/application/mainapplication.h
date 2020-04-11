@@ -29,6 +29,7 @@
 #include <QNetworkDiskCache>
 #include <QLocale>
 #include <QLibraryInfo>
+#include <QNetworkProxy>
 
 #include "cookiejar.h"
 #include "downloadmanager.h"
@@ -91,6 +92,10 @@ public:
 
   GAnalytics *analytics() const { return analytics_; }
 
+  QNetworkProxy networkProxy() const { return networkProxy_; }
+  void proxyLoadSettings();
+  void proxySaveSettings(const QNetworkProxy &proxy);
+
 public slots:
   void receiveMessage(const QString &message);
   void quitApplication();
@@ -114,6 +119,8 @@ private:
   void setProgressSplashScreen(int value);
 
   QUrl userStyleSheet(const QString &filePath) const;
+
+  void setProxy();
 
   bool isPortableAppsCom_;
   bool isClosing_;
@@ -140,6 +147,7 @@ private:
   QStringList c2fWhitelist_;
   bool c2fEnabled_;
 
+  QNetworkProxy networkProxy_;
   GAnalytics *analytics_;
 
 };
