@@ -413,6 +413,7 @@ void NewsTabWidget::createWebWidget()
   webWidget_->setObjectName("webWidget_");
   webWidget_->setLayout(webLayout);
   webWidget_->setMinimumWidth(400);
+  webWidget_->setMinimumHeight(100);
 
   webView_->page()->action(QWebPage::OpenLink)->disconnect();
   webView_->page()->action(QWebPage::OpenLinkInNewWindow)->disconnect();
@@ -2116,6 +2117,8 @@ void NewsTabWidget::setBrowserPosition()
           QString("QSplitter::handle {background: %1; margin-top: 1px; margin-bottom: 1px;}").
           arg(qApp->palette().color(QPalette::Dark).name()));
   }
+
+  newsTabWidgetSplitter_->setChildrenCollapsible(false);
 }
 
 /** @brief Close tab while press X-button
