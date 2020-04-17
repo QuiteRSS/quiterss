@@ -2096,7 +2096,8 @@ void MainWindow::loadSettings()
   QWebSettings::globalSettings()->setAttribute(
         QWebSettings::PluginsEnabled, pluginsEnable_);
   QWebSettings::globalSettings()->setMaximumPagesInCache(maxPagesInCache_);
-#if QT_VERSION >= 0x050D02
+#if QT_VERSION >= 0x050e00
+
   QWebSettings::globalSettings()->setAttribute(
         QWebSettings::ErrorPageEnabled, false);
 #endif
