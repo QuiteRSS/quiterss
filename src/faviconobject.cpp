@@ -77,7 +77,7 @@ void FaviconObject::requestUrl(QString urlString, QString feedUrl)
  *----------------------------------------------------------------------------*/
 void FaviconObject::getQueuedUrl()
 {
-  if (currentFeeds_.size() >= REPLY_MAX_COUNT) {
+  if (currentFeeds_.count() >= REPLY_MAX_COUNT) {
     getUrlTimer_->start();
     return;
   }
@@ -110,14 +110,17 @@ void FaviconObject::getQueuedUrl()
 
 /** @brief Prepare and send network request to receive all data
  *----------------------------------------------------------------------------*/
-void FaviconObject::slotGet(const QUrl &getUrl, const QString &feedUrl, const int &cnt)
+void FaviconObject::slotGet(const QUrl &getUrl, const QString &feedUrl, const int &count)
 {
+  if (count)
+    Common::sleep(30);
+
   QNetworkRequest request(getUrl);
   request.setRawHeader("User-Agent", globals.userAgent().toUtf8());
 
   currentUrls_.append(getUrl);
   currentFeeds_.append(feedUrl);
-  currentCntRequests_.append(cnt);
+  currentCntRequests_.append(count);
   currentTime_.append(REQUEST_TIMEOUT);
 
   QNetworkReply *reply = networkManager_->get(request);

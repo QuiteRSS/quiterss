@@ -87,7 +87,7 @@ void RequestFeed::requestUrl(int id, QString urlString,
   if (!getUrlTimer_->isActive())
     getUrlTimer_->start();
 
-  qDebug() << "urlsQueue_ <<" << urlString << "count=" << feedsQueue_.count();
+  qDebug() << "requestUrl() <<" << urlString << "countQueue=" << feedsQueue_.count();
 }
 
 void RequestFeed::stopRequest()
@@ -106,8 +106,8 @@ void RequestFeed::stopRequest()
  *----------------------------------------------------------------------------*/
 void RequestFeed::getQueuedUrl()
 {
-  if ((numberRequests_ <= currentFeeds_.size()) ||
-      (REPLY_MAX_COUNT <= currentFeeds_.size())) {
+  if ((currentFeeds_.count() >= numberRequests_) ||
+      (currentFeeds_.count() >= REPLY_MAX_COUNT)) {
     getUrlTimer_->start();
     return;
   }
@@ -134,14 +134,13 @@ void RequestFeed::getQueuedUrl()
       getUrl.setUserInfo(userInfo);
 //      getUrl.addQueryItem("auth", getUrl.scheme());
     }
-    QDateTime currentDate = dateQueue_.dequeue();
 
+    qDebug() << "getQueuedUrl() >>" << feedUrl << "countQueue=" << feedsQueue_.count();
+    QDateTime currentDate = dateQueue_.dequeue();
     if (currentDate.isValid())
       emit signalHead(getUrl, feedId, feedUrl, currentDate);
     else
       emit signalGet(getUrl, feedId, feedUrl, currentDate);
-
-    qDebug() << "urlsQueue_ >>" << feedUrl << "count=" << feedsQueue_.count();
   }
 }
 
@@ -150,7 +149,10 @@ void RequestFeed::getQueuedUrl()
 void RequestFeed::slotHead(const QUrl &getUrl, const int &id, const QString &feedUrl,
                             const QDateTime &date, const int &count)
 {
-  qDebug() << objectName() << "::head:" << getUrl.toEncoded() << "feed:" << feedUrl << count;
+  if (count)
+    Common::sleep(30);
+
+  qDebug() << objectName() << "::head:" << getUrl.toEncoded() << "feed:" << feedUrl << "countRepeats:" << count;
   QNetworkRequest request(getUrl);
   request.setRawHeader("User-Agent", globals.userAgent().toUtf8());
 
@@ -173,7 +175,10 @@ void RequestFeed::slotHead(const QUrl &getUrl, const int &id, const QString &fee
 void RequestFeed::slotGet(const QUrl &getUrl, const int &id, const QString &feedUrl,
                            const QDateTime &date, const int &count)
 {
-  qDebug() << objectName() << "::get:" << getUrl.toEncoded() << "feed:" << feedUrl << count;
+  if (count)
+    Common::sleep(30);
+
+  qDebug() << objectName() << "::get:" << getUrl.toEncoded() << "feed:" << feedUrl << "countRepeats:" <<count;
   QNetworkRequest request(getUrl);
   request.setRawHeader("Accept", "application/atom+xml,application/rss+xml;q=0.9,application/xml;q=0.8,text/xml;q=0.7,*/*;q=0.6");
   request.setRawHeader("User-Agent", globals.userAgent().toUtf8());

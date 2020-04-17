@@ -24,6 +24,7 @@
 #include <QQueue>
 #include <QObject>
 #include <QUrl>
+#include <QMutex>
 
 struct FeedItemStruct {
   QString title;
@@ -111,7 +112,7 @@ private:
 
   QSqlDatabase db_;
   QTimer *parseTimer_;
-  int currentFeedId_;
+  QMutex mutex_;
   QQueue<int> idsQueue_;
   QQueue<QByteArray> xmlsQueue_;
   QQueue<QDateTime> dtReadyQueue_;

@@ -37,11 +37,11 @@ public:
 
 public slots:
   void requestUrl(QString urlString, QString feedUrl);
-  void slotGet(const QUrl &getUrl, const QString &feedUrl, const int &cnt);
+  void slotGet(const QUrl &getUrl, const QString &feedUrl, const int &count);
 
 signals:
   void startTimer();
-  void signalGet(const QUrl &getUrl, const QString &feedUrl, const int &cnt);
+  void signalGet(const QUrl &getUrl, const QString &feedUrl, const int &count);
   void signalIconRecived(QString feedUrl, QByteArray byteArray, QString format);
 
 private slots:

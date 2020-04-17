@@ -32,7 +32,6 @@
 
 ParseObject::ParseObject(QObject *parent)
   : QObject(parent)
-  , currentFeedId_(0)
 {
   setObjectName("parseObject_");
 
@@ -77,20 +76,23 @@ void ParseObject::parseXml(QByteArray data, int feedId,
  *----------------------------------------------------------------------------*/
 void ParseObject::getQueuedXml()
 {
-  if (currentFeedId_) return;
+  if (!mutex_.tryLock())
+    return;
 
   if (idsQueue_.count()) {
-    currentFeedId_ = idsQueue_.dequeue();
+    int feedId = idsQueue_.dequeue();
     QByteArray currentXml_ = xmlsQueue_.dequeue();
     QDateTime currentDtReady_ = dtReadyQueue_.dequeue();
     QString currentCodecName_ = codecNameQueue_.dequeue();
-    qDebug() << "xmlsQueue_ >>" << currentFeedId_ << "count=" << xmlsQueue_.count();
+    qDebug() << "xmlsQueue_ >>" << feedId << "count=" << xmlsQueue_.count();
 
-    emit signalReadyParse(currentXml_, currentFeedId_, currentDtReady_, currentCodecName_);
-
-    currentFeedId_ = 0;
-    parseTimer_->start();
+    emit signalReadyParse(currentXml_, feedId, currentDtReady_, currentCodecName_);
   }
+
+  mutex_.unlock();
+
+  if (idsQueue_.count())
+    parseTimer_->start();
 }
 
 /** @brief Parse xml-data
