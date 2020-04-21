@@ -1,3 +1,19 @@
+Version 0.19.4 (21 Apr 2020)
+  * Added: Share. Viber, Telegram
+  * Added: Support Media-RSS
+  * Added: Switch focus from search when pressing Esc
+  * Changed: Qt 5.13.2 (Windows)
+  * Changed: Lock headline news while scrolling content
+  * Changed: Hide directories when searching in feeds
+  * Fixed: Application crash (Windows)
+  * Fixed: Support High DPI (Windows)
+  * Fixed: Webkit. Create empty directories on drive "C" (Windows)
+  * Fixed: Some news links do not have a scheme ("http")
+  * Fixed: Dark App Style. Setting background color and text color for labels
+  * Fixed: Dark App Style. Setting background color of alternative rows
+  * Fixed: Updating some feeds
+  * Fixed: Collapse of news description
+
 Version 0.19.3 (29 Jan 2020)
   * Changed: Qt 5.14.0 (Windows)
   * Changed: SQLite 3.31.1

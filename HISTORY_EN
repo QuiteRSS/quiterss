@@ -2,6 +2,26 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
+<p><b>Version 0.19.4</b> (21 Apr 2020)
+<ul>
+<li>Added: Share. Viber, Telegram</li>
+<li>Added: Support Media-RSS</li>
+<li>Added: Switch focus from search when pressing Esc</li>
+
+<li>Changed: Qt 5.13.2 (Windows)</li>
+<li>Changed: Lock headline news while scrolling content</li>
+<li>Changed: Hide directories when searching in feeds</li>
+
+<li>Fixed: Application crash (Windows)</li>
+<li>Fixed: Support High DPI (Windows)</li>
+<li>Fixed: Webkit. Create empty directories on drive "C" (Windows)</li>
+<li>Fixed: Some news links do not have a scheme ("http")</li>
+<li>Fixed: Dark App Style. Setting background color and text color for labels</li>
+<li>Fixed: Dark App Style. Setting background color of alternative rows</li>
+<li>Fixed: Updating some feeds</li>
+<li>Fixed: Collapse of news description</li>
+</ul>
+<!---------------------------------------------------------------------------->
 <p><b>Version 0.19.3</b> (29 Jan 2020)
 <ul>
 <li>Changed: Qt 5.14.0 (Windows)</li>
