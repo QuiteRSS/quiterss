@@ -188,6 +188,7 @@ private slots:
   void slotSelectFind();
 
   void setWebToolbarVisible(bool show = true, bool checked = true);
+  void setWebWidgetVisible();
 
   void slotNewslLabelClicked(QModelIndex index);
 

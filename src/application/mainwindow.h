@@ -117,6 +117,7 @@ public:
 
   QAction *newsToolbarToggle_;
   QAction *browserToolbarToggle_;
+  QAction *webWidgetVisibleAct_;
   QAction *categoriesPanelToggle_;
   QAction *statusBarToggle_;
   QAction *newsFilter_;

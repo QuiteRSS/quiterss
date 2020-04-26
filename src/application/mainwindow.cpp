@@ -1192,6 +1192,11 @@ void MainWindow::createActions()
   connect(pushButtonNull_, SIGNAL(clicked()), feedsWidgetVisibleAct_, SLOT(trigger()));
   this->addAction(feedsWidgetVisibleAct_);
 
+  webWidgetVisibleAct_ = new QAction(this);
+  webWidgetVisibleAct_->setObjectName("webWidgetVisibleAct");
+  webWidgetVisibleAct_->setCheckable(true);
+  this->addAction(webWidgetVisibleAct_);
+
   showUnreadCount_ = new QAction(this);
   showUnreadCount_->setData(feedsView_->columnIndex("unread"));
   showUnreadCount_->setCheckable(true);
@@ -1576,6 +1581,7 @@ void MainWindow::createShortcut()
 
   feedsWidgetVisibleAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_D));
   listActions_.append(feedsWidgetVisibleAct_);
+  listActions_.append(webWidgetVisibleAct_);
 
   listActions_.append(placeToTrayAct_);
 
@@ -1703,6 +1709,8 @@ void MainWindow::createMenu()
   fileMenu_->addAction(exitAct_);
 
   toolbarsMenu_ = new QMenu(this);
+  toolbarsMenu_->addAction(feedsWidgetVisibleAct_);
+  toolbarsMenu_->addAction(webWidgetVisibleAct_);
   toolbarsMenu_->addAction(mainToolbarToggle_);
   toolbarsMenu_->addAction(feedsToolbarToggle_);
   toolbarsMenu_->addAction(newsToolbarToggle_);
@@ -2292,6 +2300,7 @@ void MainWindow::loadSettings()
   mainSplitter_->restoreState(settings.value("MainSplitterState").toByteArray());
   feedsWidgetVisibleAct_->setChecked(settings.value("FeedsWidgetVisible", true).toBool());
   slotVisibledFeedsWidget();
+  webWidgetVisibleAct_->setChecked(settings.value("WebWidgetVisible", true).toBool());
 
   feedsWidgetSplitterState_ = settings.value("FeedsWidgetSplitterState").toByteArray();
   bool showCategories = settings.value("NewsCategoriesTreeVisible", true).toBool();
@@ -2495,6 +2504,7 @@ void MainWindow::saveSettings()
 
   settings.setValue("MainSplitterState", mainSplitter_->saveState());
   settings.setValue("FeedsWidgetVisible", showFeedsTabPermanent_);
+  settings.setValue("WebWidgetVisible", webWidgetVisibleAct_->isChecked());
 
   bool newsCategoriesTreeVisible = true;
   if (categoriesWidget_->height() <= (categoriesPanel_->height()+2)) {
@@ -5001,7 +5011,10 @@ void MainWindow::retranslateStrings()
   switchFocusPrevAct_->setToolTip(
         tr("Switch Focus to Previous Panel (Tree Feeds, Browser, List News)"));
 
-  feedsWidgetVisibleAct_->setText(tr("Show/Hide Tree Feeds"));
+  feedsWidgetVisibleAct_->setText(tr("Tree Feeds"));
+  feedsWidgetVisibleAct_->setToolTip(tr("Show/Hide Tree Feeds"));
+  webWidgetVisibleAct_->setText(tr("Browser"));
+  webWidgetVisibleAct_->setToolTip(tr("Show/Hide Browser"));
 
   placeToTrayAct_->setText(tr("Minimize to Tray"));
   placeToTrayAct_->setToolTip(tr("Minimize Application to Tray"));

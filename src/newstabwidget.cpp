@@ -414,6 +414,7 @@ void NewsTabWidget::createWebWidget()
   webWidget_->setLayout(webLayout);
   webWidget_->setMinimumWidth(400);
   webWidget_->setMinimumHeight(100);
+  setWebWidgetVisible();
 
   webView_->page()->action(QWebPage::OpenLink)->disconnect();
   webView_->page()->action(QWebPage::OpenLinkInNewWindow)->disconnect();
@@ -452,6 +453,8 @@ void NewsTabWidget::createWebWidget()
           this, SLOT(setAutoLoadImages()));
   connect(mainWindow_->browserToolbarToggle_, SIGNAL(triggered()),
           this, SLOT(setWebToolbarVisible()));
+  connect(mainWindow_->webWidgetVisibleAct_, SIGNAL(triggered()),
+          this, SLOT(setWebWidgetVisible()));
 
   connect(locationBar_, SIGNAL(returnPressed()),this, SLOT(slotUrlEnter()));
   connect(webView_, SIGNAL(rssChanged(bool)), locationBar_, SLOT(showRssIcon(bool)));
@@ -2385,7 +2388,13 @@ void NewsTabWidget::setWebToolbarVisible(bool show, bool checked)
   if (!checked) webToolbarShow_ = show;
   webControlPanel_->setVisible(webToolbarShow_ &
                                mainWindow_->browserToolbarToggle_->isChecked());
+}
 
+void NewsTabWidget::setWebWidgetVisible()
+{
+  if (type_ >= TabTypeWeb) return;
+
+  webWidget_->setVisible(mainWindow_->webWidgetVisibleAct_->isChecked());
 }
 
 /** @brief Set label for selected news
