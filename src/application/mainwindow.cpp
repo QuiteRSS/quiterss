@@ -1464,7 +1464,7 @@ void MainWindow::createActions()
 
   viberShareAct_ = new QAction(this);
   viberShareAct_->setObjectName("viberShareAct");
-  viberShareAct_->setText("Vider");
+  viberShareAct_->setText("Viber");
   viberShareAct_->setIcon(QIcon(":/share/images/share/viber.png"));
   shareGroup_->addAction(viberShareAct_);
 
