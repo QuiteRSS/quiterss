@@ -154,6 +154,11 @@ void WebPage::handleUnsupportedContent(QNetworkReply* reply)
   if (!reply)
     return;
 
+  WebView *webView = qobject_cast<WebView*>(view());
+  if (webView) {
+    webView->stop();
+  }
+
   const QUrl &url = reply->url();
 
   switch (reply->error()) {
