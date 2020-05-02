@@ -32,14 +32,11 @@ int main(int argc, char **argv)
 #endif
   }
 
-#ifdef Q_OS_WIN
-#if _WIN32_WINNT >= 0x0600
-  SetProcessDPIAware();
-#endif
-#endif
-#if QT_VERSION >= 0x050600
+#if QT_VERSION >= QT_VERSION_CHECK(5, 13, 0)
+
+#elif QT_VERSION >= QT_VERSION_CHECK(5, 6, 0)
   QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-#elif QT_VERSION >= 0x050400
+#elif QT_VERSION >= QT_VERSION_CHECK(5, 4, 0)
   QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
   qputenv("QT_DEVICE_PIXEL_RATIO", "auto");
 #endif
