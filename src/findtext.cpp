@@ -123,6 +123,7 @@ void FindTextContent::retranslateStrings()
 void FindTextContent::keyPressEvent(QKeyEvent *event)
 {
   if (event->key() == Qt::Key_Escape) {
+    slotClear();
     emit signalVisible(false);
   }
   QLineEdit::keyPressEvent(event);
