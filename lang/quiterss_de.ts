@@ -81,7 +81,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="162"/>
         <source>Information</source>
-        <translation>Information</translation>
+        <translation>Pfade</translation>
     </message>
 </context>
 <context>
@@ -137,7 +137,7 @@
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="68"/>
         <source>Options</source>
-        <translation>Optionen</translation>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="98"/>
@@ -172,12 +172,12 @@
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="79"/>
         <source>Update Subscriptions</source>
-        <translation>Filter aktualisieren</translation>
+        <translation>Filterabonnement aktualisieren</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="81"/>
         <source>Learn about writing rules...</source>
-        <translation>Wie erstelle ich eigene Filter...</translation>
+        <translation>Anleitung zum Erstellen eigener Filter...</translation>
     </message>
 </context>
 <context>
@@ -210,7 +210,7 @@
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="157"/>
         <source>Blocked Popup Windows</source>
-        <translation>Popup-Fenster geblockt</translation>
+        <translation>Hinweisfenster geblockt</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="162"/>
@@ -483,12 +483,12 @@
     <message>
         <location filename="../src/cleanupwizard.cpp" line="146"/>
         <source>Clean Up Options</source>
-        <translation>Bereinigungs-Optionen</translation>
+        <translation>Bereinigungs-Einstellungen</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="148"/>
         <source>Maximum age of news in days to keep:</source>
-        <translation>Maximales Alter zu behaltender Nachrichten (in Tagen):</translation>
+        <translation>Maximale Aufbewahrungszeit in Tagen:</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="155"/>
@@ -540,7 +540,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="336"/>
         <source>Clean Up wizard deleted %1 news</source>
-        <translation>Es wurden %1 Nachrichten gelöscht</translation>
+        <translation>Gelöschte Nachrichten: %1</translation>
     </message>
 </context>
 <context>
@@ -721,7 +721,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="324"/>
         <source>Remaining %1 - %2 of %3 (%4)</source>
-        <translation>Verbleibende Zeit %1 - %2 von %3 (%4)</translation>
+        <translation>Verbleibende Zeit: %1 - %2 von %3 (%4)</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="343"/>
@@ -761,7 +761,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="379"/>
         <source>Remove</source>
-        <translation>Entfernen</translation>
+        <translation>Eintrag entfernen</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="381"/>
@@ -940,12 +940,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="132"/>
         <source>Add news with any date into the database</source>
-        <translation type="unfinished"/>
+        <translation>Alle Nachrichten in die Datenbank eintragen</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="145"/>
         <source>Avoid adding news before this date into the database:</source>
-        <translation type="unfinished"/>
+        <translation>Nachrichten vor diesem Datum nicht in die Datenbank eintragen:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="203"/>
@@ -1221,7 +1221,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsfilters/itemaction.cpp" line="28"/>
         <source>Show News in Notifier</source>
-        <translation>Nachrichten im Popup-Fenster anzeigen</translation>
+        <translation>Nachrichten im Hinweisfenster anzeigen</translation>
     </message>
     <message>
         <location filename="../src/newsfilters/itemaction.cpp" line="37"/>
@@ -1645,7 +1645,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4885"/>
         <source>Mark Current News Read/Unread</source>
-        <translation>Aktuelle Nachricht als gelesen/ungelesen markieren</translation>
+        <translation>Nachricht als gelesen/ungelesen markieren</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4887"/>
@@ -1679,12 +1679,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4897"/>
         <source>Options...</source>
-        <translation>Optionen...</translation>
+        <translation>Einstellungen...</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4898"/>
         <source>Open Options Dialog</source>
-        <translation>Optionen</translation>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4900"/>
@@ -1878,12 +1878,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5014"/>
         <source>Count Unread News</source>
-        <translation>Zeige Anzahl ungelesener Nachrichten</translation>
+        <translation>Anzahl ungelesener Nachrichten anzeigen</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5015"/>
         <source>Count All News</source>
-        <translation>Zeige Anzahl aller Nachrichten</translation>
+        <translation>Anzahl aller Nachrichten anzeigen</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5016"/>
@@ -2066,7 +2066,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4976"/>
         <source>Dark</source>
-        <translation type="unfinished"/>
+        <translation>Dunkel</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4977"/>
@@ -2861,7 +2861,7 @@ Ancient news could reappear</source>
         <location filename="../src/newstabwidget.cpp" line="1523"/>
         <location filename="../src/newstabwidget.cpp" line="1774"/>
         <source>Link to</source>
-        <translation>Verknüpfung mit</translation>
+        <translation>Verknüpfung zu</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1655"/>
@@ -2919,7 +2919,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/notifications/notificationswidget.cpp" line="370"/>
         <source>Incoming News: %1</source>
-        <translation>Eingehende Nachrichten: %1</translation>
+        <translation>Empfangene Nachrichten: %1</translation>
     </message>
     <message>
         <location filename="../src/notifications/notificationswidget.cpp" line="375"/>
@@ -2934,7 +2934,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="30"/>
         <source>Options</source>
-        <translation>Optionen</translation>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="65"/>
@@ -3182,7 +3182,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="488"/>
         <source>Options network requests when updating feeds (requires program restart):</source>
-        <translation>Optionen Netzwerkanfragen beim Aktualisieren (erfordert Neustart des Programms):</translation>
+        <translation>Einstellungen Netzwerkanfragen bei Aktualisierung von Feeds (erfordert Neustart):</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="505"/>
@@ -3318,12 +3318,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="664"/>
         <source>Click To Flash is a plugin which blocks auto loading of Flash content at page. You can always load it manually by clicking on the Flash play icon.</source>
-        <translation>Die Click To Flash-Erweiterung unterbindet das automatische Laden von Flash-Inhalten einer Seite. Durch Klick auf das Abspielsymbol können Flash-Inhalte aktiviert werden.</translation>
+        <translation>Die ClickToFlash-Erweiterung unterbindet das automatische Laden von Flash-Inhalten. Durch Klick auf das Symbol können Flash-Inhalte aktiviert werden.</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="669"/>
         <source>Use Click to Flash</source>
-        <translation>Click to Flash verwenden</translation>
+        <translation>ClickToFlash verwenden</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="681"/>
@@ -3353,7 +3353,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="745"/>
         <source>Click to Flash</source>
-        <translation>Click to Flash</translation>
+        <translation>ClickToFlash</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="747"/>
@@ -3390,7 +3390,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="807"/>
         <source>Avoid adding news before this date into the database:</source>
-        <translation type="unfinished"/>
+        <translation>Nachrichten vor diesem Datum nicht in die Datenbank eintragen:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="830"/>
@@ -3530,7 +3530,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="988"/>
         <source>Maximum age of news in days to keep:</source>
-        <translation>Maximale Aufbewahrungszeit von Nachrichten (in Tagen):</translation>
+        <translation>Maximale Aufbewahrungszeit in Tagen:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="995"/>
@@ -3660,7 +3660,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1100"/>
         <source>Display notification for incoming news</source>
-        <translation>Popup bei neuer Nachricht anzeigen</translation>
+        <translation>Hinweisfenster bei neuer Nachricht anzeigen</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1113"/>
@@ -3700,7 +3700,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1152"/>
         <source>item on page notification</source>
-        <translation>Nachrichten im Popup</translation>
+        <translation>Nachrichten im Hinweisfenster</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1153"/>
@@ -3715,7 +3715,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1156"/>
         <source>Close notification after</source>
-        <translation>Popup schließen nach</translation>
+        <translation>Hinweisfenster schließen nach</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1117"/>
@@ -3730,7 +3730,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1122"/>
         <source>Close notification after opening news</source>
-        <translation>Popup schließen, wenn Nachricht geöffnet wurde</translation>
+        <translation>Hinweisfenster schließen, wenn Nachricht geöffnet wurde</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1176"/>
@@ -3740,7 +3740,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1242"/>
         <source>Notification</source>
-        <translation>Popup-Fenster</translation>
+        <translation>Hinweisfenster</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1243"/>
@@ -3840,7 +3840,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1654"/>
         <source>Notification font</source>
-        <translation>Schriftart im Popup</translation>
+        <translation>Schriftart im Hinweisfenster</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1661"/>
@@ -3943,12 +3943,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1751"/>
         <source>Notification text color</source>
-        <translation>Schriftfarbe im Popup</translation>
+        <translation>Schriftfarbe im Hinweisfenster</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1754"/>
         <source>Notification background color</source>
-        <translation>Hintergrundfarbe im Popup</translation>
+        <translation>Hintergrundfarbe im Hinweisfenster</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2146"/>
@@ -4063,12 +4063,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1819"/>
         <source>Minimum font size</source>
-        <translation>Minimale Schriftgröße</translation>
+        <translation>Kleinste Schriftgröße</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1821"/>
         <source>Minimum logical font size</source>
-        <translation>Minimale Schriftgröße (Logical)</translation>
+        <translation>Kleinste rationale Schriftgröße</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1825"/>
@@ -4210,7 +4210,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="958"/>
         <source>Connection timed out to host %1</source>
-        <translation>Zeitüberschreitung bei Verbindung zu Host %1</translation>
+        <translation>Zeitüberschreitung beim Verbinden mit Host %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="1071"/>
@@ -4231,7 +4231,7 @@ Ancient news could reappear</source>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2419"/>
         <source>Connecting to host failed:
 %1</source>
-        <translation>Verbindung zu Host fehlgeschlagen:
+        <translation>Verbindung mit Host fehlgeschlagen:
 %1</translation>
     </message>
     <message>
@@ -4543,7 +4543,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/updateappdialog.cpp" line="40"/>
         <source>Check for Updates</source>
-        <translation>Programmaktualisierung suchen</translation>
+        <translation>Auf Programmaktualisierung prüfen</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="45"/>
@@ -4568,7 +4568,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/updateappdialog.cpp" line="129"/>
         <source>You already have the latest version</source>
-        <translation>Sie haben bereits die neueste Version</translation>
+        <translation>Das ist bereits die neueste Version</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="137"/>
@@ -4583,7 +4583,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/updateappdialog.cpp" line="145"/>
         <source>Your version is:</source>
-        <translation>Ihre Version:</translation>
+        <translation>Diese Version:</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="147"/>

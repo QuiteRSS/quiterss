@@ -942,12 +942,12 @@ não existe!</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="132"/>
         <source>Add news with any date into the database</source>
-        <translation type="unfinished"/>
+        <translation>Adicione notícias com qualquer data na base de dados</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="145"/>
         <source>Avoid adding news before this date into the database:</source>
-        <translation type="unfinished"/>
+        <translation>Evitar adicionar notícias anteriores a esta data na base de dados:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="203"/>
@@ -2068,7 +2068,7 @@ não existe!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4976"/>
         <source>Dark</source>
-        <translation type="unfinished"/>
+        <translation>Escuro</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4977"/>
@@ -3392,7 +3392,7 @@ não existe!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="807"/>
         <source>Avoid adding news before this date into the database:</source>
-        <translation type="unfinished"/>
+        <translation>Evitar adicionar notícias anteriores a esta data na base de dados:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="830"/>
