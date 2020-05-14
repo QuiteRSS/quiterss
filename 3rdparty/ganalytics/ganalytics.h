@@ -33,23 +33,9 @@
   to enable debugging messages, '#define GANALYTICS_DEBUG 1' before including this file
   to get super verbose debugging, '#define GANALYTICS_DEBUG 2'
 
-  To build GAnalytics with QtQuick application (QGuiApplication) instead of Desktop,
-  define GANALYTICS_QTQUICK in your .pro file like this: 'DEFINES += GANALYTICS_QTQUICK',
-  or in cmake project: 'add_definitions(-DGANALYTICS_QTQUICK)'
 */
 #include <QCoreApplication>
 #include <QSettings>
-
-#if defined(GANALYTICS_QTQUICK)
-#include <QGuiApplication>
-#include <QScreen>
-#else
-#ifdef QT_GUI_LIB
-#include <QApplication>
-#include <QDesktopWidget>
-#endif
-#endif
-
 #include <QUuid>
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>
@@ -61,9 +47,13 @@
 #include <QEventLoop>
 
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#include <QGuiApplication>
+#include <QScreen>
 #include <QUrlQuery>
 #define URL_QUERY QUrlQuery
 #else
+#include <QApplication>
+#include <QDesktopWidget>
 #define URL_QUERY QUrl
 #endif
 
@@ -279,17 +269,15 @@ public:
     QString os = Common::operatingSystemLong();
     _userAgent = "Mozilla/5.0 (" + os + "; " + locale + ") GAnalytics/1.0 (Qt/" QT_VERSION_STR ")";
     _userLanguage = locale;
-#if defined(GANALYTICS_QTQUICK)
-    QScreen* screen = qApp->primaryScreen();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    QScreen* screen = QGuiApplication::primaryScreen();
     QString geom = QString::number(screen->geometry().width())
             + "x" + QString::number(screen->geometry().height());
     _screenResolution = geom;
 #else
-#ifdef QT_GUI_LIB
     QString geom = QString::number(QApplication::desktop()->screenGeometry().width())
       + "x" + QString::number(QApplication::desktop()->screenGeometry().height());
     _screenResolution = geom;
-#endif
 #endif
 #if GANALYTICS_DEBUG > 1
     qDebug() << "User-Agent:" << _userAgent;

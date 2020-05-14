@@ -94,7 +94,7 @@ private:
   QNetworkReply *reply_;
   FtpDownloader *ftpDownloader_;
   QString fileName_;
-  QTime downloadTimer_;
+  QElapsedTimer downloadTimer_;
   QTime remTime_;
   QTimer updateInfoTimer_;
   QFile outputFile_;

@@ -81,7 +81,7 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
     closeNotify_ = mainApp->mainWindow()->closeNotify_;
   } else {
     OptionsDialog *options = qobject_cast<OptionsDialog*>(parentWidget);
-    screen_ = options->screenNotify_->currentIndex()-1;
+    screen_ = options->screenNotify_->currentIndex();
     position_ = options->positionNotify_->currentIndex();
     transparency_ = options->transparencyNotify_->value();
     timeShowNews_ = options->timeShowNewsNotify_->value();
@@ -399,23 +399,28 @@ NotificationWidget::~NotificationWidget()
 
 void NotificationWidget::showEvent(QShowEvent*)
 {
+#ifdef HAVE_QT5
+  const QRect screenGeometry = QGuiApplication::screens().at(screen_)->availableGeometry();
+#else
+  const QRect screenGeometry = QApplication::desktop()->availableGeometry(screen_);
+#endif
   QPoint point;
   switch (position_) {
   case 0:
-    point = QPoint(QApplication::desktop()->availableGeometry(screen_).topLeft().x(),
-                   QApplication::desktop()->availableGeometry(screen_).topLeft().y());
+    point = QPoint(screenGeometry.topLeft().x(),
+                   screenGeometry.topLeft().y());
     break;
   case 1:
-    point = QPoint(QApplication::desktop()->availableGeometry(screen_).topRight().x()-width(),
-                   QApplication::desktop()->availableGeometry(screen_).topRight().y());
+    point = QPoint(screenGeometry.topRight().x()-width(),
+                   screenGeometry.topRight().y());
     break;
   case 2:
-    point = QPoint(QApplication::desktop()->availableGeometry(screen_).bottomLeft().x(),
-                   QApplication::desktop()->availableGeometry(screen_).bottomLeft().y()-height());
+    point = QPoint(screenGeometry.bottomLeft().x(),
+                   screenGeometry.bottomLeft().y()-height());
     break;
   default:
-    point = QPoint(QApplication::desktop()->availableGeometry(screen_).bottomRight().x()-width(),
-                   QApplication::desktop()->availableGeometry(screen_).bottomRight().y()-height());
+    point = QPoint(screenGeometry.bottomRight().x()-width(),
+                   screenGeometry.bottomRight().y()-height());
     break;
   }
   move(point);

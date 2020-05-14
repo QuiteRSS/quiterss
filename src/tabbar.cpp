@@ -37,7 +37,7 @@ TabBar::TabBar(QWidget *parent)
 
   setStyleSheet(QString("#tabBar_ QToolButton {border: 1px solid %1; border-radius: 2px; background: %2;}").
                 arg(qApp->palette().color(QPalette::Dark).name()).
-                arg(palette().background().color().name()));
+                arg(palette().window().color().name()));
 
   addTab("");
 

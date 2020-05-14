@@ -168,16 +168,21 @@ OptionsDialog::OptionsDialog(QWidget *parent)
 
 void OptionsDialog::showEvent(QShowEvent*event)
 {
-  int desktopWidth = QApplication::desktop()->availableGeometry().width();
-  int desktopHeight = QApplication::desktop()->availableGeometry().height();
+#ifdef HAVE_QT5
+  const QRect screenGeometry = QGuiApplication::primaryScreen()->availableGeometry();
+#else
+  const QRect screenGeometry = QApplication::desktop()->availableGeometry();
+#endif
+  int desktopWidth = screenGeometry.width();
+  int desktopHeight = screenGeometry.height();
   int maxWidth = desktopWidth - (frameSize().width() - width());
   int maxHeight = desktopHeight - (frameSize().height() - height());
 
   setMaximumSize(maxWidth, maxHeight);
 
   if (frameSize().height() >= desktopHeight) {
-    QPoint point = QPoint(QApplication::desktop()->availableGeometry().topLeft().x(),
-                          QApplication::desktop()->availableGeometry().topLeft().y());
+    QPoint point = QPoint(screenGeometry.topLeft().x(),
+                          screenGeometry.topLeft().y());
     move(point);
   }
 
@@ -1102,11 +1107,16 @@ void OptionsDialog::createNotifierWidget()
   showNotifyOn_->setChecked(false);
 
   screenNotify_ = new QComboBox();
-  screenNotify_->addItem("-1");
-  for (int i = 0; i < QApplication::desktop()->screenCount(); ++i) {
+
+#ifdef HAVE_QT5
+  const int screenCount = QApplication::screens().size();
+#else
+  const int screenCount = QApplication::desktop()->screenCount();
+#endif
+  for (int i = 0; i < screenCount; ++i) {
     screenNotify_->addItem(QString::number(i));
   }
-  screenNotify_->setCurrentIndex(1);
+  screenNotify_->setCurrentIndex(0);
 
   positionNotify_ = new QComboBox();
   QStringList positionList;
@@ -2411,9 +2421,9 @@ void OptionsDialog::loadLabels()
     QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(strTreeItem);
     treeWidgetItem->setIcon(1, QIcon(imageLabel));
     if (!colorText.isEmpty())
-      treeWidgetItem->setTextColor(1, QColor(colorText));
+      treeWidgetItem->setForeground(1, QColor(colorText));
     if (!colorBg.isEmpty())
-      treeWidgetItem->setBackgroundColor(1, QColor(colorBg));
+      treeWidgetItem->setBackground(1, QColor(colorBg));
     labelsTree_->addTopLevelItem(treeWidgetItem);
   }
 }
@@ -2446,9 +2456,9 @@ void OptionsDialog::newLabel()
   QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(itemStr);
   treeWidgetItem->setIcon(1, labelDialog->icon_);
   if (!colorText.isEmpty())
-    treeWidgetItem->setTextColor(1, QColor(colorText));
+    treeWidgetItem->setForeground(1, QColor(colorText));
   if (!colorBg.isEmpty())
-    treeWidgetItem->setBackgroundColor(1, QColor(colorBg));
+    treeWidgetItem->setBackground(1, QColor(colorBg));
   labelsTree_->addTopLevelItem(treeWidgetItem);
   addIdLabelList(treeWidgetItem->text(0));
 
@@ -2502,9 +2512,9 @@ void OptionsDialog::editLabel()
   treeWidgetItem->setText(3, colorBg);
   treeWidgetItem->setIcon(1, labelDialog->icon_);
   if (!colorText.isEmpty())
-    treeWidgetItem->setTextColor(1, QColor(colorText));
+    treeWidgetItem->setForeground(1, QColor(colorText));
   if (!colorBg.isEmpty())
-    treeWidgetItem->setBackgroundColor(1, QColor(colorBg));
+    treeWidgetItem->setBackground(1, QColor(colorBg));
   addIdLabelList(idLabelStr);
 
   QList<QStandardItem *> treeItems;
@@ -2822,7 +2832,7 @@ void OptionsDialog::applyPass()
   db_.transaction();
   QSqlQuery q;
   for (int i = 0; i < passTree_->topLevelItemCount(); i++) {
-    if (passTree_->isItemHidden(passTree_->topLevelItem(i))) {
+    if (passTree_->topLevelItem(i)->isHidden()) {
       QString id = passTree_->topLevelItem(i)->text(0);
       q.exec(QString("DELETE FROM passwords WHERE id=='%1'").arg(id));
     }

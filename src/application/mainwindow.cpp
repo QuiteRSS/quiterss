@@ -709,7 +709,7 @@ void MainWindow::createCentralWidget()
         QString("QSplitter::handle {background: qlineargradient("
                 "x1: 0, y1: 0, x2: 0, y2: 1,"
                 "stop: 0 %1, stop: 0.07 %2);}").
-        arg(feedsPanel_->palette().background().color().name()).
+        arg(feedsPanel_->palette().window().color().name()).
         arg(qApp->palette().color(QPalette::Dark).name()));
   mainSplitter_->setChildrenCollapsible(false);
   mainSplitter_->addWidget(feedsWidget_);
@@ -3488,7 +3488,7 @@ void MainWindow::showOptionDlg(int index)
   optionsDialog_->soundNotifyBox_->setChecked(soundNewNews_);
   optionsDialog_->editSoundNotifer_->setText(soundNotifyPath_);
   optionsDialog_->showNotifyOn_->setChecked(showNotifyOn_);
-  optionsDialog_->screenNotify_->setCurrentIndex(screenNotify_+1);
+  optionsDialog_->screenNotify_->setCurrentIndex(screenNotify_);
   optionsDialog_->positionNotify_->setCurrentIndex(positionNotify_);
   optionsDialog_->transparencyNotify_->setValue(transparencyNotify_);
   optionsDialog_->countShowNewsNotify_->setValue(countShowNewsNotify_);
@@ -3925,7 +3925,7 @@ void MainWindow::showOptionDlg(int index)
   soundNewNews_ = optionsDialog_->soundNotifyBox_->isChecked();
   soundNotifyPath_ = optionsDialog_->editSoundNotifer_->text();
   showNotifyOn_ = optionsDialog_->showNotifyOn_->isChecked();
-  screenNotify_ = optionsDialog_->screenNotify_->currentIndex()-1;
+  screenNotify_ = optionsDialog_->screenNotify_->currentIndex();
   positionNotify_ = optionsDialog_->positionNotify_->currentIndex();
   transparencyNotify_ = optionsDialog_->transparencyNotify_->value();
   countShowNewsNotify_ = optionsDialog_->countShowNewsNotify_->value();
@@ -5832,9 +5832,9 @@ void MainWindow::slotRefreshInfoTray(int newCount, int unreadCount)
       QRect rectangle(0, 0, 128, 128);
       QLinearGradient gradient(rectangle.bottomLeft(), rectangle.topLeft());
       QColor color("#117C04");
-      gradient.setColorAt(0, color.light());
+      gradient.setColorAt(0, color.lighter());
       gradient.setColorAt(0.5, color);
-      gradient.setColorAt(1, color.light());
+      gradient.setColorAt(1, color.lighter());
       trayPainter.setBrush(gradient);
       trayPainter.drawRoundedRect(rectangle, 20, 20);
       trayPainter.setFont(font);
@@ -6295,7 +6295,7 @@ void MainWindow::setStyleApp(QAction *pAct)
         QString("QSplitter::handle {background: qlineargradient("
                 "x1: 0, y1: 0, x2: 0, y2: 1,"
                 "stop: 0 %1, stop: 0.07 %2);}").
-        arg(feedsPanel_->palette().background().color().name()).
+        arg(feedsPanel_->palette().window().color().name()).
         arg(qApp->palette().color(QPalette::Dark).name()));
 
   mainApp->reloadUserStyleBrowser();

@@ -127,7 +127,7 @@ NewsTabWidget::NewsTabWidget(QWidget *parent, TabType type, int feedId, int feed
             QString("QSplitter::handle {background: qlineargradient("
                     "x1: 0, y1: 0, x2: 0, y2: 1,"
                     "stop: 0 %1, stop: 0.07 %2);}").
-            arg(newsPanelWidget_->palette().background().color().name()).
+            arg(newsPanelWidget_->palette().window().color().name()).
             arg(qApp->palette().color(QPalette::Dark).name()));
     } else {
       newsTabWidgetSplitter_->setOrientation(Qt::Vertical);
@@ -2111,7 +2111,7 @@ void NewsTabWidget::setBrowserPosition()
           QString("QSplitter::handle {background: qlineargradient("
                   "x1: 0, y1: 0, x2: 0, y2: 1,"
                   "stop: 0 %1, stop: 0.07 %2);}").
-          arg(newsPanelWidget_->palette().background().color().name()).
+          arg(newsPanelWidget_->palette().window().color().name()).
           arg(qApp->palette().color(QPalette::Dark).name()));
     break;
   default:

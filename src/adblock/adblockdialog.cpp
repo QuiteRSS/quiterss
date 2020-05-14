@@ -59,7 +59,11 @@ AdBlockDialog::AdBlockDialog(QWidget* parent)
   setAttribute(Qt::WA_DeleteOnClose);
   setupUi(this);
 
+#ifdef HAVE_QT5
+  const QRect screen = QGuiApplication::primaryScreen()->geometry();
+#else
   const QRect screen = QApplication::desktop()->screenGeometry();
+#endif
   const QRect size = geometry();
   move((screen.width() - size.width()) / 2, (screen.height() - size.height()) / 2);
   tabWidget->setDocumentMode(false);
