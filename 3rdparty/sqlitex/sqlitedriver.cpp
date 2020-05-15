@@ -80,9 +80,16 @@ static QVariant::Type qGetColumnType(const QString &tpName)
 static QSqlError qMakeError(sqlite3 *access, const QString &descr, QSqlError::ErrorType type,
                             int errorCode = -1)
 {
+#ifdef HAVE_QT5
   return QSqlError(descr,
                    QString(reinterpret_cast<const QChar *>(sqlite3_errmsg16(access))),
                    type, QString::number(errorCode));
+#else
+  return QSqlError(descr,
+                   QString(reinterpret_cast<const QChar *>(sqlite3_errmsg16(access))),
+                   type, errorCode);
+#endif
+
 }
 
 #if defined(SQLITEDRIVER_DEBUG)
