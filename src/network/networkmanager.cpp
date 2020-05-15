@@ -27,6 +27,7 @@
 #include "cabundleupdater.h"
 
 #include <QNetworkReply>
+#include <QSslConfiguration>
 #include <QSslSocket>
 #include <QDebug>
 
