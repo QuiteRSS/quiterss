@@ -12,6 +12,10 @@ Build depends:
     QtSql compiled with sqlite support
     QtWebKit
     QtXml
+    
+ Linux Mint 20 (others?):
+ sudo apt install qt5-default qttools5-dev-tools qttools5-dev
+ sudo apt-get install qtmultimedia5-dev libqt5multimediawidgets5 libqt5multimedia5-plugins libqt5multimedia5
 
 
 Instructions for Linux and other UNIX-like systems:
