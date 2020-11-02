@@ -78,22 +78,22 @@ void ItemCondition::currentIndexChanged(const QString &str)
   comboBox3_->setVisible(false);
   lineEdit_->setVisible(true);
   if (str == tr("Title")) {
-    itemList << tr("contains") << tr("doesn't contains")
+    itemList << tr("contains") << tr("doesn't contain")
              << tr("is") << tr("isn't")
              << tr("begins with") << tr("ends with")
              << tr("Regular expressions");
     comboBox2_->addItems(itemList);
   } else if (str == tr("Description")) {
-    itemList << tr("contains") << tr("doesn't contains")
+    itemList << tr("contains") << tr("doesn't contain")
              << tr("Regular expressions");
     comboBox2_->addItems(itemList);
   } else if (str == tr("Author")) {
-    itemList << tr("contains") << tr("doesn't contains")
+    itemList << tr("contains") << tr("doesn't contain")
              << tr("is") << tr("isn't")
              << tr("Regular expressions");
     comboBox2_->addItems(itemList);
   } else if (str == tr("Category")) {
-    itemList << tr("contains") << tr("doesn't contains")
+    itemList << tr("contains") << tr("doesn't contain")
              << tr("is") << tr("isn't")
              << tr("begins with") << tr("ends with")
              << tr("Regular expressions");
@@ -104,13 +104,13 @@ void ItemCondition::currentIndexChanged(const QString &str)
     comboBox3_->setVisible(true);
     lineEdit_->setVisible(false);
   } else if (str == tr("Link")) {
-    itemList << tr("contains") << tr("doesn't contains")
+    itemList << tr("contains") << tr("doesn't contain")
              << tr("is") << tr("isn't")
              << tr("begins with") << tr("ends with")
              << tr("Regular expressions");
     comboBox2_->addItems(itemList);
   } else if (str == tr("News")) {
-    itemList << tr("contains") << tr("doesn't contains")
+    itemList << tr("contains") << tr("doesn't contain")
              << tr("Regular expressions");
     comboBox2_->addItems(itemList);
   } /*else if (str == "Published") {
