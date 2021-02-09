@@ -14,8 +14,9 @@ Build depends:
     QtXml
     
  Linux Mint 20 (others?):
+
  sudo apt install qt5-default qttools5-dev-tools qttools5-dev libsqlite3-dev
- sudo apt-get install qtmultimedia5-dev libqt5multimediawidgets5 libqt5multimedia5-plugins libqt5multimedia5
+ sudo apt-get install qtmultimedia5-dev libqt5multimediawidgets5 libqt5multimedia5-plugins libqt5multimedia5 libqt5webkit5-dev
 
 
 Instructions for Linux and other UNIX-like systems:
