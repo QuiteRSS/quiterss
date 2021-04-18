@@ -287,6 +287,9 @@ unix:!mac {
 
   desktop.files = quiterss.desktop
   desktop.path =  $$quote($$PREFIX/share/applications)
+  
+  appdata.files = quiterss.appdata.xml
+  appdata.path =  $$quote($$PREFIX/share/metainfo)
 
   target1.files = images/48x48/quiterss.png
   target1.path =  $$quote($$PREFIX/share/pixmaps)
@@ -314,7 +317,7 @@ unix:!mac {
   style.files = style
   style.path = $$quote($$DATA_DIR)
 
-  INSTALLS += target desktop target1
+  INSTALLS += target desktop appdata target1
   INSTALLS += icon_16 icon_32 icon_48 icon_64 icon_128 icon_256
   INSTALLS += translations sound style
 }
