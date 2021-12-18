@@ -170,7 +170,7 @@
 </phrase>
 <phrase>
     <source>Import: can&apos;t open a file</source>
-    <target>Импортирование: не может открыть файл</target>
+    <target>Импортирование: не удалось открыть файл</target>
 </phrase>
 <phrase>
     <source>Feeds</source>
@@ -711,7 +711,7 @@
 </phrase>
 <phrase>
     <source>Export: can&apos;t open a file</source>
-    <target>Экспортирование: не может открыть файл</target>
+    <target>Экспортирование: не удалось открыть файл</target>
 </phrase>
 <phrase>
     <source>&amp;Export feeds...</source>
@@ -1155,7 +1155,7 @@
 </phrase>
 <phrase>
     <source>Left</source>
-    <target>слева</target>
+    <target>Слева</target>
 </phrase>
 <phrase>
     <source>Left</source>
@@ -1579,7 +1579,7 @@
 </phrase>
 <phrase>
     <source>Load icon: can&apos;t open a file</source>
-    <target>Загрузка иконки: не может открыть файл</target>
+    <target>Загрузка иконки: не удалось открыть файл</target>
 </phrase>
 <phrase>
     <source>Label</source>
@@ -1751,7 +1751,7 @@
 </phrase>
 <phrase>
     <source>Save As: can&apos;t open a file</source>
-    <target>Сохранить как: не может открыть файл</target>
+    <target>Сохранить как: не удалось открыть файл</target>
 </phrase>
 <phrase>
     <source>HTML-Files (*.html)</source>
@@ -1975,7 +1975,7 @@
 </phrase>
 <phrase>
     <source>Copy Link News</source>
-    <target>Копировать адрес ссылки новости</target>
+    <target>Копировать ссылку на новость</target>
 </phrase>
 <phrase>
     <source>Close Other Tabs</source>
@@ -2007,7 +2007,7 @@
 </phrase>
 <phrase>
     <source>Cannot start external program</source>
-    <target>Не удаётся запустить внешнюю программу</target>
+    <target>Не удалось запустить внешнюю программу</target>
 </phrase>
 <phrase>
     <source>Remaining time unavailable</source>
@@ -2255,7 +2255,7 @@
 </phrase>
 <phrase>
     <source>Connection refused to host %1</source>
-    <target>В соединении с узлом %1 отказано</target>
+    <target>Узел %1 отклонил соединение</target>
 </phrase>
 <phrase>
     <source>Connection timed out to host %1</source>
@@ -2354,12 +2354,12 @@
 <phrase>
     <source>Totally remove records that had marked &apos;deleted&apos; from DB.
 Ancient news could reappear</source>
-    <target>Полностью удаляет записи, которые отмечены как &quot;удалённые&quot; из БД.
+    <target>Полностью удаляет из БД записи, отмеченные в ней как &quot;удалённые&quot;.
 Возможно, удалённые новости загрузятся снова</target>
 </phrase>
 <phrase>
     <source>Canceled!</source>
-    <target>Отменен!</target>
+    <target>Отменён!</target>
 </phrase>
 <phrase>
     <source>Image files</source>
@@ -2367,7 +2367,7 @@ Ancient news could reappear</source>
 </phrase>
 <phrase>
     <source>Load Favicon</source>
-    <target>Загрузить favicon</target>
+    <target>Загрузить иконку сайта</target>
 </phrase>
 <phrase>
     <source>Load Title</source>
@@ -2693,7 +2693,7 @@ Save?</source>
 </phrase>
 <phrase>
     <source>Learn about writing rules...</source>
-    <target>Информация о написании правил...</target>
+    <target>Как писать правила...</target>
 </phrase>
 <phrase>
     <source>EasyList</source>
