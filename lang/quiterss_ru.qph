@@ -422,7 +422,7 @@
 </phrase>
 <phrase>
     <source>* - changes will take effect after restart</source>
-    <target>* - изменения вступят в силу после перезапуска</target>
+    <target>* &ndash; изменения вступят в силу после перезапуска</target>
 </phrase>
 <phrase>
     <source>Russian (%1)</source>
@@ -1503,7 +1503,7 @@
 </phrase>
 <phrase>
     <source>QuiteRSS is a open-source cross-platform RSS/Atom news reader</source>
-    <target>QuiteRSS - кросс-платформенная читалка RSS/Atom новостей с открытым исходным кодом</target>
+    <target>QuiteRSS &ndash; кросс-платформенная читалка RSS/Atom новостей с открытым исходным кодом</target>
 </phrase>
 <phrase>
     <source>Unread: %1</source>
@@ -1927,7 +1927,7 @@
 </phrase>
 <phrase>
     <source>Click To Flash is a plugin which blocks auto loading of Flash content at page. You can always load it manually by clicking on the Flash play icon.</source>
-    <target>Click To Flash - плагин, блокирующий автоматическую загрузку Flash содержимого. Вы всегда можете просмотреть заблокированное содержимое, кликнув по значку &apos;Play&apos;.</target>
+    <target>Click To Flash &ndash; плагин, блокирующий автоматическую загрузку Flash содержимого. Вы всегда можете просмотреть заблокированное содержимое, кликнув по значку &apos;Play&apos;.</target>
 </phrase>
 <phrase>
     <source>Use Click to Flash</source>
@@ -2019,7 +2019,7 @@
 </phrase>
 <phrase>
     <source>Done - %1</source>
-    <target>Готово - %1</target>
+    <target>Готово &ndash; %1</target>
 </phrase>
 <phrase>
     <source>few seconds</source>
@@ -2035,15 +2035,15 @@
 </phrase>
 <phrase>
     <source>%2 - unknown size (%3)</source>
-    <target>%2 - неизвестный размер (%3)</target>
+    <target>%2 &ndash; неизвестный размер (%3)</target>
 </phrase>
 <phrase>
     <source>Remaining %1 - %2 of %3 (%4)</source>
-    <target>Осталось  %1 - %2 из %3 (%4)</target>
+    <target>Осталось  %1 &ndash; %2 из %3 (%4)</target>
 </phrase>
 <phrase>
     <source>Cancelled - %1</source>
-    <target>Отменено - %1</target>
+    <target>Отменено &ndash; %1</target>
 </phrase>
 <phrase>
     <source>Delete file</source>
