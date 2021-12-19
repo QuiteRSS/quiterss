@@ -1719,7 +1719,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4905"/>
         <source>Show Not Working Feeds</source>
-        <translation>Показать не рабочие ленты</translation>
+        <translation>Показать нерабочие ленты</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="4907"/>
@@ -4050,7 +4050,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1800"/>
         <source>Fantasy</source>
-        <translation>Моноширинный</translation>
+        <translation>Декоративный</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1815"/>
@@ -4060,7 +4060,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1817"/>
         <source>Fixed font size</source>
-        <translation>Фиксированный размер шрифта</translation>
+        <translation>Размер фиксированного шрифта</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1819"/>
