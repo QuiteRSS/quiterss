@@ -2208,7 +2208,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5018"/>
         <source>Show Indentation</source>
-        <translation>Paragrafbaşını Göster</translation>
+        <translation>Paragraf başını göster</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5020"/>
@@ -2332,7 +2332,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5066"/>
         <source>Show labels menu</source>
-        <translation>Etiket menusunu göster</translation>
+        <translation>Etiket menüsünü göster</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5068"/>
@@ -2387,7 +2387,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5080"/>
         <source>Increase news list/decrease browser</source>
-        <translation>Haber listesini artır/Tarayıcıyı azalt</translation>
+        <translation>Haber listesini artır/tarayıcıyı azalt</translation>
     </message>
     <message>
         <location filename="../src/application/mainwindow.cpp" line="5082"/>
