@@ -593,7 +593,7 @@ void MainApplication::reloadUserStyleBrowser()
   Settings settings;
   settings.beginGroup("Settings");
   QString userStyleBrowser = settings.value("userStyleBrowser", QString()).toString();
-  QWebSettings::globalSettings()->setUserStyleSheetUrl(userStyleSheet(userStyleBrowser));
+//  QWebSettings::globalSettings()->setUserStyleSheetUrl(userStyleSheet(userStyleBrowser));
   settings.endGroup();
 }
 

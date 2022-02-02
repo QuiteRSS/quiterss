@@ -94,7 +94,7 @@ void UpdateAppDialog::disconnectObjects()
   networkManagerProxy_->disconnectObjects();
 
   if (page_ != NULL) {
-    QWebSettings::clearMemoryCaches();
+//    QWebSettings::clearMemoryCaches();
     page_->disconnect(this);
     delete page_;
   }

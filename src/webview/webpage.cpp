@@ -19,7 +19,7 @@
 
 #include "mainapplication.h"
 #include "networkmanagerproxy.h"
-#include "webpluginfactory.h"
+//#include "webpluginfactory.h"
 #include "adblockicon.h"
 #include "adblockmanager.h"
 
@@ -30,17 +30,18 @@
 QList<WebPage*> WebPage::livingPages_;
 
 WebPage::WebPage(QObject *parent)
-  : QWebPage(parent)
+  : QWebEnginePage(parent)
   , loadProgress_(-1)
 {
   networkManagerProxy_ = new NetworkManagerProxy(this, this);
-  setNetworkAccessManager(networkManagerProxy_);
+//  setNetworkAccessManager(networkManagerProxy_);
 
-  setPluginFactory(new WebPluginFactory(this));
-  setForwardUnsupportedContent(true);
+//  setPluginFactory(new WebPluginFactory(this));
+//  setForwardUnsupportedContent(true);
 
-  action(QWebPage::OpenFrameInNewWindow)->setVisible(false);
-  action(QWebPage::OpenImageInNewWindow)->setVisible(false);
+//  action(QWebEnginePage::OpenFrameInNewWindow)->setVisible(false);
+//  action(QWebEnginePage::OpenImageInNewWindow)->setVisible(false);
+  action(QWebEnginePage::OpenLinkInNewWindow)->setVisible(false);
 
   connect(this, SIGNAL(loadProgress(int)), this, SLOT(progress(int)));
   connect(this, SIGNAL(loadFinished(bool)), this, SLOT(finished()));
@@ -52,8 +53,8 @@ WebPage::WebPage(QObject *parent)
   connect(this, SIGNAL(printRequested(QWebFrame*)),
           mainApp->mainWindow(), SLOT(slotPrint(QWebFrame*)));
 #if QT_VERSION >= 0x050905
-  connect(this, SIGNAL(fullScreenRequested(QWebFullScreenRequest)),
-          this, SLOT(slotFullScreenRequested(QWebFullScreenRequest)));
+//  connect(this, &QWebEnginePage::fullScreenRequested,
+//          this, &WebPage::slotFullScreenRequested);
 #endif
   livingPages_.append(this);
 }
@@ -71,17 +72,18 @@ void WebPage::disconnectObjects()
   networkManagerProxy_->disconnectObjects();
 }
 
-bool WebPage::acceptNavigationRequest(QWebFrame *frame,
+bool WebPage::acceptNavigationRequest(QWebEnginePage *frame,
                                       const QNetworkRequest &request,
                                       NavigationType type)
 {
   lastRequestType_ = type;
   lastRequestUrl_ = request.url();
 
-  return QWebPage::acceptNavigationRequest(frame,request,type);
+//  return QWebPage::acceptNavigationRequest(frame,request,type);
+  return QWebEnginePage::acceptNavigationRequest(request.url(), type, true);
 }
 
-QWebPage *WebPage::createWindow(WebWindowType type)
+QWebEnginePage *WebPage::createWindow(WebWindowType type)
 {
   Q_UNUSED(type)
 
@@ -166,15 +168,15 @@ void WebPage::handleUnsupportedContent(QNetworkReply* reply)
     if (reply->header(QNetworkRequest::ContentTypeHeader).isValid()) {
       QString requestUrl = reply->request().url().toString(QUrl::RemoveFragment | QUrl::RemoveQuery);
       if (requestUrl.endsWith(QLatin1String(".swf"))) {
-        const QWebElement &docElement = mainFrame()->documentElement();
-        const QWebElement &object = docElement.findFirst(QString("object[src=\"%1\"]").arg(requestUrl));
-        const QWebElement &embed = docElement.findFirst(QString("embed[src=\"%1\"]").arg(requestUrl));
+//        const QWebElement &docElement = mainFrame()->documentElement();
+//        const QWebElement &object = docElement.findFirst(QString("object[src=\"%1\"]").arg(requestUrl));
+//        const QWebElement &embed = docElement.findFirst(QString("embed[src=\"%1\"]").arg(requestUrl));
 
-        if (!object.isNull() || !embed.isNull()) {
-          qDebug() << "WebPage::UnsupportedContent" << url << "Attempt to download flash object on site!";
-          reply->deleteLater();
-          return;
-        }
+//        if (!object.isNull() || !embed.isNull()) {
+//          qDebug() << "WebPage::UnsupportedContent" << url << "Attempt to download flash object on site!";
+//          reply->deleteLater();
+//          return;
+//        }
       }
       mainApp->downloadManager()->handleUnsupportedContent(reply, mainApp->mainWindow()->askDownloadLocation_);
       return;
@@ -242,7 +244,7 @@ void WebPage::cleanBlockedObjects()
     return;
   }
 
-  const QWebElement docElement = mainFrame()->documentElement();
+//  const QWebElement docElement = mainFrame()->documentElement();
 
   foreach (const AdBlockedEntry &entry, adBlockedEntries_) {
     const QString urlString = entry.url.toString();
@@ -262,40 +264,40 @@ void WebPage::cleanBlockedObjects()
     }
 
     QString selector("img[src$=\"%1\"], iframe[src$=\"%1\"],embed[src$=\"%1\"]");
-    QWebElementCollection elements = docElement.findAll(selector.arg(urlEnd));
+//    QWebElementCollection elements = docElement.findAll(selector.arg(urlEnd));
 
-    foreach (QWebElement element, elements) {
-      QString src = element.attribute("src");
-      src.remove(QLatin1String("../"));
+//    foreach (QWebElement element, elements) {
+//      QString src = element.attribute("src");
+//      src.remove(QLatin1String("../"));
 
-      if (urlString.contains(src)) {
-        element.setStyleProperty("display", "none");
-      }
-    }
+//      if (urlString.contains(src)) {
+//        element.setStyleProperty("display", "none");
+//      }
+//    }
   }
 
   // Apply domain-specific element hiding rules
-  QString elementHiding = manager->elementHidingRulesForDomain(mainFrame()->url());
-  if (elementHiding.isEmpty()) {
-    return;
-  }
+//  QString elementHiding = manager->elementHidingRulesForDomain(mainFrame()->url());
+//  if (elementHiding.isEmpty()) {
+//    return;
+//  }
 
-  elementHiding.append(QLatin1String("\n</style>"));
+//  elementHiding.append(QLatin1String("\n</style>"));
 
-  QWebElement bodyElement = docElement.findFirst("body");
-  bodyElement.appendInside("<style type=\"text/css\">\n/* AdBlock */\n" + elementHiding);
+//  QWebElement bodyElement = docElement.findFirst("body");
+//  bodyElement.appendInside("<style type=\"text/css\">\n/* AdBlock */\n" + elementHiding);
 
-  // When hiding some elements, scroll position of page will change
-  // If user loaded anchor link in background tab (and didn't show it yet), fix the scroll position
-  if (view() && !view()->isVisible() && !mainFrame()->url().fragment().isEmpty()) {
-    mainFrame()->scrollToAnchor(mainFrame()->url().fragment());
-  }
+//  // When hiding some elements, scroll position of page will change
+//  // If user loaded anchor link in background tab (and didn't show it yet), fix the scroll position
+//  if (view() && !view()->isVisible() && !mainFrame()->url().fragment().isEmpty()) {
+//    mainFrame()->scrollToAnchor(mainFrame()->url().fragment());
+//  }
 }
 
 #if QT_VERSION >= 0x050905
-void WebPage::slotFullScreenRequested(QWebFullScreenRequest fullScreenRequest)
-{
-  fullScreenRequest.accept();
-  mainApp->mainWindow()->webViewFullScreen(fullScreenRequest.toggleOn());
-}
+//void WebPage::slotFullScreenRequested(QWebEngineFullScreenRequest fullScreenRequest)
+//{
+//  fullScreenRequest.accept();
+//  mainApp->mainWindow()->webViewFullScreen(fullScreenRequest.toggleOn());
+//}
 #endif

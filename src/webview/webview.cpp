@@ -25,7 +25,7 @@
 #include <QMimeData>
 
 WebView::WebView(QWidget *parent)
-  : QWebView(parent)
+  : QWebEngineView(parent)
   , buttonClick_(0)
   , isLoading_(false)
   , rssChecked_(false)
@@ -57,7 +57,7 @@ void WebView::disconnectObjects()
     dragStartPos_ = event->pos();
   }
 
-  QWebView::mousePressEvent(event);
+  QWebEngineView::mousePressEvent(event);
 }
 
 /*virtual*/ void WebView::mouseReleaseEvent(QMouseEvent *event)
@@ -93,7 +93,7 @@ void WebView::disconnectObjects()
     }
   }
 
-  QWebView::mouseReleaseEvent(event);
+  QWebEngineView::mouseReleaseEvent(event);
 }
 
 /*virtual*/ void WebView::wheelEvent(QWheelEvent *event)
@@ -110,42 +110,42 @@ void WebView::disconnectObjects()
     event->accept();
     return;
   }
-  QWebView::wheelEvent(event);
+  QWebEngineView::wheelEvent(event);
 }
 
 void WebView::mouseMoveEvent(QMouseEvent* event)
 {
   if (event->buttons() != Qt::LeftButton) {
-    QWebView::mouseMoveEvent(event);
+    QWebEngineView::mouseMoveEvent(event);
     return;
   }
 
-  QSize viewSize;
-  viewSize.setWidth(page()->viewportSize().width() -
-                    page()->mainFrame()->scrollBarGeometry(Qt::Vertical).width());
-  viewSize.setHeight(page()->viewportSize().height() -
-                     page()->mainFrame()->scrollBarGeometry(Qt::Horizontal).height());
-  if ((dragStartPos_.x() > viewSize.width()) || (dragStartPos_.y() > viewSize.height())) {
-    QWebView::mouseMoveEvent(event);
-    return;
-  }
+//  QSize viewSize;
+//  viewSize.setWidth(page()->viewportSize().width() -
+//                    page()->mainFrame()->scrollBarGeometry(Qt::Vertical).width());
+//  viewSize.setHeight(page()->viewportSize().height() -
+//                     page()->mainFrame()->scrollBarGeometry(Qt::Horizontal).height());
+//  if ((dragStartPos_.x() > viewSize.width()) || (dragStartPos_.y() > viewSize.height())) {
+//    QWebEngineView::mouseMoveEvent(event);
+//    return;
+//  }
 
-  int manhattanLength = (event->pos() - dragStartPos_).manhattanLength();
-  if (manhattanLength <= QApplication::startDragDistance()) {
-    QWebView::mouseMoveEvent(event);
-    return;
-  }
+//  int manhattanLength = (event->pos() - dragStartPos_).manhattanLength();
+//  if (manhattanLength <= QApplication::startDragDistance()) {
+//    QWebEngineView::mouseMoveEvent(event);
+//    return;
+//  }
 
-  const QWebHitTestResult &hitTest = page()->mainFrame()->hitTestContent(dragStartPos_);
-  if (hitTest.linkUrl().isEmpty()) {
-    QWebView::mouseMoveEvent(event);
-    return;
-  }
+//  const QWebHitTestResult &hitTest = page()->mainFrame()->hitTestContent(dragStartPos_);
+//  if (hitTest.linkUrl().isEmpty()) {
+//    QWebView::mouseMoveEvent(event);
+//    return;
+//  }
 
   QDrag *drag = new QDrag(this);
   QMimeData *mime = new QMimeData;
-  mime->setUrls(QList<QUrl>() << hitTest.linkUrl());
-  mime->setText(hitTest.linkUrl().toString());
+//  mime->setUrls(QList<QUrl>() << hitTest.linkUrl());
+//  mime->setText(hitTest.linkUrl().toString());
 
   drag->setMimeData(mime);
   drag->exec();
@@ -178,9 +178,9 @@ void WebView::checkRss()
   }
 
   rssChecked_ = true;
-  QWebFrame* frame = page()->mainFrame();
-  const QWebElementCollection links = frame->findAllElements("link[type=\"application/rss+xml\"]");
+//  QWebFrame* frame = page()->mainFrame();
+//  const QWebElementCollection links = frame->findAllElements("link[type=\"application/rss+xml\"]");
 
-  hasRss_ = links.count() != 0;
-  emit rssChanged(hasRss_);
+//  hasRss_ = links.count() != 0;
+//  emit rssChanged(hasRss_);
 }

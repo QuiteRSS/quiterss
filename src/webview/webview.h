@@ -18,11 +18,11 @@
 #ifndef WEBVIEW_H
 #define WEBVIEW_H
 
-#include <QWebView>
-#include <QWebHistory>
-#include <QWebPage>
-#include <QWebFrame>
-#include <QWebElement>
+#include <QWebEngineView>
+#include <QWebEngineHistory>
+#include <QWebEnginePage>
+//#include <QWebFrame>
+//#include <QWebEngineElement>
 
 #define LEFT_BUTTON 0
 #define MIDDLE_BUTTON 1
@@ -31,7 +31,7 @@
 #define LEFT_BUTTON_SHIFT 4
 #define LEFT_BUTTON_ALT 5
 
-class WebView : public QWebView
+class WebView : public QWebEngineView
 {
   Q_OBJECT
 public:

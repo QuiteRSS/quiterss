@@ -19,8 +19,7 @@
 #define UPDATEAPPDIALOG_H
 
 #include <QNetworkReply>
-#include <QWebPage>
-#include <QWebFrame>
+#include <QWebEnginePage>
 
 #include "dialog.h"
 #include "networkmanagerproxy.h"
@@ -48,7 +47,7 @@ private:
   QString lang_;
   bool showDialog_;
 
-  QWebPage *page_;
+  QWebEnginePage *page_;
   NetworkManagerProxy *networkManagerProxy_;
   QNetworkReply *reply_;
   QNetworkReply *historyReply_;

@@ -61,7 +61,7 @@
 
 #include <QUrl>
 #include <QWidget>
-#include <QWebElement>
+//#include <QWebElement>
 
 class QToolButton;
 class QHBoxLayout;

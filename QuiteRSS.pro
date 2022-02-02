@@ -32,7 +32,7 @@ exists(.git) {
 }
 
 isEqual(QT_MAJOR_VERSION, 5) {
-  QT += widgets webkitwidgets network xml printsupport sql multimedia
+  QT += widgets webenginewidgets network xml printsupport sql multimedia
   DEFINES += HAVE_QT5
   equals(WEBKIT_ALPHA, true) {
       DEFINES += WEBKIT_ALPHA
@@ -73,8 +73,8 @@ HEADERS += \
     src/labeldialog.h \
     src/faviconobject.h \
     src/customizetoolbardialog.h \
-    src/plugins/webpluginfactory.h \
-    src/plugins/clicktoflash.h \
+#    src/plugins/webpluginfactory.h \
+#    src/plugins/clicktoflash.h \
     src/downloads/downloadmanager.h \
     src/downloads/downloaditem.h \
     src/tabbar.h \
@@ -142,8 +142,8 @@ SOURCES += \
     src/labeldialog.cpp \
     src/faviconobject.cpp \
     src/customizetoolbardialog.cpp \
-    src/plugins/webpluginfactory.cpp \
-    src/plugins/clicktoflash.cpp \
+#    src/plugins/webpluginfactory.cpp \
+#    src/plugins/clicktoflash.cpp \
     src/downloads/downloadmanager.cpp \
     src/downloads/downloaditem.cpp \
     src/tabbar.cpp \

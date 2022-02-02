@@ -128,7 +128,7 @@ void AdBlockIcon::createMenu(QMenu* menu)
   AdBlockCustomList* customList = manager->customList();
 
   WebPage* page = qobject_cast<WebPage*>(m_window->currentNewsTab->webView_->page());
-  const QUrl pageUrl = page->mainFrame()->url();
+  const QUrl pageUrl = page->url();
 
   menu->addAction(tr("Show AdBlock &Settings"), manager, SLOT(showDialog()));
   menu->addSeparator();
