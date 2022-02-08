@@ -2231,8 +2231,7 @@ void NewsTabWidget::slotFindText(const QString &text)
 {
   QString objectName = findText_->findGroup_->checkedAction()->objectName();
   if (objectName == "findInBrowserAct") {
-//    webView_->findText("", QWebPage::HighlightAllOccurrences);
-//    webView_->findText(text, QWebPage::HighlightAllOccurrences);
+    webView_->findText(text);
   } else {
     int newsId = newsModel_->dataField(newsView_->currentIndex().row(), "id").toInt();
 
@@ -2293,7 +2292,7 @@ void NewsTabWidget::slotFindText(const QString &text)
 //----------------------------------------------------------------------------
 void NewsTabWidget::slotSelectFind()
 {
-//  webView_->findText("", QWebPage::HighlightAllOccurrences);
+  webView_->findText("");
   slotFindText(findText_->text());
 }
 //----------------------------------------------------------------------------
