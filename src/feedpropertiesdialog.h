@@ -107,6 +107,7 @@ typedef struct {
     QString description; //!< Feed description
     QDateTime createdTime; //!< Time when feed created
     QDateTime lastDisplayed; //!< Last time that feed displayed
+    //QDateTime lastCheckForUpdate; //!< Time of feed last check for update
     QDateTime lastUpdate; //!< Time of feed last update
     QDateTime lastBuildDate;
     int undeleteCount; //!< Number of all news

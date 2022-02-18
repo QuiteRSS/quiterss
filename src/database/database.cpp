@@ -104,6 +104,7 @@ const QString kCreateFeedsTableQuery(
     // --- Status ---
     "status text, "                 // last update result
     "created text, "                // feed creation timestamp
+    "lastCheckForUpdate text, "     // last check for update timestamp
     "updated text, "                // last update timestamp
     "lastDisplayed text, "           // last display timestamp
     "f_Expanded integer default 1, "  // expand folder flag
