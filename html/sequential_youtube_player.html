@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Sequential Player</title>
+    <style>
+        body {
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: auto;
+            margin: 0;
+            color: white;
+            text-align: center;
+            overflow: auto;
+        }
+        #player-container {
+            margin-bottom: 20px;
+        }
+        #current-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: white;
+        }
+        #queue {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            width: auto;
+        }
+        #queue li {
+            background-color: #333;
+            padding: 10px;
+            margin-bottom: 5px;
+            cursor: pointer;
+            color: white;
+            border-radius: 5px;
+            text-align: left;
+            user-select: none;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        #queue li.current {
+            background-color: #f0f0f0;
+            color: black;
+            font-weight: bold;
+        }
+        #controls {
+            margin-top: 20px;
+        }
+        a {
+            color: white;
+            margin: 0 15px;
+            cursor: pointer;
+            text-decoration: none;
+            padding: 8px 12px;
+            border: 2px solid white;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        a:hover {
+            background-color: white;
+            color: black;
+        }
+        a.disabled {
+            color: grey;
+            cursor: not-allowed;
+            border-color: grey;
+        }
+    </style>
+    <script>
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        var videos = [%1];
+
+        var currentIndex = 0;
+        var player;
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                height: '390',
+                width: '640',
+                videoId: videos[currentIndex].id,
+                playerVars: {
+                    'autoplay': 1,
+                    'controls': 1,
+                    'rel': 0,
+                    'modestbranding': 1
+                },
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+
+            updateQueueUI();
+        }
+
+        function onPlayerReady() {
+            updateControls();
+            refocusPlayer();
+        }
+
+        function onPlayerStateChange(event) {
+            if (event.data === YT.PlayerState.ENDED) {
+                loadNextVideo();
+            }
+        }
+
+        function loadVideoAtIndex(index) {
+            currentIndex = index;
+            player.loadVideoById(videos[currentIndex].id);
+            updateControls();
+            refocusPlayer();
+            updateQueueUI();
+        }
+
+        function loadPreviousVideo() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                player.loadVideoById(videos[currentIndex].id);
+                updateControls();
+                refocusPlayer();
+                updateQueueUI();
+            }
+        }
+
+        function loadNextVideo() {
+            if (currentIndex < videos.length - 1) {
+                currentIndex++;
+                player.loadVideoById(videos[currentIndex].id);
+                updateControls();
+                refocusPlayer();
+                updateQueueUI();
+            }
+        }
+
+        function refocusPlayer() {
+            var iframe = document.getElementById('player');
+            if (iframe) {
+                iframe.focus();
+            }
+        }
+
+        function updateControls() {
+            var prevLink = document.getElementById('prev');
+            var nextLink = document.getElementById('next');
+
+            prevLink.classList.toggle('disabled', currentIndex === 0);
+            nextLink.classList.toggle('disabled', currentIndex === videos.length - 1);
+        }
+
+        function updateQueueUI() {
+            var queue = document.getElementById('queue');
+            var currentTitle = document.getElementById('current-title');
+            queue.innerHTML = '';
+            currentTitle.textContent = videos[currentIndex].title;
+
+            videos.forEach((video, index) => {
+                var listItem = document.createElement('li');
+                listItem.textContent = `${index + 1}. ${video.title}`;
+                listItem.dataset.index = index;
+
+                if (index === currentIndex) {
+                    listItem.classList.add('current');
+                }
+
+                listItem.addEventListener('click', function() {
+                    loadVideoAtIndex(index);
+                });
+
+                queue.appendChild(listItem);
+            });
+        }
+
+        document.addEventListener('keydown', function (event) {
+            const theKey = event.key.toLowerCase();
+            switch (theKey) {
+                case 'm': // Mute/unmute the video
+                    const isMuted = player.isMuted();
+                    if (isMuted) {
+                        player.unMute();
+                    } else {
+                        player.mute();
+                    }
+                    break;
+                case 'f': // Enter/exit fullscreen
+                    if (!document.fullscreenElement) {
+                        const iframe = player.getIframe();
+                        if (iframe) {
+                            iframe.requestFullscreen();
+                        }
+                    } else {
+                        document.exitFullscreen();
+                    }
+                    break;
+                case 'n': // Play next video
+                case 'enter':
+                    loadNextVideo();
+                    break;
+                case 'p': // Play previous video
+                    loadPreviousVideo();
+                    break;
+                case ' ': // Play/pause the video
+                    event.preventDefault();
+                    const playerState = player.getPlayerState();
+                    if (playerState === YT.PlayerState.PAUSED || playerState === YT.PlayerState.ENDED) {
+                        player.playVideo();
+                    } else if (playerState === YT.PlayerState.PLAYING) {
+                        player.pauseVideo();
+                    }
+                    break;
+                case 'arrowright': // Skip forward 5 seconds
+                    const currentTimeForward = player.getCurrentTime();
+                    player.seekTo(currentTimeForward + 5, true);
+                    break;
+                case 'arrowleft': // Skip backward 5 seconds
+                    const currentTimeBackward = player.getCurrentTime();
+                    player.seekTo(Math.max(0, currentTimeBackward - 5), true);
+                    break;
+            }
+        });
+    </script>
+</head>
+<body>
+    <div id="player-container">
+        <div id="current-title"></div>
+        <div id="player"></div>
+        <div id="controls">
+            <a id="prev" class="disabled" onclick="loadPreviousVideo()">Previous</a>
+            <a id="next" onclick="loadNextVideo()">Next</a>
+        </div>
+    </div>
+
+    <ul id="queue"></ul>
+
+    <script>
+      // SSE connection to keep server alive
+      const evtSource = new EventSource('/sse');
+      evtSource.onopen = function() { console.log('SSE connected'); };
+      evtSource.onerror = function(err) { console.log('SSE error:', err); };
+    </script>
+</body>
+</html>

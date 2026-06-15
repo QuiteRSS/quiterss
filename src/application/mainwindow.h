@@ -455,6 +455,7 @@ private slots:
   void slotCategoriesClicked(QTreeWidgetItem *item, int, bool createTab = false);
   void clearDeleted();
   void slotMarkReadCategory(QTreeWidgetItem *item);
+  void viewAllYoutubeVideos();
   void showNewsCategoriesTree();
   void feedsSplitterMoved(int pos, int);
 

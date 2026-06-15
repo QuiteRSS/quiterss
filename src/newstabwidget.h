@@ -38,6 +38,7 @@
 #include "webview.h"
 
 class MainWindow;
+class YoutubeServer;
 
 #define TOP_POSITION    0
 #define BOTTOM_POSITION 1
@@ -77,6 +78,7 @@ public:
   void setBrowserPosition();
   void markNewsRead();
   void markAllNewsRead();
+  void viewAllYoutubeVideos();
   void markNewsStar();
   void setLabelNews(int labelId);
   void deleteNews();
@@ -234,6 +236,7 @@ private:
   QString audioPlayerHtml_;
   QString videoPlayerHtml_;
 
+  class YoutubeServer *youtubeServer_;
 };
 
 #endif // NEWSTABWIDGET_H

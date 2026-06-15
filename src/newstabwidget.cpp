@@ -21,6 +21,7 @@
 #include "adblockicon.h"
 #include "settings.h"
 #include "webpage.h"
+#include "youtubeserver.h"
 
 #if defined(Q_OS_WIN)
 #include <qt_windows.h>
@@ -34,6 +35,7 @@ NewsTabWidget::NewsTabWidget(QWidget *parent, TabType type, int feedId, int feed
   , feedParId_(feedParId)
   , currentNewsIdOld(-1)
   , autoLoadImages_(true)
+  , youtubeServer_(nullptr)
 {
   mainWindow_ = mainApp->mainWindow();
   db_ = QSqlDatabase::database();
@@ -143,6 +145,11 @@ NewsTabWidget::NewsTabWidget(QWidget *parent, TabType type, int feedId, int feed
 
 NewsTabWidget::~NewsTabWidget()
 {
+  if (youtubeServer_) {
+    youtubeServer_->stop();
+    delete youtubeServer_;
+    youtubeServer_ = nullptr;
+  }
   if (type_ == TabTypeDownloads) {
     mainApp->downloadManager()->hide();
     mainApp->downloadManager()->setParent(mainWindow_);
@@ -1034,6 +1041,76 @@ void NewsTabWidget::markAllNewsRead()
     mainWindow_->slotUpdateStatus(feedId.toInt());
   }
   mainWindow_->recountCategoryCounts();
+}
+
+void NewsTabWidget::viewAllYoutubeVideos()
+{
+  if (type_ != TabTypeUnread) return;
+  int cnt = newsModel_->rowCount();
+  if (cnt == 0) return;
+  struct YoutubeVideoData
+  {
+      QString VideoTitle;
+      QString VideoId;
+  };
+  QList<YoutubeVideoData> allYoutubeVideos;
+  for (int i = cnt-1; i > -1; --i) {
+      bool read = (newsModel_->dataField(i, "read").toInt() > 0);
+      if (read) continue; //they might still be in the Unread category but just recently read moments ago
+      QUrl htmlUrl = QUrl::fromEncoded(getLinkNews(i).toUtf8());
+      QString host = htmlUrl.host();
+      if (host == "youtube.com" || host == "www.youtube.com") {
+          QUrlQuery query(htmlUrl);
+          QString videoId = query.queryItemValue("v");
+          if (!videoId.isEmpty()) {
+            QString videoTitle = newsModel_->dataField(i, "title").toString();
+            allYoutubeVideos.append(YoutubeVideoData{videoTitle, videoId});
+          }
+      }
+  }
+  if (allYoutubeVideos.isEmpty()) return;
+
+  // Stop existing server if running
+  if (youtubeServer_) {
+    youtubeServer_->stop();
+    delete youtubeServer_;
+    youtubeServer_ = nullptr;
+  }
+
+  // Create and start ephemeral HTTP server
+  youtubeServer_ = new YoutubeServer(this);
+  if (!youtubeServer_->start(0)) { // 0 = auto-select port
+    delete youtubeServer_;
+    youtubeServer_ = nullptr;
+    return;
+  }
+
+  QFile sequentialYoutubePlayerHtmlFile;
+  sequentialYoutubePlayerHtmlFile.setFileName(":/html/sequential_youtube_player");
+  sequentialYoutubePlayerHtmlFile.open(QFile::ReadOnly);
+  QString sequentialYoutubePlayerHtml = QString::fromUtf8(sequentialYoutubePlayerHtmlFile.readAll());
+  sequentialYoutubePlayerHtmlFile.close();
+
+  QString videoTitlesAndIdsJavascript;
+  bool first = true;
+  foreach (const YoutubeVideoData &ytVideo, allYoutubeVideos) {
+      if (!first) {
+          videoTitlesAndIdsJavascript += ",\n";
+      }
+      first = false;
+      QString jsTitle = ytVideo.VideoTitle;
+      jsTitle.replace("\"", "\\\"");
+      QString jsId = ytVideo.VideoId;
+      jsId.replace("\"", "\\\"");
+      videoTitlesAndIdsJavascript += "{ title: \"" + jsTitle + "\", id: \"" + jsId + "\" }";
+  }
+
+  sequentialYoutubePlayerHtml = sequentialYoutubePlayerHtml.arg(videoTitlesAndIdsJavascript);
+
+  youtubeServer_->setHtmlContent(sequentialYoutubePlayerHtml);
+
+  // Open the HTTP server URL in browser
+  openUrl(QUrl(youtubeServer_->serverUrl()));
 }
 
 /** @brief Mark selected news Starred

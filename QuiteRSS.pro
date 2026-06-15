@@ -64,6 +64,7 @@ HEADERS += \
     src/feedpropertiesdialog.h \
     src/addfeedwizard.h \
     src/newstabwidget.h \
+    src/youtubeserver.h \
     src/findtext.h \
     src/findfeed.h \
     src/feedsview/feedsview.h \
@@ -134,6 +135,7 @@ SOURCES += \
     src/feedpropertiesdialog.cpp \
     src/addfeedwizard.cpp \
     src/newstabwidget.cpp \
+    src/youtubeserver.cpp \
     src/findtext.cpp \
     src/findfeed.cpp \
     src/feedsview/feedsview.cpp \

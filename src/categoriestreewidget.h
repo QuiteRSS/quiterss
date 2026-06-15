@@ -57,6 +57,7 @@ signals:
   void signalMiddleClicked();
   void signalClearDeleted();
   void signalMarkRead(QTreeWidgetItem *item);
+  void signalViewAllYoutubeVideos();
 //  void pressKeyUp();
 //  void pressKeyDown();
 

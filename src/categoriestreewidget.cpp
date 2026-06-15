@@ -142,6 +142,10 @@ void CategoriesTreeWidget::showContextMenuCategory(const QPoint &pos)
         menu.addSeparator();
         menu.addAction(tr("Mark Read"), this, SLOT(slotMarkRead()));
       }
+      if (itemClicked_ == topLevelItem(UnreadItem)) {
+        menu.addSeparator();
+        menu.addAction(tr("View All Youtube Videos (Experimental)"), this, SIGNAL(signalViewAllYoutubeVideos()));
+      }
       menu.exec(viewport()->mapToGlobal(pos));
     }
   }

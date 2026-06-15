@@ -120,6 +120,7 @@
         <file alias="newspaper_description">html/newspaper_description.html</file>
         <file alias="newspaper_head">html/newspaper_head.html</file>
         <file alias="newspaper_description_rtl">html/newspaper_description_rtl.html</file>
+        <file alias="sequential_youtube_player">html/sequential_youtube_player.html</file>
     </qresource>
     <qresource prefix="/flags">
         <file alias="flag_AR">images/flags/flag_arab.png</file>
