@@ -77,30 +77,11 @@ public:
   QSpinBox *numberRepeats_;
 
   // browser
-  QRadioButton *embeddedBrowserOn_;
-  QRadioButton *externalBrowserOn_;
   QRadioButton *defaultExternalBrowserOn_;
   QRadioButton *otherExternalBrowserOn_;
   LineEdit *otherExternalBrowserEdit_;
   QPushButton *otherExternalBrowserButton_;
-  QCheckBox *autoLoadImages_;
-  QCheckBox *javaScriptEnable_;
-  QCheckBox *pluginsEnable_;
-  QSpinBox *defaultZoomPages_;
   QCheckBox *openLinkInBackground_;
-  QCheckBox *openLinkInBackgroundEmbedded_;
-  LineEdit *userStyleBrowserEdit_;
-
-  QSpinBox *maxPagesInCache_;
-  QGroupBox *diskCacheOn_;
-  QSpinBox *maxDiskCache_;
-  QLineEdit *dirDiskCacheEdit_;
-  QPushButton *dirDiskCacheButton_;
-
-  QRadioButton *saveCookies_;
-  QRadioButton *deleteCookiesOnClose_;
-  QRadioButton *blockCookies_;
-  QPushButton *clearCookies_;
 
   LineEdit *downloadLocationEdit_;
   QCheckBox *askDownloadLocation_;
@@ -116,7 +97,6 @@ public:
   QRadioButton *positionLastNews_;
   QRadioButton *positionFirstNews_;
   QRadioButton *positionUnreadNews_;
-  QCheckBox *openNewsWebViewOn_;
   QRadioButton *nottoOpenNews_;
 
   QGroupBox *markNewsReadOn_;
@@ -127,8 +107,6 @@ public:
   QCheckBox *markReadClosingTab_;
   QCheckBox *markReadMinimize_;
 
-  QCheckBox *showDescriptionNews_;
-
   QComboBox *formatDate_;
   QComboBox *formatTime_;
 
@@ -136,8 +114,6 @@ public:
   QCheckBox *simplifiedDateTime_;
 
   QComboBox *mainNewsFilter_;
-
-  LineEdit *styleSheetNewsEdit_;
 
   QCheckBox *changeBehaviorActionNUN_;
   QCheckBox *notDeleteStarred_;
@@ -240,7 +216,6 @@ private slots:
   void slotResetShortcut();
   void filterShortcutChanged(const QString &text);
   void selectionBrowser();
-  void selectionUserStyleNews();
   void selectionSoundNotifer();
   void slotPlaySoundNotifer();
   void feedsTreeNotifyItemChanged(QTreeWidgetItem* item,int column);
@@ -256,10 +231,6 @@ private slots:
   void slotDeletePass();
   void slotDeleteAllPass();
   void slotShowPass();
-  void selectionUserStyleBrowser();
-  void selectionDirDiskCache();
-  void addWhitelist();
-  void removeWhitelist();
   void selectionDownloadLocation();
 
 private:
@@ -313,10 +284,6 @@ private:
 
   // browser
   void createBrowserWidget();
-  void applyWhitelist();
-
-  QCheckBox *c2fEnabled_;
-  QTreeWidget *c2fWhitelist_;
 
   // feeds
   void createFeedsWidget();

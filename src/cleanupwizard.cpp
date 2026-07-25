@@ -322,7 +322,7 @@ void CleanUpWizard::finishCleanUp(int countDeleted)
     treeItem = feedsTree_->itemBelow(treeItem);
   }
   if (feedId != -1)
-    mainWindow->slotUpdateNews(NewsTabWidget::RefreshAll);
+    mainWindow->signalRefreshNewsView(1);
   mainWindow->slotUpdateStatus(feedId, false);
 
   mainWindow->feedsModelReload();

@@ -22,8 +22,6 @@
 #include <QSslError>
 #include <QStringList>
 
-class AdBlockManager;
-
 class NetworkManager : public QNetworkAccessManager
 {
   Q_OBJECT
@@ -55,9 +53,6 @@ private:
   QList<QSslCertificate> tempAllowedCerts_;
   bool ignoreAllWarnings_;
   QList<QSslCertificate> rejectedSslCerts_;
-
-  AdBlockManager *adblockManager_;
-
 };
 
 #endif // NETWORKMANAGER_H

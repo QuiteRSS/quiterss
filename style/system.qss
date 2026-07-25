@@ -28,28 +28,6 @@ QHeaderView::up-arrow {
 	image: url(:/images/images/sortIndicatorA.png);
 }
 
-#webViewProgress_ {
-	border: 1px solid #D5D5D5;
-	border-left: none;
-	border-right: none;
-	border-bottom: none;
-	text-align: center;
-	background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
-								stop:0 #f9f9f9,
-								stop:0.4 #f1f1f1,
-								stop:0.6 #e9e9e9,
-								stop:1 #f1f1f1);
-}
-
-#webViewProgress_::chunk {
-	background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
-								stop:0 #f1f1f1,
-								stop:0.4 #d9d9d9,
-								stop:0.6 #d1d1d1,
-								stop:1 #d9d9d9);
-	width: 10px;
-}
-
 #contentLabel_ {
 	background-color: qlineargradient(x1:0, y1:0, x2:1, y2:1,
 										stop:0 #B8B8B8,
@@ -104,23 +82,6 @@ QMainWindow::separator {
 
 #feedItemNotification {
 	border-bottom: 1px solid #c0c0c0;
-}
-
-#click2flash-frame {
-	border: 1px solid #e4e4e4;
-	background: #f4f4f4;
-}
-
-#click2flash-toolbutton {
-	background: url(:/images/images/flash.png) no-repeat;
-	background-position: center;
-	border: none;
-}
-
-#click2flash-toolbutton:hover {
-	background: url(:/images/images/flashstart.png) no-repeat;
-	background-position: center;
-	border:none;
 }
 
 #pushButtonNull {

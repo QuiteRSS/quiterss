@@ -124,8 +124,8 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool addFeed)
             updateObject_, SLOT(slotNextUpdateFeed(bool)));
     connect(updateObject_, SIGNAL(signalUpdateModel(bool)),
             parent, SLOT(feedsModelReload(bool)));
-    connect(updateObject_, SIGNAL(signalUpdateNews(int)),
-            parent, SLOT(slotUpdateNews(int)));
+    connect(updateObject_, SIGNAL(signalUpdateNews()),
+            parent, SLOT(slotUpdateNews()));
     connect(updateObject_, SIGNAL(signalCountsStatusBar(int,int)),
             parent, SLOT(slotCountsStatusBar(int,int)));
 
@@ -157,8 +157,6 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool addFeed)
     connect(parent, SIGNAL(signalMarkReadCategory(int,int)),
             updateObject_, SLOT(slotMarkReadCategory(int,int)));
     connect(parent, SIGNAL(signalRefreshNewsView(int)),
-            updateObject_, SIGNAL(signalMarkAllFeedsRead(int)));
-    connect(updateObject_, SIGNAL(signalMarkAllFeedsRead(int)),
             parent, SLOT(slotRefreshNewsView(int)));
     connect(parent, SIGNAL(signalMarkAllFeedsOld()),
             updateObject_, SLOT(slotMarkAllFeedsOld()));
@@ -621,7 +619,7 @@ void UpdateObject::finishUpdate(int feedId, bool changed, int newCount, QString 
         }
         emit signalCountsStatusBar(unreadCount, allCount);
       }
-    } else if (mainWindow_->currentNewsTab->type_ < NewsTabWidget::TabTypeWeb) {
+    } else if (mainWindow_->currentNewsTab->type_ != NewsTabWidget::TabTypeDownloads) {
       if (!timerUpdateNews_->isActive())
         timerUpdateNews_->start(1000);
     }
@@ -1163,8 +1161,8 @@ void UpdateObject::slotMarkAllFeedsOld()
   }
   slotRecountCategoryCounts();
 
-  if ((mainWindow_->currentNewsTab != NULL) && (mainWindow_->currentNewsTab->type_ < NewsTabWidget::TabTypeWeb)) {
-    emit signalUpdateNews(NewsTabWidget::RefreshWithPos);
+  if ((mainWindow_->currentNewsTab != NULL) && (mainWindow_->currentNewsTab->type_ != NewsTabWidget::TabTypeDownloads)) {
+    emit signalUpdateNews();
   }
 
   slotRefreshInfoTray();

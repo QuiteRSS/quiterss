@@ -39,13 +39,11 @@
 
 #include "networkmanager.h"
 
-class WebPage;
-
 class NetworkManagerProxy : public QNetworkAccessManager
 {
   Q_OBJECT
 public:
-  explicit NetworkManagerProxy(WebPage* page, QObject* parent = 0);
+  explicit NetworkManagerProxy(QObject* parent = 0);
 
   QNetworkReply* createRequest(QNetworkAccessManager::Operation op, const QNetworkRequest &request, QIODevice* outgoingData);
 
@@ -53,10 +51,6 @@ public:
 
 private slots:
   void slotSslError(QNetworkReply *reply, QList<QSslError> errors);
-
-private:
-  WebPage* page_;
-
 };
 
 #endif // NETWORKMANAGERPROXY_H

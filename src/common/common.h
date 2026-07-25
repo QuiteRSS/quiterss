@@ -23,7 +23,6 @@
 
 #define TRACKING_ID "UA-99877778-1"
 
-#define ADBLOCK_EASYLIST_URL "https://easylist-downloads.adblockplus.org/easylist.txt"
 
 #ifndef Q_UNLIKELY
 #define Q_UNLIKELY(x) x

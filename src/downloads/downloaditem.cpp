@@ -36,7 +36,6 @@
 
 #include "mainapplication.h"
 #include "networkmanager.h"
-#include "webpage.h"
 
 #if defined(Q_OS_WIN)
 #include <qt_windows.h>

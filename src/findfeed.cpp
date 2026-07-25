@@ -30,7 +30,7 @@ FindFeed::FindFeed(QWidget *parent)
 
   findButton_ = new QToolButton(this);
   findButton_->setFocusPolicy(Qt::NoFocus);
-  QPixmap findPixmap(":/images/selectFindInBrowser");
+  QPixmap findPixmap(":/images/images/findFeed.png");
   findButton_->setIcon(QIcon(findPixmap));
   findButton_->setIconSize(findPixmap.size());
   findButton_->setCursor(Qt::ArrowCursor);

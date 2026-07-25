@@ -111,7 +111,7 @@ signals:
   void setStatusFeed(int feedId, QString status);
   void feedUpdated(int feedId, bool changed, int newCount, bool finish);
   void signalUpdateModel(bool checkFilter = true);
-  void signalUpdateNews(int refresh = NewsTabWidget::RefreshInsert);
+  void signalUpdateNews();
   void signalCountsStatusBar(int unreadCount, int allCount);
   void signalRecountCategoryCounts(QList<int> deletedList, QList<int> starredList,
                                    QList<int> readList, QStringList labelList);

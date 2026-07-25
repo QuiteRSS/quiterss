@@ -76,8 +76,6 @@ FindTextContent::FindTextContent(QWidget *parent)
   findButton_->setStyleSheet("QToolButton { border: none; padding: 0px; background: none; }");
 
   connect(findButton_, SIGNAL(clicked()), this, SLOT(slotMenuFind()));
-  connect(findGroup_, SIGNAL(triggered(QAction*)),
-          this, SLOT(slotSelectFind(QAction*)));
 
   clearButton_ = new QToolButton(this);
   clearButton_->setFocusPolicy(Qt::NoFocus);
@@ -172,15 +170,4 @@ void FindTextContent::slotClear()
 void FindTextContent::slotMenuFind()
 {
   findMenu_->popup(mapToGlobal(QPoint(0, height()-1)));
-}
-
-void FindTextContent::slotSelectFind(QAction *act)
-{
-  if (act->objectName() == "findInBrowserAct") {
-    findButton_->setIcon(QIcon(":/images/selectFindInBrowser"));
-  } else {
-    findButton_->setIcon(QIcon(":/images/selectFindInNews"));
-  }
-  findLabel_->setText(act->text());
-  emit signalSelectFind();
 }

@@ -200,21 +200,11 @@ QWidget *FeedPropertiesDialog::createDisplayTab()
 {
   QWidget *tab = new QWidget();
 
-  loadImagesOn_ = new QCheckBox(tr("Load images"));
-  loadImagesOn_->setTristate(true);
-  javaScriptEnable_ = new QCheckBox(tr("Enable JavaScript"));
-  javaScriptEnable_->setTristate(true);
-
-  showDescriptionNews_ = new QCheckBox(tr("Show news' description instead of loading web page"));
-
   layoutDirection_ = new QCheckBox(tr("Right-to-left layout"));
 
   QVBoxLayout *tabLayout = new QVBoxLayout(tab);
   tabLayout->setMargin(10);
   tabLayout->setSpacing(5);
-  tabLayout->addWidget(loadImagesOn_);
-  tabLayout->addWidget(javaScriptEnable_);
-  tabLayout->addWidget(showDescriptionNews_);
   tabLayout->addWidget(layoutDirection_);
 
   tabLayout->addStretch();
@@ -411,9 +401,6 @@ QWidget *FeedPropertiesDialog::createStatusTab()
   avoidedOldSingleNewsDateOn_->setChecked(feedProperties.general.avoidedOldSingleNewsDateOn);
   avoidedOldSingleNewsDate_->setSelectedDate(feedProperties.general.avoidedOldSingleNewsDate);
 
-  loadImagesOn_->setCheckState((Qt::CheckState)feedProperties.display.displayEmbeddedImages);
-  javaScriptEnable_->setCheckState((Qt::CheckState)feedProperties.display.javaScriptEnable);
-  showDescriptionNews_->setChecked(!feedProperties.display.displayNews);
   layoutDirection_->setChecked(feedProperties.display.layoutDirection);
 
   for (int i = 0; i < feedProperties.column.columns.count(); ++i) {
@@ -545,9 +532,6 @@ FEED_PROPERTIES FeedPropertiesDialog::getFeedProperties()
 
   feedProperties.general.displayOnStartup = displayOnStartup->isChecked();
   feedProperties.general.starred = starredOn_->isChecked();
-  feedProperties.display.displayEmbeddedImages = loadImagesOn_->checkState();
-  feedProperties.display.javaScriptEnable = javaScriptEnable_->checkState();
-  feedProperties.display.displayNews = !showDescriptionNews_->isChecked();
   feedProperties.general.duplicateNewsMode = duplicateNewsMode_->isChecked();
   feedProperties.display.layoutDirection = layoutDirection_->isChecked();
   feedProperties.general.addSingleNewsAnyDateOn = addSingleNewsAnyDateOn_->isChecked();

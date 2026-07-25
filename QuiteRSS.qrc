@@ -20,8 +20,6 @@
         <file>images/sortIndicatorA.png</file>
         <file>images/sortIndicatorD.png</file>
         <file alias="bulletNew">images/bulletNew.png</file>
-        <file alias="imagesOff">images/imagesOff.png</file>
-        <file alias="imagesOn">images/imagesOn.png</file>
         <file alias="importFeeds">images/ImportFeeds.png</file>
         <file alias="filterOff">images/filterOff.png</file>
         <file alias="quiterss16">images/16x16/quiterss.png</file>
@@ -33,8 +31,6 @@
         <file>images/noicon.png</file>
         <file alias="preferencesFeed">images/preferencesFeed.png</file>
         <file alias="editClear">images/editClear.png</file>
-        <file alias="backPage">images/back_page.png</file>
-        <file alias="forwardPage">images/forward_page.png</file>
         <file alias="homePage">images/house.png</file>
         <file alias="openBrowser">images/world_go.png</file>
         <file alias="addT">images/add_t.png</file>
@@ -42,7 +38,6 @@
         <file alias="warning">images/warning.png</file>
         <file alias="close">images/close.png</file>
         <file alias="closeHover">images/close_hover.png</file>
-        <file alias="webPage">images/world.png</file>
         <file alias="addFolder">images/folder_add.png</file>
         <file alias="deleteFolder">images/folder_delete.png</file>
         <file alias="moveDown">images/arrow_down.png</file>
@@ -51,16 +46,11 @@
         <file alias="moveUp">images/arrow_up.png</file>
         <file alias="folder">images/folder.png</file>
         <file alias="findText">images/find.png</file>
-        <file alias="selectFindInBrowser">images/find_in_browser_s.png</file>
         <file alias="findInNews">images/find_in_news.png</file>
         <file alias="selectFindInNews">images/find_in_news_s.png</file>
         <file>images/logo_text.png</file>
         <file>images/findFeed.png</file>
         <file>images/arrow_turn_left.png</file>
-        <file alias="printer">images/printer.png</file>
-        <file alias="zoom">images/zoom.png</file>
-        <file alias="zoomIn">images/zoom_in.png</file>
-        <file alias="zoomOut">images/zoom_out.png</file>
         <file>images/fullScreen.png</file>
         <file alias="loading">images/loading.gif</file>
         <file>images/trash.png</file>
@@ -79,8 +69,6 @@
         <file alias="copy">images/page_copy.png</file>
         <file alias="bulletMinus">images/bullet_toggle_minus.png</file>
         <file alias="bulletPlus">images/bullet_toggle_plus.png</file>
-        <file>images/flash.png</file>
-        <file>images/flashstart.png</file>
         <file>images/folder_star.png</file>
         <file>images/folder_unread.png</file>
         <file alias="download">images/download.png</file>
@@ -88,13 +76,9 @@
         <file alias="bulletError">images/bullet_error.png</file>
         <file alias="bulletUpdate">images/bullet_update.png</file>
         <file alias="play">images/control_play.png</file>
-        <file>images/adblock.png</file>
-        <file>images/adblock_big.png</file>
-        <file>images/adblock-disabled.png</file>
         <file alias="menu">images/menu.png</file>
         <file alias="backup">images/backup.png</file>
         <file alias="layout_classic">images/layout_classic.png</file>
-        <file alias="layout_newspaper">images/layout_newspaper.png</file>
         <file alias="cleanup">images/cleanup.png</file>
         <file alias="quiterss128">images/128x128/quiterss.png</file>
         <file alias="quiterss128_NewNews">images/quiterss128_NewNews.png</file>
@@ -103,23 +87,12 @@
     </qresource>
     <qresource prefix="/style">
         <file alias="systemStyle">style/system.qss</file>
-        <file alias="newsStyle">style/news.css</file>
     </qresource>
     <qresource prefix="/file">
         <file>AUTHORS</file>
         <file>COPYING</file>
         <file>HISTORY_EN</file>
         <file>HISTORY_RU</file>
-    </qresource>
-    <qresource prefix="/html">
-        <file alias="description">html/news.html</file>
-        <file alias="audioplayer">html/audioplayer.html</file>
-        <file alias="videoplayer">html/videoplayer.html</file>
-        <file>html/adblockPage.html</file>
-        <file alias="description_rtl">html/news_rtl.html</file>
-        <file alias="newspaper_description">html/newspaper_description.html</file>
-        <file alias="newspaper_head">html/newspaper_head.html</file>
-        <file alias="newspaper_description_rtl">html/newspaper_description_rtl.html</file>
     </qresource>
     <qresource prefix="/flags">
         <file alias="flag_AR">images/flags/flag_arab.png</file>

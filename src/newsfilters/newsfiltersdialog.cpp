@@ -391,7 +391,7 @@ void NewsFiltersDialog::applyFilter()
   }
 
   if (feedId != -1)
-    mainWindow->slotUpdateNews(NewsTabWidget::RefreshAll);
+    mainWindow->signalRefreshNewsView(1);
   mainWindow->slotUpdateStatus(feedId);
   mainWindow->recountCategoryCounts();
 

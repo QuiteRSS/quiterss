@@ -22,7 +22,6 @@
 #include "database.h"
 #include "globals.h"
 #include "networkmanager.h"
-#include "adblockmanager.h"
 #include "settings.h"
 #include "splashscreen.h"
 #include "updatefeeds.h"
@@ -239,8 +238,6 @@ void MainApplication::connectDatabase()
 
 void MainApplication::loadSettings()
 {
-  c2fLoadSettings();
-  reloadUserStyleBrowser();
 }
 
 void MainApplication::quitApplication()
@@ -532,69 +529,12 @@ void MainApplication::sqlQueryExec(const QString &query)
   emit signalSqlQueryExec(query);
 }
 
-/** @brief Click to Flash
- *---------------------------------------------------------------------------*/
-void MainApplication::c2fLoadSettings()
-{
-  Settings settings;
-  settings.beginGroup("ClickToFlash");
-  c2fWhitelist_ = settings.value("whitelist", QStringList()).toStringList();
-  c2fEnabled_ = settings.value("enabled", true).toBool();
-#if QT_VERSION >= 0x050900
-  c2fEnabled_ = false;
-#endif
-  settings.endGroup();
-}
-
-void MainApplication::c2fSaveSettings()
-{
-  Settings settings;
-  settings.beginGroup("ClickToFlash");
-  settings.setValue("whitelist", c2fWhitelist_);
-  settings.setValue("enabled", c2fEnabled_);
-  settings.endGroup();
-}
-
-bool MainApplication::c2fIsEnabled() const
-{
-  return c2fEnabled_;
-}
-
-void MainApplication::c2fSetEnabled(bool enabled)
-{
-  c2fEnabled_ = enabled;
-}
-
-QStringList MainApplication::c2fGetWhitelist()
-{
-  return c2fWhitelist_;
-}
-
-void MainApplication::c2fSetWhitelist(QStringList whitelist)
-{
-  c2fWhitelist_ = whitelist;
-}
-
-void MainApplication::c2fAddWhitelist(const QString &site)
-{
-  c2fWhitelist_.append(site);
-}
-
 DownloadManager *MainApplication::downloadManager()
 {
   if (!downloadManager_) {
     downloadManager_ = new DownloadManager();
   }
   return downloadManager_;
-}
-
-void MainApplication::reloadUserStyleBrowser()
-{
-  Settings settings;
-  settings.beginGroup("Settings");
-  QString userStyleBrowser = settings.value("userStyleBrowser", QString()).toString();
-  QWebSettings::globalSettings()->setUserStyleSheetUrl(userStyleSheet(userStyleBrowser));
-  settings.endGroup();
 }
 
 /** @brief Set user style sheet for browser
@@ -619,8 +559,6 @@ QUrl MainApplication::userStyleSheet(const QString &filePath) const
 #endif
   userStyle += QString("::selection {background: %1; color: %2;} ").arg(highlightColor, highlightedTextColor);
 #endif
-
-  userStyle += AdBlockManager::instance()->elementHidingRules();
 
   QFile file(filePath);
   if (!filePath.isEmpty() && file.open(QFile::ReadOnly)) {

@@ -21,8 +21,6 @@
 #include "mainapplication.h"
 #include "database.h"
 #include "aboutdialog.h"
-#include "adblockmanager.h"
-#include "adblockicon.h"
 #include "addfeedwizard.h"
 #include "addfolderdialog.h"
 #include "cleanupwizard.h"
@@ -30,7 +28,6 @@
 #include "feedpropertiesdialog.h"
 #include "filterrulesdialog.h"
 #include "newsfiltersdialog.h"
-#include "webpage.h"
 #include "settings.h"
 
 #if defined(Q_OS_WIN)
@@ -573,7 +570,6 @@ void MainWindow::createNewsTab(int index)
   currentNewsTab = (NewsTabWidget*)stackedWidget_->widget(index);
   currentNewsTab->setSettings();
   currentNewsTab->retranslateStrings();
-  currentNewsTab->setBrowserPosition();
 
   newsModel_ = currentNewsTab->newsModel_;
   newsView_ = currentNewsTab->newsView_;
@@ -610,19 +606,8 @@ void MainWindow::createStatusBar()
         );
   stopUpdateButton_->move(progressBar_->rect().right() - stopUpdateButton_->sizeHint().width(),
                           progressBar_->rect().top());
-
-
-  adblockIcon_ = new AdBlockIcon(this);
-
-  QToolButton *loadImagesButton = new QToolButton(this);
-  loadImagesButton->setFocusPolicy(Qt::NoFocus);
-  loadImagesButton->setIconSize(QSize(16,16));
-  loadImagesButton->setDefaultAction(autoLoadImagesToggle_);
-  loadImagesButton->setStyleSheet("QToolButton { border: none; padding: 0px; background: none; }");
-
   QToolButton *fullScreenButton = new QToolButton(this);
   fullScreenButton->setFocusPolicy(Qt::NoFocus);
-  loadImagesButton->setIconSize(QSize(16,16));
   fullScreenButton->setDefaultAction(fullScreenAct_);
   fullScreenButton->setStyleSheet("QToolButton { border: none; padding: 0px; background: none; }");
   statusBar()->installEventFilter(this);
@@ -634,8 +619,6 @@ void MainWindow::createStatusBar()
   statusAll_ = new QLabel(this);
   statusAll_->hide();
   statusBar()->addPermanentWidget(statusAll_);
-  statusBar()->addPermanentWidget(adblockIcon_);
-  statusBar()->addPermanentWidget(loadImagesButton);
   statusBar()->addPermanentWidget(fullScreenButton);
   statusBar()->setVisible(true);
 }
@@ -807,8 +790,6 @@ void MainWindow::createActions()
   feedsToolbarToggle_->setCheckable(true);
   newsToolbarToggle_ = new QAction(this);
   newsToolbarToggle_->setCheckable(true);
-  browserToolbarToggle_ = new QAction(this);
-  browserToolbarToggle_->setCheckable(true);
   categoriesPanelToggle_ = new QAction(this);
   categoriesPanelToggle_->setCheckable(true);
   statusBarToggle_ = new QAction(this);
@@ -837,23 +818,6 @@ void MainWindow::createActions()
   customizeNewsToolbarAct_ = new QAction(this);
   customizeNewsToolbarAct_->setObjectName("customizeNewsToolbarAct");
 
-  classicLayoutAct_ = new QAction(this);
-  classicLayoutAct_->setObjectName("classicLayoutAct_");
-  classicLayoutAct_->setIcon(QIcon(":/images/layout_classic"));
-  classicLayoutAct_->setCheckable(true);
-  classicLayoutAct_->setData(0);
-  newspaperLayoutAct_ = new QAction(this);
-  newspaperLayoutAct_->setObjectName("newspaperLayoutAct_");
-  newspaperLayoutAct_->setIcon(QIcon(":/images/layout_newspaper"));
-  newspaperLayoutAct_->setCheckable(true);
-  newspaperLayoutAct_->setData(1);
-  layoutToggle_ = new QAction(this);
-  layoutToggle_->setObjectName("layoutToggle");
-  layoutToggle_->setIcon(QIcon(":/images/layout_classic"));
-  this->addAction(layoutToggle_);
-  connect(layoutToggle_, SIGNAL(triggered()),
-          this, SLOT(setNewsLayout()));
-
   systemStyle_ = new QAction(this);
   systemStyle_->setObjectName("systemStyle_");
   systemStyle_->setCheckable(true);
@@ -879,60 +843,6 @@ void MainWindow::createActions()
   grayStyle_ = new QAction(this);
   grayStyle_->setObjectName("grayStyle_");
   grayStyle_->setCheckable(true);
-
-  topBrowserPositionAct_ = new QAction(this);
-  topBrowserPositionAct_->setCheckable(true);
-  topBrowserPositionAct_->setData(TOP_POSITION);
-  bottomBrowserPositionAct_ = new QAction(this);
-  bottomBrowserPositionAct_->setCheckable(true);
-  bottomBrowserPositionAct_->setData(BOTTOM_POSITION);
-  rightBrowserPositionAct_ = new QAction(this);
-  rightBrowserPositionAct_->setCheckable(true);
-  rightBrowserPositionAct_->setData(RIGHT_POSITION);
-  leftBrowserPositionAct_ = new QAction(this);
-  leftBrowserPositionAct_->setCheckable(true);
-  leftBrowserPositionAct_->setData(LEFT_POSITION);
-
-  autoLoadImagesToggle_ = new QAction(this);
-  autoLoadImagesToggle_->setObjectName("autoLoadImagesToggle");
-  autoLoadImagesToggle_->setIcon(QIcon(":/images/imagesOn"));
-  this->addAction(autoLoadImagesToggle_);
-
-  printAct_ = new QAction(this);
-  printAct_->setObjectName("printAct");
-  printAct_->setIcon(QIcon(":/images/printer"));
-  this->addAction(printAct_);
-  connect(printAct_, SIGNAL(triggered()), this, SLOT(slotPrint()));
-  printPreviewAct_ = new QAction(this);
-  printPreviewAct_->setObjectName("printPreviewAct");
-  printPreviewAct_->setIcon(QIcon(":/images/printer"));
-  this->addAction(printPreviewAct_);
-  connect(printPreviewAct_, SIGNAL(triggered()), this, SLOT(slotPrintPreview()));
-
-  savePageAsAct_ = new QAction(this);
-  savePageAsAct_->setObjectName("savePageAsAct");
-  savePageAsAct_->setIcon(QIcon(":/images/save_as"));
-  this->addAction(savePageAsAct_);
-  connect(savePageAsAct_, SIGNAL(triggered()), this, SLOT(slotSavePageAs()));
-
-  savePageAsDescriptAct_ = new QAction(this);
-  savePageAsDescriptAct_->setObjectName("savePageAsDescriptAct");
-  savePageAsDescriptAct_->setIcon(QIcon(":/images/save_as"));
-  this->addAction(savePageAsDescriptAct_);
-  connect(savePageAsDescriptAct_, SIGNAL(triggered()),
-          this, SLOT(slotSavePageAsDescript()));
-
-  zoomInAct_ = new QAction(this);
-  zoomInAct_->setObjectName("zoomInAct");
-  zoomInAct_->setIcon(QIcon(":/images/zoomIn"));
-  this->addAction(zoomInAct_);
-  zoomOutAct_ = new QAction(this);
-  zoomOutAct_->setObjectName("zoomOutAct");
-  zoomOutAct_->setIcon(QIcon(":/images/zoomOut"));
-  this->addAction(zoomOutAct_);
-  zoomTo100Act_ = new QAction(this);
-  zoomTo100Act_->setObjectName("zoomTo100Act");
-  this->addAction(zoomTo100Act_);
 
   updateFeedAct_ = new QAction(this);
   updateFeedAct_->setObjectName("updateFeedAct");
@@ -1192,11 +1102,6 @@ void MainWindow::createActions()
   connect(pushButtonNull_, SIGNAL(clicked()), feedsWidgetVisibleAct_, SLOT(trigger()));
   this->addAction(feedsWidgetVisibleAct_);
 
-  webWidgetVisibleAct_ = new QAction(this);
-  webWidgetVisibleAct_->setObjectName("webWidgetVisibleAct");
-  webWidgetVisibleAct_->setCheckable(true);
-  this->addAction(webWidgetVisibleAct_);
-
   showUnreadCount_ = new QAction(this);
   showUnreadCount_->setData(feedsView_->columnIndex("unread"));
   showUnreadCount_->setCheckable(true);
@@ -1206,12 +1111,6 @@ void MainWindow::createActions()
   showLastUpdated_ = new QAction(this);
   showLastUpdated_->setData(feedsView_->columnIndex("updated"));
   showLastUpdated_->setCheckable(true);
-
-  openDescriptionNewsAct_ = new QAction(this);
-  openDescriptionNewsAct_->setObjectName("openDescriptionNewsAct");
-  connect(openDescriptionNewsAct_, SIGNAL(triggered()),
-          this, SLOT(slotOpenNewsWebView()));
-  this->addAction(openDescriptionNewsAct_);
 
   findTextAct_ = new QAction(this);
   findTextAct_->setObjectName("findTextAct");
@@ -1339,17 +1238,6 @@ void MainWindow::createActions()
   this->addAction(copyLinkAct_);
   connect(copyLinkAct_, SIGNAL(triggered()), this, SLOT(slotCopyLinkNews()));
 
-  pageUpWebViewAct_ = new QAction(this);
-  pageUpWebViewAct_->setObjectName("pageUpWebViewAct");
-  this->addAction(pageUpWebViewAct_);
-  connect(pageUpWebViewAct_, SIGNAL(triggered()),
-          this, SLOT(slotPageUpWebView()));
-  pageDownWebViewAct_ = new QAction(this);
-  pageDownWebViewAct_->setObjectName("pageDownWebViewAct");
-  this->addAction(pageDownWebViewAct_);
-  connect(pageDownWebViewAct_, SIGNAL(triggered()),
-          this, SLOT(slotPageDownWebView()));
-
   nextFolderAct_ = new QAction(this);
   nextFolderAct_->setObjectName("nextFolderAct");
   this->addAction(nextFolderAct_);
@@ -1367,13 +1255,6 @@ void MainWindow::createActions()
   settingPageLabelsAct_->setObjectName("settingPageLabelsAct");
   this->addAction(settingPageLabelsAct_);
   connect(settingPageLabelsAct_, SIGNAL(triggered()), this, SLOT(showSettingPageLabels()));
-
-  backWebPageAct_ = new QAction(this);
-  backWebPageAct_->setObjectName("backWebPageAct");
-  forwardWebPageAct_ = new QAction(this);
-  forwardWebPageAct_->setObjectName("forwardWebPageAct");
-  reloadWebPageAct_ = new QAction(this);
-  reloadWebPageAct_->setObjectName("reloadWebPageAct");
 
   shareGroup_ = new QActionGroup(this);
   shareGroup_->setExclusive(false);
@@ -1553,7 +1434,6 @@ void MainWindow::createShortcut()
   listActions_.append(importFeedsAct_);
   listActions_.append(exportFeedsAct_);
   listActions_.append(createBackupAct_);
-  listActions_.append(autoLoadImagesToggle_);
   listActions_.append(markAllFeedsRead_);
   listActions_.append(markFeedRead_);
   listActions_.append(markNewsRead_);
@@ -1563,8 +1443,6 @@ void MainWindow::createShortcut()
   listActions_.append(expandAllFoldersAct_);
   listActions_.append(expandFolderAct_);
 
-  listActions_.append(openDescriptionNewsAct_);
-  openDescriptionNewsAct_->setShortcut(QKeySequence(Qt::Key_Return));
   listActions_.append(openInBrowserAct_);
   openInBrowserAct_->setShortcut(QKeySequence(Qt::Key_Space));
   listActions_.append(openInExternalBrowserAct_);
@@ -1581,33 +1459,12 @@ void MainWindow::createShortcut()
 
   feedsWidgetVisibleAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_D));
   listActions_.append(feedsWidgetVisibleAct_);
-  listActions_.append(webWidgetVisibleAct_);
 
   listActions_.append(placeToTrayAct_);
-
-  zoomInAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Plus));
-  listActions_.append(zoomInAct_);
-  zoomOutAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Minus));
-  listActions_.append(zoomOutAct_);
-  zoomTo100Act_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_0));
-  listActions_.append(zoomTo100Act_);
-
-  printAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_P));
-  listActions_.append(printAct_);
-  printPreviewAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_P));
-  listActions_.append(printPreviewAct_);
-
-  savePageAsAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_S));
-  listActions_.append(savePageAsAct_);
-  listActions_.append(savePageAsDescriptAct_);
-
-  fullScreenAct_->setShortcut(QKeySequence(Qt::Key_F11));
-  listActions_.append(fullScreenAct_);
 
   stayOnTopAct_->setShortcut(QKeySequence(Qt::Key_F10));
   listActions_.append(stayOnTopAct_);
 
-  listActions_.append(layoutToggle_);
 
   closeTabAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_W));
   listActions_.append(closeTabAct_);
@@ -1630,12 +1487,6 @@ void MainWindow::createShortcut()
   listActions_.append(findFeedAct_);
 
   listActions_.append(copyLinkAct_);
-
-  listActions_.append(backWebPageAct_);
-  listActions_.append(forwardWebPageAct_);
-  listActions_.append(reloadWebPageAct_);
-  listActions_.append(pageUpWebViewAct_);
-  listActions_.append(pageDownWebViewAct_);
 
   listActions_.append(shareGroup_->actions());
 
@@ -1710,11 +1561,9 @@ void MainWindow::createMenu()
 
   toolbarsMenu_ = new QMenu(this);
   toolbarsMenu_->addAction(feedsWidgetVisibleAct_);
-  toolbarsMenu_->addAction(webWidgetVisibleAct_);
   toolbarsMenu_->addAction(mainToolbarToggle_);
   toolbarsMenu_->addAction(feedsToolbarToggle_);
   toolbarsMenu_->addAction(newsToolbarToggle_);
-  toolbarsMenu_->addAction(browserToolbarToggle_);
   toolbarsMenu_->addAction(categoriesPanelToggle_);
   toolbarsMenu_->addAction(statusBarToggle_);
 
@@ -1724,13 +1573,6 @@ void MainWindow::createMenu()
   customizeToolbarGroup_->addAction(customizeNewsToolbarAct_);
   customizeToolbarMenu_ = new QMenu(this);
   customizeToolbarMenu_->addActions(customizeToolbarGroup_->actions());
-
-  layoutGroup_ = new QActionGroup(this);
-  layoutGroup_->addAction(classicLayoutAct_);
-  layoutGroup_->addAction(newspaperLayoutAct_);
-  layoutMenu_ = new QMenu(this);
-  layoutMenu_->addActions(layoutGroup_->actions());
-  layoutToggle_->setMenu(layoutMenu_);
 
   styleGroup_ = new QActionGroup(this);
   styleGroup_->addAction(systemStyle_);
@@ -1745,21 +1587,10 @@ void MainWindow::createMenu()
   styleMenu_ = new QMenu(this);
   styleMenu_->addActions(styleGroup_->actions());
 
-  browserPositionGroup_ = new QActionGroup(this);
-  browserPositionGroup_->addAction(topBrowserPositionAct_);
-  browserPositionGroup_->addAction(bottomBrowserPositionAct_);
-  browserPositionGroup_->addAction(rightBrowserPositionAct_);
-  browserPositionGroup_->addAction(leftBrowserPositionAct_);
-
-  browserPositionMenu_ = new QMenu(this);
-  browserPositionMenu_->addActions(browserPositionGroup_->actions());
-
   viewMenu_  = new QMenu(this);
   viewMenu_->addMenu(toolbarsMenu_);
   viewMenu_->addMenu(customizeToolbarMenu_);
   viewMenu_->addSeparator();
-  viewMenu_->addMenu(layoutMenu_);
-  viewMenu_->addMenu(browserPositionMenu_);
   viewMenu_->addMenu(styleMenu_);
   viewMenu_->addSeparator();
   viewMenu_->addAction(stayOnTopAct_);
@@ -1856,27 +1687,6 @@ void MainWindow::createMenu()
   newsMenu_->addAction(deleteNewsAct_);
   newsMenu_->addAction(deleteAllNewsAct_);
 
-  browserZoomGroup_ = new QActionGroup(this);
-  browserZoomGroup_->addAction(zoomInAct_);
-  browserZoomGroup_->addAction(zoomOutAct_);
-  browserZoomGroup_->addAction(zoomTo100Act_);
-
-  browserZoomMenu_ = new QMenu(this);
-  browserZoomMenu_->setIcon(QIcon(":/images/zoom"));
-  browserZoomMenu_->addActions(browserZoomGroup_->actions());
-  browserZoomMenu_->insertSeparator(zoomTo100Act_);
-
-  browserMenu_ = new QMenu(this);
-  browserMenu_->addAction(autoLoadImagesToggle_);
-  browserMenu_->addMenu(browserZoomMenu_);
-  browserMenu_->addSeparator();
-  browserMenu_->addAction(printAct_);
-  browserMenu_->addAction(printPreviewAct_);
-  browserMenu_->addSeparator();
-  browserMenu_->addAction(savePageAsAct_);
-  browserMenu_->addSeparator();
-  browserMenu_->addAction(tr("&AdBlock"), AdBlockManager::instance(), SLOT(showDialog()));
-
   toolsMenu_ = new QMenu(this);
   toolsMenu_->addAction(showDownloadManagerAct_);
   toolsMenu_->addSeparator();
@@ -1903,7 +1713,6 @@ void MainWindow::createMenu()
   mainMenu_->addMenu(viewMenu_);
   mainMenu_->addMenu(feedMenu_);
   mainMenu_->addMenu(newsMenu_);
-  mainMenu_->addMenu(browserMenu_);
   mainMenu_->addSeparator();
   mainMenu_->addMenu(toolsMenu_);
   mainMenu_->addSeparator();
@@ -1918,7 +1727,6 @@ void MainWindow::createMenu()
   menuBar()->addMenu(viewMenu_);
   menuBar()->addMenu(feedMenu_);
   menuBar()->addMenu(newsMenu_);
-  menuBar()->addMenu(browserMenu_);
   menuBar()->addMenu(toolsMenu_);
   menuBar()->addMenu(helpMenu_);
 
@@ -1926,8 +1734,6 @@ void MainWindow::createMenu()
           this, SLOT(showCustomizeToolbarDlg(QAction*)));
   connect(styleGroup_, SIGNAL(triggered(QAction*)),
           this, SLOT(setStyleApp(QAction*)));
-  connect(browserPositionGroup_, SIGNAL(triggered(QAction*)),
-          this, SLOT(setBrowserPosition(QAction*)));
   connect(feedsFilterGroup_, SIGNAL(triggered(QAction*)),
           this, SLOT(setFeedsFilter()));
   connect(feedsFilter_, SIGNAL(triggered()), this, SLOT(slotFeedsFilter()));
@@ -1942,8 +1748,6 @@ void MainWindow::createMenu()
   connect(newsSortByMenu_, SIGNAL(aboutToShow()),
           this, SLOT(showNewsSortByMenu()));
   connect(newsMenu_, SIGNAL(aboutToShow()), this, SLOT(showNewsMenu()));
-  connect(browserZoomGroup_, SIGNAL(triggered(QAction*)),
-          this, SLOT(browserZoom(QAction*)));
 }
 // ---------------------------------------------------------------------------
 void MainWindow::createToolBar()
@@ -2003,54 +1807,11 @@ void MainWindow::loadSettings()
   notificationFontFamily_ = settings.value("notificationFontFamily", qApp->font().family()).toString();
   notificationFontSize_ = settings.value("notificationFontSize", qApp->font().pointSize()).toInt();
 
-  QString browserStandardFont = settings.value(
-        "browserStandardFont", QWebSettings::globalSettings()->fontFamily(QWebSettings::StandardFont)).toString();
-  QString browserFixedFont = settings.value(
-        "browserFixedFont", QWebSettings::globalSettings()->fontFamily(QWebSettings::FixedFont)).toString();
-  QString browserSerifFont = settings.value(
-        "browserSerifFont", QWebSettings::globalSettings()->fontFamily(QWebSettings::SerifFont)).toString();
-  QString browserSansSerifFont = settings.value(
-        "browserSansSerifFont", QWebSettings::globalSettings()->fontFamily(QWebSettings::SansSerifFont)).toString();
-  QString browserCursiveFont = settings.value(
-        "browserCursiveFont", QWebSettings::globalSettings()->fontFamily(QWebSettings::CursiveFont)).toString();
-  QString browserFantasyFont = settings.value(
-        "browserFantasyFont", QWebSettings::globalSettings()->fontFamily(QWebSettings::FantasyFont)).toString();
-  int browserDefaultFontSize = settings.value(
-        "browserDefaultFontSize", QWebSettings::globalSettings()->fontSize(QWebSettings::DefaultFontSize)).toInt();
-  int browserFixedFontSize = settings.value(
-        "browserFixedFontSize", QWebSettings::globalSettings()->fontSize(QWebSettings::DefaultFixedFontSize)).toInt();
-  int browserMinFontSize = settings.value(
-        "browserMinFontSize", QWebSettings::globalSettings()->fontSize(QWebSettings::MinimumFontSize)).toInt();
-  int browserMinLogFontSize = settings.value(
-        "browserMinLogFontSize", QWebSettings::globalSettings()->fontSize(QWebSettings::MinimumLogicalFontSize)).toInt();
-
-  QWebSettings::globalSettings()->setFontFamily(
-        QWebSettings::StandardFont, browserStandardFont);
-  QWebSettings::globalSettings()->setFontFamily(
-        QWebSettings::FixedFont, browserFixedFont);
-  QWebSettings::globalSettings()->setFontFamily(
-        QWebSettings::SerifFont, browserSerifFont);
-  QWebSettings::globalSettings()->setFontFamily(
-        QWebSettings::SansSerifFont, browserSansSerifFont);
-  QWebSettings::globalSettings()->setFontFamily(
-        QWebSettings::CursiveFont, browserCursiveFont);
-  QWebSettings::globalSettings()->setFontFamily(
-        QWebSettings::FantasyFont, browserFantasyFont);
-  QWebSettings::globalSettings()->setFontSize(
-        QWebSettings::DefaultFontSize, browserDefaultFontSize);
-  QWebSettings::globalSettings()->setFontSize(
-        QWebSettings::DefaultFixedFontSize, browserFixedFontSize);
-  QWebSettings::globalSettings()->setFontSize(
-        QWebSettings::MinimumFontSize, browserMinFontSize);
-  QWebSettings::globalSettings()->setFontSize(
-        QWebSettings::MinimumLogicalFontSize, browserMinLogFontSize);
-
   updateFeedsEnable_ = settings.value("autoUpdatefeeds", false).toBool();
   updateFeedsInterval_ = settings.value("autoUpdatefeedsTime", 10).toInt();
   updateFeedsIntervalType_ = settings.value("autoUpdatefeedsInterval", 0).toInt();
 
   openingFeedAction_ = settings.value("openingFeedAction", 0).toInt();
-  openNewsWebViewOn_ = settings.value("openNewsWebViewOn", true).toBool();
 
   markNewsReadOn_ = settings.value("markNewsReadOn", true).toBool();
   markCurNewsRead_ = settings.value("markCurNewsRead", true).toBool();
@@ -2059,8 +1820,6 @@ void MainWindow::loadSettings()
   markReadSwitchingFeed_ = settings.value("markReadSwitchingFeed", false).toBool();
   markReadClosingTab_ = settings.value("markReadClosingTab", false).toBool();
   markReadMinimize_ = settings.value("markReadMinimize", false).toBool();
-
-  showDescriptionNews_ = settings.value("showDescriptionNews", true).toBool();
 
   formatDate_ = settings.value("formatData", "dd.MM.yy").toString();
   formatTime_ = settings.value("formatTime", "hh:mm").toString();
@@ -2092,25 +1851,8 @@ void MainWindow::loadSettings()
 
   externalBrowserOn_ = settings.value("externalBrowserOn", 0).toInt();
   externalBrowser_ = settings.value("externalBrowser", "").toString();
-  javaScriptEnable_ = settings.value("javaScriptEnable", true).toBool();
-  pluginsEnable_ = settings.value("pluginsEnable", true).toBool();
-  maxPagesInCache_ = settings.value("maxPagesInCache", 3).toInt();
   downloadLocation_ = settings.value("downloadLocation", "").toString();
   askDownloadLocation_ = settings.value("askDownloadLocation", true).toBool();
-  defaultZoomPages_ = settings.value("defaultZoomPages", 100).toInt();
-  autoLoadImages_ = settings.value("autoLoadImages", true).toBool();
-
-  QWebSettings::globalSettings()->setAttribute(
-        QWebSettings::JavascriptEnabled, javaScriptEnable_);
-  QWebSettings::globalSettings()->setAttribute(
-        QWebSettings::PluginsEnabled, pluginsEnable_);
-  QWebSettings::globalSettings()->setMaximumPagesInCache(maxPagesInCache_);
-#ifdef WEBKIT_ALPHA
-  QWebSettings::globalSettings()->setAttribute(
-        QWebSettings::ErrorPageEnabled, false);
-#endif
-  QWebSettings::globalSettings()->setOfflineStorageDefaultQuota(0);
-  QWebSettings::globalSettings()->setOfflineStoragePath(mainApp->dataDir());
 
   soundNewNews_ = settings.value("soundNewNews", true).toBool();
   soundNotifyPath_ = settings.value("soundNotifyPath", mainApp->soundNotifyDefaultFile()).toString();
@@ -2138,14 +1880,13 @@ void MainWindow::loadSettings()
   mainToolbarToggle_->setChecked(settings.value("mainToolbarShow2", false).toBool());
   feedsToolbarToggle_->setChecked(settings.value("feedsToolbarShow2", true).toBool());
   newsToolbarToggle_->setChecked(settings.value("newsToolbarShow", true).toBool());
-  browserToolbarToggle_->setChecked(settings.value("browserToolbarShow", true).toBool());
   categoriesPanelToggle_->setChecked(settings.value("categoriesPanelShow", true).toBool());
   categoriesWidget_->setVisible(categoriesPanelToggle_->isChecked());
   statusBarToggle_->setChecked(settings.value("statusBarShow", true).toBool());
 
   QString str = settings.value("mainToolBar",
                                "newAct,Separator,updateFeedAct,updateAllFeedsAct,"
-                               "Separator,markFeedRead,Separator,autoLoadImagesToggle").toString();
+                               "Separator,markFeedRead").toString();
 
   foreach (QString actionStr, str.split(",", QString::SkipEmptyParts)) {
     if (actionStr == "Separator") {
@@ -2210,29 +1951,7 @@ void MainWindow::loadSettings()
   indentationFeedsTreeAct_->setChecked(settings.value("indentationFeedsTree", true).toBool());
   slotIndentationFeedsTree();
 
-  newsLayout_ = settings.value("newsLayout", 0).toInt();
-  switch (newsLayout_) {
-  case 1:
-    newspaperLayoutAct_->setChecked(true);
-    layoutToggle_->setIcon(QIcon(":/images/layout_newspaper"));
-    break;
-  default:
-    classicLayoutAct_->setChecked(true);
-    layoutToggle_->setIcon(QIcon(":/images/layout_classic"));
-  }
-  connect(layoutGroup_, SIGNAL(triggered(QAction*)),
-          this, SLOT(setNewsLayout(QAction*)));
-
-  browserPosition_ = settings.value("browserPosition", BOTTOM_POSITION).toInt();
-  switch (browserPosition_) {
-  case TOP_POSITION:   topBrowserPositionAct_->setChecked(true); break;
-  case RIGHT_POSITION: rightBrowserPositionAct_->setChecked(true); break;
-  case LEFT_POSITION:  leftBrowserPositionAct_->setChecked(true); break;
-  default: bottomBrowserPositionAct_->setChecked(true);
-  }
-
   openLinkInBackground_ = settings.value("openLinkInBackground", true).toBool();
-  openLinkInBackgroundEmbedded_ = settings.value("openLinkInBackgroundEmbedded", true).toBool();
   openingLinkTimeout_ = settings.value("openingLinkTimeout", 1000).toInt();
 
   stayOnTopAct_->setChecked(settings.value("stayOnTop", false).toBool());
@@ -2301,7 +2020,6 @@ void MainWindow::loadSettings()
   mainSplitter_->restoreState(settings.value("MainSplitterState").toByteArray());
   feedsWidgetVisibleAct_->setChecked(settings.value("FeedsWidgetVisible", true).toBool());
   slotVisibledFeedsWidget();
-  webWidgetVisibleAct_->setChecked(settings.value("WebWidgetVisible", true).toBool());
 
   feedsWidgetSplitterState_ = settings.value("FeedsWidgetSplitterState").toByteArray();
   bool showCategories = settings.value("NewsCategoriesTreeVisible", true).toBool();
@@ -2322,8 +2040,6 @@ void MainWindow::loadSettings()
     categoriesTree_->expandAll();
 
   showMenuBar();
-
-  adblockIcon_->setEnabled(settings.value("AdBlock/enabled", true).toBool());
 }
 
 /** @brief Save settings in ini-file
@@ -2369,7 +2085,6 @@ void MainWindow::saveSettings()
   settings.setValue("autoUpdatefeedsInterval", updateFeedsIntervalType_);
 
   settings.setValue("openingFeedAction", openingFeedAction_);
-  settings.setValue("openNewsWebViewOn", openNewsWebViewOn_);
 
   settings.setValue("markNewsReadOn", markNewsReadOn_);
   settings.setValue("markCurNewsRead", markCurNewsRead_);
@@ -2378,8 +2093,6 @@ void MainWindow::saveSettings()
   settings.setValue("markReadSwitchingFeed", markReadSwitchingFeed_);
   settings.setValue("markReadClosingTab", markReadClosingTab_);
   settings.setValue("markReadMinimize", markReadMinimize_);
-
-  settings.setValue("showDescriptionNews", showDescriptionNews_);
 
   settings.setValue("formatData", formatDate_);
   settings.setValue("formatTime", formatTime_);
@@ -2409,13 +2122,8 @@ void MainWindow::saveSettings()
 
   settings.setValue("externalBrowserOn", externalBrowserOn_);
   settings.setValue("externalBrowser", externalBrowser_);
-  settings.setValue("javaScriptEnable", javaScriptEnable_);
-  settings.setValue("pluginsEnable", pluginsEnable_);
-  settings.setValue("maxPagesInCache", maxPagesInCache_);
   settings.setValue("downloadLocation", downloadLocation_);
   settings.setValue("askDownloadLocation", askDownloadLocation_);
-  settings.setValue("defaultZoomPages", defaultZoomPages_);
-  settings.setValue("autoLoadImages", autoLoadImages_);
 
   settings.setValue("soundNewNews", soundNewNews_);
   settings.setValue("soundNotifyPath", soundNotifyPath_);
@@ -2442,7 +2150,6 @@ void MainWindow::saveSettings()
   settings.setValue("mainToolbarShow2", mainToolbarToggle_->isChecked());
   settings.setValue("feedsToolbarShow2", feedsToolbarToggle_->isChecked());
   settings.setValue("newsToolbarShow", newsToolbarToggle_->isChecked());
-  settings.setValue("browserToolbarShow", browserToolbarToggle_->isChecked());
   settings.setValue("categoriesPanelShow", categoriesPanelToggle_->isChecked());
   settings.setValue("statusBarShow", statusBarToggle_->isChecked());
 
@@ -2455,11 +2162,7 @@ void MainWindow::saveSettings()
 
   settings.setValue("indentationFeedsTree", indentationFeedsTreeAct_->isChecked());
 
-  settings.setValue("newsLayout", newsLayout_);
-  settings.setValue("browserPosition", browserPosition_);
-
   settings.setValue("openLinkInBackground", openLinkInBackground_);
-  settings.setValue("openLinkInBackgroundEmbedded", openLinkInBackgroundEmbedded_);
   settings.setValue("openingLinkTimeout", openingLinkTimeout_);
 
   settings.setValue("stayOnTop", stayOnTopAct_->isChecked());
@@ -2505,7 +2208,6 @@ void MainWindow::saveSettings()
 
   settings.setValue("MainSplitterState", mainSplitter_->saveState());
   settings.setValue("FeedsWidgetVisible", showFeedsTabPermanent_);
-  settings.setValue("WebWidgetVisible", webWidgetVisibleAct_->isChecked());
 
   bool newsCategoriesTreeVisible = true;
   if (categoriesWidget_->height() <= (categoriesPanel_->height()+2)) {
@@ -2519,7 +2221,7 @@ void MainWindow::saveSettings()
 
   if (stackedWidget_->count()) {
     NewsTabWidget *widget;
-    if (currentNewsTab->type_ < NewsTabWidget::TabTypeWeb)
+    if (currentNewsTab->type_ < NewsTabWidget::TabTypeDownloads)
       widget = currentNewsTab;
     else
       widget = (NewsTabWidget*)stackedWidget_->widget(TAB_WIDGET_PERMANENT);
@@ -2537,8 +2239,6 @@ void MainWindow::saveSettings()
                     newsFilterGroup_->checkedAction()->objectName());
 
   mainApp->cookieJar()->saveCookies();
-  mainApp->c2fSaveSettings();
-  AdBlockManager::instance()->save();
 }
 
 void MainWindow::showMainMenu()
@@ -3054,7 +2754,7 @@ void MainWindow::slotRecountCategoryCounts(QList<int> deletedList, QList<int> st
   categoriesTree_->topLevelItem(CategoriesTreeWidget::LabelsItem)->setFont(0, font);
 
   NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(stackedWidget_->currentIndex());
-  if ((widget->type_ > NewsTabWidget::TabTypeFeed) && (widget->type_ < NewsTabWidget::TabTypeWeb)
+  if ((widget->type_ > NewsTabWidget::TabTypeFeed) && (widget->type_ < NewsTabWidget::TabTypeDownloads)
       && categoriesTree_->currentIndex().isValid()) {
     int unreadCount = widget->getUnreadCount(categoriesTree_->currentItem()->text(4));
     int allCount = widget->newsModel_->rowCount();
@@ -3151,7 +2851,7 @@ void MainWindow::slotUpdateFeed(int feedId, bool changed, int newCount, bool fin
 
 /** @brief Process updating news list
  *---------------------------------------------------------------------------*/
-void MainWindow::slotUpdateNews(int refresh)
+void MainWindow::slotUpdateNews()
 {
   int newsId = newsModel_->index(
         newsView_->currentIndex().row(), newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
@@ -3163,8 +2863,6 @@ void MainWindow::slotUpdateNews(int refresh)
       newsModel_->fetchMore();
   }
 
-  currentNewsTab->loadNewspaper(refresh);
-
   QModelIndex index = newsModel_->index(0, newsModel_->fieldIndex("id"));
   QModelIndexList indexList = newsModel_->match(index, Qt::EditRole, newsId);
   if (indexList.count()) {
@@ -3172,7 +2870,6 @@ void MainWindow::slotUpdateNews(int refresh)
     newsView_->setCurrentIndex(newsModel_->index(newsRow, newsModel_->fieldIndex("title")));
   } else {
     currentNewsTab->currentNewsIdOld = newsId;
-    currentNewsTab->hideWebContent();
   }
 }
 
@@ -3184,7 +2881,7 @@ void MainWindow::slotFeedClicked(QModelIndex index)
 
   int feedIdCur = feedsModel_->idByIndex(feedsProxyModel_->mapToSource(index));
 
-  if (stackedWidget_->count() && currentNewsTab->type_ < NewsTabWidget::TabTypeWeb) {
+  if (stackedWidget_->count() && currentNewsTab->type_ < NewsTabWidget::TabTypeDownloads) {
     currentNewsTab->newsHeader_->saveStateColumns(currentNewsTab);
   }
 
@@ -3310,8 +3007,7 @@ void MainWindow::slotFeedSelected(QModelIndex index, bool createTab)
   newsView_->setCurrentIndex(newsModel_->index(newsRow, newsModel_->fieldIndex("title")));
   if (newsRow == -1) newsView_->verticalScrollBar()->setValue(newsRow);
 
-  if ((openingFeedAction_ != 2) && openNewsWebViewOn_) {
-    currentNewsTab->slotNewsViewSelected(newsModel_->index(newsRow, newsModel_->fieldIndex("title")));
+  if ((openingFeedAction_ != 2)) {
   } else {
     currentNewsTab->slotNewsViewSelected(newsModel_->index(-1, newsModel_->fieldIndex("title")));
     int newsId = newsModel_->index(newsRow, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
@@ -3378,41 +3074,13 @@ void MainWindow::showOptionDlg(int index)
   optionsDialog_->timeoutRequest_->setValue(timeoutRequest);
   optionsDialog_->numberRequests_->setValue(numberRequests);
   optionsDialog_->numberRepeats_->setValue(numberRepeats);
-
-  optionsDialog_->embeddedBrowserOn_->setChecked(externalBrowserOn_ <= 0);
-  optionsDialog_->externalBrowserOn_->setChecked(externalBrowserOn_ >= 1);
   optionsDialog_->defaultExternalBrowserOn_->setChecked((externalBrowserOn_ == 0) ||
-                                                        (externalBrowserOn_ == 1));
+                                                         (externalBrowserOn_ == 1));
   optionsDialog_->otherExternalBrowserOn_->setChecked((externalBrowserOn_ == -1) ||
                                                       (externalBrowserOn_ == 2));
   optionsDialog_->otherExternalBrowserEdit_->setText(externalBrowser_);
-  optionsDialog_->autoLoadImages_->setChecked(autoLoadImages_);
-  optionsDialog_->javaScriptEnable_->setChecked(javaScriptEnable_);
-  optionsDialog_->pluginsEnable_->setChecked(pluginsEnable_);
-  optionsDialog_->defaultZoomPages_->setValue(defaultZoomPages_);
-  optionsDialog_->openLinkInBackground_->setChecked(openLinkInBackground_);
-  optionsDialog_->openLinkInBackgroundEmbedded_->setChecked(openLinkInBackgroundEmbedded_);
-  optionsDialog_->maxPagesInCache_->setValue(maxPagesInCache_);
 
   settings.beginGroup("Settings");
-
-  QString userStyleBrowser = settings.value("userStyleBrowser", QString()).toString();
-  optionsDialog_->userStyleBrowserEdit_->setText(userStyleBrowser);
-
-  bool useDiskCache = settings.value("useDiskCache", true).toBool();
-  optionsDialog_->diskCacheOn_->setChecked(useDiskCache);
-  QString diskCacheDir = settings.value("dirDiskCache", mainApp->cacheDefaultDir()).toString();
-  if (diskCacheDir.isEmpty()) diskCacheDir = mainApp->cacheDefaultDir();
-  optionsDialog_->dirDiskCacheEdit_->setText(diskCacheDir);
-  int maxDiskCache = settings.value("maxDiskCache", 50).toInt();
-  optionsDialog_->maxDiskCache_->setValue(maxDiskCache);
-
-  settings.endGroup();
-
-  UseCookies useCookies = mainApp->cookieJar()->useCookies();
-  optionsDialog_->saveCookies_->setChecked(useCookies == SaveCookies);
-  optionsDialog_->deleteCookiesOnClose_->setChecked(useCookies == DeleteCookiesOnClose);
-  optionsDialog_->blockCookies_->setChecked(useCookies == BlockCookies);
 
   optionsDialog_->downloadLocationEdit_->setText(downloadLocation_);
   optionsDialog_->askDownloadLocation_->setChecked(askDownloadLocation_);
@@ -3423,7 +3091,6 @@ void MainWindow::showOptionDlg(int index)
   optionsDialog_->updateFeedsInterval_->setValue(updateFeedsInterval_);
 
   optionsDialog_->setOpeningFeed(openingFeedAction_);
-  optionsDialog_->openNewsWebViewOn_->setChecked(openNewsWebViewOn_);
 
   optionsDialog_->markNewsReadOn_->setChecked(markNewsReadOn_);
   optionsDialog_->markCurNewsRead_->setChecked(markCurNewsRead_);
@@ -3432,8 +3099,6 @@ void MainWindow::showOptionDlg(int index)
   optionsDialog_->markReadSwitchingFeed_->setChecked(markReadSwitchingFeed_);
   optionsDialog_->markReadClosingTab_->setChecked(markReadClosingTab_);
   optionsDialog_->markReadMinimize_->setChecked(markReadMinimize_);
-
-  optionsDialog_->showDescriptionNews_->setChecked(showDescriptionNews_);
 
   for (int i = 0; i < optionsDialog_->formatDate_->count(); i++) {
     if (optionsDialog_->formatDate_->itemData(i).toString() == formatDate_) {
@@ -3468,10 +3133,6 @@ void MainWindow::showOptionDlg(int index)
       break;
     }
   }
-
-  QString styleSheetNews = settings.value("Settings/styleSheetNews",
-                                          mainApp->styleSheetNewsDefaultFile()).toString();
-  optionsDialog_->styleSheetNewsEdit_->setText(styleSheetNews);
 
   optionsDialog_->cleanupOnShutdownBox_->setChecked(cleanupOnShutdown_);
   optionsDialog_->dayCleanUpOn_->setChecked(dayCleanUpOn_);
@@ -3519,40 +3180,6 @@ void MainWindow::showOptionDlg(int index)
   optionsDialog_->fontsTree_->topLevelItem(3)->setText(2, strFont);
   strFont = QString("%1, %2").arg(notificationFontFamily_).arg(notificationFontSize_);
   optionsDialog_->fontsTree_->topLevelItem(4)->setText(2, strFont);
-
-  settings.beginGroup("Settings");
-  QString browserStandardFont = settings.value(
-        "browserStandardFont", QWebSettings::globalSettings()->fontFamily(QWebSettings::StandardFont)).toString();
-  QString browserFixedFont = settings.value(
-        "browserFixedFont", QWebSettings::globalSettings()->fontFamily(QWebSettings::FixedFont)).toString();
-  QString browserSerifFont = settings.value(
-        "browserSerifFont", QWebSettings::globalSettings()->fontFamily(QWebSettings::SerifFont)).toString();
-  QString browserSansSerifFont = settings.value(
-        "browserSansSerifFont", QWebSettings::globalSettings()->fontFamily(QWebSettings::SansSerifFont)).toString();
-  QString browserCursiveFont = settings.value(
-        "browserCursiveFont", QWebSettings::globalSettings()->fontFamily(QWebSettings::CursiveFont)).toString();
-  QString browserFantasyFont = settings.value(
-        "browserFantasyFont", QWebSettings::globalSettings()->fontFamily(QWebSettings::FantasyFont)).toString();
-  int browserDefaultFontSize = settings.value(
-        "browserDefaultFontSize", QWebSettings::globalSettings()->fontSize(QWebSettings::DefaultFontSize)).toInt();
-  int browserFixedFontSize = settings.value(
-        "browserFixedFontSize", QWebSettings::globalSettings()->fontSize(QWebSettings::DefaultFixedFontSize)).toInt();
-  int browserMinFontSize = settings.value(
-        "browserMinFontSize", QWebSettings::globalSettings()->fontSize(QWebSettings::MinimumFontSize)).toInt();
-  int browserMinLogFontSize = settings.value(
-        "browserMinLogFontSize", QWebSettings::globalSettings()->fontSize(QWebSettings::MinimumLogicalFontSize)).toInt();
-  settings.endGroup();
-
-  optionsDialog_->browserStandardFont_->setCurrentFont(QFont(browserStandardFont));
-  optionsDialog_->browserFixedFont_->setCurrentFont(QFont(browserFixedFont));
-  optionsDialog_->browserSerifFont_->setCurrentFont(QFont(browserSerifFont));
-  optionsDialog_->browserSansSerifFont_->setCurrentFont(QFont(browserSansSerifFont));
-  optionsDialog_->browserCursiveFont_->setCurrentFont(QFont(browserCursiveFont));
-  optionsDialog_->browserFantasyFont_->setCurrentFont(QFont(browserFantasyFont));
-  optionsDialog_->browserDefaultFontSize_->setValue(browserDefaultFontSize);
-  optionsDialog_->browserFixedFontSize_->setValue(browserFixedFontSize);
-  optionsDialog_->browserMinFontSize_->setValue(browserMinFontSize);
-  optionsDialog_->browserMinLogFontSize_->setValue(browserMinLogFontSize);
 
   QPixmap pixmapColor(14, 14);
   pixmapColor.fill(feedsModel_->textColor_);
@@ -3643,20 +3270,6 @@ void MainWindow::showOptionDlg(int index)
   optionsDialog_->colorsTree_->topLevelItem(22)->setText(1, notifierBackgroundColor_);
 
   NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(TAB_WIDGET_PERMANENT);
-  backWebPageAct_->setText(widget->webView_->page()->action(QWebPage::Back)->text());
-  backWebPageAct_->setToolTip(widget->webView_->page()->action(QWebPage::Back)->toolTip() + " " + tr("(Browser)"));
-  backWebPageAct_->setIcon(widget->webView_->page()->action(QWebPage::Back)->icon());
-  backWebPageAct_->setShortcut(widget->webView_->page()->action(QWebPage::Back)->shortcut());
-
-  forwardWebPageAct_->setText(widget->webView_->page()->action(QWebPage::Forward)->text());
-  forwardWebPageAct_->setToolTip(widget->webView_->page()->action(QWebPage::Forward)->toolTip() + " " + tr("(Browser)"));
-  forwardWebPageAct_->setIcon(widget->webView_->page()->action(QWebPage::Forward)->icon());
-  forwardWebPageAct_->setShortcut(widget->webView_->page()->action(QWebPage::Forward)->shortcut());
-
-  reloadWebPageAct_->setText(widget->webView_->page()->action(QWebPage::Reload)->text());
-  reloadWebPageAct_->setToolTip(widget->webView_->page()->action(QWebPage::Reload)->toolTip() + " " + tr("(Browser)"));
-  reloadWebPageAct_->setIcon(widget->webView_->page()->action(QWebPage::Reload)->icon());
-  reloadWebPageAct_->setShortcut(widget->webView_->page()->action(QWebPage::Reload)->shortcut());
 
   optionsDialog_->loadActionShortcut(listActions_, &listDefaultShortcut_);
 
@@ -3743,7 +3356,7 @@ void MainWindow::showOptionDlg(int index)
       slotCloseTab(indexTab);
     }
     if ((tabBar_->currentIndex() == indexTab) && (indexTab > 0) && (tabLabelId == 0)) {
-      slotUpdateNews(NewsTabWidget::RefreshWithPos);
+      slotUpdateNews();
     }
   }
 
@@ -3799,60 +3412,11 @@ void MainWindow::showOptionDlg(int index)
   settings.setValue("Settings/numberRequest", numberRequests);
   settings.setValue("Settings/numberRepeats", numberRepeats);
 
-  if (optionsDialog_->embeddedBrowserOn_->isChecked()) {
-    if (optionsDialog_->defaultExternalBrowserOn_->isChecked())
-      externalBrowserOn_ = 0;
-    else
-      externalBrowserOn_ = -1;
-  } else {
-    if (optionsDialog_->defaultExternalBrowserOn_->isChecked())
-      externalBrowserOn_ = 1;
-    else
-      externalBrowserOn_ = 2;
-  }
-
+  externalBrowserOn_ = optionsDialog_->defaultExternalBrowserOn_->isChecked() ? 0 : 2;
+  if (optionsDialog_->otherExternalBrowserOn_->isChecked())
+    externalBrowserOn_ = optionsDialog_->defaultExternalBrowserOn_->isChecked() ? 1 : -1;
   externalBrowser_ = optionsDialog_->otherExternalBrowserEdit_->text();
-  autoLoadImages_ = optionsDialog_->autoLoadImages_->isChecked();
-  javaScriptEnable_ = optionsDialog_->javaScriptEnable_->isChecked();
-  pluginsEnable_ = optionsDialog_->pluginsEnable_->isChecked();
   openLinkInBackground_ = optionsDialog_->openLinkInBackground_->isChecked();
-  openLinkInBackgroundEmbedded_ = optionsDialog_->openLinkInBackgroundEmbedded_->isChecked();
-  maxPagesInCache_ = optionsDialog_->maxPagesInCache_->value();
-  defaultZoomPages_ = optionsDialog_->defaultZoomPages_->value();
-
-  QWebSettings::globalSettings()->setAttribute(
-        QWebSettings::JavascriptEnabled, javaScriptEnable_);
-  QWebSettings::globalSettings()->setAttribute(
-        QWebSettings::PluginsEnabled, pluginsEnable_);
-  QWebSettings::globalSettings()->setMaximumPagesInCache(maxPagesInCache_);
-
-  settings.beginGroup("Settings");
-
-  userStyleBrowser = optionsDialog_->userStyleBrowserEdit_->text();
-  settings.setValue("userStyleBrowser", userStyleBrowser);
-
-  useDiskCache = optionsDialog_->diskCacheOn_->isChecked();
-  settings.setValue("useDiskCache", useDiskCache);
-  maxDiskCache = optionsDialog_->maxDiskCache_->value();
-  settings.setValue("maxDiskCache", maxDiskCache);
-
-  if (diskCacheDir != optionsDialog_->dirDiskCacheEdit_->text()) {
-    Common::removePath(diskCacheDir);
-  }
-  diskCacheDir = optionsDialog_->dirDiskCacheEdit_->text();
-  if (diskCacheDir.isEmpty()) diskCacheDir = mainApp->cacheDefaultDir();
-  settings.setValue("dirDiskCache", diskCacheDir);
-
-  settings.endGroup();
-
-  mainApp->setDiskCache();
-
-  useCookies = SaveCookies;
-  if (optionsDialog_->deleteCookiesOnClose_->isChecked())
-    useCookies = DeleteCookiesOnClose;
-  else if (optionsDialog_->blockCookies_->isChecked())
-    useCookies = BlockCookies;
-  mainApp->cookieJar()->setUseCookies(useCookies);
 
   downloadLocation_ = optionsDialog_->downloadLocationEdit_->text();
   askDownloadLocation_ = optionsDialog_->askDownloadLocation_->isChecked();
@@ -3870,7 +3434,6 @@ void MainWindow::showOptionDlg(int index)
   updateIntervalSec_ = updateInterval;
 
   openingFeedAction_ = optionsDialog_->getOpeningFeed();
-  openNewsWebViewOn_ = optionsDialog_->openNewsWebViewOn_->isChecked();
 
   markNewsReadOn_ = optionsDialog_->markNewsReadOn_->isChecked();
   markCurNewsRead_ = optionsDialog_->markCurNewsRead_->isChecked();
@@ -3879,8 +3442,6 @@ void MainWindow::showOptionDlg(int index)
   markReadSwitchingFeed_ = optionsDialog_->markReadSwitchingFeed_->isChecked();
   markReadClosingTab_ = optionsDialog_->markReadClosingTab_->isChecked();
   markReadMinimize_ = optionsDialog_->markReadMinimize_->isChecked();
-
-  showDescriptionNews_ = optionsDialog_->showDescriptionNews_->isChecked();
 
   formatDate_ = optionsDialog_->formatDate_->itemData(
         optionsDialog_->formatDate_->currentIndex()).toString();
@@ -3905,10 +3466,6 @@ void MainWindow::showOptionDlg(int index)
 
   mainNewsFilter_ = optionsDialog_->mainNewsFilter_->itemData(
         optionsDialog_->mainNewsFilter_->currentIndex()).toString();
-
-  styleSheetNews = optionsDialog_->styleSheetNewsEdit_->text();
-  if (styleSheetNews.isEmpty()) styleSheetNews = mainApp->styleSheetNewsDefaultFile();
-  settings.setValue("Settings/styleSheetNews", styleSheetNews);
 
   cleanupOnShutdown_ = optionsDialog_->cleanupOnShutdownBox_->isChecked();
   dayCleanUpOn_ = optionsDialog_->dayCleanUpOn_->isChecked();
@@ -3963,51 +3520,6 @@ void MainWindow::showOptionDlg(int index)
   notificationFontFamily_ = optionsDialog_->fontsTree_->topLevelItem(4)->text(2).section(", ", 0, 0);
   notificationFontSize_ = optionsDialog_->fontsTree_->topLevelItem(4)->text(2).section(", ", 1).toInt();
 
-  browserStandardFont = optionsDialog_->browserStandardFont_->currentFont().family();
-  browserFixedFont = optionsDialog_->browserFixedFont_->currentFont().family();
-  browserSerifFont = optionsDialog_->browserSerifFont_->currentFont().family();
-  browserSansSerifFont = optionsDialog_->browserSansSerifFont_->currentFont().family();
-  browserCursiveFont = optionsDialog_->browserCursiveFont_->currentFont().family();
-  browserFantasyFont = optionsDialog_->browserFantasyFont_->currentFont().family();
-  browserDefaultFontSize = optionsDialog_->browserDefaultFontSize_->value();
-  browserFixedFontSize = optionsDialog_->browserFixedFontSize_->value();
-  browserMinFontSize = optionsDialog_->browserMinFontSize_->value();
-  browserMinLogFontSize = optionsDialog_->browserMinLogFontSize_->value();
-
-  QWebSettings::globalSettings()->setFontFamily(
-        QWebSettings::StandardFont, browserStandardFont);
-  QWebSettings::globalSettings()->setFontFamily(
-        QWebSettings::FixedFont, browserFixedFont);
-  QWebSettings::globalSettings()->setFontFamily(
-        QWebSettings::SerifFont, browserSerifFont);
-  QWebSettings::globalSettings()->setFontFamily(
-        QWebSettings::SansSerifFont, browserSansSerifFont);
-  QWebSettings::globalSettings()->setFontFamily(
-        QWebSettings::CursiveFont, browserCursiveFont);
-  QWebSettings::globalSettings()->setFontFamily(
-        QWebSettings::FantasyFont, browserFantasyFont);
-  QWebSettings::globalSettings()->setFontSize(
-        QWebSettings::DefaultFontSize, browserDefaultFontSize);
-  QWebSettings::globalSettings()->setFontSize(
-        QWebSettings::DefaultFixedFontSize, browserFixedFontSize);
-  QWebSettings::globalSettings()->setFontSize(
-        QWebSettings::MinimumFontSize, browserMinFontSize);
-  QWebSettings::globalSettings()->setFontSize(
-        QWebSettings::MinimumLogicalFontSize, browserMinLogFontSize);
-
-  settings.beginGroup("Settings");
-  settings.setValue("browserStandardFont", browserStandardFont);
-  settings.setValue("browserFixedFont", browserFixedFont);
-  settings.setValue("browserSerifFont", browserSerifFont);
-  settings.setValue("browserSansSerifFont", browserSansSerifFont);
-  settings.setValue("browserCursiveFont", browserCursiveFont);
-  settings.setValue("browserFantasyFont", browserFantasyFont);
-  settings.setValue("browserDefaultFontSize", browserDefaultFontSize);
-  settings.setValue("browserFixedFontSize", browserFixedFontSize);
-  settings.setValue("browserMinFontSize", browserMinFontSize);
-  settings.setValue("browserMinLogFontSize", browserMinLogFontSize);
-  settings.endGroup();
-
   feedsModel_->textColor_ = optionsDialog_->colorsTree_->topLevelItem(0)->text(1);
   feedsModel_->backgroundColor_ = optionsDialog_->colorsTree_->topLevelItem(1)->text(1);
   feedsView_->setStyleSheet(QString("#feedsView_ {background: %1;}").arg(feedsModel_->backgroundColor_));
@@ -4042,10 +3554,9 @@ void MainWindow::showOptionDlg(int index)
 
   saveSettings();
   saveActionShortcuts();
-  mainApp->reloadUserStyleBrowser();
 
   if (currentNewsTab != NULL) {
-    if (currentNewsTab->type_ < NewsTabWidget::TabTypeWeb)
+    if (currentNewsTab->type_ < NewsTabWidget::TabTypeDownloads)
       currentNewsTab->newsHeader_->saveStateColumns(currentNewsTab);
     currentNewsTab->setSettings(false);
   }
@@ -4377,7 +3888,7 @@ void MainWindow::setFeedsFilter(bool clicked)
 void MainWindow::setNewsFilter(QAction* pAct, bool clicked)
 {
   if (currentNewsTab == NULL) return;
-  if (currentNewsTab->type_ >= NewsTabWidget::TabTypeWeb) {
+  if (currentNewsTab->type_ >= NewsTabWidget::TabTypeDownloads) {
     filterNewsAll_->setChecked(true);
     return;
   }
@@ -4466,8 +3977,6 @@ void MainWindow::setNewsFilter(QAction* pAct, bool clicked)
                              currentNewsTab->newsHeader_->sortIndicatorOrder());
   }
 
-  currentNewsTab->loadNewspaper();
-
   // Set icon right before user click
   if (pAct->objectName() == "filterNewsAll_") newsFilter_->setIcon(QIcon(":/images/filterOff"));
   else newsFilter_->setIcon(QIcon(":/images/filterOn"));
@@ -4481,7 +3990,6 @@ void MainWindow::setNewsFilter(QAction* pAct, bool clicked)
       newsView_->setCurrentIndex(newsModel_->index(newsRow, newsModel_->fieldIndex("title")));
     } else {
       currentNewsTab->currentNewsIdOld = newsId;
-      currentNewsTab->hideWebContent();
     }
   }
 
@@ -4495,7 +4003,7 @@ void MainWindow::setNewsFilter(QAction* pAct, bool clicked)
 void MainWindow::setFeedRead(int type, int feedId, FeedReedType feedReadType,
                              NewsTabWidget *widgetTab, int idException)
 {
-  if ((type >= NewsTabWidget::TabTypeWeb) || (type == NewsTabWidget::TabTypeDel))
+  if ((type >= NewsTabWidget::TabTypeDownloads) || (type == NewsTabWidget::TabTypeDel))
     return;
 
   if ((type == NewsTabWidget::TabTypeFeed) && (feedReadType != FeedReadSwitchingTab)) {
@@ -4520,7 +4028,7 @@ void MainWindow::setFeedRead(int type, int feedId, FeedReedType feedReadType,
     }
     for (int i = 0; i < stackedWidget_->count(); i++) {
       NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(i);
-      if ((widget->type_ < NewsTabWidget::TabTypeWeb) &&
+      if ((widget->type_ < NewsTabWidget::TabTypeDownloads) &&
           !((feedReadType == FeedReadSwitchingFeed) && (i == TAB_WIDGET_PERMANENT))) {
         int row = widget->newsView_->currentIndex().row();
         int newsId = widget->newsModel_->index(row, widget->newsModel_->fieldIndex("id")).data().toInt();
@@ -4641,8 +4149,6 @@ void MainWindow::slotRefreshNewsView(int nextUnread)
     while (newsModel_->canFetchMore())
       newsModel_->fetchMore();
 
-    currentNewsTab->loadNewspaper(NewsTabWidget::RefreshWithPos);
-
     newsView_->setCurrentIndex(newsModel_->index(currentRow, newsModel_->fieldIndex("title")));
   }
 }
@@ -4741,7 +4247,6 @@ void MainWindow::restoreFeedsOnStartUp()
   feedsView_->setCurrentIndex(feedIndex);
   updateCurrentTab_ = false;
   slotFeedClicked(feedIndex);
-  currentNewsTab->webView_->setFocus();
   updateCurrentTab_ = true;
 
   slotUpdateStatus(-1, false);
@@ -4928,8 +4433,6 @@ void MainWindow::retranslateStrings()
   updateAppAct_->setText(tr("Check for Updates..."));
   reportProblemAct_->setText(tr("Report a Problem..."));
 
-  openDescriptionNewsAct_->setText(tr("Open News"));
-  openDescriptionNewsAct_->setToolTip(tr("Open News Description"));
   openInBrowserAct_->setText(tr("Open in Browser"));
   openInExternalBrowserAct_->setText(tr("Open in External Browser"));
   openInExternalBrowserAct_->setToolTip(tr("Open News in External Browser"));
@@ -4959,7 +4462,6 @@ void MainWindow::retranslateStrings()
   viewMenu_->setTitle(tr("&View"));
   feedMenu_->setTitle(tr("Fee&ds"));
   newsMenu_->setTitle(tr("&News"));
-  browserMenu_->setTitle(tr("&Browser"));
   toolsMenu_->setTitle(tr("&Tools"));
   helpMenu_->setTitle(tr("&Help"));
 
@@ -4973,11 +4475,6 @@ void MainWindow::retranslateStrings()
   toolBarLockAct_->setText(tr("Lock Toolbar"));
   toolBarHideAct_->setText(tr("Hide Toolbar"));
 
-  layoutMenu_->setTitle(tr("Layout"));
-  classicLayoutAct_->setText(tr("Classic"));
-  newspaperLayoutAct_->setText(tr("Newspaper"));
-  layoutToggle_->setText(tr("Layout"));
-
   styleMenu_->setTitle(tr("Application Style"));
   systemStyle_->setText(tr("System"));
   system2Style_->setText(tr("System2"));
@@ -4987,12 +4484,6 @@ void MainWindow::retranslateStrings()
   purpleStyle_->setText(tr("Purple"));
   pinkStyle_->setText(tr("Pink"));
   grayStyle_->setText(tr("Gray"));
-
-  browserPositionMenu_->setTitle(tr("Browser Position"));
-  topBrowserPositionAct_->setText(tr("Top"));
-  bottomBrowserPositionAct_->setText(tr("Bottom"));
-  rightBrowserPositionAct_->setText(tr("Right"));
-  leftBrowserPositionAct_->setText(tr("Left"));
 
   showWindowAct_->setText(tr("Show Window"));
 
@@ -5015,8 +4506,6 @@ void MainWindow::retranslateStrings()
 
   feedsWidgetVisibleAct_->setText(tr("Tree Feeds"));
   feedsWidgetVisibleAct_->setToolTip(tr("Show/Hide Tree Feeds"));
-  webWidgetVisibleAct_->setText(tr("Browser"));
-  webWidgetVisibleAct_->setToolTip(tr("Show/Hide Browser"));
 
   placeToTrayAct_->setText(tr("Minimize to Tray"));
   placeToTrayAct_->setToolTip(tr("Minimize Application to Tray"));
@@ -5031,32 +4520,10 @@ void MainWindow::retranslateStrings()
   findFeedAct_->setText(tr("Search Feed"));
   findFeedAct_->setToolTip(tr("Search Feed"));
 
-  browserZoomMenu_->setTitle(tr("Zoom"));
-  zoomInAct_->setText(tr("Zoom In"));
-  zoomInAct_->setToolTip(tr("Zoom in in browser"));
-  zoomOutAct_->setText(tr("Zoom Out"));
-  zoomOutAct_->setToolTip(tr("Zoom out in browser"));
-  zoomTo100Act_->setText(tr("100%"));
-  zoomTo100Act_->setToolTip(tr("Reset browser zoom"));
-
-  printAct_->setText(tr("Print..."));
-  printAct_->setToolTip(tr("Print Web Page"));
-  printPreviewAct_->setText(tr("Print Preview..."));
-  printPreviewAct_->setToolTip(tr("Preview Web Page"));
-
-  pageUpWebViewAct_->setText(tr("Page up (Browser)"));
-  pageDownWebViewAct_->setText(tr("Page down (Browser)"));
-
-  savePageAsAct_->setText(tr("Save As..."));
-  savePageAsAct_->setToolTip(tr("Save Page As..."));
-  savePageAsDescriptAct_->setText(tr("Save page in database"));
-  savePageAsDescriptAct_->setToolTip(tr("Save page in database instead of news description"));
-
   toolbarsMenu_->setTitle(tr("Show/Hide"));
   mainToolbarToggle_->setText(tr("Main Toolbar"));
   feedsToolbarToggle_->setText(tr("Feeds Toolbar"));
   newsToolbarToggle_->setText(tr("News Toolbar"));
-  browserToolbarToggle_->setText(tr("Browser Toolbar"));
   categoriesPanelToggle_->setText(tr("Panel Categories"));
   statusBarToggle_->setText(tr("Status Bar"));
 
@@ -5175,8 +4642,6 @@ void MainWindow::retranslateStrings()
   }
   findFeeds_->retranslateStrings();
   mainApp->downloadManager()->retranslateStrings();
-  adblockIcon_->retranslateStrings();
-  QApplication::translate("AdBlockCustomList", "Custom Rules");
 
 
   if ((mainApp->language() == "ar") || (mainApp->language() == "fa")) {
@@ -5290,10 +4755,8 @@ void MainWindow::showFeedPropertiesDlg()
       feedsModel_->dataField(index, "displayOnStartup").toInt();
   properties.display.displayEmbeddedImages =
       feedsModel_->dataField(index, "displayEmbeddedImages").toInt();
-  properties.display.javaScriptEnable =
-      feedsModel_->dataField(index, "javaScriptEnable").toInt();
   if (feedsModel_->dataField(index, "displayNews").toString().isEmpty())
-    properties.display.displayNews = !showDescriptionNews_;
+    properties.display.displayNews = 0;
   else
     properties.display.displayNews =
         feedsModel_->dataField(index, "displayNews").toInt();
@@ -5459,8 +4922,7 @@ void MainWindow::showFeedPropertiesDlg()
   q.prepare("UPDATE feeds SET text = ?, xmlUrl = ?, displayOnStartup = ?, "
             "displayEmbeddedImages = ?, displayNews = ?, layoutDirection = ?, "
             "label = ?, duplicateNewsMode = ?, addSingleNewsAnyDateOn = ?, avoidedOldSingleNewsDateOn = ?, avoidedOldSingleNewsDate = ?,"
-            " authentication = ?, disableUpdate = ?, "
-            "javaScriptEnable = ? WHERE id == ?");
+            " authentication = ?, disableUpdate = ? WHERE id == ?");
   q.addBindValue(properties.general.text);
   q.addBindValue(properties.general.url);
   q.addBindValue(properties.general.displayOnStartup);
@@ -5477,7 +4939,6 @@ void MainWindow::showFeedPropertiesDlg()
   q.addBindValue(properties.general.avoidedOldSingleNewsDate);
   q.addBindValue(properties.authentication.on ? 1 : 0);
   q.addBindValue(properties.general.disableUpdate ? 1 : 0);
-  q.addBindValue(properties.display.javaScriptEnable);
   q.addBindValue(feedId);
   q.exec();
 
@@ -5584,7 +5045,6 @@ void MainWindow::showFeedPropertiesDlg()
   QModelIndex indexavoidedOldSingleNewsDate = feedsModel_->indexSibling(index, "avoidedOldSingleNewsDate");
   QModelIndex indexAuthentication = feedsModel_->indexSibling(index, "authentication");
   QModelIndex indexDisableUpdate = feedsModel_->indexSibling(index, "disableUpdate");
-  QModelIndex indexJavaScript = feedsModel_->indexSibling(index, "javaScriptEnable");
   feedsModel_->setData(indexText, properties.general.text);
   feedsModel_->setData(indexUrl, properties.general.url);
   feedsModel_->setData(indexStartup, properties.general.displayOnStartup);
@@ -5598,7 +5058,6 @@ void MainWindow::showFeedPropertiesDlg()
   feedsModel_->setData(indexavoidedOldSingleNewsDate, properties.general.avoidedOldSingleNewsDate);
   feedsModel_->setData(indexAuthentication, properties.authentication.on ? 1 : 0);
   feedsModel_->setData(indexDisableUpdate, properties.general.disableUpdate ? 1 : 0);
-  feedsModel_->setData(indexJavaScript, properties.display.javaScriptEnable);
 
   if (!properties.general.updateEnable ||
       (properties.general.updateEnable != updateFeedsEnable_) ||
@@ -5736,8 +5195,7 @@ void MainWindow::showFeedPropertiesDlg()
       if (properties.general.text != properties_tmp.general.text) {
         widget->setTextTab(properties.general.text);
       }
-      if ((properties.display.layoutDirection != properties_tmp.display.layoutDirection) ||
-          (properties.display.javaScriptEnable != properties_tmp.display.javaScriptEnable)) {
+      if (properties.display.layoutDirection != properties_tmp.display.layoutDirection) {
         widget->setSettings();
       }
     }
@@ -5903,7 +5361,7 @@ void MainWindow::slotIconFeedUpdate(int feedId, QByteArray faviconData)
       widget->newsIconTitle_->setPixmap(iconTab);
     }
   }
-  if (currentNewsTab->type_ < NewsTabWidget::TabTypeWeb)
+  if (currentNewsTab->type_ < NewsTabWidget::TabTypeDownloads)
     currentNewsTab->newsView_->viewport()->update();
 }
 // ----------------------------------------------------------------------------
@@ -6054,8 +5512,6 @@ void MainWindow::showFilterRulesDlg()
 void MainWindow::slotUpdateAppCheck()
 {
   updateAppDialog_ = new UpdateAppDialog(mainApp->language(), this, false);
-  connect(updateAppDialog_, SIGNAL(signalNewVersion(QString)),
-          this, SLOT(slotNewVersion(QString)), Qt::QueuedConnection);
 }
 // ----------------------------------------------------------------------------
 void MainWindow::slotNewVersion(const QString &newVersion)
@@ -6224,10 +5680,7 @@ void MainWindow::setStyleApp(QAction *pAct)
   } else {
     fileName.append("/style/green.qss");
   }
-
-  QString userStyleBrowser = "";
   if (pAct->objectName() == "darkStyle_") {
-    userStyleBrowser = mainApp->styleSheetWebDarkFile();
     feedsModel_->textColor_ = "#e1e0e1";
     newsListTextColor_ = "#e1e0e1";
     newsListBackgroundColor_ = "#464546";
@@ -6263,7 +5716,6 @@ void MainWindow::setStyleApp(QAction *pAct)
   }
 
   settings.beginGroup("Settings");
-  settings.setValue("userStyleBrowser", userStyleBrowser);
   settings.setValue("transparencyNotify", transparencyNotify_);
   settings.endGroup();
   settings.beginGroup("Color");
@@ -6298,9 +5750,8 @@ void MainWindow::setStyleApp(QAction *pAct)
         arg(feedsPanel_->palette().window().color().name()).
         arg(qApp->palette().color(QPalette::Dark).name()));
 
-  mainApp->reloadUserStyleBrowser();
   if (currentNewsTab != NULL) {
-    if (currentNewsTab->type_ < NewsTabWidget::TabTypeWeb)
+    if (currentNewsTab->type_ < NewsTabWidget::TabTypeDownloads)
       currentNewsTab->newsHeader_->saveStateColumns(currentNewsTab);
     currentNewsTab->setSettings(false);
   }
@@ -6312,8 +5763,6 @@ void MainWindow::slotSwitchFocus()
 {
   if (feedsView_->hasFocus()) {
     newsView_->setFocus();
-  } else if (newsView_->hasFocus()) {
-    currentNewsTab->webView_->setFocus();
   } else {
     feedsView_->setFocus();
   }
@@ -6323,20 +5772,14 @@ void MainWindow::slotSwitchFocus()
  *---------------------------------------------------------------------------*/
 void MainWindow::slotSwitchPrevFocus()
 {
-  if (feedsView_->hasFocus()) {
-    currentNewsTab->webView_->setFocus();
-  } else if (currentNewsTab->webView_->hasFocus()) {
-    newsView_->setFocus();
-  } else {
-    feedsView_->setFocus();
-  }
+  feedsView_->setFocus();
 }
 
 /** @brief Open feed in a new tab
  *---------------------------------------------------------------------------*/
 void MainWindow::slotOpenFeedNewTab()
 {
-  if (stackedWidget_->count() && currentNewsTab->type_ < NewsTabWidget::TabTypeWeb) {
+  if (stackedWidget_->count() && currentNewsTab->type_ < NewsTabWidget::TabTypeDownloads) {
     setFeedRead(currentNewsTab->type_, currentNewsTab->feedId_, FeedReadSwitchingTab, currentNewsTab);
     currentNewsTab->newsHeader_->saveStateColumns(currentNewsTab);
     Settings settings;
@@ -6391,7 +5834,7 @@ void MainWindow::slotTabCurrentChanged(int index)
 
   NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(index);
 
-  if ((widget->type_ == NewsTabWidget::TabTypeFeed) || (widget->type_ >= NewsTabWidget::TabTypeWeb))
+  if ((widget->type_ == NewsTabWidget::TabTypeFeed) || (widget->type_ >= NewsTabWidget::TabTypeDownloads))
     categoriesTree_->setCurrentIndex(QModelIndex());
   if (widget->type_ != NewsTabWidget::TabTypeFeed) {
     feedsView_->setCurrentIndex(QModelIndex());
@@ -6412,7 +5855,7 @@ void MainWindow::slotTabCurrentChanged(int index)
 
   if (!updateCurrentTab_) return;
 
-  if ((tabBar_->closingTabState_ == TabBar::CloseTabIdle) && (currentNewsTab->type_ < NewsTabWidget::TabTypeWeb)) {
+  if ((tabBar_->closingTabState_ == TabBar::CloseTabIdle) && (currentNewsTab->type_ < NewsTabWidget::TabTypeDownloads)) {
     setFeedRead(currentNewsTab->type_, currentNewsTab->feedId_, FeedReadSwitchingTab, currentNewsTab);
 
     currentNewsTab->newsHeader_->saveStateColumns(currentNewsTab);
@@ -6426,7 +5869,6 @@ void MainWindow::slotTabCurrentChanged(int index)
     currentNewsTab = (NewsTabWidget*)stackedWidget_->widget(index);
     currentNewsTab->setSettings(false);
     currentNewsTab->retranslateStrings();
-    currentNewsTab->setBrowserPosition();
 
     newsModel_ = currentNewsTab->newsModel_;
     newsView_ = currentNewsTab->newsView_;
@@ -6437,7 +5879,7 @@ void MainWindow::slotTabCurrentChanged(int index)
 
     setFeedsFilter(false);
 
-    slotUpdateNews(NewsTabWidget::RefreshWithPos);
+    slotUpdateNews();
     if (widget->isVisible())
       newsView_->setFocus();
     else
@@ -6445,13 +5887,12 @@ void MainWindow::slotTabCurrentChanged(int index)
 
     statusUnread_->setVisible(widget->feedId_);
     statusAll_->setVisible(widget->feedId_);
-  } else if (widget->type_ == NewsTabWidget::TabTypeWeb) {
+  } else if (widget->type_ == NewsTabWidget::TabTypeDownloads) {
     statusUnread_->setVisible(false);
     statusAll_->setVisible(false);
     currentNewsTab = widget;
     currentNewsTab->setSettings(false);
     currentNewsTab->retranslateStrings();
-    currentNewsTab->webView_->setFocus();
   } else if (widget->type_ == NewsTabWidget::TabTypeDownloads) {
     statusUnread_->setVisible(false);
     statusAll_->setVisible(false);
@@ -6474,12 +5915,11 @@ void MainWindow::slotTabCurrentChanged(int index)
     currentNewsTab = (NewsTabWidget*)stackedWidget_->widget(index);
     currentNewsTab->setSettings(false);
     currentNewsTab->retranslateStrings();
-    currentNewsTab->setBrowserPosition();
 
     newsModel_ = currentNewsTab->newsModel_;
     newsView_ = currentNewsTab->newsView_;
 
-    slotUpdateNews(NewsTabWidget::RefreshWithPos);
+    slotUpdateNews();
     newsView_->setFocus();
 
     int unreadCount = widget->getUnreadCount(categoriesTree_->currentItem()->text(4));
@@ -6512,61 +5952,6 @@ void MainWindow::feedsColumnVisible(QAction *action)
     feedsView_->hideColumn(idx);
 }
 
-void MainWindow::setNewsLayout(QAction *action)
-{
-  newsLayout_ = action->data().toInt();
-  switch (newsLayout_) {
-  case 1:
-    layoutToggle_->setIcon(QIcon(":/images/layout_newspaper"));
-    break;
-  default:
-    layoutToggle_->setIcon(QIcon(":/images/layout_classic"));
-  }
-  currentNewsTab->setNewsLayout();
-}
-
-void MainWindow::setNewsLayout()
-{
-  if ((newsLayout_ + 1) >= layoutGroup_->actions().count())
-    layoutGroup_->actions().at(0)->setChecked(true);
-  else
-    layoutGroup_->actions().at(newsLayout_ + 1)->setChecked(true);
-  setNewsLayout(layoutGroup_->checkedAction());
-}
-
-/** @brief Set browser position
- *---------------------------------------------------------------------------*/
-void MainWindow::setBrowserPosition(QAction *action)
-{
-  browserPosition_ = action->data().toInt();
-  currentNewsTab->setBrowserPosition();
-}
-
-/** @brief Create tab with browser only (without news list)
- *---------------------------------------------------------------------------*/
-QWebPage *MainWindow::createWebTab(QUrl url)
-{
-  NewsTabWidget *widget = new NewsTabWidget(this, NewsTabWidget::TabTypeWeb);
-  int indexTab = addTab(widget);
-  widget->setTextTab(tr("Loading..."));
-
-  if (openNewsTab_ == NEW_TAB_FOREGROUND) {
-    currentNewsTab = widget;
-    emit signalSetCurrentTab(indexTab);
-  }
-
-  widget->setSettings();
-  widget->retranslateStrings();
-
-  openNewsTab_ = 0;
-
-  if (!url.isEmpty()) {
-      widget->locationBar_->setText(url.toString());
-      widget->webView_->load(url);
-    }
-
-  return widget->webView_->page();
-}
 // ----------------------------------------------------------------------------
 void MainWindow::creatFeedTab(int feedId, int feedParId)
 {
@@ -6579,7 +5964,6 @@ void MainWindow::creatFeedTab(int feedId, int feedParId)
     addTab(widget);
     widget->setSettings();
     widget->retranslateStrings();
-    widget->setBrowserPosition();
 
     bool isFeed = true;
     if (q.value(3).toString().isEmpty())
@@ -6631,8 +6015,6 @@ void MainWindow::creatFeedTab(int feedId, int feedParId)
         widget->newsModel_->fetchMore();
     }
 
-    currentNewsTab->loadNewspaper();
-
     // focus feed has displayed before
     int newsRow = -1;
     int newsId = widget->newsModel_->index(newsRow, widget->newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
@@ -6645,8 +6027,7 @@ void MainWindow::creatFeedTab(int feedId, int feedParId)
     widget->newsView_->setCurrentIndex(widget->newsModel_->index(newsRow, widget->newsModel_->fieldIndex("title")));
     if (newsRow == -1) widget->newsView_->verticalScrollBar()->setValue(newsRow);
 
-    if ((openingFeedAction_ < 2) && openNewsWebViewOn_) {
-      widget->slotNewsViewSelected(widget->newsModel_->index(newsRow, widget->newsModel_->fieldIndex("title")));
+    if ((openingFeedAction_ < 2)) {
     } else {
       widget->slotNewsViewSelected(widget->newsModel_->index(-1, widget->newsModel_->fieldIndex("title")));
       QSqlQuery q;
@@ -6655,14 +6036,6 @@ void MainWindow::creatFeedTab(int feedId, int feedParId)
       q.exec(qStr);
     }
   }
-}
-
-/** @brief Open news using Enter key
- *---------------------------------------------------------------------------*/
-void MainWindow::slotOpenNewsWebView()
-{
-  if (!newsView_->hasFocus()) return;
-  currentNewsTab->slotNewsViewSelected(newsView_->currentIndex());
 }
 // ----------------------------------------------------------------------------
 void MainWindow::slotNewsUpPressed()
@@ -6748,18 +6121,6 @@ void MainWindow::slotShowLabelsMenu()
 {
   currentNewsTab->showLabelsMenu();
 }
-// ----------------------------------------------------------------------------
-void MainWindow::slotPageUpWebView()
-{
-  QKeyEvent keyEvent(QEvent::KeyPress, Qt::Key_PageUp, Qt::NoModifier);
-  QApplication::sendEvent(currentNewsTab->webView_->page(), &keyEvent);
-}
-
-void MainWindow::slotPageDownWebView()
-{
-  QKeyEvent keyEvent(QEvent::KeyPress, Qt::Key_PageDown, Qt::NoModifier);
-  QApplication::sendEvent(currentNewsTab->webView_->page(), &keyEvent);
-}
 /** @brief Reload full model
  * @details Performs: reload model, reset proxy model, restore focus
  *---------------------------------------------------------------------------*/
@@ -6796,7 +6157,7 @@ void MainWindow::setCurrentTab(int index, bool updateCurrentTab)
  *---------------------------------------------------------------------------*/
 void MainWindow::findText()
 {
-  if (currentNewsTab->type_ < NewsTabWidget::TabTypeWeb) {
+  if (currentNewsTab->type_ < NewsTabWidget::TabTypeDownloads) {
     if (!currentNewsTab->findText_->hasFocus())
       currentNewsTab->findText_->setFocus();
     else
@@ -6917,7 +6278,6 @@ void MainWindow::slotAddColorList(int id, const QString &color)
 void MainWindow::slotOpenNew(int feedId, int newsId)
 {
   openingFeedAction_ = 0;
-  openNewsWebViewOn_ = true;
 
   QSqlQuery q;
   q.exec(QString("UPDATE feeds SET currentNews='%1' WHERE id=='%2'").arg(newsId).arg(feedId));
@@ -6927,7 +6287,7 @@ void MainWindow::slotOpenNew(int feedId, int newsId)
   feedsModel_->setData(feedsModel_->indexSibling(feedIndex, "currentNews"),
                            newsId);
 
-  if (stackedWidget_->count() && currentNewsTab->type_ < NewsTabWidget::TabTypeWeb) {
+  if (stackedWidget_->count() && currentNewsTab->type_ < NewsTabWidget::TabTypeDownloads) {
     currentNewsTab->newsHeader_->saveStateColumns(currentNewsTab);
   }
 
@@ -6971,7 +6331,6 @@ void MainWindow::slotOpenNew(int feedId, int newsId)
 
   Settings settings;
   openingFeedAction_ = settings.value("/Settings/openingFeedAction", 0).toInt();
-  openNewsWebViewOn_ = settings.value("/Settings/openNewsWebViewOn", true).toBool();
   showWindows();
   newsView_->setFocus();
 }
@@ -6987,7 +6346,7 @@ void MainWindow::slotMarkReadNewsInNotification(int feedId, int newsId, int read
 {
   QSqlQuery q;
   bool showNews = false;
-  if (currentNewsTab->type_ < NewsTabWidget::TabTypeWeb) {
+  if (currentNewsTab->type_ < NewsTabWidget::TabTypeDownloads) {
     int cnt = newsModel_->rowCount();
     for (int i = 0; i < cnt; ++i) {
       if (newsId == newsModel_->index(i, newsModel_->fieldIndex("id")).data().toInt()) {
@@ -7035,7 +6394,7 @@ void MainWindow::slotDeleteNewsInNotification(int feedId, int newsId)
                arg(QDateTime::currentDateTime().toString(Qt::ISODate)).
                arg(newsId));
 
-  if (currentNewsTab->type_ < NewsTabWidget::TabTypeWeb) {
+  if (currentNewsTab->type_ < NewsTabWidget::TabTypeDownloads) {
     for (int i = 0; i < newsModel_->rowCount(); ++i) {
       if (newsId == newsModel_->index(i, newsModel_->fieldIndex("id")).data().toInt()) {
         newsModel_->setData(newsModel_->index(i, newsModel_->fieldIndex("new")), 0);
@@ -7048,8 +6407,6 @@ void MainWindow::slotDeleteNewsInNotification(int feedId, int newsId)
 
         while (newsModel_->canFetchMore())
           newsModel_->fetchMore();
-
-        currentNewsTab->loadNewspaper(NewsTabWidget::RefreshWithPos);
 
         QModelIndex curIndex;
         if (i == newsModel_->rowCount())
@@ -7075,7 +6432,7 @@ void MainWindow::slotMarkAllReadNewsInNotification()
     QList<int> idFeedList = notificationWidget->idFeedList();
     QList<int> idNewsList = notificationWidget->idNewsList();
 
-    if (currentNewsTab->type_ < NewsTabWidget::TabTypeWeb) {
+    if (currentNewsTab->type_ < NewsTabWidget::TabTypeDownloads) {
       for (int i = 0; i < newsModel_->rowCount(); ++i) {
         if (idNewsList.contains(newsModel_->index(i, newsModel_->fieldIndex("id")).data().toInt())) {
           newsModel_->setData(
@@ -7134,64 +6491,11 @@ void MainWindow::cleanUp()
   delete cleanUpWizard;
 }
 
-/** @brief Zooming in browser
- *---------------------------------------------------------------------------*/
-void MainWindow::browserZoom(QAction *action)
-{
-  if (currentNewsTab->type_ == NewsTabWidget::TabTypeDownloads) return;
-
-  if (action->objectName() == "zoomInAct") {
-    if (currentNewsTab->webView_->zoomFactor() < 5.0)
-      currentNewsTab->webView_->setZoomFactor(currentNewsTab->webView_->zoomFactor()+0.1);
-  } else if (action->objectName() == "zoomOutAct") {
-    if (currentNewsTab->webView_->zoomFactor() > 0.3)
-      currentNewsTab->webView_->setZoomFactor(currentNewsTab->webView_->zoomFactor()-0.1);
-  } else {
-    currentNewsTab->webView_->setZoomFactor(1);
-  }
-}
-
 /** @brief Call default e-mail application to report the problem
  *---------------------------------------------------------------------------*/
 void MainWindow::slotReportProblem()
 {
   QDesktopServices::openUrl(QUrl("https://github.com/QuiteRSS/quiterss/issues"));
-}
-
-/** @brief Print browser page
- *---------------------------------------------------------------------------*/
-void MainWindow::slotPrint(QWebFrame *frame)
-{
-  if (currentNewsTab->type_ == NewsTabWidget::TabTypeDownloads) return;
-
-  QPrinter printer;
-  printer.setDocName(tr("Web Page"));
-  QPrintDialog *printDlg = new QPrintDialog(&printer);
-  if (!frame)
-    connect(printDlg, SIGNAL(accepted(QPrinter*)), currentNewsTab->webView_, SLOT(print(QPrinter*)));
-  else
-    connect(printDlg, SIGNAL(accepted(QPrinter*)), frame, SLOT(print(QPrinter*)));
-  printDlg->exec();
-  printDlg->deleteLater();
-}
-
-/** @brief Call print preview dialog
- *---------------------------------------------------------------------------*/
-void MainWindow::slotPrintPreview(QWebFrame *frame)
-{
-  if (currentNewsTab->type_ == NewsTabWidget::TabTypeDownloads) return;
-
-  QPrinter printer;
-  printer.setDocName(tr("Web Page"));
-  QPrintPreviewDialog *prevDlg = new QPrintPreviewDialog(&printer);
-  prevDlg->setWindowFlags(prevDlg->windowFlags() | Qt::WindowMaximizeButtonHint);
-  prevDlg->resize(650, 800);
-  if (!frame)
-    connect(prevDlg, SIGNAL(paintRequested(QPrinter*)), currentNewsTab->webView_, SLOT(print(QPrinter*)));
-  else
-    connect(prevDlg, SIGNAL(paintRequested(QPrinter*)), frame, SLOT(print(QPrinter*)));
-  prevDlg->exec();
-  prevDlg->deleteLater();
 }
 // ----------------------------------------------------------------------------
 void MainWindow::setFullScreen()
@@ -7363,7 +6667,7 @@ void MainWindow::slotMoveIndex(const QModelIndex &indexWhere, int how)
  *---------------------------------------------------------------------------*/
 void MainWindow::slotCategoriesClicked(QTreeWidgetItem *item, int, bool createTab)
 {
-  if (stackedWidget_->count() && currentNewsTab->type_ < NewsTabWidget::TabTypeWeb) {
+  if (stackedWidget_->count() && currentNewsTab->type_ < NewsTabWidget::TabTypeDownloads) {
     currentNewsTab->newsHeader_->saveStateColumns(currentNewsTab);
     Settings settings;
     settings.setValue("NewsTabSplitterState", currentNewsTab->newsTabWidgetSplitter_->saveState());
@@ -7507,8 +6811,6 @@ void MainWindow::slotCategoriesClicked(QTreeWidgetItem *item, int, bool createTa
       }
     }
 
-    currentNewsTab->loadNewspaper();
-
     // Search previous displayed news of the feed
     int newsRow = -1;
     if (openingFeedAction_ == 0) {
@@ -7533,12 +6835,6 @@ void MainWindow::slotCategoriesClicked(QTreeWidgetItem *item, int, bool createTa
     // Display previous displayed news of the feed
     newsView_->setCurrentIndex(newsModel_->index(newsRow, newsModel_->fieldIndex("title")));
     if (newsRow == -1) newsView_->verticalScrollBar()->setValue(newsRow);
-
-    if ((openingFeedAction_ != 2) && openNewsWebViewOn_) {
-      currentNewsTab->slotNewsViewSelected(newsModel_->index(newsRow, newsModel_->fieldIndex("title")));
-    } else {
-      currentNewsTab->slotNewsViewSelected(newsModel_->index(-1, newsModel_->fieldIndex("title")));
-    }
 
     if (createTab)
       emit signalSetCurrentTab(indexTab);
@@ -7624,7 +6920,7 @@ void MainWindow::feedsSplitterMoved(int pos, int)
  *---------------------------------------------------------------------------*/
 void MainWindow::setLabelNews(QAction *action)
 {
-  if (currentNewsTab->type_ >= NewsTabWidget::TabTypeWeb) return;
+  if (currentNewsTab->type_ >= NewsTabWidget::TabTypeDownloads) return;
 
   newsLabelAction_->setIcon(action->icon());
   newsLabelAction_->setToolTip(action->text());
@@ -7637,7 +6933,7 @@ void MainWindow::setLabelNews(QAction *action)
  *---------------------------------------------------------------------------*/
 void MainWindow::setDefaultLabelNews()
 {
-  if (currentNewsTab->type_ >= NewsTabWidget::TabTypeWeb) return;
+  if (currentNewsTab->type_ >= NewsTabWidget::TabTypeDownloads) return;
 
   currentNewsTab->setLabelNews(newsLabelAction_->data().toInt());
 }
@@ -7650,7 +6946,7 @@ void MainWindow::getLabelNews()
     newsLabelGroup_->actions().at(i)->setChecked(false);
   }
 
-  if (currentNewsTab->type_ >= NewsTabWidget::TabTypeWeb) return;
+  if (currentNewsTab->type_ >= NewsTabWidget::TabTypeDownloads) return;
 
   QList<QModelIndex> indexes = newsView_->selectionModel()->selectedRows(
         newsModel_->fieldIndex("label"));
@@ -7714,64 +7010,6 @@ void MainWindow::increaseNewsList()
   currentNewsTab->increaseNewsList();
 }
 
-/** @brief Save browser current page to file
- *---------------------------------------------------------------------------*/
-void MainWindow::slotSavePageAs()
-{
-  if (currentNewsTab->type_ == NewsTabWidget::TabTypeDownloads) return;
-
-  QString fileName = currentNewsTab->webView_->title();
-  if (newsLayout_ == 0) {
-    if (fileName == "news_descriptions") {
-      int row = currentNewsTab->newsView_->currentIndex().row();
-      fileName = currentNewsTab->newsModel_->dataField(row, "title").toString();
-    }
-  } else {
-    if (currentNewsTab->type_ == NewsTabWidget::TabTypeFeed) {
-      QModelIndex feedIndex = feedsView_->currentIndex();
-      feedIndex = feedsProxyModel_->mapToSource(feedIndex);
-      fileName = feedsModel_->dataField(feedIndex, "text").toString();
-    } else {
-      fileName = categoriesTree_->currentItem()->text(0);
-    }
-  }
-  QString title = fileName.trimmed();
-
-  fileName = fileName.trimmed();
-  fileName = fileName.replace(QzRegExp("[:\"]"), "_");
-  fileName = QDir::toNativeSeparators(QDir::homePath() + "/" + fileName);
-  fileName = QFileDialog::getSaveFileName(this, tr("Save As"),
-                                          fileName,
-                                          QString(tr("HTML-Files (*.%1)") + ";;" + tr("Text files (*.%2)"))
-                                          .arg("html").arg("txt"));
-  if (fileName.isNull()) return;
-
-  QFile file(fileName);
-  if (!file.open(QIODevice::WriteOnly)) {
-    statusBar()->showMessage(tr("Save As: can't open a file"), 3000);
-    return;
-  }
-  QFileInfo fileInfo(fileName);
-  if (fileInfo.suffix() == "txt") {
-    file.write(currentNewsTab->webView_->page()->mainFrame()->toPlainText().toUtf8());
-  } else {
-    QString html = currentNewsTab->webView_->page()->mainFrame()->toHtml();
-    QzRegExp reg("news_descriptions", Qt::CaseInsensitive);
-    html = html.replace(reg, title);
-    reg.setPattern("<img class=\"quiterss-img\"[^>]+\\>");
-    html = html.remove(reg);
-    QTextCodec *codec = QTextCodec::codecForHtml(html.toUtf8(),
-                                                 QTextCodec::codecForName("UTF-8"));
-    file.write(codec->fromUnicode(html));
-  }
-  file.close();
-}
-
-void MainWindow::slotSavePageAsDescript()
-{
-  currentNewsTab->savePageAsDescript();
-}
-
 /** @brief Restore last deleted news
  *---------------------------------------------------------------------------*/
 void MainWindow::restoreLastNews()
@@ -7792,8 +7030,6 @@ void MainWindow::restoreLastNews()
     while (newsModel_->canFetchMore())
       newsModel_->fetchMore();
 
-    currentNewsTab->loadNewspaper(NewsTabWidget::RefreshWithPos);
-
     QModelIndex index = newsModel_->index(0, newsModel_->fieldIndex("id"));
     QModelIndexList indexList = newsModel_->match(index, Qt::EditRole, newsIdCur);
     if (indexList.count()) {
@@ -7809,7 +7045,7 @@ void MainWindow::restoreLastNews()
  *---------------------------------------------------------------------------*/
 void MainWindow::nextUnreadNews()
 {
-  if (currentNewsTab->type_ >= NewsTabWidget::TabTypeWeb) return;
+  if (currentNewsTab->type_ >= NewsTabWidget::TabTypeDownloads) return;
   newsView_->clearSelection();
 
   int newsRow = currentNewsTab->findUnreadNews(true);
@@ -7846,10 +7082,6 @@ void MainWindow::nextUnreadNews()
         // Focus feed news that displayed before
         newsView_->setCurrentIndex(newsModel_->index(newsRow, newsModel_->fieldIndex("title")));
         if (newsRow == -1) newsView_->verticalScrollBar()->setValue(newsRow);
-
-        if (openNewsWebViewOn_) {
-          currentNewsTab->slotNewsViewSelected(newsModel_->index(newsRow, newsModel_->fieldIndex("title")));
-        }
       }
 
       Settings settings;
@@ -7872,7 +7104,7 @@ void MainWindow::nextUnreadNews()
  *---------------------------------------------------------------------------*/
 void MainWindow::prevUnreadNews()
 {
-  if (currentNewsTab->type_ >= NewsTabWidget::TabTypeWeb) return;
+  if (currentNewsTab->type_ >= NewsTabWidget::TabTypeDownloads) return;
   newsView_->clearSelection();
 
   int newsRow = currentNewsTab->findUnreadNews(false);
@@ -7951,7 +7183,7 @@ void MainWindow::showCustomizeToolbarDlg(QAction *action)
   if (action->objectName() == "customizeFeedsToolbarAct") {
     toolbar = feedsToolBar_;
   } else if (action->objectName() == "customizeNewsToolbarAct") {
-    if (currentNewsTab->type_ == NewsTabWidget::TabTypeWeb) return;
+    if (currentNewsTab->type_ == NewsTabWidget::TabTypeDownloads) return;
     if (currentNewsTab->type_ == NewsTabWidget::TabTypeDownloads) return;
     toolbar = currentNewsTab->newsToolBar_;
   }
@@ -7984,18 +7216,12 @@ void MainWindow::showMenuShareNews()
       shareMenu_->popup(widget->mapToGlobal(QPoint(0, feedsToolBar_->height()-1)));
     }
   }
-  if (currentNewsTab->type_ < NewsTabWidget::TabTypeWeb) {
+  if (currentNewsTab->type_ < NewsTabWidget::TabTypeDownloads) {
     if (currentNewsTab->newsToolBar_->widgetForAction(shareMenuAct_)) {
       QWidget *widget = currentNewsTab->newsToolBar_->widgetForAction(shareMenuAct_);
       if (widget->underMouse()) {
         shareMenu_->popup(widget->mapToGlobal(QPoint(0, currentNewsTab->newsToolBar_->height()-1)));
       }
-    }
-  }
-  if (currentNewsTab->webToolBar_->widgetForAction(shareMenuAct_)) {
-    QWidget *widget = currentNewsTab->webToolBar_->widgetForAction(shareMenuAct_);
-    if (widget->underMouse()) {
-      shareMenu_->popup(widget->mapToGlobal(QPoint(0, currentNewsTab->webToolBar_->height()-1)));
     }
   }
 }
@@ -8056,12 +7282,12 @@ void MainWindow::sortedByTitleFeedsTree()
 void MainWindow::showNewsMenu()
 {
   if (currentNewsTab)
-    newsSortByMenu_->setEnabled(currentNewsTab->type_ < NewsTabWidget::TabTypeWeb);
+    newsSortByMenu_->setEnabled(currentNewsTab->type_ < NewsTabWidget::TabTypeDownloads);
 }
 // ----------------------------------------------------------------------------
 void MainWindow::showNewsSortByMenu()
 {
-  if (currentNewsTab->type_ >= NewsTabWidget::TabTypeWeb) return;
+  if (currentNewsTab->type_ >= NewsTabWidget::TabTypeDownloads) return;
 
   QListIterator<QAction *> iter(newsSortByColumnGroup_->actions());
   while (iter.hasNext()) {
@@ -8094,7 +7320,7 @@ void MainWindow::showNewsSortByMenu()
 // ----------------------------------------------------------------------------
 void MainWindow::setNewsSortByColumn()
 {
-  if (currentNewsTab->type_ >= NewsTabWidget::TabTypeWeb) return;
+  if (currentNewsTab->type_ >= NewsTabWidget::TabTypeDownloads) return;
 
   int lIdx = newsSortByColumnGroup_->checkedAction()->data().toInt();
   if (newsSortOrderGroup_->actions().at(0)->isChecked()) {
@@ -8269,14 +7495,3 @@ void MainWindow::createBackup()
   }
 }
 
-void MainWindow::webViewFullScreen(bool on)
-{
-  feedsWidget_->setVisible(!on);
-  pushButtonNull_->setVisible(!on);
-  tabBarWidget_->setVisible(!on);
-  currentNewsTab->newsWidget_->setVisible(!on);
-  currentNewsTab->webControlPanel_->setVisible(!on);
-  pushButtonNull_->setVisible(!on);
-  statusBar()->setVisible(!on);
-  setFullScreen();
-}

@@ -21,8 +21,6 @@
 #include "common.h"
 #include "settings.h"
 #include "authenticationdialog.h"
-#include "adblockmanager.h"
-#include "webpage.h"
 #include "sslerrordialog.h"
 #include "cabundleupdater.h"
 
@@ -48,7 +46,6 @@ static QString fileNameForCert(const QSslCertificate &cert)
 NetworkManager::NetworkManager(bool isThread, QObject* parent)
   : QNetworkAccessManager(parent)
   , ignoreAllWarnings_(false)
-  , adblockManager_(0)
 {
   setCookieJar(mainApp->cookieJar());
   // CookieJar is shared between NetworkManagers
@@ -305,22 +302,6 @@ QNetworkReply *NetworkManager::createRequest(QNetworkAccessManager::Operation op
                                              const QNetworkRequest &request,
                                              QIODevice *outgoingData)
 {
-  if (mainApp->networkManager() == this) {
-    QNetworkReply *reply = 0;
-
-    // Adblock
-    if (op == QNetworkAccessManager::GetOperation) {
-      if (!adblockManager_) {
-        adblockManager_ = AdBlockManager::instance();
-      }
-
-      reply = adblockManager_->block(request);
-      if (reply) {
-        return reply;
-      }
-    }
-  }
-
   return QNetworkAccessManager::createRequest(op, request, outgoingData);
 }
 

@@ -25,6 +25,7 @@
 
 #include <QDomDocument>
 #include <qzregexp.h>
+#include <QNetworkCookie>
 
 extern QString kCreateNewsTableQuery;
 

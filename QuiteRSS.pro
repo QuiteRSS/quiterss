@@ -32,13 +32,10 @@ exists(.git) {
 }
 
 isEqual(QT_MAJOR_VERSION, 5) {
-  QT += widgets webkitwidgets network xml printsupport sql multimedia
+  QT += widgets network xml printsupport sql multimedia
   DEFINES += HAVE_QT5
-  equals(WEBKIT_ALPHA, true) {
-      DEFINES += WEBKIT_ALPHA
-  }
 } else {
-  QT += core gui network xml webkit sql
+  QT += core gui network xml sql
   os2 {
     DISABLE_PHONON = 1
   }
@@ -73,8 +70,6 @@ HEADERS += \
     src/labeldialog.h \
     src/faviconobject.h \
     src/customizetoolbardialog.h \
-    src/plugins/webpluginfactory.h \
-    src/plugins/clicktoflash.h \
     src/downloads/downloadmanager.h \
     src/downloads/downloaditem.h \
     src/tabbar.h \
@@ -89,24 +84,10 @@ HEADERS += \
     src/application/settings.h \
     src/application/logfile.h \
     src/application/mainwindow.h \
-    src/adblock/adblocktreewidget.h \
-    src/adblock/adblocksubscription.h \
-    src/adblock/adblocksearchtree.h \
-    src/adblock/adblockrule.h \
-    src/adblock/adblockmanager.h \
-    src/adblock/adblockicon.h \
-    src/adblock/adblockdialog.h \
-    src/adblock/adblockblockednetworkreply.h \
-    src/adblock/adblockaddsubscriptiondialog.h \
-    src/adblock/followredirectreply.h \
     src/application/splashscreen.h \
     src/network/authenticationdialog.h \
     src/network/cookiejar.h \
     src/network/networkmanager.h \
-    src/webview/locationbar.h \
-    src/webview/rssdetectionwidget.h \
-    src/webview/webpage.h \
-    src/webview/webview.h \
     src/database/database.h \
     src/common/common.h \
     src/common/delegatewithoutfocus.h \
@@ -119,7 +100,6 @@ HEADERS += \
     src/newsfilters/itemaction.h \
     src/network/sslerrordialog.h \
     src/network/networkmanagerproxy.h \
-    src/adblock/adblockmatcher.h \
     src/feedsview/feedsproxymodel.h \
     src/main/globals.h \
 
@@ -142,8 +122,6 @@ SOURCES += \
     src/labeldialog.cpp \
     src/faviconobject.cpp \
     src/customizetoolbardialog.cpp \
-    src/plugins/webpluginfactory.cpp \
-    src/plugins/clicktoflash.cpp \
     src/downloads/downloadmanager.cpp \
     src/downloads/downloaditem.cpp \
     src/tabbar.cpp \
@@ -160,24 +138,10 @@ SOURCES += \
     src/application/mainwindow.cpp \
     src/main/globals.cpp \
     src/main/main.cpp \
-    src/adblock/adblocktreewidget.cpp \
-    src/adblock/adblocksubscription.cpp \
-    src/adblock/adblocksearchtree.cpp \
-    src/adblock/adblockrule.cpp \
-    src/adblock/adblockmanager.cpp \
-    src/adblock/adblockicon.cpp \
-    src/adblock/adblockdialog.cpp \
-    src/adblock/adblockblockednetworkreply.cpp \
-    src/adblock/adblockaddsubscriptiondialog.cpp \
-    src/adblock/followredirectreply.cpp \
     src/application/splashscreen.cpp \
     src/network/authenticationdialog.cpp \
     src/network/cookiejar.cpp \
     src/network/networkmanager.cpp \
-    src/webview/locationbar.cpp \
-    src/webview/rssdetectionwidget.cpp \
-    src/webview/webpage.cpp \
-    src/webview/webview.cpp \
     src/database/database.cpp \
     src/common/common.cpp \
     src/common/delegatewithoutfocus.cpp \
@@ -190,7 +154,6 @@ SOURCES += \
     src/newsfilters/itemaction.cpp \
     src/network/sslerrordialog.cpp \
     src/network/networkmanagerproxy.cpp \
-    src/adblock/adblockmatcher.cpp \
     src/feedsview/feedsproxymodel.cpp
 
 INCLUDEPATH +=  $$PWD/src \
@@ -204,9 +167,7 @@ INCLUDEPATH +=  $$PWD/src \
                 $$PWD/src/newsview \
                 $$PWD/src/notifications \
                 $$PWD/src/plugins \
-                $$PWD/src/adblock \
-                $$PWD/src/network \
-                $$PWD/src/webview \
+                $$PWD/src/network
 
 CONFIG += debug_and_release
 CONFIG(debug, debug|release) {
@@ -359,7 +320,3 @@ OTHER_FILES += \
     CHANGELOG \
     INSTALL \
     Info.plist
-
-FORMS += \
-    src/adblock/adblockdialog.ui \
-    src/adblock/adblockaddsubscriptiondialog.ui

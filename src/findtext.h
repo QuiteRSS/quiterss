@@ -48,7 +48,6 @@ private slots:
   void updateClearButton(const QString &text);
   void slotClear();
   void slotMenuFind();
-  void slotSelectFind(QAction *act);
 
 private:
   QMenu *findMenu_;

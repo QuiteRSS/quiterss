@@ -30,11 +30,10 @@ UpdateAppDialog::UpdateAppDialog(const QString &lang, QWidget *parent, bool show
   : Dialog(parent)
   , lang_(lang)
   , showDialog_(show)
-  , page_(NULL)
 {
   Settings settings;
 
-  networkManagerProxy_ = new NetworkManagerProxy(0, this);
+  networkManagerProxy_ = new NetworkManagerProxy(this);
 
   if (showDialog_) {
     setWindowTitle(tr("Check for Updates"));
@@ -92,13 +91,6 @@ void UpdateAppDialog::disconnectObjects()
 {
   disconnect(this);
   networkManagerProxy_->disconnectObjects();
-
-  if (page_ != NULL) {
-    QWebSettings::clearMemoryCaches();
-    page_->disconnect(this);
-    delete page_;
-  }
-
   delete networkManagerProxy_;
 }
 

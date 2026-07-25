@@ -74,11 +74,8 @@ CustomizeToolbarDialog::CustomizeToolbarDialog(QWidget *parent, QToolBar *toolba
     if (pAction->icon().isNull())
       item->setIcon(0, QIcon(":/images/images/noicon.png"));
     else {
-      if (pAction->objectName() == "autoLoadImagesToggle") {
-        item->setIcon(0, QIcon(":/images/imagesOn"));
-        item->setText(0, tr("Load images"));
-      } else if ((pAction->objectName() == "feedsFilter") ||
-                 (pAction->objectName() == "newsFilter")) {
+      if ((pAction->objectName() == "feedsFilter") ||
+          (pAction->objectName() == "newsFilter")) {
         item->setIcon(0, QIcon(":/images/filterOn"));
       } else item->setIcon(0, pAction->icon());
     }
@@ -374,11 +371,8 @@ void CustomizeToolbarDialog::showMenuAddButton()
         QAction *action = addButtonMenu_->addAction(pAction->icon(), pAction->text());
         action->setObjectName(pAction->objectName());
 
-        if (pAction->objectName() == "autoLoadImagesToggle") {
-          action->setIcon(QIcon(":/images/imagesOn"));
-          action->setText(tr("Load images"));
-        } else if ((pAction->objectName() == "feedsFilter") ||
-                   (pAction->objectName() == "newsFilter")) {
+        if ((pAction->objectName() == "feedsFilter") ||
+            (pAction->objectName() == "newsFilter")) {
           action->setIcon(QIcon(":/images/filterOn"));
         } else action->setIcon(pAction->icon());
       }
@@ -445,7 +439,7 @@ void CustomizeToolbarDialog::defaultShortcut()
   QString actionListStr;
   if (toolbar_->objectName() == "ToolBar_General") {
     actionListStr = "newAct,Separator,updateFeedAct,updateAllFeedsAct,"
-        "Separator,markFeedRead,Separator,autoLoadImagesToggle";
+        "Separator,markFeedRead";
   } else if (toolbar_->objectName() == "feedsToolBar") {
     actionListStr = "findFeedAct,feedsFilter";
   } else if (toolbar_->objectName() == "newsToolBar") {
@@ -476,13 +470,10 @@ void CustomizeToolbarDialog::defaultShortcut()
             if (pAction->icon().isNull())
               item->setIcon(0, QIcon(":/images/images/noicon.png"));
             else {
-              if (pAction->objectName() == "autoLoadImagesToggle") {
-                item->setIcon(0, QIcon(":/images/imagesOn"));
-                item->setText(0, tr("Load images"));
-              } else if ((pAction->objectName() == "feedsFilter") ||
-                         (pAction->objectName() == "newsFilter")) {
-                item->setIcon(0, QIcon(":/images/filterOn"));
-              } else item->setIcon(0, pAction->icon());
+            if ((pAction->objectName() == "feedsFilter") ||
+                (pAction->objectName() == "newsFilter")) {
+              item->setIcon(0, QIcon(":/images/filterOn"));
+            } else item->setIcon(0, pAction->icon());
             }
             shortcutTree_->addTopLevelItem(item);
             break;
