@@ -164,6 +164,15 @@ QWidget *FeedPropertiesDialog::createGeneralTab()
   tabLayout->addSpacing(15);
   tabLayout->addWidget(addSingleNewsAnyDateOn_);
   tabLayout->addWidget(avoidedOldSingleNewsDateOn_);
+  tabLayout->addSpacing(15);
+
+  QLabel *labelExcludeSubPaths = new QLabel(tr("Exclude sub-paths (comma-separated):"));
+  excludeSubPaths_ = new LineEdit();
+  QHBoxLayout *excludeSubPathsLayout = new QHBoxLayout();
+  excludeSubPathsLayout->addWidget(labelExcludeSubPaths);
+  excludeSubPathsLayout->addWidget(excludeSubPaths_, 1);
+  tabLayout->addLayout(excludeSubPathsLayout);
+
   tabLayout->addStretch();
 
   connect(addSingleNewsAnyDateOn_, SIGNAL(toggled(bool)),
@@ -191,6 +200,7 @@ QWidget *FeedPropertiesDialog::createGeneralTab()
     addSingleNewsAnyDateOn_->hide();
     avoidedOldSingleNewsDateOn_->hide();
     avoidedOldSingleNewsDate_->hide();
+    excludeSubPaths_->hide();
   }
 
   return tab;
@@ -410,6 +420,7 @@ QWidget *FeedPropertiesDialog::createStatusTab()
   addSingleNewsAnyDateOn_->setChecked(feedProperties.general.addSingleNewsAnyDateOn);
   avoidedOldSingleNewsDateOn_->setChecked(feedProperties.general.avoidedOldSingleNewsDateOn);
   avoidedOldSingleNewsDate_->setSelectedDate(feedProperties.general.avoidedOldSingleNewsDate);
+  excludeSubPaths_->setText(feedProperties.general.excludeSubPaths);
 
   loadImagesOn_->setCheckState((Qt::CheckState)feedProperties.display.displayEmbeddedImages);
   javaScriptEnable_->setCheckState((Qt::CheckState)feedProperties.display.javaScriptEnable);
@@ -557,6 +568,7 @@ FEED_PROPERTIES FeedPropertiesDialog::getFeedProperties()
   } else {
     feedProperties.general.avoidedOldSingleNewsDate = QDate::currentDate();
   }
+  feedProperties.general.excludeSubPaths = excludeSubPaths_->text();
 
   feedProperties.column.columns.clear();
   for (int i = 0; i < columnsTree_->topLevelItemCount(); ++i) {

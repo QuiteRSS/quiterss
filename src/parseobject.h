@@ -109,6 +109,7 @@ private:
   QString parseDate(const QString &dateString, const QString &urlString);
   int recountFeedCounts(int feedId, const QString &feedUrl,
                         const QString &updated, const QString &lastBuildDate);
+  bool isUrlExcluded(const QString &url); //!< Check if URL matches excluded sub-paths
 
   QSqlDatabase db_;
   QTimer *parseTimer_;
@@ -129,6 +130,8 @@ private:
   QStringList linkList_;
   QStringList titleList_;
   QStringList publishedList_;
+
+  QStringList excludeSubPaths_; //!< List of sub-paths to exclude from feed
 
   QDateTime lastBuildDate_;
 

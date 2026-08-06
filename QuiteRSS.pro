@@ -38,7 +38,7 @@ isEqual(QT_MAJOR_VERSION, 5) {
       DEFINES += WEBKIT_ALPHA
   }
 } else {
-  QT += core gui network xml webkit sql
+  QT += core gui network xml webkit sql sql
   os2 {
     DISABLE_PHONON = 1
   }

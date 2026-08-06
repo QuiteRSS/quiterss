@@ -26,7 +26,7 @@
 
 #include <sqlite3.h>
 
-const int versionDB = 17;
+const int versionDB = 18;
 
 const QString kCreateFeedsTableQuery(
     "CREATE TABLE feeds("
@@ -122,7 +122,9 @@ const QString kCreateFeedsTableQuery(
     // Version 17
     "SingleClickAction integer default 0, " // ENewsClickAction
     "DoubleClickAction integer default 0, " // ENewsClickAction
-    "MiddleClickAction integer default 0 "  // ENewsClickAction
+    "MiddleClickAction integer default 0, "  // ENewsClickAction
+    // Version 18
+    "excludeSubPaths varchar "              // comma-separated list of sub-paths to exclude
     ")");
 
 const QString kCreateNewsTableQuery(
@@ -324,6 +326,11 @@ void Database::prepareDatabase()
           q.exec("ALTER table feeds ADD COLUMN SingleClickAction integer default 0");
           q.exec("ALTER table feeds ADD COLUMN DoubleClickAction integer default 0");
           q.exec("ALTER table feeds ADD COLUMN MiddleClickAction integer default 0");
+        }
+
+        if (dbVersion < 18)
+        {
+          q.exec("ALTER table feeds ADD COLUMN excludeSubPaths varchar");
         }
 
         // Update appVersion anyway

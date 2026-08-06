@@ -118,9 +118,10 @@ void ParseObject::slotParse(const QByteArray &xmlData, const int &feedId,
   addSingleNewsAnyDate_ = false;
   avoidedOldSingleNews_ = false;
   avoidedOldSingleNewsDate_ = QDate::currentDate();
+  excludeSubPaths_.clear();
   QSqlQuery q(db_);
   q.setForwardOnly(true);
-  q.exec(QString("SELECT duplicateNewsMode, xmlUrl, addSingleNewsAnyDateOn, avoidedOldSingleNewsDateOn, avoidedOldSingleNewsDate"
+  q.exec(QString("SELECT duplicateNewsMode, xmlUrl, addSingleNewsAnyDateOn, avoidedOldSingleNewsDateOn, avoidedOldSingleNewsDate, excludeSubPaths"
                  " FROM feeds WHERE id=='%1'").arg(parseFeedId_));
   if (q.first()) {
     duplicateNewsMode_ = q.value(0).toBool();
@@ -128,6 +129,14 @@ void ParseObject::slotParse(const QByteArray &xmlData, const int &feedId,
     addSingleNewsAnyDate_ = q.value(2).toBool();
     avoidedOldSingleNews_ = q.value(3).toBool();
     avoidedOldSingleNewsDate_ = q.value(4).toDate();
+    QString excludePaths = q.value(5).toString();
+    if (!excludePaths.isEmpty()) {
+      excludeSubPaths_ = excludePaths.split(",", QString::SkipEmptyParts);
+      // Trim whitespace from each path
+      for (int i = 0; i < excludeSubPaths_.size(); ++i) {
+        excludeSubPaths_[i] = excludeSubPaths_[i].trimmed();
+      }
+    }
   }
 
   // id not found (ex. feed deleted while updating)
@@ -499,8 +508,11 @@ void ParseObject::addAtomNewsIntoBase(NewsItemStruct *newsItem)
       }
    }
 
-  // if duplicates not found and is old news, add them into base
-  if (!isDuplicate && !isOld) {
+  // Check if news URL is excluded based on sub-path filters
+  bool isExcluded = isUrlExcluded(newsItem->link) || isUrlExcluded(newsItem->linkAlternate);
+
+  // if duplicates not found and is not old news and not excluded, add them into base
+  if (!isDuplicate && !isOld && !isExcluded) {
     bool read = false;
     if (mainApp->mainWindow()->markIdenticalNewsRead_) {
       q.prepare("SELECT id FROM news WHERE title LIKE :title AND feedId!=:id");
@@ -811,8 +823,11 @@ void ParseObject::addRssNewsIntoBase(NewsItemStruct *newsItem)
       }
    }
 
- // if duplicates not found And old news, add them into base
- if (!isDuplicate && !isOld) {
+  // Check if news URL is excluded based on sub-path filters
+  bool isExcluded = isUrlExcluded(newsItem->link) || isUrlExcluded(newsItem->linkAlternate);
+
+ // if duplicates not found and is not old news and not excluded, add them into base
+ if (!isDuplicate && !isOld && !isExcluded) {
     bool read = false;
     if (mainApp->mainWindow()->markIdenticalNewsRead_) {
       q.prepare("SELECT id FROM news WHERE title LIKE :title AND feedId!=:id");
@@ -1419,4 +1434,27 @@ int ParseObject::recountFeedCounts(int feedId, const QString &feedUrl,
   }
 
   return (newNewsCount - newCountOld);
+}
+
+/** @brief Check if URL should be excluded based on sub-path filters
+ * @param url - URL to check
+ * @return true if URL matches any excluded sub-path
+ *--------------------------------------------------------------------------*/
+bool ParseObject::isUrlExcluded(const QString &url)
+{
+  if (excludeSubPaths_.isEmpty() || url.isEmpty())
+    return false;
+
+  QString urlLower = url.toLower();
+  foreach (const QString &path, excludeSubPaths_) {
+    if (path.isEmpty())
+      continue;
+    QString pathLower = path.toLower();
+    // Check if URL contains the excluded path (supports both "shorts" and "shorts/even/more")
+    if (urlLower.contains(pathLower)) {
+      qDebug() << "Excluding URL due to filter '" << path << "': " << url;
+      return true;
+    }
+  }
+  return false;
 }

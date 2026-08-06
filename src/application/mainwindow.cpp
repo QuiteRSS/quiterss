@@ -5334,6 +5334,9 @@ void MainWindow::showFeedPropertiesDlg()
   properties.general.avoidedOldSingleNewsDate =
       feedsModel_->dataField(index, "avoidedOldSingleNewsDate").toDate();
 
+  properties.general.excludeSubPaths =
+      feedsModel_->dataField(index, "excludeSubPaths").toString();
+
   Settings settings;
   settings.beginGroup("NewsHeader");
   QString indexColumnsStr = settings.value("columns").toString();
@@ -5460,7 +5463,7 @@ void MainWindow::showFeedPropertiesDlg()
             "displayEmbeddedImages = ?, displayNews = ?, layoutDirection = ?, "
             "label = ?, duplicateNewsMode = ?, addSingleNewsAnyDateOn = ?, avoidedOldSingleNewsDateOn = ?, avoidedOldSingleNewsDate = ?,"
             " authentication = ?, disableUpdate = ?, "
-            "javaScriptEnable = ? WHERE id == ?");
+            "javaScriptEnable = ?, excludeSubPaths = ? WHERE id == ?");
   q.addBindValue(properties.general.text);
   q.addBindValue(properties.general.url);
   q.addBindValue(properties.general.displayOnStartup);
@@ -5478,6 +5481,7 @@ void MainWindow::showFeedPropertiesDlg()
   q.addBindValue(properties.authentication.on ? 1 : 0);
   q.addBindValue(properties.general.disableUpdate ? 1 : 0);
   q.addBindValue(properties.display.javaScriptEnable);
+  q.addBindValue(properties.general.excludeSubPaths);
   q.addBindValue(feedId);
   q.exec();
 
@@ -5585,6 +5589,7 @@ void MainWindow::showFeedPropertiesDlg()
   QModelIndex indexAuthentication = feedsModel_->indexSibling(index, "authentication");
   QModelIndex indexDisableUpdate = feedsModel_->indexSibling(index, "disableUpdate");
   QModelIndex indexJavaScript = feedsModel_->indexSibling(index, "javaScriptEnable");
+  QModelIndex indexExcludeSubPaths = feedsModel_->indexSibling(index, "excludeSubPaths");
   feedsModel_->setData(indexText, properties.general.text);
   feedsModel_->setData(indexUrl, properties.general.url);
   feedsModel_->setData(indexStartup, properties.general.displayOnStartup);
@@ -5599,6 +5604,7 @@ void MainWindow::showFeedPropertiesDlg()
   feedsModel_->setData(indexAuthentication, properties.authentication.on ? 1 : 0);
   feedsModel_->setData(indexDisableUpdate, properties.general.disableUpdate ? 1 : 0);
   feedsModel_->setData(indexJavaScript, properties.display.javaScriptEnable);
+  feedsModel_->setData(indexExcludeSubPaths, properties.general.excludeSubPaths);
 
   if (!properties.general.updateEnable ||
       (properties.general.updateEnable != updateFeedsEnable_) ||
